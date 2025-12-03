@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbpp48kcropih"]
+[gd_scene load_steps=3 format=3 uid="uid://bbpp48kcropih"]
 
 [ext_resource type="Script" uid="uid://dw7xdb8htvkix" path="res://battle/skill_challenge.gd" id="1_vhqj4"]
+[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_6lr5k"]
 
 [node name="SkillChallenge" type="CanvasLayer"]
 script = ExtResource("1_vhqj4")
@@ -33,3 +34,6 @@ offset_top = -2.0
 offset_right = 1.0
 offset_bottom = 2.0
 color = Color(1, 0, 0, 1)
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="."]
+script = ExtResource("2_6lr5k")

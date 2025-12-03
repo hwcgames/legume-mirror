@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfxpseb52qeut"]
+
+[sub_resource type="GDScript" id="GDScript_n4ect"]
+script/source = "extends Control
+
+signal done
+
+var battlefield: Battlefield
+"
+
+[sub_resource type="GDScript" id="GDScript_7s1as"]
+script/source = "extends Control
+
+func _ready():
+	get_tree().create_timer(30.).timeout.connect(get_parent().done.emit)
+	while true:
+		var bullet: AnimatableBody2D = preload(\"res://battle/bullet/test.tscn\").instantiate()
+		bullet.constant_linear_velocity = (Vector2.LEFT * 100).rotated(deg_to_rad(randf_range(-60, 60)))
+		bullet.position = position
+		get_parent().add_child(bullet)
+		await get_tree().create_timer(0.25).timeout
+"
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_n4ect")
+
+[node name="Emitter" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_right = -24.0
+grow_horizontal = 0
+grow_vertical = 2
+script = SubResource("GDScript_7s1as")

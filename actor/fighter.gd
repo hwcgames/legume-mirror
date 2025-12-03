@@ -21,6 +21,8 @@ func heal(amount: int):
 
 var battlefield: Battlefield
 
+signal joined_battle(Battlefield)
+
 func join_battle(battle: Battlefield):
 	battlefield = battle
 	battle.begin.connect(begin)
@@ -29,6 +31,7 @@ func join_battle(battle: Battlefield):
 	battle.player_action.connect(player_action)
 	battle.enemy_action.connect(enemy_action)
 	_join_battle(battle)
+	joined_battle.emit(battlefield)
 
 func _join_battle(_battle: Battlefield):
 	pass

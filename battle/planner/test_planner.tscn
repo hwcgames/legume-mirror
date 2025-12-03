@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d21yudvneounm"]
+[gd_scene load_steps=4 format=3 uid="uid://d21yudvneounm"]
 
 [ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/stage/BattlePlanner.gd" id="1_ssjqy"]
+[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_ssjqy"]
 
 [sub_resource type="GDScript" id="GDScript_ssjqy"]
 script/source = "extends Button
@@ -75,3 +76,7 @@ metadata/_tab_index = 1
 [node name="EnemyMenuParent" type="HFlowContainer" parent="Display/TabContainer/TargetSelectTab"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="."]
+script = ExtResource("2_ssjqy")
+metadata/_custom_type_script = "uid://lcn3o02vtkmm"

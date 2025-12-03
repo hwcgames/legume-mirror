@@ -40,11 +40,3 @@ func pick_target() -> Enemy:
 
 func _ready():
 	hide()
-
-func _process(_d):
-	var camera = party_member.get_viewport().get_camera_3d()
-	if camera.is_position_behind(party_member.global_position):
-		self.offset = Vector2(1000000, 0)
-		return
-	var position = camera.unproject_position(party_member.global_position)
-	self.offset = position
