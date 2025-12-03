@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvtbjdytsu2ft"]
+[gd_scene load_steps=12 format=3 uid="uid://dvtbjdytsu2ft"]
 
 [ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
 [ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_o4ule"]
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="3_ndkpn"]
 [ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy.gd" id="4_lbtbq"]
 [ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="4_ndkpn"]
+[ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/planner/skill_challenge.tscn" id="5_lbtbq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0yqv"]
 albedo_texture = ExtResource("1_3ix4j")
@@ -28,7 +29,7 @@ script = ExtResource("1_o4ule")
 stage = NodePath("..")
 landmarks = [NodePath("../Stage/Left1"), NodePath("../Stage/Right1"), NodePath("../Stage/Left2"), NodePath("../Stage/Right2"), NodePath("../Stage/Left3"), NodePath("../Stage/Right3")]
 players = [NodePath("../PartyMember1"), NodePath("../PartyMember2")]
-enemies = [NodePath("../Enemy1")]
+enemies = [NodePath("../Enemy1"), NodePath("../Enemy2")]
 metadata/_custom_type_script = "uid://bpjl8ipys5vef"
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -72,6 +73,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.3, 1.6)
 [node name="PartyMember1" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, 0)
 script = ExtResource("3_ndkpn")
+max_hp = 50
+hp = 50
+strength = 5
+defense = 5
 metadata/_custom_type_script = "uid://rl05e0067ud"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PartyMember1"]
@@ -84,9 +89,15 @@ shape = SubResource("BoxShape3D_8y2gj")
 
 [node name="BattlePlanner" parent="PartyMember1" instance=ExtResource("4_ndkpn")]
 
+[node name="SkillChallenge" parent="PartyMember1" instance=ExtResource("5_lbtbq")]
+
 [node name="PartyMember2" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.2, 1.5)
 script = ExtResource("3_ndkpn")
+max_hp = 50
+hp = 50
+strength = 5
+defense = 5
 metadata/_custom_type_script = "uid://rl05e0067ud"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PartyMember2"]
@@ -99,9 +110,15 @@ shape = SubResource("BoxShape3D_8y2gj")
 
 [node name="BattlePlanner" parent="PartyMember2" instance=ExtResource("4_ndkpn")]
 
+[node name="SkillChallenge" parent="PartyMember2" instance=ExtResource("5_lbtbq")]
+
 [node name="Enemy1" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 0)
 script = ExtResource("4_lbtbq")
+max_hp = 1
+hp = 1
+strength = 5
+defense = 5
 metadata/_custom_type_script = "uid://rl05e0067ud"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy1"]
@@ -109,6 +126,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_5jau5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_8y2gj")
+
+[node name="Enemy2" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.2, 1.4)
+script = ExtResource("4_lbtbq")
+max_hp = 1
+hp = 1
+strength = 5
+defense = 5
+metadata/_custom_type_script = "uid://rl05e0067ud"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5jau5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_8y2gj")
 
