@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvtbjdytsu2ft"]
+
+[ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
+[ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_o4ule"]
+[ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="3_ndkpn"]
+[ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy.gd" id="4_lbtbq"]
+[ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="4_ndkpn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0yqv"]
+albedo_texture = ExtResource("1_3ix4j")
+uv1_scale = Vector3(12.5, 5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hfw2e"]
+size = Vector3(8, 0.5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o4ule"]
+size = Vector3(8, 0.5, 3)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5jau5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y2gj"]
+size = Vector3(1, 2, 1)
+
+[node name="DebugBattle" type="Node3D"]
+
+[node name="Battlefield" type="Node" parent="." node_paths=PackedStringArray("stage", "landmarks", "players", "enemies")]
+script = ExtResource("1_o4ule")
+stage = NodePath("..")
+landmarks = [NodePath("../Stage/Left1"), NodePath("../Stage/Right1"), NodePath("../Stage/Left2"), NodePath("../Stage/Right2"), NodePath("../Stage/Left3"), NodePath("../Stage/Right3")]
+players = [NodePath("../PartyMember1"), NodePath("../PartyMember2")]
+enemies = [NodePath("../Enemy1")]
+metadata/_custom_type_script = "uid://bpjl8ipys5vef"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 4.6, 11)
+fov = 28.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.49999997, -0.75000006, 0.4330127, 0, 0.49999997, 0.86602545, -0.86602545, -0.4330127, 0.24999997, 0, 3, 0)
+
+[node name="Stage" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stage"]
+material_override = SubResource("StandardMaterial3D_f0yqv")
+mesh = SubResource("BoxMesh_hfw2e")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1.3, -2.7)
+material_override = SubResource("StandardMaterial3D_f0yqv")
+mesh = SubResource("BoxMesh_o4ule")
+skeleton = NodePath("../..")
+
+[node name="Left1" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.3, -1.4)
+
+[node name="Left2" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9000001, 0.3, 0.100000024)
+
+[node name="Left3" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 0.3, 1.6)
+
+[node name="Right1" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 0.3, -1.4)
+
+[node name="Right2" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.3, 0)
+
+[node name="Right3" type="Marker3D" parent="Stage" groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.3, 1.6)
+
+[node name="PartyMember1" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, 0)
+script = ExtResource("3_ndkpn")
+metadata/_custom_type_script = "uid://rl05e0067ud"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PartyMember1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5jau5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PartyMember1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_8y2gj")
+
+[node name="BattlePlanner" parent="PartyMember1" instance=ExtResource("4_ndkpn")]
+
+[node name="PartyMember2" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.2, 1.5)
+script = ExtResource("3_ndkpn")
+metadata/_custom_type_script = "uid://rl05e0067ud"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PartyMember2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5jau5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PartyMember2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_8y2gj")
+
+[node name="BattlePlanner" parent="PartyMember2" instance=ExtResource("4_ndkpn")]
+
+[node name="Enemy1" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.2, 0)
+script = ExtResource("4_lbtbq")
+metadata/_custom_type_script = "uid://rl05e0067ud"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enemy1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_5jau5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_8y2gj")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Begin"
+
+[connection signal="pressed" from="Button" to="Battlefield" method="battle"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://d21yudvneounm"]
+
+[ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/stage/BattlePlanner.gd" id="1_ssjqy"]
+
+[sub_resource type="GDScript" id="GDScript_ssjqy"]
+script/source = "extends Button
+
+@export var planner: BattlePlanner
+
+func _pressed():
+	var target = await planner.pick_target()
+	if target == null:
+		%ToplevelTab.show()
+		return
+	planner._choice.emit(planner.party_member.basic_attack.bind(target))
+"
+
+[node name="BasicBattlePlanner" type="CanvasLayer"]
+script = ExtResource("1_ssjqy")
+
+[node name="Display" type="ColorRect" parent="."]
+clip_children = 1
+offset_left = -293.0
+offset_top = -214.0
+offset_right = -89.0
+offset_bottom = -120.0
+
+[node name="TabContainer" type="TabContainer" parent="Display"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+tabs_visible = false
+
+[node name="ToplevelTab" type="MarginContainer" parent="Display/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Display/TabContainer/ToplevelTab"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Basic Attack"
+script = SubResource("GDScript_ssjqy")
+planner = NodePath("../../../../..")
+
+[node name="Button2" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unique"
+
+[node name="Button3" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pockets"
+
+[node name="Button4" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Parley"
+
+[node name="TargetSelectTab" type="MarginContainer" parent="Display/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="EnemyMenuParent" type="HFlowContainer" parent="Display/TabContainer/TargetSelectTab"]
+unique_name_in_owner = true
+layout_mode = 2
