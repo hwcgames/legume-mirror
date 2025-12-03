@@ -14,9 +14,6 @@ config/name="Legume Traffick"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
 
-[autoload]
-
-
 [dotnet]
 
 project/assembly_name="Legme Traffick"
