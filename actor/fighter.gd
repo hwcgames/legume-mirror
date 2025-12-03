@@ -48,6 +48,9 @@ func player_action():
 func enemy_action():
 	_enemy_action()
 
+func done(player_victory: bool):
+	_done(player_victory)
+
 func _begin():
 	pass
 
@@ -61,4 +64,7 @@ func _player_action():
 	pass
 
 func _enemy_action():
+	pass
+
+func _done(_player_victory: bool):
 	pass

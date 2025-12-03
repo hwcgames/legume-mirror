@@ -17,7 +17,6 @@ func _player_action():
 
 func basic_attack(_p: PartyMember, target: Enemy):
 	var lock = await battlefield.exclusive_lock()
-	await get_tree().create_timer(1.).timeout
 	if !target.alive:
 		for enemy in battlefield.enemies:
 			if enemy.alive:
@@ -27,6 +26,8 @@ func basic_attack(_p: PartyMember, target: Enemy):
 		lock.call()
 		return
 	print(self, " attacks ", target, "!")
+	var orig_pos = global_position
+	await get_tree().create_tween().tween_property(self, "global_position", target.global_position + Vector3.LEFT * 2, 0.75).finished
 	var skill = await skill_challenge.skill_challenge(randi_range(20,40))
 	var damage = (self.strength*skill/20)-(3*target.defense)
 	if damage > 0:
@@ -34,4 +35,7 @@ func basic_attack(_p: PartyMember, target: Enemy):
 		target.take_damage(damage)
 	else:
 		print("Miss!")
+	var tw = get_tree().create_tween().tween_property(self, "global_position", orig_pos, 0.75)
+	await get_tree().create_timer(0.5).timeout
 	lock.call()
+	await tw.finished

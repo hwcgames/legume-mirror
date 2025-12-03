@@ -72,6 +72,12 @@ func battle():
 		phase = PHASE.TOP
 		top.emit()
 		await wait_for_clear()
+		if enemies.all(func(e): return !e.alive):
+			print("Enemy defeat!")
+			break
+		if players.all(func(p): return !p.alive):
+			print("Player defeat!")
+			break
 		print("Telegraph phase!")
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
@@ -86,3 +92,5 @@ func battle():
 		enemy_action.emit()
 		await get_tree().process_frame
 		await wait_for_clear()
+	phase = PHASE.DONE
+	done.emit(enemies.all(func(e): return !e.alive))
