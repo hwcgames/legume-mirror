@@ -39,3 +39,8 @@ func basic_attack(_p: PartyMember, target: Enemy):
 	await get_tree().create_timer(0.5).timeout
 	lock.call()
 	await tw.finished
+
+func _enemy_action():
+	await get_tree().process_frame
+	if battlefield.battle_board.souls.is_empty():
+		battlefield.battle_board.add_soul(preload("uid://r8iv2h12xgwc").instantiate())

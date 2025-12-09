@@ -26,6 +26,7 @@ func _enemy_action():
 	var lock = await battlefield.shared_lock()
 	if planned_pattern != null:
 		var board = planned_pattern.create(battlefield)
+		await get_tree().process_frame
 		battlefield.battle_board.add_pattern(board)
 		await board.done
 	lock.call()

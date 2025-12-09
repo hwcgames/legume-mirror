@@ -3,20 +3,35 @@
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_qds61"]
 
 [sub_resource type="GDScript" id="GDScript_qds61"]
-script/source = "extends AnimatableBody2D
+script/source = "extends Area2D
+
+var battlefield: Battlefield
+@export var damage: int = 5
+var velocity: Vector2
 
 func _ready():
 	await get_tree().create_timer(5).timeout
 	queue_free()
 
 func _physics_process(delta: float) -> void:
-	global_position += constant_linear_velocity * delta
+	global_position += velocity * delta
+
+func _on_graze_player(soul: Node2D):
+	print(\"Grazed \", soul);
+
+func _on_hurt_player(soul: Node2D):
+	print(\"Bullet \", self, \" hits \", soul)
+	var players = battlefield.players.filter(func(p): return p.alive)
+	if players.is_empty():
+		return
+	var target: PartyMember = players[randi_range(0, len(players)-1)]
+	target.take_damage(damage)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xoxa"]
 radius = 16.0
 
-[node name="Test" type="AnimatableBody2D"]
+[node name="Test" type="Area2D"]
 script = SubResource("GDScript_qds61")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
