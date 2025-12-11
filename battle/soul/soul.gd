@@ -1,8 +1,10 @@
 extends Node2D
+class_name Soul
 
 @export var speed: float = 196.
 @export var janky_diagonals: bool = false
 @export var border_margin: float = 8.
+var players: Array[PartyMember] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

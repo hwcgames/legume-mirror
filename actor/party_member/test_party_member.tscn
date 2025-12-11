@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0hnypxq8ieth"]
+[gd_scene load_steps=5 format=3 uid="uid://b0hnypxq8ieth"]
 
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="1_ms64d"]
-[ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="2_fr0bt"]
 [ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/planner/skill_challenge.tscn" id="3_mxk3q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5jau5"]
@@ -24,7 +23,5 @@ mesh = SubResource("CapsuleMesh_5jau5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_8y2gj")
-
-[node name="BattlePlanner" parent="." instance=ExtResource("2_fr0bt")]
 
 [node name="SkillChallenge" parent="." instance=ExtResource("3_mxk3q")]

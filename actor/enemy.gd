@@ -14,15 +14,24 @@ func _ready():
 	%Telegraph.hide()
 
 func _telegraph():
+	if !self.alive:
+		return
 	var lock = await battlefield.shared_lock()
 	await pick_pattern()
 	await show_telegraph()
 	lock.call()
 
+func _died():
+	for child in %TelegraphParent.get_children():
+		child.queue_free()
+	%Telegraph.hide()
+
 func _enemy_action():
 	%Telegraph.hide()
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
+	if !self.alive:
+		return
 	var lock = await battlefield.shared_lock()
 	if planned_pattern != null:
 		var board = planned_pattern.create(battlefield)

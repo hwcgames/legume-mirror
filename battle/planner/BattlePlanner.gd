@@ -1,7 +1,7 @@
-extends CanvasLayer
+extends Control
 class_name BattlePlanner
 
-@onready var party_member: PartyMember = get_parent()
+var party_member: PartyMember
 var battlefield: Battlefield:
 	get:
 		return party_member.battlefield
@@ -10,9 +10,8 @@ signal _choice(Callable)
 
 func choose() -> Callable:
 	%ToplevelTab.show()
-	show()
 	var choice = await _choice
-	hide()
+	%IdleTab.show()
 	return choice
 
 signal _chose_target(Enemy)
@@ -39,4 +38,20 @@ func pick_target() -> Enemy:
 	return target
 
 func _ready():
-	hide()
+	%IdleTab.show()
+	%HPBar.value = float(hp) / float(party_member.max_hp)
+	%SPBar.value = float(sp) / float(party_member.max_sp)
+
+@onready var hp: int = party_member.hp
+@onready var sp: int = party_member.sp
+
+func _process(delta: float) -> void:
+	update_bars()
+
+func update_bars():
+	if party_member.hp != hp:
+		hp = party_member.hp
+		create_tween().tween_property(%HPBar, "value", float(hp) / float(party_member.max_hp), 0.5)
+	if party_member.sp != sp:
+		sp = party_member.sp
+		create_tween().tween_property(%SPBar, "value", float(sp) / float(party_member.max_sp), 0.5)

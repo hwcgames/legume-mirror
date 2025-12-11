@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d21yudvneounm"]
+[gd_scene load_steps=9 format=3 uid="uid://d21yudvneounm"]
 
-[ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/stage/BattlePlanner.gd" id="1_ssjqy"]
-[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_ssjqy"]
+[ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/planner/BattlePlanner.gd" id="1_ssjqy"]
+[ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="2_ssjqy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl1wf"]
 
 [sub_resource type="GDScript" id="GDScript_ssjqy"]
 script/source = "extends Button
@@ -16,67 +18,172 @@ func _pressed():
 	planner._choice.emit(planner.party_member.basic_attack.bind(target))
 "
 
-[node name="BasicBattlePlanner" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssjqy"]
+bg_color = Color(0.45891184, 0, 0.1520707, 1)
+border_width_left = 2
+border_width_top = 6
+border_width_right = 2
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmopx"]
+bg_color = Color(0.22412619, 0.71625257, 1.732707e-06, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6vg7"]
+bg_color = Color(4.933402e-07, 0.28794616, 0.16782486, 1)
+border_width_left = 2
+border_width_top = 6
+border_width_right = 2
+border_width_bottom = 6
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl1wf"]
+bg_color = Color(2.3102762e-06, 0.6714423, 0.77969694, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TestBattlePlanner" type="MarginContainer"]
+custom_minimum_size = Vector2(256, 196)
+anchors_preset = -1
+offset_right = 196.0
+offset_bottom = 196.0
+grow_vertical = 0
 script = ExtResource("1_ssjqy")
 
-[node name="Display" type="ColorRect" parent="."]
-clip_children = 1
-offset_left = -293.0
-offset_top = -214.0
-offset_right = -89.0
-offset_bottom = -120.0
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
 
-[node name="TabContainer" type="TabContainer" parent="Display"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
 current_tab = 1
 tabs_visible = false
 
-[node name="ToplevelTab" type="MarginContainer" parent="Display/TabContainer"]
+[node name="IdleTab" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+alignment = 1
 metadata/_tab_index = 0
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Display/TabContainer/ToplevelTab"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/IdleTab"]
+layout_mode = 2
+text = "(idle)"
+horizontal_alignment = 1
+
+[node name="ToplevelTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/TabContainer/ToplevelTab"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Basic Attack"
 script = SubResource("GDScript_ssjqy")
 planner = NodePath("../../../../..")
 
-[node name="Button2" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+[node name="Button2" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Unique"
 
-[node name="Button3" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pockets"
 
-[node name="Button4" type="Button" parent="Display/TabContainer/ToplevelTab/HFlowContainer"]
+[node name="Button4" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Parley"
 
-[node name="TargetSelectTab" type="MarginContainer" parent="Display/TabContainer"]
+[node name="TargetSelectTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="EnemyMenuParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/TargetSelectTab"]
 unique_name_in_owner = true
 layout_mode = 2
-metadata/_tab_index = 1
 
-[node name="EnemyMenuParent" type="HFlowContainer" parent="Display/TabContainer/TargetSelectTab"]
-unique_name_in_owner = true
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="CanvasLayerFollowsParent" type="Node" parent="."]
-script = ExtResource("2_ssjqy")
-metadata/_custom_type_script = "uid://lcn3o02vtkmm"
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+color = Color(0.19667313, 0.12050388, 0.09327137, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+texture = ExtResource("2_ssjqy")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ssjqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tmopx")
+max_value = 1.0
+show_percentage = false
+
+[node name="SPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_v6vg7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bl1wf")
+max_value = 1.0
+show_percentage = false

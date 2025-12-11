@@ -16,12 +16,14 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 
-func _on_graze_player(soul: Node2D):
+func _on_graze_player(soul: Soul):
 	print(\"Grazed \", soul);
+	for p in soul.players:
+		p.get_sp(20. / float(len(soul.players)))
 
 func _on_hurt_player(soul: Node2D):
 	print(\"Bullet \", self, \" hits \", soul)
-	var players = battlefield.players.filter(func(p): return p.alive)
+	var players = soul.players.filter(func(p): return p.alive)
 	if players.is_empty():
 		return
 	var target: PartyMember = players[randi_range(0, len(players)-1)]

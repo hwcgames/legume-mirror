@@ -4,6 +4,8 @@ class_name Fighter
 var alive: bool:
 	get:
 		return hp > 0
+signal died
+signal revived
 @export var max_hp: int
 @export var hp: int
 @export var max_sp: int
@@ -14,10 +16,31 @@ var alive: bool:
 @export var finesse: int
 
 func take_damage(amount: int):
+	var was_alive = alive
 	hp -= amount
+	if was_alive and not alive:
+		died.emit()
+		_died()
+
+func _died():
+	pass
 
 func heal(amount: int):
+	var was_dead = not alive
 	hp += amount
+	if hp > max_hp:
+		hp = max_hp
+	if was_dead and alive:
+		revived.emit()
+		_revived()
+
+func _revived():
+	pass
+
+func get_sp(amount: int):
+	sp += amount
+	if sp > max_sp:
+		sp = max_sp
 
 var battlefield: Battlefield
 

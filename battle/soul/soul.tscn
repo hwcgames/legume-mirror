@@ -51,6 +51,36 @@ states/tick/position = Vector2(321, -110)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mtukf"), "idle", "near", SubResource("AnimationNodeStateMachineTransition_0q1v6"), "near", "tick", SubResource("AnimationNodeStateMachineTransition_g62d8"), "tick", "near", SubResource("AnimationNodeStateMachineTransition_2rcvc"), "near", "fade", SubResource("AnimationNodeStateMachineTransition_15k5s"), "fade", "idle", SubResource("AnimationNodeStateMachineTransition_5orvj"), "fade", "near", SubResource("AnimationNodeStateMachineTransition_i6ykd")]
 graph_offset = Vector2(16, -147)
 
+[sub_resource type="Animation" id="Animation_tl2es"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4f6y7"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1.7411015),
+"update": 0,
+"values": [Color(1, 1, 1, 0.39215684), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_kkp84"]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -97,36 +127,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.39215687)]
 }
 
-[sub_resource type="Animation" id="Animation_4f6y7"]
-resource_name = "fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1.7411015),
-"update": 0,
-"values": [Color(1, 1, 1, 0.39215684), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_tl2es"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6omp"]
 _data = {
 &"RESET": SubResource("Animation_tl2es"),
@@ -139,8 +139,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fckym"]
 size = Vector2(48, 48)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6ykd"]
-size = Vector2(12, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6ykd"]
+radius = 4.0
 
 [node name="Soul" type="Node2D"]
 script = ExtResource("1_i6ykd")
@@ -178,7 +178,8 @@ debug_color = Color(0, 0.6, 0.69803923, 0.09411765)
 [node name="Hurt" type="Area2D" parent="."]
 
 [node name="HurtShape" type="CollisionShape2D" parent="Hurt"]
-shape = SubResource("RectangleShape2D_i6ykd")
+shape = SubResource("CircleShape2D_i6ykd")
+debug_color = Color(0.9222214, 0.048371576, 0.6714262, 0.41960785)
 
 [connection signal="area_entered" from="Graze" to="." method="_on_graze"]
 [connection signal="area_exited" from="Graze" to="." method="_on_graze_exited"]

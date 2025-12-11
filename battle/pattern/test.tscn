@@ -12,7 +12,7 @@ var battlefield: Battlefield
 script/source = "extends Control
 
 func _ready():
-	get_tree().create_timer(30.).timeout.connect(get_parent().done.emit)
+	get_tree().create_timer(15.).timeout.connect(get_parent().done.emit)
 	while true:
 		var bullet: Node2D = preload(\"res://battle/bullet/test.tscn\").instantiate()
 		bullet.velocity = (Vector2.LEFT * 100).rotated(deg_to_rad(randf_range(-60, 60)))
