@@ -10,6 +10,8 @@ var battle_board: BattleBoard
 @onready var log_box: RichTextLabel = %BattleText
 @onready var player_zone: Control = %PlayerZone
 var locks: Locks = Locks.new()
+var inventory_lock: Locks = Locks.new()
+var parley_lock: Locks = Locks.new()
 
 signal begin
 signal top

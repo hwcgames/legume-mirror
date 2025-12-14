@@ -1,9 +1,8 @@
-extends CanvasLayer
-class_name SkillChallenge
+extends SkillChallenge
 
-@onready var party_member: PartyMember = get_parent()
+@export var frame_count: int = 30
 
-func skill_challenge(frame_count = 30):
+func start():
 	var cursor: ColorRect = %Cursor
 	cursor.modulate = Color.TRANSPARENT
 	get_tree().create_tween().tween_property(cursor, "modulate", Color.WHITE, 0.5)
@@ -19,7 +18,7 @@ func skill_challenge(frame_count = 30):
 			await get_tree().physics_frame
 		if MultiplayerInput.is_action_pressed(party_member.device_index, "ui_accept"):
 			break
-	get_tree().create_timer(0.5).timeout.connect(hide)
+	get_tree().create_timer(0.5).timeout.connect(queue_free)
 	if off < -2:
 		(func():
 			var further = off
@@ -31,12 +30,9 @@ func skill_challenge(frame_count = 30):
 					await get_tree().physics_frame
 			).call()
 		get_tree().create_tween().tween_property(cursor, "modulate", Color.TRANSPARENT, 0.5)
-		return 0
+		result.emit(0)
 	match off:
-		0: return 150
-		1 or -1: return 120
-		2 or -2: return 110
-		_: return 100-(off*2)
-
-func _ready():
-	hide()
+		0: result.emit(150)
+		1 or -1: result.emit(120)
+		2 or -2: result.emit(110)
+		_: result.emit(100-(off*2))

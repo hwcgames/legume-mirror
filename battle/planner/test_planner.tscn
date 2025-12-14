@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d21yudvneounm"]
+[gd_scene load_steps=11 format=3 uid="uid://d21yudvneounm"]
 
 [ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/planner/BattlePlanner.gd" id="1_ssjqy"]
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="2_ssjqy"]
@@ -11,11 +11,36 @@ script/source = "extends Button
 @export var planner: BattlePlanner
 
 func _pressed():
-	var target = await planner.pick_target()
-	if target == null:
-		%ToplevelTab.show()
-		return
-	planner._choice.emit(planner.party_member.basic_attack.bind(target))
+	#var target = await planner.pick_target()
+	#if target == null:
+		#%ToplevelTab.show()
+		#return
+	#planner._choice.emit(planner.party_member.basic_attack.bind(target))
+	planner.choice.emit(await planner.party_member.basic_attack.plan(planner))
+"
+
+[sub_resource type="GDScript" id="GDScript_v6vg7"]
+script/source = "extends Button
+
+@export var planner: BattlePlanner
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	planner.battlefield.inventory_lock.exclusive_take.connect(func(): self.disabled = true)
+	planner.battlefield.inventory_lock.exclusive_free.connect(func(): self.disabled = false)
+	pass # Replace with function body.
+
+func _pressed():
+	planner.pockets()
+"
+
+[sub_resource type="GDScript" id="GDScript_bl1wf"]
+script/source = "extends Button
+
+@export var planner: BattlePlanner
+
+func _pressed():
+	planner.choice.emit(BattleActionHold.new().plan(planner))
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssjqy"]
@@ -58,7 +83,6 @@ corner_radius_bottom_left = 8
 
 [node name="TestBattlePlanner" type="MarginContainer"]
 custom_minimum_size = Vector2(256, 196)
-anchors_preset = -1
 offset_right = 196.0
 offset_bottom = 196.0
 grow_vertical = 0
@@ -75,7 +99,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
-current_tab = 1
+current_tab = 3
 tabs_visible = false
 
 [node name="IdleTab" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
@@ -92,6 +116,7 @@ horizontal_alignment = 1
 
 [node name="ToplevelTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -110,15 +135,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Unique"
 
-[node name="Button3" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
+[node name="Button3" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pockets"
+script = SubResource("GDScript_v6vg7")
+planner = NodePath("../../../../..")
 
 [node name="Button4" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Parley"
+
+[node name="Button5" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hold"
+script = SubResource("GDScript_bl1wf")
+planner = NodePath("../../../../..")
 
 [node name="TargetSelectTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
 unique_name_in_owner = true
@@ -126,7 +160,16 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="EnemyMenuParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/TargetSelectTab"]
+[node name="TargetMenuParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/TargetSelectTab"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PocketsTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ItemParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/PocketsTab"]
 unique_name_in_owner = true
 layout_mode = 2
 

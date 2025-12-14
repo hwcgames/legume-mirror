@@ -13,6 +13,7 @@ func shared_lock():
 	while exclusive_locked:
 		await exclusive_free
 	shared_locks += 1;
+	shared_take.emit()
 	return func():
 		if shared_locks == 0:
 			printerr("Shared lock double-freed!")
@@ -24,6 +25,7 @@ func shared_lock():
 func exclusive_lock():
 	await wait_for_clear()
 	exclusive_locked = true
+	exclusive_take.emit()
 	return func():
 		if !exclusive_locked:
 			printerr("Exclusive lock double-freed!")

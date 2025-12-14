@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 InputLocks="*res://InputLocks.gd"
 PlayerManager="*res://player_manager.gd"
+Inventory="*res://inventory/inventory.gd"
 
 [dotnet]
 

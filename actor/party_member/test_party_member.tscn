@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0hnypxq8ieth"]
 
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="1_ms64d"]
-[ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/planner/skill_challenge.tscn" id="3_mxk3q"]
+[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_445v2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5jau5"]
 
@@ -24,4 +24,11 @@ mesh = SubResource("CapsuleMesh_5jau5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_8y2gj")
 
-[node name="SkillChallenge" parent="." instance=ExtResource("3_mxk3q")]
+[node name="SkillChallengeAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SkillChallengeParent" type="CanvasLayer" parent="SkillChallengeAnchor"]
+unique_name_in_owner = true
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="SkillChallengeAnchor/SkillChallengeParent"]
+script = ExtResource("2_445v2")

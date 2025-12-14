@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvtbjdytsu2ft"]
+[gd_scene load_steps=14 format=3 uid="uid://dvtbjdytsu2ft"]
 
 [ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
 [ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_o4ule"]
+[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_5jau5"]
 [ext_resource type="PackedScene" uid="uid://b0hnypxq8ieth" path="res://actor/party_member/test_party_member.tscn" id="4_ndkpn"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_5jau5"]
 [ext_resource type="PackedScene" uid="uid://745auqrpfcb5" path="res://actor/enemy/test_enemy.tscn" id="5_lbtbq"]
@@ -17,11 +18,22 @@ size = Vector3(8, 0.5, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_o4ule"]
 size = Vector3(8, 0.5, 3)
 
+[sub_resource type="Resource" id="Resource_8y2gj"]
+script = ExtResource("4_5jau5")
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_udm31"]
+script = ExtResource("4_5jau5")
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
 [sub_resource type="GDScript" id="GDScript_lbtbq"]
 script/source = "extends Node
 
 func _process(_delta: float):
 	PlayerManager.handle_join_input()
+
+func _ready():
+	PlayerManager.join(-1)
 "
 
 [node name="DebugBattle" type="Node3D"]
@@ -128,12 +140,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.3, 1.6)
 
 [node name="PartyMember1" parent="." instance=ExtResource("4_ndkpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, -1)
+basic_attack = SubResource("Resource_8y2gj")
 max_sp = 250
 magic = 5
 finesse = 5
 
 [node name="PartyMember2" parent="." instance=ExtResource("4_ndkpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, 1)
+player = 1
+basic_attack = SubResource("Resource_udm31")
 max_sp = 250
 magic = 5
 finesse = 5
