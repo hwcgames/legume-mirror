@@ -9,42 +9,7 @@ var battle_board: BattleBoard
 @export var enemies: Array[Enemy]
 @onready var log_box: RichTextLabel = %BattleText
 @onready var player_zone: Control = %PlayerZone
-
-var shared_locks: int = 0
-var exclusive_locked: bool = false
-
-signal shared_free
-signal exclusive_free
-
-func shared_lock():
-	while exclusive_locked:
-		await exclusive_free
-	shared_locks += 1;
-	return func():
-		if shared_locks == 0:
-			printerr("Shared lock double-freed!")
-			return
-		shared_locks -= 1
-		if shared_locks == 0:
-			shared_free.emit()
-
-func exclusive_lock():
-	await wait_for_clear()
-	exclusive_locked = true
-	return func():
-		if !exclusive_locked:
-			printerr("Exclusive lock double-freed!")
-			return
-		exclusive_locked = false
-		exclusive_free.emit()
-
-func wait_for_clear():
-	await get_tree().process_frame
-	while shared_locks > 0 or exclusive_locked:
-		while shared_locks > 0:
-			await shared_free
-		while exclusive_locked:
-			await exclusive_free
+var locks: Locks = Locks.new()
 
 signal begin
 signal top
@@ -76,12 +41,12 @@ func battle():
 	log_box.text = ""
 	%BattleHUD.show()
 	println("[center]- Battle!!! -[/center]")
-	await wait_for_clear()
+	await locks.wait_for_clear()
 	while true:
 		println("[center]- Top of the round! -[/center]")
 		phase = PHASE.TOP
 		top.emit()
-		await wait_for_clear()
+		await locks.wait_for_clear()
 		if enemies.all(func(e): return !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
 			break
@@ -91,12 +56,13 @@ func battle():
 		println("Telegraph phase!")
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
-		await wait_for_clear()
+		await locks.wait_for_clear()
 		println("Player action!")
 		phase = PHASE.PLAYER_ACTION
 		player_action.emit()
 		while players.any(func(p: PartyMember): return p.turns > 0):
-			await wait_for_clear()
+			await get_tree().process_frame
+			await locks.wait_for_clear()
 		println("Enemy action!")
 		battle_board = battle_board_scene.instantiate()
 		add_child(battle_board)
@@ -104,7 +70,7 @@ func battle():
 		phase = PHASE.ENEMY_ACTION
 		enemy_action.emit()
 		await get_tree().process_frame
-		await wait_for_clear()
+		await locks.wait_for_clear()
 		await battle_board.done()
 		battle_board.queue_free()
 		battle_board = null

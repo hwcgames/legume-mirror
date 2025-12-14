@@ -17,7 +17,7 @@ func skill_challenge(frame_count = 30):
 		cursor.anchor_right = float(off) / frame_count
 		for i in range(2):
 			await get_tree().physics_frame
-		if Input.is_action_pressed("ui_accept"):
+		if MultiplayerInput.is_action_pressed(party_member.device_index, "ui_accept"):
 			break
 	get_tree().create_timer(0.5).timeout.connect(hide)
 	if off < -2:

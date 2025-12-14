@@ -9,6 +9,7 @@ var has_planned: bool = false
 var planned_pattern: BulletPattern
 @export var state: int = 0
 @export var null_telegraph: PackedScene
+var locks: Locks = Locks.new()
 
 func _ready():
 	%Telegraph.hide()
@@ -16,7 +17,7 @@ func _ready():
 func _telegraph():
 	if !self.alive:
 		return
-	var lock = await battlefield.shared_lock()
+	var lock = await battlefield.locks.shared_lock()
 	await pick_pattern()
 	await show_telegraph()
 	lock.call()
@@ -32,7 +33,7 @@ func _enemy_action():
 		child.queue_free()
 	if !self.alive:
 		return
-	var lock = await battlefield.shared_lock()
+	var lock = await battlefield.locks.shared_lock()
 	if planned_pattern != null:
 		var board = planned_pattern.create(battlefield)
 		await get_tree().process_frame

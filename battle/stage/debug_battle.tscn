@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvtbjdytsu2ft"]
+[gd_scene load_steps=11 format=3 uid="uid://dvtbjdytsu2ft"]
 
 [ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
 [ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_o4ule"]
@@ -17,6 +17,13 @@ size = Vector3(8, 0.5, 5)
 [sub_resource type="BoxMesh" id="BoxMesh_o4ule"]
 size = Vector3(8, 0.5, 3)
 
+[sub_resource type="GDScript" id="GDScript_lbtbq"]
+script/source = "extends Node
+
+func _process(_delta: float):
+	PlayerManager.handle_join_input()
+"
+
 [node name="DebugBattle" type="Node3D"]
 
 [node name="Battlefield" type="Node" parent="." node_paths=PackedStringArray("stage", "landmarks", "players", "enemies")]
@@ -32,7 +39,7 @@ unique_name_in_owner = true
 
 [node name="AllyZone2" type="MarginContainer" parent="Battlefield/BattleHUD"]
 custom_minimum_size = Vector2(0, 196)
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -148,6 +155,9 @@ offset_right = 52.0
 offset_bottom = 15.5
 grow_vertical = 2
 text = "Begin"
+
+[node name="PlayersJoin" type="Node" parent="."]
+script = SubResource("GDScript_lbtbq")
 
 [connection signal="pressed" from="Button" to="Battlefield" method="battle"]
 [connection signal="pressed" from="Button" to="Button" method="hide"]

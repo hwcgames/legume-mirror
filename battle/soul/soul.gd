@@ -5,6 +5,7 @@ class_name Soul
 @export var janky_diagonals: bool = false
 @export var border_margin: float = 8.
 var players: Array[PartyMember] = []
+var device_index: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func move(delta: float):
-	var command = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var command = MultiplayerInput.get_vector(device_index, "ui_left", "ui_right", "ui_up", "ui_down")
 	if command.length() > 1. and not janky_diagonals:
 		command = command.normalized()
 	var movement = command * speed * delta

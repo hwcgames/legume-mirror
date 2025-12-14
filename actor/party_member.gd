@@ -4,7 +4,10 @@ class_name PartyMember
 ## How many turns this actor has left.
 ## Usually 0 or 1, but not always.
 var turns: int = 0
-
+@export var player: int = 0
+var device_index:
+	get:
+		return PlayerManager.get_player_device(player)
 var battle_planner: BattlePlanner
 @export var battle_planner_scene: PackedScene = preload("uid://d21yudvneounm")
 @onready var skill_challenge: SkillChallenge = $SkillChallenge
@@ -21,19 +24,32 @@ func _player_action():
 		return
 	turns = 1
 	while turns > 0 and battlefield.phase == Battlefield.PHASE.PLAYER_ACTION:
+		await InputLocks.lock(player).wait_for_clear()
+		var p_lock = await InputLocks.lock(player).shared_lock()
 		var action = await battle_planner.choose()
-		await action.call(self)
+		var coroutine = Promise.new(func(resolve, reject):
+			await action.call(self)
+			resolve.call())
+		p_lock.call_deferred()
+		await coroutine.resolved
 		turns -= 1
 
 func basic_attack(_p: PartyMember, target: Enemy):
-	var lock = await battlefield.exclusive_lock()
+	var p_lock = await InputLocks.lock(player).shared_lock()
+	var b_lock = await battlefield.locks.shared_lock()
+	var e_lock = await target.locks.exclusive_lock()
+	
+	await get_tree().create_timer(1.).timeout
+	
 	if !target.alive:
 		for enemy in battlefield.enemies:
 			if enemy.alive:
 				target = enemy
 	if !target.alive:
 		print("No living targets!")
-		lock.call()
+		p_lock.call()
+		b_lock.call()
+		e_lock.call()
 		return
 	battlefield.println("%s attacks %s!" % [self.name, target.name])
 	var orig_pos = global_position
@@ -47,11 +63,20 @@ func basic_attack(_p: PartyMember, target: Enemy):
 		battlefield.println("Swing and a miss...")
 	var tw = get_tree().create_tween().tween_property(self, "global_position", orig_pos, 0.75)
 	await get_tree().create_timer(0.5).timeout
-	lock.call()
+	p_lock.call()
+	b_lock.call()
+	e_lock.call()
 	await tw.finished
 
 func _enemy_action():
+	if not alive:
+		return
 	await get_tree().process_frame
-	if battlefield.battle_board.souls.is_empty():
-		battlefield.battle_board.add_soul(preload("uid://r8iv2h12xgwc").instantiate())
-	battlefield.battle_board.souls[0].players.push_back(self)
+	var soul_index = battlefield.battle_board.souls.find_custom(func(s: Soul): return s.device_index == device_index)
+	if soul_index == -1:
+		var soul: Soul = preload("uid://r8iv2h12xgwc").instantiate()
+		soul.device_index = device_index
+		battlefield.battle_board.add_soul(soul)
+		soul_index = len(battlefield.battle_board.souls)-1
+	var soul: Soul = battlefield.battle_board.souls[soul_index]
+	soul.players.push_back(self)
