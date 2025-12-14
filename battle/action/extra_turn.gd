@@ -21,7 +21,7 @@ class ExtraTurnPlan extends BattleActionPlan:
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var t_lock = await ally.lock.exclusive_lock()
-		var b_lock = await battlefield.locks.shared_lock()
+		var b_lock = await battlefield.lock.shared_lock()
 		if not ally.alive:
 			for p in battlefield.players:
 				if p.alive:

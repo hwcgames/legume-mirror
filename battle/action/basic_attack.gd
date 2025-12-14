@@ -15,7 +15,7 @@ class BasicAttackPlan extends BattleActionPlan:
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var p_lock = await InputLocks.lock(party_member.player).shared_lock()
-		var b_lock = await battlefield.locks.shared_lock()
+		var b_lock = await battlefield.lock.shared_lock()
 		var e_lock = await target.locks.exclusive_lock()
 		#await get_tree().create_timer(1.).timeout
 		if !target.alive:

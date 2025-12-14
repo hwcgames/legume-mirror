@@ -9,7 +9,7 @@ var battle_board: BattleBoard
 @export var enemies: Array[Enemy]
 @onready var log_box: RichTextLabel = %BattleText
 @onready var player_zone: Control = %PlayerZone
-var locks: Locks = Locks.new()
+var lock: Locks = Locks.new()
 var inventory_lock: Locks = Locks.new()
 var parley_lock: Locks = Locks.new()
 
@@ -43,12 +43,12 @@ func battle():
 	log_box.text = ""
 	%BattleHUD.show()
 	println("[center]- Battle!!! -[/center]")
-	await locks.wait_for_clear()
+	await lock.wait_for_clear()
 	while true:
 		println("[center]- Top of the round! -[/center]")
 		phase = PHASE.TOP
 		top.emit()
-		await locks.wait_for_clear()
+		await lock.wait_for_clear()
 		if enemies.all(func(e): return !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
 			break
@@ -58,13 +58,13 @@ func battle():
 		println("Telegraph phase!")
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
-		await locks.wait_for_clear()
+		await lock.wait_for_clear()
 		println("Player action!")
 		phase = PHASE.PLAYER_ACTION
 		player_action.emit()
 		while players.any(func(p: PartyMember): return p.turns > 0):
 			await get_tree().process_frame
-			await locks.wait_for_clear()
+			await lock.wait_for_clear()
 		println("Enemy action!")
 		battle_board = battle_board_scene.instantiate()
 		add_child(battle_board)
@@ -72,7 +72,7 @@ func battle():
 		phase = PHASE.ENEMY_ACTION
 		enemy_action.emit()
 		await get_tree().process_frame
-		await locks.wait_for_clear()
+		await lock.wait_for_clear()
 		await battle_board.done()
 		battle_board.queue_free()
 		battle_board = null

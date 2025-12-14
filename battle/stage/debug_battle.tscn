@@ -147,7 +147,6 @@ finesse = 5
 
 [node name="PartyMember2" parent="." instance=ExtResource("4_ndkpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, 1)
-player = 1
 basic_attack = SubResource("Resource_udm31")
 max_sp = 250
 magic = 5

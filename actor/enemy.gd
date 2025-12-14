@@ -17,7 +17,7 @@ func _ready():
 func _telegraph():
 	if !self.alive:
 		return
-	var lock = await battlefield.locks.shared_lock()
+	var lock = await battlefield.lock.shared_lock()
 	await pick_pattern()
 	await show_telegraph()
 	lock.call()
@@ -33,7 +33,7 @@ func _enemy_action():
 		child.queue_free()
 	if !self.alive:
 		return
-	var lock = await battlefield.locks.shared_lock()
+	var lock = await battlefield.lock.shared_lock()
 	if planned_pattern != null:
 		var board = planned_pattern.create(battlefield)
 		await get_tree().process_frame
