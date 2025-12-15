@@ -219,6 +219,7 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_ssjqy")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tmopx")
 max_value = 1.0
+value = 0.5
 show_percentage = false
 
 [node name="SPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
@@ -229,4 +230,5 @@ size_flags_vertical = 3
 theme_override_styles/background = SubResource("StyleBoxFlat_v6vg7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bl1wf")
 max_value = 1.0
+value = 0.5
 show_percentage = false

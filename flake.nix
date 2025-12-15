@@ -48,6 +48,7 @@
           udev
           cmake
           zig_0_13
+          mesa
         ];
       in
         mkShell {

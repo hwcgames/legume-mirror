@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://745auqrpfcb5"]
+[gd_scene load_steps=8 format=3 uid="uid://745auqrpfcb5"]
 
 [ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy.gd" id="1_o46jl"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_h6b84"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cdltsqr44pytk" path="res://battle/telegraph/null_telegraph.tscn" id="2_uamkb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_5jau5"]
+radial_segments = 8
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb5as"]
+shading_mode = 2
+rim = 0.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y2gj"]
 size = Vector3(1, 2, 1)
@@ -23,6 +29,7 @@ metadata/_custom_type_script = "uid://rl05e0067ud"
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_5jau5")
+surface_material_override/0 = SubResource("StandardMaterial3D_jb5as")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

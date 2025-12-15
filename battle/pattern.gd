@@ -2,7 +2,7 @@ extends Resource
 class_name BulletPattern
 
 ## Enemies that must be present for this bullet pattern to be a candidate
-@export_file("enemies/*.tres") var enemies: Array[String] = []
+@export_file("*.tres") var enemies: Array[String] = []
 
 ## If a pattern is shared, all enemies carrying the pattern will choose it when it appears.
 @export var shared: bool = false
@@ -12,7 +12,7 @@ class_name BulletPattern
 
 ## An exclusive pattern can only coexist with patterns that explicitly list it as a friend.
 @export var exclusive: bool = false
-@export_file("battle/pattern/*.tres") var friends: Array[String] = []
+@export_file("*.tres") var friends: Array[String] = []
 
 ## Bullet pattern scene that should appear
 @export var pattern_scene: PackedScene

@@ -26,6 +26,10 @@ Inventory="*res://inventory/inventory.gd"
 
 project/assembly_name="Legume Traffick"
 
+[editor]
+
+movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")

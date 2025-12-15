@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7gem28hfwbq7"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_hlmlv"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_aslgi"]
+[ext_resource type="PackedScene" uid="uid://co3tak7uc6u68" path="res://battle/bullet/test2.tscn" id="3_4fasl"]
+
+[sub_resource type="Curve" id="Curve_0nf7k"]
+_limits = [-135.0, -45.0, 0.0, 1.0]
+_data = [Vector2(0, -135), 0.0, 90.00001, 0, 1, Vector2(1, -45), 90.00001, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_nxv60"]
+_data = [Vector2(0, 0.25342464), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_7j2ip"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="Test2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hlmlv")
+
+[node name="BulletEmitter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = -48.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("2_aslgi")
+emission_angle = SubResource("Curve_0nf7k")
+interval = SubResource("Curve_nxv60")
+amount = SubResource("Curve_7j2ip")
+start_delay = 2.0
+bullet = ExtResource("3_4fasl")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

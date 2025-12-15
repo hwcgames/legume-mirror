@@ -46,15 +46,12 @@ func battle():
 	await lock.wait_for_clear()
 	while true:
 		println("[center]- Top of the round! -[/center]")
-		phase = PHASE.TOP
-		top.emit()
-		await lock.wait_for_clear()
-		if enemies.all(func(e): return !e.alive):
-			println("[center]- Enemy defeat! -[/center]")
-			break
 		if players.all(func(p): return !p.alive):
 			println("[center]- Player defeat! -[/center]")
 			break
+		phase = PHASE.TOP
+		top.emit()
+		await lock.wait_for_clear()
 		println("Telegraph phase!")
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
@@ -66,6 +63,9 @@ func battle():
 			await get_tree().process_frame
 			await lock.wait_for_clear()
 		println("Enemy action!")
+		if enemies.all(func(e): return !e.alive):
+			println("[center]- Enemy defeat! -[/center]")
+			break
 		battle_board = battle_board_scene.instantiate()
 		add_child(battle_board)
 		await battle_board.appear()

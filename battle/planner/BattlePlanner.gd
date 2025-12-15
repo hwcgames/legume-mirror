@@ -8,9 +8,17 @@ var battlefield: Battlefield:
 
 signal choice(plan: BattleActionPlan)
 
+class BattleActionFinish extends BattleActionPlan:
+	func go(party_member: PartyMember):
+		return
+
+var choosing: bool = false
+
 func choose() -> BattleActionPlan:
 	%ToplevelTab.show()
+	choosing = true
 	var plan = await choice
+	choosing = false
 	%IdleTab.show()
 	return plan
 
@@ -73,6 +81,8 @@ func _ready():
 
 func _process(delta: float) -> void:
 	update_bars()
+	if choosing and not battlefield.enemies.any(func(e: Enemy): return e.alive):
+		choice.emit(BattleActionFinish.new())
 
 func update_bars():
 	if party_member.hp != hp:
