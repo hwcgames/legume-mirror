@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d21yudvneounm"]
 
-[ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/planner/BattlePlanner.gd" id="1_ssjqy"]
+[ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/planner/top_planner.gd" id="1_ssjqy"]
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="2_ssjqy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bl1wf"]
@@ -145,10 +145,9 @@ text = "Basic Attack"
 script = SubResource("GDScript_ssjqy")
 planner = NodePath("../../../../..")
 
-[node name="Button2" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
+[node name="SkillsetParent" type="MarginContainer" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Unique"
 
 [node name="Button3" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
 layout_mode = 2
@@ -199,6 +198,12 @@ metadata/_tab_index = 4
 [node name="ParleyParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/ParleyTab"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="SkillsetTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

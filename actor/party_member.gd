@@ -9,11 +9,13 @@ var lock: Locks = Locks.new()
 var device_index:
 	get:
 		return PlayerManager.get_player_device(player)
-var battle_planner: BattlePlanner
 @export var skill_challenge_scene: PackedScene = preload("uid://bbpp48kcropih")
 @export var battle_planner_scene: PackedScene = preload("uid://d21yudvneounm")
-@onready var skill_challenge: SkillChallenge
-@export var basic_attack: BattleAction
+var skill_challenge: SkillChallenge
+var battle_planner: BattlePlanner
+
+@export var basic_attack: BattleAction = BattleActionBasicAttack.new()
+@export var skillset: Skillset = SkillsetUnskilled.new()
 
 func _join_battle(_battle: Battlefield):
 	if battle_planner != null:
@@ -29,13 +31,13 @@ func _player_action():
 	while turns > 0 and battlefield.phase == Battlefield.PHASE.PLAYER_ACTION:
 		await InputLocks.lock(player).wait_for_clear()
 		var p_lock = await InputLocks.lock(player).shared_lock()
-		var action: BattleActionPlan
+		var action: BattleActionPlan = null
 		while action == null:
 			action = await battle_planner.choose()
 			await get_tree().process_frame
 		turns -= 1
 		var self_lock = await lock.exclusive_lock()
-		var coroutine = Promise.new(func(resolve, reject):
+		var coroutine = Promise.new(func(resolve, _reject):
 			await action.go(self)
 			resolve.call())
 		self_lock.call()

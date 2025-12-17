@@ -1,26 +1,25 @@
-extends Control
-class_name BattlePlanner
-
-var party_member: PartyMember
-var battlefield: Battlefield:
-	get:
-		return party_member.battlefield
-
-signal choice(plan: BattleActionPlan)
+extends BattlePlanner
+class_name TopPlanner
 
 class BattleActionFinish extends BattleActionPlan:
-	func go(party_member: PartyMember):
+	func go(_party_member: PartyMember):
 		return
 
-var choosing: bool = false
-
 func choose() -> BattleActionPlan:
+	populate_skillset_button()
 	%ToplevelTab.show()
 	choosing = true
 	var plan = await choice
 	choosing = false
 	%IdleTab.show()
 	return plan
+
+func populate_skillset_button():
+	for child in %SkillsetParent.get_children():
+		child.queue_free()
+	var button := party_member.skillset.button(party_member)
+	button.pressed.connect(skillset)
+	%SkillsetParent.add_child(button)
 
 func show_toplevel():
 	%ToplevelTab.show()
@@ -94,7 +93,7 @@ func update_bars():
 
 signal chosen_item(Item)
 
-func pick_item(predicate = func(i: Item): return i.battle_action != null):
+func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Item:
 	var i_lock = await battlefield.inventory_lock.exclusive_lock()
 	var prev_tab = %TabContainer.current_tab
 	var selector = %ItemParent
@@ -140,11 +139,11 @@ func pick_parley(enemy: Enemy, predicate = func(i: ParleyAction): return true):
 	back.text = "back"
 	back.pressed.connect(chosen_parley.emit.bind(null))
 	selector.add_child(back)
-	var parleys = enemy.parleys.filter(predicate)\
-		.map(func(p): 
+	var parleys = enemy.parleys.filter(predicate) \
+		.map(func(p):
 			var parley = p.duplicate()
 			parley.enemy = enemy
-			return parley)\
+			return parley) \
 		.filter(func(p: ParleyAction): return p.display(party_member))
 	for parley in parleys:
 		var button := Button.new()
@@ -169,4 +168,15 @@ func parley():
 		choice.emit(null)
 		return
 	var plan = await parley_action.plan(self)
+	choice.emit(plan)
+
+func skillset():
+	var skillset_planner = party_member.skillset.subplanner(party_member)
+	skillset_planner.battle_planner = self
+	skillset_planner.party_member = party_member
+	for child in %SkillsetTab.get_children():
+		child.queue_free()
+	%SkillsetTab.add_child(skillset_planner)
+	%SkillsetTab.show()
+	var plan = await skillset_planner.choose()
 	choice.emit(plan)

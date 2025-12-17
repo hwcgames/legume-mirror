@@ -1,12 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvtbjdytsu2ft"]
+[gd_scene load_steps=26 format=3 uid="uid://dvtbjdytsu2ft"]
 
 [ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
 [ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_o4ule"]
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_5jau5"]
 [ext_resource type="PackedScene" uid="uid://b0hnypxq8ieth" path="res://actor/party_member/test_party_member.tscn" id="4_ndkpn"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_5jau5"]
+[ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="5_8uhe6"]
 [ext_resource type="PackedScene" uid="uid://745auqrpfcb5" path="res://actor/enemy/test_enemy.tscn" id="5_lbtbq"]
 [ext_resource type="Resource" uid="uid://eit3j1cwloa5" path="res://battle/pattern/test.tres" id="6_8y2gj"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="6_dh51b"]
+[ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="7_7ugeq"]
+[ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="7_dh51b"]
 [ext_resource type="Resource" uid="uid://bya2jyqc4r2cq" path="res://battle/pattern/test2.tres" id="8_8y2gj"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="9_p3x0n"]
 [ext_resource type="Script" uid="uid://duadp8t32skcg" path="res://battle/action/test_parley.gd" id="10_r0fs6"]
@@ -24,6 +28,20 @@ size = Vector3(8, 0.5, 3)
 [sub_resource type="Resource" id="Resource_8y2gj"]
 script = ExtResource("4_5jau5")
 metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_rg17s"]
+script = ExtResource("4_5jau5")
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_qutve"]
+script = ExtResource("7_7ugeq")
+amt = 2
+metadata/_custom_type_script = "uid://cwko2gk7u70l2"
+
+[sub_resource type="Resource" id="Resource_7ugeq"]
+script = ExtResource("5_8uhe6")
+spell_list = Array[ExtResource("6_dh51b")]([SubResource("Resource_rg17s"), SubResource("Resource_qutve")])
+metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [sub_resource type="Resource" id="Resource_udm31"]
 script = ExtResource("4_5jau5")
@@ -152,6 +170,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0.3, 1.6)
 [node name="PartyMember1" parent="." instance=ExtResource("4_ndkpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.2, -1)
 basic_attack = SubResource("Resource_8y2gj")
+skillset = SubResource("Resource_7ugeq")
 max_sp = 250
 magic = 5
 finesse = 5

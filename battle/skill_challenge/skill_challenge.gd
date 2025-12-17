@@ -6,6 +6,7 @@ var party_member: PartyMember
 
 @abstract func start()
 
+@warning_ignore("unused_signal")
 signal result
 
 #func skill_challenge(frame_count = 30):
