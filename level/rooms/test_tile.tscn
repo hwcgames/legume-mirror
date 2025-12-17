@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dytjkoh5rf6vb"]
+
+[ext_resource type="PackedScene" uid="uid://dxub0wskneelf" path="res://assets/rooms/tile.blend" id="1_mmlka"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ll7pu"]
+size = Vector3(10, 4.6, 10)
+
+[node name="TestTile" type="Area3D"]
+
+[node name="tile" parent="." instance=ExtResource("1_mmlka")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+shape = SubResource("BoxShape3D_ll7pu")
+debug_fill = false

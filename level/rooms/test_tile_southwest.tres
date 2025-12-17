@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RoomInfo" load_steps=2 format=3 uid="uid://bkxdtc3dsekng"]
+
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room.gd" id="1_f338y"]
+
+[resource]
+script = ExtResource("1_f338y")
+room_path = "uid://dr1io0ydacjjm"
+static_seams = Array[String](["East", "North"])
+seam_target_rooms = Dictionary[String, String]({
+"East": "uid://dipbs18iwbi0e",
+"North": "uid://c6vrfvpsd2i6e"
+})
+seam_target_name = Dictionary[String, String]({
+"East": "West",
+"North": "South"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

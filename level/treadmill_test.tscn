@@ -1,0 +1,68 @@
+[gd_scene load_steps=14 format=3 uid="uid://cw0r478jvhrnn"]
+
+[ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room.gd" id="2_tsi86"]
+[ext_resource type="Resource" uid="uid://cpd7q2unjko4m" path="res://level/rooms/testroom.tres" id="3_rg0rx"]
+[ext_resource type="Resource" uid="uid://c6pw207rdasr6" path="res://level/rooms/test_tile_northwest.tres" id="4_5v0yj"]
+[ext_resource type="Resource" uid="uid://4i5dcwfbsdfj" path="res://level/rooms/test_tile_southeast.tres" id="5_4xjm5"]
+[ext_resource type="Resource" uid="uid://bkxdtc3dsekng" path="res://level/rooms/test_tile_southwest.tres" id="6_8kcfh"]
+[ext_resource type="Resource" uid="uid://cdaser0lngmc0" path="res://level/rooms/test_tile_northeast.tres" id="7_4xjm5"]
+[ext_resource type="Resource" uid="uid://brf0to0rgfdw0" path="res://level/rooms/test_tile_start_hallways.tres" id="8_8kcfh"]
+[ext_resource type="Resource" uid="uid://xnf0bqe28wfy" path="res://level/rooms/test_tile_dead_end.tres" id="9_p7oxd"]
+
+[sub_resource type="GDScript" id="GDScript_5eo67"]
+script/source = "extends Area3D
+
+func _physics_process(delta: float) -> void:
+	var input = Input.get_vector(\"ui_left\", \"ui_right\", \"ui_down\", \"ui_up\")
+	var movement = Vector3.FORWARD.rotated(Vector3.UP, rotation.y) * input.y * delta * 10.
+	position += movement
+	rotation.y -= input.x * delta * 2
+
+func _ready() -> void:
+	var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
+	room.global_position.y -= 1
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5eo67"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8sgtr"]
+
+[sub_resource type="GDScript" id="GDScript_dpoyh"]
+script/source = "extends Node
+
+func _process(_delta: float):
+	PlayerManager.handle_join_input()
+
+func _ready():
+	PlayerManager.join(-1)
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="LoadingCenter" type="Area3D" parent="."]
+top_level = true
+script = SubResource("GDScript_5eo67")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadingCenter"]
+shape = SubResource("SphereShape3D_5eo67")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadingCenter"]
+mesh = SubResource("SphereMesh_8sgtr")
+
+[node name="Treadmill" type="Marker3D" parent="LoadingCenter"]
+unique_name_in_owner = true
+script = ExtResource("1_dpoyh")
+load_range = 16.0
+rooms = Array[ExtResource("2_tsi86")]([ExtResource("3_rg0rx"), ExtResource("4_5v0yj"), ExtResource("5_4xjm5"), ExtResource("6_8kcfh"), ExtResource("7_4xjm5"), ExtResource("8_8kcfh"), ExtResource("9_p7oxd")])
+metadata/_custom_type_script = "uid://dispg264up47x"
+
+[node name="Camera3D" type="Camera3D" parent="LoadingCenter"]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 3, 7)
+
+[node name="PlayersJoin" type="Node" parent="."]
+script = SubResource("GDScript_dpoyh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9659258, 1.131334e-08, -0.25881904, 0.25881904, -4.222196e-08, 0.9659258, 0, -1, -4.371139e-08, 0, 0, 0)
+shadow_enabled = true

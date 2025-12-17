@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dipbs18iwbi0e"]
+
+[ext_resource type="PackedScene" uid="uid://dytjkoh5rf6vb" path="res://level/rooms/test_tile.tscn" id="1_3ciy3"]
+[ext_resource type="Script" uid="uid://bojv1eb8jykvg" path="res://level/static_seam.gd" id="2_kjyrd"]
+
+[node name="TestTile" instance=ExtResource("1_3ciy3")]
+
+[node name="West" type="Marker3D" parent="." index="2"]
+unique_name_in_owner = true
+transform = Transform3D(-2.3841858e-07, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -2.3841858e-07, -5, 0, 0)
+script = ExtResource("2_kjyrd")
+target_name = &"East"
+target_room = "uid://dr1io0ydacjjm"
+metadata/_custom_type_script = "uid://bojv1eb8jykvg"
+
+[node name="North" type="Marker3D" parent="." index="3"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+script = ExtResource("2_kjyrd")
+target_name = &"South"
+target_room = "uid://b1tj4x5wrjf7t"
+metadata/_custom_type_script = "uid://bojv1eb8jykvg"
