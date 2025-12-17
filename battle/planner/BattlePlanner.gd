@@ -126,3 +126,47 @@ func pockets():
 	action.item = item
 	var plan = await action.plan(self)
 	choice.emit(plan)
+
+signal chosen_parley(parley: ParleyAction)
+
+func pick_parley(enemy: Enemy, predicate = func(i: ParleyAction): return true):
+	var p_lock = await battlefield.parley_lock.exclusive_lock()
+	var prev_tab = %TabContainer.current_tab
+	var selector = %ParleyParent
+	for child in selector.get_children():
+		child.free()
+	var items = Inventory.items.filter(predicate)
+	var back := Button.new()
+	back.text = "back"
+	back.pressed.connect(chosen_parley.emit.bind(null))
+	selector.add_child(back)
+	var parleys = enemy.parleys.filter(predicate)\
+		.map(func(p): 
+			var parley = p.duplicate()
+			parley.enemy = enemy
+			return parley)\
+		.filter(func(p: ParleyAction): return p.display(party_member))
+	for parley in parleys:
+		var button := Button.new()
+		button.text = parley.label()
+		button.pressed.connect(chosen_parley.emit.bind(parley))
+		button.disabled = not parley.allowed(party_member)
+		selector.add_child(button)
+	%ParleyTab.show()
+	var parley = await chosen_parley
+	if parley == null:
+		%TabContainer.current_tab = prev_tab
+	p_lock.call()
+	return parley
+
+func parley():
+	var enemy: Enemy = await pick_target()
+	if enemy == null:
+		choice.emit(null)
+		return
+	var parley_action: ParleyAction = await pick_parley(enemy)
+	if parley_action == null:
+		choice.emit(null)
+		return
+	var plan = await parley_action.plan(self)
+	choice.emit(plan)

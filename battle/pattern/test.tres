@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_rnk32")
+states = Array[int]([0, 2])
 friends = Array[String](["uid://bya2jyqc4r2cq"])
 pattern_scene = ExtResource("1_8mlt6")
 telegraph_scene = ExtResource("3_8mlt6")

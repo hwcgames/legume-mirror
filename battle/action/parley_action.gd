@@ -2,6 +2,10 @@
 extends BattleAction
 class_name ParleyAction
 
-@abstract func label(enemy: Enemy) -> String
+var enemy: Enemy
 
-@abstract func allowed(enemy: Enemy) -> bool
+@abstract func label() -> String
+
+@abstract func allowed(party_member: PartyMember) -> bool
+
+@abstract func display(party_member: PartyMember) -> bool

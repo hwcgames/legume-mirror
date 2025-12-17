@@ -9,6 +9,7 @@ var has_planned: bool = false
 var planned_pattern: BulletPattern
 @export var state: int = 0
 @export var null_telegraph: PackedScene
+@export var parleys: Array[ParleyAction] = []
 var locks: Locks = Locks.new()
 
 func _ready():
@@ -73,6 +74,8 @@ func pick_pattern():
 	planned_pattern = candidates[randi_range(0, len(candidates)-1)]
 
 func show_telegraph():
+	for child in %TelegraphParent.get_children():
+		child.queue_free()
 	var telegraph = planned_pattern.telegraph_scene.instantiate() if planned_pattern != null else null_telegraph.instantiate()
 	%TelegraphParent.add_child(telegraph)
 	%Telegraph.show()

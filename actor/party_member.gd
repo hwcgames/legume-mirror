@@ -33,6 +33,7 @@ func _player_action():
 		while action == null:
 			action = await battle_planner.choose()
 			await get_tree().process_frame
+		turns -= 1
 		var self_lock = await lock.exclusive_lock()
 		var coroutine = Promise.new(func(resolve, reject):
 			await action.go(self)
@@ -40,7 +41,6 @@ func _player_action():
 		self_lock.call()
 		p_lock.call_deferred()
 		await coroutine.resolved
-		turns -= 1
 
 #func _basic_attack(_p: PartyMember, target: Enemy):
 	#var p_lock = await InputLocks.lock(player).shared_lock()
