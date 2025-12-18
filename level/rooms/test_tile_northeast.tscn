@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1tj4x5wrjf7t"]
+[gd_scene load_steps=6 format=3 uid="uid://b1tj4x5wrjf7t"]
 
 [ext_resource type="PackedScene" uid="uid://dytjkoh5rf6vb" path="res://level/rooms/test_tile.tscn" id="1_dpstc"]
 [ext_resource type="Script" uid="uid://bojv1eb8jykvg" path="res://level/static_seam.gd" id="2_4tmcw"]
+[ext_resource type="Resource" uid="uid://c6pw207rdasr6" path="res://level/rooms/test_tile_northwest.tres" id="3_2xs5u"]
+[ext_resource type="Resource" uid="uid://4i5dcwfbsdfj" path="res://level/rooms/test_tile_southeast.tres" id="4_qmk2c"]
+[ext_resource type="Resource" uid="uid://brf0to0rgfdw0" path="res://level/rooms/test_tile_start_hallways.tres" id="5_edehu"]
 
 [node name="TestTile2" instance=ExtResource("1_dpstc")]
 
@@ -10,7 +13,7 @@ unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, 0)
 script = ExtResource("2_4tmcw")
 target_name = &"East"
-target_room = "uid://c6vrfvpsd2i6e"
+target_room = ExtResource("3_2xs5u")
 metadata/_custom_type_script = "uid://bojv1eb8jykvg"
 
 [node name="South" type="Marker3D" parent="." index="3"]
@@ -18,7 +21,7 @@ unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 5)
 script = ExtResource("2_4tmcw")
 target_name = &"North"
-target_room = "uid://dipbs18iwbi0e"
+target_room = ExtResource("4_qmk2c")
 metadata/_custom_type_script = "uid://bojv1eb8jykvg"
 
 [node name="North" type="Marker3D" parent="." index="4"]
@@ -26,5 +29,5 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
 script = ExtResource("2_4tmcw")
 target_name = &"South"
-target_room = "uid://elhemc11dig7"
+target_room = ExtResource("5_edehu")
 metadata/_custom_type_script = "uid://bojv1eb8jykvg"

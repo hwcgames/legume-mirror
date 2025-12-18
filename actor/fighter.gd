@@ -15,6 +15,12 @@ signal revived
 @export var defense: int
 @export var finesse: int
 
+var right_direction: Vector3:
+	get:
+		return battlefield.right_direction
+
+var home_landmark: Marker3D
+
 func take_damage(amount: int):
 	var was_alive = alive
 	hp -= amount
@@ -53,6 +59,8 @@ func join_battle(battle: Battlefield):
 	battle.telegraph.connect(telegraph)
 	battle.player_action.connect(player_action)
 	battle.enemy_action.connect(enemy_action)
+	battle.done.connect(done)
+	mode_stack.push_back(ActorIdle.new())
 	_join_battle(battle)
 	joined_battle.emit(battlefield)
 
@@ -75,6 +83,7 @@ func enemy_action():
 	_enemy_action()
 
 func done(player_victory: bool):
+	mode_stack.pop_back()
 	_done(player_victory)
 
 func _begin():

@@ -1,10 +1,10 @@
-extends Node
+extends Node3D
 class_name Battlefield
 
-@export var stage: Node3D
 @export var battle_board_scene: PackedScene = preload("uid://cmeywylnup3e1")
 var battle_board: BattleBoard
-@export var landmarks: Array[Marker3D]
+@export var player_landmarks: Array[Marker3D]
+@export var enemy_landmarks: Array[Marker3D]
 @export var players: Array[PartyMember]
 @export var enemies: Array[Enemy]
 @onready var log_box: RichTextLabel = %BattleText
@@ -12,6 +12,10 @@ var battle_board: BattleBoard
 var lock: Locks = Locks.new()
 var inventory_lock: Locks = Locks.new()
 var parley_lock: Locks = Locks.new()
+
+var right_direction: Vector3:
+	get:
+		return self.global_position.direction_to(%Right.global_position)
 
 signal begin
 signal top
@@ -21,6 +25,7 @@ signal enemy_action
 signal done(bool)
 
 enum PHASE {
+	IDLE,
 	SETUP,
 	TOP,
 	TELEGRAPH,
@@ -29,12 +34,13 @@ enum PHASE {
 	DONE
 }
 
-var phase := PHASE.SETUP
+var phase := PHASE.IDLE
 
 func _ready() -> void:
 	%BattleHUD.hide()
 
 func battle():
+	phase = PHASE.SETUP
 	for player in players:
 		player.join_battle(self)
 	for enemy in enemies:
@@ -79,6 +85,7 @@ func battle():
 	phase = PHASE.DONE
 	done.emit(enemies.all(func(e): return !e.alive))
 	%BattleHUD.hide()
+	phase = PHASE.IDLE
 
 func println(text: String):
 	print_rich(text)

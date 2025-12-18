@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3m004m4d3t5s"]
+[gd_scene load_steps=6 format=3 uid="uid://d3m004m4d3t5s"]
 
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_aycdo"]
 [ext_resource type="PackedScene" uid="uid://iua8h2jxo6oo" path="res://assets/rooms/testroom.blend" id="1_lfdcj"]
 [ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="2_slocc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_slocc"]
 size = Vector3(10, 6.7000003, 8.7)
 
-[node name="Testroom" type="Area3D"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_aycdo"]
+vertices = PackedVector3Array(-4.5, 0.69289327, -3.4571066, -4.5, 0.69289327, 3.5428934, 4.5, 0.69289327, 3.5428934, 4.5, 0.69289327, -3.4571066)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 0
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"walkable"
 
-[node name="testroom" parent="." instance=ExtResource("1_lfdcj")]
+[node name="Testroom" type="Area3D"]
+script = ExtResource("1_aycdo")
+
+[node name="testroom" parent="." groups=["walkable"] instance=ExtResource("1_lfdcj")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6499999, -0.3499999)
@@ -29,3 +38,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0
 script = ExtResource("2_slocc")
 profile = &"8x6"
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+navigation_mesh = SubResource("NavigationMesh_aycdo")

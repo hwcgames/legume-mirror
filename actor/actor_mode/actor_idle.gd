@@ -1,0 +1,2 @@
+extends ActorMode
+class_name ActorIdle

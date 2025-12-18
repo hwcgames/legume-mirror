@@ -5,6 +5,7 @@ class_name PartyMember
 ## Usually 0 or 1, but not always.
 var turns: int = 0
 var lock: Locks = Locks.new()
+var party_order_key: int = 0
 @export var player: int = 0
 var device_index:
 	get:
@@ -17,12 +18,19 @@ var battle_planner: BattlePlanner
 @export var basic_attack: BattleAction = BattleActionBasicAttack.new()
 @export var skillset: Skillset = SkillsetUnskilled.new()
 
+func _ready():
+	add_to_group("party_member")
+
 func _join_battle(_battle: Battlefield):
 	if battle_planner != null:
 		battle_planner.queue_free()
 	battle_planner = battle_planner_scene.instantiate()
 	battle_planner.party_member = self
 	battlefield.player_zone.add_child(battle_planner)
+	var b_lock = await battlefield.lock.shared_lock()
+	home_landmark = battlefield.player_landmarks[battlefield.players.find(self)]
+	await create_tween().tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
+	b_lock.call()
 
 func _player_action():
 	if not alive:

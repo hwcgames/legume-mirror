@@ -21,6 +21,7 @@ MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 InputLocks="*res://InputLocks.gd"
 PlayerManager="*res://player_manager.gd"
 Inventory="*res://inventory/inventory.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [dotnet]
 
@@ -32,12 +33,15 @@ movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
 
 [global_group]
 
 walkable=""
 landmark=""
+loading_root="When inside a treadmill room, this physics body should keep it loaded."
+party_leader=""
+party_member=""
 
 [input]
 
@@ -55,3 +59,11 @@ join={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+
+[navigation]
+
+3d/default_edge_connection_margin=1.0
+
+[physics]
+
+common/physics_interpolation=true

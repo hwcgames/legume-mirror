@@ -15,6 +15,10 @@ var locks: Locks = Locks.new()
 func _ready():
 	%Telegraph.hide()
 
+func _join_battle(_battle: Battlefield):
+	home_landmark = battlefield.enemy_landmarks[battlefield.enemies.find(self)]
+	global_position = home_landmark.global_position
+
 func _telegraph():
 	if !self.alive:
 		return

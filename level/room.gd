@@ -1,40 +1,77 @@
-@tool
-extends Resource
-class_name RoomInfo
+extends Area3D
+class_name Room
 
-@export_tool_button("Repopulate")
-var repopulate_action = repopulate
+var room_info: RoomInfo
+@export var battlefield: Battlefield
+@export var camera: PhantomCamera3D
+@export var camera_priority_offset: int
 
-@export_file("*.tscn") var room_path: String
-@export var static_seams: Array[String] = []
-@export var proc_seams: Array[String] = []
-@export var seam_backtrack: Dictionary[String, bool] = {}
-@export var seam_profiles: Dictionary[String, String] = {}
-@export var seam_target_rooms: Dictionary[String, String] = {}
-@export var seam_target_name: Dictionary[String, String] = {}
+@export var loading_range: int = 3
+## If this lock has shared references, this room is treated as a loading root.
+var keep_loaded_lock: Locks = Locks.new()
+var loadedness: int = 0
 
-func repopulate():
-	static_seams = []
-	proc_seams = []
-	seam_backtrack = {}
-	seam_profiles = {}
-	seam_target_rooms = {}
-	seam_target_name = {}
-	var room_scene: PackedScene = load(room_path)
-	var room: Node3D = room_scene.instantiate()
-	walk(room)
+var players_inside: int = 0
+signal player_entered(player: PartyMember)
+signal player_exited(player: PartyMember)
 
-func walk(node: Node):
-	if node is StaticSeam:
-		print(node)
-		static_seams.push_back(node.name)
-		seam_target_rooms.set(node.name, node.target_room)
-		seam_target_name.set(node.name, node.target_name)
-	elif node is ProceduralSeam:
-		print(node)
-		proc_seams.push_back(node.name)
-		seam_profiles.set(node.name, node.profile)
-		seam_backtrack.set(node.name, node.backtrack)
+func _ready():
+	keep_loaded_lock.shared_take.connect(update_loading)
+	keep_loaded_lock.shared_free.connect(update_loading)
+	body_entered.connect(_body_entered)
+	body_exited.connect(_body_exited)
+
+func _body_entered(body: PhysicsBody3D):
+	if body.is_in_group("loading_root"):
+		keep_loaded_lock.shared_locks += 1
+		update_loading()
+	if body is PartyMember:
+		player_entered.emit(body)
+		if players_inside == 0 and camera != null:
+			camera.priority += camera_priority_offset
+		players_inside += 1
+func _body_exited(body: PhysicsBody3D):
+	if body.is_in_group("loading_root"):
+		keep_loaded_lock.shared_locks = max(keep_loaded_lock.shared_locks-1, 0)
+		update_loading()
+	if body is PartyMember:
+		player_exited.emit(body)
+		players_inside -= 1
+		if players_inside == 0 and camera != null:
+			camera.priority -= camera_priority_offset
+
+func update_loading():
+	var old_loadedness = loadedness
+	var seams: Array[RoomSeam] = find_seams()
+	if keep_loaded_lock.shared_locks > 0:
+		loadedness = loading_range
 	else:
-		for child in node.get_children():
-			walk(child)
+		var most_loaded_neighbor = 0
+		for seam in seams:
+			if seam.partner == null:
+				continue
+			most_loaded_neighbor = max(most_loaded_neighbor, seam.partner.room.loadedness)
+		loadedness = max(most_loaded_neighbor - 1, 0)
+	if loadedness != old_loadedness:
+		for seam in seams:
+			if seam.partner == null:
+				continue
+			seam.partner.room.update_loading()
+
+func find_proc_seam(by_profile: String, in_node: Node = self) -> Array[ProceduralSeam]:
+	if in_node is ProceduralSeam and in_node.profile == by_profile:
+		return [in_node]
+	var out: Array[ProceduralSeam] = []
+	for child in in_node.get_children():
+		var r = find_proc_seam(by_profile, child)
+		out.append_array(r)
+	return out
+
+func find_seams(in_node: Node = self) -> Array[RoomSeam]:
+	if in_node is RoomSeam:
+		return [in_node]
+	var out: Array[RoomSeam] = []
+	for child in in_node.get_children():
+		var r = find_seams(child)
+		out.append_array(r)
+	return out

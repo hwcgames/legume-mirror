@@ -38,8 +38,7 @@ class ActionPlanParleyTest extends BattleActionPlan:
 			e_lock.call()
 			return
 		battlefield.println("%s advises %s..." % [party_member.name, target.name])
-		var orig_pos = party_member.global_position
-		await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position + Vector3.LEFT * 2, 0.75).finished
+		await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
 		match target.state:
 			0:
 				battlefield.println("\"Make up your mind!\"")
@@ -53,7 +52,7 @@ class ActionPlanParleyTest extends BattleActionPlan:
 		await target.pick_pattern()
 		await target.show_telegraph()
 		await party_member.get_tree().create_timer(0.75).timeout
-		var tw = party_member.get_tree().create_tween().tween_property(party_member, "global_position", orig_pos, 0.75)
+		var tw = party_member.get_tree().create_tween().tween_property(party_member, "global_position", party_member.home_landmark.global_position, 0.75)
 		await party_member.get_tree().create_timer(0.5).timeout
 		b_lock.call()
 		e_lock.call()

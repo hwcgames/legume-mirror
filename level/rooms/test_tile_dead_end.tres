@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RoomInfo" load_steps=2 format=3 uid="uid://xnf0bqe28wfy"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room.gd" id="1_1lrfb"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_1lrfb"]
 
 [resource]
 script = ExtResource("1_1lrfb")

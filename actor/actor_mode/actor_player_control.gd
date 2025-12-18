@@ -1,0 +1,10 @@
+extends ActorMode
+class_name ActorPlayerControl
+
+func _process(delta: float):
+	var camera = actor.get_viewport().get_camera_3d()
+	var forward = Vector3.FORWARD.rotated(Vector3.UP, camera.global_rotation.y)
+	var right = Vector3.RIGHT.rotated(Vector3.UP, camera.global_rotation.y)
+	var input = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
+	var movement = (forward * input.y + right * input.x) * delta * 10.
+	actor.global_position += movement

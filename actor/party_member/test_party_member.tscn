@@ -14,7 +14,7 @@ rim = 0.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y2gj"]
 size = Vector3(1, 2, 1)
 
-[node name="PartyMember1" type="CharacterBody3D"]
+[node name="PartyMember1" type="CharacterBody3D" groups=["loading_root", "party_member"]]
 script = ExtResource("1_ms64d")
 max_hp = 50
 hp = 50
