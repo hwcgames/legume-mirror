@@ -6,6 +6,7 @@ class_name RoomInfo
 var repopulate_action = repopulate
 
 @export var weight: float = 1.0
+@export var autoplace: bool = true
 @export_file("*.tscn") var room_path: String
 @export var static_seams: Array[String] = []
 @export var proc_seams: Array[String] = []

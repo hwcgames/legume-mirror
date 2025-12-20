@@ -50,8 +50,8 @@ func update_loading():
 		for seam in seams:
 			if seam.partner == null:
 				continue
-			most_loaded_neighbor = max(most_loaded_neighbor, seam.partner.room.loadedness)
-		loadedness = max(most_loaded_neighbor - 1, 0)
+			most_loaded_neighbor = max(most_loaded_neighbor, seam.partner.room.loadedness - seam.partner.loading_distance)
+		loadedness = max(most_loaded_neighbor, 0)
 	if loadedness != old_loadedness:
 		for seam in seams:
 			if seam.partner == null:
@@ -74,4 +74,14 @@ func find_seams(in_node: Node = self) -> Array[RoomSeam]:
 	for child in in_node.get_children():
 		var r = find_seams(child)
 		out.append_array(r)
+	return out
+
+func find_leaves(out: Array[ProceduralSeam] = [], in_node: Node = self):
+	if in_node is ProceduralSeam:
+		if in_node.partner == null:
+			out.push_back(in_node)
+		else:
+			find_leaves(out, in_node.partner.room)
+	for child in get_children():
+		find_leaves(out, child)
 	return out

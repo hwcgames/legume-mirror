@@ -29,7 +29,10 @@ func _join_battle(_battle: Battlefield):
 	battlefield.player_zone.add_child(battle_planner)
 	var b_lock = await battlefield.lock.shared_lock()
 	home_landmark = battlefield.player_landmarks[battlefield.players.find(self)]
-	await create_tween().tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
+	#await create_tween() \
+		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
+	await (await push_mode(ActorModeMoveTo.new(self, home_landmark.global_position, 0.75))).popped
+	await create_tween().tween_property(self, "global_rotation", home_landmark.global_rotation, 0.25).finished
 	b_lock.call()
 
 func _player_action():

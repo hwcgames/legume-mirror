@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_j0gyw")
-weight = 0.1
 room_path = "uid://dfqc8uj36qecf"
 proc_seams = Array[String](["Entry", "Exit"])
 seam_backtrack = Dictionary[String, bool]({

@@ -18,6 +18,7 @@ func _ready():
 func _join_battle(_battle: Battlefield):
 	home_landmark = battlefield.enemy_landmarks[battlefield.enemies.find(self)]
 	global_position = home_landmark.global_position
+	global_rotation = home_landmark.global_rotation
 
 func _telegraph():
 	if !self.alive:

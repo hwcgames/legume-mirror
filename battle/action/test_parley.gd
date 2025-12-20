@@ -38,7 +38,8 @@ class ActionPlanParleyTest extends BattleActionPlan:
 			e_lock.call()
 			return
 		battlefield.println("%s advises %s..." % [party_member.name, target.name])
-		await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
+		var approach = ActorModeApproach.new(party_member, target)
+		await party_member.push_mode(approach)
 		match target.state:
 			0:
 				battlefield.println("\"Make up your mind!\"")
@@ -52,8 +53,8 @@ class ActionPlanParleyTest extends BattleActionPlan:
 		await target.pick_pattern()
 		await target.show_telegraph()
 		await party_member.get_tree().create_timer(0.75).timeout
-		var tw = party_member.get_tree().create_tween().tween_property(party_member, "global_position", party_member.home_landmark.global_position, 0.75)
+		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
 		b_lock.call()
 		e_lock.call()
-		await tw.finished
+		await approach.popped

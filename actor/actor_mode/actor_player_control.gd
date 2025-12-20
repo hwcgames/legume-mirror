@@ -7,4 +7,6 @@ func _process(delta: float):
 	var right = Vector3.RIGHT.rotated(Vector3.UP, camera.global_rotation.y)
 	var input = Input.get_vector("ui_left", "ui_right", "ui_down", "ui_up")
 	var movement = (forward * input.y + right * input.x) * delta * 10.
+	if movement.length() > 0.1:
+		actor.global_rotation.y = Vector3.FORWARD.signed_angle_to(movement, Vector3.UP)
 	actor.global_position += movement

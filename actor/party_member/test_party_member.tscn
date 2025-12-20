@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0hnypxq8ieth"]
+[gd_scene load_steps=7 format=3 uid="uid://b0hnypxq8ieth"]
 
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="1_ms64d"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_445v2"]
@@ -10,6 +10,11 @@ rings = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ms64d"]
 shading_mode = 2
 rim = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_445v2"]
+top_radius = 0.0
+height = 1.0
+radial_segments = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y2gj"]
 size = Vector3(1, 2, 1)
@@ -26,6 +31,10 @@ metadata/_custom_type_script = "uid://rl05e0067ud"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_445v2")
 surface_material_override/0 = SubResource("StandardMaterial3D_ms64d")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1, -0.5)
+mesh = SubResource("CylinderMesh_445v2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

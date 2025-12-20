@@ -33,12 +33,12 @@ class ExtraTurnPlan extends BattleActionPlan:
 			return
 		if item != null:
 			Inventory.items.remove_at(Inventory.items.find(self))
-		await party_member.create_tween().tween_property(party_member, "global_position", ally.global_position + ally.right_direction * 2, 0.75).finished
+		var approach = ActorModeApproach.new(party_member, ally)
+		await party_member.push_mode(approach)
 		battlefield.println("%s gives %s a boost!" % [party_member.name, ally.name])
 		ally.turns += amt
 		await party_member.get_tree().create_timer(1.).timeout
-		var tw = party_member.get_tree().create_tween().tween_property(party_member, "global_position", party_member.home_landmark.global_position, 0.75)
-		await party_member.get_tree().create_timer(0.5).timeout
+		approach.finished = true
 		b_lock.call()
 		t_lock.call()
-		await tw.finished
+		await approach.popped

@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene load_steps=28 format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
+[ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
 [ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="2_tsi86"]
 [ext_resource type="Resource" uid="uid://cpd7q2unjko4m" path="res://level/rooms/testroom.tres" id="3_rg0rx"]
 [ext_resource type="Resource" uid="uid://c6pw207rdasr6" path="res://level/rooms/test_tile_northwest.tres" id="4_5v0yj"]
@@ -16,15 +17,53 @@
 [ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="14_v5avg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_d1lah"]
 [ext_resource type="Resource" uid="uid://cimi6k1ge463i" path="res://level/rooms/testroom_encounter.tres" id="15_v5avg"]
+[ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="16_uwr0p"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_v5avg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_yyy5f"]
+
+[sub_resource type="GDScript" id="GDScript_yyy5f"]
+resource_name = "DebugDrawMap"
+script/source = "extends Node2D
+class_name DebugDrawMap
+
+@export var map: DungeonMap
+@export var cell_size: Vector2 = Vector2(48, -48)
+
+func _draw() -> void:
+	for point in map.map.keys():
+		if not point in map.map:
+			continue
+		var room = map.map[point]
+		var origin = Vector2(0, -cell_size.y * map.height)
+		for point2 in room.outgoing:
+			draw_line(origin + cell_size * Vector2(point), origin + cell_size * Vector2(point2), Color.BLACK, 2.)
+		var color: Color
+		match room.room_type:
+			DungeonMap.ROOM_TYPE.EMPTY: color = Color.WHITE
+			DungeonMap.ROOM_TYPE.MONSTER: color = Color.PINK
+			DungeonMap.ROOM_TYPE.ITEM: color = Color.PURPLE
+			DungeonMap.ROOM_TYPE.EVENT: color = Color.BLUE
+			DungeonMap.ROOM_TYPE.SAFE: color = Color.GREEN
+			DungeonMap.ROOM_TYPE.BOSS: color = Color.RED
+			DungeonMap.ROOM_TYPE.SHOP: color = Color.YELLOW
+		draw_circle(origin + cell_size * Vector2(point), 4, color, true)
+
+func _process(delta: float) -> void:
+	queue_redraw()
+"
 
 [sub_resource type="Resource" id="Resource_yyy5f"]
 script = ExtResource("11_u56q6")
 metadata/_custom_type_script = "uid://sqwogqldf52c"
 
-[sub_resource type="Resource" id="Resource_uwr0p"]
+[sub_resource type="Resource" id="Resource_7jkn4"]
+script = ExtResource("16_uwr0p")
+amt = 2
+metadata/_custom_type_script = "uid://cwko2gk7u70l2"
+
+[sub_resource type="Resource" id="Resource_ymxrx"]
 script = ExtResource("12_1b0ko")
+spell_list = Array[ExtResource("13_d1lah")]([SubResource("Resource_7jkn4")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [sub_resource type="GDScript" id="GDScript_d1lah"]
@@ -51,19 +90,39 @@ script = ExtResource("16_v5avg")
 
 [node name="Node3D" type="Node3D"]
 
-[node name="PartyMember1" parent="." instance=ExtResource("10_o5yiu")]
-unique_name_in_owner = true
-basic_attack = SubResource("Resource_yyy5f")
-skillset = SubResource("Resource_uwr0p")
+[node name="DungeonMap" type="Node" parent="." node_paths=PackedStringArray("treadmill")]
+script = ExtResource("1_yyy5f")
+treadmill = NodePath("../Treadmill")
+metadata/_custom_type_script = "uid://b6qb50juwahol"
 
-[node name="Treadmill" type="Marker3D" parent="PartyMember1"]
+[node name="Control" type="Node2D" parent="DungeonMap" node_paths=PackedStringArray("map")]
+position = Vector2(76.45, 0)
+script = SubResource("GDScript_yyy5f")
+map = NodePath("..")
+cell_size = Vector2(24, -24)
+
+[node name="Button" type="Button" parent="DungeonMap"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Regen"
+
+[node name="Treadmill" type="Marker3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
 rooms = Array[ExtResource("2_tsi86")]([ExtResource("3_rg0rx"), ExtResource("4_5v0yj"), ExtResource("5_4xjm5"), ExtResource("6_8kcfh"), ExtResource("7_4xjm5"), ExtResource("8_8kcfh"), ExtResource("9_p7oxd"), ExtResource("15_v5avg")])
 metadata/_custom_type_script = "uid://dispg264up47x"
 
+[node name="PartyMember1" parent="." instance=ExtResource("10_o5yiu")]
+unique_name_in_owner = true
+basic_attack = SubResource("Resource_yyy5f")
+skillset = SubResource("Resource_ymxrx")
+
 [node name="Node" type="Node" parent="PartyMember1"]
 script = SubResource("GDScript_d1lah")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PartyMember1"]
+remote_path = NodePath("../../Treadmill")
+update_rotation = false
 
 [node name="PlayersJoin" type="Node" parent="."]
 script = SubResource("GDScript_dpoyh")
@@ -96,3 +155,5 @@ transform = Transform3D(0.9999995, 0, 0, 0, 0.8443271, 0.53582627, 0, -0.5358262
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("17_yyy5f")
+
+[connection signal="pressed" from="DungeonMap/Button" to="DungeonMap" method="generate_map"]

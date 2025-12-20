@@ -3,8 +3,21 @@ extends RefCounted
 class_name ActorMode
 
 var actor: Actor
+var finished: bool = false
+var finishing: bool = false
 
-func _ready():
+signal popped
+
+func _activate():
+	pass
+
+func _deactivate():
+	pass
+
+func _covered():
+	pass
+
+func _uncovered():
 	pass
 
 func _process(_delta: float):

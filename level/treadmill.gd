@@ -80,7 +80,7 @@ signal wants_room_for(seam: ProceduralSeam)
 func auto_fill_proc_seam(seam: ProceduralSeam):
 	# Give others a chance to fill the seam
 	wants_room_for.emit(seam)
-	if seam.partner != null:
+	if seam.partner != null or seam.loading_lock.exclusive_locked:
 		# Someone else filled this seam
 		return
 	var choice: RoomInfo = find_room_for(seam)

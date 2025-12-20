@@ -140,7 +140,7 @@ _data = {
 size = Vector2(48, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i6ykd"]
-radius = 4.0
+radius = 8.0
 
 [node name="Soul" type="Node2D"]
 script = ExtResource("1_i6ykd")

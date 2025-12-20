@@ -15,10 +15,6 @@ signal revived
 @export var defense: int
 @export var finesse: int
 
-var right_direction: Vector3:
-	get:
-		return battlefield.right_direction
-
 var home_landmark: Marker3D
 
 func take_damage(amount: int):
