@@ -1,22 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene load_steps=23 format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
 [ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
+[ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://level/rooms/test_junction/test_junction.tres" id="2_22l80"]
 [ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="2_tsi86"]
-[ext_resource type="Resource" uid="uid://cpd7q2unjko4m" path="res://level/rooms/testroom.tres" id="3_rg0rx"]
-[ext_resource type="Resource" uid="uid://c6pw207rdasr6" path="res://level/rooms/test_tile_northwest.tres" id="4_5v0yj"]
-[ext_resource type="Resource" uid="uid://4i5dcwfbsdfj" path="res://level/rooms/test_tile_southeast.tres" id="5_4xjm5"]
-[ext_resource type="Resource" uid="uid://bkxdtc3dsekng" path="res://level/rooms/test_tile_southwest.tres" id="6_8kcfh"]
-[ext_resource type="Resource" uid="uid://cdaser0lngmc0" path="res://level/rooms/test_tile_northeast.tres" id="7_4xjm5"]
-[ext_resource type="Resource" uid="uid://brf0to0rgfdw0" path="res://level/rooms/test_tile_start_hallways.tres" id="8_8kcfh"]
-[ext_resource type="Resource" uid="uid://xnf0bqe28wfy" path="res://level/rooms/test_tile_dead_end.tres" id="9_p7oxd"]
+[ext_resource type="Resource" uid="uid://bu2dfqvryiut0" path="res://level/rooms/test_dead_end/test_dead_end.tres" id="5_u56q6"]
+[ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://level/rooms/test_hallway/test_hallway.tres" id="6_1b0ko"]
 [ext_resource type="PackedScene" uid="uid://b0hnypxq8ieth" path="res://actor/party_member/test_party_member.tscn" id="10_o5yiu"]
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="11_u56q6"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="12_1b0ko"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="13_d1lah"]
 [ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="14_v5avg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_d1lah"]
-[ext_resource type="Resource" uid="uid://cimi6k1ge463i" path="res://level/rooms/testroom_encounter.tres" id="15_v5avg"]
 [ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="16_uwr0p"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_v5avg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_yyy5f"]
@@ -46,7 +41,7 @@ func _draw() -> void:
 			DungeonMap.ROOM_TYPE.SAFE: color = Color.GREEN
 			DungeonMap.ROOM_TYPE.BOSS: color = Color.RED
 			DungeonMap.ROOM_TYPE.SHOP: color = Color.YELLOW
-		draw_circle(origin + cell_size * Vector2(point), 4, color, true)
+		draw_circle(origin + cell_size * Vector2(point), 16 if map.current_position == point else 4, color, true)
 
 func _process(delta: float) -> void:
 	queue_redraw()
@@ -70,8 +65,8 @@ metadata/_custom_type_script = "uid://j7v5xglggqxp"
 script/source = "extends Node
 
 func _ready() -> void:
-	var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
-	room.global_position.y -= 1
+	#var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
+	#room.global_position.y -= 1
 	%PartyMember1.mode_stack.push_back(ActorPlayerControl.new())
 "
 
@@ -93,6 +88,7 @@ script = ExtResource("16_v5avg")
 [node name="DungeonMap" type="Node" parent="." node_paths=PackedStringArray("treadmill")]
 script = ExtResource("1_yyy5f")
 treadmill = NodePath("../Treadmill")
+start_junction = ExtResource("2_22l80")
 metadata/_custom_type_script = "uid://b6qb50juwahol"
 
 [node name="Control" type="Node2D" parent="DungeonMap" node_paths=PackedStringArray("map")]
@@ -109,7 +105,7 @@ text = "Regen"
 [node name="Treadmill" type="Marker3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
-rooms = Array[ExtResource("2_tsi86")]([ExtResource("3_rg0rx"), ExtResource("4_5v0yj"), ExtResource("5_4xjm5"), ExtResource("6_8kcfh"), ExtResource("7_4xjm5"), ExtResource("8_8kcfh"), ExtResource("9_p7oxd"), ExtResource("15_v5avg")])
+rooms = Array[ExtResource("2_tsi86")]([ExtResource("5_u56q6"), ExtResource("6_1b0ko"), ExtResource("2_22l80")])
 metadata/_custom_type_script = "uid://dispg264up47x"
 
 [node name="PartyMember1" parent="." instance=ExtResource("10_o5yiu")]
@@ -132,7 +128,7 @@ transform = Transform3D(0.9659258, 1.131334e-08, -0.25881904, 0.25881904, -4.222
 shadow_enabled = true
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_targets")]
-transform = Transform3D(0.9999995, 0, 0, 0, 0.8443271, 0.53582627, 0, -0.53582627, 0.8443271, 0, 5.3582625, 8.443271)
+transform = Transform3D(0.9999995, 0, 0, 0, 0.49999946, 0.86602455, 0, -0.86602455, 0.49999946, 0, 25.980736, 14.999984)
 top_level = true
 script = ExtResource("15_d1lah")
 priority = 1
@@ -142,14 +138,14 @@ tween_resource = SubResource("Resource_cwt6f")
 follow_damping = true
 follow_distance = 4.3
 auto_follow_distance = true
-auto_follow_distance_min = 10.0
-auto_follow_distance_max = 30.0
+auto_follow_distance_min = 30.0
+auto_follow_distance_max = 50.0
 spring_length = 4.3
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
-transform = Transform3D(0.9999995, 0, 0, 0, 0.8443271, 0.53582627, 0, -0.53582627, 0.8443271, 0, 5.3582625, 8.443271)
+transform = Transform3D(0.9999995, 0, 0, 0, 0.49999946, 0.86602455, 0, -0.86602455, 0.49999946, 0, 25.980736, 14.999984)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300

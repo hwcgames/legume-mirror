@@ -5,33 +5,30 @@ class_name Treadmill
 var existing_rooms: Array[Room] = []
 @export var rooms: Array[RoomInfo] = []
 
-func fill_seam(seam: RoomSeam):
+func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
+	var room: Room
 	if seam is ProceduralSeam:
-		auto_fill_proc_seam(seam)
+		room = await auto_fill_proc_seam(seam, allow_handlers)
 	elif seam is StaticSeam:
 		var index = rooms.find_custom(func(r: RoomInfo): return r.room_path == seam.target_room.room_path)
 		if index == -1:
 			printerr("Can't find room candidate for seam %s" % seam)
-		var room = rooms[index]
-		fill_seam_with(seam, room)
+		var room_info = rooms[index]
+		room = await fill_seam_with(seam, room_info)
 	resolve_partners()
+	return room
 
-func fill_seam_with(seam: RoomSeam, room_info: RoomInfo):
+func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
 	var lock = await seam.loading_lock.exclusive_lock()
-	ResourceLoader.load_threaded_request(room_info.room_path)
-	while ResourceLoader.load_threaded_get_status(room_info.room_path) != ResourceLoader.THREAD_LOAD_LOADED:
-		await get_tree().process_frame
-	if seam.partner != null:
-		lock.call()
-		return
-	var room_scene: PackedScene = ResourceLoader.load_threaded_get(room_info.room_path)
-	var room: Room = room_scene.instantiate()
+	var room: Room = room_info.room_scene.instantiate()
 	room.room_info = room_info
 	add_child(room)
 	var partner: RoomSeam
 	if seam is ProceduralSeam:
 		var candidates = room.find_proc_seam(seam.profile)
-		if candidates.any(func(s: ProceduralSeam): return s.backtrack != seam.backtrack):
+		if candidates.any(func(n: Node): return n.name == seam.wants_partner_name):
+			candidates = candidates.filter(func(n: Node): return n.name == seam.wants_partner_name)
+		elif candidates.any(func(s: ProceduralSeam): return s.backtrack != seam.backtrack):
 			candidates = candidates.filter(func(s: ProceduralSeam): return s.backtrack != seam.backtrack)
 		partner = candidates[randi_range(0, len(candidates)-1)]
 	elif seam is StaticSeam:
@@ -45,6 +42,7 @@ func fill_seam_with(seam: RoomSeam, room_info: RoomInfo):
 	room.global_position += seam.global_position - partner.global_position
 	resolve_partners()
 	lock.call()
+	return room
 
 func resolve_partners():
 	var seams_without_partners: Array[RoomSeam] = []
@@ -77,9 +75,10 @@ func resolve_partners():
 						printerr("Static seams %s and %s match, but they aren't in the same position; maybe the scenes have mismatching layouts?" % [left, right])
 
 signal wants_room_for(seam: ProceduralSeam)
-func auto_fill_proc_seam(seam: ProceduralSeam):
-	# Give others a chance to fill the seam
-	wants_room_for.emit(seam)
+func auto_fill_proc_seam(seam: ProceduralSeam, allow_handlers: bool = true) -> Room:
+	# Give others a chance to fill the seam or impose restrictions
+	if allow_handlers:
+		wants_room_for.emit(seam)
 	if seam.partner != null or seam.loading_lock.exclusive_locked:
 		# Someone else filled this seam
 		return
@@ -87,11 +86,10 @@ func auto_fill_proc_seam(seam: ProceduralSeam):
 	if choice == null:
 		printerr("Couldn't find a room, giving up")
 		return
-	fill_seam_with(seam, choice)
+	return await fill_seam_with(seam, choice)
 
 func spawn_initial_room(room_info: RoomInfo) -> Node3D:
-	var room_scene = load(room_info.room_path)
-	var room: Node3D = room_scene.instantiate()
+	var room: Node3D = room_info.room_scene.instantiate()
 	room.room_info = room_info
 	room.top_level = true
 	existing_rooms.push_back(room)
@@ -100,12 +98,16 @@ func spawn_initial_room(room_info: RoomInfo) -> Node3D:
 
 func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	var candidates: Array[RoomInfo] = rooms.filter(func(r: RoomInfo):
+		if seam.wants_partner_name != "" and seam.wants_partner_name not in r.proc_seams:
+			return false
 		for name in r.proc_seams:
-			if r.seam_profiles[name] == seam.profile and r.seam_backtrack[name] != seam.backtrack:
+			if r.seam_profiles[name] == seam.profile:
 				return true
 		return false)
-	if seam.backtrack and candidates.any(func(c: RoomInfo): return len(c.proc_seams) + len(c.static_seams) == 1):
-		candidates = candidates.filter(func(c: RoomInfo): return len(c.proc_seams) + len(c.static_seams) == 1)
+	if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and candidates.any(func(c: RoomInfo): return c.room_type == seam.wants_room_type):
+		candidates = candidates.filter(func(c: RoomInfo): return c.room_type == seam.wants_room_type)
+	elif seam.backtrack and candidates.any(func(c: RoomInfo): return c.room_type == RoomInfo.ROOM_TYPE.DEAD_END):
+		candidates = candidates.filter(func(c: RoomInfo): return c.room_type == RoomInfo.ROOM_TYPE.DEAD_END)
 	var total = 0.
 	for candidate in candidates:
 		total += candidate.weight

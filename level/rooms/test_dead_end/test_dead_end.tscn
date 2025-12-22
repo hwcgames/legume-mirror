@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://csudlkx55lorl"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_56ymf"]
+[ext_resource type="PackedScene" uid="uid://bfv0ojxiu1isp" path="res://assets/rooms/test-deadend.blend" id="2_pp0hl"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_qaxrv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvuin"]
+size = Vector3(8.400001, 6.2000003, 10)
+
+[node name="TestDeadEnd" type="Area3D"]
+script = ExtResource("1_56ymf")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="test-deadend" parent="." instance=ExtResource("2_pp0hl")]
+
+[node name="In" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, -5)
+script = ExtResource("3_qaxrv")
+profile = &"8x6"
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1920929e-07, 2.9, 0)
+shape = SubResource("BoxShape3D_lvuin")

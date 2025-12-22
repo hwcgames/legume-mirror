@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5a0f31c5gtl2"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ijfo7"]
+[ext_resource type="PackedScene" uid="uid://d324nrk22emqt" path="res://assets/rooms/test-junction.blend" id="2_dltjm"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_oajtf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oajtf"]
+height = 6.4500003
+radius = 15.7
+
+[node name="TestJunction" type="Area3D"]
+script = ExtResource("1_ijfo7")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="test-junction" parent="." instance=ExtResource("2_dltjm")]
+
+[node name="MiddleIn" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 15)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+backtrack = true
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="RightIn" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071067, 10.5, 0, 10.5)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+backtrack = true
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="LeftIn" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, -0.70710677, -10.5, 0, 10.5)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+backtrack = true
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="LeftOut" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071068, -10.5, 0, -10.5)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="RightOut" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.70710665, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, 0.70710665, 10.5, 0, -10.5)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="MiddleOut" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+script = ExtResource("3_oajtf")
+profile = &"8x6"
+loading_distance = 0
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 2.7250001, 0.050000668)
+shape = SubResource("CylinderShape3D_oajtf")

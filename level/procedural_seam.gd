@@ -10,6 +10,8 @@ class_name ProceduralSeam
 
 ## When matching a backtrack seam, try to find an option with only one seam (that is, a dead end)
 @export var backtrack: bool = false
+var wants_room_type: RoomInfo.ROOM_TYPE = RoomInfo.ROOM_TYPE.UNKNOWN
+var wants_partner_name: String = ""
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var out = PackedStringArray()

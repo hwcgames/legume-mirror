@@ -5,9 +5,23 @@ class_name RoomInfo
 @export_tool_button("Repopulate")
 var repopulate_action = repopulate
 
+enum ROOM_TYPE {
+	UNKNOWN,
+	HALLWAY,
+	DEAD_END,
+	JUNCTION,
+	MONSTER,
+	ITEM,
+	EVENT,
+	SAFE,
+	BOSS,
+	SHOP
+}
+
 @export var weight: float = 1.0
 @export var autoplace: bool = true
-@export_file("*.tscn") var room_path: String
+@export var room_type: ROOM_TYPE = ROOM_TYPE.UNKNOWN
+@export var room_scene: PackedScene
 @export var static_seams: Array[String] = []
 @export var proc_seams: Array[String] = []
 @export var seam_backtrack: Dictionary[String, bool] = {}
@@ -22,7 +36,6 @@ func repopulate():
 	seam_profiles = {}
 	seam_target_rooms = {}
 	seam_target_name = {}
-	var room_scene: PackedScene = load(room_path)
 	var room: Node3D = room_scene.instantiate()
 	walk(room)
 

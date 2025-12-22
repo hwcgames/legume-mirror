@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://cntbffk3frtv"]
+
+[ext_resource type="PackedScene" uid="uid://dh67uun11xxrp" path="res://level/rooms/test_hallway/test_hallway.tscn" id="1_ahjq4"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_j648a"]
+
+[resource]
+script = ExtResource("1_j648a")
+room_type = 1
+room_scene = ExtResource("1_ahjq4")
+proc_seams = Array[String](["In", "Out"])
+seam_backtrack = Dictionary[String, bool]({
+"In": true,
+"Out": false
+})
+seam_profiles = Dictionary[String, String]({
+"In": "8x6",
+"Out": "8x6"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"
