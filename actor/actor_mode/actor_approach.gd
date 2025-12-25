@@ -47,3 +47,6 @@ func _deactivate():
 	actor.create_tween().tween_property(actor, "global_rotation", return_rotation, approach_time)
 	await actor.create_tween().tween_property(actor, "global_position", return_pos, retreat_time).finished
 	await actor.play("idle", true)
+
+func _process(_delta: float):
+	pass

@@ -60,6 +60,11 @@ join={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="terrain"
+3d_physics/layer_2="actors"
+
 [navigation]
 
 3d/default_edge_connection_margin=1.0

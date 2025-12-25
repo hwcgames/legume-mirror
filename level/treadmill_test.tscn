@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene load_steps=28 format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
 [ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
@@ -72,6 +72,24 @@ func _ready() -> void:
 	get_parent().mode_stack.push_back(ActorPlayerControl.new())
 "
 
+[sub_resource type="GDScript" id="GDScript_v5avg"]
+script/source = "extends Node
+
+func _ready() -> void:
+	#var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
+	#room.global_position.y -= 1
+	get_parent().mode_stack.push_back(ActorModeFollow.new(%PartyMember1, 1.5))
+"
+
+[sub_resource type="GDScript" id="GDScript_uwr0p"]
+script/source = "extends Node
+
+func _ready() -> void:
+	#var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
+	#room.global_position.y -= 1
+	get_parent().mode_stack.push_back(ActorModeFollow.new(%PartyMember2, 1.5))
+"
+
 [sub_resource type="GDScript" id="GDScript_dpoyh"]
 script/source = "extends Node
 
@@ -126,16 +144,29 @@ script = SubResource("GDScript_d1lah")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="PartyMember1"]
 remote_path = NodePath("../../Treadmill")
+update_position = false
 update_rotation = false
+update_scale = false
 
 [node name="PartyMember2" parent="." instance=ExtResource("10_o5yiu")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 basic_attack = SubResource("Resource_yyy5f")
 skillset = SubResource("Resource_ymxrx")
 human_name = &"Player2"
 
 [node name="Node" type="Node" parent="PartyMember2"]
-script = SubResource("GDScript_d1lah")
+script = SubResource("GDScript_v5avg")
+
+[node name="PartyMember3" parent="." instance=ExtResource("10_o5yiu")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.503294)
+basic_attack = SubResource("Resource_yyy5f")
+skillset = SubResource("Resource_ymxrx")
+human_name = &"Player3"
+
+[node name="Node" type="Node" parent="PartyMember3"]
+script = SubResource("GDScript_uwr0p")
 
 [node name="PlayersJoin" type="Node" parent="."]
 script = SubResource("GDScript_dpoyh")
@@ -163,6 +194,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(0.99999946, 0, 0, 0, 0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 21.21318, 21.21318)
+current = true
 size = 20.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]

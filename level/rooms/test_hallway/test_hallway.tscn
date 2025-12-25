@@ -8,6 +8,8 @@
 size = Vector3(8.400001, 6.2000003, 10)
 
 [node name="TestHallway" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_goguy")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 

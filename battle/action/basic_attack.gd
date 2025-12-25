@@ -48,6 +48,7 @@ class BasicAttackPlan extends BattleActionPlan:
 			await animate.popped
 		else:
 			battlefield.println("Swing and a miss...")
+			await party_member.pop_mode()
 		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
 		p_lock.call()

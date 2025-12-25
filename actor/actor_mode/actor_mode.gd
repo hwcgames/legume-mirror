@@ -20,5 +20,16 @@ func _covered():
 func _uncovered():
 	pass
 
-func _process(_delta: float):
+func _process(delta: float):
+	_gravity(delta)
 	pass
+
+var fall_speed: float = 0.
+
+func _gravity(delta: float):
+	if actor.is_on_floor():
+		fall_speed = 0.
+		return
+	fall_speed += 9.8 * delta
+	fall_speed = min(fall_speed, 10.)
+	actor.velocity += Vector3.DOWN * fall_speed

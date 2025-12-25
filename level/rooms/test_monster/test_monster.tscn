@@ -46,6 +46,8 @@ size = 7.959
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="TestMonster" type="Area3D" node_paths=PackedStringArray("battlefield")]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_5eb55")
 battlefield = NodePath("Battlefield")
 encounter = SubResource("Resource_3upcd")
