@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_sa44c"]
 script = ExtResource("3_atoox")
-speed = 500.0
+speed = 300.0
 metadata/_custom_type_script = "uid://dds6oka6jprre"
 
 [sub_resource type="Curve" id="Curve_3x5wl"]

@@ -3,8 +3,9 @@ class_name Room
 
 var room_info: RoomInfo
 @export var battlefield: Battlefield
+@export var encounter: Encounterable
 @export var camera: PhantomCamera3D
-@export var camera_priority_offset: int
+@export var camera_priority_offset: int = 5
 
 @export var loading_range: int = 3
 ## If this lock has shared references, this room is treated as a loading root.
@@ -20,6 +21,13 @@ func _ready():
 	keep_loaded_lock.shared_free.connect(update_loading)
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
+	if battlefield != null:
+		player_entered.connect(func(_p):
+			battlefield.players.clear()
+			for player in get_tree().get_nodes_in_group("party_member"):
+				battlefield.players.push_back(player)
+			battlefield.battle(),
+		ConnectFlags.CONNECT_ONE_SHOT)
 
 func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):

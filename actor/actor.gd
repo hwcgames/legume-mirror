@@ -1,6 +1,15 @@
 extends CharacterBody3D
 class_name Actor
 
+@export var human_name: StringName = name
+@export var costume: Costume:
+	set(new_costume):
+		if costume != null:
+			costume.hide()
+			costume.queue_free()
+		costume = new_costume
+		add_child(new_costume)
+
 var mode_stack: Array[ActorMode] = []:
 	get:
 		if mode_stack.is_empty():
@@ -30,3 +39,6 @@ func pop_mode() -> ActorMode:
 	await mode_stack[-1]._uncovered()
 	mode.popped.emit()
 	return mode
+
+func play(name: StringName, wait_for_arrival: bool = false, wait_for_completion: bool = false):
+	await costume.play(name, wait_for_arrival, wait_for_completion)

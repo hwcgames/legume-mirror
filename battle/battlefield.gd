@@ -7,6 +7,8 @@ var battle_board: BattleBoard
 @export var enemy_landmarks: Array[Marker3D]
 @export var players: Array[PartyMember]
 @export var enemies: Array[Enemy]
+@export var camera_priority_offset: int = 5
+@export var camera: PhantomCamera3D
 @onready var log_box: RichTextLabel = %BattleText
 @onready var player_zone: Control = %PlayerZone
 var lock: Locks = Locks.new()
@@ -45,6 +47,8 @@ func battle():
 		player.join_battle(self)
 	for enemy in enemies:
 		enemy.join_battle(self)
+	if camera != null:
+		camera.priority += camera_priority_offset
 	begin.emit()
 	log_box.text = ""
 	%BattleHUD.show()
@@ -85,6 +89,8 @@ func battle():
 	phase = PHASE.DONE
 	done.emit(enemies.all(func(e): return !e.alive))
 	%BattleHUD.hide()
+	if camera != null:
+		camera.priority -= camera_priority_offset
 	phase = PHASE.IDLE
 
 func println(text: String):

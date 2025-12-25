@@ -6,9 +6,10 @@ class_name DungeonMap
 
 enum STATE {
 	GENERATE,
+	HALLWAY_TO_JUNCTION,
 	WAIT_FOR_JUNCTION,
 	JUNCTION,
-	HALLWAY,
+	HALLWAY_TO_ROOM,
 	WAIT_FOR_ROOM,
 	ROOM,
 }
@@ -151,10 +152,11 @@ func _ready():
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
-	#state = STATE.HALLWAY
-	state = STATE.WAIT_FOR_JUNCTION
+	#state = STATE.HALLWAY_TO_ROOM
+	state = STATE.WAIT_FOR_ROOM
 
 func room_unloaded():
+	#state = STATE.HALLWAY_TO_JUNCTION
 	state = STATE.WAIT_FOR_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
@@ -201,11 +203,12 @@ func fill_handler(seam: ProceduralSeam):
 			var new_room = await treadmill.fill_seam(seam, false)
 			new_room.player_entered.connect(func(_p):
 				choice = offset.x)
-		STATE.HALLWAY:
+		STATE.HALLWAY_TO_JUNCTION, STATE.HALLWAY_TO_ROOM:
 			if room.room_info.room_type != RoomInfo.ROOM_TYPE.HALLWAY:
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.DEAD_END
-			seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
-		STATE.WAIT_FOR_JUNCTION:
+			else:
+				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
+		STATE.WAIT_FOR_ROOM:
 			if room.room_info.room_type != RoomInfo.ROOM_TYPE.HALLWAY:
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.DEAD_END
 			match map[current_position].room_type:
@@ -224,7 +227,14 @@ func fill_handler(seam: ProceduralSeam):
 					seam.wants_room_type = RoomInfo.ROOM_TYPE.BOSS
 				ROOM_TYPE.SHOP:
 					seam.wants_room_type = RoomInfo.ROOM_TYPE.SHOP
+			if not treadmill.rooms.any(func(r: RoomInfo): return r.room_type == seam.wants_room_type):
+				printerr("Can't find any rooms that match the type requested by the map, moving on to a junction.")
+				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
+				room_unloaded()
+				return
 			var new_room = await treadmill.fill_seam(seam, false)
 			state = STATE.ROOM
 			current_room = new_room
 			new_room.tree_exited.connect(room_unloaded)
+		STATE.ROOM:
+			seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY

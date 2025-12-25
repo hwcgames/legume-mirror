@@ -3,7 +3,10 @@ class_name Treadmill
 
 #@export var load_range: float = 24.
 var existing_rooms: Array[Room] = []
-@export var rooms: Array[RoomInfo] = []
+@export var allowed_themes: Array[StringName] = ["default"]
+@export var rooms: Array[RoomInfo] = []:
+	get:
+		return rooms.filter(func(r: RoomInfo): return r.theme in allowed_themes)
 
 func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 	var room: Room
@@ -16,12 +19,18 @@ func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 		var room_info = rooms[index]
 		room = await fill_seam_with(seam, room_info)
 	resolve_partners()
+	if room != null and room.battlefield != null:
+		if room.encounter == null:
+			printerr("Room %s is missing an encounter" % room.name)
+		var encounter = room.encounter.roll_encounter()
+		encounter.apply_to_battlefield(room.battlefield)
 	return room
 
 func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
 	var lock = await seam.loading_lock.exclusive_lock()
 	var room: Room = room_info.room_scene.instantiate()
 	room.room_info = room_info
+	room.position = Vector3(1000, 0, 0)
 	add_child(room)
 	var partner: RoomSeam
 	if seam is ProceduralSeam:
@@ -137,27 +146,35 @@ func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	#return out
 
 func _process(delta: float) -> void:
-	var rooms_to_cull: Array[Room] = existing_rooms.filter(func(room: Room):
-		return room.loadedness == 0)
-	rooms_to_cull.sort_custom(func(a,b):
-		return a.global_position.distance_to(self.global_position) > b.global_position.distance_to(self.global_position))
-	var seams_to_fill: Array[RoomSeam] = []
-	resolve_partners()
-	for room in existing_rooms:
-		if room.loadedness <= 1:
-			continue
-		for seam in room.find_seams():
-			if seam.partner == null and not seam.loading_lock.exclusive_locked:
-				seams_to_fill.push_back(seam)
-	for room in rooms_to_cull:
-		room.update_loading()
-		if room.loadedness > 0:
-			continue
-		if len(existing_rooms) == 1:
-			# Don't delete the last room
-			break
-		existing_rooms.remove_at(existing_rooms.find(room))
-		room.queue_free()
-	for seam in seams_to_fill:
+	var did_anything = true
+	while did_anything:
+		did_anything = false
+		var rooms_to_cull: Array[Room] = existing_rooms.filter(func(room: Room):
+			return room.loadedness == 0)
+		rooms_to_cull.sort_custom(func(a,b):
+			return a.global_position.distance_to(self.global_position) > b.global_position.distance_to(self.global_position))
+		var seams_to_fill: Array[RoomSeam] = []
 		resolve_partners()
-		fill_seam(seam)
+		for room in existing_rooms:
+			if room.loadedness <= 1:
+				continue
+			for seam in room.find_seams():
+				if seam.partner == null and not seam.loading_lock.exclusive_locked:
+					seams_to_fill.push_back(seam)
+		for room in rooms_to_cull:
+			room.update_loading()
+			if room.loadedness > 0:
+				continue
+			if len(existing_rooms) == 1:
+				# Don't delete the last room
+				break
+			did_anything = true
+			existing_rooms.remove_at(existing_rooms.find(room))
+			room.queue_free()
+		for seam in seams_to_fill:
+			did_anything = true
+			resolve_partners()
+			(func():
+				var room = await fill_seam(seam)
+				if room != null:
+					room.update_loading()).call()

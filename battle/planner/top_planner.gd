@@ -38,7 +38,7 @@ func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
 	selector.add_child(back)
 	for enemy in enemies:
 		var button := Button.new()
-		button.text = enemy.name
+		button.text = enemy.human_name
 		button.pressed.connect(chosen_target.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()
@@ -61,7 +61,7 @@ func pick_ally(predicate: Callable = func(p: PartyMember): return true) -> Party
 	selector.add_child(back)
 	for ally in allies:
 		var button := Button.new()
-		button.text = ally.name
+		button.text = ally.human_name
 		button.pressed.connect(chosen_ally.emit.bind(ally))
 		selector.add_child(button)
 	%TargetSelectTab.show()

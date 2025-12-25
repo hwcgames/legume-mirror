@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Legume Traffick"
-run/main_scene="uid://dvtbjdytsu2ft"
+run/main_scene="uid://cw0r478jvhrnn"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.svg"
 
@@ -33,7 +33,7 @@ movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
 
 [global_group]
 

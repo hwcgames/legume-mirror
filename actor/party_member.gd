@@ -39,7 +39,10 @@ func _player_action():
 	if not alive:
 		return
 	turns = 1
-	while turns > 0 and battlefield.phase == Battlefield.PHASE.PLAYER_ACTION:
+	while battlefield.phase == Battlefield.PHASE.PLAYER_ACTION:
+		if turns == 0:
+			await get_tree().process_frame
+			continue
 		await InputLocks.lock(player).wait_for_clear()
 		var p_lock = await InputLocks.lock(player).shared_lock()
 		var action: BattleActionPlan = null

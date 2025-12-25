@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://745auqrpfcb5"]
 
-[ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy.gd" id="1_o46jl"]
+[ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy/enemy.gd" id="1_o46jl"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_h6b84"]
 [ext_resource type="Resource" uid="uid://b032nobxlc7u0" path="res://null.tres" id="2_jb5as"]
 [ext_resource type="PackedScene" uid="uid://cdltsqr44pytk" path="res://battle/telegraph/null_telegraph.tscn" id="2_uamkb"]

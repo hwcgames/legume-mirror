@@ -1,8 +1,6 @@
 extends Fighter
 class_name Enemy
 
-@export var template: Resource
-
 @export var patterns: Array[BulletPattern] = []
 @export var planning_priority: int
 var has_planned: bool = false
@@ -29,6 +27,7 @@ func _telegraph():
 	lock.call()
 
 func _died():
+	super._died()
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
 	%Telegraph.hide()
@@ -54,7 +53,7 @@ func pick_pattern():
 	while battlefield.enemies.any(func(e: Enemy): return e.planning_priority > planning_priority and not e.has_planned):
 		await get_tree().process_frame
 	has_planned = true
-	var enemies = battlefield.enemies.map(func(e): return ResourceUID.path_to_uid(e.template.resource_path)) as Array[String]
+	var enemies = battlefield.enemies.map(func(e: Node): return e.get_path()) as Array[String]
 	var already_planned = battlefield.enemies \
 		.map(func(e): return e.planned_pattern) \
 		.filter(func(p): return p != null) as Array[BulletPattern]

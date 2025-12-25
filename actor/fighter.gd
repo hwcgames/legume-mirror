@@ -25,7 +25,8 @@ func take_damage(amount: int):
 		_died()
 
 func _died():
-	pass
+	if costume != null:
+		costume.play("dead")
 
 func heal(amount: int):
 	var was_dead = not alive
@@ -37,7 +38,8 @@ func heal(amount: int):
 		_revived()
 
 func _revived():
-	pass
+	if costume != null:
+		costume.play("idle")
 
 func get_sp(amount: int):
 	sp += amount

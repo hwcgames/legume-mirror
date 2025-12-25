@@ -8,7 +8,7 @@ func _has_gizmo(for_node_3d: Node3D) -> bool:
 	return for_node_3d.is_in_group("landmark")
 
 func _init():
-	create_material("main", Color(1, 1, 1, 0.25))
+	create_material("main", Color(1, 0, 0, 0.5))
 
 func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	gizmo.clear()

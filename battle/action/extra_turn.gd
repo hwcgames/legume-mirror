@@ -35,9 +35,12 @@ class ExtraTurnPlan extends BattleActionPlan:
 			Inventory.items.remove_at(Inventory.items.find(self))
 		var approach = ActorModeApproach.new(party_member, ally)
 		await party_member.push_mode(approach)
-		battlefield.println("%s gives %s a boost!" % [party_member.name, ally.name])
+		var animate = ActorModeAnimate.new("friendly_magic")
+		await party_member.push_mode(animate)
+		battlefield.println("%s gives %s a boost!" % [party_member.human_name, ally.human_name])
 		ally.turns += amt
-		await party_member.get_tree().create_timer(1.).timeout
+		await animate.popped
+		#await party_member.get_tree().create_timer(1.).timeout
 		approach.finished = true
 		b_lock.call()
 		t_lock.call()

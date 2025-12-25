@@ -21,6 +21,7 @@ enum ROOM_TYPE {
 @export var weight: float = 1.0
 @export var autoplace: bool = true
 @export var room_type: ROOM_TYPE = ROOM_TYPE.UNKNOWN
+@export var theme: StringName = "default"
 @export var room_scene: PackedScene
 @export var static_seams: Array[String] = []
 @export var proc_seams: Array[String] = []

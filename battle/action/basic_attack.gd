@@ -28,10 +28,12 @@ class BasicAttackPlan extends BattleActionPlan:
 			b_lock.call()
 			e_lock.call()
 			return
-		battlefield.println("%s attacks %s!" % [party_member.name, target.name])
+		battlefield.println("%s attacks %s!" % [party_member.human_name, target.human_name])
 		#await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
 		var approach = ActorModeApproach.new(party_member, target)
 		await party_member.push_mode(approach)
+		var animate = ActorModeAnimate.new("attack", false)
+		await party_member.push_mode(animate)
 		var challenge: SkillChallenge = party_member.setup_challenge()
 		challenge.frame_count = randi_range(20,40)
 		challenge.start()
@@ -40,6 +42,10 @@ class BasicAttackPlan extends BattleActionPlan:
 		if damage > 0:
 			battlefield.println("%s damage!" % [damage])
 			target.take_damage(damage)
+			await party_member.pop_mode()
+			animate = ActorModeAnimate.new("attack_hit", false)
+			await party_member.push_mode(animate)
+			await animate.popped
 		else:
 			battlefield.println("Swing and a miss...")
 		approach.finished = true

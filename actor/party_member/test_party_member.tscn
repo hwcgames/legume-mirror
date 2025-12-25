@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0hnypxq8ieth"]
+[gd_scene load_steps=8 format=3 uid="uid://b0hnypxq8ieth"]
 
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="1_ms64d"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_445v2"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://actor/costume/test.tscn" id="2_ms64d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_445v2"]
 radial_segments = 8
@@ -19,21 +20,26 @@ radial_segments = 4
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y2gj"]
 size = Vector3(1, 2, 1)
 
-[node name="PartyMember1" type="CharacterBody3D" groups=["loading_root", "party_member"]]
+[node name="PartyMember1" type="CharacterBody3D" node_paths=PackedStringArray("costume") groups=["loading_root", "party_member"]]
 script = ExtResource("1_ms64d")
 max_hp = 50
 hp = 50
 strength = 5
 defense = 5
+costume = NodePath("test_costume")
 metadata/_custom_type_script = "uid://rl05e0067ud"
+
+[node name="test_costume" parent="." instance=ExtResource("2_ms64d")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_445v2")
 surface_material_override/0 = SubResource("StandardMaterial3D_ms64d")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1, -0.5)
+visible = false
 mesh = SubResource("CylinderMesh_445v2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

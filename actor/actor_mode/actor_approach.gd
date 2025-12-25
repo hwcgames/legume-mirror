@@ -27,13 +27,23 @@ func _init(actor: Actor,
 	self.retreat_time = retreat_time
 
 func _activate():
-	actor.create_tween().tween_property(actor, "global_rotation", target.global_rotation - Vector3(0, PI, 0), approach_time)
+	await actor.play("walk", true)
+	var target_angle_change = (target.global_rotation.y - PI) - actor.global_rotation.y
+	while target_angle_change < -PI:
+		target_angle_change += 2*PI
+	while target_angle_change > PI:
+		target_angle_change -= 2*PI
+	actor.create_tween().tween_property(actor, "global_rotation", actor.global_rotation + Vector3(0, target_angle_change, 0), approach_time)
 	await actor.create_tween().tween_property(actor, "global_position", goal, approach_time).finished
+	await actor.play("idle", true)
 
 func _uncovered():
 	if actor.global_position != goal:
+		actor.play("walk")
 		await _activate()
 
 func _deactivate():
+	await actor.play("walk", true)
 	actor.create_tween().tween_property(actor, "global_rotation", return_rotation, approach_time)
 	await actor.create_tween().tween_property(actor, "global_position", return_pos, retreat_time).finished
+	await actor.play("idle", true)

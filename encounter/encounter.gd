@@ -1,0 +1,19 @@
+extends Encounterable
+class_name Encounter
+
+@export var enemies: Array[EnemyFactory]
+
+func roll_encounter() -> Encounter:
+	return self
+
+func apply_to_battlefield(battlefield: Battlefield):
+	for enemy in battlefield.enemies:
+		enemy.queue_free()
+	battlefield.enemies.clear()
+	for enemy_factory in enemies:
+		var enemy_sheet: EnemySheet = enemy_factory.roll_enemy()
+		var enemy: Enemy = enemy_sheet.spawn()
+		battlefield.enemies.push_back(enemy)
+		enemy.home_landmark = battlefield.enemy_landmarks[len(battlefield.enemies)-1]
+		battlefield.add_child(enemy)
+		enemy.global_transform = enemy.home_landmark.global_transform

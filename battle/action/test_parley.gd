@@ -37,9 +37,11 @@ class ActionPlanParleyTest extends BattleActionPlan:
 			b_lock.call()
 			e_lock.call()
 			return
-		battlefield.println("%s advises %s..." % [party_member.name, target.name])
+		battlefield.println("%s advises %s..." % [party_member.human_name, target.human_name])
 		var approach = ActorModeApproach.new(party_member, target)
 		await party_member.push_mode(approach)
+		var animate = ActorModeAnimate.new("attack_magic")
+		await party_member.push_mode(animate)
 		match target.state:
 			0:
 				battlefield.println("\"Make up your mind!\"")
@@ -52,7 +54,7 @@ class ActionPlanParleyTest extends BattleActionPlan:
 				target.state = 1
 		await target.pick_pattern()
 		await target.show_telegraph()
-		await party_member.get_tree().create_timer(0.75).timeout
+		await animate.popped
 		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
 		b_lock.call()
