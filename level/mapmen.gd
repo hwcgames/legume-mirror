@@ -1,6 +1,7 @@
 extends Node
 class_name DungeonMap
 
+@export var enabled: bool = true
 @export var treadmill: Treadmill
 @export var start_junction: RoomInfo
 
@@ -35,11 +36,6 @@ enum ROOM_TYPE {
 	BOSS,
 	SHOP
 }
-
-class MapRoom extends RefCounted:
-	var incoming: Array[Vector2i] = []
-	var outgoing: Array[Vector2i] = []
-	var room_type: ROOM_TYPE = ROOM_TYPE.EMPTY
 
 func reset():
 	map = {}
@@ -160,6 +156,8 @@ func room_unloaded():
 	state = STATE.WAIT_FOR_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
+	if not enabled:
+		return
 	if seam.backtrack:
 		return
 	var room := seam.room

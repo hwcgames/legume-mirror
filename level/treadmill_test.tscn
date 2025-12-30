@@ -1,12 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene load_steps=25 format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
 [ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
-[ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://level/rooms/test_junction/test_junction.tres" id="2_22l80"]
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="2_tsi86"]
-[ext_resource type="Resource" uid="uid://bu2dfqvryiut0" path="res://level/rooms/test_dead_end/test_dead_end.tres" id="5_u56q6"]
-[ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://level/rooms/test_hallway/test_hallway.tres" id="6_1b0ko"]
-[ext_resource type="Resource" uid="uid://6ko4lafitey5" path="res://level/rooms/test_monster/test_monster.tres" id="7_1b0ko"]
+[ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://database/rooms/test_junction.tres" id="2_22l80"]
+[ext_resource type="Resource" uid="uid://4ep2fpkadiow" path="res://database/roomsets/test.tres" id="4_o5yiu"]
 [ext_resource type="PackedScene" uid="uid://b0hnypxq8ieth" path="res://actor/party_member/test_party_member.tscn" id="10_o5yiu"]
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="11_u56q6"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="12_1b0ko"]
@@ -130,7 +127,7 @@ text = "Regen"
 [node name="Treadmill" type="Marker3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
-rooms = Array[ExtResource("2_tsi86")]([ExtResource("5_u56q6"), ExtResource("6_1b0ko"), ExtResource("2_22l80"), ExtResource("7_1b0ko")])
+roomset = ExtResource("4_o5yiu")
 metadata/_custom_type_script = "uid://dispg264up47x"
 
 [node name="PartyMember1" parent="." instance=ExtResource("10_o5yiu")]

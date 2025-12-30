@@ -1,6 +1,7 @@
 extends Fighter
 class_name Enemy
 
+@export var enemy_factory: EnemyFactory
 @export var patterns: Array[BulletPattern] = []
 @export var planning_priority: int
 var has_planned: bool = false
@@ -58,7 +59,7 @@ func pick_pattern():
 		.map(func(e): return e.planned_pattern) \
 		.filter(func(p): return p != null) as Array[BulletPattern]
 	var must_be_friends = already_planned.filter(func(p): return p.exclusive).map(func(p): return ResourceUID.path_to_uid(p.resource_path)) as Array[String]
-	var candidates = patterns.filter( \
+	var candidates = patterns.filter(\
 		func(p: BulletPattern):
 			return \
 				(p.enemies.all(func(r): return r in enemies)) and \
@@ -75,7 +76,7 @@ func pick_pattern():
 		if candidates.any(func(c): return c.path == pattern.path):
 			planned_pattern = pattern
 			return
-	planned_pattern = candidates[randi_range(0, len(candidates)-1)]
+	planned_pattern = candidates[randi_range(0, len(candidates) - 1)]
 
 func show_telegraph():
 	for child in %TelegraphParent.get_children():
@@ -83,3 +84,23 @@ func show_telegraph():
 	var telegraph = planned_pattern.telegraph_scene.instantiate() if planned_pattern != null else null_telegraph.instantiate()
 	%TelegraphParent.add_child(telegraph)
 	%Telegraph.show()
+
+static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
+	var enemy_sheet = enemy_factory.roll_enemy()
+	var enemy: Enemy = preload("uid://nk8ets08f0mj").instantiate()
+	var costume_node: Costume = enemy_sheet.costume.instantiate()
+	enemy.costume = costume_node
+	enemy.human_name = enemy_sheet.name
+	enemy.max_hp = enemy_sheet.hp
+	enemy.hp = enemy_sheet.hp
+	enemy.max_sp = enemy_sheet.sp
+	enemy.sp = enemy_sheet.sp
+	enemy.strength = enemy_sheet.strength
+	enemy.magic = enemy_sheet.magic
+	enemy.defense = enemy_sheet.defense
+	enemy.finesse = enemy_sheet.finesse
+	enemy.patterns = enemy_sheet.patterns
+	enemy.planning_priority = enemy_sheet.planning_priority
+	enemy.parleys = enemy_sheet.parleys
+	enemy.enemy_factory = enemy_factory
+	return enemy

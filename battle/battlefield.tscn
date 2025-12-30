@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuqcu57f1672c"]
+[gd_scene load_steps=4 format=3 uid="uid://cuqcu57f1672c"]
 
 [ext_resource type="Script" uid="uid://bpjl8ipys5vef" path="res://battle/battlefield.gd" id="1_dkh7w"]
+[ext_resource type="Theme" uid="uid://cd2oktw58ov5s" path="res://assets/theme/battle_hud.tres" id="2_kiys1"]
+[ext_resource type="Theme" uid="uid://bjtrx0xncgqi6" path="res://assets/theme/battle_planner.tres" id="3_f6ata"]
 
 [node name="Battlefield" type="Node3D"]
 script = ExtResource("1_dkh7w")
@@ -10,46 +12,46 @@ metadata/_custom_type_script = "uid://bpjl8ipys5vef"
 unique_name_in_owner = true
 
 [node name="AllyZone2" type="MarginContainer" parent="BattleHUD"]
-custom_minimum_size = Vector2(0, 196)
-anchors_preset = 3
-anchor_left = 1.0
+visible = false
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -128.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_kiys1")
 
 [node name="Panel" type="Panel" parent="BattleHUD/AllyZone2"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/AllyZone2"]
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="LogZone" type="VBoxContainer" parent="BattleHUD/AllyZone2/HBoxContainer"]
 layout_mode = 2
 
 [node name="BattleText" type="RichTextLabel" parent="BattleHUD/AllyZone2/HBoxContainer/LogZone"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(196, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 scroll_following = true
 
 [node name="PlayerZone" type="HBoxContainer" parent="BattleHUD/AllyZone2/HBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="Control" type="Control" parent="BattleHUD"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 128.0
+theme = ExtResource("2_kiys1")
 
 [node name="EnemyZone" type="HBoxContainer" parent="BattleHUD/Control"]
 layout_mode = 1
@@ -59,6 +61,65 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="BattleHUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_f6ata")
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleHUD/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_right = 23.5
+offset_bottom = 14.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="BattleHUD/Control2/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BattleHUD/Control2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LogZone" type="VBoxContainer" parent="BattleHUD/Control2/MarginContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="BattleHUD/Control2/MarginContainer/MarginContainer/LogZone"]
+layout_mode = 2
+text = "Combat Log"
+horizontal_alignment = 1
+
+[node name="BottomPanel" type="MarginContainer" parent="BattleHUD/Control2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="BattleHUD/Control2/BottomPanel"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="BattleHUD/Control2/BottomPanel"]
+layout_mode = 2
+
+[node name="PlayerZone" type="HBoxContainer" parent="BattleHUD/Control2/BottomPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
 
 [node name="Right" type="Marker3D" parent="."]
 unique_name_in_owner = true

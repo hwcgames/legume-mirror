@@ -8,11 +8,24 @@
 
 config_version=5
 
+[addons]
+
+resources_spreadsheet_view/array_color_tint=100.0
+resources_spreadsheet_view/color_rows=true
+resources_spreadsheet_view/array_min_width=128.0
+resources_spreadsheet_view/resource_preview_size=32.0
+resources_spreadsheet_view/clip_headers=false
+resources_spreadsheet_view/dupe_arrays=true
+resources_spreadsheet_view/context_menu_on_leftclick=false
+resources_spreadsheet_view/fold_docks=true
+resources_spreadsheet_view/resource_cell_label_mode=1
+resources_spreadsheet_view/freeze_first_column=true
+
 [application]
 
 config/name="Legume Traffick"
 run/main_scene="uid://cw0r478jvhrnn"
-config/features=PackedStringArray("4.5")
+config/features=PackedStringArray("4.5", "C#")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +35,12 @@ InputLocks="*res://InputLocks.gd"
 PlayerManager="*res://player_manager.gd"
 Inventory="*res://inventory/inventory.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+Saver="*res://save_file/saver.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
 
 [dotnet]
 
@@ -33,7 +52,7 @@ movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/Godot-Mixing-Desk/addons/mixing-desk/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
 
 [global_group]
 
@@ -72,3 +91,8 @@ join={
 [physics]
 
 common/physics_interpolation=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

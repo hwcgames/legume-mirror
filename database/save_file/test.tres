@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SaveFile" load_steps=5 format=3 uid="uid://deujhdqh6wxae"]
+
+[ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="1_kyjuh"]
+[ext_resource type="Resource" uid="uid://cal5yy0thhvjg" path="res://database/party_members/test_party.tres" id="2_8rfdh"]
+[ext_resource type="Script" uid="uid://q1fu06udbngq" path="res://save_file/save_file.gd" id="2_tbffc"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="3_8rfdh"]
+
+[resource]
+script = ExtResource("2_tbffc")
+party = Array[StringName]([&"leader"])
+character_sheets = Dictionary[StringName, ExtResource("1_kyjuh")]({
+&"leader": ExtResource("2_8rfdh")
+})
+metadata/_custom_type_script = "uid://q1fu06udbngq"

@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://d21yudvneounm"]
+[gd_scene load_steps=9 format=3 uid="uid://d21yudvneounm"]
 
+[ext_resource type="Theme" uid="uid://bjtrx0xncgqi6" path="res://assets/theme/battle_planner.tres" id="1_bl1wf"]
 [ext_resource type="Script" uid="uid://b6o3m7mqqpiyn" path="res://battle/planner/top_planner.gd" id="1_ssjqy"]
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="2_ssjqy"]
 
@@ -58,49 +59,12 @@ func _pressed():
 	planner.choice.emit(BattleActionHold.new().plan(planner))
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssjqy"]
-bg_color = Color(0.45891184, 0, 0.1520707, 1)
-border_width_left = 2
-border_width_top = 6
-border_width_right = 2
-border_width_bottom = 6
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmopx"]
-bg_color = Color(0.22412619, 0.71625257, 1.732707e-06, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6vg7"]
-bg_color = Color(4.933402e-07, 0.28794616, 0.16782486, 1)
-border_width_left = 2
-border_width_top = 6
-border_width_right = 2
-border_width_bottom = 6
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl1wf"]
-bg_color = Color(2.3102762e-06, 0.6714423, 0.77969694, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [node name="TestBattlePlanner" type="MarginContainer"]
-custom_minimum_size = Vector2(256, 196)
+custom_minimum_size = Vector2(128, 0)
 offset_right = 196.0
 offset_bottom = 196.0
 grow_vertical = 0
+theme = ExtResource("1_bl1wf")
 script = ExtResource("1_ssjqy")
 
 [node name="Panel" type="Panel" parent="."]
@@ -108,102 +72,6 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
-current_tab = 3
-tabs_visible = false
-
-[node name="IdleTab" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-alignment = 1
-metadata/_tab_index = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/TabContainer/IdleTab"]
-layout_mode = 2
-text = "(idle)"
-horizontal_alignment = 1
-
-[node name="ToplevelTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer/TabContainer/ToplevelTab"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Basic Attack"
-script = SubResource("GDScript_ssjqy")
-planner = NodePath("../../../../..")
-
-[node name="SkillsetParent" type="MarginContainer" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Pockets"
-script = SubResource("GDScript_v6vg7")
-planner = NodePath("../../../../..")
-
-[node name="Button4" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Parley"
-script = SubResource("GDScript_tmopx")
-planner = NodePath("../../../../..")
-
-[node name="Button5" type="Button" parent="VBoxContainer/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Hold"
-script = SubResource("GDScript_bl1wf")
-planner = NodePath("../../../../..")
-
-[node name="TargetSelectTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="TargetMenuParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/TargetSelectTab"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PocketsTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-metadata/_tab_index = 3
-
-[node name="ItemParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/PocketsTab"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="ParleyTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 4
-
-[node name="ParleyParent" type="HFlowContainer" parent="VBoxContainer/TabContainer/ParleyTab"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="SkillsetTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 5
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -223,7 +91,7 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 texture = ExtResource("2_ssjqy")
 expand_mode = 2
@@ -236,20 +104,18 @@ size_flags_horizontal = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+size_flags_vertical = 1
 text = "Name"
+vertical_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/background = SubResource("StyleBoxFlat_ssjqy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_tmopx")
+size_flags_vertical = 3
+theme_type_variation = &"HealthBar"
 max_value = 1.0
 value = 0.5
 show_percentage = false
@@ -259,8 +125,109 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/background = SubResource("StyleBoxFlat_v6vg7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_bl1wf")
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
+current_tab = 1
+tabs_visible = false
+
+[node name="IdleTab" type="VBoxContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="Control/TabContainer/IdleTab"]
+layout_mode = 2
+text = "(idle)"
+horizontal_alignment = 1
+
+[node name="ToplevelTab" type="MarginContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control/TabContainer/ToplevelTab"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Basic Attack"
+script = SubResource("GDScript_ssjqy")
+planner = NodePath("../../../../..")
+
+[node name="SkillsetParent" type="MarginContainer" parent="Control/TabContainer/ToplevelTab/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pockets"
+script = SubResource("GDScript_v6vg7")
+planner = NodePath("../../../../..")
+
+[node name="Button4" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Parley"
+script = SubResource("GDScript_tmopx")
+planner = NodePath("../../../../..")
+
+[node name="Button5" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hold"
+script = SubResource("GDScript_bl1wf")
+planner = NodePath("../../../../..")
+
+[node name="TargetSelectTab" type="MarginContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TargetMenuParent" type="HFlowContainer" parent="Control/TabContainer/TargetSelectTab"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PocketsTab" type="MarginContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ItemParent" type="HFlowContainer" parent="Control/TabContainer/PocketsTab"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ParleyTab" type="MarginContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="ParleyParent" type="HFlowContainer" parent="Control/TabContainer/ParleyTab"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SkillsetTab" type="MarginContainer" parent="Control/TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5

@@ -3,10 +3,16 @@ class_name Treadmill
 
 #@export var load_range: float = 24.
 var existing_rooms: Array[Room] = []
-@export var allowed_themes: Array[StringName] = ["default"]
-@export var rooms: Array[RoomInfo] = []:
+@export var roomset: RoomSet
+var allowed_themes: Array[StringName]:
 	get:
-		return rooms.filter(func(r: RoomInfo): return r.theme in allowed_themes)
+		return roomset.allowed_themes
+	set(new_themes):
+		roomset.allowed_themes = new_themes
+var rooms: Array[RoomInfo] = []:
+	get:
+		var out: Array[RoomInfo] = []
+		return roomset.rooms.filter(func(r: RoomInfo): return r is RoomInfo and r.theme in allowed_themes)
 
 func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 	var room: Room

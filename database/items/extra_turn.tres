@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://ds8ix4qtcllk0"]
+
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_kl5wy"]
+[ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="1_q3ccl"]
+
+[sub_resource type="Resource" id="Resource_pi58w"]
+script = ExtResource("1_q3ccl")
+metadata/_custom_type_script = "uid://cwko2gk7u70l2"
+
+[resource]
+script = ExtResource("1_kl5wy")
+name = &"Energy Snack"
+description = &"Give one ally an extra turn."
+battle_action = SubResource("Resource_pi58w")
+metadata/_custom_type_script = "uid://7fyk4nkeo01r"

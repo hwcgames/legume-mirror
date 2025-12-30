@@ -1,6 +1,8 @@
 extends Fighter
 class_name PartyMember
 
+@export var character_sheet: CharacterSheet
+
 ## How many turns this actor has left.
 ## Usually 0 or 1, but not always.
 var turns: int = 0
@@ -110,3 +112,22 @@ func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallen
 	skill_challenge.party_member = self
 	%SkillChallengeParent.add_child(skill_challenge)
 	return skill_challenge
+
+static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember:
+	var pm: PartyMember = preload("uid://b0hnypxq8ieth").instantiate()
+	var costume_node: Costume = character_sheet.costume.instantiate()
+	pm.costume = costume_node
+	pm.human_name = character_sheet.name
+	pm.max_hp = character_sheet.hp
+	pm.hp = character_sheet.hp
+	pm.max_sp = character_sheet.sp
+	pm.sp = character_sheet.sp
+	pm.strength = character_sheet.strength
+	pm.magic = character_sheet.magic
+	pm.defense = character_sheet.defense
+	pm.finesse = character_sheet.finesse
+	pm.basic_attack = character_sheet.basic_attack
+	pm.skillset = character_sheet.skillset
+	pm.skill_challenge_scene = character_sheet.skill_challenge_scene
+	pm.battle_planner_scene = character_sheet.battle_planner_scene
+	return pm

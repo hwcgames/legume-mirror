@@ -17,21 +17,3 @@ class_name EnemySheet
 
 func roll_enemy() -> EnemySheet:
 	return self
-
-func spawn() -> Enemy:
-	var enemy: Enemy = preload("uid://nk8ets08f0mj").instantiate()
-	var costume_node: Costume = costume.instantiate()
-	enemy.costume = costume_node
-	enemy.human_name = name
-	enemy.max_hp = hp
-	enemy.hp = hp
-	enemy.max_sp = sp
-	enemy.sp = sp
-	enemy.strength = strength
-	enemy.magic = magic
-	enemy.defense = defense
-	enemy.finesse = finesse
-	enemy.patterns = patterns
-	enemy.planning_priority = planning_priority
-	enemy.parleys = parleys
-	return enemy

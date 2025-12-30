@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CharacterSheet" load_steps=11 format=3 uid="uid://cal5yy0thhvjg"]
+
+[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="1_lnpxj"]
+[ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="1_qh3wk"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://actor/costume/test.tscn" id="2_uy55x"]
+[ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_pwv88"]
+[ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/skill_challenge/basic_skill_challenge.tscn" id="4_jkj8j"]
+[ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_uqreb"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="7_6bwi3"]
+[ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="8_d5l07"]
+
+[sub_resource type="Resource" id="Resource_er1n0"]
+script = ExtResource("1_lnpxj")
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_xuaaf"]
+script = ExtResource("6_uqreb")
+metadata/_custom_type_script = "uid://j7v5xglggqxp"
+
+[resource]
+script = ExtResource("3_pwv88")
+basic_attack = SubResource("Resource_er1n0")
+skillset = SubResource("Resource_xuaaf")
+metadata/_custom_type_script = "uid://dr762xdwdn0fw"

@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://hcuunputmcw4"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_5eb55"]
+[ext_resource type="Resource" uid="uid://b2qxi62km3uxh" path="res://database/encounter/static/test_encounter.tres" id="2_haqil"]
+[ext_resource type="PackedScene" uid="uid://cbnn3cvl31krh" path="res://assets/rooms/test-room2.blend" id="2_t4bo4"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_hrqxo"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_nj0p4"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_5bjoy"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="6_pq5dn"]
+[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="7_t4bo4"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="16_3upcd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igms6"]
+size = Vector3(8.400001, 6.2000003, 10)
+
+[sub_resource type="Resource" id="Resource_w5n60"]
+script = ExtResource("5_5bjoy")
+
+[sub_resource type="Resource" id="Resource_t2cws"]
+script = ExtResource("6_pq5dn")
+fov = 24.3
+size = 7.959
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="TestMonster" type="Area3D" node_paths=PackedStringArray("battlefield")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_5eb55")
+battlefield = NodePath("Battlefield")
+encounter = ExtResource("2_haqil")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="test-room2" parent="." instance=ExtResource("2_t4bo4")]
+
+[node name="In" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 5)
+script = ExtResource("3_hrqxo")
+profile = &"8x6"
+backtrack = true
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="Out" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, -5)
+script = ExtResource("3_hrqxo")
+profile = &"8x6"
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1920929e-07, 2.9, 0)
+shape = SubResource("BoxShape3D_igms6")
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(0.5000001, -0.33280954, 0.7995234, 5.7850578e-09, 0.9232102, 0.3842953, -0.8660255, -0.1921477, 0.46160513, 13.7, 8.445, 8)
+script = ExtResource("4_nj0p4")
+tween_resource = SubResource("Resource_w5n60")
+camera_3d_resource = SubResource("Resource_t2cws")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Battlefield" parent="." node_paths=PackedStringArray("player_landmarks", "enemy_landmarks", "camera") instance=ExtResource("7_t4bo4")]
+unique_name_in_owner = true
+player_landmarks = [NodePath("../Player1"), NodePath("../Player2"), NodePath("../Player3")]
+enemy_landmarks = [NodePath("../Enemy3"), NodePath("../Enemy2"), NodePath("../Enemy1")]
+camera = NodePath("../PhantomCamera3D")
+
+[node name="Player1" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="Player2" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Player3" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
+
+[node name="Enemy1" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2, 0, -2.9999998)
+
+[node name="Enemy2" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -3)
+
+[node name="Enemy3" type="Marker3D" parent="." groups=["landmark"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, -3.0000002)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.5000001, -0.33280954, 0.7995234, 5.7850578e-09, 0.9232102, 0.3842953, -0.8660255, -0.1921477, 0.46160513, 13.7, 8.445, 8)
+fov = 24.3
+size = 7.959
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("16_3upcd")

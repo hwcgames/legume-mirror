@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://bjtrx0xncgqi6"]
+
+[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/fonts/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vavlv"]
+[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/gui/bars.aseprite" id="2_k0f3m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id7uf"]
+atlas = ExtResource("2_k0f3m")
+region = Rect2(0, 8, 16, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7rq0"]
+texture = SubResource("AtlasTexture_id7uf")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 5.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0f3m"]
+atlas = ExtResource("2_k0f3m")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p7v5d"]
+texture = SubResource("AtlasTexture_k0f3m")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 5.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="FontVariation" id="FontVariation_k0f3m"]
+base_font = ExtResource("1_vavlv")
+spacing_bottom = -3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7v5d"]
+atlas = ExtResource("2_k0f3m")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vavlv"]
+texture = SubResource("AtlasTexture_p7v5d")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p3sq"]
+atlas = ExtResource("2_k0f3m")
+region = Rect2(16, 8, 16, 8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_id7uf"]
+texture = SubResource("AtlasTexture_0p3sq")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 5.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[resource]
+HealthBar/base_type = &"ProgressBar"
+HealthBar/styles/fill = SubResource("StyleBoxTexture_e7rq0")
+HealthBarLow/base_type = &"ProgressBar"
+HealthBarLow/styles/fill = SubResource("StyleBoxTexture_p7v5d")
+Label/font_sizes/font_size = 6
+Label/fonts/font = ExtResource("1_vavlv")
+ProgressBar/font_sizes/font_size = 6
+ProgressBar/fonts/font = SubResource("FontVariation_k0f3m")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_vavlv")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_id7uf")

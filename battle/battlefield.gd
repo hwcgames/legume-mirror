@@ -9,7 +9,7 @@ var battle_board: BattleBoard
 @export var enemies: Array[Enemy]
 @export var camera_priority_offset: int = 5
 @export var camera: PhantomCamera3D
-@onready var log_box: RichTextLabel = %BattleText
+@onready var log_zone: Control = %LogZone
 @onready var player_zone: Control = %PlayerZone
 var lock: Locks = Locks.new()
 var inventory_lock: Locks = Locks.new()
@@ -50,7 +50,6 @@ func battle():
 	if camera != null:
 		camera.priority += camera_priority_offset
 	begin.emit()
-	log_box.text = ""
 	%BattleHUD.show()
 	println("[center]- Battle!!! -[/center]")
 	await lock.wait_for_clear()
@@ -95,6 +94,17 @@ func battle():
 
 func println(text: String):
 	print_rich(text)
-	if !log_box.text.is_empty():
-		log_box.text += "\n"
-	log_box.text += text
+	#if !log_box.text.is_empty():
+		#log_box.text += "\n"
+	#log_box.text += text
+	var label := RichTextLabel.new()
+	label.modulate = Color.WHITE
+	label.text = text
+	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	label.fit_content = true
+	label.bbcode_enabled = true
+	log_zone.add_child(label)
+	log_zone.move_child(label, 0)
+	await get_tree().create_timer(5.).timeout
+	await label.create_tween().tween_property(label, "modulate", Color.TRANSPARENT, 1.).finished
+	label.queue_free()
