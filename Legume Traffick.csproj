@@ -5,4 +5,5 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>LegumeTraffick</RootNamespace>
   </PropertyGroup>
+  <Import Project="addons\GodotInk\GodotInk.props" />
 </Project>

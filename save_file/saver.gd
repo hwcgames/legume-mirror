@@ -8,7 +8,8 @@ var current_save: SaveFile:
 		return current_save
 
 func save(in_place: bool = false):
-	const path_template = "user://%s.save.res"
+	DirAccess.make_dir_absolute("user://saves")
+	const path_template = "user://saves/%s.save.res"
 	if parent_save.resource_path == "":
 		while FileAccess.file_exists(path_template % parent_save.index):
 			parent_save.index += 1
