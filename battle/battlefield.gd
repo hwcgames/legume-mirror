@@ -9,6 +9,7 @@ var battle_board: BattleBoard
 @export var enemies: Array[Enemy]
 @export var camera_priority_offset: int = 5
 @export var camera: PhantomCamera3D
+@export var song: PackedScene
 @onready var log_zone: Control = %LogZone
 @onready var player_zone: Control = %PlayerZone
 var lock: Locks = Locks.new()
@@ -52,6 +53,11 @@ func battle():
 	begin.emit()
 	%BattleHUD.show()
 	println("[center]- Battle!!! -[/center]")
+	var prev_song: Song
+	if song != null:
+		prev_song = MusicMan.start(song.instantiate())
+		if prev_song != null:
+			prev_song.cancel_free()
 	await lock.wait_for_clear()
 	while true:
 		println("[center]- Top of the round! -[/center]")
@@ -90,6 +96,10 @@ func battle():
 	%BattleHUD.hide()
 	if camera != null:
 		camera.priority -= camera_priority_offset
+	if song != null:
+		MusicMan.stop()
+	if prev_song != null:
+		MusicMan.start(prev_song)
 	phase = PHASE.IDLE
 
 func println(text: String):

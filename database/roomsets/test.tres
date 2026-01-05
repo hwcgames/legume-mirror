@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RoomSet" load_steps=7 format=3 uid="uid://4ep2fpkadiow"]
+[gd_resource type="Resource" script_class="RoomSet" load_steps=8 format=3 uid="uid://4ep2fpkadiow"]
 
 [ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_njqu3"]
 [ext_resource type="Resource" uid="uid://bu2dfqvryiut0" path="res://database/rooms/test_dead_end.tres" id="2_aumr3"]
@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_dnx6d"]
 [ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://database/rooms/test_junction.tres" id="4_3mdo3"]
 [ext_resource type="Resource" uid="uid://6ko4lafitey5" path="res://database/rooms/test_monster.tres" id="5_or2wc"]
+[ext_resource type="Resource" uid="uid://bn42ltiv2ex3h" path="res://database/rooms/test_shop.tres" id="6_dnx6d"]
 
 [resource]
 script = ExtResource("2_tyuxp")
-rooms = Array[ExtResource("1_njqu3")]([ExtResource("2_aumr3"), ExtResource("3_dnx6d"), ExtResource("4_3mdo3"), ExtResource("5_or2wc")])
+rooms = Array[ExtResource("1_njqu3")]([ExtResource("2_aumr3"), ExtResource("3_dnx6d"), ExtResource("4_3mdo3"), ExtResource("5_or2wc"), ExtResource("6_dnx6d")])
 metadata/_custom_type_script = "uid://ck47u2dw5ejx7"

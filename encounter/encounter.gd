@@ -2,11 +2,13 @@ extends Encounterable
 class_name Encounter
 
 @export var enemies: Array[EnemyFactory]
+@export var song: PackedScene
 
 func roll_encounter() -> Encounter:
 	return self
 
 func apply_to_battlefield(battlefield: Battlefield):
+	battlefield.song = song
 	for enemy in battlefield.enemies:
 		enemy.queue_free()
 	battlefield.enemies.clear()
