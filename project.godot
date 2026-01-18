@@ -39,6 +39,7 @@ Saver="*res://save_file/saver.gd"
 GlobalMusicPlayer="*res://addons/music_player/script/music_player.gd"
 MusicMan="*res://music/musicman.gd"
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
+Storyteller="*res://story/Storyteller.gd"
 
 [display]
 

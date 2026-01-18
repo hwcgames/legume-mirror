@@ -138,12 +138,12 @@ func generate_map():
 	return map
 
 func _ready():
-	map_generated.connect(func():
-		state = STATE.JUNCTION
-		current_room = treadmill.spawn_initial_room(start_junction)
-		current_room.tree_exited.connect(junction_unloaded),
-		CONNECT_ONE_SHOT)
-	generate_map()
+	#map_generated.connect(func():
+		#state = STATE.JUNCTION
+		#current_room = treadmill.spawn_initial_room(start_junction)
+		#current_room.tree_exited.connect(junction_unloaded),
+		#CONNECT_ONE_SHOT)
+	#generate_map()
 	treadmill.wants_room_for.connect(fill_handler)
 
 func junction_unloaded():

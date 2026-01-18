@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene load_steps=23 format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
 [ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="14_v5avg"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_d1lah"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="16_d1lah"]
-[ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="16_uwr0p"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_v5avg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="17_yyy5f"]
 
@@ -50,14 +49,8 @@ func _process(delta: float) -> void:
 script = ExtResource("11_u56q6")
 metadata/_custom_type_script = "uid://sqwogqldf52c"
 
-[sub_resource type="Resource" id="Resource_7jkn4"]
-script = ExtResource("16_uwr0p")
-amt = 2
-metadata/_custom_type_script = "uid://cwko2gk7u70l2"
-
 [sub_resource type="Resource" id="Resource_ymxrx"]
 script = ExtResource("12_1b0ko")
-spell_list = Array[ExtResource("13_d1lah")]([SubResource("Resource_7jkn4")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [sub_resource type="GDScript" id="GDScript_d1lah"]
@@ -108,6 +101,7 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 [node name="Node3D" type="Node3D"]
 
 [node name="DungeonMap" type="Node" parent="." node_paths=PackedStringArray("treadmill")]
+unique_name_in_owner = true
 script = ExtResource("1_yyy5f")
 treadmill = NodePath("../Treadmill")
 start_junction = ExtResource("2_22l80")

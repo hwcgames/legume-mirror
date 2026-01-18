@@ -1,9 +1,8 @@
-[gd_resource type="Resource" script_class="Encounter" load_steps=14 format=3 uid="uid://b2qxi62km3uxh"]
+[gd_resource type="Resource" script_class="Encounter" load_steps=12 format=3 uid="uid://b2qxi62km3uxh"]
 
 [ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="1_kmmis"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://actor/costume/test.tscn" id="2_od5o6"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="3_qi4ba"]
-[ext_resource type="Script" uid="uid://duadp8t32skcg" path="res://battle/action/test_parley.gd" id="4_amhrl"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_5fwf4"]
 [ext_resource type="Resource" uid="uid://eit3j1cwloa5" path="res://database/bullet_pattern/test.tres" id="6_gbtoy"]
 [ext_resource type="Resource" uid="uid://bya2jyqc4r2cq" path="res://database/bullet_pattern/test2.tres" id="7_i1akd"]
@@ -11,20 +10,14 @@
 [ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="9_av7du"]
 [ext_resource type="PackedScene" uid="uid://bkkucjmmu4yy8" path="res://database/music/jazz-battle.tscn" id="10_od5o6"]
 
-[sub_resource type="Resource" id="Resource_8uhe6"]
-script = ExtResource("4_amhrl")
-metadata/_custom_type_script = "uid://duadp8t32skcg"
-
 [sub_resource type="Resource" id="Resource_igms6"]
 script = ExtResource("8_oqimk")
 patterns = Array[ExtResource("5_5fwf4")]([ExtResource("6_gbtoy"), ExtResource("7_i1akd")])
-parleys = Array[ExtResource("3_qi4ba")]([SubResource("Resource_8uhe6")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"
 
 [sub_resource type="Resource" id="Resource_kmmis"]
 script = ExtResource("8_oqimk")
 patterns = Array[ExtResource("5_5fwf4")]([ExtResource("6_gbtoy"), ExtResource("7_i1akd")])
-parleys = Array[ExtResource("3_qi4ba")]([SubResource("Resource_8uhe6")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"
 
 [resource]
