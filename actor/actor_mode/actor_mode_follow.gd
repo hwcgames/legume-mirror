@@ -31,7 +31,7 @@ func _process(delta: float):
 		actor.play("idle")
 		return
 	actor.play("walk")
-	var speed = 10. * delta
+	var speed = 11. * delta
 	var movement: Vector3 = Vector3.ZERO
 	while (not follow_history.is_empty()) and follow_history[0].distance_to(actor.global_position) < 0.1:
 		follow_history.pop_front()

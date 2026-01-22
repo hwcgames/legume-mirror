@@ -1,11 +1,15 @@
 INCLUDE lib.ink
+INCLUDE test.ink
+
+
+->test
 
 -> prologue
 === prologue
 ->train
 =train
 ~ gamemode = cinema
-~ change_level("intro_railway")
+~ change_level("intro_railway", "default")
 ~ spawn_party("seat")
 ~ actor_capture("cipher")
 ~ actor_act("cipher", "sit")

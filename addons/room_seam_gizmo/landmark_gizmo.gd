@@ -5,7 +5,7 @@ func _get_gizmo_name() -> String:
 	return "Landmark"
 
 func _has_gizmo(for_node_3d: Node3D) -> bool:
-	return for_node_3d.is_in_group("landmark")
+	return for_node_3d is Landmark
 
 func _init():
 	create_material("main", Color(1, 0, 0, 0.5))

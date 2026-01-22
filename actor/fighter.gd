@@ -57,8 +57,10 @@ func join_battle(battle: Battlefield):
 	battle.telegraph.connect(telegraph)
 	battle.player_action.connect(player_action)
 	battle.enemy_action.connect(enemy_action)
+	var battle_idle = ActorIdle.new()
 	battle.done.connect(done)
-	mode_stack.push_back(ActorIdle.new())
+	battle.done.connect(func(_w): battle_idle.finished = true)
+	push_mode(battle_idle)
 	_join_battle(battle)
 	joined_battle.emit(battlefield)
 
@@ -81,7 +83,6 @@ func enemy_action():
 	_enemy_action()
 
 func done(player_victory: bool):
-	mode_stack.pop_back()
 	_done(player_victory)
 
 func _begin():

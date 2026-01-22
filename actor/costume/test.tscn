@@ -72,7 +72,7 @@ states/idle/position = Vector2(326, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_8p3ad")
 states/walk/position = Vector2(318, -12)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_p4l1l"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_t82wu"), "attack", "attack_hit", SubResource("AnimationNodeStateMachineTransition_t6tt0"), "attack_hit", "idle", SubResource("AnimationNodeStateMachineTransition_ebf7i"), "idle", "attack_magic", SubResource("AnimationNodeStateMachineTransition_du2j5"), "attack_magic", "idle", SubResource("AnimationNodeStateMachineTransition_b8u3c"), "idle", "friendly_magic", SubResource("AnimationNodeStateMachineTransition_cahlv"), "friendly_magic", "idle", SubResource("AnimationNodeStateMachineTransition_18yx3"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4ja1h"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_pfcj8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_4by52"), "dead", "idle", SubResource("AnimationNodeStateMachineTransition_a13g6"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_acko4")]
-graph_offset = Vector2(105, -46)
+graph_offset = Vector2(52, -79)
 
 [sub_resource type="Animation" id="Animation_g3lfb"]
 length = 0.001
@@ -133,6 +133,52 @@ tracks/0/keys = {
 "values": [&"gunshot", &"gun"]
 }
 
+[sub_resource type="Animation" id="Animation_4by52"]
+resource_name = "attack_magic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hostile-cast"]
+}
+
+[sub_resource type="Animation" id="Animation_mdo8r"]
+resource_name = "dead"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dead"]
+}
+
+[sub_resource type="Animation" id="Animation_a13g6"]
+resource_name = "friendly_magic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite3D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"friendly-cast"]
+}
+
 [sub_resource type="Animation" id="Animation_d84hy"]
 resource_name = "idle"
 loop_mode = 1
@@ -176,52 +222,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_4by52"]
-resource_name = "attack_magic"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite3D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"hostile-cast"]
-}
-
-[sub_resource type="Animation" id="Animation_a13g6"]
-resource_name = "friendly_magic"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite3D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"friendly-cast"]
-}
-
-[sub_resource type="Animation" id="Animation_mdo8r"]
-resource_name = "dead"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite3D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"dead"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t82wu"]

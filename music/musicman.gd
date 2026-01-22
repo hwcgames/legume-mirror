@@ -6,9 +6,10 @@ func start(song: Song):
 	var old_song = active_song
 	active_song = song
 	add_child(song)
-	if old_song != null:
-		old_song.queue_free()
+	#if old_song != null:
+		#old_song.queue_free()
 	return old_song
 
 func stop():
-	active_song.queue_free()
+	pass
+	#active_song.queue_free()

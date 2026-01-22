@@ -39,16 +39,15 @@ class BasicAttackPlan extends BattleActionPlan:
 		challenge.start()
 		var skill = await challenge.result
 		var damage = (party_member.strength*skill/20)-(3*target.defense)
+		animate.finished = true
 		if damage > 0:
 			battlefield.println("%s damage!" % [damage])
 			target.take_damage(damage)
-			await party_member.pop_mode()
-			animate = ActorModeAnimate.new("attack_hit", false)
-			await party_member.push_mode(animate)
-			await animate.popped
+			var sub_animate = ActorModeAnimate.new("attack_hit", false)
+			await party_member.push_mode(sub_animate)
 		else:
 			battlefield.println("Swing and a miss...")
-			await party_member.pop_mode()
+		await animate.popped
 		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
 		p_lock.call()

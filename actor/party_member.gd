@@ -21,6 +21,7 @@ var battle_planner: BattlePlanner
 @export var skillset: Skillset = SkillsetUnskilled.new()
 
 func _ready():
+	super._ready()
 	add_to_group("party_member")
 
 func _join_battle(_battle: Battlefield):

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Level" load_steps=5 format=3 uid="uid://dqrr6s1dr4lcq"]
+
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_6jw3f"]
+[ext_resource type="Script" uid="uid://qrik54a0gvtv" path="res://level/level.gd" id="2_jmvtt"]
+[ext_resource type="Resource" uid="uid://baxp2ij0m0vve" path="res://database/rooms/test_zone.tres" id="2_oryln"]
+[ext_resource type="Resource" uid="uid://4ep2fpkadiow" path="res://database/roomsets/test.tres" id="3_bhjwu"]
+
+[resource]
+script = ExtResource("2_jmvtt")
+roomset = ExtResource("3_bhjwu")
+entrances = Dictionary[StringName, ExtResource("1_6jw3f")]({
+&"default": ExtResource("2_oryln")
+})
+metadata/_custom_type_script = "uid://qrik54a0gvtv"

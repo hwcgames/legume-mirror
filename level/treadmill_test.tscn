@@ -20,7 +20,7 @@ script/source = "extends Node2D
 class_name DebugDrawMap
 
 @export var map: DungeonMap
-@export var cell_size: Vector2 = Vector2(48, -48)
+@export var cell_size: Vector2 = Vector2(24, -24)
 
 func _draw() -> void:
 	for point in map.map.keys():
@@ -39,7 +39,7 @@ func _draw() -> void:
 			DungeonMap.ROOM_TYPE.SAFE: color = Color.GREEN
 			DungeonMap.ROOM_TYPE.BOSS: color = Color.RED
 			DungeonMap.ROOM_TYPE.SHOP: color = Color.YELLOW
-		draw_circle(origin + cell_size * Vector2(point), 16 if map.current_position == point else 4, color, true)
+		draw_circle(origin + cell_size * Vector2(point), 4 if map.current_position == point else 2, color, true)
 
 func _process(delta: float) -> void:
 	queue_redraw()
@@ -60,6 +60,7 @@ func _ready() -> void:
 	#var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
 	#room.global_position.y -= 1
 	get_parent().mode_stack.push_back(ActorPlayerControl.new())
+	Storyteller.do_story = true
 "
 
 [sub_resource type="GDScript" id="GDScript_v5avg"]
@@ -68,7 +69,7 @@ script/source = "extends Node
 func _ready() -> void:
 	#var room = %Treadmill.spawn_initial_room(load(\"uid://cdaser0lngmc0\"))
 	#room.global_position.y -= 1
-	get_parent().mode_stack.push_back(ActorModeFollow.new(%PartyMember1, 1.5))
+	get_parent().mode_stack.push_back(ActorModeFollow.new(%leader, 1.5))
 "
 
 [sub_resource type="GDScript" id="GDScript_uwr0p"]
@@ -111,7 +112,6 @@ metadata/_custom_type_script = "uid://b6qb50juwahol"
 position = Vector2(76.45, 0)
 script = SubResource("GDScript_yyy5f")
 map = NodePath("..")
-cell_size = Vector2(24, -24)
 
 [node name="Button" type="Button" parent="DungeonMap"]
 visible = false
@@ -119,27 +119,22 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Regen"
 
-[node name="Treadmill" type="Marker3D" parent="."]
+[node name="Treadmill" type="Marker3D" parent="." node_paths=PackedStringArray("center")]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
 roomset = ExtResource("4_o5yiu")
+center = NodePath("../leader")
 metadata/_custom_type_script = "uid://dispg264up47x"
 
-[node name="PartyMember1" parent="." instance=ExtResource("10_o5yiu")]
+[node name="leader" parent="." groups=["actor"] instance=ExtResource("10_o5yiu")]
 unique_name_in_owner = true
 basic_attack = SubResource("Resource_yyy5f")
 skillset = SubResource("Resource_ymxrx")
 max_sp = 250
 human_name = &"Player1"
 
-[node name="Node" type="Node" parent="PartyMember1"]
+[node name="Node" type="Node" parent="leader"]
 script = SubResource("GDScript_d1lah")
-
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="PartyMember1"]
-remote_path = NodePath("../../Treadmill")
-update_position = false
-update_rotation = false
-update_scale = false
 
 [node name="PartyMember2" parent="." instance=ExtResource("10_o5yiu")]
 unique_name_in_owner = true
@@ -175,7 +170,7 @@ top_level = true
 script = ExtResource("15_d1lah")
 priority = 1
 follow_mode = 3
-follow_targets = [NodePath("../PartyMember1")]
+follow_targets = [NodePath("../leader")]
 tween_resource = SubResource("Resource_cwt6f")
 camera_3d_resource = SubResource("Resource_v5avg")
 follow_damping = true

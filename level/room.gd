@@ -21,13 +21,13 @@ func _ready():
 	keep_loaded_lock.shared_free.connect(update_loading)
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
-	if battlefield != null:
-		player_entered.connect(func(_p):
-			battlefield.players.clear()
-			for player in get_tree().get_nodes_in_group("party_member"):
-				battlefield.players.push_back(player)
-			battlefield.battle(),
-		ConnectFlags.CONNECT_ONE_SHOT)
+	#if battlefield != null:
+		#player_entered.connect(func(_p):
+			#battlefield.players.clear()
+			#for player in get_tree().get_nodes_in_group("party_member"):
+				#battlefield.players.push_back(player)
+			#battlefield.battle(),
+		#ConnectFlags.CONNECT_ONE_SHOT)
 
 func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):

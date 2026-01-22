@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://digiahfpjc1v5"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ghfn5"]
+[ext_resource type="PackedScene" uid="uid://cmrojy3m0pd16" path="res://assets/rooms/testzone.blend" id="2_leiud"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_jfic3"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_leiud"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="5_jfic3"]
+[ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="6_k7nk8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ghfn5"]
+size = Vector3(40, 6, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k7nk8"]
+size = Vector3(13, 9, 0.5)
+
+[node name="TestZone" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ghfn5")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="testzone" parent="." instance=ExtResource("2_leiud")]
+
+[node name="Out" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+script = ExtResource("3_jfic3")
+profile = &"8x6"
+wants_room_type = 1
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_ghfn5")
+debug_fill = false
+
+[node name="default" type="Marker3D" parent="." groups=["landmark"]]
+unique_name_in_owner = true
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="by_exit" type="Marker3D" parent="." groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5, 0, -18)
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="north_outgoing" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam") groups=["automove"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+script = ExtResource("5_jfic3")
+next_seam = NodePath("../Out")
+next_seam_key = &"forward"
+metadata/_custom_type_script = "uid://d1625cme8sl48"
+
+[node name="Trigger" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+collision_layer = 0
+collision_mask = 2
+contact_monitor = true
+max_contacts_reported = 32
+script = ExtResource("6_k7nk8")
+metadata/_custom_type_script = "uid://cbk74e41f61h8"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.25)
+shape = SubResource("BoxShape3D_k7nk8")
+debug_fill = false

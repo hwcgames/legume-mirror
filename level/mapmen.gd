@@ -2,6 +2,15 @@ extends Node
 class_name DungeonMap
 
 @export var enabled: bool = true
+@export var allow_progress: bool = false:
+	set(new_allow_progress):
+		allow_progress = new_allow_progress
+		if allow_progress:
+			match state:
+				STATE.HALLWAY_TO_JUNCTION:
+					state = STATE.WAIT_FOR_JUNCTION
+				STATE.HALLWAY_TO_ROOM:
+					state = STATE.WAIT_FOR_ROOM
 @export var treadmill: Treadmill
 @export var start_junction: RoomInfo
 
@@ -36,6 +45,23 @@ enum ROOM_TYPE {
 	BOSS,
 	SHOP
 }
+
+func name_room(room: ROOM_TYPE):
+	match room:
+		ROOM_TYPE.EMPTY:
+			return "empty"
+		ROOM_TYPE.MONSTER:
+			return "monster"
+		ROOM_TYPE.ITEM:
+			return "item"
+		ROOM_TYPE.EVENT:
+			return "event"
+		ROOM_TYPE.SAFE:
+			return "safe"
+		ROOM_TYPE.BOSS:
+			return "boss"
+		ROOM_TYPE.SHOP:
+			return "shop"
 
 func reset():
 	map = {}
@@ -134,6 +160,7 @@ func generate_map():
 			if Vector2i(x, y) not in map:
 				continue
 			map[Vector2i(x, y)].room_type = roll_room(Vector2i(x, y))
+	state = STATE.WAIT_FOR_ROOM
 	map_generated.emit()
 	return map
 
@@ -148,12 +175,20 @@ func _ready():
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
-	#state = STATE.HALLWAY_TO_ROOM
-	state = STATE.WAIT_FOR_ROOM
+	if not map.has(current_position):
+		reset()
+		Storyteller.choose_if_available(["dungeon done"])
+		return
+	Storyteller.choose_if_available([
+		"dungeon choice %s" % choice,
+		"dungeon towards %s" % name_room(map[current_position].room_type),
+		"dungeon towards room"
+	])
+	state = STATE.WAIT_FOR_ROOM if allow_progress else STATE.HALLWAY_TO_ROOM
 
 func room_unloaded():
-	#state = STATE.HALLWAY_TO_JUNCTION
-	state = STATE.WAIT_FOR_JUNCTION
+	Storyteller.choose_if_available(["dungeon towards junction"])
+	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
 	if not enabled:
@@ -178,7 +213,11 @@ func fill_handler(seam: ProceduralSeam):
 			current_room = new_room
 			var lock = await new_room.keep_loaded_lock.shared_lock()
 			new_room.tree_exited.connect(junction_unloaded)
-			new_room.player_entered.connect(func(_p): lock.call(), CONNECT_ONE_SHOT)
+			new_room.player_entered.connect(func(_p):
+				Storyteller.choose_if_available([
+					"dungeon entered junction"
+				])
+				lock.call(), CONNECT_ONE_SHOT)
 		STATE.JUNCTION:
 			if room.room_info.room_type == RoomInfo.ROOM_TYPE.HALLWAY:
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
@@ -228,11 +267,21 @@ func fill_handler(seam: ProceduralSeam):
 			if not treadmill.rooms.any(func(r: RoomInfo): return r.room_type == seam.wants_room_type):
 				printerr("Can't find any rooms that match the type requested by the map, moving on to a junction.")
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
+				Storyteller.choose_if_available([
+					"dungeon entered %s" % name_room(map[current_position].room_type),
+					"dungeon entered room"
+				])
 				room_unloaded()
 				return
 			var new_room = await treadmill.fill_seam(seam, false)
 			state = STATE.ROOM
 			current_room = new_room
+			new_room.player_entered.connect(func(_p):
+				Storyteller.choose_if_available([
+					"dungeon entered %s" % name_room(map[current_position].room_type),
+					"dungeon entered room"
+				]),
+				ConnectFlags.CONNECT_ONE_SHOT)
 			new_room.tree_exited.connect(room_unloaded)
 		STATE.ROOM:
 			seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY

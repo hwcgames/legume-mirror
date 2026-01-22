@@ -12,6 +12,7 @@ var planned_pattern: BulletPattern
 var locks: Locks = Locks.new()
 
 func _ready():
+	super._ready()
 	%Telegraph.hide()
 
 func _join_battle(_battle: Battlefield):

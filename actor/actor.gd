@@ -8,7 +8,11 @@ class_name Actor
 			costume.hide()
 			costume.queue_free()
 		costume = new_costume
-		add_child(new_costume)
+		if not is_ancestor_of(new_costume):
+			if new_costume.is_inside_tree():
+				new_costume.reparent(self, false)
+			else:
+				add_child(new_costume)
 
 @onready var navigation: NavigationAgent3D = %NavigationAgent3D
 
@@ -18,6 +22,9 @@ var mode_stack: Array[ActorMode] = []:
 			mode_stack.push_back(ActorIdle.new())
 		mode_stack[-1].actor = self
 		return mode_stack
+
+func _ready():
+	add_to_group("actor")
 
 func _physics_process(delta: float):
 	velocity = Vector3.ZERO
@@ -46,3 +53,9 @@ func pop_mode() -> ActorMode:
 
 func play(name: StringName, wait_for_arrival: bool = false, wait_for_completion: bool = false):
 	await costume.play(name, wait_for_arrival, wait_for_completion)
+
+static func find(actor_name: StringName) -> Actor:
+	for node in Storyteller.get_tree().get_nodes_in_group("actor"):
+		if node.name == actor_name:
+			return node
+	return null

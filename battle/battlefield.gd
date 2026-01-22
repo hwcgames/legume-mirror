@@ -54,15 +54,16 @@ func battle():
 	%BattleHUD.show()
 	println("[center]- Battle!!! -[/center]")
 	var prev_song: Song
-	if song != null:
-		prev_song = MusicMan.start(song.instantiate())
-		if prev_song != null:
-			prev_song.cancel_free()
+	#if song != null:
+		#prev_song = MusicMan.start(song.instantiate())
+		#if prev_song != null:
+			#prev_song.cancel_free()
 	await lock.wait_for_clear()
 	while true:
 		println("[center]- Top of the round! -[/center]")
 		if players.all(func(p): return !p.alive):
 			println("[center]- Player defeat! -[/center]")
+			Storyteller.choose_if_available(["battle lost", "battle end"])
 			break
 		phase = PHASE.TOP
 		top.emit()
@@ -80,6 +81,7 @@ func battle():
 		println("Enemy action!")
 		if enemies.all(func(e): return !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
+			Storyteller.choose_if_available(["battle won", "battle end"])
 			break
 		battle_board = battle_board_scene.instantiate()
 		add_child(battle_board)

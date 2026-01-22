@@ -4,6 +4,7 @@ class_name Treadmill
 #@export var load_range: float = 24.
 var existing_rooms: Array[Room] = []
 @export var roomset: RoomSet
+@export var center: Node3D
 var allowed_themes: Array[StringName]:
 	get:
 		return roomset.allowed_themes
@@ -113,6 +114,10 @@ func spawn_initial_room(room_info: RoomInfo) -> Node3D:
 
 func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	var candidates: Array[RoomInfo] = rooms.filter(func(r: RoomInfo):
+		if not r.autoplace:
+			return false
+		if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and r.room_type != seam.wants_room_type:
+			return false
 		if seam.wants_partner_name != "" and seam.wants_partner_name not in r.proc_seams:
 			return false
 		for name in r.proc_seams:
@@ -121,8 +126,8 @@ func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 		return false)
 	if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and candidates.any(func(c: RoomInfo): return c.room_type == seam.wants_room_type):
 		candidates = candidates.filter(func(c: RoomInfo): return c.room_type == seam.wants_room_type)
-	elif seam.backtrack and candidates.any(func(c: RoomInfo): return c.room_type == RoomInfo.ROOM_TYPE.DEAD_END):
-		candidates = candidates.filter(func(c: RoomInfo): return c.room_type == RoomInfo.ROOM_TYPE.DEAD_END)
+	elif candidates.any(func(c: RoomInfo): return (c.room_type == RoomInfo.ROOM_TYPE.DEAD_END) == seam.backtrack):
+		candidates = candidates.filter(func(c: RoomInfo): return (c.room_type == RoomInfo.ROOM_TYPE.DEAD_END) == seam.backtrack)
 	var total = 0.
 	for candidate in candidates:
 		total += candidate.weight
@@ -152,6 +157,8 @@ func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	#return out
 
 func _process(delta: float) -> void:
+	if center != null:
+		global_transform = center.global_transform
 	var did_anything = true
 	while did_anything:
 		did_anything = false

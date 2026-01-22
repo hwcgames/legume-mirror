@@ -3,6 +3,7 @@ extends Marker3D
 class_name RoomSeam
 
 @export var loading_distance: int = 1
+@export var automoves: Dictionary[String, Automove] = {}
 
 ## When this seam exists at runtime, its partner will be referenced here.
 var partner: RoomSeam = null
