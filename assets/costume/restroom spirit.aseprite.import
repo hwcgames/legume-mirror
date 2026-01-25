@@ -1,0 +1,21 @@
+[remap]
+
+importer="aseprite_wizard.plugin.spriteframes"
+type="SpriteFrames"
+uid="uid://cqs375it7o2jl"
+path="res://.godot/imported/restroom spirit.aseprite-9cdb6645c8af9889d96e96a52a0d6b15.res"
+
+[deps]
+
+source_file="res://assets/costume/restroom spirit.aseprite"
+dest_files=["res://.godot/imported/restroom spirit.aseprite-9cdb6645c8af9889d96e96a52a0d6b15.res"]
+
+[params]
+
+layer/exclude_layers_pattern=""
+layer/only_visible_layers=false
+sheet/sheet_type="packed"
+sheet/sheet_columns=12
+sheet/frame_padding=0
+sheet/scale=1
+animation/round_fps=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://digiahfpjc1v5"]
+[gd_scene load_steps=21 format=3 uid="uid://digiahfpjc1v5"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ghfn5"]
 [ext_resource type="PackedScene" uid="uid://cmrojy3m0pd16" path="res://assets/rooms/testzone.blend" id="2_leiud"]
@@ -6,6 +6,18 @@
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_leiud"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="5_jfic3"]
 [ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="6_k7nk8"]
+[ext_resource type="PackedScene" uid="uid://dx5x2fwnkpurx" path="res://database/costume/builtbody.tscn" id="7_lyu7e"]
+[ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/bushidotool.tscn" id="8_nfjod"]
+[ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="9_w0pwo"]
+[ext_resource type="PackedScene" uid="uid://d0bifw6ps4i8d" path="res://database/costume/hallmonitor.tscn" id="10_huafm"]
+[ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="11_ux6hw"]
+[ext_resource type="PackedScene" uid="uid://c6ru066xlmxbf" path="res://database/costume/maternalorganizer.tscn" id="12_hvpsn"]
+[ext_resource type="PackedScene" uid="uid://batcbmsn1knfv" path="res://database/costume/paperpugilist.tscn" id="13_bnpsa"]
+[ext_resource type="PackedScene" uid="uid://be8skvtwov6oo" path="res://database/costume/rankingfile.tscn" id="14_5hcru"]
+[ext_resource type="PackedScene" uid="uid://d0h2smoo1462b" path="res://database/costume/restlessgenius.tscn" id="15_mvbhe"]
+[ext_resource type="PackedScene" uid="uid://6cwnmchkvi81" path="res://database/costume/restroomspirit.tscn" id="16_7oft0"]
+[ext_resource type="PackedScene" uid="uid://fsvh4uev5at2" path="res://database/costume/secondhandglue.tscn" id="17_akp2a"]
+[ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="18_mufso"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ghfn5"]
 size = Vector3(40, 6, 40)
@@ -65,3 +77,39 @@ metadata/_custom_type_script = "uid://cbk74e41f61h8"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.25)
 shape = SubResource("BoxShape3D_k7nk8")
 debug_fill = false
+
+[node name="test_costume" parent="." instance=ExtResource("7_lyu7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -9)
+
+[node name="test_costume2" parent="." instance=ExtResource("8_nfjod")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
+
+[node name="test_costume3" parent="." instance=ExtResource("9_w0pwo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
+
+[node name="test_costume4" parent="." instance=ExtResource("10_huafm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
+
+[node name="test_costume5" parent="." instance=ExtResource("11_ux6hw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -8)
+
+[node name="test_costume6" parent="." instance=ExtResource("12_hvpsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="test_costume7" parent="." instance=ExtResource("13_bnpsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
+
+[node name="test_costume8" parent="." instance=ExtResource("14_5hcru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -7)
+
+[node name="test_costume9" parent="." instance=ExtResource("15_mvbhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
+
+[node name="test_costume10" parent="." instance=ExtResource("16_7oft0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6)
+
+[node name="test_costume11" parent="." instance=ExtResource("17_akp2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3)
+
+[node name="test_costume12" parent="." instance=ExtResource("18_mufso")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6)

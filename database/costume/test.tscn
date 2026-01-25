@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c4r2ey7i7ooq3"]
 
-[ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_acko4"]
-[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/costume/pixel-test.aseprite" id="1_u3vb1"]
+[ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_p37jh"]
+[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/costume/pixel-test.aseprite" id="2_ff6sg"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3vb1"]
 animation = &"attack"
@@ -242,14 +242,14 @@ height = 1.0
 radial_segments = 4
 
 [node name="test_costume" type="Node3D"]
-script = ExtResource("1_acko4")
+script = ExtResource("1_p37jh")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 pixel_size = 0.0313
 billboard = 2
 texture_filter = 0
-sprite_frames = ExtResource("1_u3vb1")
+sprite_frames = ExtResource("2_ff6sg")
 animation = &"idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

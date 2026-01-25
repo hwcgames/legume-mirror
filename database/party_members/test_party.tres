@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="1_lnpxj"]
 [ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="1_qh3wk"]
-[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://actor/costume/test.tscn" id="2_uy55x"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_uy55x"]
 [ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_pwv88"]
 [ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/skill_challenge/basic_skill_challenge.tscn" id="4_jkj8j"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_uqreb"]
@@ -19,6 +19,8 @@ metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [resource]
 script = ExtResource("3_pwv88")
+hp = 50
+sp = 50
 basic_attack = SubResource("Resource_er1n0")
 skillset = SubResource("Resource_xuaaf")
 metadata/_custom_type_script = "uid://dr762xdwdn0fw"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rl05e0067ud" path="res://actor/party_member.gd" id="1_ms64d"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_445v2"]
-[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://actor/costume/test.tscn" id="2_ms64d"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_ms64d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_445v2"]
 radial_segments = 8

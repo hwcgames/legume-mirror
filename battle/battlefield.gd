@@ -26,6 +26,7 @@ signal telegraph
 signal player_action
 signal enemy_action
 signal done(bool)
+signal players_died
 
 enum PHASE {
 	IDLE,
@@ -41,6 +42,10 @@ var phase := PHASE.IDLE
 
 func _ready() -> void:
 	%BattleHUD.hide()
+
+func _process(delta: float) -> void:
+	if phase == PHASE.ENEMY_ACTION and not players.any(func(p: PartyMember): return p.alive):
+		players_died.emit()
 
 func battle():
 	phase = PHASE.SETUP

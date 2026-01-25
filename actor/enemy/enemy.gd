@@ -7,7 +7,7 @@ class_name Enemy
 var has_planned: bool = false
 var planned_pattern: BulletPattern
 @export var state: int = 0
-@export var null_telegraph: PackedScene
+@export var null_telegraph: PackedScene = preload("uid://cdltsqr44pytk")
 @export var parleys: Array[ParleyAction] = []
 var locks: Locks = Locks.new()
 
@@ -45,6 +45,7 @@ func _enemy_action():
 		var board = planned_pattern.create(battlefield)
 		await get_tree().process_frame
 		battlefield.battle_board.add_pattern(board)
+		battlefield.players_died.connect(board.done.emit)
 		await board.done
 	lock.call()
 

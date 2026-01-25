@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://be8skvtwov6oo"]
+
+[ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_vdhkv"]
+[ext_resource type="SpriteFrames" uid="uid://binwrjfc3o3nj" path="res://assets/costume/rankingfile.aseprite" id="2_vdhkv"]
+
+[node name="test_costume" instance=ExtResource("1_vdhkv")]
+
+[node name="AnimatedSprite3D" parent="." index="0"]
+sprite_frames = ExtResource("2_vdhkv")
+animation = &"default"

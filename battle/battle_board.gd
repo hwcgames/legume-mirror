@@ -9,6 +9,8 @@ var souls: Array[Node2D] = []
 func appear():
 	show()
 
+signal cancel_now
+
 func done():
 	hide()
 

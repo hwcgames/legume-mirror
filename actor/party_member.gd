@@ -122,7 +122,7 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	pm.max_hp = character_sheet.hp
 	pm.hp = character_sheet.hp
 	pm.max_sp = character_sheet.sp
-	pm.sp = character_sheet.sp
+	pm.sp = 0
 	pm.strength = character_sheet.strength
 	pm.magic = character_sheet.magic
 	pm.defense = character_sheet.defense
