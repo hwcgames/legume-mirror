@@ -1,10 +1,12 @@
 INCLUDE lib.ink
 INCLUDE test.ink
 
-
 ->test
 
--> prologue
++ Test
+    ->test
++ Begin the game
+    -> prologue
 === prologue
 ->train
 =train

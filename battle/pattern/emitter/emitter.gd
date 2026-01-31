@@ -1,6 +1,7 @@
 extends Control
 class_name BulletEmitter
 
+@export var layer: BulletPatternLayer
 @export var emission_angle: Curve
 @export var interval: Curve
 @export var amount: Curve
@@ -24,6 +25,7 @@ func fire():
 		)
 		var angle = emission_angle.sample_baked(randf())
 		var bullet_instance: Bullet = bullet.instantiate()
+		bullet_instance.layer = layer
 		bullet_instance.position = bullet_position
 		bullet_instance.rotation_degrees = angle
 		add_child(bullet_instance)

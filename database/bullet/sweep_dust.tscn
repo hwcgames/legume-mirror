@@ -1,0 +1,85 @@
+[gd_scene load_steps=24 format=3 uid="uid://c2oru2jrnvum0"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_ht8bs"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_86q43"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_0d7sp"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="4_noc4m"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="5_0d7sp"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="6_noc4m"]
+[ext_resource type="Script" uid="uid://dnef5e1a1uo4x" path="res://battle/bullet/components/rotate_node.gd" id="7_5v2kh"]
+[ext_resource type="Texture2D" uid="uid://wtycogbxnvnm" path="res://assets/bullet/dust.aseprite" id="7_noc4m"]
+[ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="8_pbpvb"]
+[ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="9_s1r80"]
+
+[sub_resource type="Resource" id="Resource_5v2kh"]
+script = ExtResource("3_0d7sp")
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Curve" id="Curve_vyav5"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 1.9952898), 0.0, 0.0, 0, 0, Vector2(1, 8.381561), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_pbpvb"]
+script = ExtResource("4_noc4m")
+value = SubResource("Curve_vyav5")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_5v2kh"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_vyav5"]
+script = ExtResource("5_0d7sp")
+value = SubResource("Curve_5v2kh")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_pbpvb"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_s1r80"]
+script = ExtResource("6_noc4m")
+value = SubResource("Curve_pbpvb")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="Curve" id="Curve_s1r80"]
+_limits = [-30.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, -30), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_xjmld"]
+script = ExtResource("7_5v2kh")
+speed_curve = SubResource("Curve_s1r80")
+node_path = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://dnef5e1a1uo4x"
+
+[sub_resource type="Resource" id="Resource_nsdm7"]
+script = ExtResource("8_pbpvb")
+metadata/_custom_type_script = "uid://k2gdlmf7jpuh"
+
+[sub_resource type="Curve" id="Curve_brp88"]
+_limits = [-15.0, 15.0, 0.0, 1.0]
+_data = [Vector2(0, -15), 0.0, 98.1617, 0, 0, Vector2(1, 15), 97.51336, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ky5vg"]
+script = ExtResource("9_s1r80")
+amount = SubResource("Curve_brp88")
+metadata/_custom_type_script = "uid://xarbmru8h4kp"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v2kh"]
+radius = 7.0
+
+[node name="SweepDust" type="Area2D"]
+script = ExtResource("1_ht8bs")
+components = Array[ExtResource("2_86q43")]([SubResource("Resource_5v2kh"), SubResource("Resource_pbpvb"), SubResource("Resource_vyav5"), SubResource("Resource_s1r80"), SubResource("Resource_xjmld"), SubResource("Resource_nsdm7"), SubResource("Resource_ky5vg")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("7_noc4m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5v2kh")

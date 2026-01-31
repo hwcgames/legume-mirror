@@ -9,5 +9,6 @@
 
 [resource]
 script = ExtResource("4_2joj0")
+hp = 100
 patterns = Array[ExtResource("3_gqfk7")]([ExtResource("4_gqfk7"), ExtResource("5_2joj0")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

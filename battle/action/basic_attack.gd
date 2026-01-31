@@ -42,6 +42,7 @@ class BasicAttackPlan extends BattleActionPlan:
 		animate.finished = true
 		if damage > 0:
 			battlefield.println("%s damage!" % [damage])
+			Chatterbox.message(target, "%s!" % [damage])
 			target.take_damage(damage)
 			var sub_animate = ActorModeAnimate.new("attack_hit", false)
 			await party_member.push_mode(sub_animate)

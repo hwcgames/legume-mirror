@@ -45,12 +45,13 @@ class ActionPlanParleyTest extends BattleActionPlan:
 		match target.state:
 			0:
 				battlefield.println("\"Make up your mind!\"")
+				Chatterbox.message(party_member, "Make up your mind!")
 				target.state = randi_range(1, 2)
 			1:
-				battlefield.println("\"Change it up!\"")
+				Chatterbox.message(party_member, "Change it up!")
 				target.state = 2
 			2:
-				battlefield.println("\"Change it up!\"")
+				Chatterbox.message(party_member, "Change it up!")
 				target.state = 1
 		await target.pick_pattern()
 		await target.show_telegraph()

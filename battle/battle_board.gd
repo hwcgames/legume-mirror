@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name BattleBoard
 
 @onready var bg := %BattleBackground
-@onready var world := %BattleWorld
+@onready var world: Control = %BattleWorld
 @onready var field: Battlefield = get_parent()
 var souls: Array[Node2D] = []
 

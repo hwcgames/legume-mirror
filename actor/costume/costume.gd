@@ -4,6 +4,7 @@ class_name Costume
 @onready var tree: AnimationTree = %AnimationTree
 @onready var player: AnimationPlayer = %AnimationPlayer
 @onready var state: AnimationNodeStateMachinePlayback = tree.get("parameters/playback")
+@export var head: Marker3D
 
 func play(name: StringName, wait_for_arrival: bool = false, wait_for_completion: bool = false):
 	state.travel(name)

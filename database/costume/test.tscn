@@ -241,8 +241,9 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 4
 
-[node name="test_costume" type="Node3D"]
+[node name="test_costume" type="Node3D" node_paths=PackedStringArray("head")]
 script = ExtResource("1_p37jh")
+head = NodePath("Head")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -268,3 +269,6 @@ libraries = {
 transform = Transform3D(6.687399e-17, 4.371139e-08, -1, 0.035, -4.371139e-08, 0, -1.5298985e-09, -1, -4.371139e-08, 0, 0, -0.5)
 mesh = SubResource("CylinderMesh_g3lfb")
 skeleton = NodePath("../AnimationPlayer")
+
+[node name="Head" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)

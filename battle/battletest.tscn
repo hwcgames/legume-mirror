@@ -32,6 +32,7 @@ enemy_landmarks = [NodePath("../Enemy1"), NodePath("../Enemy2"), NodePath("../En
 
 [node name="Window" type="Window" parent="."]
 oversampling_override = 1.0
+position = Vector2i(0, 46)
 size = Vector2i(256, 128)
 script = ExtResource("2_dbdw0")
 

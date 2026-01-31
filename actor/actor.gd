@@ -13,6 +13,12 @@ class_name Actor
 				new_costume.reparent(self, false)
 			else:
 				add_child(new_costume)
+var head: Marker3D:
+	get:
+		return costume.head
+var head_position: Vector3:
+	get:
+		return head.global_position
 
 @onready var navigation: NavigationAgent3D = %NavigationAgent3D
 
@@ -28,11 +34,11 @@ func _ready():
 
 func _physics_process(delta: float):
 	velocity = Vector3.ZERO
+	if mode_stack[-1].finished and not mode_stack[-1].finishing:
+		while mode_stack[-1].finished and not mode_stack[-1].finishing:
+			pop_mode()
+		return
 	if not mode_stack[-1].finishing:
-		if mode_stack[-1].finished:
-			while mode_stack[-1].finished:
-				mode_stack[-1].finishing = true
-				await pop_mode()
 		mode_stack[-1]._process(delta)
 	move_and_slide()
 
@@ -45,6 +51,9 @@ func push_mode(mode: ActorMode) -> ActorMode:
 
 func pop_mode() -> ActorMode:
 	var mode = mode_stack[-1]
+	if mode.finishing:
+		return mode
+	mode.finishing = true
 	await mode._deactivate()
 	mode_stack.pop_back()
 	mode.popped.emit()

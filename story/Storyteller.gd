@@ -64,6 +64,9 @@ func choose_if_available(names: Array[String]) -> bool:
 			return true
 	return false
 
+func cmd_say(actor: String, text: String):
+	Chatterbox.message(Actor.find(actor), text)
+
 func cmd_sleep(time: float):
 	var handle = await lock.shared_lock()
 	await get_tree().create_timer(time).timeout

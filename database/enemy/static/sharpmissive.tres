@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemySheet" load_steps=5 format=3 uid="uid://uoapvnqqd0gf"]
+
+[ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="1_q5xry"]
+[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_7okad"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_wqnap"]
+[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
+
+[resource]
+script = ExtResource("4_y2wmh")
+name = &"Sharp Missive"
+hp = 100
+costume = ExtResource("1_q5xry")
+metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

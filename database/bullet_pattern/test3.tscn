@@ -26,7 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hlmlv")
 
-[node name="BulletEmitter" type="Control" parent="."]
+[node name="BulletEmitter" type="Control" parent="." node_paths=PackedStringArray("layer")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -37,6 +37,7 @@ offset_right = -48.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("2_aslgi")
+layer = NodePath("..")
 emission_angle = SubResource("Curve_0nf7k")
 interval = SubResource("Curve_nxv60")
 amount = SubResource("Curve_7j2ip")

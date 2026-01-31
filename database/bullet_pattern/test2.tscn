@@ -37,12 +37,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nxv60")
 
-[node name="LeftEmitter" type="Control" parent="."]
+[node name="LeftEmitter" type="Control" parent="." node_paths=PackedStringArray("layer")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 script = ExtResource("1_5vpda")
+layer = NodePath("..")
 emission_angle = SubResource("Curve_6822a")
 interval = SubResource("Curve_nxv60")
 amount = SubResource("Curve_7j2ip")
@@ -50,7 +51,7 @@ start_delay = 0.5
 bullet = ExtResource("2_0nf7k")
 metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"
 
-[node name="RightEmitter" type="Control" parent="."]
+[node name="RightEmitter" type="Control" parent="." node_paths=PackedStringArray("layer")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -59,6 +60,7 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_5vpda")
+layer = NodePath("..")
 emission_angle = SubResource("Curve_0nf7k")
 interval = SubResource("Curve_15y04")
 amount = SubResource("Curve_7j2ip")

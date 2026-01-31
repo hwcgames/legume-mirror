@@ -4,6 +4,12 @@ class_name Bullet
 @export var components: Array[BulletComponent] = []
 var enemy: Enemy
 var target: Soul
+var layer: BulletPatternLayer
+var rotation_initialized: bool = false
+
+func _bullet_ready():
+	for component in components:
+		component._ready(self)
 
 func _physics_process(delta: float):
 	for mover in components:

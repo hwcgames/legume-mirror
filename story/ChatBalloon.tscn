@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4rwt45fkm2s"]
+
+[ext_resource type="Script" uid="uid://cfoetjectcmne" path="res://story/ChatBalloon.gd" id="1_bstpd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bstpd"]
+
+[node name="ChatBalloon" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_bstpd")
+force = Vector2(2000, 2000)
+satisfactory_distance = 100.0
+separation = 32.0
+metadata/_custom_type_script = "uid://cfoetjectcmne"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Chat bubble!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_bstpd")

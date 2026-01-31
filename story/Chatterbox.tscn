@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtoq2iy4yxr21"]
+
+[ext_resource type="Script" uid="uid://bemx0kc01jhbf" path="res://story/chatterbox.gd" id="1_85akc"]
+[ext_resource type="PackedScene" uid="uid://c4rwt45fkm2s" path="res://story/ChatBalloon.tscn" id="2_pdhre"]
+[ext_resource type="Script" uid="uid://c7n4tkrog0ado" path="res://story/ChatLine.gd" id="2_wr5kr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdhre"]
+
+[node name="Chatterbox" type="CanvasLayer"]
+script = ExtResource("1_85akc")
+chat_balloon_scene = ExtResource("2_pdhre")
+
+[node name="ChatLine" type="Line2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_wr5kr")
+
+[node name="Control" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_pdhre")
+
+[node name="Control2" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control2/StaticBody2D"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_pdhre")
+
+[node name="Control3" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control3/StaticBody2D"]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_pdhre")

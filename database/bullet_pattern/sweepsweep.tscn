@@ -1,0 +1,258 @@
+[gd_scene load_steps=26 format=3 uid="uid://cmyvpqr74mhts"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_w16km"]
+[ext_resource type="PackedScene" uid="uid://c2oru2jrnvum0" path="res://database/bullet/sweep_dust.tscn" id="2_w16km"]
+[ext_resource type="Texture2D" uid="uid://c30toleumy6a6" path="res://assets/bullet/broom.aseprite" id="3_2l10m"]
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="4_pieu5"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="5_xhvq5"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="6_pmk5r"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_sag2b"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w16km"]
+animation = &"start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_25d42"]
+animation = &"sweepsweep"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2l10m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0d6a6"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0d6a6"]
+states/start/node = SubResource("AnimationNodeAnimation_w16km")
+states/start/position = Vector2(343, 100)
+states/sweepsweep/node = SubResource("AnimationNodeAnimation_25d42")
+states/sweepsweep/position = Vector2(543, 100)
+transitions = ["Start", "start", SubResource("AnimationNodeStateMachineTransition_2l10m"), "start", "sweepsweep", SubResource("AnimationNodeStateMachineTransition_0d6a6")]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w16km"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_25d42"]
+nodes/output/position = Vector2(700, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_w16km")
+nodes/TimeScale/position = Vector2(440, 80)
+nodes/AnimationNodeStateMachine/node = SubResource("AnimationNodeStateMachine_0d6a6")
+nodes/AnimationNodeStateMachine/position = Vector2(120, 60)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"AnimationNodeStateMachine"]
+
+[sub_resource type="GDScript" id="GDScript_2l10m"]
+script/source = "extends AnimationTree
+
+func _ready() -> void:
+	self.set(\"parameters/TimeScale/scale\", randf_range(0.7, 1.8))
+"
+
+[sub_resource type="Animation" id="Animation_pieu5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sweep_root/Broom:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sweep_root/Broom:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(51, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sweep_root/Broom:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-47, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sweep_root/Broom:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(51, -47)]
+}
+
+[sub_resource type="Animation" id="Animation_xhvq5"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sweep_root/Broom:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(51, -47), Vector2(-53, -46)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sweep_root/Broom:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5969763, -6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_pmk5r"]
+resource_name = "sweepsweep"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sweep_root/Broom:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.74, 1.01, 1.16, 1.7333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-6.2831855, 5.045747, -5.7211895, -6.2831855, 5.045747, -5.7211895, -6.2831855]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sweep_root/Broom:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.74, 1.01, 1.44, 1.7333333, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-53, -46), Vector2(-80.000015, -30.999992), Vector2(-84, -49), Vector2(-53, -46), Vector2(-73.99998, -30.000004), Vector2(-84, -49), Vector2(-53, -46)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [NodePath("sweep_root/Broom/Node2D"), ExtResource("2_w16km")],
+"method": &"spawn_bullet_at"
+}, {
+"args": [NodePath("sweep_root/Broom/Node2D"), ExtResource("2_w16km")],
+"method": &"spawn_bullet_at"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sag2b"]
+_data = {
+&"RESET": SubResource("Animation_pieu5"),
+&"start": SubResource("Animation_xhvq5"),
+&"sweepsweep": SubResource("Animation_pmk5r")
+}
+
+[sub_resource type="GDScript" id="GDScript_w16km"]
+script/source = "extends Control
+
+func _ready():
+	if randf() > 0.5:
+		anchor_left = 0
+		anchor_right = 0
+		scale = Vector2(-1, 1)
+	
+"
+
+[sub_resource type="Curve" id="Curve_wvdok"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_5ox7g"]
+script = ExtResource("6_pmk5r")
+value = SubResource("Curve_wvdok")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_3ly4k"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_leyhd"]
+script = ExtResource("7_sag2b")
+value = SubResource("Curve_3ly4k")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pieu5"]
+radius = 1.7677612
+
+[node name="Sweepsweep" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w16km")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_25d42")
+anim_player = NodePath("../AnimationPlayer")
+parameters/TimeScale/scale = 1.0
+script = SubResource("GDScript_2l10m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sag2b")
+}
+
+[node name="sweep_root" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = SubResource("GDScript_w16km")
+
+[node name="Broom" type="Sprite2D" parent="sweep_root"]
+position = Vector2(51, -47)
+scale = Vector2(2, 2)
+texture = ExtResource("3_2l10m")
+
+[node name="Node2D" type="Node2D" parent="sweep_root/Broom"]
+position = Vector2(-10.902618, 10.525808)
+rotation = -0.2984513
+scale = Vector2(0.50000006, 0.50000006)
+
+[node name="Bullet" type="Area2D" parent="sweep_root/Broom"]
+script = ExtResource("4_pieu5")
+components = Array[ExtResource("5_xhvq5")]([SubResource("Resource_5ox7g"), SubResource("Resource_leyhd")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sweep_root/Broom/Bullet"]
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_pieu5")

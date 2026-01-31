@@ -100,6 +100,7 @@ func battle():
 		battle_board = null
 	phase = PHASE.DONE
 	done.emit(enemies.all(func(e): return !e.alive))
+	Chatterbox.clear()
 	%BattleHUD.hide()
 	if camera != null:
 		camera.priority -= camera_priority_offset
