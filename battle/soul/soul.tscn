@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://r8iv2h12xgwc"]
+[gd_scene load_steps=26 format=3 uid="uid://r8iv2h12xgwc"]
 
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_fckym"]
 [ext_resource type="Script" uid="uid://blt210xa2bynh" path="res://battle/soul/soul.gd" id="1_i6ykd"]
@@ -8,6 +8,9 @@ animation = &"fade"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qmes5"]
 animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtukf"]
+animation = &"invuln"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_23fid"]
 animation = &"near"
@@ -38,18 +41,22 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i6ykd"]
 advance_condition = &"near"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rtojw"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rtojw"]
 states/Start/position = Vector2(174, 100)
 states/fade/node = SubResource("AnimationNodeAnimation_i6ykd")
 states/fade/position = Vector2(415, 44)
 states/idle/node = SubResource("AnimationNodeAnimation_qmes5")
 states/idle/position = Vector2(321, 100)
+states/invuln/node = SubResource("AnimationNodeAnimation_mtukf")
+states/invuln/position = Vector2(174, -19)
 states/near/node = SubResource("AnimationNodeAnimation_23fid")
 states/near/position = Vector2(321, -19)
 states/tick/node = SubResource("AnimationNodeAnimation_f8vn6")
 states/tick/position = Vector2(321, -110)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mtukf"), "idle", "near", SubResource("AnimationNodeStateMachineTransition_0q1v6"), "near", "tick", SubResource("AnimationNodeStateMachineTransition_g62d8"), "tick", "near", SubResource("AnimationNodeStateMachineTransition_2rcvc"), "near", "fade", SubResource("AnimationNodeStateMachineTransition_15k5s"), "fade", "idle", SubResource("AnimationNodeStateMachineTransition_5orvj"), "fade", "near", SubResource("AnimationNodeStateMachineTransition_i6ykd")]
-graph_offset = Vector2(16, -147)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_mtukf"), "idle", "near", SubResource("AnimationNodeStateMachineTransition_0q1v6"), "near", "tick", SubResource("AnimationNodeStateMachineTransition_g62d8"), "tick", "near", SubResource("AnimationNodeStateMachineTransition_2rcvc"), "near", "fade", SubResource("AnimationNodeStateMachineTransition_15k5s"), "fade", "idle", SubResource("AnimationNodeStateMachineTransition_5orvj"), "fade", "near", SubResource("AnimationNodeStateMachineTransition_i6ykd"), "invuln", "idle", SubResource("AnimationNodeStateMachineTransition_rtojw")]
+graph_offset = Vector2(-359, -120)
 
 [sub_resource type="Animation" id="Animation_tl2es"]
 length = 0.001
@@ -60,6 +67,18 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -127,11 +146,41 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.39215687)]
 }
 
+[sub_resource type="Animation" id="Animation_i6ykd"]
+resource_name = "invuln"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6omp"]
 _data = {
 &"RESET": SubResource("Animation_tl2es"),
 &"fade": SubResource("Animation_4f6y7"),
 &"idle": SubResource("Animation_kkp84"),
+&"invuln": SubResource("Animation_i6ykd"),
 &"near": SubResource("Animation_sqc3j"),
 &"tick": SubResource("Animation_k551v")
 }

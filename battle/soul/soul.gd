@@ -4,8 +4,10 @@ class_name Soul
 @export var speed: float = 196.
 @export var janky_diagonals: bool = false
 @export var border_margin: float = 8.
+@export var invuln_time: float = 3.
 var players: Array[PartyMember] = []
 var device_index: int = -1
+var invuln: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +18,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	move(delta)
 	clip_to_world()
-	if !grazers.is_empty():
+	if invuln:
+		graze_state.travel("invuln")
+	elif !grazers.is_empty():
 		graze_state.travel("near")
 	else:
 		graze_state.travel("idle")
@@ -59,9 +63,13 @@ func _on_graze_exited(area: Node) -> void:
 		return
 	grazers.remove_at(grazers.find(area))
 	graze_state.start("tick")
+	if invuln:
+		return
 	area._on_graze_player(self)
 
 func _on_hurt(area: Node) -> void:
+	if invuln:
+		return
 	if not area.has_method("_on_hurt_player"):
 		if area.get_parent() != null:
 			_on_hurt(area.get_parent())
@@ -69,3 +77,6 @@ func _on_hurt(area: Node) -> void:
 	if area in grazers:
 		grazers.remove_at(grazers.find(area))
 	area._on_hurt_player(self)
+	invuln = true
+	await get_tree().create_timer(invuln_time).timeout
+	invuln = false
