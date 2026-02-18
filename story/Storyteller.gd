@@ -38,12 +38,11 @@ func _process(delta: float) -> void:
 		return
 	if lock.exclusive_locked or lock.shared_locks > 0:
 		return
-	var handle = await lock.exclusive_lock()
-	if not story.GetCanContinue():
-		handle.call()
+	if !story.GetCurrentChoices().is_empty():
 		return
+	var handle = await lock.exclusive_lock()
 	line = story.Continue()
-	if line != null:
+	if !line.is_empty():
 		print("Story line: ", line)
 		new_line.emit(line, tags)
 	if not story.GetCanContinue():
@@ -65,7 +64,10 @@ func choose_if_available(names: Array[String]) -> bool:
 	return false
 
 func cmd_say(actor: String, text: String):
-	Chatterbox.message(Actor.find(actor), text)
+	Chatterbox.simple_message(Actor.find(actor), text)
+
+func cmd_dialogue_choice():
+	Chatterbox.queue_dialogue_choice()
 
 func cmd_sleep(time: float):
 	var handle = await lock.shared_lock()
@@ -145,7 +147,7 @@ func cmd_actor_move(actor_name: String, landmark_name: String, _style: String):
 	mode.pathfind_target = landmark.global_position
 	await actor.push_mode(mode)
 
-func cmd_actor_start_following_path(actor_name: String, path_name: String, _style: String):
+func cmd_actor_start_following_path(actor_name: String, path_name: String):
 	(func():
 		var actor = Actor.find(actor_name)
 		var automove = Automove.find(actor, path_name)

@@ -9,7 +9,7 @@ func damage(bullet: Bullet, soul: Soul) -> bool:
 	var players = soul.players.filter(func(p): return p.alive)
 	if players.is_empty():
 		return false
-	var target: PartyMember = players[randi_range(0, len(players)-1)]
+	var target: PartyMember = players[randi_range(0, len(players) - 1)]
 	target.take_damage(damage)
-	Chatterbox.message(target, "%s!" % damage)
+	Chatterbox.simple_message(target, "%s!" % damage)
 	return false

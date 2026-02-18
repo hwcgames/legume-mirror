@@ -17,7 +17,7 @@ VAR dungeon_choice = "test"
     -> dungeon
 = dungeon
 ~ actor_capture("leader")
-~ actor_start_following_path("leader", "north_outgoing", "default")
+~ actor_start_following_path("leader", "north_outgoing")
 ~ start_dungeon("test")
 leader: I set off into the dungeon. #thought
 ~ allow_dungeon_progress()
@@ -65,7 +65,7 @@ leader: Onwards, into the deep. #thought
     {once: leader: I pressed onwards.} #thought
 -
 ~ allow_dungeon_progress()
-~ actor_start_following_path("leader", "forward", "default")
+~ actor_start_following_path("leader", "forward")
 + [dungeon entered room]
 -
 {once: leader: And my search bore fruit.} #thought

@@ -38,7 +38,7 @@ class ExtraTurnPlan extends BattleActionPlan:
 		var animate = ActorModeAnimate.new("friendly_magic")
 		await party_member.push_mode(animate)
 		battlefield.println("%s gives %s a boost!" % [party_member.human_name, ally.human_name])
-		Chatterbox.message(party_member, "Don't give up now!")
+		Chatterbox.simple_message(party_member, "Don't give up now!")
 		ally.turns += amt
 		await animate.popped
 		#await party_member.get_tree().create_timer(1.).timeout

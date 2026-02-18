@@ -8,21 +8,20 @@ LIST party = (cipher), casey, tell, mauve, vince, prince, april
 VAR leader = cipher
 
 // Track the game's mode
-// `cinema` disables player control for cinematics.
+// `cinema` blurs the world and draws actors in 
 // `walkabout` allows the player to move freely.
-LIST gamemode = (cinema), walkabout
+VAR gamemode = "cinema"
 
 // Level management
 EXTERNAL queue_room(room, seam)
 === function queue_room(room, seam) ===
->>> Place {room} attached by {seam}.
+>>> Ask the treadmill to get to {room} attached by {seam}.
 
 EXTERNAL change_level(level, entrance)
 VAR current_level = ""
 === function change_level(level, entrance)
 ~current_level = level
-~gamemode = cinema
->>> Change level to {level} seeded with {entrance} and switch to cinema mode.
+>>> Change level to {level} seeded with {entrance}.
 
 EXTERNAL start_dungeon(level)
 === function start_dungeon(level)
@@ -45,6 +44,7 @@ EXTERNAL spawn_actor(id, landmark)
 EXTERNAL spawn_party(landmark)
 EXTERNAL spawn_party_member(id, landmark)
 EXTERNAL spawn_enemy(id, landmark)
+EXTERNAL despawn_actor(id)
 
 === function spawn_actor(id, landmark)
 >>> Spawn actor {id} at {landmark} (or teleport them there).
@@ -56,6 +56,9 @@ EXTERNAL spawn_enemy(id, landmark)
 >>> Spawn enemy {id} at {landmark}.
 ~ return id
 
+=== function despawn_actor(id)
+>>> {id} vanishes.
+
 // Actor control
 EXTERNAL actor_act(id, action)
 === function actor_act(id, action)
@@ -65,9 +68,9 @@ EXTERNAL actor_move(id, landmark, style)
 === function actor_move(id, landmark, style)
 >>> {id} walks to {landmark} with locomotion style {style}.
 
-EXTERNAL actor_start_following_path(actor, path, style)
-=== function actor_start_following_path(actor, path, style)
->>> {actor} starts following {path} with style {style}.
+EXTERNAL actor_start_following_path(actor, path)
+=== function actor_start_following_path(actor, path)
+>>> {actor} starts automoving {path}.
 
 EXTERNAL actor_start_following_actor(follower, followee, style)
 === function actor_start_following_actor(follower, followee, style)
@@ -102,3 +105,31 @@ EXTERNAL close_dialogue_box()
 EXTERNAL spawn_encounter(id)
 === function spawn_encounter(id)
 >>> The next encounter will be {id}
+
+EXTERNAL lock_battlefield()
+=== function lock_battlefield()
+>>> Take a shared lock on the battlefield
+
+EXTERNAL free_battlefield()
+=== function free_battlefield()
+>>> Continue the battle
+
+EXTERNAL start_battle()
+=== function start_battle()
+>>> FIGHT!
+
+EXTERNAL enemy_state(enemy, state)
+=== function enemy_state(enemy, state)
+>>> {enemy} changes to state {state}
+
+EXTERNAL dialogue_choice()
+=== function dialogue_choice()
+>>> This choice is presented to the player.
+
+// Play sound
+EXTERNAL play_sound(sound)
+=== function play_sound(sound)
+>>> You hear {sound}.
+
+// Item management
+LIST key_items = map_brochure

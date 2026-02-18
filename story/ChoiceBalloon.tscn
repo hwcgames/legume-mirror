@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6o5dlxt7q0ly"]
+
+[ext_resource type="Script" uid="uid://b0tlmh1xqawvf" path="res://story/ChoiceBalloon.gd" id="1_pck5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pck5v"]
+
+[node name="ChoiceBalloon" type="RigidBody2D"]
+collision_layer = 0
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 10.0
+script = ExtResource("1_pck5v")
+satisfactory_distance = 100.0
+separation = 32.0
+metadata/_custom_type_script = "uid://cfoetjectcmne"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChoiceParent" type="VBoxContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_pck5v")

@@ -43,3 +43,11 @@ func _physics_process(delta: float) -> void:
 	var force_this_tick = global_position.direction_to(goal_position) \
 		* force * (clamp(global_position.distance_to(goal_position) / satisfactory_distance, 0, 1))
 	apply_central_force(force_this_tick)
+
+func play_message(message: Message):
+	actor = message.actor
+	
+	character_root = actor.head
+	if message.expression != null:
+		actor.play("expr_%s" % message.expression)
+	await %Label.type_messages(message.instructions)

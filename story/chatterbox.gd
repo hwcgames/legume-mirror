@@ -2,9 +2,19 @@ extends CanvasLayer
 
 var oldest: ChatBalloon
 var newest: ChatBalloon
+var choice_balloon: ChoiceBalloon
 @export var chat_balloon_scene: PackedScene
+@export var choice_balloon_scene: PackedScene
 
 var actors: Dictionary[String, Actor] = {}
+
+func _ready():
+	Storyteller.new_line.connect(func(line: String, tags: Array[String]):
+		var message = Message.from_str(line, tags)
+		self.message(message))
+
+func queue_dialogue_choice():
+	Storyteller.new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
 
 func _physics_process(_delta: float) -> void:
 	if oldest == null:
@@ -33,10 +43,32 @@ func clear():
 	oldest = oldest.next_balloon
 	clear()
 
-func message(actor: Actor, text: String):
-	var balloon := chat_balloon_scene.instantiate()
-	balloon.text = text
-	balloon.actor = actor
-	balloon.character_root = actor.head
-	push_balloon(balloon)
+func simple_message(actor: Actor, text: String):
+	var message = Message.from_str("%s: %s" % [actor, text], [])
+	message.actor = actor
+	await self.message(message)
+	#var balloon := chat_balloon_scene.instantiate()
+	#balloon.text = text
+	#balloon.actor = actor
+	#balloon.character_root = actor.head
+	#push_balloon(balloon)
 	pass
+
+func message(message: Message):
+	if message == null:
+		return
+	var balloon: ChatBalloon = chat_balloon_scene.instantiate()
+	balloon.actor = message.actor
+	balloon.character_root = message.actor.head
+	push_balloon(balloon)
+	await balloon.play_message(message)
+
+func choose(choices: Array[InkChoice]):
+	var balloon: ChoiceBalloon = choice_balloon_scene.instantiate()
+	if choice_balloon != null:
+		choice_balloon.queue_free()
+	choice_balloon = balloon
+	add_child(balloon)
+	var choice = await balloon.choose(choices)
+	choice_balloon.queue_free()
+	Storyteller.story.ChooseChoiceIndex(choice)
