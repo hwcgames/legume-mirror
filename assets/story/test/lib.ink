@@ -12,6 +12,14 @@ VAR leader = cipher
 // `walkabout` allows the player to move freely.
 VAR gamemode = "cinema"
 
+EXTERNAL fade_out(color)
+=== function fade_out(color)
+>>> Fade to {color}
+
+EXTERNAL fade_in()
+=== function fade_in()
+>>> Fade in
+
 // Level management
 EXTERNAL queue_room(room, seam)
 === function queue_room(room, seam) ===

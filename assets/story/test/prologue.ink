@@ -1,4 +1,59 @@
 === prologue
+
+~ change_level("intro_railway", "default")
+~ spawn_actor("intro_train", "train_entry")
+~ spawn_party("train_cipher_seat")
+~ actor_start_following_path("train", "rails")
+~ actor_capture("cipher")
+~ actor_act("cipher", "sit")
+~ gamemode = "textonly"
+~ actor_act("cipher", "open_journal")
+
+: %m:dd%Dear Diary%/m:dd%%p:2%%strike:dd% To whom it may concern; #ty:written
+: If you happen to find this... Don't bother trying to return it to its rightful owner.%p:1% It isn't wanted, and I'm quite confident you couldn't find me even if it was. It's all yours, though I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
+: It's a curious emotion - at least, I think it's an emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to *partition* their life so completely.
+: I've never been a stranger before. Painting a self-portrait from a blank canvas... The thought is exhilarating, don't you think? Though I imagine you take it for granted.
+~ sleep(1)
+~ gamemode = "diorama"
+~ play_sound("train_bingbong")
+intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the right at Weston Pier. #ty:loudspeaker
+~ gamemode = "textonly"
+: Thanks for humoring me,%n%[i]A Fellow Stranger[/i] #ty:written
+: P.S: Sorry I just got you fired, mom.
+
+~ gamemode = "diorama"
+
+~ sleep(2)
+
+~ actor_act("cipher", "close_journal")
+~ actor_move("cipher", "window", "walk")
+~ actor_act("cipher", "throw_out_journal")
+~ actor_act("cipher", "dust_hands")
+~ actor_move("cipher", "train_cipher_seat", "walk")
+~ actor_act("cipher", "sit")
+~ sleep(5)
+~ queue_room("train_station", "train_in")
+~ actor_wait("intro_train")
+~ actor_act("intro_train", "open_doors")
+~ actor_act("intro_train", "busy")
+~ sleep(3)
+~ actor_act("intro_train", "close_doors")
+~ actor_start_following_path("train", "rails")
+~ sleep(3)
+~ fade_out("black")
+~ gamemode = "textonly"
+: 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:keyboard
+~ sleep(1)
+~ gamemode = "diorama"
+~ fade_in()
+intro_train: Next stop, Northold, College and fifth. Now approaching Northold, College and fifth. Doors open on the left at Northold, College and fifth. #ty:loudspeaker
+cipher: That's my stop. #ty:thought
+~ queue_room("train_station", "train_in")
+~ actor_wait("intro_train")
+~ actor_act("intro_train", "open_doors")
+
+->END
+
 ->train
 =train
 ~ gamemode = "diorama"
