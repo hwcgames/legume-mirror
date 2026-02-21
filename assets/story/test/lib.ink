@@ -141,3 +141,7 @@ EXTERNAL play_sound(sound)
 
 // Item management
 LIST key_items = map_brochure
+
+EXTERNAL confidant_level(confidant, level)
+=== function confidant_level(confidant, level)
+>>> I am thou, thou are I... {confidant} lv{level}
