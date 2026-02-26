@@ -31,11 +31,11 @@ func _join_battle(_battle: Battlefield):
 	battle_planner.party_member = self
 	battlefield.player_zone.add_child(battle_planner)
 	var b_lock = await battlefield.lock.shared_lock()
-	home_landmark = battlefield.player_landmarks[battlefield.players.find(self)]
+	home_landmark = battlefield.player_landmarks[battlefield.players.find(self )]
 	#await create_tween() \
 		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
-	await (await push_mode(ActorModeMoveTo.new(self, home_landmark.global_position, 0.75))).popped
-	await create_tween().tween_property(self, "global_rotation", home_landmark.global_rotation, 0.25).finished
+	await (await push_mode(ActorModeMoveTo.new(self , home_landmark.global_position))).popped
+	await create_tween().tween_property(self , "global_rotation", home_landmark.global_rotation, 0.25).finished
 	b_lock.call()
 
 func _player_action():
@@ -55,7 +55,7 @@ func _player_action():
 		turns -= 1
 		var self_lock = await lock.exclusive_lock()
 		var coroutine = Promise.new(func(resolve, _reject):
-			await action.go(self)
+			await action.go(self )
 			resolve.call())
 		self_lock.call()
 		p_lock.call_deferred()
@@ -104,9 +104,9 @@ func _enemy_action():
 		var soul: Soul = preload("uid://r8iv2h12xgwc").instantiate()
 		soul.device_index = device_index
 		battlefield.battle_board.add_soul(soul)
-		soul_index = len(battlefield.battle_board.souls)-1
+		soul_index = len(battlefield.battle_board.souls) - 1
 	var soul: Soul = battlefield.battle_board.souls[soul_index]
-	soul.players.push_back(self)
+	soul.players.push_back(self )
 
 func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallenge:
 	skill_challenge = scene.instantiate()
@@ -116,6 +116,7 @@ func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallen
 
 static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember:
 	var pm: PartyMember = preload("uid://b0hnypxq8ieth").instantiate()
+	pm.name = character_sheet.resource_path.trim_prefix("res://database/party_members/").trim_suffix(".tres")
 	var costume_node: Costume = character_sheet.costume.instantiate()
 	pm.costume = costume_node
 	pm.human_name = character_sheet.name
@@ -131,4 +132,5 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	pm.skillset = character_sheet.skillset
 	pm.skill_challenge_scene = character_sheet.skill_challenge_scene
 	pm.battle_planner_scene = character_sheet.battle_planner_scene
+	pm.character_sheet = character_sheet
 	return pm

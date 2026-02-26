@@ -4,8 +4,8 @@ EXTERNAL sleep(seconds)
 
 // Track the characters in the party
 
-LIST party = (cipher), casey, tell, mauve, vince, prince, april
-VAR leader = cipher
+// LIST party = (cipher), casey, tell, mauve, vince, prince, april
+VAR leader = "cipher"
 
 // Track the game's mode
 // `cinema` blurs the world and draws actors in 
@@ -50,16 +50,20 @@ EXTERNAL allow_dungeon_progress()
 // Actor management
 EXTERNAL spawn_actor(id, landmark)
 EXTERNAL spawn_party(landmark)
-EXTERNAL spawn_party_member(id, landmark)
+// EXTERNAL spawn_party_member(id, landmark)
+EXTERNAL add_party_member(id)
+EXTERNAL rm_party_member(id)
 EXTERNAL spawn_enemy(id, landmark)
 EXTERNAL despawn_actor(id)
 
 === function spawn_actor(id, landmark)
 >>> Spawn actor {id} at {landmark} (or teleport them there).
 === function spawn_party(landmark)
->>> Spawn the party ({party}) at {landmark} (or teleport them there).
-=== function spawn_party_member(id, landmark)
->>> Spawn a party member at {landmark} (or teleport them there).
+>>> Spawn the party at {landmark} (or teleport them there).
+=== function add_party_member(id, landmark)
+>>> Spawn the party member {id} at {landmark}.
+=== function rm_party_member(id)
+>>> Despawn the party member {id}.
 === function spawn_enemy(id, landmark)
 >>> Spawn enemy {id} at {landmark}.
 ~ return id

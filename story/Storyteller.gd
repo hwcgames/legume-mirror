@@ -32,6 +32,7 @@ func _ready():
 		if not (function["name"] as String).begins_with("obs_"):
 			continue
 		story.ObserveVariable((function["name"] as String).substr(4), Callable(self, function["name"]))
+	do_story = true
 
 func _process(delta: float) -> void:
 	if not do_story:
@@ -42,7 +43,9 @@ func _process(delta: float) -> void:
 		return
 	var handle = await lock.exclusive_lock()
 	line = story.Continue()
-	if !line.is_empty():
+	if line == "_":
+		return
+	if line != null and !line.is_empty():
 		print("Story line: ", line)
 		new_line.emit(line, tags)
 	if not story.GetCanContinue():
@@ -64,15 +67,16 @@ func choose_if_available(names: Array[String]) -> bool:
 	return false
 
 func cmd_say(actor: String, text: String):
-	Chatterbox.simple_message(Actor.find(actor), text)
+	await Chatterbox.simple_message(Actor.find(actor), text)
 
 func cmd_dialogue_choice():
 	Chatterbox.queue_dialogue_choice()
 
 func cmd_sleep(time: float):
-	var handle = await lock.shared_lock()
-	await get_tree().create_timer(time).timeout
-	handle.call()
+	(func():
+		var handle = await lock.shared_lock()
+		await get_tree().create_timer(time).timeout
+		handle.call()).call()
 
 func cmd_queue_room(room: String, seam: String):
 	printerr("unimplemented story operation!")
@@ -109,12 +113,34 @@ func cmd_allow_dungeon_progress():
 	assert(dungeon_map.allow_progress == false, "Inconsistency: Double-allowed dungeon progress")
 	dungeon_map.allow_progress = true
 
-func cmd_spawn_actor(actor: String, landmark_name: String):
-	var leader: String = story.FetchVariable("party")
-	print(leader)
+func cmd_spawn_actor(id: String, landmark_name: String):
+	var actor: Actor = Actor.find(id)
+	var landmark = Landmark.find(landmark_name)
+	if actor != null:
+		actor.global_transform = landmark.global_transform
+		return
+	var actor_sheet = load("res://database/actors/%s.tres" % id);
+	actor = Actor.from_sheet(actor_sheet)
+	get_tree().current_scene.add_child(actor)
+	actor.global_transform = landmark.global_transform
+	pass
+
+var party_stack: Array[PartyMember] = []
 
 func cmd_spawn_party(landmark_name: String):
 	printerr("Stub story operation!")
+	var leader: String = story.FetchVariable("leader")
+	var leader_pm = PartyMember.find(leader)
+	var landmark = Landmark.find(landmark_name)
+	if leader_pm != null:
+		leader_pm.global_transform = landmark.global_transform
+		return
+	var leader_sheet = load("res://database/party_members/%s.tres" % leader);
+	leader_pm = PartyMember.from_character_sheet(leader_sheet)
+	get_tree().current_scene.add_child(leader_pm)
+	leader_pm.global_transform = landmark.global_transform
+	leader_pm.push_mode(ActorPlayerControl.new())
+	party_stack = [leader_pm]
 	#var landmark = Landmark.find(landmark_name)
 	#var party: InkList = story.FetchVariable("party")
 	#var leader: String = story.FetchVariable("party")
@@ -130,8 +156,23 @@ func cmd_spawn_party(landmark_name: String):
 		#party_member.transform = landmark.global_transform
 		#get_tree().current_scene.add_child(party_member)
 
-func cmd_spawn_party_member(id: String, landmark: String):
+func cmd_add_party_member(id: String, landmark_name: String):
 	printerr("Stub story operation!")
+	var pm = PartyMember.find(id)
+	var landmark = Landmark.find(landmark_name)
+	if pm != null:
+		pm.global_transform = landmark.global_transform
+		return
+	var pm_sheet = load("res://database/party_members/%s.tres" % id)
+	pm = PartyMember.from_character_sheet(pm_sheet)
+	get_tree().current_scene.add_child(pm)
+	pm.global_transform = landmark.global_transform
+	pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
+	party_stack.push_back(pm)
+
+func cmd_rm_party_member(id: String):
+	printerr("Stub story operation!")
+	pass
 
 func cmd_spawn_enemy(id: String, landmark: String) -> String:
 	printerr("Stub story operation!")
@@ -140,12 +181,17 @@ func cmd_spawn_enemy(id: String, landmark: String) -> String:
 func cmd_actor_act(actor: String, action: String):
 	printerr("Stub story operation!")
 
-func cmd_actor_move(actor_name: String, landmark_name: String, _style: String):
+func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var landmark = Landmark.find(landmark_name)
 	var actor = Actor.find(actor_name)
-	var mode = ActorModePathfind.new()
-	mode.pathfind_target = landmark.global_position
-	await actor.push_mode(mode)
+	var mode: ActorMode 
+	match style:
+		"walk":
+			mode = ActorModePathfind.new()
+			mode.pathfind_target = landmark.global_position
+		"glide":
+			mode = ActorModeMoveTo.new(actor, landmark)
+	actor.push_mode(mode)
 
 func cmd_actor_start_following_path(actor_name: String, path_name: String):
 	(func():
@@ -171,7 +217,8 @@ func cmd_actor_wait(actor_name: String):
 	(func():
 		var lock = await lock.shared_lock()
 		var actor = Actor.find(actor_name)
-		await actor.mode_stack[-1].popped
+		while actor.mode_stack[-1] is not ActorModeStoryCanary:
+			await actor.mode_stack[-1].popped
 	).call()
 
 func cmd_actor_capture(actor_name: String):
@@ -193,13 +240,15 @@ func cmd_actor_release(actor_name: String):
 				return
 	).call()
 
-func obs_party(_name, new_value: Array[String]):
-	if len(new_value) == 0:
-		printerr("The party can't be empty")
-		return
-	pass
+func cmd_play_sound(sound: String):
+	print("Stub story operation")
 
-func obs_gamemode(_name, new_value: Array[String]):
-	if len(new_value) != 1:
-		printerr("We can be in exactly one gamemode")
-	pass
+#func obs_party(_name, new_value: Array[String]):
+	#if len(new_value) == 0:
+		#printerr("The party can't be empty")
+		#return
+	#pass
+
+#func obs_gamemode(_name, new_value: String):
+	#print("Stub story operation")
+	#pass

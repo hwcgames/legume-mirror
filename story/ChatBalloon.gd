@@ -21,10 +21,12 @@ var text: String:
 	set(text):
 		%Label.text = text
 
-var last_root_position: Vector2
+var last_root_position: Vector2 = Vector2.INF
 func root_screen_position():
 	if character_root != null:
 		last_root_position = get_viewport().get_camera_3d().unproject_position(character_root.global_position)
+	if last_root_position == Vector2.INF:
+		return get_viewport_rect().size * Vector2(0.5, 1.)
 	return last_root_position
 
 func _ready():
@@ -46,8 +48,8 @@ func _physics_process(delta: float) -> void:
 
 func play_message(message: Message):
 	actor = message.actor
-	
-	character_root = actor.head
-	if message.expression != null:
+	if actor:
+		character_root = actor.head
+	if message.expression != null and actor:
 		actor.play("expr_%s" % message.expression)
 	await %Label.type_messages(message.instructions)

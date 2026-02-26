@@ -36,11 +36,13 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 		if first_percent != 0:
 			rest = parse(str.substr(first_percent))
 			rest.push_front(TextLeaf.new(str.substr(0, first_percent)))
+			return rest
 		str = str.trim_prefix("%")
 		var second_percent = str.find("%")
-		rest = parse(str.substr(second_percent + 1))
+		rest.append_array(parse(str.substr(second_percent+1)))
 		str = str.substr(0, second_percent)
-		match str.split(":"):
+		print(str.split(":"))
+		match Array(str.split(":")):
 			["e", var expr]:
 				rest.push_front(Express.new(expr))
 			["e", var expr, var actor]:
@@ -68,19 +70,30 @@ class TextLeaf extends Instruction:
 		self.text = text
 	var start: int
 	var end: int
+	var idx = 0
 	func prepare_label(label: Typewriter):
-		start = len(label.text)
-		end = start + len(text)
+		start = label.get_total_character_count()
 		label.text += text
+		end = label.get_total_character_count()
 	func execute(label: Typewriter):
 		label.visible_characters = start
-		while label.visible_characters < end:
+		var in_tag = false
+		while idx < len(text):
+			var current_char = text[idx]
+			idx += 1
+			if current_char == '[':
+				in_tag = true
+			if current_char == ']':
+				in_tag = false
+				continue
+			if in_tag:
+				continue
 			label.visible_characters += 1
 			var wait_mul: float = 1.
-			match label.text[label.visible_characters - 1]:
-				".", "!", "?", "­—": wait_mul = 5.
-				",", ";": wait_mul = 3.
-			await label.wait(label.typewriter_time)
+			match current_char:
+				".", "!", "?", "­—": wait_mul = 30.
+				",", ";": wait_mul = 15.
+			await label.wait(label.typewriter_time * wait_mul)
 
 class Express extends Instruction:
 	var actor: String

@@ -10,8 +10,10 @@ var actors: Dictionary[String, Actor] = {}
 
 func _ready():
 	Storyteller.new_line.connect(func(line: String, tags: Array[String]):
+		var l = await Storyteller.lock.shared_lock()
 		var message = Message.from_str(line, tags)
-		self.message(message))
+		await self.message(message)
+		l.call())
 
 func queue_dialogue_choice():
 	Storyteller.new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
@@ -58,8 +60,9 @@ func message(message: Message):
 	if message == null:
 		return
 	var balloon: ChatBalloon = chat_balloon_scene.instantiate()
-	balloon.actor = message.actor
-	balloon.character_root = message.actor.head
+	if message.actor:
+		balloon.actor = message.actor
+		balloon.character_root = message.actor.head
 	push_balloon(balloon)
 	await balloon.play_message(message)
 

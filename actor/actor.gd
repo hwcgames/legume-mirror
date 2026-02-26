@@ -34,12 +34,13 @@ func _ready():
 
 func _physics_process(delta: float):
 	velocity = Vector3.ZERO
-	if mode_stack[-1].finished and not mode_stack[-1].finishing:
+	while not mode_stack[-1].finished:
+		if not mode_stack[-1].finishing:
+			mode_stack[-1]._process(delta)
+		if not mode_stack[-1].finished:
+			break;
 		while mode_stack[-1].finished and not mode_stack[-1].finishing:
 			pop_mode()
-		return
-	if not mode_stack[-1].finishing:
-		mode_stack[-1]._process(delta)
 	move_and_slide()
 
 func push_mode(mode: ActorMode) -> ActorMode:
@@ -68,3 +69,10 @@ static func find(actor_name: StringName) -> Actor:
 		if node.name == actor_name:
 			return node
 	return null
+
+static func from_sheet(sheet: ActorSheet) -> Actor:
+	var a: Actor = preload("uid://dsmw0etg767jy").instantiate();
+	a.name = sheet.resource_path.trim_prefix("res://database/actors/").trim_suffix(".tres")
+	a.human_name = sheet.name
+	a.costume = sheet.costume.instantiate()
+	return a

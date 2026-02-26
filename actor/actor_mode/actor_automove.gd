@@ -25,4 +25,6 @@ func _uncovered():
 		var partner = old_automove.next_seam.partner
 		if partner != null:
 			automove = partner.automoves.get(old_automove.next_seam_key)
+	if automove == null:
+		print("Automove done")
 	await _activate()

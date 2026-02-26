@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CharacterSheet" load_steps=9 format=3 uid="uid://xj8psb81wmw1"]
+
+[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="1_bmh8q"]
+[ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="1_wl511"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_0dh6u"]
+[ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_bmh8q"]
+[ext_resource type="PackedScene" uid="uid://bbpp48kcropih" path="res://battle/skill_challenge/basic_skill_challenge.tscn" id="4_nn650"]
+[ext_resource type="Script" uid="uid://e3ovybh1pk5c" path="res://battle/skillset/unskilled.gd" id="6_nn650"]
+
+[sub_resource type="Resource" id="Resource_864tv"]
+script = ExtResource("1_bmh8q")
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_b3bsw"]
+script = ExtResource("6_nn650")
+metadata/_custom_type_script = "uid://e3ovybh1pk5c"
+
+[resource]
+script = ExtResource("3_bmh8q")
+name = &"Cipher"
+hp = 50
+sp = 50
+strength = 15
+magic = 0
+defense = 4
+basic_attack = SubResource("Resource_864tv")
+skillset = SubResource("Resource_b3bsw")
+metadata/_custom_type_script = "uid://dr762xdwdn0fw"

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2qh7mlkra6lu"]
+
+[ext_resource type="PackedScene" uid="uid://b6apyocbr84ec" path="res://assets/rooms/railway/railtunnel_general.blend" id="1_lrg78"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_omblp"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="2_shjar"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="4_n5nqi"]
+[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://level/automove/automove_glide.gd" id="5_t2sy4"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="6_t2sy4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shjar"]
+size = Vector3(25, 14, 13)
+
+[sub_resource type="Curve3D" id="Curve3D_shjar"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+up_vector_enabled = false
+
+[node name="RailSection" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_omblp")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="railtunnel_general" parent="." instance=ExtResource("1_lrg78")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+shape = SubResource("BoxShape3D_shjar")
+
+[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 0)
+script = ExtResource("2_shjar")
+profile = &"Railway"
+backtrack = true
+wants_room_type = 1
+automoves = {
+"rails": NodePath("../rails")
+}
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="Out" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12, 0, 0)
+script = ExtResource("2_shjar")
+profile = &"Railway"
+wants_room_type = 1
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="TrainPath" type="Path3D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve3D_shjar")
+
+[node name="rails" type="Marker3D" parent="." node_paths=PackedStringArray("next_automove")]
+unique_name_in_owner = true
+script = ExtResource("4_n5nqi")
+next_automove = NodePath("../rails_out")
+metadata/_custom_type_script = "uid://dgryx2ii0n4p"
+
+[node name="rails_out" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+script = ExtResource("5_t2sy4")
+glide_speed = 20.0
+next_seam = NodePath("../Out")
+next_seam_key = &"rails"
+metadata/_custom_type_script = "uid://de4gmccb2y5c1"
+
+[node name="train_entry" type="Marker3D" parent="." groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0, 0)
+script = ExtResource("6_t2sy4")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"

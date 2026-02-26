@@ -1,7 +1,7 @@
 extends Marker3D
 class_name Landmark
 
-func _ready() -> void:
+func _init() -> void:
 	add_to_group("landmark", true)
 
 static func find(name: String) -> Landmark:

@@ -20,8 +20,9 @@ radial_segments = 4
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ms64d"]
 height = 1.6
 
-[node name="PartyMember1" type="CharacterBody3D" node_paths=PackedStringArray("costume") groups=["loading_root", "party_member"]]
+[node name="PartyMember1" type="CharacterBody3D" node_paths=PackedStringArray("costume") groups=["actor", "loading_root", "party_member"]]
 collision_layer = 2
+floor_constant_speed = true
 script = ExtResource("1_ms64d")
 max_hp = 50
 hp = 50
