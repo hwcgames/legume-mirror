@@ -114,16 +114,19 @@ func spawn_initial_room(room_info: RoomInfo) -> Node3D:
 
 func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	var candidates: Array[RoomInfo] = rooms.filter(func(r: RoomInfo):
-		if not r.autoplace:
-			return false
-		if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and r.room_type != seam.wants_room_type:
-			return false
 		if seam.wants_partner_name != "" and seam.wants_partner_name not in r.proc_seams:
 			return false
 		for name in r.proc_seams:
 			if r.seam_profiles[name] == seam.profile:
 				return true
 		return false)
+	var queue_room: RoomInfo = serve_queue(candidates, seam)
+	if queue_room != null:
+		return queue_room
+	candidates = candidates.filter(func(r):
+		if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and r.room_type != seam.wants_room_type:
+			return false
+		return r.autoplace)
 	if seam.wants_room_type != RoomInfo.ROOM_TYPE.UNKNOWN and candidates.any(func(c: RoomInfo): return c.room_type == seam.wants_room_type):
 		candidates = candidates.filter(func(c: RoomInfo): return c.room_type == seam.wants_room_type)
 	elif candidates.any(func(c: RoomInfo): return (c.room_type == RoomInfo.ROOM_TYPE.DEAD_END) == seam.backtrack):
@@ -191,3 +194,44 @@ func _process(delta: float) -> void:
 				var room = await fill_seam(seam)
 				if room != null:
 					room.update_loading()).call()
+
+class RoomRequest extends RefCounted:
+	@export var room: RoomInfo
+	@export var seam: StringName
+	func _init(room: RoomInfo, seam: StringName) -> void:
+		self.room = room
+		self.seam = seam
+var room_queue: Array[RoomRequest] = []
+var profile_proximity: Dictionary[String, int] = {}
+func add_request(req: RoomRequest):
+	room_queue.push_back(req)
+	if len(room_queue) == 1:
+		recalculate_proximity()
+func recalculate_proximity():
+	if room_queue.is_empty():
+		profile_proximity = {}
+		return
+	profile_proximity[room_queue[0].room.seam_profiles[room_queue[0].seam]] = 0
+	var dirty = true
+	while dirty:
+		dirty = false
+		for profile in profile_proximity.keys():
+			for room in rooms:
+				if profile not in room.seam_profiles:
+					continue
+				for other_profile in room.seam_profiles:
+					if other_profile not in profile_proximity or profile_proximity[other_profile] > profile_proximity[profile] + 1:
+						dirty = true
+						profile_proximity[other_profile] = profile_proximity[profile] + 1
+func serve_queue(candidates: Array[RoomInfo], seam: ProceduralSeam) -> RoomInfo:
+	if room_queue.is_empty():
+		return null
+	if room_queue[0].room in candidates:
+		var req = room_queue.pop_front()
+		seam.wants_partner_name = req.seam
+		return req.room
+	candidates.sort_custom(func(a: RoomInfo, b: RoomInfo):
+		var a_prox = a.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
+		var b_prox = b.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
+		return a_prox < b_prox)
+	return candidates.get(0)

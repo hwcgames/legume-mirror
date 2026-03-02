@@ -3,6 +3,7 @@
 ~ change_level("intro_railway", "default")
 _
 ~ spawn_actor("intro_train", "train_entry")
+~ actor_capture("intro_train")
 ~ actor_start_following_path("intro_train", "rails")
 _
 ~ spawn_party("train_cipher_seat")
@@ -43,9 +44,7 @@ _
 ~ actor_wait("cipher")
 _
 ~ actor_act("cipher", "sit")
-~ sleep(5)
-_
-~ queue_room("train_station", "train_in")
+~ queue_room("railway/rail_station", "In")
 ~ actor_wait("intro_train")
 ~ actor_act("intro_train", "open_doors")
 ~ actor_act("intro_train", "busy")
@@ -64,7 +63,7 @@ _
 ~ fade_in()
 intro_train: Next stop, Northold, College and fifth. Now approaching Northold, College and fifth. Doors open on the left at Northold, College and fifth. #ty:loudspeaker
 cipher: That's my stop. #ty:thought
-~ queue_room("train_station", "train_in")
+~ queue_room("railway/rail_station", "In")
 ~ actor_wait("intro_train")
 ~ actor_act("intro_train", "open_doors")
 

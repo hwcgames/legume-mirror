@@ -25,8 +25,8 @@ func _init(actor: Actor,
 
 signal done
 func _process(delta: float):
-	if actor.global_position.distance_to(_goal) < 0.01:
-		await actor.play("idle", true)
+	if actor.global_position.distance_to(_goal) < 0.4:
+		actor.play("idle")
 		finished = true
 		if target is Landmark:
 			actor.global_rotation = target.global_rotation

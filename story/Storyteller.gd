@@ -27,11 +27,11 @@ func _ready():
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("cmd_"):
 			continue
-		story.BindExternalFunction((function["name"] as String).substr(4), Callable(self, function["name"]), false)
+		story.BindExternalFunction((function["name"] as String).substr(4), Callable(self , function["name"]), false)
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("obs_"):
 			continue
-		story.ObserveVariable((function["name"] as String).substr(4), Callable(self, function["name"]))
+		story.ObserveVariable((function["name"] as String).substr(4), Callable(self , function["name"]))
 	do_story = true
 
 func _process(delta: float) -> void:
@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		return
 	if lock.exclusive_locked or lock.shared_locks > 0:
 		return
-	if !story.GetCurrentChoices().is_empty():
+	if !story.GetCanContinue():
 		return
 	var handle = await lock.exclusive_lock()
 	line = story.Continue()
@@ -78,8 +78,10 @@ func cmd_sleep(time: float):
 		await get_tree().create_timer(time).timeout
 		handle.call()).call()
 
-func cmd_queue_room(room: String, seam: String):
-	printerr("unimplemented story operation!")
+func cmd_queue_room(room_name: String, seam: String):
+	var treadmill: Treadmill = get_tree().current_scene.get_node("%Treadmill")
+	var room: RoomInfo = load("res://database/rooms/%s.tres" % room_name)
+	treadmill.add_request(Treadmill.RoomRequest.new(room, seam))
 
 func cmd_change_level(level_id: String, starting_room: String = "default"):
 	(func():
@@ -184,7 +186,7 @@ func cmd_actor_act(actor: String, action: String):
 func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var landmark = Landmark.find(landmark_name)
 	var actor = Actor.find(actor_name)
-	var mode: ActorMode 
+	var mode: ActorMode
 	match style:
 		"walk":
 			mode = ActorModePathfind.new()
@@ -215,10 +217,17 @@ func cmd_actor_stop(actor_name: String):
 
 func cmd_actor_wait(actor_name: String):
 	(func():
+		print("Wait for actor...")
 		var lock = await lock.shared_lock()
 		var actor = Actor.find(actor_name)
-		while actor.mode_stack[-1] is not ActorModeStoryCanary:
-			await actor.mode_stack[-1].popped
+		if actor.top_mode is ActorModeStoryCanary:
+			print("Already idle")
+			lock.call()
+			return
+		while actor.top_mode is not ActorModeStoryCanary:
+			await get_tree().process_frame
+		print("Actor is idle")
+		lock.call()
 	).call()
 
 func cmd_actor_capture(actor_name: String):
@@ -241,6 +250,24 @@ func cmd_actor_release(actor_name: String):
 	).call()
 
 func cmd_play_sound(sound: String):
+	print("Stub story operation")
+
+func cmd_fade_out(color: String):
+	print("Stub story operation")
+
+func cmd_fade_in():
+	print("Stub story operation")
+
+func start_battle():
+	print("Stub story operation")
+
+func lock_battlefield():
+	print("Stub story operation")
+
+func free_battlefield():
+	print("Stub story operation")
+
+func enemy_state(enemy: String, state: int):
 	print("Stub story operation")
 
 #func obs_party(_name, new_value: Array[String]):

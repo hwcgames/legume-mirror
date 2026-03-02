@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_g43ak"]
 [ext_resource type="PackedScene" uid="uid://b6jarsnppswsh" path="res://assets/rooms/railway/railstation.blend" id="1_o5xs1"]
 [ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="2_g43ak"]
-[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="4_2q3xq"]
 [ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://level/automove/automove_glide.gd" id="4_xsbyj"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="5_xsbyj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o5xs1"]
 size = Vector3(97, 24, 57)
@@ -33,7 +33,7 @@ profile = &"Railway"
 backtrack = true
 wants_room_type = 1
 automoves = {
-"rails": NodePath("")
+"rails": NodePath("../rail_done")
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
@@ -62,14 +62,14 @@ unique_name_in_owner = true
 curve = SubResource("Curve3D_o5xs1")
 
 [node name="rail_done" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 0, 0)
 script = ExtResource("4_xsbyj")
 glide_speed = 20.0
 metadata/_custom_type_script = "uid://de4gmccb2y5c1"
 
 [node name="rails" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76, 0, 0)
-script = ExtResource("4_2q3xq")
+script = ExtResource("5_xsbyj")
 next_seam = NodePath("../Out")
 next_seam_key = &"rails"
-metadata/_custom_type_script = "uid://d1625cme8sl48"
+metadata/_custom_type_script = "uid://dgryx2ii0n4p"
