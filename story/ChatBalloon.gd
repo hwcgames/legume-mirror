@@ -8,6 +8,7 @@ var next_balloon: ChatBalloon
 @export var satisfactory_distance: float = 16.
 @export var separation: float = 64.
 @export var lifetime: float = 30.
+@export var max_width: float = 256.
 var elapsed: float = 0.
 var expired: bool:
 	get:
@@ -31,6 +32,13 @@ func root_screen_position():
 
 func _ready():
 	global_position = root_screen_position() + Vector2.UP * separation * 0.75
+	%Label.resized.connect(_on_label_resized)
+	_on_label_resized()
+
+func _on_label_resized():
+	if %Label.size.x > max_width:
+		%Label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		%Label.custom_minimum_size = Vector2(max_width, 0.)
 
 func _physics_process(delta: float) -> void:
 	elapsed += delta

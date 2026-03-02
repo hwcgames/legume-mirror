@@ -19,9 +19,11 @@ _
 ~ sleep(1)
 _
 // ~ gamemode = "diorama"
+~ set_camera("focus_on_speaker")
 ~ play_sound("train_bingbong")
 intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the right at Weston Pier. #ty:loudspeaker
 ~ gamemode = "textonly"
+~ set_camera("_")
 : Thanks for humoring me, #ty:written
 : [i]A Fellow Stranger[/i]
 : P.S: Sorry I just got you fired, mom.
@@ -30,6 +32,7 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 
 ~ sleep(2)
 _
+~ set_camera("outside_cipher_throw")
 ~ actor_act("cipher", "close_journal")
 ~ actor_move("cipher", "window", "glide")
 ~ actor_wait("cipher")
@@ -44,8 +47,10 @@ _
 ~ actor_wait("cipher")
 _
 ~ actor_act("cipher", "sit")
+~ set_camera("tunnel_view")
 ~ queue_room("railway/rail_station", "In")
 ~ actor_wait("intro_train")
+_
 ~ actor_act("intro_train", "open_doors")
 ~ actor_act("intro_train", "busy")
 ~ sleep(3)
@@ -54,6 +59,7 @@ _
 ~ actor_start_following_path("intro_train", "rails")
 ~ sleep(3)
 _
+~ set_camera("_")
 ~ fade_out("black")
 ~ gamemode = "textonly"
 : 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:keyboard
@@ -69,8 +75,8 @@ cipher: That's my stop. #ty:thought
 ~ actor_act("cipher", "idle")
 ~ actor_release("cipher")
 
-train_announcer: This train is now out of service. #ty:loudspeaker
-train_announcer: All passengers must leave the train.
+intro_train: This train is now out of service. #ty:loudspeaker
+intro_train: All passengers must leave the train.
 
 ->train_wait
 =train_wait
@@ -89,11 +95,11 @@ train_announcer: All passengers must leave the train.
 * [Think]
     cipher: I should get moving. #ty:thought
 * [nag 15]
-    train_announcer: Say again, all passengers must disembark. #ty:loudspeaker
+    intro_train: Say again, all passengers must disembark. #ty:loudspeaker
 * [nag 15]
-    train_announcer: Attention, remaining passenger. #ty:loudspeaker
-    train_announcer: You, in the hoodie.
-    train_announcer: Please leave the car.
+    intro_train: Attention, remaining passenger. #ty:loudspeaker
+    intro_train: You, in the hoodie.
+    intro_train: Please leave the car.
 * [nag 15]
     cipher: I really ought to go. #ty:thought
     ->leave_train

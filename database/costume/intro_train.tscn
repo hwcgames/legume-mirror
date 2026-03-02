@@ -1,13 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://candb0ijvfxik"]
+[gd_scene load_steps=14 format=3 uid="uid://candb0ijvfxik"]
 
 [ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_qaig1"]
 [ext_resource type="PackedScene" uid="uid://b7fcbas803rqq" path="res://assets/costume/train.blend" id="2_4fq6r"]
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="3_e4tdh"]
+[ext_resource type="Script" uid="uid://nueu4xp13uhs" path="res://level/camera_trigger.gd" id="4_4fq6r"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_j5g7b"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_eb8e3"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="7_e13po"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_wqs1p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfvbf"]
 size = Vector3(29, 0.5, 8)
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4svgt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crqpl"]
+size = Vector3(7, 7, 30)
+
+[sub_resource type="Resource" id="Resource_drtur"]
+script = ExtResource("6_eb8e3")
+duration = 0.0
+transition = 4
+
+[sub_resource type="Resource" id="Resource_j5g7b"]
+script = ExtResource("6_eb8e3")
+duration = 0.0
+metadata/_custom_type_script = "uid://8umksf8e80fw"
 
 [node name="TrainCostume" type="Node3D" node_paths=PackedStringArray("head")]
 script = ExtResource("1_qaig1")
@@ -18,7 +36,7 @@ metadata/_custom_type_script = "uid://csq0jt1cnob8c"
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.2584877e-07, 0, 7.8)
 
 [node name="head" type="Marker3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.3999996, 7.7, 11.800001)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.1000004, 8.2, -6.499999)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4, 0, 7.3)
@@ -63,3 +81,60 @@ tree_root = SubResource("AnimationNodeStateMachine_4svgt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+
+[node name="CameraTrigger" type="Area3D" parent="." node_paths=PackedStringArray("camera")]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("4_4fq6r")
+camera = NodePath("PhantomCamera3D")
+priority_offset = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 7.5)
+shape = SubResource("BoxShape3D_crqpl")
+
+[node name="PhantomCamera3D" type="Node3D" parent="CameraTrigger" node_paths=PackedStringArray("look_at_target") groups=["camera"]]
+transform = Transform3D(0.9408874, -0.06467015, 0.33248863, 1.4901161e-08, 0.9816046, 0.19092532, -0.33871952, -0.1796392, 0.92357934, 2.5, 8.2, 7)
+script = ExtResource("5_j5g7b")
+look_at_mode = 2
+look_at_target = NodePath("../LeaderProxy")
+tween_resource = SubResource("Resource_drtur")
+look_at_offset = Vector3(0, 2.625, 0)
+look_at_damping = true
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="LeaderProxy" type="Node3D" parent="CameraTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -5.5)
+script = ExtResource("7_e13po")
+metadata/_custom_type_script = "uid://bg37o5ga3euip"
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 3.1, 8, -6.5)
+text = "this is a
+speaker"
+
+[node name="focus_on_speaker" type="Node3D" parent="Label3D" groups=["camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.9799247, -0.19936793, 0, 0.19936793, 0.9799247, 0, -0.5, 2.828427)
+script = ExtResource("5_j5g7b")
+tween_resource = SubResource("Resource_j5g7b")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="outside_cipher_throw" type="Node3D" parent="." groups=["camera"]]
+transform = Transform3D(0.7071067, -0.05547896, 0.70492697, 0, 0.9969173, 0.0784591, -0.7071067, -0.05547896, 0.70492697, 5.525, 5.1, -1.5)
+script = ExtResource("5_j5g7b")
+tween_resource = SubResource("Resource_j5g7b")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="tunnel_view" type="Node3D" parent="." groups=["camera"]]
+transform = Transform3D(0.9848075, 0.05939115, -0.1631759, 7.0012547e-09, 0.93969244, 0.34202003, 0.1736481, -0.336824, 0.9254165, -5.475, 10.1, 3.5)
+script = ExtResource("5_j5g7b")
+tween_resource = SubResource("Resource_j5g7b")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.9848075, 0.05939115, -0.1631759, 7.0012547e-09, 0.93969244, 0.34202003, 0.1736481, -0.336824, 0.9254165, -5.475, 10.1, 3.5)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("8_wqs1p")

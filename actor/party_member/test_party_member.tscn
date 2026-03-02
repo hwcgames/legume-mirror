@@ -17,8 +17,8 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 4
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ms64d"]
-height = 1.6
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ms64d"]
+height = 1.5999999
 
 [node name="PartyMember1" type="CharacterBody3D" node_paths=PackedStringArray("costume") groups=["actor", "loading_root", "party_member"]]
 collision_layer = 2
@@ -52,7 +52,7 @@ mesh = SubResource("CylinderMesh_445v2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-shape = SubResource("CylinderShape3D_ms64d")
+shape = SubResource("CapsuleShape3D_ms64d")
 
 [node name="SkillChallengeAnchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

@@ -38,6 +38,6 @@ func _uncovered():
 
 func _activate():
 	await actor.play("walk", true)
-	actor.create_tween().tween_property(actor, "global_rotation", Vector3(0, Vector3.FORWARD.signed_angle_to(_goal - actor.global_position, Vector3.UP), 0), 0.25)
+	actor.global_rotation = Vector3(0, Vector3.FORWARD.signed_angle_to(_goal - actor.global_position, Vector3.UP), 0)
 	await done
 	#actor.global_rotation.y = Vector3.FORWARD.signed_angle_to(_goal - actor.global_position, Vector3.UP)

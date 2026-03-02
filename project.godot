@@ -68,6 +68,7 @@ party_leader=""
 party_member=""
 automove=""
 actor=""
+camera=""
 
 [input]
 

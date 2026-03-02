@@ -23,6 +23,10 @@ enum STORY_STATE {
 	CHOOSING,
 }
 
+var leader: PartyMember:
+	get:
+		return Actor.find(Storyteller.story.FetchVariable("leader"))
+
 func _ready():
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("cmd_"):
@@ -258,17 +262,30 @@ func cmd_fade_out(color: String):
 func cmd_fade_in():
 	print("Stub story operation")
 
-func start_battle():
+func cmd_start_battle():
 	print("Stub story operation")
 
-func lock_battlefield():
+func cmd_lock_battlefield():
 	print("Stub story operation")
 
-func free_battlefield():
+func cmd_free_battlefield():
 	print("Stub story operation")
 
-func enemy_state(enemy: String, state: int):
+func cmd_enemy_state(enemy: String, state: int):
 	print("Stub story operation")
+
+var active_camera: PhantomCamera3D
+func cmd_set_camera(camera_name: String):
+	if active_camera != null:
+		active_camera.priority -= 10
+		active_camera = null
+	if camera_name == "_":
+		return
+	var camera = get_tree().get_nodes_in_group("camera").filter(func(c: Node): return c.name == camera_name).get(0)
+	if camera is not PhantomCamera3D:
+		return
+	active_camera = camera
+	camera.priority += 10
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:

@@ -12,6 +12,10 @@ VAR leader = "cipher"
 // `walkabout` allows the player to move freely.
 VAR gamemode = "cinema"
 
+EXTERNAL set_camera(camer)
+=== function set_camera(camera)
+>>> Activate camera {camera}
+
 EXTERNAL fade_out(color)
 === function fade_out(color)
 >>> Fade to {color}

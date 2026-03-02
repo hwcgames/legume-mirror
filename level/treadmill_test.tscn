@@ -79,11 +79,10 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Regen"
 
-[node name="Treadmill" type="Marker3D" parent="." node_paths=PackedStringArray("center")]
+[node name="Treadmill" type="Marker3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
 roomset = ExtResource("4_o5yiu")
-center = NodePath("")
 metadata/_custom_type_script = "uid://dispg264up47x"
 
 [node name="PlayersJoin" type="Node" parent="."]

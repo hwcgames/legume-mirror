@@ -1,4 +1,5 @@
 extends Node3D
+class_name LeaderProxy
 
 func _process(delta: float) -> void:
 	var leader = Storyteller.story.FetchVariable("leader")
