@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 	handle.call()
 
 func choose_if_available(names: Array[String]) -> bool:
+	print("Choosing %s" % names)
 	var current_choices = choices
 	for choice_name in names:
 		var choice_index = current_choices.find_custom(func(choice: InkChoice):
@@ -130,6 +131,10 @@ func cmd_spawn_actor(id: String, landmark_name: String):
 	get_tree().current_scene.add_child(actor)
 	actor.global_transform = landmark.global_transform
 	pass
+
+func cmd_despawn_actor(id: String):
+	var actor = Actor.find(id)
+	actor.queue_free()
 
 var party_stack: Array[PartyMember] = []
 

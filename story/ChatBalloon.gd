@@ -9,6 +9,7 @@ var next_balloon: ChatBalloon
 @export var separation: float = 64.
 @export var lifetime: float = 30.
 @export var max_width: float = 256.
+var busy = true
 var elapsed: float = 0.
 var expired: bool:
 	get:
@@ -41,7 +42,8 @@ func _on_label_resized():
 		%Label.custom_minimum_size = Vector2(max_width, 0.)
 
 func _physics_process(delta: float) -> void:
-	elapsed += delta
+	if not busy:
+		elapsed += delta
 	(%CollisionShape2D.shape as RectangleShape2D).size = size
 	var root_position = root_screen_position()
 	var character_up_position = root_position.y - separation - size.y / 2
@@ -61,3 +63,4 @@ func play_message(message: Message):
 	if message.expression != null and actor:
 		actor.play("expr_%s" % message.expression)
 	await %Label.type_messages(message.instructions)
+	busy = false

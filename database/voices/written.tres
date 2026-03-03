@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Voice" load_steps=9 format=3 uid="uid://btytw8jlyanro"]
+
+[ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://story/voice.gd" id="1_v31j2"]
+[ext_resource type="AudioStream" uid="uid://1iqudfk5xhj7" path="res://assets/sfx/writing/pen1.wav" id="2_j2gli"]
+[ext_resource type="AudioStream" uid="uid://v4gfjk3bck4g" path="res://assets/sfx/writing/pen2.wav" id="3_ua08k"]
+[ext_resource type="AudioStream" uid="uid://b6uc25882cv4w" path="res://assets/sfx/writing/pen3.wav" id="4_06sk6"]
+[ext_resource type="AudioStream" uid="uid://bsn6pc7ys020g" path="res://assets/sfx/writing/pen4.wav" id="5_3roy8"]
+[ext_resource type="AudioStream" uid="uid://dlxi72e55rflj" path="res://assets/sfx/writing/pen5.wav" id="6_8aamy"]
+[ext_resource type="AudioStream" uid="uid://bja3vovkpsijf" path="res://assets/sfx/writing/pen6.wav" id="7_e6mn3"]
+[ext_resource type="AudioStream" uid="uid://cao24l7ase8ke" path="res://assets/sfx/writing/pen7.wav" id="8_ggfah"]
+
+[resource]
+script = ExtResource("1_v31j2")
+sounds = Array[AudioStream]([ExtResource("2_j2gli"), ExtResource("3_ua08k"), ExtResource("4_06sk6"), ExtResource("5_3roy8"), ExtResource("6_8aamy"), ExtResource("7_e6mn3"), ExtResource("8_ggfah")])
+metadata/_custom_type_script = "uid://b8ydg71rplvx7"

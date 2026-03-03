@@ -53,6 +53,7 @@ project/assembly_name="Legume Traffick"
 
 [editor]
 
+movie_writer/ogv/encoding_speed=2
 movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
@@ -91,6 +92,7 @@ join={
 
 3d_physics/layer_1="terrain"
 3d_physics/layer_2="actors"
+3d_physics/layer_3="Interactable"
 
 [navigation]
 

@@ -15,6 +15,7 @@ script = ExtResource("1_bstpd")
 force = Vector2(2000, 2000)
 satisfactory_distance = 100.0
 separation = 32.0
+lifetime = 10.0
 metadata/_custom_type_script = "uid://cfoetjectcmne"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -23,7 +24,7 @@ anchors_preset = -1
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer"]
+[node name="Label" type="RichTextLabel" parent="PanelContainer" node_paths=PackedStringArray("voice_player")]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -31,6 +32,12 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("2_jf04l")
+voice_player = NodePath("player")
+
+[node name="player" type="AudioStreamPlayer" parent="PanelContainer/Label"]
+unique_name_in_owner = true
+volume_db = -24.091
+max_polyphony = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

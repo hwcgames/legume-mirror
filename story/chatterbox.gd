@@ -68,10 +68,16 @@ func message(message: Message):
 
 func choose(choices: Array[InkChoice]):
 	var balloon: ChoiceBalloon = choice_balloon_scene.instantiate()
+	balloon.anchor = newest
+	var old_separation = newest.separation if newest else 0.
+	if newest:
+		newest.separation = 96.
 	if choice_balloon != null:
 		choice_balloon.queue_free()
 	choice_balloon = balloon
 	add_child(balloon)
 	var choice = await balloon.choose(choices)
 	choice_balloon.queue_free()
+	if newest:
+		newest.separation = old_separation
 	Storyteller.story.ChooseChoiceIndex(choice)

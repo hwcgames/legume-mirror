@@ -31,7 +31,7 @@ func _process(delta: float):
 		if target is Landmark:
 			actor.global_rotation = target.global_rotation
 		done.emit()
-	actor.global_position += (_goal - actor.global_position).limit_length(speed * delta)
+	actor.global_position += actor.global_position.direction_to(_goal) * speed * delta
 
 func _uncovered():
 	self.speed = actor.global_position.distance_to(_goal) / approach_time

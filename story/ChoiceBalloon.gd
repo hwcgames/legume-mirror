@@ -13,11 +13,12 @@ var size: Vector2:
 signal chose(index: int)
 
 func _ready():
-	if anchor == null:
-		global_position = get_viewport_rect().get_center()
-		return
-	var parent_position: Vector2 = anchor.global_position
-	global_position = parent_position + Vector2(0., separation) * (size.y/2) * (anchor.size.y/2)
+	#if anchor == null:
+		#global_position = get_viewport_rect().get_center()
+		#return
+	var parent_position: Vector2 = anchor.global_position if anchor else (get_viewport_rect().size * Vector2(0.5, 1.0))
+	var anchor_size = anchor.size.y if anchor else 0.
+	global_position = parent_position + Vector2(0., separation) * (size.y/2) * (anchor_size/2)
 
 func choose(choices: Array[InkChoice]):
 	for child in %ChoiceParent.get_children():

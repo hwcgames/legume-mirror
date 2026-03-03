@@ -47,8 +47,10 @@ _
 ~ actor_wait("cipher")
 _
 ~ actor_act("cipher", "sit")
-~ set_camera("tunnel_view")
 ~ queue_room("railway/rail_station", "In")
++ [Build railway/rail_station]
+-
+~ set_camera("rail_station")
 ~ actor_wait("intro_train")
 _
 ~ actor_act("intro_train", "open_doors")
@@ -62,7 +64,7 @@ _
 ~ set_camera("_")
 ~ fade_out("black")
 ~ gamemode = "textonly"
-: 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:keyboard
+: 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:typed
 ~ sleep(1)
 _
 ~ gamemode = "diorama"
@@ -70,13 +72,19 @@ _
 intro_train: Next stop, Northold, College and fifth. Now approaching Northold, College and fifth. Doors open on the left at Northold, College and fifth. #ty:loudspeaker
 cipher: That's my stop. #ty:thought
 ~ queue_room("railway/rail_station", "In")
++ [Build railway/rail_station]
+-
+~ spawn_actor("station_attendant", "station_attendant")
+~ set_camera("rail_station")
 ~ actor_wait("intro_train")
+_
 ~ actor_act("intro_train", "open_doors")
 ~ actor_act("cipher", "idle")
-~ actor_release("cipher")
 
 intro_train: This train is now out of service. #ty:loudspeaker
 intro_train: All passengers must leave the train.
+~ actor_release("cipher")
+~ set_camera("_")
 
 ->train_wait
 =train_wait
@@ -89,8 +97,11 @@ intro_train: All passengers must leave the train.
     ~ actor_act("intro_train", "close_doors")
     ~ actor_wait("intro_train")
     _
-    ~ actor_start_following_path("train", "rails")
+    ~ actor_start_following_path("intro_train", "rails")
     ~ actor_release("cipher")
+    ~ actor_wait("intro_train")
+    _
+    ~ despawn_actor("intro_train")
     -> train_station
 * [Think]
     cipher: I should get moving. #ty:thought
@@ -98,7 +109,7 @@ intro_train: All passengers must leave the train.
     intro_train: Say again, all passengers must disembark. #ty:loudspeaker
 * [nag 15]
     intro_train: Attention, remaining passenger. #ty:loudspeaker
-    intro_train: You, in the hoodie.
+    intro_train: Hey, you.
     intro_train: Please leave the car.
 * [nag 15]
     cipher: I really ought to go. #ty:thought
@@ -117,16 +128,20 @@ intro_train: All passengers must leave the train.
 * [Think in station]
     cipher: Woof, that's not a pleasant smell. #ty:thought
     cipher: The place I've been living until now might have spoiled me, but still... #ty:thought
-* [Talk to attendant]
+* [Station Attendant]
     ~ actor_capture("cipher")
-    ~ actor_move("cipher", "talk_to_attendant", "zip")
+    ~ actor_move("cipher", "talk_to_attendant", "glide")
+    ~ set_camera("talk_to_attendant")
     cipher: Hello. #ty:spoken
-    attendant: Hello! How can I help you? #expr:cheery
-    : ...
-    cipher: I guess I don't know what exactly people are supposed to talk about. #ty:thought
+    station_attendant: Hello! How can I help you? #expr:cheery
+    cipher: ... #ty:thought
+    cipher: I guess I don't know what exactly people are supposed to talk about.
     cipher: Have a nice day! #ty:spoken
-    attendant: You too! #expr:fingerguns
-    attendant: ??? #ty:thought
+    station_attendant: You too! #expr:fingerguns
+    station_attendant: ??? #ty:thought
+    ~ set_camera("_")
+    ~ actor_release("cipher")
+    cipher: That wasn't the best first impression...
 -
 ->train_station
 =walk_to_school

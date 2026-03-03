@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsmw0etg767jy"]
+[gd_scene load_steps=11 format=3 uid="uid://dsmw0etg767jy"]
 
 [ext_resource type="Script" uid="uid://dkkwsmv06k637" path="res://actor/actor.gd" id="1_0oyms"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_fe22u"]
+[ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="3_fe22u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
 radial_segments = 8
@@ -19,10 +20,27 @@ radial_segments = 4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0oyms"]
 height = 1.6
 
-[node name="Actor" type="CharacterBody3D" node_paths=PackedStringArray("costume") groups=["actor"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0oyms"]
+height = 1.6
+radius = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe22u"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.64705884, 1)
+billboard_mode = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a26hr"]
+material = SubResource("StandardMaterial3D_fe22u")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 0.5
+radial_segments = 4
+
+[node name="Actor" type="CharacterBody3D" node_paths=PackedStringArray("costume", "interactable") groups=["actor"]]
 collision_layer = 2
 script = ExtResource("1_0oyms")
 costume = NodePath("test_costume")
+interactable = NodePath("Interactable")
 metadata/_custom_type_script = "uid://dkkwsmv06k637"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -47,3 +65,19 @@ mesh = SubResource("CylinderMesh_f68vj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("CapsuleShape3D_0oyms")
+
+[node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_fe22u")
+marker = NodePath("../InteractArrow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CylinderShape3D_0oyms")
+debug_color = Color(0.2845478, 0.63101405, 0, 0.41960785)
+debug_fill = false
+
+[node name="InteractArrow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
+mesh = SubResource("CylinderMesh_a26hr")

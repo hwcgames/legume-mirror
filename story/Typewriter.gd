@@ -3,6 +3,8 @@ class_name Typewriter
 
 var skipping: bool = false
 var typewriter_time: float = 0.02
+var voice: Voice = preload("uid://coudm8kl2h00x")
+@export var voice_player: AudioStreamPlayer
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):

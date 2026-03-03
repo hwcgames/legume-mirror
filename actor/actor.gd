@@ -13,6 +13,7 @@ class_name Actor
 				new_costume.reparent(self , false)
 			else:
 				add_child(new_costume)
+@export var interactable: Interactable
 var head: Marker3D:
 	get:
 		return costume.head
@@ -26,6 +27,8 @@ var mode_stack: Array[ActorMode] = []
 
 func _ready():
 	add_to_group("actor")
+	if interactable:
+		interactable.choices.insert(0, "%s" % human_name)
 
 var top_mode: ActorMode:
 	get:

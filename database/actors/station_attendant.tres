@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActorSheet" load_steps=3 format=3 uid="uid://c4oemkhnx5w8m"]
+
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_fypuy"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_i3bmq"]
+
+[resource]
+script = ExtResource("2_i3bmq")
+name = &"Station Attendant"
+metadata/_custom_type_script = "uid://cym7pt0vq3ply"

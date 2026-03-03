@@ -3,7 +3,16 @@ INCLUDE test.ink
 INCLUDE prologue.ink
 
 ~ dialogue_choice()
-+ [Test]
++ [Begin]
+-
+
+: Hello, world! #ty:typed
+: This is a prototype/demo of my RPG, currently codenamed "Legume Traffick."
+: Please treat it kindly.
+: Where would you like to begin?
+
+~ dialogue_choice()
++ [In the test dungeon]
     ->test
-+ [Begin the game]
-    -> prologue
++ [At the start of the game]
+    -> prologue 

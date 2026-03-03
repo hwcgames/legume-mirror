@@ -10,6 +10,12 @@ var actor: Actor
 var instructions: Array[Instruction]
 var box: String
 var expression: String
+const voices_for_box: Dictionary = {
+	"spoken": "typed",
+	"loudspeaker": "typed",
+	"thought": "silent",
+	"written": "written"
+}
 
 static func from_str(str: String, tags: Array[String]) -> Message:
 	var msg = Message.new()
@@ -20,11 +26,13 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	var line = str.substr(split_index + 2)
 	msg.instructions = Instruction.parse(line)
 	for tag in tags:
-		if tag.begins_with("box:"):
-			last_box = tag.trim_prefix("box:")
+		if tag.begins_with("ty:"):
+			last_box = tag.trim_prefix("ty:")
 		if tag.begins_with("expr:"):
 			msg.expression = tag.trim_prefix("expr:")
 	msg.box = last_box
+	if msg.box in voices_for_box: 
+		msg.instructions.insert(0, ChangeVoice.new(voices_for_box[msg.box]))
 	return msg
 
 @abstract class Instruction extends RefCounted:
@@ -80,6 +88,11 @@ class TextLeaf extends Instruction:
 		var in_tag = false
 		while idx < len(text):
 			var current_char = text[idx]
+			if label.voice and \
+				current_char != ' ' and \
+				label.voice_player and \
+				(label.voice_player.get_playback_position() > 0.1 or not label.voice_player.playing):
+				label.voice_player.play()
 			idx += 1
 			if current_char == '[':
 				in_tag = true
@@ -136,3 +149,18 @@ class StartTypewriter extends Instruction:
 		pass
 	func execute(label: Typewriter):
 		label.skipping = false
+
+class ChangeVoice extends Instruction:
+	var voice: Voice
+	func _init(voice: String):
+		self.voice = load("res://database/voices/%s.tres" % voice)
+	func prepare_label(label: Typewriter):
+		pass
+	func execute(label: Typewriter):
+		if !voice:
+			return
+		label.voice = self.voice
+		var stream := AudioStreamRandomizer.new()
+		for sound in self.voice.sounds:
+			stream.add_stream(-1, sound)
+		label.voice_player.stream = stream
