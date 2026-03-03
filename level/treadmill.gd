@@ -234,4 +234,4 @@ func serve_queue(candidates: Array[RoomInfo], seam: ProceduralSeam) -> RoomInfo:
 		var a_prox = a.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
 		var b_prox = b.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
 		return a_prox < b_prox)
-	return candidates.get(0)
+	return candidates.filter(func(r: RoomInfo): return r.autoplace).get(0)

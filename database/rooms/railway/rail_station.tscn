@@ -47,7 +47,7 @@ metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
 [node name="Street" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 4, -50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 2.5, -50)
 script = ExtResource("2_g43ak")
 profile = &"8x6"
 wants_room_type = 1
