@@ -197,7 +197,7 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var actor = Actor.find(actor_name)
 	var mode: ActorMode
 	match style:
-		"walk":
+		"walk", "run":
 			mode = ActorModePathfind.new()
 			mode.pathfind_target = landmark.global_position
 		"glide":

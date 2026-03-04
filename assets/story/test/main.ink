@@ -15,4 +15,11 @@ INCLUDE prologue.ink
 + [In the test dungeon]
     ->test
 + [At the start of the game]
-    -> prologue 
+    -> prologue
++ [On the way to school]
+    ~ change_level("intro_railway", "walk_to_school")
+    _
+    ~ spawn_party("default")
+    ~ actor_capture("cipher")
+    ~ actor_start_following_path("cipher", "forward")
+    -> prologue.walk_to_school_begin_point

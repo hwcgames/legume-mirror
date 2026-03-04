@@ -7,7 +7,8 @@ class_name Interactable
 var interactable: bool:
 	get:
 		for choice_name in choices:
-			var choice = Storyteller.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name)).get(0)
+			var matching = Storyteller.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name))
+			var choice = matching.get(0) if not matching.is_empty() else null
 			if choice:
 				return true
 		return false

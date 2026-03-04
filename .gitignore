@@ -1,4 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /.direnv
-*.blend1
+# Incremental saves
+*.blend*
+!*.blend
+/movie.ogv*

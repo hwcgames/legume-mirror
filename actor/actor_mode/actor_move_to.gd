@@ -22,6 +22,12 @@ func _init(actor: Actor,
 		printerr("Goal should be a vector3 or a node3D")
 	#self.approach_time = approach_time
 	self.speed = speed
+	actor.get_tree().create_timer(3.0 * actor.global_position.distance_to(_goal) / speed).timeout.connect(func():
+		if finished:
+			return
+		print("Emergency teleport!")
+		actor.global_position = _goal
+		finished = true)
 
 signal done
 func _process(delta: float):

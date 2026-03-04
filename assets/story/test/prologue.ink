@@ -148,16 +148,28 @@ intro_train: All passengers must leave the train.
 ~ actor_start_following_path("cipher", "to_highschool_prologue")
 ~ sleep(3)
 
+- (walk_to_school_begin_point)
+
 cipher: My first priority is registering with the school. #ty:thought
 cipher: I'm a little later than I expected, and I couldn't get a straight answer on when they close... I should take a shortcut.
-~ queue_room("prologue_alleyway", "in")
+~ queue_room("prologue_alleyway_entrance", "In")
++ [Build prologue_alleyway_entrance]
+-
+cipher: ..? #ty:thought
 ~ actor_wait("cipher")
+_
+~ sleep(0.5)
+_
 ~ actor_move("cipher", "look_into_alley", "walk")
+~ actor_wait("cipher")
+_
 cipher: I don't remember this from the map...
 cipher: But it should be in the right direction, and I can see a light at the end.
 ~ actor_start_following_path("cipher", "into_alley")
 ~ sleep(5)
+_
 ~ actor_release("cipher")
+_
 ~ actor_capture("cipher")
 ~ actor_act("cipher", "shiver")
 cipher: Suddenly, it feels like there's a lead weight on my chest...
@@ -165,17 +177,20 @@ cipher: Suddenly, it feels like there's a lead weight on my chest...
 cipher: ...The end of the alleyway's gone dark.
 cipher: I'm getting a bad feeling about this.
 ~ actor_start_following_path("cipher", "backtrack")
+~ queue_room("prologue_alleyway_deadend", "In")
 ~ actor_wait("cipher")
+_
 cipher: What the..? #expr:fear
 ~ actor_move("cipher", "backtrack_wall", "run")
 ~ actor_act("cipher", "pound_on_wall")
 ~ actor_wait("cipher")
+_
 cipher: It's as solid as it looks.
 ~ actor_release("cipher")
 
 -> free_in_alleyway
 = free_in_alleyway
-+ [Unload intro_backtrack]
++ [Unload prologue_alleyway_deadend]
 * [Inspect backtrack_wall]
     ~ actor_capture("cipher")
     cipher: Still no headway here.

@@ -41,15 +41,18 @@ func _on_label_resized():
 		%Label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		%Label.custom_minimum_size = Vector2(max_width, 0.)
 
+@onready var goal_position: Vector2 = global_position
+
 func _physics_process(delta: float) -> void:
 	if not busy:
 		elapsed += delta
 	(%CollisionShape2D.shape as RectangleShape2D).size = size
 	var root_position = root_screen_position()
 	var character_up_position = root_position.y - separation - size.y / 2
-	var balloon_up_position = ((next_balloon.global_position.y - next_balloon.size.y/2  - separation - size.y / 2) if next_balloon != null else character_up_position)
-	var goal_position: Vector2 = Vector2(
-		next_balloon.global_position.x if next_balloon != null and next_balloon.character_root == character_root else root_position.x,
+	var balloon_position = lerp(next_balloon.global_position, next_balloon.goal_position, 0.5) if next_balloon else null
+	var balloon_up_position = ((balloon_position.y - next_balloon.size.y/2  - separation - size.y / 2) if next_balloon != null else character_up_position)
+	goal_position = Vector2(
+		balloon_position.x if next_balloon != null and next_balloon.character_root == character_root else root_position.x,
 		min(balloon_up_position, character_up_position)
 	)
 	var force_this_tick = global_position.direction_to(goal_position) \

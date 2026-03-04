@@ -109,10 +109,13 @@ auto_follow_distance = true
 auto_follow_distance_min = 30.0
 auto_follow_distance_max = 50.0
 spring_length = 4.3
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.99999946, 0, 0, 0, 0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 21.21318, 21.21318)
+top_level = true
 current = true
 size = 20.0
 

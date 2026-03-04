@@ -21,6 +21,8 @@ func _ready():
 	keep_loaded_lock.shared_free.connect(update_loading)
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
+	collision_layer = 2
+	collision_mask = 2
 	#if battlefield != null:
 		#player_entered.connect(func(_p):
 			#battlefield.players.clear()
@@ -28,6 +30,9 @@ func _ready():
 				#battlefield.players.push_back(player)
 			#battlefield.battle(),
 		#ConnectFlags.CONNECT_ONE_SHOT)
+
+func _exit_tree() -> void:
+	Storyteller.choose_if_available(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
 
 func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):

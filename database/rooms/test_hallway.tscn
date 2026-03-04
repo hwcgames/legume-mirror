@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh67uun11xxrp"]
+[gd_scene load_steps=7 format=3 uid="uid://dh67uun11xxrp"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_goguy"]
 [ext_resource type="PackedScene" uid="uid://cbnn3cvl31krh" path="res://assets/rooms/test-room2.blend" id="2_vs58b"]
 [ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_nogmd"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="4_kn7nh"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="5_akbjl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2owtb"]
 size = Vector3(8.400001, 6.2000003, 12)
@@ -45,3 +46,7 @@ script = ExtResource("4_kn7nh")
 next_seam = NodePath("../Out")
 next_seam_key = &"forward"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
+
+[node name="default" type="Marker3D" parent="."]
+script = ExtResource("5_akbjl")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"

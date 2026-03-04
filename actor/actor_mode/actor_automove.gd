@@ -19,12 +19,13 @@ func _activate():
 func _uncovered():
 	var old_automove = automove
 	automove = null
-	if old_automove.next_automove != null:
-		automove = old_automove.next_automove
-	if old_automove.next_seam != null:
-		var partner = old_automove.next_seam.partner
-		if partner != null:
-			automove = partner.automoves.get(old_automove.next_seam_key)
+	if (is_instance_valid(old_automove)):
+		if old_automove.next_automove != null:
+			automove = old_automove.next_automove
+		if old_automove.next_seam != null:
+			var partner = old_automove.next_seam.partner
+			if partner != null:
+				automove = partner.automoves.get(old_automove.next_seam_key)
 	if automove == null:
 		print("Automove done")
 	await _activate()

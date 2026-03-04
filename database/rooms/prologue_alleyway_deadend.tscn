@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://cktev6135pdvg"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_c03a2"]
+[ext_resource type="PackedScene" uid="uid://bqn05eiwadj88" path="res://assets/rooms/prologue_alleyway_deadend.blend" id="2_c03a2"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_lqyqj"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="4_jt8vl"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_ij1ts"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_rh4yb"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_dnqoo"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_5pg0m"]
+[ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="9_vckgd"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="10_lqyqj"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="11_jt8vl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pd5f"]
+size = Vector3(4, 6, 8)
+
+[sub_resource type="Resource" id="Resource_lqyqj"]
+script = ExtResource("6_rh4yb")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_c03a2"]
+script = ExtResource("7_dnqoo")
+fov = 38.5
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Environment" id="Environment_cfhh3"]
+background_energy_multiplier = 0.25
+ambient_light_energy = 0.2
+fog_enabled = true
+fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
+fog_density = 0.2981
+
+[sub_resource type="Environment" id="Environment_jt8vl"]
+background_energy_multiplier = 0.25
+ambient_light_energy = 0.2
+fog_enabled = true
+fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
+fog_density = 0.2981
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jt8vl"]
+size = Vector3(5, 5, 2)
+
+[node name="PrologueAlleyway" type="Area3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_c03a2")
+camera = NodePath("alleyway_default_camera")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="prologue_alleyway_deadend" parent="." instance=ExtResource("2_c03a2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_7pd5f")
+
+[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("3_lqyqj")
+profile = &"4x6"
+wants_room_type = 1
+automoves = {
+"backtrack": NodePath("../backtrack")
+}
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="LeaderProxy" type="Node3D" parent="."]
+script = ExtResource("4_jt8vl")
+metadata/_custom_type_script = "uid://bg37o5ga3euip"
+
+[node name="alleyway_default_camera" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.97771734, -0.1521937, 0.14449143, -0.10266152, 0.9473816, 0.30318993, -0.18303129, 0.28160635, -0.941903, 1.465, 4.2349997, -9.55)
+script = ExtResource("5_ij1ts")
+look_at_mode = 2
+look_at_target = NodePath("../LeaderProxy")
+tween_resource = SubResource("Resource_lqyqj")
+camera_3d_resource = SubResource("Resource_c03a2")
+environment = SubResource("Environment_cfhh3")
+follow_offset = Vector3(-1.435, 2.235, -4.55)
+follow_damping = true
+look_at_offset = Vector3(0, 1.16, 0)
+look_at_damping = true
+up = Vector3(-0.105, 1, 0)
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.97771734, -0.1521937, 0.14449143, -0.10266152, 0.9473816, 0.30318993, -0.18303129, 0.28160635, -0.941903, 1.465, 4.2349997, -9.55)
+environment = SubResource("Environment_jt8vl")
+fov = 38.5
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("8_5pg0m")
+
+[node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("9_vckgd")
+choices = Array[String](["Inspect backtrack_wall"])
+marker = NodePath("Label3D")
+metadata/_custom_type_script = "uid://c5hjplxfgh5hc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
+shape = SubResource("BoxShape3D_jt8vl")
+
+[node name="Label3D" type="Label3D" parent="Interactable"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 3, -0.099999905)
+pixel_size = 0.0115
+text = "Backtrack...?"
+
+[node name="backtrack" type="Marker3D" parent="."]
+script = ExtResource("10_lqyqj")
+metadata/_custom_type_script = "uid://d1625cme8sl48"
+
+[node name="backtrack_wall" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3)
+script = ExtResource("11_jt8vl")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
