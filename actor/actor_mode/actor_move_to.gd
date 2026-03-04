@@ -22,7 +22,7 @@ func _init(actor: Actor,
 		printerr("Goal should be a vector3 or a node3D")
 	#self.approach_time = approach_time
 	self.speed = speed
-	actor.get_tree().create_timer(3.0 * actor.global_position.distance_to(_goal) / speed).timeout.connect(func():
+	actor.get_tree().create_timer(1.5 * actor.global_position.distance_to(_goal) / speed).timeout.connect(func():
 		if finished:
 			return
 		print("Emergency teleport!")
@@ -31,7 +31,7 @@ func _init(actor: Actor,
 
 signal done
 func _process(delta: float):
-	if actor.global_position.distance_to(_goal) < 0.4:
+	if actor.global_position.distance_to(_goal) < 0.01:
 		actor.play("idle")
 		finished = true
 		if target is Landmark:
