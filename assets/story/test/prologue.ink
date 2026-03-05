@@ -12,7 +12,10 @@ _
 ~ gamemode = "textonly"
 ~ actor_act("cipher", "open_journal")
 
-: %m:dd%Dear Diary%/m:dd%%p:2%%strike:dd% To whom it may concern; #ty:written
+: Dear Diary;
+~ sleep(2)
+_
+: Or... To whom it may concern; #ty:written
 : If you happen to find this... Don't bother trying to return it to its rightful owner.%p:1% It isn't wanted, and I'm quite confident you couldn't find me even if it was. It's all yours, though I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
 : It's a curious emotion - at least, I think it's an emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to [i]partition[/i] their life so completely.
 : I've never been a stranger before. Painting a self-portrait from a blank canvas... The thought is exhilarating, don't you think? Though I imagine you take it for granted.
@@ -193,14 +196,19 @@ cipher: It's as solid as it looks.
 + [Unload prologue_alleyway_deadend]
 * [Inspect backtrack_wall]
     ~ actor_capture("cipher")
-    cipher: Still no headway here.
+    cipher: I just... came from there, didn't I?
+    ~ actor_release("cipher")
+    -> free_in_alleyway
+* [Inspect backtrack_wall]
+    ~ actor_capture("cipher")
+    cipher: What's going on here?
     ~ actor_release("cipher")
     -> free_in_alleyway
 - 
 
 + [Inspect backtrack_wall]
     ~ actor_capture("cipher")
-    cipher: Did it... move?
+    cipher: It definitely wasn't that far forward before.
     ~ actor_release("cipher")
     ~ sleep(2)
     -> hear_casey

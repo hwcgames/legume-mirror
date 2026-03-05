@@ -12,4 +12,5 @@
 [resource]
 script = ExtResource("1_v31j2")
 sounds = Array[AudioStream]([ExtResource("2_j2gli"), ExtResource("3_ua08k"), ExtResource("4_06sk6"), ExtResource("5_3roy8"), ExtResource("6_8aamy"), ExtResource("7_e6mn3"), ExtResource("8_ggfah")])
+min_delay = 0.2
 metadata/_custom_type_script = "uid://b8ydg71rplvx7"

@@ -13,7 +13,7 @@ var expression: String
 const voices_for_box: Dictionary = {
 	"spoken": "typed",
 	"loudspeaker": "typed",
-	"thought": "silent",
+	"thought": "pling",
 	"written": "written"
 }
 
@@ -31,7 +31,7 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 		if tag.begins_with("expr:"):
 			msg.expression = tag.trim_prefix("expr:")
 	msg.box = last_box
-	if msg.box in voices_for_box: 
+	if msg.box in voices_for_box:
 		msg.instructions.insert(0, ChangeVoice.new(voices_for_box[msg.box]))
 	return msg
 
@@ -47,7 +47,7 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 			return rest
 		str = str.trim_prefix("%")
 		var second_percent = str.find("%")
-		rest.append_array(parse(str.substr(second_percent+1)))
+		rest.append_array(parse(str.substr(second_percent + 1)))
 		str = str.substr(0, second_percent)
 		print(str.split(":"))
 		match Array(str.split(":")):
@@ -65,6 +65,8 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 				rest.push_front(Instant.new())
 			["tw"]:
 				rest.push_front(StartTypewriter.new())
+			["v", var voice]:
+				rest.push_front(ChangeVoice.new(voice))
 			_:
 				printerr("Malformed inline command '%s'" % str)
 		return rest
@@ -72,10 +74,15 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	@abstract func prepare_label(label: Typewriter)
 	@abstract func execute(label: Typewriter)
 
+
 class TextLeaf extends Instruction:
+	var last_voice: float = -999.
+	var time: float = 0.
 	var text: String
 	func _init(text: String):
 		self.text = text
+		Storyteller.get_tree().physics_frame.connect(func():
+			self.time += 1.0 / Engine.physics_ticks_per_second)
 	var start: int
 	var end: int
 	var idx = 0
@@ -88,11 +95,6 @@ class TextLeaf extends Instruction:
 		var in_tag = false
 		while idx < len(text):
 			var current_char = text[idx]
-			if label.voice and \
-				current_char != ' ' and \
-				label.voice_player and \
-				(label.voice_player.get_playback_position() > 0.1 or not label.voice_player.playing):
-				label.voice_player.play()
 			idx += 1
 			if current_char == '[':
 				in_tag = true
@@ -102,6 +104,13 @@ class TextLeaf extends Instruction:
 			if in_tag:
 				continue
 			label.visible_characters += 1
+			if label.voice and \
+				idx < len(text) and \
+				current_char not in ' !,.?"\'' and \
+				label.voice_player and \
+				(self.time - last_voice) > label.voice.min_delay:
+					last_voice = self.time
+					label.voice_player.play()
 			var wait_mul: float = 1.
 			match current_char:
 				".", "!", "?", "­—": wait_mul = 30.
@@ -164,3 +173,4 @@ class ChangeVoice extends Instruction:
 		for sound in self.voice.sounds:
 			stream.add_stream(-1, sound)
 		label.voice_player.stream = stream
+		label.voice_player.max_polyphony = voice.polyphony

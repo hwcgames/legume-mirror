@@ -80,10 +80,13 @@ follow_damping = true
 look_at_offset = Vector3(0, 1.16, 0)
 look_at_damping = true
 up = Vector3(-0.105, 1, 0)
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.97771734, -0.1521937, 0.14449143, -0.10266152, 0.9473816, 0.30318993, -0.18303129, 0.28160635, -0.941903, 1.465, 4.2349997, -9.55)
+top_level = true
 environment = SubResource("Environment_jt8vl")
 fov = 38.5
 
@@ -106,7 +109,7 @@ shape = SubResource("BoxShape3D_jt8vl")
 [node name="Label3D" type="Label3D" parent="Interactable"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 3, -0.099999905)
 pixel_size = 0.0115
-text = "Backtrack...?"
+text = "A wall?"
 
 [node name="backtrack" type="Marker3D" parent="."]
 script = ExtResource("10_lqyqj")

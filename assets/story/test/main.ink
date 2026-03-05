@@ -7,7 +7,7 @@ INCLUDE prologue.ink
 -
 
 : Hello, world! #ty:written
-: This is a prototype/demo of my RPG, currently codenamed "Legume Traffick."
+: This is a [i]very[/i] early prototype of my RPG, currently codenamed %v:typed%"Legume Traffick."
 : Please treat it kindly.
 : Where would you like to begin?
 

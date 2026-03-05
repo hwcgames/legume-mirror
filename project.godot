@@ -55,6 +55,7 @@ project/assembly_name="Legume Traffick"
 
 movie_writer/ogv/encoding_speed=2
 movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
+movie_writer/disable_vsync=true
 
 [editor_plugins]
 

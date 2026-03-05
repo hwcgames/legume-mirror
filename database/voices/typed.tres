@@ -28,4 +28,5 @@
 [resource]
 script = ExtResource("1_fewhh")
 sounds = Array[AudioStream]([ExtResource("2_jthbv"), ExtResource("3_8dbso"), ExtResource("4_kgwjf"), ExtResource("5_ha2si"), ExtResource("6_fq2k8"), ExtResource("7_c5edk"), ExtResource("8_cc0q3"), ExtResource("9_tmiiu"), ExtResource("10_jiumq"), ExtResource("11_74dvq"), ExtResource("12_htrsq"), ExtResource("13_mhr8s"), ExtResource("14_l54l4"), ExtResource("15_v1etc"), ExtResource("16_qb7pe"), ExtResource("17_rxxd0"), ExtResource("18_1mjto"), ExtResource("19_qv5wu"), ExtResource("20_7ja3g"), ExtResource("21_c4m8j"), ExtResource("22_k3q2e"), ExtResource("23_o42uv"), ExtResource("24_qpd04")])
+min_delay = 0.0
 metadata/_custom_type_script = "uid://b8ydg71rplvx7"
