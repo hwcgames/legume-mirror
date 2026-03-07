@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ikv825ws0bxh"]
+[gd_scene format=3 uid="uid://ikv825ws0bxh"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_7pd5f"]
 [ext_resource type="PackedScene" uid="uid://or2wlhekji3w" path="res://assets/rooms/prologue_alleyway_entrance.blend" id="2_w8kx4"]
@@ -15,24 +15,24 @@ size = Vector3(8, 6, 8)
 script = ExtResource("4_w8kx4")
 duration = 0.0
 
-[node name="Room" type="Area3D" node_paths=PackedStringArray("camera")]
+[node name="Room" type="Area3D" unique_id=1993831611 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_7pd5f")
 camera = NodePath("dramatic_from_alleyway")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 
-[node name="prologue_alleyway_entrance" parent="." instance=ExtResource("2_w8kx4")]
+[node name="prologue_alleyway_entrance" parent="." unique_id=1405523009 instance=ExtResource("2_w8kx4")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=396076169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_vgiwa")
 
-[node name="dramatic_from_alleyway" type="Node3D" parent="."]
+[node name="dramatic_from_alleyway" type="Node3D" parent="." unique_id=2143738438]
 transform = Transform3D(-0.9945219, 0.10452848, 8.444391e-08, 0.100966744, 0.96063435, -0.258819, -0.027054045, -0.25740117, -0.96592575, 0, 0.3, -8.3)
 script = ExtResource("3_qil6o")
 tween_resource = SubResource("Resource_nftlj")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+[node name="In" type="Marker3D" parent="." unique_id=659178124 node_paths=PackedStringArray("automoves")]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
 script = ExtResource("6_nftlj")
@@ -44,7 +44,7 @@ automoves = {
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="Out" type="Marker3D" parent="."]
+[node name="Out" type="Marker3D" parent="." unique_id=1945643883]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 0, 0)
 script = ExtResource("6_nftlj")
@@ -52,7 +52,7 @@ profile = &"8x6"
 wants_room_type = 1
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="Alley" type="Marker3D" parent="."]
+[node name="Alley" type="Marker3D" parent="." unique_id=848324256]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("6_nftlj")
@@ -60,17 +60,17 @@ profile = &"4x6"
 wants_room_type = 1
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="entry" type="Marker3D" parent="."]
+[node name="entry" type="Marker3D" parent="." unique_id=692196387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 script = ExtResource("7_cfhh3")
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="look_into_alley" type="Marker3D" parent="."]
+[node name="look_into_alley" type="Marker3D" parent="." unique_id=1027994412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 script = ExtResource("8_hx22r")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="into_alley" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam")]
+[node name="into_alley" type="Marker3D" parent="." unique_id=695212352 node_paths=PackedStringArray("next_seam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.6)
 script = ExtResource("7_cfhh3")
 next_seam = NodePath("../Alley")

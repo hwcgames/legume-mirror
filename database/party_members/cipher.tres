@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterSheet" load_steps=9 format=3 uid="uid://xj8psb81wmw1"]
+[gd_resource type="Resource" script_class="CharacterSheet" format=3 uid="uid://xj8psb81wmw1"]
 
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="1_bmh8q"]
 [ext_resource type="PackedScene" uid="uid://d21yudvneounm" path="res://battle/planner/test_planner.tscn" id="1_wl511"]

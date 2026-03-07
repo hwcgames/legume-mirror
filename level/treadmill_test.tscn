@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw0r478jvhrnn"]
+[gd_scene format=3 uid="uid://cw0r478jvhrnn"]
 
 [ext_resource type="Script" uid="uid://dispg264up47x" path="res://level/treadmill.gd" id="1_dpoyh"]
 [ext_resource type="Script" uid="uid://b6qb50juwahol" path="res://level/mapmen.gd" id="1_yyy5f"]
@@ -59,42 +59,42 @@ script = ExtResource("16_d1lah")
 size = 20.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1942801477]
 
-[node name="DungeonMap" type="Node" parent="." node_paths=PackedStringArray("treadmill")]
+[node name="DungeonMap" type="Node" parent="." unique_id=1087382368 node_paths=PackedStringArray("treadmill")]
 unique_name_in_owner = true
 script = ExtResource("1_yyy5f")
 treadmill = NodePath("../Treadmill")
 start_junction = ExtResource("2_22l80")
 metadata/_custom_type_script = "uid://b6qb50juwahol"
 
-[node name="Control" type="Node2D" parent="DungeonMap" node_paths=PackedStringArray("map")]
+[node name="Control" type="Node2D" parent="DungeonMap" unique_id=1716469755 node_paths=PackedStringArray("map")]
 position = Vector2(76.45, 0)
 script = SubResource("GDScript_yyy5f")
 map = NodePath("..")
 
-[node name="Button" type="Button" parent="DungeonMap"]
+[node name="Button" type="Button" parent="DungeonMap" unique_id=1154591830]
 visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Regen"
 
-[node name="Treadmill" type="Marker3D" parent="."]
+[node name="Treadmill" type="Marker3D" parent="." unique_id=1840870154]
 unique_name_in_owner = true
 script = ExtResource("1_dpoyh")
 roomset = ExtResource("4_o5yiu")
 metadata/_custom_type_script = "uid://dispg264up47x"
 
-[node name="PlayersJoin" type="Node" parent="."]
+[node name="PlayersJoin" type="Node" parent="." unique_id=1232967464]
 script = SubResource("GDScript_dpoyh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2145455893]
 transform = Transform3D(0.9659258, 1.131334e-08, -0.25881904, 0.25881904, -4.222196e-08, 0.9659258, 0, -1, -4.371139e-08, 0, 0, 0)
 
-[node name="Leader" type="Node3D" parent="."]
+[node name="Leader" type="Node3D" parent="." unique_id=531387770]
 script = ExtResource("5_p7oxd")
 
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_targets")]
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=250292515 node_paths=PackedStringArray("follow_targets")]
 transform = Transform3D(0.99999946, 0, 0, 0, 0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 21.21318, 21.21318)
 top_level = true
 script = ExtResource("15_d1lah")
@@ -113,13 +113,13 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1342583119]
 transform = Transform3D(0.99999946, 0, 0, 0, 0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 21.21318, 21.21318)
 top_level = true
 current = true
 size = 20.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1693573429]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("17_yyy5f")

@@ -29,9 +29,13 @@ func _init(actor: Actor,
 		actor.global_position = _goal
 		finished = true)
 
+func _deactivate():
+	finished = true
+
 signal done
 func _process(delta: float):
-	if actor.global_position.distance_to(_goal) < 0.05:
+	if actor.global_position.distance_to(_goal) < 0.5:
+		actor.global_position = _goal
 		actor.play("idle")
 		finished = true
 		if target is Landmark:

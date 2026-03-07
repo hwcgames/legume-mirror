@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cq5d80a3b3ng0"]
+[gd_scene format=3 uid="uid://cq5d80a3b3ng0"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_7pd5f"]
 [ext_resource type="PackedScene" uid="uid://byoxcwolgrgv3" path="res://assets/rooms/prologue_alleyway.blend" id="2_7pd5f"]
@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="4_u43fo"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_w8kx4"]
 [ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="6_nftlj"]
-[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_u43fo"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_nftlj"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_hx22r"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="9_cfhh3"]
 [ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="9_hx22r"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="10_hx22r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pd5f"]
 size = Vector3(4, 6, 8)
@@ -17,21 +17,13 @@ size = Vector3(4, 6, 8)
 [sub_resource type="Resource" id="Resource_nftlj"]
 script = ExtResource("4_w8kx4")
 duration = 0.0
-ease = 1
 
-[sub_resource type="Resource" id="Resource_cfhh3"]
-script = ExtResource("7_u43fo")
-fov = 119.0
+[sub_resource type="Resource" id="Resource_nn705"]
+script = ExtResource("7_hx22r")
+fov = 123.5
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="Environment" id="Environment_cfhh3"]
-background_energy_multiplier = 0.25
-ambient_light_energy = 0.2
-fog_enabled = true
-fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
-fog_density = 0.1811
-
-[sub_resource type="Environment" id="Environment_hx22r"]
 background_energy_multiplier = 0.25
 ambient_light_energy = 0.2
 fog_enabled = true
@@ -45,18 +37,18 @@ _data = {
 }
 point_count = 2
 
-[node name="PrologueAlleyway" type="Area3D" node_paths=PackedStringArray("camera")]
+[node name="PrologueAlleyway" type="Area3D" unique_id=1688798193 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_7pd5f")
 camera = NodePath("alleyway_default_camera")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 
-[node name="prologue_alleyway" parent="." instance=ExtResource("2_7pd5f")]
+[node name="prologue_alleyway" parent="." unique_id=730512855 instance=ExtResource("2_7pd5f")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1110319396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_7pd5f")
 
-[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+[node name="In" type="Marker3D" parent="." unique_id=1908536301 node_paths=PackedStringArray("automoves")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("6_nftlj")
@@ -67,7 +59,7 @@ automoves = {
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="Out" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+[node name="Out" type="Marker3D" parent="." unique_id=1546762961 node_paths=PackedStringArray("automoves")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 4)
 script = ExtResource("6_nftlj")
@@ -78,65 +70,64 @@ automoves = {
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="LeaderProxy" type="Node3D" parent="."]
+[node name="LeaderProxy" type="Node3D" parent="." unique_id=1150617585]
 script = ExtResource("4_u43fo")
 metadata/_custom_type_script = "uid://bg37o5ga3euip"
 
-[node name="Node3D" type="Node3D" parent="LeaderProxy"]
-transform = Transform3D(-0.90804565, -0.13103423, -0.39784843, -0.22834407, 0.95112133, 0.2079117, 0.3511586, 0.2796396, -0.89358234, -1.24, 2.6, -3.35)
+[node name="Node3D" type="Node3D" parent="LeaderProxy" unique_id=441478263]
+transform = Transform3D(-0.86658144, 0.37607595, -0.3280295, 0.25818184, 0.90038705, 0.35020736, 0.42705816, 0.21879192, -0.87735474, -1.24, 2.6, -3.35)
 
-[node name="alleyway_default_camera" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "follow_path", "look_at_target")]
-transform = Transform3D(-0.9441902, -0.03817903, -0.3271776, -0.1559338, 0.9267221, 0.341862, 0.2901512, 0.37380177, -0.8809547, -1.24, 2.6, -3.35)
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="LeaderProxy/Node3D" unique_id=183496418]
+remote_path = NodePath("../../../alleyway_default_camera")
+update_position = false
+
+[node name="alleyway_default_camera" type="Node3D" parent="." unique_id=1205239738 node_paths=PackedStringArray("follow_target", "follow_path")]
+transform = Transform3D(-0.86658144, 0.37607595, -0.3280295, 0.25818184, 0.90038705, 0.35020736, 0.42705816, 0.21879192, -0.87735474, -1.25, 2.6, -3.3500004)
 top_level = true
 script = ExtResource("3_qil6o")
-follow_mode = 2
+follow_mode = 4
 follow_target = NodePath("../LeaderProxy/Node3D")
 follow_path = NodePath("../Path3D")
-look_at_mode = 2
-look_at_target = NodePath("../LeaderProxy")
 tween_resource = SubResource("Resource_nftlj")
-camera_3d_resource = SubResource("Resource_cfhh3")
+camera_3d_resource = SubResource("Resource_nn705")
 environment = SubResource("Environment_cfhh3")
-follow_damping = true
+follow_damping_value = Vector3(0.02, 0.02, 0.02)
 look_at_offset = Vector3(0, 1.3, 0)
 look_at_damping = true
-up = Vector3(-0.165, 1, 0)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+draw_follow_line = true
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+metadata/move_align = NodePath("../WalkAlignment")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.944191, -0.038179044, -0.32717827, -0.15593393, 0.92672247, 0.34186268, 0.29015145, 0.3738019, -0.8809564, -1.24, 2.6, -3.35)
-top_level = true
-environment = SubResource("Environment_hx22r")
-fov = 119.0
+[node name="WalkAlignment" type="Marker3D" parent="." unique_id=1266864116]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("10_hx22r")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("8_nftlj")
-
-[node name="forward" type="Marker3D" parent="." node_paths=PackedStringArray("next_automove")]
+[node name="forward" type="Marker3D" parent="." unique_id=1003162444 node_paths=PackedStringArray("next_automove")]
 script = ExtResource("9_hx22r")
 next_automove = NodePath("AutomoveBreadcrumb")
 metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
-[node name="AutomoveBreadcrumb" type="Marker3D" parent="forward" node_paths=PackedStringArray("next_seam")]
+[node name="AutomoveBreadcrumb" type="Marker3D" parent="forward" unique_id=1140185723 node_paths=PackedStringArray("next_seam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 script = ExtResource("9_cfhh3")
 next_seam = NodePath("../../Out")
 next_seam_key = &"forward"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="backtrack" type="Marker3D" parent="." node_paths=PackedStringArray("next_automove")]
+[node name="backtrack" type="Marker3D" parent="." unique_id=2094238283 node_paths=PackedStringArray("next_automove")]
 script = ExtResource("9_hx22r")
 next_automove = NodePath("backtrack_")
 metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
-[node name="backtrack_" type="Marker3D" parent="backtrack" node_paths=PackedStringArray("next_seam")]
+[node name="backtrack_" type="Marker3D" parent="backtrack" unique_id=1136798315 node_paths=PackedStringArray("next_seam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("9_cfhh3")
 next_seam = NodePath("../../In")
 next_seam_key = &"backtrack"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="Path3D" type="Path3D" parent="." unique_id=1756218470]
 curve = SubResource("Curve3D_nn705")

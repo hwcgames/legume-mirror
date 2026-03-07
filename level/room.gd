@@ -41,7 +41,9 @@ func _body_entered(body: PhysicsBody3D):
 	if body is PartyMember:
 		player_entered.emit(body)
 		if players_inside == 0 and camera != null:
-			camera.priority += camera_priority_offset
+			get_tree().process_frame.connect(func():
+				camera.priority += camera_priority_offset
+			, CONNECT_ONE_SHOT)
 		players_inside += 1
 func _body_exited(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):

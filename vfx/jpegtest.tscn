@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dlgw7w5wm0qsv"]
+[gd_scene format=3 uid="uid://dlgw7w5wm0qsv"]
 
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_ncmek"]
 [ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://vfx/jpeg.tscn" id="2_nkyqf"]
@@ -30,19 +30,19 @@ viewport_path = NodePath("JpegEffect/IDCT")
 [sub_resource type="ViewportTexture" id="ViewportTexture_tdxwt"]
 viewport_path = NodePath("CanvasLayer/RGB")
 
-[node name="Jpegtest" type="Node3D"]
+[node name="Jpegtest" type="Node3D" unique_id=1224458022]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582849569]
 mesh = SubResource("BoxMesh_udemh")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdymb")
 script = SubResource("GDScript_coq5b")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=198506398]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
 
-[node name="JpegEffect" parent="." instance=ExtResource("2_nkyqf")]
+[node name="JpegEffect" parent="." unique_id=1051463828 instance=ExtResource("2_nkyqf")]
 
-[node name="FlowContainer" type="HBoxContainer" parent="."]
+[node name="FlowContainer" type="HBoxContainer" parent="." unique_id=2145968169]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Original" type="TextureRect" parent="FlowContainer"]
+[node name="Original" type="TextureRect" parent="FlowContainer" unique_id=1720227581]
 texture_filter = 2
 clip_contents = true
 custom_minimum_size = Vector2(0, 128)
@@ -60,7 +60,7 @@ texture = SubResource("ViewportTexture_coq5b")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="YCbCr" type="TextureRect" parent="FlowContainer"]
+[node name="YCbCr" type="TextureRect" parent="FlowContainer" unique_id=412810753]
 visible = false
 texture_filter = 2
 clip_contents = true
@@ -71,7 +71,7 @@ texture = SubResource("ViewportTexture_udemh")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="DCT" type="TextureRect" parent="FlowContainer"]
+[node name="DCT" type="TextureRect" parent="FlowContainer" unique_id=492097293]
 texture_filter = 2
 clip_contents = true
 custom_minimum_size = Vector2(0, 128)
@@ -81,7 +81,7 @@ texture = SubResource("ViewportTexture_bdymb")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="IDCT" type="TextureRect" parent="FlowContainer"]
+[node name="IDCT" type="TextureRect" parent="FlowContainer" unique_id=2074573028]
 texture_filter = 2
 clip_contents = true
 custom_minimum_size = Vector2(0, 128)
@@ -91,7 +91,7 @@ texture = SubResource("ViewportTexture_ee8xc")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="RGB" type="TextureRect" parent="FlowContainer"]
+[node name="RGB" type="TextureRect" parent="FlowContainer" unique_id=747382910]
 visible = false
 texture_filter = 2
 clip_contents = true
@@ -102,10 +102,10 @@ texture = SubResource("ViewportTexture_tdxwt")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=603344337]
 transform = Transform3D(-0.33709532, 0.93631303, 0.09841051, 0, -0.10452851, 0.9945219, 0.9414705, 0.33524868, 0.03523607, 0, 4.93, 0)
 
-[node name="QualitySlider" type="HSlider" parent="."]
+[node name="QualitySlider" type="HSlider" parent="." unique_id=2086323164]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 offset_right = 8.0

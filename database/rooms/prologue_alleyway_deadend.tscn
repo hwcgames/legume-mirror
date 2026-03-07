@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cktev6135pdvg"]
+[gd_scene format=3 uid="uid://cktev6135pdvg"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_c03a2"]
 [ext_resource type="PackedScene" uid="uid://bqn05eiwadj88" path="res://assets/rooms/prologue_alleyway_deadend.blend" id="2_c03a2"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_ij1ts"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_rh4yb"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_dnqoo"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_5pg0m"]
 [ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="9_vckgd"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="10_lqyqj"]
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="11_jt8vl"]
@@ -31,28 +30,21 @@ fog_enabled = true
 fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
 fog_density = 0.2981
 
-[sub_resource type="Environment" id="Environment_jt8vl"]
-background_energy_multiplier = 0.25
-ambient_light_energy = 0.2
-fog_enabled = true
-fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
-fog_density = 0.2981
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_jt8vl"]
 size = Vector3(5, 5, 2)
 
-[node name="PrologueAlleyway" type="Area3D" node_paths=PackedStringArray("camera")]
+[node name="PrologueAlleyway" type="Area3D" unique_id=853274825 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_c03a2")
 camera = NodePath("alleyway_default_camera")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 
-[node name="prologue_alleyway_deadend" parent="." instance=ExtResource("2_c03a2")]
+[node name="prologue_alleyway_deadend" parent="." unique_id=1743865902 instance=ExtResource("2_c03a2")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=867549796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_7pd5f")
 
-[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+[node name="In" type="Marker3D" parent="." unique_id=290658199 node_paths=PackedStringArray("automoves")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("3_lqyqj")
@@ -63,11 +55,11 @@ automoves = {
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="LeaderProxy" type="Node3D" parent="."]
+[node name="LeaderProxy" type="Node3D" parent="." unique_id=1918071232]
 script = ExtResource("4_jt8vl")
 metadata/_custom_type_script = "uid://bg37o5ga3euip"
 
-[node name="alleyway_default_camera" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target")]
+[node name="alleyway_default_camera" type="Node3D" parent="." unique_id=2122910645 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(-0.97771734, -0.1521937, 0.14449143, -0.10266152, 0.9473816, 0.30318993, -0.18303129, 0.28160635, -0.941903, 1.465, 4.2349997, -9.55)
 script = ExtResource("5_ij1ts")
 look_at_mode = 2
@@ -83,39 +75,34 @@ up = Vector3(-0.105, 1, 0)
 align_transform_with_view = Callable()
 align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+metadata/move_align = NodePath("../WalkAlignment")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.97771734, -0.1521937, 0.14449143, -0.10266152, 0.9473816, 0.30318993, -0.18303129, 0.28160635, -0.941903, 1.465, 4.2349997, -9.55)
-top_level = true
-environment = SubResource("Environment_jt8vl")
-fov = 38.5
+[node name="WalkAlignment" type="Marker3D" parent="." unique_id=633948103]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("11_jt8vl")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("8_5pg0m")
-
-[node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("marker")]
+[node name="Interactable" type="Area3D" parent="." unique_id=1593912299 node_paths=PackedStringArray("marker")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 script = ExtResource("9_vckgd")
 choices = Array[String](["Inspect backtrack_wall"])
 marker = NodePath("Label3D")
 metadata/_custom_type_script = "uid://c5hjplxfgh5hc"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=2023611816]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 shape = SubResource("BoxShape3D_jt8vl")
 
-[node name="Label3D" type="Label3D" parent="Interactable"]
+[node name="Label3D" type="Label3D" parent="Interactable" unique_id=1990576026]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 3, -0.099999905)
 pixel_size = 0.0115
 text = "A wall?"
 
-[node name="backtrack" type="Marker3D" parent="."]
+[node name="backtrack" type="Marker3D" parent="." unique_id=996266958]
 script = ExtResource("10_lqyqj")
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="backtrack_wall" type="Marker3D" parent="."]
+[node name="backtrack_wall" type="Marker3D" parent="." unique_id=1006495944]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3)
 script = ExtResource("11_jt8vl")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"

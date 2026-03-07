@@ -218,9 +218,9 @@ cipher: It's as solid as it looks.
     ~ actor_act("cipher", "flinch")
     cipher: What was that..?
     ~ actor_start_following_path("cipher", "forward")
-    ~ queue_room("prologue_city_encounter", "In")
+    ~ queue_room("alley_battle", "In")
 -
-+ [Build prologue_city_encounter_1]
++ [Build alley_battle]
 -
 ~ spawn_actor("casey", "casey_unconscious")
 ~ actor_act("casey", "familyguydeathpose")
@@ -231,7 +231,10 @@ cipher: It's as solid as it looks.
 cipher: Hey! #expr:hey #ty:spoken
 ~ actor_move("cipher", "protect_casey", "run")
 ~ actor_wait("cipher")
+_
 ~ actor_act("cipher", "shove")
+~ actor_wait("cipher")
+_
 ~ start_battle()
 + [battle top]
 -

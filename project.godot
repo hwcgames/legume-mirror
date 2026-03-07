@@ -21,23 +21,27 @@ resources_spreadsheet_view/fold_docks=true
 resources_spreadsheet_view/resource_cell_label_mode=1
 resources_spreadsheet_view/freeze_first_column=true
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Legume Traffick"
 run/main_scene="uid://cw0r478jvhrnn"
-config/features=PackedStringArray("4.5", "C#")
+config/features=PackedStringArray("4.6", "C#")
 config/icon="res://icon.svg"
 
 [autoload]
 
-MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
+MultiplayerInput="*uid://64bdsrtamugy"
 InputLocks="*res://InputLocks.gd"
 PlayerManager="*res://player_manager.gd"
 Inventory="*res://inventory/inventory.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 Saver="*res://save_file/saver.gd"
 MusicMan="*res://music/musicman.gd"
-CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
+CyclopsAutoload="*uid://4siqre3jhe80"
 Storyteller="*res://story/Storyteller.gd"
 Panku="*res://addons/panku_console/console.tscn"
 Chatterbox="*res://story/Chatterbox.tscn"
@@ -55,7 +59,6 @@ project/assembly_name="Legume Traffick"
 
 movie_writer/ogv/encoding_speed=2
 movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
-movie_writer/disable_vsync=true
 
 [editor_plugins]
 
