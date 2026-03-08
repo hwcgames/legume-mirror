@@ -40,8 +40,12 @@ enum PHASE {
 
 var phase := PHASE.IDLE
 
+static func find() -> Battlefield:
+	return Storyteller.get_tree().get_nodes_in_group("battlefield").get(0)
+
 func _ready() -> void:
 	%BattleHUD.hide()
+	add_to_group("battlefield")
 
 func _process(delta: float) -> void:
 	if phase == PHASE.ENEMY_ACTION and not players.any(func(p: PartyMember): return p.alive):
@@ -70,14 +74,28 @@ func battle():
 			println("[center]- Player defeat! -[/center]")
 			Storyteller.choose_if_available(["battle lost", "battle end"])
 			break
+		%BattleHUD.hide()
+		if Storyteller.choose_if_available(["battle top"]):
+			await get_tree().process_frame
+			await get_tree().process_frame
+		await lock.wait_for_clear()
+		%BattleHUD.show()
 		phase = PHASE.TOP
 		top.emit()
 		await lock.wait_for_clear()
 		println("Telegraph phase!")
+		if Storyteller.choose_if_available(["battle telegraph"]):
+			await get_tree().process_frame
+			await get_tree().process_frame
+		await lock.wait_for_clear()
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
 		await lock.wait_for_clear()
 		println("Player action!")
+		if Storyteller.choose_if_available(["battle player action"]):
+			await get_tree().process_frame
+			await get_tree().process_frame
+		await lock.wait_for_clear()
 		phase = PHASE.PLAYER_ACTION
 		player_action.emit()
 		while players.any(func(p: PartyMember): return p.turns > 0):
@@ -88,6 +106,10 @@ func battle():
 			println("[center]- Enemy defeat! -[/center]")
 			Storyteller.choose_if_available(["battle won", "battle end"])
 			break
+		if Storyteller.choose_if_available(["battle enemy action"]):
+			await get_tree().process_frame
+			await get_tree().process_frame
+		await lock.wait_for_clear()
 		battle_board = battle_board_scene.instantiate()
 		add_child(battle_board)
 		await battle_board.appear()

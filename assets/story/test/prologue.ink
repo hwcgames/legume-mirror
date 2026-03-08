@@ -213,18 +213,22 @@ cipher: It's as solid as it looks.
     ~ sleep(2)
     -> hear_casey
 * (hear_casey) [nag 10]
+    ~ actor_act("cipher", "flinch")
     ~ play_sound("casey_scream")
     ~ actor_capture("cipher")
-    ~ actor_act("cipher", "flinch")
     cipher: What was that..?
+    - (battle_shadow_begin_point)
     ~ actor_start_following_path("cipher", "forward")
     ~ queue_room("alley_battle", "In")
 -
 + [Build alley_battle]
 -
 ~ spawn_actor("casey", "casey_unconscious")
-~ actor_act("casey", "familyguydeathpose")
-~ spawn_enemy("intro_shadow", "stand_over_casey")
+~ actor_capture("casey")
+~ actor_act("casey", "dead")
+~ spawn_enemy("static/spookyguy", "spookyguy", "stand_over_casey")
+~ actor_capture("spookyguy")
+~ actor_act("spookyguy", "loom")
 ~ actor_release("cipher")
 ~ actor_capture("cipher")
 ~ actor_act("cipher", "flinch")
@@ -235,41 +239,55 @@ _
 ~ actor_act("cipher", "shove")
 ~ actor_wait("cipher")
 _
+~ actor_move("spookyguy", "spookyguy_battle", "fall_back")
+~ actor_wait("spookyguy")
+_
+~ join_battle("cipher")
+~ join_battle("spookyguy")
 ~ start_battle()
 + [battle top]
 -
 ~ lock_battlefield()
-: You meet the figure's eyes, and you can feel the walls thrum with malice.
+: When you meet the creature's eyes, you feel a thrum of energy around you. #ty:typed
 ~ actor_act("cipher", "shiver")
-cipher: What is this feeling..? #ty:thought
-cipher: I've fought before, but...
+cipher: I've fought before, but this is... [i]different[/i] somehow. #ty:thought
 ~ actor_act("cipher", "stance")
 cipher: No. I just need to remember my training.
 cipher: I can't go all out with her around, so I'll have to focus on hitting its [i]weak spots[/i].
 ~ free_battlefield()
 + [cipher hits]
 -
++ [battle enemy action]
+-
 ~ lock_battlefield()
+_
 cipher: ..?!
-cipher: It shouldn't even be able to breathe right now, how is it still in the fight?!
 ~ actor_act("shadow 1", "roar")
 ~ actor_act("cipher", "flinch")
+~ enemy_state("spookyguy", 1)
 cipher: It's angry now.
 cipher: It's good that its attention is off the girl, but I'm not invincible.
 ~ actor_act("shadow 1", "roar")
 cipher: I can probably withstand a [i]few direct hits[/i], but I need to [i]dodge[/i] the others!
 ~ free_battlefield()
 + [battle top]
++ [battle lost]
+    ->die
 -
-~lock_battlefield()
+~ lock_battlefield()
+~ enemy_state("spookyguy", 2)
 cipher: I think I'll be in trouble if I keep fighting like this...
 cipher: I need to change my [i]tactics[/i].
 ~free_battlefield()
 + [cipher attempts to flee]
++ [battle lost]
+    ->die
 -
 ~lock_battlefield()
 cipher: I can't protect both of us at the same time, so I'll have to be [i]careful not to get hit[/i]!
 + [cipher escapes]
++ [battle lost]
+    ->die
 -
 ~ actor_start_following_path("cipher", "forward")
 cipher: I don't hear it following me..?

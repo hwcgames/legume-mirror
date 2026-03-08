@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://dat1uh4yrn4mq"]
+
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_q00tx"]
+[ext_resource type="PackedScene" uid="uid://b3j12l146q3bq" path="res://database/rooms/alley_battle.tscn" id="1_rymjr"]
+
+[resource]
+script = ExtResource("1_q00tx")
+autoplace = false
+room_scene = ExtResource("1_rymjr")
+proc_seams = Array[String](["In", "Out"])
+seam_backtrack = Dictionary[String, bool]({
+"In": true,
+"Out": false
+})
+seam_profiles = Dictionary[String, String]({
+"In": "4x6",
+"Out": "4x6"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

@@ -14,6 +14,9 @@ func _init(animation: StringName, return_to_previous: bool = true):
 	self.return_to_previous = return_to_previous
 
 func _activate():
+	if (actor.costume.tree.tree_root as AnimationNodeStateMachine).get_node(animation) == null:
+		finished = true
+		return
 	previous_animation = actor.costume.state.get_current_node()
 	actor.costume.state.state_finished.connect(func(state_finished):
 		if state_finished == animation:

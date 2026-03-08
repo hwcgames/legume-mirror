@@ -59,8 +59,8 @@ func _process(delta: float) -> void:
 	handle.call()
 
 func choose_if_available(names: Array[String]) -> bool:
-	print("Choosing %s" % names)
 	var current_choices = choices
+	print("Choosing ", names, " from ", current_choices.map(func(c): return c.GetText()))
 	for choice_name in names:
 		var choice_index = current_choices.find_custom(func(choice: InkChoice):
 			return choice.GetText() == choice_name)
@@ -70,6 +70,11 @@ func choose_if_available(names: Array[String]) -> bool:
 			chose.emit(choice)
 			return true
 	return false
+
+func cmd_reset():
+	print("Resetting the game for the next player.")
+	OS.set_restart_on_exit(true)
+	get_tree().quit()
 
 func cmd_say(actor: String, text: String):
 	await Chatterbox.simple_message(Actor.find(actor), text)
@@ -185,12 +190,19 @@ func cmd_rm_party_member(id: String):
 	printerr("Stub story operation!")
 	pass
 
-func cmd_spawn_enemy(id: String, landmark: String) -> String:
-	printerr("Stub story operation!")
-	return id
+func cmd_spawn_enemy(id: String, name: String, landmark_name: String):
+	var landmark = Landmark.find(landmark_name)
+	var enemy_factory: EnemyFactory = load("res://database/enemy/%s.tres" % id);
+	var enemy: Enemy = Enemy.from_enemy_factory(enemy_factory)
+	get_tree().current_scene.add_child(enemy)
+	enemy.global_transform = landmark.global_transform
+	enemy.name = name
 
-func cmd_actor_act(actor: String, action: String):
-	printerr("Stub story operation!")
+func cmd_actor_act(actor_name: String, action: String):
+	var actor = Actor.find(actor_name)
+	if not actor:
+		return
+	actor.push_mode(ActorModeAnimate.new(action))
 
 func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var landmark = Landmark.find(landmark_name)
@@ -200,7 +212,7 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 		"walk", "run":
 			mode = ActorModePathfind.new()
 			mode.pathfind_target = landmark.global_position
-		"glide":
+		"glide", _:
 			mode = ActorModeMoveTo.new(actor, landmark)
 	actor.push_mode(mode)
 
@@ -268,16 +280,43 @@ func cmd_fade_in():
 	print("Stub story operation")
 
 func cmd_start_battle():
-	print("Stub story operation")
+	var battlefield: Battlefield = Battlefield.find()
+	battlefield.battle()
+
+func cmd_join_battle(actor_name: String):
+	var actor: Actor = Actor.find(actor_name)
+	if not actor:
+		return
+	var battlefield: Battlefield = Battlefield.find()
+	if actor is PartyMember:
+		battlefield.players.push_back(actor)
+	elif actor is Enemy:
+		battlefield.enemies.push_back(actor)
+
+static var battlefield_lock
 
 func cmd_lock_battlefield():
-	print("Stub story operation")
+	if battlefield_lock != null:
+		return
+	(func():
+		var lock = await lock.shared_lock()
+		battlefield_lock = await Battlefield.find().lock.exclusive_lock()
+		lock.call()
+	).call()
 
 func cmd_free_battlefield():
-	print("Stub story operation")
+	if battlefield_lock == null:
+		return
+	battlefield_lock.call()
+	battlefield_lock = null
 
-func cmd_enemy_state(enemy: String, state: int):
-	print("Stub story operation")
+func cmd_enemy_state(enemy_name: String, state: int):
+	var enemy: Enemy = Enemy.find(enemy_name)
+	if not enemy:
+		return
+	enemy.state = state
+	if enemy.planned_pattern:
+		enemy.pick_pattern()
 
 var active_camera: PhantomCamera3D
 func cmd_set_camera(camera_name: String):

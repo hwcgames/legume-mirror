@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b60kfkc1aek8k"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_3bk45"]
+
+[node name="Spookyroar" type="Control" unique_id=1993264699]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3bk45")
+duration = 1.0
+metadata/_custom_type_script = "uid://crbwhii8v7geg"

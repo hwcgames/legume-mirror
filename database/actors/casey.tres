@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://vpkkayvon17n"]
+
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_3wnso"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_inpf1"]
+
+[resource]
+script = ExtResource("2_inpf1")
+name = &"Casey"
+metadata/_custom_type_script = "uid://cym7pt0vq3ply"

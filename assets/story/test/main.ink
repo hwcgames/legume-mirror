@@ -23,3 +23,16 @@ INCLUDE prologue.ink
     ~ actor_capture("cipher")
     ~ actor_start_following_path("cipher", "forward")
     -> prologue.walk_to_school_begin_point
++ [Battling a shadow]
+    ~ change_level("intro_railway", "alleyway")
+    _
+    ~ spawn_party("default")
+    ~ actor_capture("cipher")
+    ~ sleep(0.5)
+    _
+    -> prologue.battle_shadow_begin_point
+
+
+=== die
+: And so %p:1%the world was lost. #ty:typed
+    ~ reset()

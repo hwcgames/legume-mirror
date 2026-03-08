@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://bd4kf7y5esh3w"]
+
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="1_bmndp"]
+[ext_resource type="PackedScene" uid="uid://dfot1gm3vdgap" path="res://database/bullet_pattern/spookybullets.tscn" id="1_l075w"]
+[ext_resource type="PackedScene" uid="uid://cdltsqr44pytk" path="res://battle/telegraph/null_telegraph.tscn" id="2_l075w"]
+
+[resource]
+script = ExtResource("1_bmndp")
+states = Array[int]([1, 2])
+pattern_scene = ExtResource("1_l075w")
+metadata/_custom_type_script = "uid://bpbc3263647q8"

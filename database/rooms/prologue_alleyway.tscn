@@ -131,3 +131,7 @@ metadata/_custom_type_script = "uid://d1625cme8sl48"
 
 [node name="Path3D" type="Path3D" parent="." unique_id=1756218470]
 curve = SubResource("Curve3D_nn705")
+
+[node name="default" type="Marker3D" parent="." unique_id=633398720]
+script = ExtResource("10_hx22r")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"

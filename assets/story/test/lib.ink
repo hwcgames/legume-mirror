@@ -12,7 +12,7 @@ VAR leader = "cipher"
 // `walkabout` allows the player to move freely.
 VAR gamemode = "cinema"
 
-EXTERNAL set_camera(camer)
+EXTERNAL set_camera(camera)
 === function set_camera(camera)
 >>> Activate camera {camera}
 
@@ -23,6 +23,10 @@ EXTERNAL fade_out(color)
 EXTERNAL fade_in()
 === function fade_in()
 >>> Fade in
+
+EXTERNAL reset()
+=== function reset()
+>>> RESET
 
 // Level management
 EXTERNAL queue_room(room, seam)
@@ -57,7 +61,7 @@ EXTERNAL spawn_party(landmark)
 // EXTERNAL spawn_party_member(id, landmark)
 EXTERNAL add_party_member(id)
 EXTERNAL rm_party_member(id)
-EXTERNAL spawn_enemy(id, landmark)
+EXTERNAL spawn_enemy(id, name, landmark)
 EXTERNAL despawn_actor(id)
 
 === function spawn_actor(id, landmark)
@@ -68,9 +72,13 @@ EXTERNAL despawn_actor(id)
 >>> Spawn the party member {id} at {landmark}.
 === function rm_party_member(id)
 >>> Despawn the party member {id}.
-=== function spawn_enemy(id, landmark)
+=== function spawn_enemy(id, name, landmark)
 >>> Spawn enemy {id} at {landmark}.
 ~ return id
+
+EXTERNAL join_battle(actor)
+=== function join_battle(actor)
+>>> {actor} joins the fight!
 
 === function despawn_actor(id)
 >>> {id} vanishes.

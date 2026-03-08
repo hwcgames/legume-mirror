@@ -20,7 +20,8 @@ class_name BulletPattern
 ## Telegraph scene that should appear
 @export var telegraph_scene: PackedScene = preload("res://battle/telegraph/null_telegraph.tscn")
 
-func create(battlefield: Battlefield) -> Control:
-	var pattern = pattern_scene.instantiate()
+func create(battlefield: Battlefield, enemy: Enemy) -> Control:
+	var pattern: BulletPatternLayer = pattern_scene.instantiate()
 	pattern.battlefield = battlefield
+	pattern.enemy = enemy
 	return pattern

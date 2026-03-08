@@ -30,6 +30,7 @@ bbcode_enabled = true
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+visible_characters_behavior = 2
 script = ExtResource("2_jf04l")
 voice_player = NodePath("player")
 

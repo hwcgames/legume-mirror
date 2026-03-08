@@ -18,7 +18,7 @@ metadata/_custom_type_script = "uid://e3ovybh1pk5c"
 [resource]
 script = ExtResource("3_bmh8q")
 name = &"Cipher"
-hp = 50
+hp = 100
 sp = 50
 strength = 15
 magic = 0

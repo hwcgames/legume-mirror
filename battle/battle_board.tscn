@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmeywylnup3e1"]
+[gd_scene format=3 uid="uid://cmeywylnup3e1"]
 
 [ext_resource type="Script" uid="uid://dpyani5pkkjc" path="res://battle/battle_board.gd" id="1_yemxs"]
 
@@ -21,10 +21,10 @@ corner_radius_top_right = 32
 corner_radius_bottom_right = 32
 corner_radius_bottom_left = 32
 
-[node name="BattleBoard" type="CanvasLayer"]
+[node name="BattleBoard" type="CanvasLayer" unique_id=657411219]
 script = ExtResource("1_yemxs")
 
-[node name="BattleParent" type="MarginContainer" parent="."]
+[node name="BattleParent" type="MarginContainer" parent="." unique_id=790880115]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(384, 384)
 anchors_preset = 8
@@ -35,28 +35,28 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BattleBackground" type="Panel" parent="BattleParent"]
+[node name="BattleBackground" type="Panel" parent="BattleParent" unique_id=674281342]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lbtbq")
 
-[node name="MarginContainer" type="MarginContainer" parent="BattleParent"]
+[node name="MarginContainer" type="MarginContainer" parent="BattleParent" unique_id=1972733688]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="BattleWorld" type="PanelContainer" parent="BattleParent/MarginContainer"]
+[node name="BattleWorld" type="PanelContainer" parent="BattleParent/MarginContainer" unique_id=1295238390]
 unique_name_in_owner = true
 clip_children = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5jau5")
 
-[node name="Landmarks" type="Control" parent="BattleParent"]
+[node name="Landmarks" type="Control" parent="BattleParent" unique_id=1403604313]
 layout_mode = 2
 
-[node name="SoulHome" type="Control" parent="BattleParent/Landmarks"]
+[node name="SoulHome" type="Control" parent="BattleParent/Landmarks" unique_id=838037984]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8

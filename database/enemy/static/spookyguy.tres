@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://djnqq6pv04tfb"]
+
+[ext_resource type="PackedScene" uid="uid://cnvcxu0u2mx2a" path="res://database/costume/spookyguy.tscn" id="1_jlxmq"]
+[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_jlxmq"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_76awi"]
+[ext_resource type="Resource" uid="uid://e6m4r64ex7wt" path="res://database/bullet_pattern/spookyroar.tres" id="4_76awi"]
+[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_id8u5"]
+[ext_resource type="Resource" uid="uid://bd4kf7y5esh3w" path="res://database/bullet_pattern/spookybullets.tres" id="5_76awi"]
+
+[resource]
+script = ExtResource("4_id8u5")
+name = &"???"
+hp = 9999999
+costume = ExtResource("1_jlxmq")
+patterns = Array[ExtResource("3_76awi")]([ExtResource("4_76awi"), ExtResource("5_76awi")])
+metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

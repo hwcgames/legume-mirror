@@ -113,8 +113,8 @@ class TextLeaf extends Instruction:
 					label.voice_player.play()
 			var wait_mul: float = 1.
 			match current_char:
-				".", "!", "?", "­—": wait_mul = 30.
-				",", ";": wait_mul = 15.
+				".", "!", "?", "­—": wait_mul = 15.
+				",", ";": wait_mul = 5.
 			await label.wait(label.typewriter_time * wait_mul)
 
 class Express extends Instruction:

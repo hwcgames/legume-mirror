@@ -26,9 +26,10 @@ func fire():
 		var angle = emission_angle.sample_baked(randf())
 		var bullet_instance: Bullet = bullet.instantiate()
 		bullet_instance.layer = layer
-		bullet_instance.position = bullet_position
 		bullet_instance.rotation_degrees = angle
+		bullet_instance.position = bullet_position
 		add_child(bullet_instance)
+		bullet_instance.reparent(get_parent(), true)
 		fire_at_position.emit(bullet_position)
 		fire_at_angle.emit(angle)
 	get_tree().create_timer(delay).timeout.connect(fire)

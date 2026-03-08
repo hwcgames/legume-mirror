@@ -74,6 +74,7 @@ party_member=""
 automove=""
 actor=""
 camera=""
+battlefield=""
 
 [input]
 
