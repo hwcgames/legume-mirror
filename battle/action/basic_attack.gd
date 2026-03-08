@@ -41,7 +41,10 @@ class BasicAttackPlan extends BattleActionPlan:
 		var damage = (party_member.strength*skill/20)-(3*target.defense)
 		animate.finished = true
 		if damage > 0:
-			Storyteller.choose_if_available(["%s hits" % party_member.name, "party hit"])
+			if skill >= 150:
+				Storyteller.choose_if_available(["%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
+			else:
+				Storyteller.choose_if_available(["%s hits" % party_member.name, "party hit"])
 			battlefield.println("%s damage!" % [damage])
 			Chatterbox.simple_message(target, "%s!" % [damage])
 			target.take_damage(damage)

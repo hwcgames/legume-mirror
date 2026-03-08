@@ -271,8 +271,10 @@ cipher: I've fought before, but this is... [i]different[/i] somehow. #ty:thought
 ~ actor_act("cipher", "stance")
 cipher: No. I just need to remember my training.
 cipher: I can't go all out with her around, so I'll have to focus on hitting its [i]weak spots[/i].
+: When using your [b]Basic Attack[/b], try to hit the [b]spacebar[/b] at the last second.
 ~ free_battlefield()
 ~ clear_dialogue()
++ (tut_perfect_hit) [cipher perfect hits]
 + [cipher hits]
 -
 + [battle enemy action]
@@ -280,6 +282,7 @@ cipher: I can't go all out with her around, so I'll have to focus on hitting its
 ~ lock_battlefield()
 _
 cipher: ..?!
+{tut_perfect_hit: cipher: I hit it perfectly, but it's still standing!}
 ~ actor_act("shadow 1", "roar")
 ~ actor_act("cipher", "flinch")
 ~ enemy_state("spookyguy", 1)
