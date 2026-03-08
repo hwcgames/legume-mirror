@@ -15,3 +15,15 @@ class_name SaveFile
 @export var treadmill_rooms: Array[RoomInfo] = []
 @export var treadmill_allowed_themes: Array[StringName] = []
 @export var map_state: MapState
+
+func get_character_sheet(name: String) -> CharacterSheet:
+	if name in character_sheets:
+		return character_sheets[name]
+	var sheet: CharacterSheet = load("res://database/party_members/%s.tres" % name)
+	return sheet
+
+func copy() -> SaveFile:
+	var new = self.duplicate()
+	for name in new.character_sheets.keys():
+		new.character_sheets[name] = character_sheets[name].copy()
+	return new

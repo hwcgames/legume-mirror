@@ -51,13 +51,13 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 		str = str.substr(0, second_percent)
 		print(str.split(":"))
 		match Array(str.split(":")):
-			["e", var expr]:
+			["expr", var expr]:
 				rest.push_front(Express.new(expr))
-			["e", var expr, var actor]:
+			["expr", var expr, var actor]:
 				rest.push_front(Express.new(expr, actor))
-			["a", var act]:
+			["act", var act]:
 				rest.push_front(Act.new(act))
-			["a", var act, var actor]:
+			["act", var act, var actor]:
 				rest.push_front(Act.new(act, actor))
 			["p", var length]:
 				rest.push_front(Pause.new(float(length)))
@@ -67,6 +67,8 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 				rest.push_front(StartTypewriter.new())
 			["v", var voice]:
 				rest.push_front(ChangeVoice.new(voice))
+			["char", var name]:
+				rest.push_front(TextLeaf.new(Saver.current_save.get_character_sheet(name).name))
 			_:
 				printerr("Malformed inline command '%s'" % str)
 		return rest
@@ -120,13 +122,15 @@ class TextLeaf extends Instruction:
 class Express extends Instruction:
 	var actor: String
 	var expr: String
-	func _init(expr: String, actor = null):
+	func _init(expr: String, actor = ""):
 		self.expr = expr
 		self.actor = actor
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
-		Actor.find(actor).costume.play("expr_%s" % expr)
+		var actor = Actor.find(actor)
+		if actor:
+			actor.costume.play("expr_%s" % expr)
 
 class Act extends Instruction:
 	var actor: String

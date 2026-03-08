@@ -105,6 +105,16 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 script = ExtResource("10_hx22r")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
+[node name="rest_by_wall" type="Marker3D" parent="." unique_id=1956179944]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 1.6, 0, 1.4)
+script = ExtResource("10_hx22r")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="talk_by_wall" type="Marker3D" parent="." unique_id=1014492471]
+transform = Transform3D(-2.1855693e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855693e-07, 0, 0, 1.4)
+script = ExtResource("10_hx22r")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
 [node name="forward" type="Marker3D" parent="." unique_id=1003162444 node_paths=PackedStringArray("next_automove")]
 script = ExtResource("9_hx22r")
 next_automove = NodePath("AutomoveBreadcrumb")

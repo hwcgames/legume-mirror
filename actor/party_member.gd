@@ -34,8 +34,8 @@ func _join_battle(_battle: Battlefield):
 	home_landmark = battlefield.player_landmarks[battlefield.players.find(self )]
 	#await create_tween() \
 		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
-	await (await push_mode(ActorModeMoveTo.new(self , home_landmark.global_position))).popped
-	await create_tween().tween_property(self , "global_rotation", home_landmark.global_rotation, 0.25).finished
+	await (await push_mode(ActorModeMoveTo.new(self, home_landmark.global_position))).popped
+	await create_tween().tween_property(self, "global_rotation", home_landmark.global_rotation, 0.25).finished
 	b_lock.call()
 
 func _player_action():
@@ -116,7 +116,7 @@ func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallen
 
 static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember:
 	var pm: PartyMember = preload("uid://b0hnypxq8ieth").instantiate()
-	pm.name = character_sheet.resource_path.trim_prefix("res://database/party_members/").trim_suffix(".tres")
+	pm.name = character_sheet.id
 	var costume_node: Costume = character_sheet.costume.instantiate()
 	pm.costume = costume_node
 	pm.human_name = character_sheet.name
@@ -130,7 +130,7 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	pm.finesse = character_sheet.finesse
 	pm.basic_attack = character_sheet.basic_attack
 	pm.skillset = character_sheet.skillset
-	pm.skill_challenge_scene = character_sheet.skill_challenge_scene
-	pm.battle_planner_scene = character_sheet.battle_planner_scene
+	pm.skill_challenge_scene = load(character_sheet.skill_challenge_scene)
+	pm.battle_planner_scene = load(character_sheet.battle_planner_scene)
 	pm.character_sheet = character_sheet
 	return pm

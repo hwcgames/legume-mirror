@@ -79,6 +79,14 @@ func cmd_reset():
 func cmd_say(actor: String, text: String):
 	await Chatterbox.simple_message(Actor.find(actor), text)
 
+func cmd_clear_dialogue():
+	var top = Chatterbox.oldest
+	while top != null:
+		top.queue_free()
+		top = top.next_balloon
+	Chatterbox.newest = null
+	Chatterbox.oldest = null
+
 func cmd_dialogue_choice():
 	Chatterbox.queue_dialogue_choice()
 
@@ -151,7 +159,7 @@ func cmd_spawn_party(landmark_name: String):
 	if leader_pm != null:
 		leader_pm.global_transform = landmark.global_transform
 		return
-	var leader_sheet = load("res://database/party_members/%s.tres" % leader);
+	var leader_sheet = Saver.current_save.get_character_sheet(leader)
 	leader_pm = PartyMember.from_character_sheet(leader_sheet)
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
@@ -179,7 +187,7 @@ func cmd_add_party_member(id: String, landmark_name: String):
 	if pm != null:
 		pm.global_transform = landmark.global_transform
 		return
-	var pm_sheet = load("res://database/party_members/%s.tres" % id)
+	var pm_sheet = Saver.current_save.get_character_sheet(id)
 	pm = PartyMember.from_character_sheet(pm_sheet)
 	get_tree().current_scene.add_child(pm)
 	pm.global_transform = landmark.global_transform
@@ -215,6 +223,11 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 		"glide", _:
 			mode = ActorModeMoveTo.new(actor, landmark)
 	actor.push_mode(mode)
+
+func cmd_actor_cargo(actor_name: String, carrier_name: String):
+	var actor: Actor = Actor.find(actor_name)
+	var carrier: Actor = Actor.find(carrier_name)
+	actor.push_mode(ActorModeCargo.new(carrier))
 
 func cmd_actor_start_following_path(actor_name: String, path_name: String):
 	(func():

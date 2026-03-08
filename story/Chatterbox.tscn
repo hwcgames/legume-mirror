@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtoq2iy4yxr21"]
+[gd_scene format=3 uid="uid://dtoq2iy4yxr21"]
 
 [ext_resource type="Script" uid="uid://bemx0kc01jhbf" path="res://story/chatterbox.gd" id="1_85akc"]
 [ext_resource type="PackedScene" uid="uid://c4rwt45fkm2s" path="res://story/ChatBalloon.tscn" id="2_pdhre"]
@@ -7,12 +7,12 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdhre"]
 
-[node name="Chatterbox" type="CanvasLayer"]
+[node name="Chatterbox" type="CanvasLayer" unique_id=991073897]
 script = ExtResource("1_85akc")
 chat_balloon_scene = ExtResource("2_pdhre")
 choice_balloon_scene = ExtResource("3_sayom")
 
-[node name="ChatLine" type="Line2D" parent="."]
+[node name="ChatLine" type="Line2D" parent="." unique_id=46719075]
 unique_name_in_owner = true
 joint_mode = 2
 begin_cap_mode = 2
@@ -20,7 +20,7 @@ end_cap_mode = 2
 antialiased = true
 script = ExtResource("2_wr5kr")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1826897566]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 7
@@ -31,12 +31,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Control" unique_id=753507555]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D" unique_id=2055137246]
 shape = SubResource("WorldBoundaryShape2D_pdhre")
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." unique_id=1368617928]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 4
@@ -44,13 +44,13 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 grow_vertical = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Control2" unique_id=1033515719]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control2/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control2/StaticBody2D" unique_id=421632543]
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_pdhre")
 
-[node name="Control3" type="Control" parent="."]
+[node name="Control3" type="Control" parent="." unique_id=1039479137]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 6
@@ -61,8 +61,8 @@ anchor_bottom = 0.5
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Control3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Control3" unique_id=1347411548]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control3/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control3/StaticBody2D" unique_id=865383872]
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_pdhre")

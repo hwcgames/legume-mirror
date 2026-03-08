@@ -14,7 +14,7 @@ func _activate():
 func _deactivate():
 	pass
 
-func _covered():
+func _covered(by: ActorMode):
 	pass
 
 func _uncovered():

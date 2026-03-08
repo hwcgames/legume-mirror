@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://nk8ets08f0mj"]
+[gd_scene format=3 uid="uid://nk8ets08f0mj"]
 
 [ext_resource type="Script" uid="uid://cyi4lpgs7fjdp" path="res://actor/enemy/enemy.gd" id="1_sih2u"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="2_edrpt"]
@@ -19,48 +19,58 @@ radial_segments = 4
 [sub_resource type="BoxShape3D" id="BoxShape3D_cowk8"]
 size = Vector3(1, 2, 1)
 
-[node name="Enemy" type="CharacterBody3D"]
+[sub_resource type="GDScript" id="GDScript_sih2u"]
+script/source = "extends Node3D
+
+func _process(delta: float) -> void:
+	global_transform = get_parent().head.global_transform if get_parent().head else get_parent().global_transform
+"
+
+[node name="Enemy" type="CharacterBody3D" unique_id=490214238]
 collision_layer = 2
 script = ExtResource("1_sih2u")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1690563481]
 unique_name_in_owner = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=552582943]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_rjnir")
 surface_material_override/0 = SubResource("StandardMaterial3D_pmcp3")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=882212393]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1, -0.5)
 visible = false
 mesh = SubResource("CylinderMesh_3c1bl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1221857466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_cowk8")
 
-[node name="TelegraphHandle" type="Node3D" parent="."]
+[node name="TelegraphHandle" type="Node3D" parent="." unique_id=1870927693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+script = SubResource("GDScript_sih2u")
 
-[node name="Telegraph" type="CanvasLayer" parent="TelegraphHandle"]
+[node name="Telegraph" type="CanvasLayer" parent="TelegraphHandle" unique_id=56790688]
 unique_name_in_owner = true
 
-[node name="CanvasLayerFollowsParent" type="Node" parent="TelegraphHandle/Telegraph"]
+[node name="CanvasLayerFollowsParent" type="Node" parent="TelegraphHandle/Telegraph" unique_id=96023400]
 script = ExtResource("2_edrpt")
 metadata/_custom_type_script = "uid://lcn3o02vtkmm"
 
-[node name="PanelContainer" type="PanelContainer" parent="TelegraphHandle/Telegraph"]
-offset_left = 62.0
-offset_top = -61.0
-offset_right = 78.0
-offset_bottom = -45.0
+[node name="PanelContainer" type="PanelContainer" parent="TelegraphHandle/Telegraph" unique_id=1491458779]
+anchors_preset = -1
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -8.0
+grow_vertical = 0
 
-[node name="Control" type="Control" parent="TelegraphHandle/Telegraph/PanelContainer"]
+[node name="Control" type="Control" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=851922993]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="TelegraphHandle/Telegraph/PanelContainer/Control"]
+[node name="ColorRect" type="ColorRect" parent="TelegraphHandle/Telegraph/PanelContainer/Control" unique_id=1769498807]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -70,7 +80,7 @@ offset_bottom = 4.0
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
 
-[node name="TelegraphParent" type="MarginContainer" parent="TelegraphHandle/Telegraph/PanelContainer"]
+[node name="TelegraphParent" type="MarginContainer" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=823179360]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/margin_left = 8

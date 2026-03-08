@@ -50,5 +50,5 @@ func _process(delta: float):
 		actor.play("idle")
 	actor.velocity += movement / delta
 
-func _covered():
+func _covered(_by: ActorMode):
 	follow_history.clear()

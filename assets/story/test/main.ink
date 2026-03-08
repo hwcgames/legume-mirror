@@ -13,10 +13,13 @@ INCLUDE prologue.ink
 
 ~ dialogue_choice()
 + [In the test dungeon]
+    ~ clear_dialogue()
     ->test
 + [At the start of the game]
+    ~ clear_dialogue()
     -> prologue
 + [On the way to school]
+    ~ clear_dialogue()
     ~ change_level("intro_railway", "walk_to_school")
     _
     ~ spawn_party("default")
@@ -24,6 +27,7 @@ INCLUDE prologue.ink
     ~ actor_start_following_path("cipher", "forward")
     -> prologue.walk_to_school_begin_point
 + [Battling a shadow]
+    ~ clear_dialogue()
     ~ change_level("intro_railway", "alleyway")
     _
     ~ spawn_party("default")
@@ -34,5 +38,7 @@ INCLUDE prologue.ink
 
 
 === die
+~ clear_dialogue()
 : And so %p:1%the world was lost. #ty:typed
-    ~ reset()
+~ reset()
+->END

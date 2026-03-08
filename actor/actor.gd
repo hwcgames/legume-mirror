@@ -55,7 +55,7 @@ func _physics_process(delta: float):
 func push_mode(mode: ActorMode) -> ActorMode:
 	var old_mode = top_mode
 	if old_mode != null:
-		await old_mode._covered()
+		await old_mode._covered(mode)
 	mode.actor = self
 	mode_stack.push_back(mode)
 	await mode._activate()

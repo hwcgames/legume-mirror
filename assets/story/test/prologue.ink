@@ -213,9 +213,9 @@ cipher: It's as solid as it looks.
     ~ sleep(2)
     -> hear_casey
 * (hear_casey) [nag 10]
+    ~ actor_capture("cipher")
     ~ actor_act("cipher", "flinch")
     ~ play_sound("casey_scream")
-    ~ actor_capture("cipher")
     cipher: What was that..?
     - (battle_shadow_begin_point)
     ~ actor_start_following_path("cipher", "forward")
@@ -245,6 +245,7 @@ _
 ~ join_battle("cipher")
 ~ join_battle("spookyguy")
 ~ start_battle()
+~ clear_dialogue()
 + [battle top]
 -
 ~ lock_battlefield()
@@ -255,6 +256,7 @@ cipher: I've fought before, but this is... [i]different[/i] somehow. #ty:thought
 cipher: No. I just need to remember my training.
 cipher: I can't go all out with her around, so I'll have to focus on hitting its [i]weak spots[/i].
 ~ free_battlefield()
+~ clear_dialogue()
 + [cipher hits]
 -
 + [battle enemy action]
@@ -270,6 +272,7 @@ cipher: It's good that its attention is off the girl, but I'm not invincible.
 ~ actor_act("shadow 1", "roar")
 cipher: I can probably withstand a [i]few direct hits[/i], but I need to [i]dodge[/i] the others!
 ~ free_battlefield()
+~ clear_dialogue()
 + [battle top]
 + [battle lost]
     ->die
@@ -279,17 +282,24 @@ cipher: I can probably withstand a [i]few direct hits[/i], but I need to [i]dodg
 cipher: I think I'll be in trouble if I keep fighting like this...
 cipher: I need to change my [i]tactics[/i].
 ~free_battlefield()
+~ clear_dialogue()
 + [cipher attempts to flee]
 + [battle lost]
     ->die
 -
 ~lock_battlefield()
-cipher: I can't protect both of us at the same time, so I'll have to be [i]careful not to get hit[/i]!
-+ [cipher escapes]
+cipher: I can't defend us both at once, so I'll have to be [i]careful not to get hit[/i]!
+~ clear_dialogue()
+~ free_battlefield()
++ [battle won]
 + [battle lost]
     ->die
 -
 ~ actor_start_following_path("cipher", "forward")
+~ sleep(3)
+~ set_camera("runaway")
+_
+~ set_camera("_")
 cipher: I don't hear it following me..?
 : You feel the pressure on your chest ease, and the light at the end of the alleyway returns.
 ~ actor_release("cipher")
@@ -299,22 +309,25 @@ cipher: I don't hear it following me..?
 cipher: Everything's back to normal..?
 casey: Whuh? Ugh, my head..! #ty:spoken
 cipher: Oh, you're awake-
-~ gamemode = "cinema"
-~ spawn_actor("cipher", "left")
-~ spawn_actor("casey", "right")
-~ actor_act("cipher", "set_casey_down")
-~ actor_act("casey", "cipher_sets_down")
-~ actor_wait("casey")
+// ~ gamemode = "cinema"
+// ~ spawn_actor("cipher", "left")
+// ~ spawn_actor("casey", "right")
+// ~ actor_act("cipher", "set_casey_down")
+// ~ actor_act("casey", "cipher_sets_down")
+// ~ actor_wait("casey")
+~ actor_stop("casey")
+~ actor_move("casey", "rest_by_wall", "walk")
+~ actor_move("cipher", "talk_by_wall", "walk")
 casey: %expr:confuse%How did I get here...? The last thing I remember is...
 ~ actor_act("casey", "sit_scared")
 casey: I was ambushed by [i]that thing[/i]. #expr:terror
 cipher: You're safe now. Are you all right?
 ~ actor_act("cipher", "intro_comfort_casey")
-~ actor_act("casey", "intro_knight_in_shining_armor")
+~ actor_act("casey", "intro_wow")
 casey: %expr:blush%...%expr:embarrassed%Uh, yeah. Yeah, I think I'm fine.%expr:uneasysmile% I'm Casey, what's your name?
 cipher: My name? I'm...
->>> TODO: Name selection
-cipher: ...%char:cipher:given%, nice to meet you.
+: You would pick your name here, if it was implemented.
+cipher: ...%char:cipher%, nice to meet you.
 casey: Huh, that's an %expr:cipher:nervous%interesting name. #expr:curious
 cipher: I'm... not from around here. Are you all right on your own? I have somewhere I need to be.
 casey: %expr:smile%Yeah-...%expr:blush% Uh, but if you have time to accompany me to school, I'd feel better about it.

@@ -28,6 +28,9 @@ EXTERNAL reset()
 === function reset()
 >>> RESET
 
+EXTERNAL clear_dialogue()
+=== function clear_dialogue()
+
 // Level management
 EXTERNAL queue_room(room, seam)
 === function queue_room(room, seam) ===

@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [resource]
 script = ExtResource("3_pwv88")
+id = "test_party"
 hp = 50
 sp = 50
 basic_attack = SubResource("Resource_er1n0")

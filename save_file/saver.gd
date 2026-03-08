@@ -1,10 +1,10 @@
 extends Node
 
-var parent_save: SaveFile
+var parent_save: SaveFile = preload("uid://07q2yjh6h41t")
 var current_save: SaveFile:
 	get:
 		if current_save == null:
-			current_save = parent_save.duplicate(true)
+			current_save = parent_save.copy()
 		return current_save
 
 func save(in_place: bool = false):

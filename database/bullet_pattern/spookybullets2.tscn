@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c2nch6pme0yo7"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_2xqof"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_m1eie"]
+[ext_resource type="PackedScene" uid="uid://bvwd8f452pu0d" path="res://database/bullet/spookybullet2.tscn" id="3_586r6"]
+
+[sub_resource type="Curve" id="Curve_kjtqn"]
+_limits = [-90.0, -89.99, 0.0, 1.0]
+_data = [Vector2(0, -90), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_kv6nx"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 0.95478725), 0.0, 3.2119756, 0, 0, Vector2(1, 2.1994681), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y3n83"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1200848), 0.0, 1.4511595, 0, 0, Vector2(1, 3.3110957), 8.32423, 0.0, 0, 0]
+point_count = 2
+
+[node name="Spookybullets" type="Control" unique_id=298935264]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2xqof")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=1988734562 node_paths=PackedStringArray("layer")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("2_m1eie")
+layer = NodePath("..")
+emission_angle = SubResource("Curve_kjtqn")
+interval = SubResource("Curve_kv6nx")
+amount = SubResource("Curve_y3n83")
+bullet = ExtResource("3_586r6")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"
