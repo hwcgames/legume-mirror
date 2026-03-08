@@ -1,3 +1,17 @@
+=== input_tutorial
+* ->
+    : Use the [b]arrow keys[/b] to move and the [b]spacebar[/b] to interact with objects and people.
++ ->
+-
+->->
+
+=== dodge_tutorial
+* ->
+    : Use the [b]arrow keys[/b] to dodge.
++ ->
+-
+->->
+
 === prologue
 
 ~ change_level("intro_railway", "default")
@@ -16,7 +30,7 @@ _
 ~ sleep(2)
 _
 : Or... To whom it may concern; #ty:written
-: If you happen to find this... Don't bother trying to return it to its rightful owner.%p:1% It isn't wanted, and I'm quite confident you couldn't find me even if it was. It's all yours, though I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
+: If you happen to find this... Don't bother trying to return it to its rightful owner. It isn't wanted, and I'm quite confident you couldn't find me even if it was. It's all yours, though I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
 : It's a curious emotion - at least, I think it's an emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to [i]partition[/i] their life so completely.
 : I've never been a stranger before. Painting a self-portrait from a blank canvas... The thought is exhilarating, don't you think? Though I imagine you take it for granted.
 ~ sleep(1)
@@ -88,6 +102,7 @@ intro_train: This train is now out of service. #ty:loudspeaker
 intro_train: All passengers must leave the train.
 ~ actor_release("cipher")
 ~ set_camera("_")
+->input_tutorial->
 
 ->train_wait
 =train_wait
@@ -190,6 +205,7 @@ cipher: What the..? #expr:fear
 _
 cipher: It's as solid as it looks.
 ~ actor_release("cipher")
+->input_tutorial->
 
 -> free_in_alleyway
 = free_in_alleyway
@@ -271,6 +287,7 @@ cipher: It's angry now.
 cipher: It's good that its attention is off the girl, but I'm not invincible.
 ~ actor_act("shadow 1", "roar")
 cipher: I can probably withstand a [i]few direct hits[/i], but I need to [i]dodge[/i] the others!
+->dodge_tutorial->
 ~ free_battlefield()
 ~ clear_dialogue()
 + [battle top]

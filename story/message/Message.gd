@@ -89,22 +89,24 @@ class TextLeaf extends Instruction:
 	var end: int
 	var idx = 0
 	func prepare_label(label: Typewriter):
-		start = label.get_total_character_count()
+		start = label.get_parsed_text().length()
 		label.text += text
-		end = label.get_total_character_count()
+		end = label.get_parsed_text().length()
 	func execute(label: Typewriter):
 		label.visible_characters = start
 		var in_tag = false
-		while idx < len(text):
-			var current_char = text[idx]
-			idx += 1
-			if current_char == '[':
-				in_tag = true
-			if current_char == ']':
-				in_tag = false
-				continue
-			if in_tag:
-				continue
+		while label.visible_characters < end:
+			#var current_char = text[idx]
+			#idx += 1
+			#if current_char == '[':
+				#in_tag = true
+				#continue
+			#if current_char == ']':
+				#in_tag = false
+				#continue
+			#if in_tag:
+				#continue
+			var current_char = label.get_parsed_text()[label.visible_characters]
 			label.visible_characters += 1
 			if label.voice and \
 				idx < len(text) and \

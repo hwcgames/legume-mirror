@@ -11,15 +11,26 @@ func _input(event: InputEvent) -> void:
 		skipping = true
 
 var skip_count = 0
+var waited_this_frame = 0.
+var last_delta = 0.
+
+func _process(delta: float) -> void:
+	last_delta = delta
+	waited_this_frame = 0
 
 func wait(time: float):
-	if not skipping:
+	if skipping:
+		time = 0.
+	waited_this_frame += time
+	if waited_this_frame > last_delta:
 		await get_tree().create_timer(time).timeout
-	else:
-		skip_count += 1
-		if skip_count >= 10:
-			await get_tree().physics_frame
-			skip_count = 0
+	#if not skipping:
+		#await get_tree().create_timer(time).timeout
+	#else:
+		#skip_count += 1
+		#if skip_count >= 10:
+			#await get_tree().physics_frame
+			#skip_count = 0
 
 func type_messages(instructions: Array[Message.Instruction]):
 	skipping = false
