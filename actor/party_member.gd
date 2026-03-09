@@ -52,6 +52,9 @@ func _player_action():
 		while action == null:
 			action = await battle_planner.choose()
 			await get_tree().process_frame
+		for rule in rules:
+			if not rule.player_plan(action):
+				return
 		turns -= 1
 		var self_lock = await lock.exclusive_lock()
 		var coroutine = Promise.new(func(resolve, _reject):
@@ -107,6 +110,9 @@ func _enemy_action():
 		soul_index = len(battlefield.battle_board.souls) - 1
 	var soul: Soul = battlefield.battle_board.souls[soul_index]
 	soul.players.push_back(self )
+	for rule in rules:
+		if not rule.soul(soul):
+			break
 
 func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallenge:
 	skill_challenge = scene.instantiate()
@@ -120,14 +126,9 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	var costume_node: Costume = character_sheet.costume.instantiate()
 	pm.costume = costume_node
 	pm.human_name = character_sheet.name
-	pm.max_hp = character_sheet.hp
-	pm.hp = character_sheet.hp
-	pm.max_sp = character_sheet.sp
-	pm.sp = 0
-	pm.strength = character_sheet.strength
-	pm.magic = character_sheet.magic
-	pm.defense = character_sheet.defense
-	pm.finesse = character_sheet.finesse
+	pm.hp_component = character_sheet.hp
+	pm.sp_component = character_sheet.sp
+	pm.attrs = character_sheet.attrs
 	pm.basic_attack = character_sheet.basic_attack
 	pm.skillset = character_sheet.skillset
 	pm.skill_challenge_scene = load(character_sheet.skill_challenge_scene)

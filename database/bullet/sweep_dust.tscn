@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c2oru2jrnvum0"]
+[gd_scene format=3 uid="uid://c2oru2jrnvum0"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_ht8bs"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_86q43"]
@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://dds6oka6jprre"
 
 [sub_resource type="Curve" id="Curve_vyav5"]
 _limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 1.9952898), 0.0, 0.0, 0, 0, Vector2(1, 8.381561), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1.9952898), 0.0, 14.432741, 0, 0, Vector2(1, 8.381561), 15.049031, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_pbpvb"]
@@ -62,7 +62,7 @@ metadata/_custom_type_script = "uid://k2gdlmf7jpuh"
 
 [sub_resource type="Curve" id="Curve_brp88"]
 _limits = [-15.0, 15.0, 0.0, 1.0]
-_data = [Vector2(0, -15), 0.0, 98.1617, 0, 0, Vector2(1, 15), 97.51336, 0.0, 0, 0]
+_data = [Vector2(0, -15), 0.0, 6.505939, 0, 0, Vector2(1, 15), 2.9761195, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_ky5vg"]
@@ -73,13 +73,13 @@ metadata/_custom_type_script = "uid://xarbmru8h4kp"
 [sub_resource type="CircleShape2D" id="CircleShape2D_5v2kh"]
 radius = 7.0
 
-[node name="SweepDust" type="Area2D"]
+[node name="SweepDust" type="Area2D" unique_id=1926504339]
 script = ExtResource("1_ht8bs")
 components = Array[ExtResource("2_86q43")]([SubResource("Resource_5v2kh"), SubResource("Resource_pbpvb"), SubResource("Resource_vyav5"), SubResource("Resource_s1r80"), SubResource("Resource_xjmld"), SubResource("Resource_nsdm7"), SubResource("Resource_ky5vg")])
 metadata/_custom_type_script = "uid://c1q70xh11sokb"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=502224933]
 texture = ExtResource("7_noc4m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608163399]
 shape = SubResource("CircleShape2D_5v2kh")

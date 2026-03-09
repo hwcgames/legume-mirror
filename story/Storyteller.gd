@@ -26,6 +26,8 @@ enum STORY_STATE {
 var leader: PartyMember:
 	get:
 		return Actor.find(Storyteller.story.FetchVariable("leader"))
+		
+var rules: Array[BattleRule] = []
 
 func _ready():
 	for function in self.get_method_list():
@@ -36,7 +38,7 @@ func _ready():
 		if not (function["name"] as String).begins_with("obs_"):
 			continue
 		story.ObserveVariable((function["name"] as String).substr(4), Callable(self , function["name"]))
-	do_story = true
+	#do_story = true
 
 func _process(delta: float) -> void:
 	if not do_story:

@@ -38,10 +38,16 @@ class BasicAttackPlan extends BattleActionPlan:
 		challenge.frame_count = randi_range(20,40)
 		challenge.start()
 		var skill = await challenge.result
-		var damage = (party_member.strength*skill/20)-(3*target.defense)
+		if skill >= 120:
+			var crit_chance: float = party_member.computed_attrs.finesse * 10 / target.computed_attrs.finesse
+			if randf() < crit_chance:
+				skill *= 4
+		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
 		animate.finished = true
 		if damage > 0:
-			if skill >= 150:
+			if skill >= 250:
+				Storyteller.choose_if_available(["%s finesse hits" % party_member.name, "%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
+			elif skill >= 150:
 				Storyteller.choose_if_available(["%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
 			else:
 				Storyteller.choose_if_available(["%s hits" % party_member.name, "party hit"])

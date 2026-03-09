@@ -2,6 +2,7 @@ extends Area2D
 class_name Bullet
 
 @export var components: Array[BulletComponent] = []
+@export var state: int = 0
 var enemy: Enemy
 var target: Soul
 var layer: BulletPatternLayer

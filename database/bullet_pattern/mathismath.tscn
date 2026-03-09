@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cmootfgncna82"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_01pce"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_japt8"]
+[ext_resource type="PackedScene" uid="uid://c7e7s4n4gr63p" path="res://database/bullet/math.tscn" id="3_weh6g"]
+
+[sub_resource type="Curve" id="Curve_weh6g"]
+
+[sub_resource type="Curve" id="Curve_1630i"]
+_data = [Vector2(0, 0.5020766), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_fgcre"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="Mathismath" type="Control" unique_id=179598833]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_01pce")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=1883469088 node_paths=PackedStringArray("layer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_japt8")
+layer = NodePath("..")
+emission_angle = SubResource("Curve_weh6g")
+interval = SubResource("Curve_1630i")
+amount = SubResource("Curve_fgcre")
+start_delay = 1.0
+bullet = ExtResource("3_weh6g")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

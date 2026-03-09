@@ -88,19 +88,14 @@ func show_telegraph():
 	%Telegraph.show()
 
 static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
-	var enemy_sheet = enemy_factory.roll_enemy()
+	var enemy_sheet: EnemySheet = enemy_factory.roll_enemy()
 	var enemy: Enemy = preload("uid://nk8ets08f0mj").instantiate()
 	var costume_node: Costume = enemy_sheet.costume.instantiate()
 	enemy.costume = costume_node
 	enemy.human_name = enemy_sheet.name
-	enemy.max_hp = enemy_sheet.hp
-	enemy.hp = enemy_sheet.hp
-	enemy.max_sp = enemy_sheet.sp
-	enemy.sp = enemy_sheet.sp
-	enemy.strength = enemy_sheet.strength
-	enemy.magic = enemy_sheet.magic
-	enemy.defense = enemy_sheet.defense
-	enemy.finesse = enemy_sheet.finesse
+	enemy.hp_component = enemy_sheet.hp.duplicate()
+	enemy.sp_component = enemy_sheet.sp.duplicate()
+	enemy.attrs = enemy_sheet.attrs
 	enemy.patterns = enemy_sheet.patterns
 	enemy.planning_priority = enemy_sheet.planning_priority
 	enemy.parleys = enemy_sheet.parleys

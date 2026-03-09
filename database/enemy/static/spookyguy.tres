@@ -1,22 +1,43 @@
 [gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://djnqq6pv04tfb"]
 
 [ext_resource type="PackedScene" uid="uid://cnvcxu0u2mx2a" path="res://database/costume/spookyguy.tscn" id="1_jlxmq"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_wloo0"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_jlxmq"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="2_q2x8q"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_76awi"]
 [ext_resource type="Script" uid="uid://b7c42tam70b4u" path="res://battle/action/spookyguy_flee_parley.gd" id="3_id8u5"]
 [ext_resource type="Resource" uid="uid://e6m4r64ex7wt" path="res://database/bullet_pattern/spookyroar.tres" id="4_76awi"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_id8u5"]
 [ext_resource type="Resource" uid="uid://bd4kf7y5esh3w" path="res://database/bullet_pattern/spookybullets.tres" id="5_76awi"]
 [ext_resource type="Resource" uid="uid://dhb3cqprl2v2a" path="res://database/bullet_pattern/spookybullets2.tres" id="7_ytlyq"]
+[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="11_ye2o0"]
+
+[sub_resource type="Resource" id="Resource_g3840"]
+script = ExtResource("1_wloo0")
+defense = 0
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_wloo0"]
+script = ExtResource("2_q2x8q")
+current_hp = 99999
+max_hp = 99999
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
 [sub_resource type="Resource" id="Resource_ytlyq"]
 script = ExtResource("3_id8u5")
 metadata/_custom_type_script = "uid://b7c42tam70b4u"
 
+[sub_resource type="Resource" id="Resource_ye2o0"]
+script = ExtResource("11_ye2o0")
+current_sp = null
+metadata/_custom_type_script = "uid://88n3ix5h5r4a"
+
 [resource]
 script = ExtResource("4_id8u5")
 name = &"???"
-hp = 9999999
+hp = SubResource("Resource_wloo0")
+sp = SubResource("Resource_ye2o0")
+attrs = SubResource("Resource_g3840")
 costume = ExtResource("1_jlxmq")
 patterns = Array[ExtResource("3_76awi")]([ExtResource("4_76awi"), ExtResource("5_76awi"), ExtResource("7_ytlyq")])
 parleys = Array[ExtResource("2_jlxmq")]([SubResource("Resource_ytlyq")])

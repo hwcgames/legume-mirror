@@ -59,6 +59,12 @@ script = ExtResource("16_d1lah")
 size = 20.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
+[sub_resource type="GDScript" id="GDScript_p7oxd"]
+script/source = "extends Node
+func _ready():
+	Storyteller.do_story = true
+"
+
 [node name="Node3D" type="Node3D" unique_id=1942801477]
 
 [node name="DungeonMap" type="Node" parent="." unique_id=1087382368 node_paths=PackedStringArray("treadmill")]
@@ -123,5 +129,8 @@ size = 20.0
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("17_yyy5f")
+
+[node name="Node" type="Node" parent="." unique_id=1399206208]
+script = SubResource("GDScript_p7oxd")
 
 [connection signal="pressed" from="DungeonMap/Button" to="DungeonMap" method="generate_map"]

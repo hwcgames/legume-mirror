@@ -16,6 +16,8 @@ var lock: Locks = Locks.new()
 var inventory_lock: Locks = Locks.new()
 var parley_lock: Locks = Locks.new()
 
+@export var rules: Array[BattleRule] = []
+
 var right_direction: Vector3:
 	get:
 		return self.global_position.direction_to(%Right.global_position)

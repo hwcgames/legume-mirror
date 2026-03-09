@@ -34,6 +34,7 @@ func spawn_bullet_at(node_path: NodePath, bullet_scene: PackedScene):
 	var bullet: Bullet = bullet_scene.instantiate()
 	add_child(bullet)
 	bullet.layer = self
+	bullet.enemy = enemy
 	bullet.global_position = node.global_position
 	bullet.global_rotation = node.global_rotation
 	bullet._bullet_ready()

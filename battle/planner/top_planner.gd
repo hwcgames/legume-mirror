@@ -72,11 +72,15 @@ func pick_ally(predicate: Callable = func(p: PartyMember): return true) -> Party
 
 func _ready():
 	%IdleTab.show()
-	%HPBar.value = float(hp) / float(party_member.max_hp)
-	%SPBar.value = float(sp) / float(party_member.max_sp)
+	%HPBar.value = party_member.hp
+	%HPBar.min_value = party_member.sp_component.min
+	%HPBar.max_value = party_member.sp_component.max
+	%SPBar.min_value = party_member.sp_component.min
+	%SPBar.max_value = party_member.sp_component.max
+	%SPBar.value = party_member.sp
 
-@onready var hp: int = party_member.hp
-@onready var sp: int = party_member.sp
+var hp: int = 0
+var sp: int = 0
 
 func _process(delta: float) -> void:
 	update_bars()
@@ -84,12 +88,16 @@ func _process(delta: float) -> void:
 		choice.emit(BattleActionFinish.new())
 
 func update_bars():
+	%HPBar.min_value = party_member.hp_component.min
+	%HPBar.max_value = party_member.hp_component.max
+	%SPBar.min_value = party_member.sp_component.min
+	%SPBar.max_value = party_member.sp_component.max
 	if party_member.hp != hp:
 		hp = party_member.hp
-		create_tween().tween_property(%HPBar, "value", float(hp) / float(party_member.max_hp), 0.5)
+		create_tween().tween_property(%HPBar, "value", party_member.hp, 0.5)
 	if party_member.sp != sp:
 		sp = party_member.sp
-		create_tween().tween_property(%SPBar, "value", float(sp) / float(party_member.max_sp), 0.5)
+		create_tween().tween_property(%SPBar, "value", party_member.sp, 0.5)
 
 signal chosen_item(Item)
 

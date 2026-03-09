@@ -1,0 +1,56 @@
+@abstract
+extends Resource
+class_name BattleRule
+
+@export var stacks: int = 1
+
+func merge(other: BattleRule):
+	self.stacks += other.stacks
+
+func priority(fighter: Fighter) -> int:
+	return 0
+
+func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
+	return true
+
+func _added(fighter: Fighter):
+	pass
+
+func _died(fighter: Fighter) -> bool:
+	return true
+
+func _revived(fighter: Fighter) -> bool:
+	return true
+
+func take_damage(fighter: Fighter, amount: int) -> bool:
+	return true
+
+func heal(fighter: Fighter, amount: int) -> bool:
+	return true
+
+func use_sp(fighter: Fighter, amount: int) -> bool:
+	return true
+
+func get_sp(fighter: Fighter, amount: int) -> bool:
+	return true
+
+func join_battle(fighter: Fighter) -> bool:
+	return true
+
+func begin(fighter: Fighter) -> bool:
+	return true
+
+func top(fighter: Fighter) -> bool:
+	return true
+
+func telegraph(fighter: Fighter) -> bool:
+	return true
+
+func player_action(fighter: Fighter) -> bool:
+	return true
+
+func enemy_action(fighter: Fighter) -> bool:
+	return true
+
+func done(fighter: Fighter, player_victory: bool) -> bool:
+	return true

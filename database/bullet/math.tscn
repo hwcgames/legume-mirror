@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://c7e7s4n4gr63p"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_7ufy6"]
+[ext_resource type="SpriteFrames" uid="uid://bxn04fij5jy1t" path="res://assets/bullet/math.aseprite" id="2_7ufy6"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_35dea"]
+[ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="3_x5wgv"]
+[ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="4_utlu3"]
+[ext_resource type="Script" uid="uid://bpxthdu44w1d6" path="res://battle/bullet/components/if.gd" id="5_6naug"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="6_sg621"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_jchhv"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="8_6ru4a"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="9_sg621"]
+
+[sub_resource type="Resource" id="Resource_4mvs6"]
+script = ExtResource("3_x5wgv")
+metadata/_custom_type_script = "uid://k2gdlmf7jpuh"
+
+[sub_resource type="Curve" id="Curve_6naug"]
+_limits = [-45.0, 45.0, 0.0, 1.0]
+_data = [Vector2(0, -27.607365), 0.0, 0.0, 0, 0, Vector2(1, 27.055212), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_sg621"]
+script = ExtResource("4_utlu3")
+amount = SubResource("Curve_6naug")
+metadata/_custom_type_script = "uid://xarbmru8h4kp"
+
+[sub_resource type="Resource" id="Resource_jchhv"]
+script = ExtResource("9_sg621")
+speed = 150.0
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Curve" id="Curve_xva6t"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 2.37325), 0.0, 14.152143, 0, 0, Vector2(1, 7.7716084), 14.493755, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_tbh4j"]
+script = ExtResource("6_sg621")
+value = SubResource("Curve_xva6t")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_gc4nu"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_l52go"]
+script = ExtResource("7_jchhv")
+value = SubResource("Curve_gc4nu")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_nxp6o"]
+_data = [Vector2(0, 0.50410426), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_wecfi"]
+script = ExtResource("8_6ru4a")
+value = SubResource("Curve_nxp6o")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="Resource" id="Resource_72rai"]
+script = ExtResource("5_6naug")
+subcomponents = Array[ExtResource("2_35dea")]([SubResource("Resource_jchhv"), SubResource("Resource_tbh4j"), SubResource("Resource_l52go"), SubResource("Resource_wecfi")])
+states = Array[int]([1])
+metadata/_custom_type_script = "uid://bpxthdu44w1d6"
+
+[sub_resource type="GDScript" id="GDScript_amh0p"]
+script/source = "extends AnimatedSprite2D
+
+func _ready():
+	animation = sprite_frames.get_animation_names()[randi_range(0, len(sprite_frames.get_animation_names())-1)]
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6naug"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_amh0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ofbhp"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.141592653589793]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:state")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35dea"]
+_data = {
+&"RESET": SubResource("Animation_amh0p"),
+&"in": SubResource("Animation_ofbhp")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6naug"]
+animation = &"in"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sg621"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jchhv"]
+states/in/node = SubResource("AnimationNodeAnimation_6naug")
+states/in/position = Vector2(384, 95)
+transitions = ["Start", "in", SubResource("AnimationNodeStateMachineTransition_sg621")]
+
+[node name="Math" type="Area2D" unique_id=9873031]
+script = ExtResource("1_7ufy6")
+components = Array[ExtResource("2_35dea")]([SubResource("Resource_4mvs6"), SubResource("Resource_sg621"), SubResource("Resource_72rai")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1563766752]
+scale = Vector2(1e-05, 1e-05)
+sprite_frames = ExtResource("2_7ufy6")
+animation = &"divide"
+script = SubResource("GDScript_amh0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=718672966]
+shape = SubResource("CircleShape2D_6naug")
+disabled = true
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=443435814]
+libraries/ = SubResource("AnimationLibrary_35dea")
+tree_root = SubResource("AnimationNodeStateMachine_jchhv")

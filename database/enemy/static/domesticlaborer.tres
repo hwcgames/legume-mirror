@@ -1,15 +1,16 @@
-[gd_resource type="Resource" script_class="EnemySheet" load_steps=6 format=3 uid="uid://y0iwsfufb6ht"]
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://y0iwsfufb6ht"]
 
 [ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="1_ucycd"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_76jwu"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_rpyj7"]
 [ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="4_76jwu"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lobln"]
+[ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="5_rpyj7"]
 
 [resource]
 script = ExtResource("4_lobln")
 name = &"Homeworker"
 hp = 100
 costume = ExtResource("1_ucycd")
-patterns = Array[ExtResource("3_rpyj7")]([ExtResource("4_76jwu")])
+patterns = Array[ExtResource("3_rpyj7")]([ExtResource("4_76jwu"), ExtResource("5_rpyj7")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"
