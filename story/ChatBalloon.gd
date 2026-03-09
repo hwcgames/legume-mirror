@@ -55,6 +55,8 @@ func _physics_process(delta: float) -> void:
 		balloon_position.x if next_balloon != null and next_balloon.character_root == character_root else root_position.x,
 		min(balloon_up_position, character_up_position)
 	)
+	if not next_balloon:
+		goal_position.y = max(goal_position.y, size.y)
 	var force_this_tick = global_position.direction_to(goal_position) \
 		* force * (clamp(global_position.distance_to(goal_position) / satisfactory_distance, 0, 1))
 	apply_central_force(force_this_tick)

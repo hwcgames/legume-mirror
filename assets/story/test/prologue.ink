@@ -228,7 +228,7 @@ cipher: It's as solid as it looks.
     ~ actor_release("cipher")
     ~ sleep(2)
     -> hear_casey
-* (hear_casey) [nag 10]
+* (hear_casey) [nag 15]
     ~ actor_capture("cipher")
     ~ actor_act("cipher", "flinch")
     ~ play_sound("casey_scream")

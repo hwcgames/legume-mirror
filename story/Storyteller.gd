@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 		return
 	if !story.GetCanContinue():
 		return
+	if is_instance_valid(nag_timer):
+		nag_timer = null
 	var handle = await lock.exclusive_lock()
 	line = story.Continue()
 	if line == "_":
@@ -56,7 +58,18 @@ func _process(delta: float) -> void:
 		handle.call()
 		handle = await lock.exclusive_lock()
 		new_choices.emit(choices)
+		check_nag(choices)
 	handle.call()
+
+var nag_timer: SceneTreeTimer
+
+func check_nag(choices: Array[InkChoice]):
+	for choice in choices:
+		if not choice.GetText().begins_with("nag "):
+			continue
+		var time = float(choice.GetText().trim_prefix("nag "))
+		nag_timer = get_tree().create_timer(time)
+		nag_timer.timeout.connect(func(): choose_if_available([choice.GetText()]))
 
 func choose_if_available(names: Array[String]) -> bool:
 	var current_choices = choices
