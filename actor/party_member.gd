@@ -53,7 +53,7 @@ func _player_action():
 			action = await battle_planner.choose()
 			await get_tree().process_frame
 		for rule in rules:
-			if not rule.player_plan(action):
+			if not rule.player_plan(self, action):
 				return
 		turns -= 1
 		var self_lock = await lock.exclusive_lock()
@@ -109,9 +109,9 @@ func _enemy_action():
 		battlefield.battle_board.add_soul(soul)
 		soul_index = len(battlefield.battle_board.souls) - 1
 	var soul: Soul = battlefield.battle_board.souls[soul_index]
-	soul.players.push_back(self )
+	soul.players.push_back(self)
 	for rule in rules:
-		if not rule.soul(soul):
+		if not rule.soul(self, soul):
 			break
 
 func setup_challenge(scene: PackedScene = skill_challenge_scene) -> SkillChallenge:
@@ -128,6 +128,7 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	pm.human_name = character_sheet.name
 	pm.hp_component = character_sheet.hp
 	pm.sp_component = character_sheet.sp
+	pm.fighter_rules = character_sheet.rules.duplicate(true)
 	pm.attrs = character_sheet.attrs
 	pm.basic_attack = character_sheet.basic_attack
 	pm.skillset = character_sheet.skillset

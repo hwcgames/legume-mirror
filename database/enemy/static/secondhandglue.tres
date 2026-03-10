@@ -1,13 +1,40 @@
-[gd_resource type="Resource" script_class="EnemySheet" load_steps=5 format=3 uid="uid://c7nmjgg6ypqt7"]
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://c7nmjgg6ypqt7"]
 
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_oaodf"]
 [ext_resource type="PackedScene" uid="uid://fsvh4uev5at2" path="res://database/costume/secondhandglue.tscn" id="1_wxroi"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_qh0ut"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_by5dd"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_r55a0"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_fntdg"]
+[ext_resource type="Resource" uid="uid://dktprncmf5gpv" path="res://database/bullet_pattern/ewwthrowthataway.tres" id="6_2hyda"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_3pwic"]
+[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_cktpo"]
+
+[sub_resource type="Resource" id="Resource_llmq2"]
+script = ExtResource("1_oaodf")
+strength = 0
+magic = 1
+defense = 1
+finesse = 1
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_wkfb0"]
+script = ExtResource("3_by5dd")
+current_hp = 75
+max_hp = 75
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_wpdly"]
+script = ExtResource("9_cktpo")
+current_sp = null
+metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_fntdg")
 name = &"Secondhand Glue"
-hp = 100
+hp = SubResource("Resource_wkfb0")
+sp = SubResource("Resource_wpdly")
+attrs = SubResource("Resource_llmq2")
 costume = ExtResource("1_wxroi")
+patterns = Array[ExtResource("3_r55a0")]([ExtResource("6_2hyda")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

@@ -113,13 +113,14 @@ func join_battle(battle: Battlefield):
 		if not rule.join_battle(self):
 			break
 
-func add_rule(rule: BattleRule):
+func add_rule(rule: BattleRule) -> bool:
 	for existing in fighter_rules:
-		if (existing.get_script() as GDScript).get_class() == (rule.get_script() as GDScript).get_class():
+		if existing.get_script() == rule.get_script():
 			existing.merge(rule)
-			return
+			return false
 	fighter_rules.push_back(rule)
 	rule._added(self)
+	return true
 
 func _join_battle(_battle: Battlefield):
 	pass
@@ -134,7 +135,7 @@ func top():
 	rules = rules.filter(func(r: BattleRule):
 		var keep = r.stacks > 0
 		if not keep:
-			r._removed()
+			r._removed(self)
 		return keep)
 	for rule in rules:
 		if not rule.top(self):

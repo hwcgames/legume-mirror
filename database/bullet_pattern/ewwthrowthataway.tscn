@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://x44fbhw8wjq5"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_c6edy"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_ag3pj"]
+[ext_resource type="PackedScene" uid="uid://c6w0ios1iql84" path="res://database/bullet/gum.tscn" id="3_7jaje"]
+
+[sub_resource type="Curve" id="Curve_bov7c"]
+_limits = [-120.0, -60.0, 0.0, 1.0]
+_data = [Vector2(0, -120), 0.0, 0.0, 0, 0, Vector2(1, -60), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_esx34"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 0.78793335), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r5urm"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3.262283), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Ewwthrowthataway" type="Control" unique_id=1763470818]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c6edy")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=1216961632 node_paths=PackedStringArray("layer")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("2_ag3pj")
+layer = NodePath("..")
+emission_angle = SubResource("Curve_bov7c")
+interval = SubResource("Curve_esx34")
+amount = SubResource("Curve_r5urm")
+bullet = ExtResource("3_7jaje")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

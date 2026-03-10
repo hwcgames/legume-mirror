@@ -19,6 +19,7 @@ func _ready():
 		button.pressed.connect(func():
 			var plan = await spell.plan(self)
 			choice.emit(plan))
+		button.disabled = not spell.allowed(party_member)
 		add_child(button)
 
 func choose() -> BattleActionPlan:

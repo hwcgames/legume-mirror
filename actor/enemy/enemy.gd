@@ -44,6 +44,11 @@ func _enemy_action():
 	if planned_pattern != null:
 		var board = planned_pattern.create(battlefield, self)
 		await get_tree().process_frame
+		for rule in rules:
+			if not rule.setup_battle_board(self, battlefield, board):
+				await board.done
+				lock.call()
+				return
 		battlefield.battle_board.add_pattern(board)
 		battlefield.players_died.connect(board.done.emit)
 		await board.done
@@ -67,6 +72,9 @@ func pick_pattern():
 				(p.enemies.all(func(r): return r in enemies)) and \
 				(must_be_friends.all(func(f): return f == ResourceUID.path_to_uid(p.resource_path) or f in p.friends)) and \
 				(state in p.states)) as Array[BulletPattern]
+	for rule in rules:
+		if not rule.pick_pattern(self, candidates):
+			return
 	if candidates.is_empty():
 		print("No moves!")
 		return
@@ -95,6 +103,7 @@ static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
 	enemy.human_name = enemy_sheet.name
 	enemy.hp_component = enemy_sheet.hp.duplicate()
 	enemy.sp_component = enemy_sheet.sp.duplicate()
+	enemy.fighter_rules = enemy_sheet.rules.duplicate(true)
 	enemy.attrs = enemy_sheet.attrs
 	enemy.patterns = enemy_sheet.patterns
 	enemy.planning_priority = enemy_sheet.planning_priority

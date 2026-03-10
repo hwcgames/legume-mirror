@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c6w0ios1iql84"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_5qdsl"]
+[ext_resource type="Texture2D" uid="uid://dwoqrjqdrhn8e" path="res://assets/bullet/chewing-gum.aseprite" id="2_0p13c"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_f5nc7"]
+[ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://battle/bullet/components/add_rule.gd" id="3_fipyx"]
+[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="3_yo52g"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="4_yo52g"]
+
+[sub_resource type="Resource" id="Resource_s3dq8"]
+script = ExtResource("3_yo52g")
+stacks = 2
+metadata/_custom_type_script = "uid://5v4wkvk0drde"
+
+[sub_resource type="Resource" id="Resource_tnoly"]
+script = ExtResource("3_fipyx")
+rule = SubResource("Resource_s3dq8")
+metadata/_custom_type_script = "uid://5ff3js1q3hr3"
+
+[sub_resource type="Curve" id="Curve_s3dq8"]
+resource_local_to_scene = true
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 13.753742), 0.0, 0.0, 0, 0, Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_454yb"]
+resource_local_to_scene = true
+script = ExtResource("4_yo52g")
+deceleration = SubResource("Curve_s3dq8")
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o17w6"]
+
+[node name="Gum" type="Area2D" unique_id=1805273699]
+script = ExtResource("1_5qdsl")
+components = Array[ExtResource("2_f5nc7")]([SubResource("Resource_tnoly"), SubResource("Resource_454yb")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=365178883]
+texture = ExtResource("2_0p13c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=148099761]
+shape = SubResource("CircleShape2D_o17w6")

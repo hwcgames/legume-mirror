@@ -5,6 +5,7 @@ class_name EnemySheet
 @export var hp: HealthComponent
 @export var sp: EnergyComponent
 @export var attrs: CombatAttributes = CombatAttributes.new()
+@export var rules: Array[BattleRule] = []
 
 @export var costume: PackedScene = preload("uid://c4r2ey7i7ooq3")
 

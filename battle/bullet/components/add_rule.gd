@@ -1,0 +1,13 @@
+extends BulletComponent
+class_name BulletAddRule
+
+@export var rule: BattleRule
+
+func damage(bullet: Bullet, soul: Soul) -> bool:
+	var players = soul.players.filter(func(p): return p.alive)
+	if players.is_empty():
+		return false
+	var target: PartyMember = players[randi_range(0, len(players) - 1)]
+	if target.add_rule(rule.duplicate()):
+		rule._added_to_soul(soul)
+	return false

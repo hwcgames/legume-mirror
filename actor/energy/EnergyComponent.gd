@@ -37,3 +37,6 @@ func _get_energy() -> int
 
 @abstract
 func _set_energy(energy: int)
+
+func remaining() -> int:
+	return max(0, sp - min)

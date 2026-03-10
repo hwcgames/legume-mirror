@@ -4,10 +4,6 @@ class_name EnergyDebt
 @export var max_debt: int = 100
 @export var debt: int = 0
 
-func _init(debt: int):
-	self.debt = 0
-	self.max_debt = debt
-
 func _get_max() -> int:
 	return 0
 func _get_min() -> int:

@@ -1,17 +1,25 @@
 extends BattleAction
-class_name BattleActionBasicAttack
+class_name BattleActionFancyAttack
+
+@export var name = "Focus Punch"
+@export var cost: int = 10
+
+func allowed(party_member: PartyMember) -> bool:
+	return party_member.sp_component.remaining() > cost
 
 func plan(planner: BattlePlanner) -> BattleActionPlan:
 	var target = await planner.pick_target()
 	if target == null:
 		planner.show_toplevel()
 		return null
-	var plan = BasicAttackPlan.new()
+	var plan = FancyAttackPlan.new()
 	plan.target = target
+	plan.cost = cost
 	return plan
 
-class BasicAttackPlan extends BattleActionPlan:
+class FancyAttackPlan extends BattleActionPlan:
 	var target: Enemy
+	var cost: int
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var p_lock = await InputLocks.lock(party_member.player).shared_lock()
@@ -28,7 +36,7 @@ class BasicAttackPlan extends BattleActionPlan:
 			b_lock.call()
 			e_lock.call()
 			return
-		battlefield.println("%s attacks %s!" % [party_member.human_name, target.human_name])
+		battlefield.println("%s strikes %s with tricky technique!" % [party_member.human_name, target.human_name])
 		#await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
 		var approach = ActorModeApproach.new(party_member, target)
 		await party_member.push_mode(approach)
@@ -38,19 +46,17 @@ class BasicAttackPlan extends BattleActionPlan:
 		challenge.frame_count = randi_range(20,40)
 		challenge.start()
 		var skill = await challenge.result
-		if skill >= 120:
-			var crit_chance: float = party_member.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
-			if randf() < crit_chance:
-				skill *= 4
-		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
+		#if skill >= 120:
+			#var crit_chance: float = party_member.computed_attrs.finesse * 10 / target.computed_attrs.finesse
+			#if randf() < crit_chance:
+				#skill *= 4
+		var damage = (party_member.computed_attrs.finesse*skill/20)-(3*target.computed_attrs.sinesse)
 		animate.finished = true
 		if damage > 0:
 			if skill >= 250:
 				Storyteller.choose_if_available(["%s finesse hits" % party_member.name, "%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
-				battlefield.println("A masterful attack!")
 			elif skill >= 150:
 				Storyteller.choose_if_available(["%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
-				battlefield.println("A precise attack!")
 			else:
 				Storyteller.choose_if_available(["%s hits" % party_member.name, "party hit"])
 			battlefield.println("%s damage!" % [damage])
@@ -61,6 +67,7 @@ class BasicAttackPlan extends BattleActionPlan:
 		else:
 			Storyteller.choose_if_available(["%s misses" % party_member.name, "party misses"])
 			battlefield.println("Swing and a miss...")
+		party_member.sp -= cost
 		await animate.popped
 		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout

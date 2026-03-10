@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://dktprncmf5gpv"]
+
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="1_mgwa5"]
+[ext_resource type="PackedScene" uid="uid://x44fbhw8wjq5" path="res://database/bullet_pattern/ewwthrowthataway.tscn" id="1_pffo7"]
+[ext_resource type="PackedScene" uid="uid://cx1cbdhpkhlcm" path="res://battle/telegraph/support.tscn" id="3_pffo7"]
+
+[resource]
+script = ExtResource("1_mgwa5")
+pattern_scene = ExtResource("1_pffo7")
+telegraph_scene = ExtResource("3_pffo7")
+metadata/_custom_type_script = "uid://bpbc3263647q8"

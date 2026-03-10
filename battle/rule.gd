@@ -16,6 +16,12 @@ func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
 func _added(fighter: Fighter):
 	pass
 
+func _added_to_soul(soul: Soul):
+	pass
+
+func _removed(fighter: Fighter):
+	pass
+
 func _died(fighter: Fighter) -> bool:
 	return true
 
@@ -49,8 +55,14 @@ func telegraph(fighter: Fighter) -> bool:
 func player_action(fighter: Fighter) -> bool:
 	return true
 
+func player_plan(player: PartyMember, plan: BattleActionPlan) -> bool:
+	return true
+
 func enemy_action(fighter: Fighter) -> bool:
 	return true
 
 func done(fighter: Fighter, player_victory: bool) -> bool:
+	return true
+
+func soul(player: PartyMember, soul: Soul):
 	return true

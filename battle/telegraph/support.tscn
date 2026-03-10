@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cx1cbdhpkhlcm"]
+
+[ext_resource type="Texture2D" uid="uid://bmae383wc8vyo" path="res://assets/gui/support.aseprite" id="1_xddb7"]
+
+[node name="Support" type="MarginContainer" unique_id=1324976850]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1829781556]
+layout_mode = 2
+texture = ExtResource("1_xddb7")
