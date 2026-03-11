@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cumv3j1hrhydj"]
+
+[ext_resource type="PackedScene" uid="uid://x44fbhw8wjq5" path="res://database/bullet_pattern/ewwthrowthataway.tscn" id="1_ppdqp"]
+
+[sub_resource type="Curve" id="Curve_ppdqp"]
+_limits = [60.0, 120.0, 0.0, 1.0]
+_data = [Vector2(0, 60), 0.0, 0.0, 0, 0, Vector2(1, 120), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Ewwthrowthataway" unique_id=1763470818 instance=ExtResource("1_ppdqp")]
+
+[node name="BulletEmitter" parent="." index="0" unique_id=1216961632]
+anchors_preset = 9
+anchor_left = 0.0
+anchor_right = 0.0
+grow_horizontal = 1
+emission_angle = SubResource("Curve_ppdqp")

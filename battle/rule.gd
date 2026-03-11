@@ -61,6 +61,12 @@ func player_plan(player: PartyMember, plan: BattleActionPlan) -> bool:
 func enemy_action(fighter: Fighter) -> bool:
 	return true
 
+func setup_battle_board(enemy: Enemy, board: BulletPatternLayer):
+	return true
+
+func pick_pattern(enemy: Enemy, candidates: Array[BulletPattern]):
+	return true
+
 func done(fighter: Fighter, player_victory: bool) -> bool:
 	return true
 

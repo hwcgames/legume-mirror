@@ -20,7 +20,7 @@
 script = ExtResource("1_ogpbo")
 magic = 15
 defense = 1
-finesse = 0
+finesse = 15
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_r07ue"]

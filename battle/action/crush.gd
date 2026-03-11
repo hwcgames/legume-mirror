@@ -61,7 +61,6 @@ class CrushPlan extends BattleActionPlan:
 			var crush := Crush.new()
 			crush.stacks = 3
 			target.add_rule(crush)
-			battlefield.println("Three turns of \"Crush\".")
 		else:
 			Storyteller.choose_if_available(["%s misses" % party_member.name, "party misses"])
 			battlefield.println("Swing and a miss...")

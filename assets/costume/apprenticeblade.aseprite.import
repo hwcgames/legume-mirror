@@ -3,12 +3,12 @@
 importer="aseprite_wizard.plugin.spriteframes"
 type="SpriteFrames"
 uid="uid://dwcn7rhn4ik7i"
-path="res://.godot/imported/bushidotool.aseprite-7b294f283153cabfe3089781226e2ad2.res"
+path="res://.godot/imported/apprenticeblade.aseprite-ff664158f49cc6a3ef6e0f6e7ebb8f54.res"
 
 [deps]
 
-source_file="res://assets/costume/bushidotool.aseprite"
-dest_files=["res://.godot/imported/bushidotool.aseprite-7b294f283153cabfe3089781226e2ad2.res"]
+source_file="res://assets/costume/apprenticeblade.aseprite"
+dest_files=["res://.godot/imported/apprenticeblade.aseprite-ff664158f49cc6a3ef6e0f6e7ebb8f54.res"]
 
 [params]
 

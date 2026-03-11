@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3r6521316dlh"]
+[gd_scene format=3 uid="uid://c3r6521316dlh"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_y65pl"]
-[ext_resource type="SpriteFrames" uid="uid://dwcn7rhn4ik7i" path="res://assets/costume/bushidotool.aseprite" id="2_y65pl"]
+[ext_resource type="SpriteFrames" uid="uid://dwcn7rhn4ik7i" path="res://assets/costume/apprenticeblade.aseprite" id="2_y65pl"]
 
 [node name="test_costume" instance=ExtResource("1_y65pl")]
 

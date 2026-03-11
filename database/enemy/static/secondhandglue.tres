@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_fntdg"]
 [ext_resource type="Resource" uid="uid://dktprncmf5gpv" path="res://database/bullet_pattern/ewwthrowthataway.tres" id="6_2hyda"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_3pwic"]
+[ext_resource type="Resource" uid="uid://cp0gwkegja08b" path="res://database/bullet_pattern/ewwthrowthataway2.tres" id="7_by5dd"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_cktpo"]
 
 [sub_resource type="Resource" id="Resource_llmq2"]
@@ -36,5 +37,5 @@ hp = SubResource("Resource_wkfb0")
 sp = SubResource("Resource_wpdly")
 attrs = SubResource("Resource_llmq2")
 costume = ExtResource("1_wxroi")
-patterns = Array[ExtResource("3_r55a0")]([ExtResource("6_2hyda")])
+patterns = Array[ExtResource("3_r55a0")]([ExtResource("6_2hyda"), ExtResource("7_by5dd")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

@@ -41,7 +41,7 @@ class BasicAttackPlan extends BattleActionPlan:
 		if skill >= 120:
 			var crit_chance: float = party_member.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
 			if randf() < crit_chance:
-				skill *= 4
+				skill *= 2
 		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
 		animate.finished = true
 		if damage > 0:

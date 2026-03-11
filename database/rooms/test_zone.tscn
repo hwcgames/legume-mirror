@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://digiahfpjc1v5"]
+[gd_scene format=3 uid="uid://digiahfpjc1v5"]
 
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ghfn5"]
 [ext_resource type="PackedScene" uid="uid://cmrojy3m0pd16" path="res://assets/rooms/testzone.blend" id="2_leiud"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="5_jfic3"]
 [ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="6_k7nk8"]
 [ext_resource type="PackedScene" uid="uid://dx5x2fwnkpurx" path="res://database/costume/builtbody.tscn" id="7_lyu7e"]
-[ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/bushidotool.tscn" id="8_nfjod"]
+[ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/apprenticeblade.tscn" id="8_nfjod"]
 [ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="9_w0pwo"]
 [ext_resource type="PackedScene" uid="uid://d0bifw6ps4i8d" path="res://database/costume/hallmonitor.tscn" id="10_huafm"]
 [ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="11_ux6hw"]

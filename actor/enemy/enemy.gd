@@ -45,7 +45,7 @@ func _enemy_action():
 		var board = planned_pattern.create(battlefield, self)
 		await get_tree().process_frame
 		for rule in rules:
-			if not rule.setup_battle_board(self, battlefield, board):
+			if not rule.setup_battle_board(self, board):
 				await board.done
 				lock.call()
 				return
