@@ -1,13 +1,42 @@
-[gd_resource type="Resource" script_class="EnemySheet" load_steps=5 format=3 uid="uid://xol3bpg3u6k3"]
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://xol3bpg3u6k3"]
 
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_2no6x"]
 [ext_resource type="PackedScene" uid="uid://d0h2smoo1462b" path="res://database/costume/restlessgenius.tscn" id="1_yb7fx"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_6u4u6"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_6qrpg"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_vcogv"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lcqw1"]
+[ext_resource type="Resource" uid="uid://bmugfrf5c28qh" path="res://database/bullet_pattern/draw_lines.tres" id="6_6qrpg"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_umf0y"]
+[ext_resource type="Resource" uid="uid://cie0nf2vwtx1t" path="res://database/bullet_pattern/smartboard-calibration.tres" id="7_5g4qd"]
+[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="8_5g4qd"]
+[ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="8_vr0jv"]
+
+[sub_resource type="Resource" id="Resource_vr0jv"]
+script = ExtResource("1_2no6x")
+strength = 2
+magic = 0
+defense = 3
+finesse = 2
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_5hhjj"]
+script = ExtResource("3_6qrpg")
+current_hp = 200
+max_hp = 200
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_tselv"]
+script = ExtResource("8_5g4qd")
+current_sp = null
+metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_lcqw1")
 name = &"Restless Genius"
-hp = 100
+hp = SubResource("Resource_5hhjj")
+sp = SubResource("Resource_tselv")
+attrs = SubResource("Resource_vr0jv")
 costume = ExtResource("1_yb7fx")
+patterns = Array[ExtResource("3_vcogv")]([ExtResource("6_6qrpg"), ExtResource("7_5g4qd"), ExtResource("8_vr0jv")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

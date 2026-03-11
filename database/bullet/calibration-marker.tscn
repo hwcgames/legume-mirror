@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dir377gvqxvhr"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_yxpv0"]
+[ext_resource type="Texture2D" uid="uid://cdm6hofe8p3f8" path="res://assets/bullet/calibration-marker.aseprite" id="2_jpqah"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpqah"]
+radius = 5.0
+
+[node name="CalibrationMarker" type="Area2D" unique_id=114458617]
+script = ExtResource("1_yxpv0")
+should_invuln = false
+should_graze = false
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=608611388]
+shape = SubResource("CircleShape2D_jpqah")
+
+[node name="CalibrationMarker" type="Sprite2D" parent="." unique_id=1536172602]
+texture = ExtResource("2_jpqah")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://co3tak7uc6u68"]
+[gd_scene format=3 uid="uid://co3tak7uc6u68"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_xslpg"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_atoox"]
@@ -33,13 +33,13 @@ metadata/_custom_type_script = "uid://cem6eq321nrcm"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kijbk"]
 
-[node name="Test2" type="Area2D"]
+[node name="Test2" type="Area2D" unique_id=426132696]
 script = ExtResource("1_xslpg")
 components = Array[ExtResource("2_atoox")]([SubResource("Resource_sa44c"), SubResource("Resource_pwkdx"), SubResource("Resource_5l2m2")])
 metadata/_custom_type_script = "uid://c1q70xh11sokb"
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=628101496]
 polygon = PackedVector2Array(0, -32, 16, 16, -16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1525697793]
 shape = SubResource("CircleShape2D_kijbk")

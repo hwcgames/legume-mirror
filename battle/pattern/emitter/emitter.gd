@@ -33,5 +33,5 @@ func fire():
 		bullet_instance.reparent(get_parent(), true)
 		fire_at_position.emit(bullet_position)
 		fire_at_angle.emit(angle)
-		bullet_instance._bullet_ready()
+		# bullet_instance._bullet_ready()
 	get_tree().create_timer(delay).timeout.connect(fire)

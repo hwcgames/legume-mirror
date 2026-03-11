@@ -61,6 +61,8 @@ func _on_graze_exited(area: Node) -> void:
 		return
 	if not area in grazers:
 		return
+	if not area.should_graze:
+		return
 	grazers.remove_at(grazers.find(area))
 	graze_state.start("tick")
 	if invuln:
@@ -77,6 +79,7 @@ func _on_hurt(area: Node) -> void:
 	if area in grazers:
 		grazers.remove_at(grazers.find(area))
 	area._on_hurt_player(self)
-	invuln = true
-	await get_tree().create_timer(invuln_time).timeout
-	invuln = false
+	if area.should_invuln:
+		invuln = true
+		await get_tree().create_timer(invuln_time).timeout
+		invuln = false

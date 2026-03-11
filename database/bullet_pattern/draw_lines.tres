@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://bmugfrf5c28qh"]
+
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="1_06ocu"]
+[ext_resource type="PackedScene" uid="uid://bt31mqs0phyc8" path="res://database/bullet_pattern/draw_lines.tscn" id="1_27tjx"]
+[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://battle/telegraph/angy.tscn" id="3_27tjx"]
+
+[resource]
+script = ExtResource("1_06ocu")
+states = Array[int]([0, 1])
+pattern_scene = ExtResource("1_27tjx")
+telegraph_scene = ExtResource("3_27tjx")
+metadata/_custom_type_script = "uid://bpbc3263647q8"

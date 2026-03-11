@@ -109,4 +109,6 @@ static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
 	enemy.planning_priority = enemy_sheet.planning_priority
 	enemy.parleys = enemy_sheet.parleys
 	enemy.enemy_factory = enemy_factory
+	enemy.bg_color = enemy_sheet.bg_color
+	enemy.text_color = enemy_sheet.text_color
 	return enemy

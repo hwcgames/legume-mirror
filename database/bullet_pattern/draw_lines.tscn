@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bt31mqs0phyc8"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_0uuvt"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_6hrag"]
+[ext_resource type="PackedScene" uid="uid://dw7q8xmxypuo8" path="res://database/bullet/squigglemarker.tscn" id="3_7ss03"]
+
+[sub_resource type="Curve" id="Curve_7ss03"]
+
+[sub_resource type="Curve" id="Curve_a6imm"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 2.1625173, 0, 0, Vector2(0.99411774, 2), 1.7092756, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bktnf"]
+_limits = [1.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="DrawLines" type="Control" unique_id=1619542653]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0uuvt")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=2010451301 node_paths=PackedStringArray("layer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6hrag")
+layer = NodePath("..")
+emission_angle = SubResource("Curve_7ss03")
+interval = SubResource("Curve_a6imm")
+amount = SubResource("Curve_bktnf")
+bullet = ExtResource("3_7ss03")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

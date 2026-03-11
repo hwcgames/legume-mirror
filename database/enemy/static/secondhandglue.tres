@@ -15,7 +15,7 @@
 script = ExtResource("1_oaodf")
 strength = 0
 magic = 1
-defense = 1
+defense = 3
 finesse = 1
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 

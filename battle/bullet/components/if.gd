@@ -5,8 +5,8 @@ class_name BulletComponentIf
 @export var states: Array[int] = []
 
 func _ready(bullet: Bullet):
-	if bullet.state not in states:
-		return false
+	#if bullet.state not in states:
+		#return false
 	for component in subcomponents:
 		component._ready(bullet)
 

@@ -1,51 +1,44 @@
 extends BattleAction
-class_name BattleActionApplyRule
+class_name BattleActionHeal
 
-@export var name: String
-@export var cost: int = 15
-@export var message: String = "%s applied a rule to %s!"
-@export var rfl_message: String = "%s applied a rule to themselves!"
-@export var rules: Array[BattleRule]
-@export var friendly: bool = false
+@export var name: String = "Heal"
+@export var amount: int = 30
+@export var cost: int = 20
+@export var message: String = "%s healed %s!"
+@export var rfl_message: String = "%s healed!"
 
 func allowed(party_member: PartyMember) -> bool:
-	return party_member.sp_component.remaining() > cost
+	return party_member.sp_component.remaining() >= cost
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: Fighter = await battle_planner.pick_ally() if friendly else await battle_planner.pick_target()
+	var target: PartyMember = await battle_planner.pick_ally()
 	if target == null:
 		battle_planner.show_toplevel()
 		return null
-	return ApplyRulePlan.new(name, cost, message, rfl_message, rules, friendly, target)
+	return HealPlan.new(amount, target, cost, message, rfl_message)
 
-class ApplyRulePlan extends BattleActionPlan:
-	var name: String
+class HealPlan extends BattleActionPlan:
+	var amount: int
+	var target: Fighter
 	var cost: int
 	var message: String
 	var rfl_message: String
-	var rules: Array[BattleRule]
-	var friendly: bool
-	var target: Fighter
-	func _init(name, cost, message, rfl_message, rules, friendly, target) -> void:
-		self.name = name
+	func _init(amount, target, cost, message, rfl_message):
+		self.amount = amount
+		self.target = target
 		self.cost = cost
 		self.message = message
 		self.rfl_message = rfl_message
-		self.rules = rules
-		self.friendly = friendly
-		self.target = target
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var b_lock = await battlefield.lock.shared_lock()
-		var t_lock = await target.locks.exclusive_lock() if target is Enemy else func(): return
 		if !target.alive:
-			for enemy in battlefield.enemies:
-				if enemy.alive:
-					target = enemy
+			for ally in battlefield.players:
+				if ally.alive:
+					target = ally
 		if !target.alive:
 			print("No living targets!")
 			b_lock.call()
-			t_lock.call()
 			return
 		if party_member != target:
 			battlefield.println(message % [party_member.human_name, target.human_name])
@@ -57,11 +50,9 @@ class ApplyRulePlan extends BattleActionPlan:
 		var animate = ActorModeAnimate.new("friendly_magic")
 		await party_member.push_mode(animate)
 		party_member.sp -= cost
-		for rule in rules:
-			target.add_rule(rule.duplicate())
+		target.heal(amount)
 		await animate.popped
 		approach.finished = true
 		b_lock.call()
-		t_lock.call()
 		if target != party_member:
 			await approach.popped

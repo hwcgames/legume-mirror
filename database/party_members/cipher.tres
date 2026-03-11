@@ -11,9 +11,10 @@
 
 [sub_resource type="Resource" id="Resource_bmh8q"]
 script = ExtResource("1_0dh6u")
-strength = 15
+strength = 5
 magic = 0
-defense = 5
+defense = 2
+finesse = 3
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_864tv"]
@@ -22,8 +23,8 @@ metadata/_custom_type_script = "uid://sqwogqldf52c"
 
 [sub_resource type="Resource" id="Resource_nyaq4"]
 script = ExtResource("4_nn650")
-current_hp = 100
-max_hp = 100
+current_hp = 75
+max_hp = 75
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
 [sub_resource type="Resource" id="Resource_b3bsw"]

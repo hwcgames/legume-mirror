@@ -15,8 +15,8 @@
 script = ExtResource("1_lobln")
 strength = 0
 magic = 0
-defense = 5
-finesse = 5
+defense = 1
+finesse = 8
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_uey5t"]

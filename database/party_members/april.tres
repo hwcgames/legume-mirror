@@ -18,9 +18,10 @@
 
 [sub_resource type="Resource" id="Resource_0l367"]
 script = ExtResource("1_ogpbo")
-magic = 15
+strength = 7
+magic = 5
 defense = 1
-finesse = 15
+finesse = 7
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_r07ue"]
@@ -29,8 +30,8 @@ metadata/_custom_type_script = "uid://sqwogqldf52c"
 
 [sub_resource type="Resource" id="Resource_qaff2"]
 script = ExtResource("4_f6an5")
-current_hp = 100
-max_hp = 100
+current_hp = 50
+max_hp = 50
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
 [sub_resource type="Curve" id="Curve_0l367"]
@@ -57,7 +58,6 @@ metadata/_custom_type_script = "uid://dhh217igyci1m"
 
 [sub_resource type="Resource" id="Resource_5rrdr"]
 script = ExtResource("8_vrvfl")
-amount = 5
 stacks = 3
 metadata/_custom_type_script = "uid://b4sfm156ewh04"
 
@@ -65,7 +65,8 @@ metadata/_custom_type_script = "uid://b4sfm156ewh04"
 script = ExtResource("9_oi4sb")
 name = "Pep Talk"
 message = "%s pumped %s up!"
-rule = SubResource("Resource_5rrdr")
+rfl_message = "%s got pumped up!"
+rules = Array[ExtResource("5_aysg4")]([SubResource("Resource_5rrdr")])
 friendly = true
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"
 
@@ -100,6 +101,8 @@ hp = SubResource("Resource_qaff2")
 sp = SubResource("Resource_auv8r")
 attrs = SubResource("Resource_0l367")
 rules = Array[ExtResource("5_aysg4")]([SubResource("Resource_am3re")])
+bg_color = Color(0.19516191, 0.093666546, 0.12472852, 1)
+text_color = Color(0.99999994, 0.78971016, 0.582179, 1)
 basic_attack = SubResource("Resource_r07ue")
 skillset = SubResource("Resource_cwhhc")
 metadata/_custom_type_script = "uid://dr762xdwdn0fw"

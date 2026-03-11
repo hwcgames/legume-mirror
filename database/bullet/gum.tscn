@@ -46,6 +46,8 @@ metadata/_custom_type_script = "uid://bargiieqvq11y"
 [node name="Gum" type="Area2D" unique_id=1805273699]
 script = ExtResource("1_5qdsl")
 components = Array[ExtResource("2_f5nc7")]([SubResource("Resource_tnoly"), SubResource("Resource_454yb"), SubResource("Resource_o17w6")])
+should_invuln = false
+should_graze = false
 metadata/_custom_type_script = "uid://c1q70xh11sokb"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=365178883]

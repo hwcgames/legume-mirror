@@ -50,7 +50,7 @@ class FancyAttackPlan extends BattleActionPlan:
 			#var crit_chance: float = party_member.computed_attrs.finesse * 10 / target.computed_attrs.finesse
 			#if randf() < crit_chance:
 				#skill *= 4
-		var damage = (party_member.computed_attrs.finesse*skill/20)-(3*target.computed_attrs.sinesse)
+		var damage = (party_member.computed_attrs.finesse*skill/20)-(3*target.computed_attrs.finesse)
 		animate.finished = true
 		if damage > 0:
 			if skill >= 250:
