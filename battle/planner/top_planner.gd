@@ -72,6 +72,9 @@ func pick_ally(predicate: Callable = func(p: PartyMember): return true) -> Party
 
 func _ready():
 	%IdleTab.show()
+	%Name.text = party_member.human_name
+	%Name.add_theme_color_override("font_color", party_member.text_color)
+	%ColorBg.color = party_member.character_sheet.bg_color
 	%HPBar.value = party_member.hp
 	%HPBar.min_value = party_member.sp_component.min
 	%HPBar.max_value = party_member.sp_component.max

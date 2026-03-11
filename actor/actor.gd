@@ -25,6 +25,9 @@ var head_position: Vector3:
 
 var mode_stack: Array[ActorMode] = []
 
+@export var text_color: Color
+@export var bg_color: Color
+
 func _ready():
 	add_to_group("actor")
 	if interactable:
@@ -86,4 +89,6 @@ static func from_sheet(sheet: ActorSheet) -> Actor:
 	a.name = sheet.resource_path.trim_prefix("res://database/actors/").trim_suffix(".tres")
 	a.human_name = sheet.name
 	a.costume = sheet.costume.instantiate()
+	a.text_color = sheet.text_color
+	a.bg_color = sheet.bg_color
 	return a

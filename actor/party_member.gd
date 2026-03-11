@@ -135,4 +135,6 @@ static func from_character_sheet(character_sheet: CharacterSheet) -> PartyMember
 	pm.skill_challenge_scene = load(character_sheet.skill_challenge_scene)
 	pm.battle_planner_scene = load(character_sheet.battle_planner_scene)
 	pm.character_sheet = character_sheet
+	pm.text_color = character_sheet.text_color
+	pm.bg_color = character_sheet.bg_color
 	return pm

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterSheet" format=3 uid="uid://tcxfisophlr"]
+
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_jiuvb"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_u472m"]
+[ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_n4ser"]
+
+[resource]
+script = ExtResource("3_n4ser")
+id = "mauve"
+name = &"Mauve"
+bg_color = Color(0.107054375, 0.11881847, 0, 1)
+text_color = Color(0.4845913, 0.036153894, 0.99999994, 1)
+metadata/_custom_type_script = "uid://dr762xdwdn0fw"

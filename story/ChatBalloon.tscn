@@ -18,12 +18,24 @@ separation = 32.0
 lifetime = 5.0
 metadata/_custom_type_script = "uid://cfoetjectcmne"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1717945539]
+[node name="PanelContainer" type="MarginContainer" parent="." unique_id=1267605778]
 unique_name_in_owner = true
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer" unique_id=1060673256 node_paths=PackedStringArray("voice_player")]
+[node name="ColorBg" type="ColorRect" parent="PanelContainer" unique_id=1785033996]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1211041273]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1060673256 node_paths=PackedStringArray("voice_player")]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -34,7 +46,7 @@ visible_characters_behavior = 1
 script = ExtResource("2_jf04l")
 voice_player = NodePath("player")
 
-[node name="player" type="AudioStreamPlayer" parent="PanelContainer/Label" unique_id=572289188]
+[node name="player" type="AudioStreamPlayer" parent="PanelContainer/MarginContainer/Label" unique_id=572289188]
 unique_name_in_owner = true
 volume_db = -24.091
 max_polyphony = 5
