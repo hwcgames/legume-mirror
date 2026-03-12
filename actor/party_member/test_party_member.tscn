@@ -28,16 +28,12 @@ height = 1.5999999
 collision_layer = 2
 floor_constant_speed = true
 script = ExtResource("1_ms64d")
-max_hp = 50
-hp = 50
-strength = 5
-defense = 5
 costume = NodePath("test_costume")
 metadata/_custom_type_script = "uid://rl05e0067ud"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1707068312]
 unique_name_in_owner = true
-path_desired_distance = 0.1
+target_desired_distance = 0.1
 avoidance_enabled = true
 
 [node name="test_costume" parent="." unique_id=1092040023 instance=ExtResource("2_ms64d")]

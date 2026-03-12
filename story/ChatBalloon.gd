@@ -25,7 +25,7 @@ var text: String:
 
 var last_root_position: Vector2 = Vector2.INF
 func root_screen_position():
-	if character_root != null:
+	if character_root != null and get_viewport().get_camera_3d() != null:
 		last_root_position = get_viewport().get_camera_3d().unproject_position(character_root.global_position)
 	if last_root_position == Vector2.INF:
 		return get_viewport_rect().size * Vector2(0.5, 1.)
@@ -65,8 +65,8 @@ func play_message(message: Message):
 	actor = message.actor
 	if actor:
 		character_root = actor.head
-		%ColorBg.color = actor.bg_color
-		%Label.add_theme_color_override("default_color", actor.text_color)
+		%ColorBg.color = message.bg_color
+		%Label.add_theme_color_override("default_color", message.text_color)
 	if message.expression != null and actor:
 		actor.play("expr_%s" % message.expression)
 	await %Label.type_messages(message.instructions)

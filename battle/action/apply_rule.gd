@@ -58,7 +58,7 @@ class ApplyRulePlan extends BattleActionPlan:
 		var approach = ActorModeApproach.new(party_member, target)
 		if target != party_member:
 			await party_member.push_mode(approach)
-		var animate = ActorModeAnimate.new("friendly_magic")
+		var animate = ActorModeAnimate.new("friendly_magic" if friendly else "hostile_magic")
 		await party_member.push_mode(animate)
 		party_member.sp -= cost
 		for rule in rules:

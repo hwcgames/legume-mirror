@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_ncmek"]
 [ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://vfx/jpeg.tscn" id="2_nkyqf"]
+[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://vfx/jpeg.gdshader" id="3_qrcus"]
+[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://assets/jpeg_quantize.png" id="4_68ox6"]
+[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://vfx/unjpeg.gdshader" id="5_4splm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_udemh"]
 
@@ -14,6 +17,28 @@ script/source = "extends MeshInstance3D
 func _physics_process(delta: float) -> void:
 	rotate_y(2. * PI * delta)
 "
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p0vdq"]
+viewport_path = NodePath("3DOnly")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6jbj"]
+resource_local_to_scene = true
+shader = ExtResource("3_qrcus")
+shader_parameter/viewport = SubResource("ViewportTexture_p0vdq")
+shader_parameter/quantize = ExtResource("4_68ox6")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+shader_parameter/quality = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qb82o"]
+viewport_path = NodePath("DCT")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kma7f"]
+resource_local_to_scene = true
+shader = ExtResource("5_4splm")
+shader_parameter/dct = SubResource("ViewportTexture_qb82o")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_coq5b"]
 viewport_path = NodePath("JpegEffect/3DOnly")
@@ -41,6 +66,12 @@ script = SubResource("GDScript_coq5b")
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
 
 [node name="JpegEffect" parent="." unique_id=1051463828 instance=ExtResource("2_nkyqf")]
+
+[node name="DCT" parent="JpegEffect/DCT" parent_id_path=PackedInt32Array(1051463828, 559845007) index="0" unique_id=606558410]
+material = SubResource("ShaderMaterial_r6jbj")
+
+[node name="IDCT" parent="JpegEffect/IDCT" parent_id_path=PackedInt32Array(1051463828, 1720533226) index="0" unique_id=2062453490]
+material = SubResource("ShaderMaterial_kma7f")
 
 [node name="FlowContainer" type="HBoxContainer" parent="." unique_id=2145968169]
 anchors_preset = 15
@@ -111,3 +142,5 @@ custom_minimum_size = Vector2(256, 0)
 offset_right = 8.0
 offset_bottom = 16.0
 value = 100.0
+
+[editable path="JpegEffect"]

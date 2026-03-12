@@ -1,0 +1,19 @@
+[{
+"name": "Level Elements",
+"scenes": [{
+&"custom_texture": "res://assets/devel/landmark.aseprite",
+&"scene": "res://level/landmark.tscn"
+}, {
+&"custom_texture": "res://assets/devel/seam.aseprite",
+&"scene": "res://level/seam.tscn"
+}, {
+&"custom_texture": "res://assets/devel/procseam.aseprite",
+&"scene": "res://level/procedural_seam.tscn"
+}, {
+&"custom_texture": "res://assets/devel/camera.aseprite",
+&"scene": "res://level/camera.tscn"
+}, {
+&"custom_texture": "res://assets/devel/camera_trigger.aseprite",
+&"scene": "res://level/camera_trigger.tscn"
+}]
+}]

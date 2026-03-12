@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://bvl8t3gdjhcan"]
+
+[ext_resource type="PackedScene" uid="uid://ccijxtd2o6tpu" path="res://database/costume/crow.tscn" id="1_jvtk7"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_a1j1c"]
+
+[resource]
+script = ExtResource("2_a1j1c")
+name = &"Crow"
+costume = ExtResource("1_jvtk7")
+bg_color = Color(0.081683345, 0.06458239, 0.0987817, 1)
+text_color = Color(0.5369984, 0.4697165, 0.59976125, 1)
+metadata/_custom_type_script = "uid://cym7pt0vq3ply"

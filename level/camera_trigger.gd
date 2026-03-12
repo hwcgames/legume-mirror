@@ -1,4 +1,5 @@
 extends Area3D
+class_name CameraTrigger
 
 @export var camera: PhantomCamera3D
 @export var priority_offset: int = 1

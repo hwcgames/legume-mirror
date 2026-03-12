@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfoetjectcmne" path="res://story/ChatBalloon.gd" id="1_bstpd"]
 [ext_resource type="Script" uid="uid://b8u7lhccxkx00" path="res://story/Typewriter.gd" id="2_jf04l"]
+[ext_resource type="SpriteFrames" uid="uid://coukhi6i64aqw" path="res://assets/gui/face.aseprite" id="3_4d6td"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bstpd"]
 resource_local_to_scene = true
@@ -35,7 +36,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1060673256 node_paths=PackedStringArray("voice_player")]
+[node name="Label" type="RichTextLabel" parent="PanelContainer/MarginContainer" unique_id=1060673256 node_paths=PackedStringArray("face", "voice_player")]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
@@ -44,12 +45,36 @@ scroll_active = false
 autowrap_mode = 0
 visible_characters_behavior = 1
 script = ExtResource("2_jf04l")
+face = NodePath("../Control/Control/Face")
 voice_player = NodePath("player")
 
 [node name="player" type="AudioStreamPlayer" parent="PanelContainer/MarginContainer/Label" unique_id=572289188]
 unique_name_in_owner = true
 volume_db = -24.091
 max_polyphony = 5
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer" unique_id=865413647]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/Control" unique_id=79668743]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = -1.0
+offset_bottom = -1.0
+
+[node name="Face" type="AnimatedSprite2D" parent="PanelContainer/MarginContainer/Control/Control" unique_id=1271526632]
+unique_name_in_owner = true
+visible = false
+position = Vector2(10, 10)
+sprite_frames = ExtResource("3_4d6td")
+animation = &"blink"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=285280347]
 unique_name_in_owner = true

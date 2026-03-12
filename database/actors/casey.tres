@@ -6,4 +6,6 @@
 [resource]
 script = ExtResource("2_inpf1")
 name = &"Casey"
+bg_color = Color(0.027188174, 0.15628907, 0.104122765, 1)
+text_color = Color(0.63142216, 0.99941224, 0.7811449, 1)
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

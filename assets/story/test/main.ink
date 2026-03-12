@@ -20,7 +20,7 @@ INCLUDE prologue.ink
     -> prologue
 + [On the way to school]
     ~ clear_dialogue()
-    ~ change_level("intro_railway", "walk_to_school")
+    ~ change_level("intro", "walk_to_school")
     _
     ~ spawn_party("default")
     ~ actor_capture("cipher")
@@ -28,13 +28,19 @@ INCLUDE prologue.ink
     -> prologue.walk_to_school_begin_point
 + [Battling a shadow]
     ~ clear_dialogue()
-    ~ change_level("intro_railway", "alleyway")
+    ~ change_level("intro", "alleyway")
     _
     ~ spawn_party("default")
     ~ actor_capture("cipher")
     ~ sleep(0.5)
     _
     -> prologue.battle_shadow_begin_point
++ [Registering for school]
+    ~ clear_dialogue()
+    -> prologue.register_for_school_begin_point
++ [Hitting the hay]
+    ~ clear_dialogue()
+    -> prologue.in_ciphers_room_begin_point
 
 
 === die

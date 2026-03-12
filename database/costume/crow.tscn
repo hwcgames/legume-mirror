@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ccijxtd2o6tpu"]
+
+[ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_qyph8"]
+[ext_resource type="SpriteFrames" uid="uid://c2sgyfvssmdtx" path="res://assets/costume/crow.aseprite" id="2_11xdt"]
+
+[node name="test_costume" unique_id=712750896 instance=ExtResource("1_qyph8")]
+
+[node name="AnimatedSprite3D" parent="." index="0" unique_id=468465403]
+sprite_frames = ExtResource("2_11xdt")
+animation = &"default"
+
+[node name="MeshInstance3D2" parent="." index="3" unique_id=1221261198]
+visible = false
+
+[node name="Head" parent="." index="4" unique_id=357107110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.68194115, 0)

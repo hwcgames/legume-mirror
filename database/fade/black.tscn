@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://2n2pok5c6305"]
+
+[ext_resource type="Script" uid="uid://bkf8nagcgueep" path="res://database/fade/black.gd" id="1_vyr4x"]
+
+[node name="Black" type="ColorRect" unique_id=894731493]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_vyr4x")

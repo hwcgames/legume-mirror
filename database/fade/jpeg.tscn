@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bwb7q7c32k7x3"]
+
+[ext_resource type="Script" uid="uid://bkenimfaahxqi" path="res://database/fade/jpeg.gd" id="1_drub5"]
+[ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://vfx/jpeg.tscn" id="2_8i1gv"]
+[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://vfx/jpeg.gdshader" id="3_drub5"]
+[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://assets/jpeg_quantize.png" id="4_hugu3"]
+[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://vfx/unjpeg.gdshader" id="5_w5vun"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hugu3"]
+viewport_path = NodePath("3DOnly")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w5vun"]
+resource_local_to_scene = true
+shader = ExtResource("3_drub5")
+shader_parameter/viewport = SubResource("ViewportTexture_hugu3")
+shader_parameter/quantize = ExtResource("4_hugu3")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+shader_parameter/quality = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eouat"]
+viewport_path = NodePath("DCT")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s733n"]
+resource_local_to_scene = true
+shader = ExtResource("5_w5vun")
+shader_parameter/dct = SubResource("ViewportTexture_eouat")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bxcg2"]
+viewport_path = NodePath("JpegEffect/IDCT")
+
+[node name="Jpeg" type="Control" unique_id=1506288662]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_drub5")
+metadata/_custom_type_script = "uid://c8x3j8hr14elb"
+
+[node name="JpegEffect" parent="." unique_id=2121443165 instance=ExtResource("2_8i1gv")]
+unique_name_in_owner = true
+quality = 100
+
+[node name="DCT" parent="JpegEffect/DCT" parent_id_path=PackedInt32Array(2121443165, 559845007) index="0" unique_id=606558410]
+material = SubResource("ShaderMaterial_w5vun")
+
+[node name="IDCT" parent="JpegEffect/IDCT" parent_id_path=PackedInt32Array(2121443165, 1720533226) index="0" unique_id=2062453490]
+material = SubResource("ShaderMaterial_s733n")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=71981824]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_bxcg2")
+
+[editable path="JpegEffect"]

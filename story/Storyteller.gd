@@ -30,6 +30,9 @@ var leader: PartyMember:
 var rules: Array[BattleRule] = []
 
 func _ready():
+	story.changed.connect(setup)
+	setup()
+func setup():
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("cmd_"):
 			continue
@@ -38,7 +41,10 @@ func _ready():
 		if not (function["name"] as String).begins_with("obs_"):
 			continue
 		story.ObserveVariable((function["name"] as String).substr(4), Callable(self , function["name"]))
+	if last_state:
+		story.LoadState(last_state)
 	#do_story = true
+var last_state
 
 func _process(delta: float) -> void:
 	if not do_story:
@@ -52,6 +58,7 @@ func _process(delta: float) -> void:
 	var handle = await lock.exclusive_lock()
 	line = story.Continue()
 	if line == "_":
+		handle.call()
 		return
 	if line != null and !line.is_empty():
 		print("Story line: ", line)
@@ -61,6 +68,7 @@ func _process(delta: float) -> void:
 		handle = await lock.exclusive_lock()
 		new_choices.emit(choices)
 		check_nag(choices)
+	last_state = story.SaveState()
 	handle.call()
 
 var nag_timer: SceneTreeTimer
@@ -235,6 +243,7 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 		"walk", "run":
 			mode = ActorModePathfind.new()
 			mode.pathfind_target = landmark.global_position
+			mode.goal_rotation = landmark.global_rotation.y
 		"glide", _:
 			mode = ActorModeMoveTo.new(actor, landmark)
 	actor.push_mode(mode)
@@ -301,11 +310,19 @@ func cmd_actor_release(actor_name: String):
 func cmd_play_sound(sound: String):
 	print("Stub story operation")
 
-func cmd_fade_out(color: String):
-	print("Stub story operation")
+func cmd_fade_out(to_fade: String):
+	(func():
+		var lock = await lock.shared_lock()
+		await Fader.fade_out(to_fade)
+		lock.call()
+	).call()
 
 func cmd_fade_in():
-	print("Stub story operation")
+	(func():
+		var lock = await lock.shared_lock()
+		await Fader.fade_in()
+		lock.call()
+	).call()
 
 func cmd_start_battle():
 	var battlefield: Battlefield = Battlefield.find()

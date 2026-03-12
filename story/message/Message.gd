@@ -8,11 +8,16 @@ static var last_box: String = "spoken"
 
 var actor: Actor
 var instructions: Array[Instruction]
+var text_color: Color = Color.WHITE
+var bg_color: Color = Color.BLACK
 var box: String
 var expression: String
 const voices_for_box: Dictionary = {
 	"spoken": "typed",
 	"loudspeaker": "typed",
+	"typed": "typed",
+	"text": "beepo",
+	"bird": "bird",
 	"thought": "pling",
 	"written": "written"
 }
@@ -22,39 +27,67 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	var split_index = str.find(": ")
 	if split_index == -1:
 		return null
-	msg.actor = Actor.find(str.substr(0, split_index))
+	var speaker_str = str.substr(0, split_index)
+	#var actor = speaker_str
+	#var speaker
+	#if speaker_str.cont
+	#msg.actor = Actor.find(str.substr(0, split_index))
+	match Array(speaker_str.split(" as ")):
+		[var actor]:
+			msg.actor = Actor.find(actor)
+			msg.text_color = msg.actor.text_color if msg.actor else msg.text_color
+			msg.bg_color = msg.actor.bg_color if msg.actor else msg.bg_color
+		[var actor, var speaker]:
+			msg.actor = Actor.find(actor)
+			var colors = get_colors(speaker)
+			msg.text_color = colors[0]
+			msg.bg_color = colors[1]
 	var line = str.substr(split_index + 2)
-	msg.instructions = Instruction.parse(line)
+	msg.instructions = Instruction.parse(line, msg.actor)
 	for tag in tags:
 		if tag.begins_with("ty:"):
 			last_box = tag.trim_prefix("ty:")
 		if tag.begins_with("expr:"):
 			msg.expression = tag.trim_prefix("expr:")
+			msg.instructions.insert(0, Express.new(msg.expression))
 	msg.box = last_box
 	if msg.box in voices_for_box:
 		msg.instructions.insert(0, ChangeVoice.new(voices_for_box[msg.box]))
 	return msg
 
+static func get_colors(name: String) -> Array[Color]:
+	var as_pm: CharacterSheet = load("res://database/party_members/%s.tres" % name)
+	var as_actor: ActorSheet = load("res://database/actors/%s.tres" % name)
+	var as_enemy: EnemyFactory = load("res://database/enemy/%s.tres" % name)
+	if as_pm:
+		return [as_pm.text_color, as_pm.bg_color]
+	if as_actor:
+		return [as_actor.text_color, as_actor.bg_color]
+	if as_enemy:
+		var enemy = as_enemy.roll_enemy()
+		return [enemy.text_color, enemy.bg_color]
+	return [Color.WHITE, Color.BLACK]
+
 @abstract class Instruction extends RefCounted:
-	static func parse(str: String) -> Array[Instruction]:
+	static func parse(str: String, me: Actor) -> Array[Instruction]:
 		var first_percent = str.find("%")
 		if first_percent == -1:
 			return [TextLeaf.new(str)]
 		var rest: Array[Instruction]
 		if first_percent != 0:
-			rest = parse(str.substr(first_percent))
+			rest = parse(str.substr(first_percent), me)
 			rest.push_front(TextLeaf.new(str.substr(0, first_percent)))
 			return rest
 		str = str.trim_prefix("%")
 		var second_percent = str.find("%")
-		rest.append_array(parse(str.substr(second_percent + 1)))
+		rest.append_array(parse(str.substr(second_percent + 1), me))
 		str = str.substr(0, second_percent)
 		print(str.split(":"))
 		match Array(str.split(":")):
 			["expr", var expr]:
-				rest.push_front(Express.new(expr))
-			["expr", var expr, var actor]:
-				rest.push_front(Express.new(expr, actor))
+				rest.push_front(Express.new(expr, me))
+			["expr", var actor, var expr]:
+				rest.push_front(Express.new(expr, Actor.find(actor)))
 			["act", var act]:
 				rest.push_front(Act.new(act))
 			["act", var act, var actor]:
@@ -69,6 +102,9 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 				rest.push_front(ChangeVoice.new(voice))
 			["char", var name]:
 				rest.push_front(TextLeaf.new(Saver.current_save.get_character_sheet(name).name))
+			["playername"]:
+				rest.push_front(TextLeaf.new("Player"))
+				
 			_:
 				printerr("Malformed inline command '%s'" % str)
 		return rest
@@ -122,28 +158,37 @@ class TextLeaf extends Instruction:
 			await label.wait(label.typewriter_time * wait_mul)
 
 class Express extends Instruction:
-	var actor: String
+	var actor: Actor
+	var mine: bool = false
 	var expr: String
-	func _init(expr: String, actor = ""):
+	func _init(expr: String, actor: Actor = null):
 		self.expr = expr
 		self.actor = actor
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
-		var actor = Actor.find(actor)
+		if not actor:
+			if expr == "none":
+				label.face.hide()
+			elif label.face.sprite_frames.has_animation(expr):
+				label.face.animation = expr
+				label.face.show()
+			else:
+				print("Missing expr %s" % expr)
+				label.face.hide()
 		if actor:
 			actor.costume.play("expr_%s" % expr)
 
 class Act extends Instruction:
-	var actor: String
+	var actor: Actor
 	var act: String
-	func _init(act: String, actor = null):
+	func _init(act: String, actor: Actor = null):
 		self.act = act
 		self.actor = actor
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
-		Actor.find(actor).costume.play(act)
+		actor.costume.play(act)
 
 class Pause extends Instruction:
 	var length: float

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cqcl700i7h12u"]
+
+[ext_resource type="Script" uid="uid://cksmcrmqv2044" path="res://story/fade/fader.gd" id="1_kvwwy"]
+
+[node name="Fader" type="CanvasLayer" unique_id=754755841]
+script = ExtResource("1_kvwwy")

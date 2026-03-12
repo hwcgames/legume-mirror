@@ -1,18 +1,22 @@
 [gd_resource type="Resource" script_class="Level" format=3 uid="uid://bqqnj0kfe2yrr"]
 
 [ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_rnwox"]
-[ext_resource type="Resource" uid="uid://doh7xnfg541yk" path="res://database/roomsets/intro_railway.tres" id="2_3nsay"]
 [ext_resource type="Resource" uid="uid://x7xfpi7ad2rr" path="res://database/rooms/railway/rail_section.tres" id="2_qj3c6"]
 [ext_resource type="Script" uid="uid://qrik54a0gvtv" path="res://level/level.gd" id="3_qj3c6"]
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_wbv7t"]
 [ext_resource type="Resource" uid="uid://cwiuf5g3cvh5t" path="res://database/rooms/prologue_alleyway.tres" id="4_wbv7t"]
+[ext_resource type="Resource" uid="uid://ccofvilcxnssm" path="res://database/rooms/school/school.tres" id="5_eskua"]
+[ext_resource type="Resource" uid="uid://c30bgrvw15iqu" path="res://database/rooms/my-apartment.tres" id="6_bj47k"]
+[ext_resource type="Resource" uid="uid://doh7xnfg541yk" path="res://database/roomsets/intro.tres" id="6_tlejo"]
 
 [resource]
 script = ExtResource("3_qj3c6")
-roomset = ExtResource("2_3nsay")
+roomset = ExtResource("6_tlejo")
 entrances = Dictionary[StringName, ExtResource("1_rnwox")]({
 &"alleyway": ExtResource("4_wbv7t"),
 &"default": ExtResource("2_qj3c6"),
+&"myroom": ExtResource("6_bj47k"),
+&"northold_high": ExtResource("5_eskua"),
 &"walk_to_school": ExtResource("3_wbv7t")
 })
 metadata/_custom_type_script = "uid://qrik54a0gvtv"

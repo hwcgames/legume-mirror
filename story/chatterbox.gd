@@ -19,12 +19,14 @@ func queue_dialogue_choice():
 	Storyteller.new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
 
 func _physics_process(_delta: float) -> void:
-	if oldest == null:
+	if oldest == null or not is_instance_valid(newest):
 		return
 	if oldest.expired or oldest.global_position.y < -100:
 		oldest.queue_free()
 		oldest = oldest.next_balloon
 	%ChatLine.top_balloon = oldest
+	if not is_instance_valid(newest):
+		newest = null
 
 func push_balloon(balloon: ChatBalloon):
 	if newest == null:

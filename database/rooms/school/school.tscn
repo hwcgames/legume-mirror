@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dty6oxcwp1okh"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_tw5bv"]
+[ext_resource type="PackedScene" uid="uid://b1cd0k6ikqx7j" path="res://assets/rooms/school.blend" id="2_bxaoc"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="3_bdagx"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="4_07h7n"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_bdagx"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="6_qx32x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n00oq"]
+size = Vector3(41, 11, 41)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bxaoc"]
+size = Vector3(9, 11, 31)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_n00oq"]
+plane = Plane(1, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_dande"]
+plane = Plane(0, -1, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_x1gax"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bdagx"]
+plane = Plane(0, 0, 0, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_07h7n"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bti4f"]
+plane = Plane(0, 0, -1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qx32x"]
+size = Vector3(16, 11, 31)
+
+[sub_resource type="Resource" id="Resource_07h7n"]
+script = ExtResource("6_bdagx")
+duration = 0.0
+
+[node name="School" type="Area3D" unique_id=1463246741 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_tw5bv")
+camera = NodePath("Camera")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="school" parent="." unique_id=135550111 instance=ExtResource("2_bxaoc")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=530771306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -10)
+shape = SubResource("BoxShape3D_n00oq")
+debug_color = Color(0.9722622, 0, 0.44556296, 0.41960785)
+debug_fill = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1510382461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 26)
+shape = SubResource("BoxShape3D_bxaoc")
+debug_color = Color(0.9722622, 0, 0.44556296, 0.41960785)
+debug_fill = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1062615546]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1510742849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_n00oq")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=655987716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 10, 0)
+shape = SubResource("WorldBoundaryShape3D_dande")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=134435002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_x1gax")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1823451441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_bdagx")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=219296968]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+shape = SubResource("WorldBoundaryShape3D_07h7n")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=86092237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
+shape = SubResource("WorldBoundaryShape3D_bti4f")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=731911637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 26.5)
+shape = SubResource("BoxShape3D_qx32x")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=974904428]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 5, 26.5)
+shape = SubResource("BoxShape3D_qx32x")
+debug_color = Color(0, 0, 0, 1)
+debug_fill = false
+
+[node name="entrance" parent="." unique_id=246181278 instance=ExtResource("3_bdagx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="entrance2" parent="." unique_id=143395587 instance=ExtResource("3_bdagx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="LeaderProxy" type="Node3D" parent="." unique_id=1217090235]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 38)
+script = ExtResource("6_qx32x")
+metadata/_custom_type_script = "uid://bg37o5ga3euip"
+
+[node name="Camera" parent="." unique_id=557331855 instance=ExtResource("4_07h7n")]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 5, 3)
+tween_resource = SubResource("Resource_07h7n")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=361059342]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -3)
+pixel_size = 0.015
+text = "This scene would use visual-novel mode,
+if it was implemented."
