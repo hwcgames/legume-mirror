@@ -1,12 +1,12 @@
 extends BattleAction
-class_name BattleActionHeal
+class_name BattleActionEnergize
 
-@export var name: String = "Heal"
-@export var description: String = "Close an ally's wounds."
-@export var amount: int = 30
-@export var cost: int = 20
-@export var message: String = "%s healed %s!"
-@export var rfl_message: String = "%s healed!"
+@export var name: String = "Energize"
+@export var description: String = "Supplies an ally with magic."
+@export var amount: int = 25
+@export var cost: int = 30
+@export var message: String = "%s invigorated %s!"
+@export var rfl_message: String = "%s wasted SP!"
 
 func allowed(party_member: PartyMember) -> bool:
 	return party_member.sp_component.remaining() >= cost
@@ -16,11 +16,11 @@ func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
 	if target == null:
 		battle_planner.show_toplevel()
 		return null
-	return HealPlan.new(amount, target, cost, message, rfl_message)
+	return EnergizePlan.new(amount, target, cost, message, rfl_message)
 
-class HealPlan extends BattleActionPlan:
+class EnergizePlan extends BattleActionPlan:
 	var amount: int
-	var target: Fighter
+	var target: PartyMember
 	var cost: int
 	var message: String
 	var rfl_message: String
@@ -51,9 +51,10 @@ class HealPlan extends BattleActionPlan:
 		var animate = ActorModeAnimate.new("friendly_magic")
 		await party_member.push_mode(animate)
 		party_member.sp -= cost
-		target.heal(amount)
+		target.sp += amount
 		await animate.popped
 		approach.finished = true
 		b_lock.call()
 		if target != party_member:
 			await approach.popped
+		

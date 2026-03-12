@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://7gjwi8rriruw"]
+
+[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://battle/action/heal.gd" id="1_44oi2"]
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_cwhgo"]
+
+[sub_resource type="Resource" id="Resource_dc85l"]
+script = ExtResource("1_44oi2")
+name = "Re-Granola"
+cost = 0
+message = "%s gave %s a healthy snack!"
+rfl_message = "%s chowed down!"
+metadata/_custom_type_script = "uid://dhfmc3oyqnanb"
+
+[resource]
+script = ExtResource("1_cwhgo")
+name = &"Re-Granola"
+description = &"A medical-grade granola bar."
+battle_action = SubResource("Resource_dc85l")
+metadata/_custom_type_script = "uid://7fyk4nkeo01r"

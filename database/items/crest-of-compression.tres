@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bqx5k045i42qm"]
+
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_2v1q1"]
+[ext_resource type="Script" uid="uid://cnkv5px66oitk" path="res://battle/action/resurrect.gd" id="1_uaaen"]
+
+[sub_resource type="Resource" id="Resource_nkofu"]
+script = ExtResource("1_uaaen")
+cost = 0
+metadata/_custom_type_script = "uid://cnkv5px66oitk"
+
+[resource]
+script = ExtResource("1_2v1q1")
+name = &"Crest of Compression"
+description = &"A golden crest symbolizing life."
+battle_action = SubResource("Resource_nkofu")
+metadata/_custom_type_script = "uid://7fyk4nkeo01r"

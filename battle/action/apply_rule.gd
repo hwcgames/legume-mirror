@@ -2,17 +2,21 @@ extends BattleAction
 class_name BattleActionApplyRule
 
 @export var name: String
+@export var description: String
 @export var cost: int = 15
 @export var message: String = "%s applied a rule to %s!"
 @export var rfl_message: String = "%s applied a rule to themselves!"
 @export var rules: Array[BattleRule]
 @export var friendly: bool = false
+@export var alive: bool = true
 
 func allowed(party_member: PartyMember) -> bool:
 	return party_member.sp_component.remaining() > cost
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: Fighter = await battle_planner.pick_ally() if friendly else await battle_planner.pick_target()
+	var target: Fighter = await battle_planner.pick_ally(func(p): return p.alive == alive)\
+		if friendly else \
+		await battle_planner.pick_target(func(e): return e.alive == alive)
 	if target == null:
 		battle_planner.show_toplevel()
 		return null

@@ -2,6 +2,7 @@ extends BattleAction
 class_name BattleActionCrush
 
 @export var name = "Crush"
+@export var description = "Break the enemy's defenses"
 @export var cost: int = 10
 
 func allowed(party_member: PartyMember) -> bool:

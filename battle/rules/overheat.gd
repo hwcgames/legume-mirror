@@ -5,6 +5,7 @@ class_name Overheat
 @export var defense: Curve
 @export var dot: Curve
 @export var damage_as_heat: float
+@export var sp_gain_mul: float = 0.33
 
 func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
 	var sp = fighter.sp_component as EnergyDebt
@@ -24,5 +25,5 @@ func take_damage(fighter: Fighter, amount: int) -> bool:
 	return true
 
 func get_sp(fighter: Fighter, amount: int) -> bool:
-	fighter.sp -= amount * 2. / 3.
+	fighter.sp -= amount * (1. - sp_gain_mul)
 	return true

@@ -46,6 +46,7 @@ metadata/_custom_type_script = "uid://bn1g5s5s8elxu"
 [sub_resource type="Resource" id="Resource_ca87r"]
 script = ExtResource("10_ahdwx")
 name = "Barrier"
+description = "Cast a psychic ward on an ally, bolstering their defense."
 cost = 10
 message = "%s surrounded %s with a barrier!"
 rfl_message = "%s put up a barrier!"
@@ -74,6 +75,7 @@ metadata/_custom_type_script = "uid://dfyjfraeggk2q"
 [sub_resource type="Resource" id="Resource_ahdwx"]
 script = ExtResource("10_ahdwx")
 name = "Hex"
+description = "Cast an insidious curse on an enemy, weakening their offense and defense."
 cost = 25
 message = "%s hexed %s!"
 rules = Array[ExtResource("2_u472m")]([SubResource("Resource_m6f7q"), SubResource("Resource_bwa58")])

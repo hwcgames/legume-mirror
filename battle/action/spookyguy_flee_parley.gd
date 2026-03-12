@@ -4,6 +4,9 @@ class_name ParleyTutorialFlee
 func label() -> String:
 	return "Rescue"
 
+func description() -> String:
+	return "Grab the stranger and run."
+
 func allowed(party_member: PartyMember) -> bool:
 	return true
 

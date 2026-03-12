@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://0ptuca8vba2u" path="res://actor/energy/EnergyDebt.gd" id="9_5rrdr"]
 [ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="9_oi4sb"]
 [ext_resource type="Script" uid="uid://bdenppbty3kkx" path="res://battle/action/crush.gd" id="10_aysg4"]
-[ext_resource type="Script" uid="uid://c0l3me07rdq1c" path="res://battle/action/focus_punch.gd" id="11_oi4sb"]
+[ext_resource type="Script" uid="uid://c0l3me07rdq1c" path="res://battle/action/tricky_attack.gd" id="13_5rrdr"]
 
 [sub_resource type="Resource" id="Resource_0l367"]
 script = ExtResource("1_ogpbo")
@@ -64,6 +64,7 @@ metadata/_custom_type_script = "uid://b4sfm156ewh04"
 [sub_resource type="Resource" id="Resource_my3j5"]
 script = ExtResource("9_oi4sb")
 name = "Pep Talk"
+description = "Give an ally a strengthening speech."
 message = "%s pumped %s up!"
 rfl_message = "%s got pumped up!"
 rules = Array[ExtResource("5_aysg4")]([SubResource("Resource_5rrdr")])
@@ -73,12 +74,14 @@ metadata/_custom_type_script = "uid://dvrhhuu50lur1"
 [sub_resource type="Resource" id="Resource_8itmk"]
 script = ExtResource("10_aysg4")
 name = "Free Kick"
+description = "Strike, weakening the enemy's defenses."
 cost = 30
 metadata/_custom_type_script = "uid://bdenppbty3kkx"
 
 [sub_resource type="Resource" id="Resource_aysg4"]
-script = ExtResource("11_oi4sb")
+script = ExtResource("13_5rrdr")
 name = "Bullseye"
+description = "Attack using finesse to avoid the target's defenses."
 cost = 30
 metadata/_custom_type_script = "uid://c0l3me07rdq1c"
 

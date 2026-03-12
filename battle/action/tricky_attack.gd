@@ -1,7 +1,8 @@
 extends BattleAction
 class_name BattleActionFancyAttack
 
-@export var name = "Focus Punch"
+@export var name = "Tricky Attack"
+@export var description = "Carefully pierce an enemy's defenses."
 @export var cost: int = 10
 
 func allowed(party_member: PartyMember) -> bool:

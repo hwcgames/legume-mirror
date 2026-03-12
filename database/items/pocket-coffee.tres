@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cpsvr70kbcuvn"]
+
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_0w50m"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_ibb6u"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="2_ay37q"]
+[ext_resource type="Script" uid="uid://be5khkexb637k" path="res://battle/rules/haste.gd" id="2_ry8jb"]
+
+[sub_resource type="Resource" id="Resource_2ba7o"]
+script = ExtResource("2_ry8jb")
+amount = 2
+metadata/_custom_type_script = "uid://be5khkexb637k"
+
+[sub_resource type="Resource" id="Resource_ry8jb"]
+script = ExtResource("2_ay37q")
+cost = 0
+message = "%s gave %s a pick-me-up!"
+rfl_message = "%s drank coffee!"
+rules = Array[ExtResource("1_ibb6u")]([SubResource("Resource_2ba7o")])
+friendly = true
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"
+
+[resource]
+script = ExtResource("1_0w50m")
+name = &"Pocket Coffee"
+description = &"A portable solution to drowsiness. Haste 1 this turn."
+battle_action = SubResource("Resource_ry8jb")
+metadata/_custom_type_script = "uid://7fyk4nkeo01r"

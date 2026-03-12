@@ -1,26 +1,26 @@
 extends BattleAction
-class_name BattleActionHeal
+class_name BattleActionResurrect
 
-@export var name: String = "Heal"
-@export var description: String = "Close an ally's wounds."
-@export var amount: int = 30
-@export var cost: int = 20
-@export var message: String = "%s healed %s!"
-@export var rfl_message: String = "%s healed!"
+@export var name: String = "Resurrect"
+@export var description: String = "Bring an ally from the brink of death."
+@export var amount: float = 0.5
+@export var cost: int = 50
+@export var message: String = "%s brought %s back to life!"
+@export var rfl_message: String = "%s???"
 
 func allowed(party_member: PartyMember) -> bool:
 	return party_member.sp_component.remaining() >= cost
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: PartyMember = await battle_planner.pick_ally(func(p): return p.alive)
+	var target: PartyMember = await battle_planner.pick_ally(func(p): return not p.alive)
 	if target == null:
 		battle_planner.show_toplevel()
 		return null
-	return HealPlan.new(amount, target, cost, message, rfl_message)
+	return ResurrectPlan.new(amount, target, cost, message, rfl_message)
 
-class HealPlan extends BattleActionPlan:
-	var amount: int
-	var target: Fighter
+class ResurrectPlan extends BattleActionPlan:
+	var amount: float
+	var target: PartyMember
 	var cost: int
 	var message: String
 	var rfl_message: String
@@ -33,27 +33,22 @@ class HealPlan extends BattleActionPlan:
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var b_lock = await battlefield.lock.shared_lock()
-		if !target.alive:
+		if target.alive:
 			for ally in battlefield.players:
-				if ally.alive:
+				if not ally.alive:
 					target = ally
-		if !target.alive:
-			print("No living targets!")
+		if target.alive:
+			print("No dead targets!")
 			b_lock.call()
 			return
-		if party_member != target:
-			battlefield.println(message % [party_member.human_name, target.human_name])
-		else:
-			battlefield.println(rfl_message % party_member.human_name)
+		battlefield.println(message % [party_member.human_name, target.human_name])
 		var approach = ActorModeApproach.new(party_member, target)
-		if target != party_member:
-			await party_member.push_mode(approach)
 		var animate = ActorModeAnimate.new("friendly_magic")
 		await party_member.push_mode(animate)
 		party_member.sp -= cost
-		target.heal(amount)
+		target.heal((party_member.hp_component.max - party_member.hp_component.min) * amount)
+		target.turns = 0
 		await animate.popped
 		approach.finished = true
 		b_lock.call()
-		if target != party_member:
-			await approach.popped
+		await approach.popped

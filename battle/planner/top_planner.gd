@@ -118,6 +118,7 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 	for item in items:
 		var button := Button.new()
 		button.text = item.name
+		button.tooltip_text = item.description
 		button.pressed.connect(chosen_item.emit.bind(item))
 		selector.add_child(button)
 	%PocketsTab.show()
@@ -135,6 +136,8 @@ func pockets():
 	var action = item.battle_action.duplicate()
 	action.item = item
 	var plan = await action.plan(self)
+	if plan != null:
+		Inventory.items.remove_at(Inventory.items.find(item))
 	choice.emit(plan)
 
 signal chosen_parley(parley: ParleyAction)
@@ -159,6 +162,7 @@ func pick_parley(enemy: Enemy, predicate = func(i: ParleyAction): return true):
 	for parley in parleys:
 		var button := Button.new()
 		button.text = parley.label()
+		button.tooltip_text = parley.description()
 		button.pressed.connect(chosen_parley.emit.bind(parley))
 		button.disabled = not parley.allowed(party_member)
 		selector.add_child(button)
