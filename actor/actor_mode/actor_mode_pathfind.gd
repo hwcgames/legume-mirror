@@ -1,19 +1,27 @@
 extends ActorMode
 class_name ActorModePathfind
 
-var goal_rotation: float
+var goal_rotation: float = INF
 var pathfind_target: Vector3
 var speed: float = 10.
 
+var dont_teleport = false
+
 func _activate():
+	var e_teleport_timer = actor.get_tree().create_timer(3.0 * actor.global_position.distance_to(pathfind_target) / speed)
 	actor.navigation.navigation_finished.connect(func():
-		actor.create_tween().tween_property(actor, "global_position", pathfind_target, 0.1)
-		await actor.create_tween().tween_property(actor, "global_rotation", Vector3(0., goal_rotation, 0.), 0.1).finished
-		self.finished = true)
+		#e_teleport_timer.timeout.disconnect()
+		finished = true
+		dont_teleport = true
+		if finished:
+			return
+		actor.global_position = pathfind_target
+		if goal_rotation != INF:
+			actor.global_rotation.y = goal_rotation)
 	_uncovered()
 	await actor.get_tree().process_frame
-	actor.get_tree().create_timer(3.0 * actor.global_position.distance_to(pathfind_target) / speed).timeout.connect(func():
-		if self.finished:
+	e_teleport_timer.timeout.connect(func():
+		if dont_teleport or finished:
 			return
 		print("Emergency teleport!")
 		actor.global_position = pathfind_target
@@ -21,6 +29,7 @@ func _activate():
 
 func _deactivate():
 	finished = true
+	dont_teleport = true
 
 func _uncovered():
 	actor.navigation.target_position = pathfind_target

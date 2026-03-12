@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://rl05e0067ud"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1707068312]
 unique_name_in_owner = true
-target_desired_distance = 0.1
+target_desired_distance = 0.5
 avoidance_enabled = true
 
 [node name="test_costume" parent="." unique_id=1092040023 instance=ExtResource("2_ms64d")]
