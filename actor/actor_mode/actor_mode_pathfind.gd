@@ -13,8 +13,6 @@ func _activate():
 		#e_teleport_timer.timeout.disconnect()
 		finished = true
 		dont_teleport = true
-		if finished:
-			return
 		actor.global_position = pathfind_target
 		if goal_rotation != INF:
 			actor.global_rotation.y = goal_rotation)

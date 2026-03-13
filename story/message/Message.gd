@@ -129,6 +129,8 @@ class TextLeaf extends Instruction:
 		label.text += text
 		end = label.get_parsed_text().length()
 	func execute(label: Typewriter):
+		if text.is_empty():
+			return
 		label.visible_characters = start
 		var in_tag = false
 		while label.visible_characters < end:
@@ -148,7 +150,8 @@ class TextLeaf extends Instruction:
 				idx < len(text) and \
 				current_char not in ' !,.?"\'' and \
 				label.voice_player and \
-				(self.time - last_voice) > label.voice.min_delay:
+				(self.time - last_voice) > label.voice.min_delay \
+				and label.visible_characters < end:
 					last_voice = self.time
 					label.voice_player.play()
 			var wait_mul: float = 1.
@@ -197,18 +200,24 @@ class Pause extends Instruction:
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
+		var old_skipping = label.skipping
+		if label.skipping == 1:
+			label.skipping = 0
 		await label.wait(length)
+		label.skipping = old_skipping
 
 class Instant extends Instruction:
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
-		label.skipping = true
+		if label.skipping == 0:
+			label.skipping = 1
 class StartTypewriter extends Instruction:
 	func prepare_label(label: Typewriter):
 		pass
 	func execute(label: Typewriter):
-		label.skipping = false
+		if label.skipping == 1:
+			label.skipping = 0
 
 class ChangeVoice extends Instruction:
 	var voice: Voice

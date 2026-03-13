@@ -94,7 +94,8 @@ metadata/_custom_type_script = "uid://dispg264up47x"
 [node name="PlayersJoin" type="Node" parent="." unique_id=1232967464]
 script = SubResource("GDScript_dpoyh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2145455893]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=2145455893]
+unique_name_in_owner = true
 transform = Transform3D(0.9659258, 1.131334e-08, -0.25881904, 0.25881904, -4.222196e-08, 0.9659258, 0, -1, -4.371139e-08, 0, 0, 0)
 
 [node name="Leader" type="Node3D" parent="." unique_id=531387770]
@@ -132,5 +133,8 @@ script = ExtResource("17_yyy5f")
 
 [node name="Node" type="Node" parent="." unique_id=1399206208]
 script = SubResource("GDScript_p7oxd")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070832867]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="DungeonMap/Button" to="DungeonMap" method="generate_map"]

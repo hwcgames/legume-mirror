@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weather" format=3 uid="uid://ctt8l3cxaqydn"]
+
+[ext_resource type="Script" uid="uid://dbie0bvr6dd3l" path="res://level/weather.gd" id="1_tap6f"]
+
+[sub_resource type="Environment" id="Environment_cfhh3"]
+background_energy_multiplier = 0.25
+ambient_light_energy = 0.2
+fog_enabled = true
+fog_light_color = Color(0.19964027, 0.14158183, 0.14233798, 1)
+fog_density = 0.1811
+
+[resource]
+script = ExtResource("1_tap6f")
+environment = SubResource("Environment_cfhh3")
+sun_angle = Vector3(-45, -90, 0)
+sun_color = Color(0.32003692, 0.004713974, 0.34211433, 1)
+metadata/_custom_type_script = "uid://dbie0bvr6dd3l"

@@ -190,6 +190,7 @@ _
 _
 ~ actor_capture("cipher")
 ~ actor_act("cipher", "shiver")
+~ set_weather("dungeon")
 cipher: Suddenly, it feels like there's a lead weight on my chest...
 ~ sleep(1)
 cipher: ...The end of the alleyway's gone dark.
@@ -321,6 +322,7 @@ cipher: I can't defend us both at once, so I'll have to be [i]careful not to get
 _
 ~ set_camera("_")
 cipher: I don't hear it following me..?
+~ set_weather("dungeon")
 : You feel the pressure on your chest ease, and the light at the end of the alleyway returns.
 ~ actor_release("cipher")
 ~ actor_capture("cipher")
@@ -426,6 +428,7 @@ cipher: It's a good idea to build up more of a rapport. "The hand that feeds..."
 - (in_ciphers_room_begin_point)
 ~ change_level("intro", "myroom")
 _
+~ set_weather("indoors")
 ~ spawn_party("entrance_to_myroom")
 ~ fade_in()
 ~ actor_move("cipher", "center_of_room", "walk")
@@ -435,30 +438,44 @@ cipher: This is my room. It's unfurnished, but that's nothing new. #ty:thought
 cipher: My first day living on the outside... I was expecting it to have a little more impact. I guess this is what I was aiming for, though: a normal- #interrupt
 ~ actor_act("cipher", "radio_pling")
 ~ fade_out("jpeg")
+_
+: A signal pings in the back of your head. #ty:typed
 cipher as casey: hello, stranger! #ty:text #expr:ohoho
-cipher: Hello.
+~ fade_in()
+_
+cipher: Right, I gave her my number... #ty:thought
+~ fade_out("jpeg")
+_
+cipher: %i%Hello.%p:1% #ty:text
 cipher as casey: thanks again for saving me today
 cipher as casey: i still dont' understand
 cipher as casey: where the hell were we? #expr:confused
 cipher as casey: what would have happened to me if you hadn't shown up #expr:fear
-cipher: I don't think there's any way to know for sure.
-cipher: I just hope it doesn't happen again.
-cipher as casey: maybe it has something to do with the disappearances? #expr:humu
-cipher: Pardon?
+cipher: %i%I don't think there's any way to know for sure.
+cipher: %i%I just hope it doesn't happen again.%p:2%
+cipher as casey: maybe it has something to do with those disappearances? #expr:humu
+cipher: %i%Pardon?%p:1%
 cipher as casey: ppl are going missing, its been all over the news
 ~ sleep(1)
-cipher as casey: i think i wasa lmost one of them
-cipher: Maybe.
+cipher as casey: i think i wasa lmost one of them #expr:embarrassed
+cipher: %i%Maybe.%p:1%
 ~ sleep(3)
-cipher as casey: btw
+cipher as casey: btw #expr:curious
 cipher as casey: are you busy tomorrow? #expr:uneasysmile
-cipher: No, why?
+cipher: %i%No, why?%p:1%
 cipher as casey: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch #expr:blush
 cipher as casey: i think you'd get along well with him too, he's in our year
-cipher as casey: you certainly text like him lol
 ~ fade_in()
 cipher: I wasn't expecting something like this so soon... I'll have to be on guard, but it's a good opportunity to learn. #ty:thought
 ~ fade_out("jpeg")
+_
+cipher as casey: btw you type crazy fast lol #ty:text #expr:embarrassed
+~ fade_in()
+_
+cipher: Oops. #ty:thought
+cipher: Humans take time to type. Right.
+~ fade_out("jpeg")
+_
 cipher: I'd be happy to, when should I come by? #ty:text
 cipher as casey: 11 or so should be fine
 cipher as casey: see you then! #expr:ohoho
@@ -466,17 +483,18 @@ cipher as casey: see you then! #expr:ohoho
 cipher: This is what it's like... It's a little scary, not having my life planned out for me, but for the first time it feels like it's [i]mine[/i]. #ty:thought
 cipher: I hope this lasts.
 ~ fade_out("jpeg")
+: Your thoughts slow to a crawl as you prepare to shut down for the night. #ty:typed
 
 ~ sleep(5)
 _
+~ spawn_actor("crow", "windowsill")
+~ actor_capture("crow")
 ~ set_camera("live_crow_reaction")
 ~ sleep(1)
 _
 ~ fade_in()
 // ~ gamemode = "cinema"
 // ~ spawn_actor("crow", "right_on_msgbox")
-~ spawn_actor("crow", "windowsill")
-~ actor_capture("crow")
 ~ actor_act("crow", "fly_in")
 ~ actor_wait("crow")
 crow: Nice to meet you, caw. #ty:bird

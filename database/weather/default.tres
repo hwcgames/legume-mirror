@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Weather" format=3 uid="uid://c4n10vtd3sn"]
+
+[ext_resource type="Script" uid="uid://dbie0bvr6dd3l" path="res://level/weather.gd" id="1_s0m8j"]
+
+[sub_resource type="Environment" id="Environment_s0m8j"]
+
+[resource]
+script = ExtResource("1_s0m8j")
+environment = SubResource("Environment_s0m8j")
+metadata/_custom_type_script = "uid://dbie0bvr6dd3l"

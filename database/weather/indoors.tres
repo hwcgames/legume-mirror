@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weather" format=3 uid="uid://bldu41uob3ave"]
+
+[ext_resource type="Script" uid="uid://dbie0bvr6dd3l" path="res://level/weather.gd" id="1_2dc0p"]
+
+[sub_resource type="Environment" id="Environment_2dc0p"]
+background_energy_multiplier = 0.0
+ambient_light_energy = 0.0
+
+[resource]
+script = ExtResource("1_2dc0p")
+environment = SubResource("Environment_2dc0p")
+sun_color = Color(0, 0, 0, 1)
+metadata/_custom_type_script = "uid://dbie0bvr6dd3l"

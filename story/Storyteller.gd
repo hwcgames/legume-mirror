@@ -125,6 +125,7 @@ func cmd_queue_room(room_name: String, seam: String):
 	treadmill.add_request(Treadmill.RoomRequest.new(room, seam))
 
 func cmd_change_level(level_id: String, starting_room: String = "default"):
+	new_scene = true
 	(func():
 		var l = await lock.shared_lock()
 		var level: Level = load("res://database/level/%s.tres" % level_id)
@@ -135,6 +136,7 @@ func cmd_change_level(level_id: String, starting_room: String = "default"):
 		treadmill.roomset = level.roomset
 		treadmill.spawn_initial_room(level.entrances[starting_room])
 		l.call()
+		get_tree().create_timer(0.5).timeout.connect(func(): new_scene = false)
 	).call()
 
 func cmd_start_dungeon(dungeon_name: String):
@@ -375,6 +377,16 @@ func cmd_set_camera(camera_name: String):
 		return
 	active_camera = camera
 	camera.priority += 10
+
+var new_scene = false
+
+func cmd_set_weather(weather_name: String):
+	var weather: Weather = load("res://database/weather/%s.tres" % weather_name)
+	var sun: DirectionalLight3D = get_tree().current_scene.get_node("%Sun")
+	var env: WorldEnvironment = get_tree().current_scene.get_node("%WorldEnvironment")
+	create_tween().tween_property(sun, "light_color", weather.sun_color, 10. if not new_scene else 0.)
+	create_tween().tween_property(sun, "rotation_degrees", weather.sun_angle, 10. if not new_scene else 0.)
+	env.environment = weather.environment
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:
