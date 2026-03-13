@@ -26,8 +26,10 @@ func _init(actor: Actor,
 		if finished:
 			return
 		print("Emergency teleport!")
+		actor.play("idle")
 		actor.global_position = _goal
-		finished = true)
+		finished = true
+		done.emit())
 
 func _deactivate():
 	finished = true
@@ -41,7 +43,7 @@ func _process(delta: float):
 		if target is Landmark:
 			actor.global_rotation = target.global_rotation
 		done.emit()
-	actor.global_position += actor.global_position.direction_to(_goal) * speed * delta
+	actor.global_position += actor.global_position.direction_to(_goal).limit_length(speed * delta)
 
 func _uncovered():
 	self.speed = actor.global_position.distance_to(_goal) / approach_time

@@ -13,6 +13,7 @@ func _activate():
 		#e_teleport_timer.timeout.disconnect()
 		finished = true
 		dont_teleport = true
+		actor.play("idle")
 		actor.global_position = pathfind_target
 		if goal_rotation != INF:
 			actor.global_rotation.y = goal_rotation)
@@ -23,10 +24,14 @@ func _activate():
 			return
 		print("Emergency teleport!")
 		actor.global_position = pathfind_target
+		actor.play("idle")
 		finished = true)
 
 func _deactivate():
 	finished = true
+	dont_teleport = true
+
+func _covered(by: ActorMode):
 	dont_teleport = true
 
 func _uncovered():

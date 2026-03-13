@@ -277,7 +277,7 @@ func cmd_actor_stop(actor_name: String):
 
 func cmd_actor_wait(actor_name: String):
 	(func():
-		print("Wait for actor...")
+		print("Wait for %s..." % actor_name)
 		var lock = await lock.shared_lock()
 		var actor = Actor.find(actor_name)
 		if actor.top_mode is ActorModeStoryCanary:

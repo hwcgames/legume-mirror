@@ -30,7 +30,7 @@ func update():
 	%PuppetCamera.global_transform = camera.global_transform
 
 func size_changed():
-	var size = get_viewport().size
+	var size = get_viewport().size / 2
 	for child in get_children():
 		if child is SubViewport:
 			child.size = size

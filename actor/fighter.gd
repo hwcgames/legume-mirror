@@ -107,7 +107,7 @@ func join_battle(battle: Battlefield):
 	battle.done.connect(done)
 	battle.done.connect(func(_w): battle_idle.finished = true)
 	push_mode(battle_idle)
-	_join_battle(battle)
+	await _join_battle(battle)
 	joined_battle.emit(battlefield)
 	for rule in rules:
 		if not rule.join_battle(self):

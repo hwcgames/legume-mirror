@@ -34,7 +34,10 @@ func _join_battle(_battle: Battlefield):
 	home_landmark = battlefield.player_landmarks[battlefield.players.find(self )]
 	#await create_tween() \
 		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
-	await (await push_mode(ActorModeMoveTo.new(self, home_landmark.global_position))).popped
+	var move = ActorModeMoveTo.new(self, home_landmark.global_position)
+	await push_mode(move)
+	while top_mode == move:
+		await get_tree().physics_frame
 	await create_tween().tween_property(self, "global_rotation", home_landmark.global_rotation, 0.25).finished
 	b_lock.call()
 

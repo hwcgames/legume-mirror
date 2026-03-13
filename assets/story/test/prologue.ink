@@ -259,6 +259,10 @@ _
 ~ actor_move("spookyguy", "spookyguy_battle", "fall_back")
 ~ actor_wait("spookyguy")
 _
+~ actor_release("cipher")
+~ actor_capture("cipher")
+~ actor_release("spookyguy")
+~ actor_capture("spookyguy")
 ~ join_battle("cipher")
 ~ join_battle("spookyguy")
 ~ start_battle()
@@ -322,7 +326,7 @@ cipher: I can't defend us both at once, so I'll have to be [i]careful not to get
 _
 ~ set_camera("_")
 cipher: I don't hear it following me..?
-~ set_weather("dungeon")
+~ set_weather("default")
 : You feel the pressure on your chest ease, and the light at the end of the alleyway returns.
 ~ actor_release("cipher")
 ~ actor_capture("cipher")
@@ -441,11 +445,6 @@ cipher: My first day living on the outside... I was expecting it to have a littl
 _
 : A signal pings in the back of your head. #ty:typed
 cipher as casey: hello, stranger! #ty:text #expr:ohoho
-~ fade_in()
-_
-cipher: Right, I gave her my number... #ty:thought
-~ fade_out("jpeg")
-_
 cipher: %i%Hello.%p:1% #ty:text
 cipher as casey: thanks again for saving me today
 cipher as casey: i still dont' understand
@@ -528,6 +527,7 @@ cipher: Hey, what did you do to her? #expr:hey #box:normal
 ~ actor_act("shadow1", "roar")
 ~ actor_act("cipher", "flinch")
 ~ actor_wait("cipher")
+_
 cipher: This... This thing isn't human, is it? #expr:embarrassed #box:thought
 ~ start_battle()
 + [Battle top]

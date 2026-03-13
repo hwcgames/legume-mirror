@@ -30,6 +30,7 @@ INCLUDE prologue.ink
     ~ clear_dialogue()
     ~ change_level("intro", "alleyway")
     _
+    ~ set_weather("dungeon")
     ~ spawn_party("default")
     ~ actor_capture("cipher")
     ~ sleep(0.5)
