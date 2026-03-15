@@ -113,6 +113,15 @@ func cmd_clear_dialogue():
 func cmd_dialogue_choice():
 	Chatterbox.queue_dialogue_choice()
 
+func cmd_random_choice():
+	new_choices.connect(func():
+		story.ChooseChoiceIndex(randi_range(0, len(story.GetCurrentChoices())-1)),
+		CONNECT_ONE_SHOT
+	)
+
+func cmd_actor_exists(actor_name: String) -> bool:
+	return Actor.find(actor_name) != null
+
 func cmd_sleep(time: float):
 	(func():
 		var handle = await lock.shared_lock()
@@ -205,12 +214,23 @@ func cmd_spawn_party(landmark_name: String):
 		#party_member.transform = landmark.global_transform
 		#get_tree().current_scene.add_child(party_member)
 
-func cmd_add_party_member(id: String, landmark_name: String):
-	printerr("Stub story operation!")
+func cmd_spawn_party_member(id: String, landmark_name: String):
 	var pm = PartyMember.find(id)
 	var landmark = Landmark.find(landmark_name)
 	if pm != null:
 		pm.global_transform = landmark.global_transform
+		return
+	var pm_sheet = Saver.current_save.get_character_sheet(id)
+	pm = PartyMember.from_character_sheet(pm_sheet)
+	get_tree().current_scene.add_child(pm)
+	pm.global_transform = landmark.global_transform
+
+func cmd_add_party_member(id: String, landmark_name: String):
+	var pm = PartyMember.find(id)
+	var landmark = Landmark.find(landmark_name)
+	if pm != null and not pm.mode_stack.any(func(m): return m is ActorModeFollow):
+		pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
+		party_stack.push_back(pm)
 		return
 	var pm_sheet = Saver.current_save.get_character_sheet(id)
 	pm = PartyMember.from_character_sheet(pm_sheet)
@@ -387,6 +407,9 @@ func cmd_set_weather(weather_name: String):
 	create_tween().tween_property(sun, "light_color", weather.sun_color, 10. if not new_scene else 0.)
 	create_tween().tween_property(sun, "rotation_degrees", weather.sun_angle, 10. if not new_scene else 0.)
 	env.environment = weather.environment
+
+func cmd_confidant_level(confidant: String, level: int):
+	new_line.emit("This would level up a social link, if it was implemented.", [])
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:

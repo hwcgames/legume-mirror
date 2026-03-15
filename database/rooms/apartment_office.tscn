@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dhel745ujxkc2"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_2ol8j"]
+[ext_resource type="PackedScene" uid="uid://dx8n1acdb7bcm" path="res://assets/rooms/apartment-office.blend" id="2_55kgo"]
+[ext_resource type="LightmapGIData" uid="uid://d2ior5my3k0ab" path="res://database/rooms/apartment_office.lmbake" id="3_eyf8n"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="4_laf48"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_1kpcp"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="6_h003l"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_h003l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eyf8n"]
+size = Vector3(9, 5, 7)
+
+[sub_resource type="Resource" id="Resource_5l1e7"]
+script = ExtResource("7_h003l")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_d1sq5"]
+script = ExtResource("7_h003l")
+duration = 0.0
+
+[node name="ApartmentOffice" type="Area3D" unique_id=307880099 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_2ol8j")
+camera = NodePath("corner")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="apartment-office" parent="." unique_id=695977215 instance=ExtResource("2_55kgo")]
+
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=39737519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9166093, 0)
+interior = true
+light_data = ExtResource("3_eyf8n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1082090810]
+light_energy = 0.0
+
+[node name="entrance" parent="." unique_id=246181278 instance=ExtResource("4_laf48")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.081779, -3.2663345e-05, -2.0404444)
+
+[node name="talktodesk" parent="." unique_id=701401275 instance=ExtResource("4_laf48")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.4105647, -2.3841858e-07, -0.37704927)
+
+[node name="frontdesk" parent="." unique_id=419036887 instance=ExtResource("4_laf48")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3894353, -2.3841858e-07, -0.37704927)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=148774588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+shape = SubResource("BoxShape3D_eyf8n")
+debug_fill = false
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1867478260]
+transform = Transform3D(0.756995, 0.022804046, -0.6530225, 0, 0.9993908, 0.034899496, 0.6534205, -0.026418746, 0.756534, -2.054104, 1.5512617, 1.6711699)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1252855771]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("5_1kpcp")
+
+[node name="corner" parent="." unique_id=557331855 instance=ExtResource("6_h003l")]
+transform = Transform3D(0.6401097, -0.17282619, 0.74859244, 0, 0.97437006, 0.22495106, -0.7682835, -0.14399336, 0.6237037, 2.689, 2.438, 1.833)
+tween_resource = SubResource("Resource_5l1e7")
+
+[node name="talk" parent="." unique_id=1989961143 instance=ExtResource("6_h003l")]
+transform = Transform3D(0.756995, 0.022804046, -0.6530225, 0, 0.9993908, 0.034899496, 0.6534205, -0.026418746, 0.756534, -2.054104, 1.5512617, 1.6711699)
+tween_resource = SubResource("Resource_d1sq5")

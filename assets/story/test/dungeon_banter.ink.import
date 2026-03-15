@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://bi5n4j70il1oj"
+path="res://.godot/imported/dungeon_banter.ink-17d1ca9e811179e87f49c7d0c49c1c92.res"
+
+[deps]
+
+source_file="res://assets/story/test/dungeon_banter.ink"
+dest_files=["res://.godot/imported/dungeon_banter.ink-17d1ca9e811179e87f49c7d0c49c1c92.res"]
+
+[params]
+
+is_main_file=false
+compress=true

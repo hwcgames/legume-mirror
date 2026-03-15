@@ -11,8 +11,9 @@
 [ext_resource type="Resource" uid="uid://ccofvilcxnssm" path="res://database/rooms/school/school.tres" id="9_08j17"]
 [ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://level/roomset.gd" id="10_b4mvt"]
 [ext_resource type="Resource" uid="uid://c30bgrvw15iqu" path="res://database/rooms/my-apartment.tres" id="10_y50re"]
+[ext_resource type="Resource" uid="uid://1htqgcsou6wo" path="res://database/rooms/apartment_office.tres" id="11_w8s74"]
 
 [resource]
 script = ExtResource("10_b4mvt")
-rooms = Array[ExtResource("1_uisbr")]([ExtResource("2_y50re"), ExtResource("3_w8s74"), ExtResource("4_73d3s"), ExtResource("5_4fxss"), ExtResource("6_82kd0"), ExtResource("7_bitfo"), ExtResource("8_5dn1u"), ExtResource("9_08j17"), ExtResource("10_y50re")])
+rooms = Array[ExtResource("1_uisbr")]([ExtResource("2_y50re"), ExtResource("3_w8s74"), ExtResource("4_73d3s"), ExtResource("5_4fxss"), ExtResource("6_82kd0"), ExtResource("7_bitfo"), ExtResource("8_5dn1u"), ExtResource("9_08j17"), ExtResource("10_y50re"), ExtResource("11_w8s74")])
 metadata/_custom_type_script = "uid://ck47u2dw5ejx7"

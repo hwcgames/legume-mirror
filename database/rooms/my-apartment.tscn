@@ -92,7 +92,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -1)
 shape = SubResource("BoxShape3D_7rs5b")
 
-[node name="live_crow_reaction" parent="." unique_id=904496162 groups=["camera"] instance=ExtResource("3_ncxq2")]
+[node name="live_crow_reaction" parent="." unique_id=904496162 instance=ExtResource("3_ncxq2")]
 transform = Transform3D(0.90630776, -0.10224062, 0.41006467, -5.0964966e-09, 0.9702957, 0.2419219, -0.42261824, -0.21925573, 0.8793866, 2.4, 2, -0.9)
 tween_resource = SubResource("Resource_7rs5b")
 camera_3d_resource = SubResource("Resource_rrjow")

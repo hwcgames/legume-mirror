@@ -18,4 +18,4 @@ func merge(other: BattleRule):
 	stacks += other.stacks
 
 func _added(fighter: Fighter):
-	fighter.battlefield.println("%s turn(s) of %sx soul speed." % [stacks, speed_mul])
+	fighter.battlefield.println("%s turn(s) of %sx soul speed!" % [stacks, speed_mul])

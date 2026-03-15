@@ -2,6 +2,14 @@ EXTERNAL sleep(seconds)
 === function sleep(seconds)
 >>> Sleep for {seconds}s.
 
+EXTERNAL random_choice()
+=== function random_choice()
+>>> Choose randomly.
+
+EXTERNAL actor_exists(actor)
+=== function actor_exists(actor)
+~ return true
+
 // Track the characters in the party
 
 // LIST party = (cipher), casey, tell, mauve, vince, prince, april
@@ -71,6 +79,8 @@ EXTERNAL despawn_actor(id)
 >>> Spawn actor {id} at {landmark} (or teleport them there).
 === function spawn_party(landmark)
 >>> Spawn the party at {landmark} (or teleport them there).
+=== function spawn_party_member(id, landmark)
+>>> Spawn the party member {id} at {landmark}.
 === function add_party_member(id, landmark)
 >>> Spawn the party member {id} at {landmark}.
 === function rm_party_member(id)

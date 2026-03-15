@@ -8,12 +8,14 @@
 [ext_resource type="Resource" uid="uid://ccofvilcxnssm" path="res://database/rooms/school/school.tres" id="5_eskua"]
 [ext_resource type="Resource" uid="uid://c30bgrvw15iqu" path="res://database/rooms/my-apartment.tres" id="6_bj47k"]
 [ext_resource type="Resource" uid="uid://doh7xnfg541yk" path="res://database/roomsets/intro.tres" id="6_tlejo"]
+[ext_resource type="Resource" uid="uid://1htqgcsou6wo" path="res://database/rooms/apartment_office.tres" id="7_bj47k"]
 
 [resource]
 script = ExtResource("3_qj3c6")
 roomset = ExtResource("6_tlejo")
 entrances = Dictionary[StringName, ExtResource("1_rnwox")]({
 &"alleyway": ExtResource("4_wbv7t"),
+&"apartment_office": ExtResource("7_bj47k"),
 &"default": ExtResource("2_qj3c6"),
 &"myroom": ExtResource("6_bj47k"),
 &"northold_high": ExtResource("5_eskua"),

@@ -1,6 +1,8 @@
 INCLUDE lib.ink
 INCLUDE test.ink
 INCLUDE prologue.ink
+INCLUDE dungeon_banter.ink
+
 
 ~ dialogue_choice()
 + [Begin]
@@ -26,7 +28,7 @@ INCLUDE prologue.ink
     ~ actor_capture("cipher")
     ~ actor_start_following_path("cipher", "forward")
     -> prologue.walk_to_school_begin_point
-+ [Battling a shadow]
++ [Battling a creature]
     ~ clear_dialogue()
     ~ change_level("intro", "alleyway")
     _
@@ -39,6 +41,11 @@ INCLUDE prologue.ink
 + [Registering for school]
     ~ clear_dialogue()
     -> prologue.register_for_school_begin_point
++ [Talking to a kindly elder]
+    ~ clear_dialogue()
+    ~ fade_out("black")
+    _
+    -> prologue.register_apartment_begin_point
 + [Hitting the hay]
     ~ clear_dialogue()
     -> prologue.in_ciphers_room_begin_point

@@ -22,6 +22,6 @@ metadata/_custom_type_script = "uid://dvrhhuu50lur1"
 [resource]
 script = ExtResource("1_0w50m")
 name = &"Pocket Coffee"
-description = &"A portable solution to drowsiness. Haste 1 this turn."
+description = &"A portable solution to drowsiness. Haste 2 this turn."
 battle_action = SubResource("Resource_ry8jb")
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

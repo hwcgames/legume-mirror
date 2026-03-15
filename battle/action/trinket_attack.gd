@@ -1,11 +1,7 @@
 extends BattleAction
-class_name BattleActionBasicAttack
+class_name BattleActionTrinketAttack
 
-@export var name: String = "Basic Attack"
-@export var description: String = "Basic Attack"
-@export var damage_mul = 1.0
-@export var crit_chance_mul = 1.0
-@export var crit_mul = 2.0
+@export var trinkets_amount: float = 0.5
 
 func plan(planner: BattlePlanner) -> BattleActionPlan:
 	var target = await planner.pick_target()
@@ -14,14 +10,12 @@ func plan(planner: BattlePlanner) -> BattleActionPlan:
 		return null
 	var plan = BasicAttackPlan.new()
 	plan.target = target
-	plan.crit_chance_mul = crit_chance_mul
-	plan.crit_mul = crit_mul
+	plan.trinkets_amount = trinkets_amount
 	return plan
 
 class BasicAttackPlan extends BattleActionPlan:
 	var target: Enemy
-	var crit_chance_mul = 1.0
-	var crit_mul = 2.0
+	var trinkets_amount: float = 0.5
 	func go(party_member: PartyMember):
 		var battlefield = party_member.battlefield
 		var p_lock = await InputLocks.lock(party_member.player).shared_lock()
@@ -49,9 +43,9 @@ class BasicAttackPlan extends BattleActionPlan:
 		challenge.start()
 		var skill = await challenge.result
 		if skill >= 120:
-			var crit_chance: float = crit_chance_mul * party_member.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
+			var crit_chance: float = party_member.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
 			if randf() < crit_chance:
-				skill *= crit_mul
+				skill *= 2
 		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
 		animate.finished = true
 		if damage > 0:
@@ -66,6 +60,7 @@ class BasicAttackPlan extends BattleActionPlan:
 			battlefield.println("%s damage!" % [damage])
 			Chatterbox.simple_message(target, "%s!" % [damage])
 			target.take_damage(damage)
+			(party_member.sp_component as TrinketsPool).trinkets_on_field += damage * trinkets_amount
 			var sub_animate = ActorModeAnimate.new("attack_hit", false)
 			await party_member.push_mode(sub_animate)
 		else:

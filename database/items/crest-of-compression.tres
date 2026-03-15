@@ -11,6 +11,6 @@ metadata/_custom_type_script = "uid://cnkv5px66oitk"
 [resource]
 script = ExtResource("1_2v1q1")
 name = &"Crest of Compression"
-description = &"A golden crest symbolizing life."
+description = &"A golden crest with the power to restart the heart."
 battle_action = SubResource("Resource_nkofu")
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

@@ -23,6 +23,8 @@ var max: int:
 
 var fighter: Fighter
 
+@export var normal_sp: bool = true
+
 @abstract
 func _get_min() -> int
 @abstract

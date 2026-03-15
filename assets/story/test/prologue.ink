@@ -57,6 +57,8 @@ _
 ~ actor_act("cipher", "throw_out_journal")
 ~ actor_wait("cipher")
 _
+: Your journal thuds against the wall of the tunnel. #ty:typed
+: You watch it tumble to a stop, quickly falling behind and out of view.
 ~ actor_act("cipher", "dust_hands")
 ~ actor_wait("cipher")
 _
@@ -240,7 +242,7 @@ cipher: It's as solid as it looks.
 -
 + [Build alley_battle]
 -
-~ spawn_actor("casey", "casey_unconscious")
+~ spawn_party_member("casey", "casey_unconscious")
 ~ actor_capture("casey")
 ~ actor_act("casey", "dead")
 ~ spawn_enemy("static/spookyguy", "spookyguy", "stand_over_casey")
@@ -337,7 +339,7 @@ casey: Whuh? Ugh, my head..! #ty:spoken
 cipher: Oh, you're awake-
 // ~ gamemode = "cinema"
 // ~ spawn_actor("cipher", "left")
-// ~ spawn_actor("casey", "right")
+// ~ spawn_party_member("casey", "right")
 // ~ actor_act("cipher", "set_casey_down")
 // ~ actor_act("casey", "cipher_sets_down")
 // ~ actor_wait("casey")
@@ -367,7 +369,7 @@ _
 ~ change_level("intro", "northold_high")
 _
 ~ spawn_party("entrance")
-~ spawn_actor("casey", "entrance2")
+~ spawn_party_member("casey", "entrance2")
 ~ fade_in()
 ~ actor_start_following_path("cipher", "intro_enter_school")
 ~ gamemode = "cinema"
@@ -376,7 +378,7 @@ _
 // cipher: If what I've read is correct, high school students are in the stage of development where they decide [i]what kind of person[/i] they are.
 // cipher: Our tasks aren't dissimilar, so in a way I'm among peers.
 
-// ~ spawn_actor("casey", "right")
+// ~ spawn_party_member("casey", "right")
 casey: You really waited until the last minute to sign up, huh? #expr:embarrassed #ty:spoken
 cipher: There were... %expr:casey:oof%complications during my move, so I wasn't able to get here in person as early as I would have liked.
 casey: Oof, then I'm glad you got them sorted out. %expr:casey:confused%To be honest, I'm surprised they're even letting you sign up the weekend before the start of the semester.
@@ -401,34 +403,44 @@ cipher: My phone doesn't hold a charge well, so I usually leave it at home. %exp
 casey: %expr:blink%...%expr:smile%All right. Talk to you later, then.
 
 ~ fade_out("black")
-~ gamemode = "diorama"
 ~ clear_dialogue()
-~ change_level("intro", "apartment_building")
 _
+~ gamemode = "diorama"
+- (register_apartment_begin_point)
+~ change_level("intro", "apartment_office")
+_
+~ set_weather("indoors")
 ~ spawn_actor("milly", "frontdesk")
+~ actor_capture("milly")
 ~ actor_act("milly", "clickclack")
 ~ spawn_party("entrance")
-~ actor_move("cipher", "talktodesk", "stroll")
-cipher: It's a good thing the school didn't do a proper background check. My story was convincing enough, I guess. Next up is an apartment. I was initially going to go without, but... Life can be difficult if you don't have an address. #ty:though
+~ actor_capture("cipher")
+cipher: It's a good thing the school didn't do a proper background check. My story was convincing enough, I guess. Next up is an apartment. I was initially going to go without, but... Life can be difficult if you don't have an address. #ty:thought
 cipher: It does mean I'll have to figure out an income stream sooner or later, but I've got enough to get by for the time being.
+~ fade_in()
+_
+~ actor_move("cipher", "talktodesk", "walk")
 ~ actor_wait("cipher")
-milly: %expr:ohoho%Oh, hello, dearie! %expr:smile%What can I do for you?
-cipher: I'm %char:cipher%, my parents said they talked to you?
-cipher: Both of the parents she talked to were actually me. #expr:humu #ty:thought
+_
+~ set_camera("talk")
+milly: %expr:ohoho%Oh, hello, dearie! %expr:smile%What can I do for you? #ty:spoken
+cipher: I'm %char:cipher%, my parents said they talked to you? #expr:smile
+cipher: Both of the parents she talked to were actually me, of course. #ty:thought
 cipher: She thinks a gas line broke in our house while they were away on business, so I need to live somewhere else for the foreseeable future.
-milly: %expr:ohoho%Of course! %expr:humu%They sent me your picture in the goggle, %expr:pshaww%but I'm too old for that kind of thing. %expr:smile% I bet you knew the computer better than me before you could even walk, %expr:ohoho%hoho!
-cipher: Haha, good one: #expr:ohoho
-cipher: You don't know how right you are. #expr:humu #ty:thought
-milly: %expr:humu%So, is there anything you need? Do you want me to help you with your bags?
+milly: %expr:ohoho%Of course! %expr:humu%They sent me your picture in the goggle, %expr:pshaww%but I'm too old for that kind of thing. %expr:smile% I bet you knew the computer better than me before you could even walk, %expr:ohoho%hoho! #ty:spoken
+cipher: Haha, good one! #expr:ohoho
+cipher: You don't know how right you are. #ty:thought
+milly: %expr:humu%So, is there anything you need? Do you want me to help you with your bags? #ty:spoken
 cipher: No, thanks! I'm stronger than I look. #expr:smile
-cipher: And I don't actually [i]have[/i] any luggage to carry. #ty:thought #expr:humu
-mildred: %expr:aww%Aww, aren't you independent? %expr:humu%Well, if you ever need anything, just let Aunt Milly know! #ty:spoken
-cipher: You're too kind. You let me know if you ever need any help with the "Goggle" in return, all right? #expr:smile
-cipher: It's a good idea to build up more of a rapport. "The hand that feeds..." #ty:thought #expr:humu
+cipher: And I don't actually [i]have[/i] any luggage to carry. #ty:thought
+milly: %expr:aww%Aww, aren't you independent? %expr:humu%Well, if you ever need anything, %expr:ohoho%just let Aunt Milly know! #ty:spoken
+cipher: You're too kind. You let me know if you ever need any help with the %expr:ohoho%"Goggle" in return, all right? #expr:smile
+cipher: It's a good idea to build up more of a rapport. %expr:humu%"The hand that feeds..." #ty:thought
 ~ confidant_level("milly", 1)
-~ actor_move("cipher", "exit", "walk")
-~ sleep(1)
+_
+~ actor_move("cipher", "entrance", "walk")
 ~ fade_out("black")
+_
 - (in_ciphers_room_begin_point)
 ~ change_level("intro", "myroom")
 _
@@ -444,31 +456,31 @@ cipher: My first day living on the outside... I was expecting it to have a littl
 ~ fade_out("jpeg")
 _
 : A signal pings in the back of your head. #ty:typed
-cipher as casey: hello, stranger! #ty:text #expr:ohoho
+cipher%as%casey: hello, stranger! #ty:text #expr:ohoho
 cipher: %i%Hello.%p:1% #ty:text
-cipher as casey: thanks again for saving me today
-cipher as casey: i still dont' understand
-cipher as casey: where the hell were we? #expr:confused
-cipher as casey: what would have happened to me if you hadn't shown up #expr:fear
+cipher%as%casey: thanks again for saving me today
+cipher%as%casey: i still dont' understand
+cipher%as%casey: where the hell were we? #expr:confused
+cipher%as%casey: what would have happened to me if you hadn't shown up #expr:fear
 cipher: %i%I don't think there's any way to know for sure.
 cipher: %i%I just hope it doesn't happen again.%p:2%
-cipher as casey: maybe it has something to do with those disappearances? #expr:humu
+cipher%as%casey: maybe it has something to do with those disappearances? #expr:humu
 cipher: %i%Pardon?%p:1%
-cipher as casey: ppl are going missing, its been all over the news
+cipher%as%casey: ppl are going missing, its been all over the news
 ~ sleep(1)
-cipher as casey: i think i wasa lmost one of them #expr:embarrassed
+cipher%as%casey: i think i wasa lmost one of them #expr:embarrassed
 cipher: %i%Maybe.%p:1%
 ~ sleep(3)
-cipher as casey: btw #expr:curious
-cipher as casey: are you busy tomorrow? #expr:uneasysmile
+cipher%as%casey: btw #expr:curious
+cipher%as%casey: are you busy tomorrow? #expr:uneasysmile
 cipher: %i%No, why?%p:1%
-cipher as casey: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch #expr:blush
-cipher as casey: i think you'd get along well with him too, he's in our year
+cipher%as%casey: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch #expr:blush
+cipher%as%casey: i think you'd get along well with him too, he's in our year
 ~ fade_in()
 cipher: I wasn't expecting something like this so soon... I'll have to be on guard, but it's a good opportunity to learn. #ty:thought
 ~ fade_out("jpeg")
 _
-cipher as casey: btw you type crazy fast lol #ty:text #expr:embarrassed
+cipher%as%casey: btw you type crazy fast lol #ty:text #expr:embarrassed
 ~ fade_in()
 _
 cipher: Oops. #ty:thought
@@ -476,8 +488,8 @@ cipher: Humans take time to type. Right.
 ~ fade_out("jpeg")
 _
 cipher: I'd be happy to, when should I come by? #ty:text
-cipher as casey: 11 or so should be fine
-cipher as casey: see you then! #expr:ohoho
+cipher%as%casey: 11 or so should be fine
+cipher%as%casey: see you then! #expr:ohoho
 ~ fade_in()
 cipher: This is what it's like... It's a little scary, not having my life planned out for me, but for the first time it feels like it's [i]mine[/i]. #ty:thought
 cipher: I hope this lasts.
@@ -503,110 +515,20 @@ crow: What's that? Yes, you've already named our friend %char:cipher%, caw... Bu
 // crow: %playername%? Let me write that down, squawk.
 // crow: Oh, by the way, please don't close the game if you see me taking notes, caw. It's difficult enough to write without thumbs, you see, so I would prefer not to be interrupted.
 // crow: That said, squawk, I'm very glad that you decided to play this game. I'll get out of your hair for now.
-crow: Oh, really? That's a shame, I was so curious. #ty:bird #expr:oof
+crow: Oh, really? That's a shame. #ty:bird #expr:oof
 crow: Just my luck to end up in the demo... I hope we'll meet again in the final game.
-crow: That said, squawk, I'm very glad that you decided to play. I'll get out of your hair for now.
-
-
-
-->END
-
-
-
-
-~ actor_act("cipher", "kneel")
-cipher: Are you okay?! #expr:worry
-~ play_sound("rustle")
-~ sleep(0.5)
-~ play_sound("rustle")
-~ sleep(1.5)
-cipher: She's out cold, but she has a pulse... #expr:hey #box:thought
-~ actor_act("cipher", "stand")
-~ actor_move("cipher", "challenge", "run")
-cipher: Hey, what did you do to her? #expr:hey #box:normal
-~ actor_act("shadow1", "roar")
-~ actor_act("cipher", "flinch")
-~ actor_wait("cipher")
+crow: That said, squawk, I'm very glad that you decided to play.
+crow: The next few days of the game aren't ready yet, and they wouldn't be that interesting in a demo regardless...
+crow: So, caw, my superiors have asked me to escort you further into the game.
+crow: If you'll follow me, squawk...
+~ fade_out("black")
+~ sleep(1)
 _
-cipher: This... This thing isn't human, is it? #expr:embarrassed #box:thought
-~ start_battle()
-+ [Battle top]
--
-~ lock_battlefield()
-cipher: I need to protect her, but if she wakes up... #expr:humu
-cipher: I'll just have to fight like a human.
-cipher: It's simple enough, I just have to get the [b]timing[/b] right.
--> attack_tut
-= attack_tut
-~ free_battlefield()
-+ [cipher perfect hits]
-    ~ lock_battlefield()
-    cipher: Nice! #expr:humu
-    -> dodge_tut
-+ [cipher hits]
-    ~ lock_battlefield()
-    -> dodge_tut
-+ [cipher misses]
-    ~ lock_battlefield()
-    * * ->
-        cipher: What am I doing? #expr:angry
-        cipher: If I don't focus, this could get bad!
-    * * ->
-        cipher: Am I really this rusty..? #expr:angry
-    * * ->
-        cipher: ... #expr:serious
-    * * ->
-    - -
-    ~ free_battlefield()
-    + + [Battle top]
-    - -
-    ~ lock_battlefield()
-    -> attack_tut
-= dodge_tut
-~ actor_act("shadow1", "roar")
-~ enemy_state("shadow1", 1)
-cipher: Oops, that made it angry... #expr:worry
-cipher: Here it comes! I need to be [b]light on my feet[/b]!
-~ free_battlefield()
-+ [Battle top]
--
-~ lock_battlefield()
-cipher: Huh, it's not that strong...
-cipher: I guess I can just whittle it down.
-~ enemy_state("shadow1", 2)
-~ free_battlefield()
-
-+ [Battle win]
--
+crow: Ack! Who turned out the lights?!
+~ sleep(0.5)
+_
+~ change_level("intro_dungeon", "entrance")
 
 
 
 ->END
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

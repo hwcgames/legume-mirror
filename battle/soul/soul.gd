@@ -85,3 +85,8 @@ func _on_hurt(area: Node) -> void:
 		invuln = true
 		await get_tree().create_timer(invuln_time).timeout
 		invuln = false
+		%GrazeShape.disabled = true
+		%HurtShape.disabled = true
+		await get_tree().physics_frame
+		%GrazeShape.disabled = false
+		%HurtShape.disabled = false

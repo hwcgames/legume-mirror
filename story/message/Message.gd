@@ -32,7 +32,7 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	#var speaker
 	#if speaker_str.cont
 	#msg.actor = Actor.find(str.substr(0, split_index))
-	match Array(speaker_str.split(" as ")):
+	match Array(speaker_str.split("%as%")):
 		[var actor]:
 			msg.actor = Actor.find(actor)
 			msg.text_color = msg.actor.text_color if msg.actor else msg.text_color
@@ -85,7 +85,7 @@ static func get_colors(name: String) -> Array[Color]:
 		print(str.split(":"))
 		match Array(str.split(":")):
 			["expr", var expr]:
-				rest.push_front(Express.new(expr, me))
+				rest.push_front(Express.new(expr, null))
 			["expr", var actor, var expr]:
 				rest.push_front(Express.new(expr, Actor.find(actor)))
 			["act", var act]:
