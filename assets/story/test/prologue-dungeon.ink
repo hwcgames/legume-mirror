@@ -23,8 +23,7 @@ cipher: This place definitely isn't on the map of the city.
 _
 ~ set_camera("huddle")
 : Everyone looks around, bewildered. #ty:typed
-april: Oh, shit... #ty:spoken
-april: This place feels heavier than the ones from before, doesn't it?
+april: This place feels heavier than the ones from before, doesn't it? #ty:spoken
 casey: It must be the source.
 mauve: Definitely.
 april: What next?
@@ -36,7 +35,10 @@ april: What next?
 // ~ actor_release("mauve")
 // ~ actor_release("april")
 ->input_tutorial->
-crow: Psst, player! It's me, down here, scraw!
+{
+    - prologue.meet_crow: crow: Psst, player! It's me, down here, scraw! #ty:bird
+    - else: crow: Hey, you, human! Up there, squawk! #ty:bird
+}
 
 - (lobby_walkabout)
 + [Crow]
@@ -44,9 +46,18 @@ crow: Psst, player! It's me, down here, scraw!
     ~ set_camera("crow")
     ~ sleep(0.5)
     _
-    {once:
-    - crow: Caw, hello, player! #ty:bird
-      crow: This is the next part of the game I've been asked to guide you to.
+    {
+        - prologue.meet_crow:
+            {once:
+            - crow: Caw, hello, player! #ty:bird
+              crow: This is the next part of the game I've been asked to guide you to.
+            }
+        - else:
+            {once:
+            - crow: Nice to meet you face-to-face, caw! #ty:bird
+                crow: You were in a hurry to get here, eh?
+                crow: I respect that - skip to the action.
+            }
     }
     crow: Is there anything you'd like to know?
     - - (crow_talk)
@@ -57,9 +68,20 @@ crow: Psst, player! It's me, down here, scraw!
             - crow: That's a fair question. #ty:bird
             - crow: Again? All right. #ty:bird
         }
+        {
+            - !prologue.meet_crow:
+                crow: Cipher, the character you control, is an android of some sort who recently escaped from their mother's workplace. #ty:bird
+                crow: You will choose their actions and keep them safe as they carve a niche into the concrete jungle.
+        }
         ~ set_camera("casey")
-        crow: You already know Casey, of course... #ty:bird
-        crow: She's an excitable, intelligent girl, and the first person you properly met on the outside.
+        {
+            - prologue.meet_crow:
+                crow: You already know Casey, of course... #ty:bird
+            - else:
+                crow: This is Casey.
+        }
+        crow: She's excitable, intelligent, and the first person you properly met on the outside.
+        crow: She uses her intellect to construct spells from mechanical parts.
         casey: Where even are we, physically? Underground? #ty:thought
         ~ set_camera("april")
         crow: This is April, a former basketball player who goes to another school. #ty:bird
@@ -108,7 +130,7 @@ cipher: This looks like the only way forward. #ty:spoken
 ~ actor_release("april")
 ~ actor_capture("crow")
 ~ actor_start_following_actor("crow", "cipher", "walk")
-~ sleep(1.5)
+~ sleep(1)
 _
 ~ actor_start_following_path("cipher", "north_outgoing")
 // ~ block_dungeon_progress()
@@ -129,32 +151,38 @@ casey: Get ready to fight, everyone!
 - (dungeon_loop)
 ~ block_dungeon_progress()
 + [dungeon towards junction]
++ [dungeon done] -> boss
 - (towards_junction)
-{junction_next_room(-1) == "N/A" and junction_next_room(0) == "N/A" and junction_next_room(1) == "N/A":
-    ->boss
-}
-->banter.junction->
+// {junction_next_room(-1) == "N/A" and junction_next_room(0) == "N/A" and junction_next_room(1) == "N/A":
+//     ->boss
+// }
+->banter.junction(-> after_junct_banter)
+- (after_junct_banter)
 ~ allow_dungeon_progress()
 + [dungeon entered junction]
 -
-~ sleep(0.5)
+~ sleep(0.1)
 _
 ~ actor_release("cipher")
 {once:
   - cipher: There's a fork in the road. #ty:spoken
-    mauve: I guess there must be a choice for us to make?
+    mauve: Which way, though?
 }
 ~ block_dungeon_progress()
 + [dungeon towards room]
++ 
 -
 ~ actor_capture("cipher")
 ~ actor_start_following_path("cipher", "forward")
-->banter.hallway->
+->banter.hallway(-> after_hall_banter)
+- (after_hall_banter)
 _
 ~ allow_dungeon_progress()
 
-<-dungeon_loop
-+ [dungeon built safe]
+<- dungeon_loop
++ {junction_current_room() == "safe"} [dungeon built safe]
+    ~ sleep(0.5)
+    _
     ~ spawn_actor("crow", "crow")
     + + [dungeon entered safe]
     - -
@@ -190,7 +218,7 @@ _
     // - -
     // ~ actor_cap
     // -> safe_room
-+ [dungeon built room]
++ [dungeon built room] ->
 -
 
 -> dungeon_loop

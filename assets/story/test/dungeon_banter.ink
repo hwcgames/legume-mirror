@@ -1,9 +1,11 @@
 === banter
 
-= junction
+= junction(-> back)
 ~ random_choice()
+<-mauve_hints(back)
+=mauve_hints(->back)
 VAR next_room = "N/A"
-()
+
 + {junction_next_room(-1) != "N/A"} [Mauve hint left]
     ~ next_room = junction_next_room(-1)
     mauve: Something to the left feels <>{next_room:
@@ -37,25 +39,27 @@ VAR next_room = "N/A"
         - "shop": commercial
         - else: strange
     }<>... #ty:thought
--
-->->
-= hallway
++ [_]
+- ->back
+
+= hallway(-> back)
 ~ random_choice()
 _
-<- generic_hallway
+<- generic_hallway(back)
 {junction_current_room():
-    - "monster": <-monster_hallway
-    - "item": <-item_hallway
-    - "event": <-event_hallway
-    - "safe": <-safe_hallway
-    - "boss": <-boss_hallway
-    - "shop": <-shop_hallway
+    - "monster": <-monster_hallway(back)
+    - "item": <-item_hallway(back)
+    - "event": <-event_hallway(back)
+    - "safe": <-safe_hallway(back)
+    - "boss": <-boss_hallway(back)
+    - "shop": <-shop_hallway(back)
 }
-+ ->
--
-->->
 
-= generic_hallway
++ [_]
+-
+->back
+
+= generic_hallway(-> back)
 * [Sensory]
     : The hallway looks something like what you know from your school, but there's an imposing aura... #ty:typed
 * [Casey questions the workings of the dungeons]
@@ -72,39 +76,40 @@ _
     cipher: That's a worrying possibility...
     casey: They're getting more frequent every day, so if we can't stop them...
     casey: The entire city would probably be sucked in. #expr:fear
++ [_]
 -
-->->
+->back
 
-= monster_hallway
+= monster_hallway(-> back)
 // + ->
 // -
 ->DONE
 
-= item_hallway
+= item_hallway(-> back)
 + [placeholder]
     : There would be an item here, if it was implemented.
 -
-->->
+->back
 
-= event_hallway
-* [placeholder]
+= event_hallway(-> back)
++ [placeholder]
     : There would be a special event here, if it was implemented.
 -
-->->
+->back
 
-= safe_hallway
+= safe_hallway(-> back)
 // + ->
 // -
 ->DONE
 
-= boss_hallway
-* [placeholder]
+= boss_hallway(-> back)
++ [placeholder]
     : There would be a boss here, if it was implemented.
 -
-->->
+->back
 
-= shop_hallway
-* [placeholder]
+= shop_hallway(-> back)
++ [placeholder]
     : There would be a shop here, if it was implemented.
 -
-->->
+->back

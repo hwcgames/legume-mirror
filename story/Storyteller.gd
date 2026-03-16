@@ -79,19 +79,30 @@ func check_nag(choices: Array[InkChoice]):
 		nag_timer.timeout.connect(func(): choose_if_available([choice.GetText()]))
 
 func choose_if_available(names: Array[String], important: bool = false) -> bool:
-	var current_choices = choices
-	print("Choosing ", names, " from ", current_choices.map(func(c): return c.GetText()))
-	for choice_name in names:
-		var choice_index = current_choices.find_custom(func(choice: InkChoice):
-			return choice.GetText() == choice_name)
-		if choice_index != -1:
-			var choice = current_choices[choice_index]
-			story.ChooseChoiceIndex(choice_index)
-			chose.emit(choice)
-			return true
-	if important:
+	print("Choosing ", names, " from ", choices.map(func(c): return c.GetText()))
+	for name in names:
+		for i in range(len(choices)):
+			var choice = choices[i]
+			if choice.GetText() == name:
+				story.ChooseChoiceIndex(i)
+				return true
+	if important and story.GetCanContinue():
+		print("Trying to choose ", names, " on the next choice")
 		self.new_choices.connect(func(_c): choose_if_available(names, false), CONNECT_ONE_SHOT)
 	return false
+	#var current_choices = choices
+	#for choice_name in names:
+		#var choice_index = current_choices.find_custom(func(choice: InkChoice):
+			#return choice.GetText() == choice_name)
+		#if choice_index != -1:
+			#print("Choosing ", choice_name, " (", choice_index, ") from ", current_choices.map(func(c): return c.GetText()))
+			#var choice = current_choices[choice_index]
+			#assert(len(choices) == len(current_choices))
+			#for i in range(len(choices)):
+				#assert(choices[i].GetText() == current_choices[i].GetText())
+			#story.ChooseChoiceIndex(choice_index)
+			#chose.emit(choice)
+			#return true
 
 func cmd_reset():
 	print("Resetting the game for the next player.")
@@ -114,8 +125,19 @@ func cmd_dialogue_choice():
 
 func cmd_random_choice():
 	new_choices.connect(func(_c):
-		print("A")
-		story.ChooseChoiceIndex(randi_range(0, len(story.GetCurrentChoices()) - 1)),
+		await get_tree().process_frame
+		print("Choosing randomly from ", choices.map(func(c): return c.GetText()))
+		if not choices.any(func(c): return c.GetText() != "_"):
+			story.ChooseChoiceIndex(0)
+			return
+		while true:
+			var i = randi_range(0, len(story.GetCurrentChoices()) - 1)
+			if choices[i].GetText() == "_":
+				continue
+			if len(story.GetCurrentChoices()) <= i:
+				continue
+			story.ChooseChoiceIndex(i)
+			break,
 		CONNECT_ONE_SHOT
 	)
 

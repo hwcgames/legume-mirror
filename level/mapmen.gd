@@ -178,10 +178,6 @@ func _ready():
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
-	if not map.has(current_position):
-		reset()
-		Storyteller.choose_if_available(["dungeon done"], true)
-		return
 	Storyteller.choose_if_available([
 		"dungeon choice %s" % choice,
 		"dungeon towards %s" % name_room(map[current_position].room_type),
@@ -191,6 +187,10 @@ func junction_unloaded():
 
 func room_unloaded():
 	Storyteller.choose_if_available(["dungeon towards junction"], true)
+	if current_position.y == height - 1:
+		Storyteller.choose_if_available(["dungeon done"], true)
+		reset()
+		return
 	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
