@@ -58,9 +58,9 @@
           nativeBuildInputs = deps;
           LD_LIBRARY_PATH = lib.makeLibraryPath deps;
         };
-      packages.default =
-        pkgs.callPackage ./pkg.nix {
-        };
+      # packages.default =
+      # pkgs.callPackage ./pkg.nix {
+      # };
     });
   in
     outputs
