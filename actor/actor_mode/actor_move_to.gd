@@ -18,6 +18,7 @@ func _init(actor: Actor,
 		self.goal = goal
 	elif goal is Node3D:
 		self.target = goal
+		self.goal = target.global_position
 	else:
 		printerr("Goal should be a vector3 or a node3D")
 	#self.approach_time = approach_time

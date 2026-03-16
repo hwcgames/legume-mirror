@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Encounter" format=3 uid="uid://cix704qsq4o0j"]
+
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="1_2w8yt"]
+[ext_resource type="Resource" uid="uid://hsovlpvfc1fv" path="res://database/enemy/static/deliberatestew.tres" id="2_5ps6b"]
+[ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="3_i1dea"]
+
+[resource]
+script = ExtResource("3_i1dea")
+enemies = Array[ExtResource("1_2w8yt")]([ExtResource("2_5ps6b")])
+metadata/_custom_type_script = "uid://dbypde31s8c5x"

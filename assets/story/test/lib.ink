@@ -66,6 +66,13 @@ EXTERNAL allow_dungeon_progress()
 === function allow_dungeon_progress()
 >>> Unblocked dungeon progress
 
+EXTERNAL show(name)
+=== function show(name)
+>>> Show {name}
+EXTERNAL hide(name)
+=== function hide(name)
+>>> Hide {name}
+
 // Actor management
 EXTERNAL spawn_actor(id, landmark)
 EXTERNAL spawn_party(landmark)
@@ -79,8 +86,8 @@ EXTERNAL despawn_actor(id)
 >>> Spawn actor {id} at {landmark} (or teleport them there).
 === function spawn_party(landmark)
 >>> Spawn the party at {landmark} (or teleport them there).
-=== function spawn_party_member(id, landmark)
->>> Spawn the party member {id} at {landmark}.
+// === function spawn_party_member(id, landmark)
+// >>> Spawn the party member {id} at {landmark}.
 === function add_party_member(id, landmark)
 >>> Spawn the party member {id} at {landmark}.
 === function rm_party_member(id)

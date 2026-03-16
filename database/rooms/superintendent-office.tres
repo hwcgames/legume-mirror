@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://bwp03mle8s0k1"]
+
+[ext_resource type="PackedScene" uid="uid://cta8h7yfjsads" path="res://database/rooms/superintendent-office.tscn" id="1_emyk1"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_vx6oe"]
+
+[resource]
+script = ExtResource("1_vx6oe")
+autoplace = false
+room_scene = ExtResource("1_emyk1")
+proc_seams = Array[String](["In", "Out"])
+seam_backtrack = Dictionary[String, bool]({
+"In": true,
+"Out": false
+})
+seam_profiles = Dictionary[String, String]({
+"In": "8x6",
+"Out": "8x6"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

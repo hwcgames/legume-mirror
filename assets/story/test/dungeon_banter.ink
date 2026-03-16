@@ -1,9 +1,11 @@
 === banter
-
-= junction(-> back)
+->->
+= junction
 ~ random_choice()
-<-mauve_hints(back)
-=mauve_hints(->back)
+<-mauve_hints
++ [_]
+- ->->
+=mauve_hints
 VAR next_room = "N/A"
 
 + {junction_next_room(-1) != "N/A"} [Mauve hint left]
@@ -40,26 +42,26 @@ VAR next_room = "N/A"
         - else: strange
     }<>... #ty:thought
 + [_]
-- ->back
+- ->->
 
-= hallway(-> back)
+= hallway
 ~ random_choice()
 _
-<- generic_hallway(back)
+<- generic_hallway
 {junction_current_room():
-    - "monster": <-monster_hallway(back)
-    - "item": <-item_hallway(back)
-    - "event": <-event_hallway(back)
-    - "safe": <-safe_hallway(back)
-    - "boss": <-boss_hallway(back)
-    - "shop": <-shop_hallway(back)
+    - "monster": <-monster_hallway
+    - "item": <-item_hallway
+    - "event": <-event_hallway
+    - "safe": <-safe_hallway
+    - "boss": <-boss_hallway
+    - "shop": <-shop_hallway
 }
 
 + [_]
 -
-->back
+->->
 
-= generic_hallway(-> back)
+= generic_hallway
 * [Sensory]
     : The hallway looks something like what you know from your school, but there's an imposing aura... #ty:typed
 * [Casey questions the workings of the dungeons]
@@ -78,38 +80,55 @@ _
     casey: The entire city would probably be sucked in. #expr:fear
 + [_]
 -
-->back
+->->
 
-= monster_hallway(-> back)
+= monster_hallway
 // + ->
 // -
 ->DONE
 
-= item_hallway(-> back)
+= item_hallway
 + [placeholder]
     : There would be an item here, if it was implemented.
 -
-->back
+->->
 
-= event_hallway(-> back)
+= event_hallway
 + [placeholder]
     : There would be a special event here, if it was implemented.
 -
-->back
+->->
 
-= safe_hallway(-> back)
+= safe_hallway
 // + ->
 // -
 ->DONE
 
-= boss_hallway(-> back)
+= boss_hallway
 + [placeholder]
     : There would be a boss here, if it was implemented.
 -
-->back
+->->
 
-= shop_hallway(-> back)
+= shop_hallway
 + [placeholder]
     : There would be a shop here, if it was implemented.
 -
-->back
+->->
+
+= monster
+~ random_choice()
++ [_]
+-
+->->
+
+= miniboss
+~ random_choice()
++ [_]
+-
+->->
+
+
+
+
+

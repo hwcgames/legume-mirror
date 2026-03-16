@@ -461,6 +461,15 @@ func cmd_junction_current_room() -> String:
 		return "N/A"
 	return map.name_room(room.room_type)
 
+func cmd_show(name: String):
+	var h = Hidable.find(name)
+	if h:
+		h.show()
+
+func cmd_hide(name: String):
+	var h = Hidable.find(name)
+	if h:
+		h.hide()
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:

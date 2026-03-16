@@ -156,7 +156,7 @@ casey: Get ready to fight, everyone!
 // {junction_next_room(-1) == "N/A" and junction_next_room(0) == "N/A" and junction_next_room(1) == "N/A":
 //     ->boss
 // }
-->banter.junction(-> after_junct_banter)
+->banter.junction->
 - (after_junct_banter)
 ~ allow_dungeon_progress()
 + [dungeon entered junction]
@@ -170,17 +170,16 @@ _
 }
 ~ block_dungeon_progress()
 + [dungeon towards room]
-+ 
 -
 ~ actor_capture("cipher")
 ~ actor_start_following_path("cipher", "forward")
-->banter.hallway(-> after_hall_banter)
+->banter.hallway->
 - (after_hall_banter)
 _
 ~ allow_dungeon_progress()
 
 <- dungeon_loop
-+ {junction_current_room() == "safe"} [dungeon built safe]
++ [dungeon built safe]
     ~ sleep(0.5)
     _
     ~ spawn_actor("crow", "crow")
@@ -218,64 +217,109 @@ _
     // - -
     // ~ actor_cap
     // -> safe_room
-+ [dungeon built room] ->
++ [dungeon built monster] ->dungeon_monster->
++ [dungeon built boss] ->dungeon_miniboss->
++ [dungeon built room]
 -
 
 -> dungeon_loop
 
+= dungeon_monster
++ [battle top]
+-
+
+->banter.monster->
+
++ [battle won]
++ [battle lost]
+    ->die
+-
+->->
+
+= dungeon_miniboss
++ [battle top]
+-
+
+->banter.miniboss->
+
++ [battle won]
++ [battle lost]
+    ->die
+-
+->->
+
 = boss
-mauve: ...Something big is coming up next. #ty:thought
-// leader: I set off into the dungeon. #thought
-// ~ allow_dungeon_progress()
-// + [dungeon entered room]
-// -
-// leader: ... And was attacked by strange creatures! #thought
-// ~block_dungeon_progress()
-// + [battle won]
-//     leader: But they were vanquished. #thought
-// + [battle lost]
-//     leader: But I wasn't strong enough... #thought
-//     ->test
-// -
-// + [dungeon towards junction]
-// -
-// leader: Onwards, into the deep. #thought
-// ~ allow_dungeon_progress()
-// + [dungeon entered junction]
-// -
-// -> junction
-// = junction
-// ~ block_dungeon_progress()
-// ~ actor_release("leader")
-// {once: leader: I found myself presented with a choice.} #thought
-// * [dungeon towards monster]
-//     ~ actor_capture("leader")
-//     leader: I sought battle. #thought
-// * [dungeon towards item]
-//     ~ actor_capture("leader")
-//     leader: I sought riches. #thought
-// * [dungeon towards event]
-//     ~ actor_capture("leader")
-//     leader: I sought mystery. #thought
-// * [dungeon towards safe]
-//     ~ actor_capture("leader")
-//     leader: I sought refuge. #thought
-// * [dungeon towards boss]
-//     ~ actor_capture("leader")
-//     leader: I sought challenge. #thought
-// * [dungeon towards shop]
-//     ~ actor_capture("leader")
-//     leader: I sought trade. #thought
-// + [dungeon towards room]
-//     ~ actor_capture("leader")
-//     {once: leader: I pressed onwards.} #thought
-// -
-// ~ allow_dungeon_progress()
-// ~ actor_start_following_path("leader", "forward")
-// + [dungeon entered room]
-// -
-// {once: leader: And my search bore fruit.} #thought
-// + [dungeon entered junction]
-// -
-// -> junction
-->DONE
+mauve: ...Something big is coming up. #ty:thought
+~ queue_room("superintendent-office", "In")
++ [Build superintendent-office]
+-
+~ spawn_enemy("static/deliberatestew", "boss", "boss_chair")
+~ actor_capture("boss")
+~ hide("desk_lights")
+~ hide("battle_lights")
+cipher: ..? #ty:thought
+: The air grows yet heavier. #ty:typed
+: You feel like you've found something climactic.
+~ actor_wait("cipher")
+_
+_
+~ actor_capture("casey")
+~ actor_capture("april")
+~ actor_capture("mauve")
+~ actor_move("cipher", "Player1", "glide")
+~ actor_move("casey", "Player2", "glide")
+~ actor_move("april", "Player3", "glide")
+~ actor_move("mauve", "Player4", "glide")
+~ actor_wait("cipher")
+_
+mauve: There's something there..! #ty:thought
+april: Is that... a bowl of soup? #ty:spoken
+~ set_camera("dramatic_boss_camera")
+~ sleep(6)
+_
+~ show("desk_lights")
+boss: Do you know why you're here? #ty:spoken
+~ set_camera("_")
+- (why_are_you_here)
+~ dialogue_choice()
+* [Dungeon]
+    cipher: To clear the dungeon.
+    boss: Dungeon? Is this some kind of game to you?
+    -> why_are_you_here
+* [Disappearances]
+    cipher: To find the people who have disappeared.
+    boss: Disappeared? What kind of myths have you brats been spreading about me?
+    -> why_are_you_here
+* [Talk]
+    cipher: To talk things out.
+    boss: You'd like that, wouldn't you?
+    -> why_are_you_here
++ [Education]
+    cipher: To receive an education.
+    ~ set_camera("dramatic_boss_camera")
+    ~ sleep(5)
+    _
+    boss: Bingo.
+-
+~ hide("desk_lights")
+~ set_camera("BattleCamera")
+~ actor_move("boss", "Enemy1", "walk")
+~ actor_wait("boss")
+_
+~ show("battle_lights")
+boss: Prepare yourselves.
+~ join_battle("cipher")
+~ join_battle("casey")
+~ join_battle("april")
+~ join_battle("mauve")
+~ join_battle("boss")
+~ start_battle()
++ [battle top]
+-
+~ lock_battlefield()
+boss: 
+~ free_battlefield()
+
+
+
+

@@ -1,11 +1,16 @@
 extends Marker3D
 class_name Landmark
 
+@onready var _name = name
+
 func _init() -> void:
 	add_to_group("landmark", true)
 
 static func find(name: String) -> Landmark:
-	var found = Storyteller.get_tree().get_nodes_in_group("landmark").filter(func(l: Landmark): return l.name == name)
+	var found = []
+	for landmark in Storyteller.get_tree().get_nodes_in_group("landmark"):
+		if landmark.name == name:
+			found.push_back(landmark)
 	var leader = Storyteller.leader
 	if leader:
 		found.sort_custom(func(a, b):

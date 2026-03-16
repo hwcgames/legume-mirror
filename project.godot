@@ -78,6 +78,7 @@ automove=""
 actor=""
 camera=""
 battlefield=""
+hidable=""
 
 [input]
 

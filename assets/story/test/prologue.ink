@@ -242,7 +242,7 @@ cipher: It's as solid as it looks.
 -
 + [Build alley_battle]
 -
-~ spawn_party_member("casey", "casey_unconscious")
+~ add_party_member("casey", "casey_unconscious")
 ~ actor_capture("casey")
 ~ actor_act("casey", "dead")
 ~ spawn_enemy("static/spookyguy", "spookyguy", "stand_over_casey")
@@ -369,7 +369,7 @@ _
 ~ change_level("intro", "northold_high")
 _
 ~ spawn_party("entrance")
-~ spawn_party_member("casey", "entrance2")
+~ add_party_member("casey", "entrance2")
 ~ fade_in()
 ~ actor_start_following_path("cipher", "intro_enter_school")
 ~ gamemode = "cinema"

@@ -1,19 +1,41 @@
-[gd_resource type="Resource" script_class="EnemySheet" load_steps=5 format=3 uid="uid://hsovlpvfc1fv"]
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://hsovlpvfc1fv"]
 
 [ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="1_eribs"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_ey22i"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_whc7m"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_41022"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_k4oh0"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lv0e4"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_kkmgx"]
+[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="8_g855p"]
+
+[sub_resource type="Resource" id="Resource_s3xtc"]
+script = ExtResource("1_ey22i")
+strength = 0
+magic = 0
+defense = 2
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_i0ppf"]
+script = ExtResource("3_41022")
+current_hp = 400
+max_hp = 400
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_qbge6"]
+script = ExtResource("8_g855p")
+current_sp = 50
+max_sp = 50
+metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_lv0e4")
 name = &"Deliberate Stew"
-hp = 300
-sp = 100
-strength = 15
-magic = 15
-defense = 3
-finesse = 15
+hp = SubResource("Resource_i0ppf")
+sp = SubResource("Resource_qbge6")
+attrs = SubResource("Resource_s3xtc")
+bg_color = Color(0.15604165, 0.043553524, 0.045210116, 1)
+text_color = Color(0.8613351, 0, 0.10442973, 1)
 costume = ExtResource("1_eribs")
 planning_priority = 1
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

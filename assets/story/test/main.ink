@@ -56,6 +56,19 @@ _
 + [Venturing into a dungeon.]
     ~ clear_dialogue()
     -> prologue_dungeon.lobby
++ [Fighting a formidable enemy.]
+    ~ clear_dialogue()
+    ~ change_level("intro_dungeon", "hallway")
+    _
+    ~ set_weather("dungeon")
+    ~ spawn_party("default")
+    ~ actor_capture("cipher")
+    ~ sleep(0.5)
+    ~ add_party_member("casey", "default")
+    ~ add_party_member("mauve", "default")
+    ~ add_party_member("april", "default")
+    ~ actor_start_following_path("cipher", "forward")
+    -> prologue_dungeon.boss
 
 
 === die

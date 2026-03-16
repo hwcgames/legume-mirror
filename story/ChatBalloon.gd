@@ -25,7 +25,7 @@ var text: String:
 
 var last_root_position: Vector2 = Vector2.INF
 func root_screen_position():
-	if character_root != null and get_viewport().get_camera_3d() != null:
+	if character_root != null and get_viewport().get_camera_3d() != null and not get_viewport().get_camera_3d().is_position_behind(character_root.global_position):
 		last_root_position = get_viewport().get_camera_3d().unproject_position(character_root.global_position)
 	if last_root_position == Vector2.INF:
 		return get_viewport_rect().size * Vector2(0.5, 1.)

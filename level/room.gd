@@ -38,7 +38,7 @@ func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):
 		keep_loaded_lock.shared_locks += 1
 		update_loading()
-	if body is PartyMember:
+	if body.is_in_group("party_leader"):
 		player_entered.emit(body)
 		if players_inside == 0 and camera != null:
 			get_tree().process_frame.connect(func():
@@ -49,7 +49,7 @@ func _body_exited(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):
 		keep_loaded_lock.shared_locks = max(keep_loaded_lock.shared_locks-1, 0)
 		update_loading()
-	if body is PartyMember:
+	if body.is_in_group("party_leader"):
 		player_exited.emit(body)
 		players_inside -= 1
 		if players_inside == 0 and camera != null:

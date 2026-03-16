@@ -5,11 +5,12 @@
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_b2jov"]
 [ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://database/rooms/test_junction.tres" id="4_sbm1m"]
 [ext_resource type="Resource" uid="uid://6ko4lafitey5" path="res://database/rooms/test_monster.tres" id="5_twhau"]
-[ext_resource type="Resource" uid="uid://bn42ltiv2ex3h" path="res://database/rooms/test_shop.tres" id="6_14cwb"]
 [ext_resource type="Resource" uid="uid://baxp2ij0m0vve" path="res://database/rooms/test_zone.tres" id="7_0jfrc"]
 [ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://level/roomset.gd" id="8_7bs7b"]
+[ext_resource type="Resource" uid="uid://bhkf1why2fi2p" path="res://database/rooms/test_saferoom.tres" id="8_b2jov"]
+[ext_resource type="Resource" uid="uid://bwp03mle8s0k1" path="res://database/rooms/superintendent-office.tres" id="8_bb551"]
 
 [resource]
 script = ExtResource("8_7bs7b")
-rooms = Array[ExtResource("1_w16ji")]([ExtResource("2_bb551"), ExtResource("3_b2jov"), ExtResource("4_sbm1m"), ExtResource("5_twhau"), ExtResource("6_14cwb"), ExtResource("7_0jfrc")])
+rooms = Array[ExtResource("1_w16ji")]([ExtResource("2_bb551"), ExtResource("3_b2jov"), ExtResource("4_sbm1m"), ExtResource("5_twhau"), ExtResource("7_0jfrc"), ExtResource("8_bb551"), ExtResource("8_b2jov")])
 metadata/_custom_type_script = "uid://ck47u2dw5ejx7"

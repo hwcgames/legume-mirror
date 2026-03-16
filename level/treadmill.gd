@@ -29,8 +29,9 @@ func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 	if room != null and room.battlefield != null:
 		if room.encounter == null:
 			printerr("Room %s is missing an encounter" % room.name)
-		var encounter = room.encounter.roll_encounter()
-		encounter.apply_to_battlefield(room.battlefield)
+		else:
+			var encounter = room.encounter.roll_encounter()
+			encounter.apply_to_battlefield(room.battlefield)
 	return room
 
 func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
@@ -228,11 +229,21 @@ func serve_queue(candidates: Array[RoomInfo], seam: ProceduralSeam) -> RoomInfo:
 		return null
 	if room_queue[0].room in candidates:
 		var req = room_queue.pop_front()
-		Storyteller.choose_if_available(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
+		Storyteller.choose_if_available(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")], true)
 		seam.wants_partner_name = req.seam
 		return req.room
 	candidates.sort_custom(func(a: RoomInfo, b: RoomInfo):
-		var a_prox = a.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
-		var b_prox = b.seam_profiles.values().map(func(p): return profile_proximity[p]).min()
+		var a_prox = a.proc_seams\
+			.filter(func(s): return a.seam_backtrack[s])\
+			.map(func(s): return a.seam_profiles[s])\
+			.map(func(p): return profile_proximity[p])\
+			.min()
+		a_prox = a_prox if a_prox != null else 99999
+		var b_prox = b.proc_seams\
+			.filter(func(s): return b.seam_backtrack[s])\
+			.map(func(s): return b.seam_profiles[s])\
+			.map(func(p): return profile_proximity[p])\
+			.min()
+		b_prox = b_prox if b_prox != null else 99999
 		return a_prox < b_prox)
 	return candidates.filter(func(r: RoomInfo): return r.autoplace).get(0)

@@ -1,0 +1,272 @@
+[gd_scene format=3 uid="uid://cta8h7yfjsads"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_itmmj"]
+[ext_resource type="PackedScene" uid="uid://bfak524rxfrg0" path="res://assets/rooms/souperintendent-office.blend" id="2_4hr62"]
+[ext_resource type="Script" uid="uid://be7gbr0025iyq" path="res://level/hidable.gd" id="4_b1gc1"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="4_jia3g"]
+[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="5_jia3g"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="7_tpb88"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_4sq8s"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ltwjw"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_4sq8s"]
+[ext_resource type="PackedScene" uid="uid://bdx0oe6g8m38l" path="res://level/procedural_seam.tscn" id="10_ltwjw"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="11_4sq8s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4hr62"]
+size = Vector3(15, 7, 25)
+
+[sub_resource type="Resource" id="Resource_4sq8s"]
+script = ExtResource("8_ltwjw")
+transition = 4
+
+[sub_resource type="Resource" id="Resource_oqy1l"]
+script = ExtResource("8_4sq8s")
+fov = 49.5
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Resource" id="Resource_tpb88"]
+script = ExtResource("8_ltwjw")
+duration = 5.0
+transition = 4
+
+[sub_resource type="Resource" id="Resource_hk83n"]
+script = ExtResource("8_4sq8s")
+fov = 45.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="GDScript" id="GDScript_b1gc1"]
+script/source = "extends Node3D
+@export var speed: float = 4.0
+
+func _process(delta: float) -> void:
+	rotation.z += speed * delta
+"
+
+[sub_resource type="Resource" id="Resource_ltwjw"]
+script = ExtResource("8_ltwjw")
+transition = 4
+ease = 1
+
+[sub_resource type="Resource" id="Resource_8bap4"]
+script = ExtResource("8_4sq8s")
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="SuperintendentOffice" type="Area3D" unique_id=1020204360 node_paths=PackedStringArray("battlefield", "camera")]
+script = ExtResource("1_itmmj")
+battlefield = NodePath("Battlefield")
+camera = NodePath("room_camera")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="souperintendent-office" parent="." unique_id=867717615 instance=ExtResource("2_4hr62")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1401782921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -1)
+shape = SubResource("BoxShape3D_4hr62")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1373889260]
+light_energy = 0.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=307472064]
+transform = Transform3D(-3.7855173e-08, -0.5, 0.8660254, -2.1855694e-08, 0.8660254, 0.5, -1, 0, -4.371139e-08, 15.5, 7.7999997, 1.1)
+light_color = Color(0.8227556, 0, 0.33163908, 1)
+light_energy = 16.0
+light_size = 21.55
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_reverse_cull_face = true
+spot_range = 41.0
+spot_angle = 10.833381
+
+[node name="desk_lights" type="Node3D" parent="." unique_id=185487895 groups=["hidable"]]
+visible = false
+script = ExtResource("4_b1gc1")
+
+[node name="OmniLight3D" type="SpotLight3D" parent="desk_lights" unique_id=417412576]
+transform = Transform3D(0.8191521, 0.26484802, -0.50876844, 3.4057727e-08, 0.8870109, 0.46174854, 0.57357633, -0.3782423, 0.72659683, -6, 5.9, 0.39999962)
+light_color = Color(1, 0.36862746, 0.22745098, 1)
+light_energy = 3.079
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 16.674
+spot_angle = 24.339437
+spot_angle_attenuation = 0.48296806
+
+[node name="OmniLight3D3" type="SpotLight3D" parent="desk_lights" unique_id=381743546]
+transform = Transform3D(0.57357657, 0.3461886, -0.7424038, 0, 0.9063078, 0.42261827, 0.819152, -0.24240394, 0.5198369, -4.7, 4.9, -3.3000002)
+light_color = Color(1, 0.4, 0.49019608, 1)
+light_energy = 1.543
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 13.0
+spot_angle = 29.737238
+
+[node name="OmniLight3D2" type="SpotLight3D" parent="desk_lights" unique_id=1020067155]
+transform = Transform3D(0.8660254, -0.23087439, 0.4435055, 6.283662e-08, 0.8870109, 0.4617486, -0.5000001, -0.39988595, 0.76817393, 6, 5.9, 0.39999962)
+light_color = Color(1, 0.36862746, 0.22745098, 1)
+light_energy = 3.079
+light_bake_mode = 1
+shadow_enabled = true
+spot_range = 16.674
+spot_angle = 23.813131
+spot_angle_attenuation = 0.48296806
+
+[node name="room_camera" type="Node3D" parent="." unique_id=662373483 groups=["camera"]]
+transform = Transform3D(0.98901576, -0.025666831, 0.14556381, -3.5327807e-09, 0.9848077, 0.17364818, -0.14780939, -0.17174083, 0.97399044, 0.8000001, 3.3, 13.299999)
+script = ExtResource("7_tpb88")
+tween_resource = SubResource("Resource_4sq8s")
+camera_3d_resource = SubResource("Resource_oqy1l")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="boss_chair" parent="." unique_id=246181278 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -7.4)
+
+[node name="dramatic_boss_camera" type="Node3D" parent="boss_chair" unique_id=346518626 groups=["camera"]]
+transform = Transform3D(-1, -7.619397e-09, -8.709011e-08, 0, 0.9961947, -0.08715574, 8.742278e-08, -0.08715574, -0.9961947, -4.3711373e-07, 1.1, -5)
+script = ExtResource("7_tpb88")
+tween_resource = SubResource("Resource_tpb88")
+camera_3d_resource = SubResource("Resource_hk83n")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="battle_lights" type="Node3D" parent="." unique_id=436807768]
+visible = false
+script = ExtResource("4_b1gc1")
+metadata/_custom_type_script = "uid://be7gbr0025iyq"
+
+[node name="AllyLight" type="SpotLight3D" parent="battle_lights" unique_id=2008422427]
+transform = Transform3D(-0.81915206, -0.34518686, 0.45807853, 0, 0.79863554, 0.601815, -0.57357645, 0.49297798, -0.65420395, 4.7, 5, -0.7)
+light_color = Color(0.63529414, 1, 0.37254903, 1)
+light_energy = 3.88
+spot_range = 18.0
+spot_angle = 24.728882
+spot_angle_attenuation = 0.43527523
+
+[node name="AllyLight2" type="SpotLight3D" parent="battle_lights" unique_id=1828961739]
+transform = Transform3D(-0.7660445, 0.38683927, -0.513353, 1.709391e-08, 0.79863554, 0.601815, 0.6427875, 0.461017, -0.6117904, -5.3, 5, -0.7)
+light_color = Color(0.63529414, 1, 0.37254903, 1)
+light_energy = 3.88
+spot_range = 18.0
+spot_angle = 24.728882
+spot_angle_attenuation = 0.43527523
+
+[node name="AllyLight3" type="SpotLight3D" parent="battle_lights" unique_id=591570296]
+transform = Transform3D(0.8191519, 0.34518698, -0.4580787, 2.6869102e-08, 0.79863554, 0.601815, 0.57357657, -0.49297792, 0.6542039, -4.8, 5, 4.0999994)
+light_color = Color(0.87753135, 0.290357, 5.7756904e-07, 1)
+light_energy = 7.885
+spot_range = 18.0
+spot_angle = 24.728882
+spot_angle_attenuation = 0.43527523
+
+[node name="AllyLight4" type="SpotLight3D" parent="battle_lights" unique_id=1947971311]
+transform = Transform3D(0.76604456, -0.38683912, 0.51335293, -2.8565895e-08, 0.79863554, 0.6018151, -0.6427874, -0.4610172, 0.6117904, 5.2, 5, 4.1000004)
+light_color = Color(0.87753135, 0.290357, 5.7756904e-07, 1)
+light_energy = 7.885
+spot_range = 18.0
+spot_angle = 24.728882
+spot_angle_attenuation = 0.43527523
+
+[node name="WackyLightParent1" type="Node3D" parent="battle_lights" unique_id=1466912825]
+transform = Transform3D(0.20564403, -0.6878018, 0.69616044, 0.37117967, 0.7130298, 0.59482276, -0.90550303, 0.13607891, 0.40192837, 6, 5, 6)
+script = SubResource("GDScript_b1gc1")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="battle_lights/WackyLightParent1" unique_id=838300147]
+transform = Transform3D(1, 0, 0, 0, 0.9135454, -0.40673664, 0, 0.40673664, 0.9135454, 0, 0, 0)
+light_color = Color(4.428029e-06, 0.5796661, 0.81383055, 1)
+light_energy = 19.805
+spot_range = 15.135
+spot_angle = 16.438814
+spot_angle_attenuation = 0.43527904
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="battle_lights/WackyLightParent1" unique_id=1206868849]
+transform = Transform3D(1, 0, 0, 0, 0.95881975, 0.28401536, 0, -0.28401536, 0.95881975, 0, 0, 0)
+light_color = Color(0.8300232, 0.001573683, 0.9566441, 1)
+light_energy = 19.575
+spot_range = 15.135
+spot_angle = 16.438814
+spot_angle_attenuation = 0.43527904
+
+[node name="WackyLightParent2" type="Node3D" parent="battle_lights" unique_id=1449399205]
+transform = Transform3D(-0.7929251, 0.008171737, 0.60926366, 0.3978559, 0.76427436, 0.50753826, -0.46149707, 0.6448394, -0.60926366, 6, 5, -5)
+script = SubResource("GDScript_b1gc1")
+speed = 3.37
+
+[node name="SpotLight3D" type="SpotLight3D" parent="battle_lights/WackyLightParent2" unique_id=55914111]
+transform = Transform3D(1, 0, 0, 0, 0.9135454, -0.40673664, 0, 0.40673664, 0.9135454, 0, 0, 0)
+light_color = Color(0.9866708, 0, 0.35827848, 1)
+light_energy = 19.805
+spot_range = 15.135
+spot_angle = 16.438814
+spot_angle_attenuation = 0.43527904
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="battle_lights/WackyLightParent2" unique_id=545959201]
+transform = Transform3D(1, 0, 0, 0, 0.95881975, 0.28401536, 0, -0.28401536, 0.95881975, 0, 0, 0)
+light_color = Color(0.09354276, 0.6520515, 0, 1)
+light_energy = 19.575
+spot_range = 15.135
+spot_angle = 16.438814
+spot_angle_attenuation = 0.43527904
+
+[node name="Battlefield" parent="." unique_id=909600082 node_paths=PackedStringArray("player_landmarks", "enemy_landmarks", "camera") instance=ExtResource("5_jia3g")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+player_landmarks = [NodePath("../Player1"), NodePath("../Player2"), NodePath("../Player3"), NodePath("../Player4")]
+enemy_landmarks = [NodePath("../Enemy1"), NodePath("../Enemy2"), NodePath("../Enemy3"), NodePath("../Enemy4")]
+camera = NodePath("../BattleCamera")
+
+[node name="Player1" parent="." unique_id=760335760 instance=ExtResource("4_jia3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
+
+[node name="Player2" parent="." unique_id=988835306 instance=ExtResource("4_jia3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6)
+
+[node name="Player3" parent="." unique_id=1753428963 instance=ExtResource("4_jia3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 6)
+
+[node name="Player4" parent="." unique_id=1907688495 instance=ExtResource("4_jia3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
+
+[node name="Enemy1" parent="." unique_id=279659860 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -2)
+
+[node name="Enemy2" parent="." unique_id=2021138659 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2, 0, -1)
+
+[node name="Enemy3" parent="." unique_id=996544273 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1)
+
+[node name="Enemy4" parent="." unique_id=381478456 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, -1)
+
+[node name="BattleCamera" type="Node3D" parent="." unique_id=2052486225 groups=["camera"]]
+transform = Transform3D(0.49999997, -0.46531516, 0.7303984, 0, 0.8433914, 0.53729963, -0.86602545, -0.2686498, 0.42169568, 6, 5, 5)
+script = ExtResource("7_tpb88")
+tween_resource = SubResource("Resource_ltwjw")
+camera_3d_resource = SubResource("Resource_8bap4")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=930806263]
+transform = Transform3D(0.49999997, -0.46531516, 0.7303984, 0, 0.8433914, 0.53729963, -0.86602545, -0.2686498, 0.42169568, 6, 5, 5)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1387975630]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_4sq8s")
+
+[node name="In" parent="." unique_id=468565821 node_paths=PackedStringArray("automoves") instance=ExtResource("10_ltwjw")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 11)
+profile = &"8x6"
+backtrack = true
+automoves = {
+"forward": NodePath("../AutomoveBreadcrumb")
+}
+
+[node name="Out" parent="." unique_id=491301381 instance=ExtResource("10_ltwjw")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+profile = &"8x6"
+wants_room_type = 1
+
+[node name="AutomoveBreadcrumb" type="Marker3D" parent="." unique_id=18263654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+script = ExtResource("11_4sq8s")
+metadata/_custom_type_script = "uid://d1625cme8sl48"
