@@ -1,11 +1,13 @@
 on: [push]
 jobs:
   build:
+    name: build-${{matrix.target}}
     runs-on: docker
     strategy:
       matrix:
         target: ["linux", "windows", "macos"]
     steps:
+      - uses: https://data.forgejo.org/actions/checkout@v4
       - name: Install Godot
         uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
         with:
@@ -16,9 +18,9 @@ jobs:
         with:
           build-dir: "./exp"
           game-name: "lt"
-          platform: "${{target}}"
-      - uses: https://code.forgejo.org/actions/upload-artifact@v4
+          platform: "${{matrix.target}}"
+      - uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
-          name: "lt-${{target}}"
+          name: "lt-${{matrix.target}}"
           path: ./exp/**/*
           compression-level: 9
