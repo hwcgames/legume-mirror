@@ -4,7 +4,7 @@ jobs:
     name: build-${{matrix.target}}
     runs-on: docker
     container:
-      image: barichello/godot-ci@mono-4.6-stable
+      image: docker.io/barichello/godot-ci:mono-4.6
     strategy:
       matrix:
         target: ["linux", "windows", "macos"]
