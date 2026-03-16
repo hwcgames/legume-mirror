@@ -11,6 +11,7 @@ jobs:
         with:
           github-server-url: https://forge.wolo.dev
       - name: Build
+        id: build
         uses: https://github.com/mlm-games/godot-build-action@v1.3.1
         with:
           EXPORT_PRESET_NAME: ${{matrix.target}}
@@ -18,12 +19,13 @@ jobs:
         uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
           name: "lt-${{matrix.target}}"
-          path: ./exp/**/*
+          path: ${{ steps.build.outputs.build }}
           compression-level: 9
-      - uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
+      - name: Upload to itchio auto-builds
+        uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{secrets.BUTLER_API_KEY}}
-          gameData: ./exp
+          gameData: ${{ steps.build.outputs.build }}
           itchUsername: hwcgames
           itchGameId: hwcrpg
           buildChannel: auto-${{ matrix.target }}
