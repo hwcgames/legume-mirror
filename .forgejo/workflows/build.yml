@@ -10,18 +10,10 @@ jobs:
       - uses: https://data.forgejo.org/actions/checkout@v4
         with:
           github-server-url: https://forge.wolo.dev
-      - name: Install Godot
-        uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
-        with:
-          godot-version: 4.6.0-stable-mono
-          install-templates: true
-        id: install-godot
       - name: Build
-        uses: https://git.gay/novadragon/godot-actions/build-godot@v2.5
+        uses: https://github.com/mlm-games/godot-build-action@v1
         with:
-          build-dir: "./exp"
-          game-name: "lt"
-          platform: "${{matrix.target}}"
+          EXPORT_PRESET_NAME: ${{matrix.target}}
       - name: Push artifacts
         uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
