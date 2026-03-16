@@ -25,7 +25,9 @@
       with xorg; let
         deps = [
           # godotpkgs."4_5_1_stable"
-          godot-mono
+          godotPackages_4_6.godot-mono
+          godotPackages_4_6.export-templates-mono-bin
+          # godot-mono
           alsa-lib
           libGL
           vulkan-loader
@@ -55,6 +57,9 @@
         mkShell {
           nativeBuildInputs = deps;
           LD_LIBRARY_PATH = lib.makeLibraryPath deps;
+        };
+      packages.default =
+        pkgs.callPackage ./pkg.nix {
         };
     });
   in

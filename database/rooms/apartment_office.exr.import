@@ -4,15 +4,16 @@ importer="2d_array_texture"
 type="CompressedTexture2DArray"
 uid="uid://dm3g71kacw1j2"
 path.bptc="res://.godot/imported/apartment_office.exr-2bfe50978229ffbeb3571cc02e883f2d.bptc.ctexarray"
+path.astc="res://.godot/imported/apartment_office.exr-2bfe50978229ffbeb3571cc02e883f2d.astc.ctexarray"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://database/rooms/apartment_office.exr"
-dest_files=["res://.godot/imported/apartment_office.exr-2bfe50978229ffbeb3571cc02e883f2d.bptc.ctexarray"]
+dest_files=["res://.godot/imported/apartment_office.exr-2bfe50978229ffbeb3571cc02e883f2d.bptc.ctexarray", "res://.godot/imported/apartment_office.exr-2bfe50978229ffbeb3571cc02e883f2d.astc.ctexarray"]
 
 [params]
 

@@ -5,3 +5,6 @@
 *.blend*
 !*.blend
 /movie.ogv*
+/result
+/Legume Traffick.csproj.old*
+/exp

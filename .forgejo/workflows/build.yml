@@ -1,0 +1,24 @@
+on: [push]
+jobs:
+  build:
+    runs-on: docker
+    strategy:
+      matrix:
+        target: ["linux", "windows", "macos"]
+    steps:
+      - name: Install Godot
+        uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
+        with:
+          godot-version: 4.6.0-stable
+          install-templates: true
+        id: install-godot
+      - uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
+        with:
+          build-dir: "./exp"
+          game-name: "lt"
+          platform: "${{target}}"
+      - uses: https://code.forgejo.org/actions/upload-artifact@v4
+        with:
+          name: "lt-${{target}}"
+          path: ./exp/**/*
+          compression-level: 9
