@@ -9,7 +9,7 @@ jobs:
       matrix:
         target: ["linux", "windows", "macos"]
     steps:
-      - uses: https://data.forgejo.org/actions/checkout@v4
+      - uses: https://github.com/actions/checkout@v4
         with:
           github-server-url: https://forge.wolo.dev
       - name: Setup
@@ -28,6 +28,18 @@ jobs:
           name: "lt-${{matrix.target}}"
           path: exp
           compression-level: 9
+  itch:
+    name: itch-${{matrix.target}}
+    runs-on: docker
+    strategy:
+      matrix:
+        target: ["linux", "windows", "macos"]
+    steps:
+      - name: Push artifacts
+        uses: https://data.forgejo.org/actions/upload-artifact@v8
+        with:
+          name: "lt-${{matrix.target}}"
+          path: exp
       - name: Upload to itchio
         uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
         with:
