@@ -16,13 +16,23 @@ jobs:
           godot-version: 4.6.0-stable
           install-templates: true
         id: install-godot
-      - uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
+      - name: Build
+        uses: https://git.gay/novadragon/godot-actions/build-godot@v2.5
         with:
           build-dir: "./exp"
           game-name: "lt"
           platform: "${{matrix.target}}"
-      - uses: https://data.forgejo.org/actions/upload-artifact@v4
+      - name: Push artifacts
+        uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
           name: "lt-${{matrix.target}}"
           path: ./exp/**/*
           compression-level: 9
+      - uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.BUTLER_API_KEY}}
+          gameData: ./exp
+          itchUsername: hwcgames
+          itchGameId: hwcrpg
+          buildChannel: auto-${{ matrix.target }}
+          buildNumber: ${{ needs.version.outputs.version_hash }}
