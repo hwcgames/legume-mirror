@@ -11,7 +11,7 @@ jobs:
         with:
           github-server-url: https://forge.wolo.dev
       - name: Build
-        uses: https://github.com/mlm-games/godot-build-action@v1
+        uses: https://github.com/mlm-games/godot-build-action@v1.3.1
         with:
           EXPORT_PRESET_NAME: ${{matrix.target}}
       - name: Push artifacts
