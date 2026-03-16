@@ -20,7 +20,7 @@
 
 [sub_resource type="Resource" id="Resource_qa7bc"]
 script = ExtResource("1_118yb")
-strength = 3
+strength = 4
 magic = 7
 defense = 2
 finesse = 3
@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 [sub_resource type="Resource" id="Resource_4hgsn"]
 script = ExtResource("7_i7811")
 trinkets_decay = 0.5
-value_per_trinket = 1
+value_per_trinket = 15
 metadata/_custom_type_script = "uid://cleyr14grm50y"
 
 [sub_resource type="Resource" id="Resource_ofgp3"]

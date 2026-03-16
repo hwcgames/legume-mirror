@@ -8,3 +8,7 @@ class_name TrinketsPool
 		trinkets_changed.emit(amt)
 
 signal trinkets_changed(amount: int)
+
+func battle_end():
+	trinkets_on_field = 0
+	pass

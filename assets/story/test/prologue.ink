@@ -79,9 +79,9 @@ _
 ~ actor_act("intro_train", "close_doors")
 ~ actor_start_following_path("intro_train", "rails")
 ~ sleep(3)
+~ fade_out("black")
 _
 ~ set_camera("_")
-~ fade_out("black")
 ~ gamemode = "textonly"
 : 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:typed
 ~ sleep(1)
@@ -508,15 +508,14 @@ _
 // ~ spawn_actor("crow", "right_on_msgbox")
 ~ actor_act("crow", "fly_in")
 ~ actor_wait("crow")
-crow: Nice to meet you, caw. #ty:bird
+crow: Nice to meet you face-to-face, caw. #ty:bird
 crow: We'll talk more later, squawk... But we need to introduce ourselves first.
 crow: What's that? Yes, you've already named our friend %char:cipher%, caw... But I need to know [i]your[/i] name.
 : You would set your name here, if it was implemented. #ty:typed
 // crow: %playername%? Let me write that down, squawk.
 // crow: Oh, by the way, please don't close the game if you see me taking notes, caw. It's difficult enough to write without thumbs, you see, so I would prefer not to be interrupted.
 // crow: That said, squawk, I'm very glad that you decided to play this game. I'll get out of your hair for now.
-crow: Oh, really? That's a shame. #ty:bird #expr:oof
-crow: Just my luck to end up in the demo... I hope we'll meet again in the final game.
+crow: Oh, right... This is the demo.
 crow: That said, squawk, I'm very glad that you decided to play.
 crow: The next few days of the game aren't ready yet, and they wouldn't be that interesting in a demo regardless...
 crow: So, caw, my superiors have asked me to escort you further into the game.
@@ -527,7 +526,8 @@ _
 crow: Ack! Who turned out the lights?!
 ~ sleep(0.5)
 _
-~ change_level("intro_dungeon", "entrance")
+~ clear_dialogue()
+->prologue_dungeon.lobby
 
 
 

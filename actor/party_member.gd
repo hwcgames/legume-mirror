@@ -67,6 +67,10 @@ func _player_action():
 		p_lock.call_deferred()
 		await coroutine.resolved
 
+func _done(_player_victory: bool):
+	super._done(_player_victory)
+	sp_component.battle_end()
+
 #func _basic_attack(_p: PartyMember, target: Enemy):
 	#var p_lock = await InputLocks.lock(player).shared_lock()
 	#var b_lock = await battlefield.locks.shared_lock()

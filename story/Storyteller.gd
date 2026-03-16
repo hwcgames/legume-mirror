@@ -57,10 +57,7 @@ func _process(delta: float) -> void:
 		nag_timer = null
 	var handle = await lock.exclusive_lock()
 	line = story.Continue()
-	if line == "_":
-		handle.call()
-		return
-	if line != null and !line.is_empty():
+	if line and line.strip_edges() != "_" and !line.is_empty():
 		print("Story line: ", line)
 		new_line.emit(line, tags)
 	if not story.GetCanContinue():
@@ -81,7 +78,7 @@ func check_nag(choices: Array[InkChoice]):
 		nag_timer = get_tree().create_timer(time)
 		nag_timer.timeout.connect(func(): choose_if_available([choice.GetText()]))
 
-func choose_if_available(names: Array[String]) -> bool:
+func choose_if_available(names: Array[String], important: bool = false) -> bool:
 	var current_choices = choices
 	print("Choosing ", names, " from ", current_choices.map(func(c): return c.GetText()))
 	for choice_name in names:
@@ -92,6 +89,8 @@ func choose_if_available(names: Array[String]) -> bool:
 			story.ChooseChoiceIndex(choice_index)
 			chose.emit(choice)
 			return true
+	if important:
+		self.new_choices.connect(func(_c): choose_if_available(names, false), CONNECT_ONE_SHOT)
 	return false
 
 func cmd_reset():
@@ -114,10 +113,16 @@ func cmd_dialogue_choice():
 	Chatterbox.queue_dialogue_choice()
 
 func cmd_random_choice():
-	new_choices.connect(func():
-		story.ChooseChoiceIndex(randi_range(0, len(story.GetCurrentChoices())-1)),
+	new_choices.connect(func(_c):
+		print("A")
+		story.ChooseChoiceIndex(randi_range(0, len(story.GetCurrentChoices()) - 1)),
 		CONNECT_ONE_SHOT
 	)
+
+func cmd_kill_enemies():
+	var battlefield: Battlefield = Battlefield.find()
+	for enemy in battlefield.enemies:
+		enemy.hp -= 999999
 
 func cmd_actor_exists(actor_name: String) -> bool:
 	return Actor.find(actor_name) != null
@@ -159,7 +164,7 @@ func cmd_stop_dungeon():
 
 func cmd_block_dungeon_progress():
 	var dungeon_map: DungeonMap = get_tree().current_scene.get_node("%DungeonMap")
-	assert(dungeon_map.allow_progress == true, "Inconsistency: Double-blocked dungeon progress")
+	#assert(dungeon_map.allow_progress == true, "Inconsistency: Double-blocked dungeon progress")
 	dungeon_map.allow_progress = false
 
 func cmd_allow_dungeon_progress():
@@ -195,6 +200,7 @@ func cmd_spawn_party(landmark_name: String):
 		return
 	var leader_sheet = Saver.current_save.get_character_sheet(leader)
 	leader_pm = PartyMember.from_character_sheet(leader_sheet)
+	leader_pm.add_to_group("party_leader")
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
 	leader_pm.push_mode(ActorPlayerControl.new())
@@ -243,6 +249,10 @@ func cmd_rm_party_member(id: String):
 	printerr("Stub story operation!")
 	pass
 
+func cmd_heal_party():
+	for pm in party_stack:
+		pm.hp += 999999
+
 func cmd_spawn_enemy(id: String, name: String, landmark_name: String):
 	var landmark = Landmark.find(landmark_name)
 	var enemy_factory: EnemyFactory = load("res://database/enemy/%s.tres" % id);
@@ -286,7 +296,7 @@ func cmd_actor_start_following_actor(follower_name: String, followee_name: Strin
 	(func():
 		var follower = Actor.find(follower_name)
 		var followee = Actor.find(followee_name)
-		await follower.push_mode(ActorModeFollow.new(followee, 1.5))
+		await follower.push_mode(ActorModeFollow.new(followee, 1.))
 	).call()
 
 func cmd_actor_stop(actor_name: String):
@@ -323,10 +333,8 @@ func cmd_actor_release(actor_name: String):
 		assert(index != -1, "Inconsistency: Double-released actor")
 		if index == -1:
 			return
-		while not actor.mode_stack.is_empty():
-			var popped = await actor.pop_mode()
-			if popped is ActorModeStoryCanary:
-				return
+		while len(actor.mode_stack) > index:
+			actor.pop_mode()
 	).call()
 
 func cmd_play_sound(sound: String):
@@ -410,6 +418,27 @@ func cmd_set_weather(weather_name: String):
 
 func cmd_confidant_level(confidant: String, level: int):
 	new_line.emit("This would level up a social link, if it was implemented.", [])
+
+func cmd_junction_next_room(direction: int) -> String:
+	var map: DungeonMap = get_tree().current_scene.get_node("%DungeonMap")
+	if not map.state in [DungeonMap.STATE.JUNCTION, DungeonMap.STATE.HALLWAY_TO_JUNCTION, DungeonMap.STATE.WAIT_FOR_JUNCTION]:
+		return "N/A"
+	if not map.are_connected(map.current_position, map.current_position + Vector2i(direction, 1)):
+		return "N/A"
+	var room: MapRoom = map.map.get(map.current_position + Vector2i(direction, 1))
+	if not is_instance_valid(room):
+		return "N/A"
+	return map.name_room(room.room_type)
+
+func cmd_junction_current_room() -> String:
+	var map: DungeonMap = get_tree().current_scene.get_node("%DungeonMap")
+	if not map.state in [DungeonMap.STATE.ROOM, DungeonMap.STATE.HALLWAY_TO_ROOM, DungeonMap.STATE.WAIT_FOR_ROOM]:
+		return "N/A"
+	var room: MapRoom = map.map.get(map.current_position)
+	if not is_instance_valid(room):
+		return "N/A"
+	return map.name_room(room.room_type)
+
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:

@@ -7,6 +7,10 @@ func top(fighter: Fighter) -> bool:
 	stacks -= 1
 	return true
 
+func done(fighter: Fighter, player_victory: bool) -> bool:
+	stacks = 0
+	return true
+
 func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
 	attrs.strength -= amount
 	return true

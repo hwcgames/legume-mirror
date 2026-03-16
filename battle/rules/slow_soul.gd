@@ -1,7 +1,7 @@
 extends BattleRule
 class_name SlowSoul
 
-@export var speed_mul = 0.5
+@export var speed_mul = 0.8
 
 func _added_to_soul(soul: Soul):
 	soul.speed *= speed_mul
@@ -11,6 +11,10 @@ func soul(player: PartyMember, soul: Soul):
 
 func top(fighter: Fighter) -> bool:
 	stacks -= 1
+	return true
+
+func done(fighter: Fighter, player_victory: bool) -> bool:
+	stacks = 0
 	return true
 
 func merge(other: BattleRule):

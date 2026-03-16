@@ -31,7 +31,7 @@ var choice: int = 0
 var current_room: Room
 
 var width: int = 7
-var height: int = 20
+var height: int = 14
 var path_amt: int = 6
 
 var map: Dictionary[Vector2i, MapRoom] = {}
@@ -102,9 +102,9 @@ func roll_room(p: Vector2i) -> ROOM_TYPE:
 		return ROOM_TYPE.MONSTER
 	if p.y == 8:
 		return ROOM_TYPE.ITEM
+	#if p.y == height - 1:
+		#return ROOM_TYPE.BOSS
 	if p.y == height - 1:
-		return ROOM_TYPE.BOSS
-	if p.y == height - 2:
 		return ROOM_TYPE.SAFE
 	var banned_types: Array[ROOM_TYPE] = []
 	for previous in map[p].incoming:
@@ -115,7 +115,10 @@ func roll_room(p: Vector2i) -> ROOM_TYPE:
 	if p.y >= height - 4:
 		banned_types.push_back(ROOM_TYPE.SAFE)
 	if p.y < 6:
-		banned_types.append_array([ROOM_TYPE.BOSS, ROOM_TYPE.SAFE])
+		banned_types.append_array([
+			ROOM_TYPE.BOSS,
+			#ROOM_TYPE.SAFE
+		])
 	for i in range(100):
 		var roll = randf()
 		var wants = ROOM_TYPE.EMPTY
@@ -160,7 +163,7 @@ func generate_map():
 			if Vector2i(x, y) not in map:
 				continue
 			map[Vector2i(x, y)].room_type = roll_room(Vector2i(x, y))
-	state = STATE.WAIT_FOR_ROOM
+	state = STATE.HALLWAY_TO_ROOM
 	map_generated.emit()
 	return map
 
@@ -177,17 +180,17 @@ func junction_unloaded():
 	current_position += Vector2i(choice, 1)
 	if not map.has(current_position):
 		reset()
-		Storyteller.choose_if_available(["dungeon done"])
+		Storyteller.choose_if_available(["dungeon done"], true)
 		return
 	Storyteller.choose_if_available([
 		"dungeon choice %s" % choice,
 		"dungeon towards %s" % name_room(map[current_position].room_type),
 		"dungeon towards room"
-	])
+	], true)
 	state = STATE.WAIT_FOR_ROOM if allow_progress else STATE.HALLWAY_TO_ROOM
 
 func room_unloaded():
-	Storyteller.choose_if_available(["dungeon towards junction"])
+	Storyteller.choose_if_available(["dungeon towards junction"], true)
 	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
@@ -216,7 +219,7 @@ func fill_handler(seam: ProceduralSeam):
 			new_room.player_entered.connect(func(_p):
 				Storyteller.choose_if_available([
 					"dungeon entered junction"
-				])
+				], true)
 				lock.call(), CONNECT_ONE_SHOT)
 		STATE.JUNCTION:
 			if room.room_info.room_type == RoomInfo.ROOM_TYPE.HALLWAY:
@@ -270,17 +273,21 @@ func fill_handler(seam: ProceduralSeam):
 				Storyteller.choose_if_available([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
-				])
+				], true)
 				room_unloaded()
 				return
 			var new_room = await treadmill.fill_seam(seam, false)
 			state = STATE.ROOM
 			current_room = new_room
+			Storyteller.choose_if_available([
+				"dungeon built %s" % name_room(map[current_position].room_type),
+				"dungeon built room"
+			], true)
 			new_room.player_entered.connect(func(_p):
 				Storyteller.choose_if_available([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
-				]),
+				], true),
 				ConnectFlags.CONNECT_ONE_SHOT)
 			new_room.tree_exited.connect(room_unloaded)
 		STATE.ROOM:

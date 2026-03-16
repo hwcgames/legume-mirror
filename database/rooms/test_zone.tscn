@@ -6,18 +6,8 @@
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_leiud"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="5_jfic3"]
 [ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="6_k7nk8"]
-[ext_resource type="PackedScene" uid="uid://dx5x2fwnkpurx" path="res://database/costume/builtbody.tscn" id="7_lyu7e"]
-[ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/apprenticeblade.tscn" id="8_nfjod"]
-[ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="9_w0pwo"]
-[ext_resource type="PackedScene" uid="uid://d0bifw6ps4i8d" path="res://database/costume/hallmonitor.tscn" id="10_huafm"]
-[ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="11_ux6hw"]
-[ext_resource type="PackedScene" uid="uid://c6ru066xlmxbf" path="res://database/costume/maternalorganizer.tscn" id="12_hvpsn"]
-[ext_resource type="PackedScene" uid="uid://batcbmsn1knfv" path="res://database/costume/paperpugilist.tscn" id="13_bnpsa"]
-[ext_resource type="PackedScene" uid="uid://be8skvtwov6oo" path="res://database/costume/rankingfile.tscn" id="14_5hcru"]
-[ext_resource type="PackedScene" uid="uid://d0h2smoo1462b" path="res://database/costume/restlessgenius.tscn" id="15_mvbhe"]
-[ext_resource type="PackedScene" uid="uid://6cwnmchkvi81" path="res://database/costume/restroomspirit.tscn" id="16_7oft0"]
-[ext_resource type="PackedScene" uid="uid://fsvh4uev5at2" path="res://database/costume/secondhandglue.tscn" id="17_akp2a"]
-[ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="18_mufso"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="7_ifn70"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ifn70"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ghfn5"]
 size = Vector3(40, 6, 40)
@@ -25,15 +15,19 @@ size = Vector3(40, 6, 40)
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7nk8"]
 size = Vector3(13, 9, 0.5)
 
-[node name="TestZone" type="Area3D"]
+[sub_resource type="Resource" id="Resource_67os7"]
+script = ExtResource("8_ifn70")
+duration = 0.0
+
+[node name="TestZone" type="Area3D" unique_id=1768995826]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ghfn5")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 
-[node name="testzone" parent="." instance=ExtResource("2_leiud")]
+[node name="testzone" parent="." unique_id=1863165429 instance=ExtResource("2_leiud")]
 
-[node name="Out" type="Marker3D" parent="."]
+[node name="Out" type="Marker3D" parent="." unique_id=2011203413]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("3_jfic3")
@@ -41,30 +35,67 @@ profile = &"8x6"
 wants_room_type = 1
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=891114889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_ghfn5")
 debug_fill = false
 
-[node name="default" type="Marker3D" parent="." groups=["landmark"]]
+[node name="entrance" type="Marker3D" parent="." unique_id=1180129630 groups=["landmark"]]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 script = ExtResource("4_leiud")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="by_exit" type="Marker3D" parent="." groups=["landmark"]]
+[node name="cipher_huddle" type="Marker3D" parent="." unique_id=1419323374 groups=["landmark"]]
 unique_name_in_owner = true
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5, 0, -18)
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -2, 0, -13)
 script = ExtResource("4_leiud")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="north_outgoing" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam") groups=["automove"]]
+[node name="cipher" parent="cipher_huddle" unique_id=557331855 instance=ExtResource("7_ifn70")]
+transform = Transform3D(-0.9999999, 2.8811359e-08, -1.4822156e-07, 9.026161e-16, 0.98162717, 0.19080897, 1.5099579e-07, 0.190809, -0.981627, 1.4462557e-08, 3, -6.705)
+
+[node name="casey_huddle" type="Marker3D" parent="." unique_id=1319577835 groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(0.7071067, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071067, -2, 0, -9)
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="casey" parent="casey_huddle" unique_id=317303312 instance=ExtResource("7_ifn70")]
+transform = Transform3D(-0.9999999, 2.8811359e-08, -1.4822156e-07, 9.026161e-16, 0.98162717, 0.19080897, 1.5099579e-07, 0.190809, -0.981627, 1.4462557e-08, 3, -6.705)
+
+[node name="april_huddle" type="Marker3D" parent="." unique_id=1483832191 groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 2, 0, -9)
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="april" parent="april_huddle" unique_id=1922807511 instance=ExtResource("7_ifn70")]
+transform = Transform3D(-0.9999999, 2.8811359e-08, -1.4822156e-07, 9.026161e-16, 0.98162717, 0.19080897, 1.5099579e-07, 0.190809, -0.981627, 1.4462557e-08, 3, -6.705)
+
+[node name="mauve_huddle" type="Marker3D" parent="." unique_id=923753235 groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, 2, 0, -13)
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="mauve" parent="mauve_huddle" unique_id=897318751 instance=ExtResource("7_ifn70")]
+transform = Transform3D(-0.9999999, 2.8811359e-08, -1.4822156e-07, 9.026161e-16, 0.98162717, 0.19080897, 1.5099579e-07, 0.190809, -0.981627, 1.4462557e-08, 3, -6.705)
+
+[node name="crow_zone" type="Marker3D" parent="." unique_id=1635661206 groups=["landmark"]]
+unique_name_in_owner = true
+transform = Transform3D(-5.9604645e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -5.9604645e-08, 3, 0, -11)
+script = ExtResource("4_leiud")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="north_outgoing" type="Marker3D" parent="." unique_id=2133754806 node_paths=PackedStringArray("next_seam") groups=["automove"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("5_jfic3")
 next_seam = NodePath("../Out")
 next_seam_key = &"forward"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="Trigger" type="RigidBody3D" parent="."]
+[node name="Trigger" type="RigidBody3D" parent="." unique_id=688814418]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 collision_layer = 0
 collision_mask = 2
@@ -73,43 +104,18 @@ max_contacts_reported = 32
 script = ExtResource("6_k7nk8")
 metadata/_custom_type_script = "uid://cbk74e41f61h8"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger" unique_id=173101864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.25)
 shape = SubResource("BoxShape3D_k7nk8")
 debug_fill = false
 
-[node name="test_costume" parent="." instance=ExtResource("7_lyu7e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -9)
+[node name="huddle" parent="." unique_id=1470770665 instance=ExtResource("7_ifn70")]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, -6)
+tween_resource = SubResource("Resource_67os7")
 
-[node name="test_costume2" parent="." instance=ExtResource("8_nfjod")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
+[node name="show_door" parent="." unique_id=2050836083 instance=ExtResource("7_ifn70")]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 5, -6)
+tween_resource = SubResource("Resource_67os7")
 
-[node name="test_costume3" parent="." instance=ExtResource("9_w0pwo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -9)
-
-[node name="test_costume4" parent="." instance=ExtResource("10_huafm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
-
-[node name="test_costume5" parent="." instance=ExtResource("11_ux6hw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -8)
-
-[node name="test_costume6" parent="." instance=ExtResource("12_hvpsn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
-
-[node name="test_costume7" parent="." instance=ExtResource("13_bnpsa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -6)
-
-[node name="test_costume8" parent="." instance=ExtResource("14_5hcru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -7)
-
-[node name="test_costume9" parent="." instance=ExtResource("15_mvbhe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -3)
-
-[node name="test_costume10" parent="." instance=ExtResource("16_7oft0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -6)
-
-[node name="test_costume11" parent="." instance=ExtResource("17_akp2a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3)
-
-[node name="test_costume12" parent="." instance=ExtResource("18_mufso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6)
+[node name="crow" parent="." unique_id=1537450299 instance=ExtResource("7_ifn70")]
+transform = Transform3D(0.7071067, 0.1830127, -0.68301266, 8.881785e-16, 0.9659259, 0.25881904, 0.7071069, -0.18301268, 0.6830126, 2, 0.7, -10)

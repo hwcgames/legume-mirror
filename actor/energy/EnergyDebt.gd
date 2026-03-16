@@ -16,3 +16,6 @@ func _get_energy() -> int:
 	return -debt
 func _set_energy(energy: int):
 	debt = clamp(-energy, 0, max_debt)
+
+func battle_end():
+	debt = 0

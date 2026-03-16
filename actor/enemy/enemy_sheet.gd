@@ -8,6 +8,7 @@ class_name EnemySheet
 @export var rules: Array[BattleRule] = []
 @export var bg_color: Color = Color.BLACK
 @export var text_color: Color = Color.WHITE
+@export var active: bool = true
 
 @export var costume: PackedScene = preload("uid://c4r2ey7i7ooq3")
 

@@ -36,6 +36,7 @@ name = &"Secondhand Glue"
 hp = SubResource("Resource_wkfb0")
 sp = SubResource("Resource_wpdly")
 attrs = SubResource("Resource_llmq2")
+active = false
 costume = ExtResource("1_wxroi")
 patterns = Array[ExtResource("3_r55a0")]([ExtResource("6_2hyda"), ExtResource("7_by5dd")])
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

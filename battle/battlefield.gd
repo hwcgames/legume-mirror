@@ -74,10 +74,10 @@ func battle():
 		println("[center]- Top of the round! -[/center]")
 		if players.all(func(p): return !p.alive):
 			println("[center]- Player defeat! -[/center]")
-			Storyteller.choose_if_available(["battle lost", "battle end"])
+			Storyteller.choose_if_available(["battle lost", "battle end"], true)
 			break
 		%BattleHUD.hide()
-		if Storyteller.choose_if_available(["battle top"]):
+		if Storyteller.choose_if_available(["battle top"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -86,7 +86,7 @@ func battle():
 		top.emit()
 		await lock.wait_for_clear()
 		println("Telegraph phase!")
-		if Storyteller.choose_if_available(["battle telegraph"]):
+		if Storyteller.choose_if_available(["battle telegraph"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -94,7 +94,7 @@ func battle():
 		telegraph.emit()
 		await lock.wait_for_clear()
 		println("Player action!")
-		if Storyteller.choose_if_available(["battle player action"]):
+		if Storyteller.choose_if_available(["battle player action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -104,11 +104,11 @@ func battle():
 			await get_tree().process_frame
 			await lock.wait_for_clear()
 		println("Enemy action!")
-		if enemies.all(func(e): return !e.alive):
+		if enemies.all(func(e): return !e.active or !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
-			Storyteller.choose_if_available(["battle won", "battle end"])
+			Storyteller.choose_if_available(["battle won", "battle end"], true)
 			break
-		if Storyteller.choose_if_available(["battle enemy action"]):
+		if Storyteller.choose_if_available(["battle enemy action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -123,7 +123,7 @@ func battle():
 		battle_board.queue_free()
 		battle_board = null
 	phase = PHASE.DONE
-	done.emit(enemies.all(func(e): return !e.alive))
+	done.emit(enemies.all(func(e): return e.active and !e.alive))
 	Chatterbox.clear()
 	%BattleHUD.hide()
 	if camera != null:

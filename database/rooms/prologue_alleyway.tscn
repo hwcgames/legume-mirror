@@ -121,7 +121,7 @@ next_automove = NodePath("AutomoveBreadcrumb")
 metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
 [node name="AutomoveBreadcrumb" type="Marker3D" parent="forward" unique_id=1140185723 node_paths=PackedStringArray("next_seam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9299612)
 script = ExtResource("9_cfhh3")
 next_seam = NodePath("../../Out")
 next_seam_key = &"forward"

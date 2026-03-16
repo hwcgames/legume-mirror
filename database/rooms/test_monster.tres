@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://6ko4lafitey5"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://6ko4lafitey5"]
 
 [ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_05ysi"]
 [ext_resource type="PackedScene" uid="uid://hcuunputmcw4" path="res://database/rooms/test_monster.tscn" id="1_fy2xb"]

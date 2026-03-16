@@ -99,13 +99,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 7.5)
 shape = SubResource("BoxShape3D_crqpl")
 
 [node name="PhantomCamera3D" type="Node3D" parent="CameraTrigger" unique_id=1600573770 node_paths=PackedStringArray("look_at_target") groups=["camera"]]
-transform = Transform3D(0.9408874, -0.06467015, 0.33248863, 1.4901161e-08, 0.9816046, 0.19092532, -0.33871952, -0.1796392, 0.92357934, 2.5, 8.2, 7)
+transform = Transform3D(0.9408874, -0.064452074, 0.33253092, 0, 0.98172957, 0.19028156, -0.33871952, -0.17903352, 0.92369694, 2.5, 8.2, 7)
 script = ExtResource("5_j5g7b")
 look_at_mode = 2
 look_at_target = NodePath("../LeaderProxy")
 tween_resource = SubResource("Resource_drtur")
 look_at_offset = Vector3(0, 2.625, 0)
-look_at_damping = true
 align_transform_with_view = Callable()
 align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"

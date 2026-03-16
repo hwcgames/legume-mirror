@@ -87,7 +87,7 @@ var sp: int = 0
 
 func _process(delta: float) -> void:
 	update_bars()
-	if choosing and not battlefield.enemies.any(func(e: Enemy): return e.alive):
+	if choosing and not battlefield.enemies.any(func(e: Enemy): return e.active and e.alive):
 		choice.emit(BattleActionFinish.new())
 
 func update_bars():

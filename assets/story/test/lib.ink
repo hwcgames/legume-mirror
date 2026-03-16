@@ -89,6 +89,10 @@ EXTERNAL despawn_actor(id)
 >>> Spawn enemy {id} at {landmark}.
 ~ return id
 
+EXTERNAL heal_party()
+=== function heal_party()
+>>> Healed the party.
+
 EXTERNAL join_battle(actor)
 === function join_battle(actor)
 >>> {actor} joins the fight!
@@ -178,3 +182,11 @@ EXTERNAL confidant_level(confidant, level)
 EXTERNAL set_weather(weather)
 === function set_weather(weather)
 >>> It looks {weather} outside...
+
+EXTERNAL junction_next_room(direction)
+=== function junction_next_room(direction)
+~ return "N/A"
+
+EXTERNAL junction_current_room()
+=== function junction_current_room()
+~ return "N/A"

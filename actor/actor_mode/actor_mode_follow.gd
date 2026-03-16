@@ -25,17 +25,19 @@ var follow_history_length: float:
 func _process(delta: float):
 	if (not follow_history.is_empty()) and follow_target.global_position.distance_to(follow_history[0]) > 3.0:
 		follow_history.clear()
-	if follow_history.is_empty() or follow_target.global_position.distance_to(follow_history[0]) > 0.5:
+	if follow_history.is_empty() or follow_target.global_position.distance_to(follow_history[0]) > 0.1:
 		follow_history.push_back(follow_target.global_position)
+	else:
+		follow_history[-1] = follow_target.global_position
 	if follow_history_length < follow_distance:
 		actor.play("idle")
 		return
 	actor.play("walk")
-	var speed = 11. * delta
+	var speed = 11. * delta * preload("uid://d1el6j2bx6j18").sample(follow_history_length / follow_distance)
 	var movement: Vector3 = Vector3.ZERO
 	while (not follow_history.is_empty()) and follow_history[0].distance_to(actor.global_position) < 0.1:
 		follow_history.pop_front()
-	while speed > 0.1 and (not follow_history.is_empty()) and follow_history_length > follow_distance:
+	while speed > 0.01 and (not follow_history.is_empty()):
 		var next_leg = follow_history[0] - actor.global_position
 		if next_leg.length() > speed:
 			next_leg = next_leg.normalized() * speed

@@ -42,3 +42,6 @@ func _set_energy(energy: int)
 
 func remaining() -> int:
 	return max(0, sp - min)
+
+func battle_end():
+	sp = min

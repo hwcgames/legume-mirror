@@ -26,8 +26,8 @@ value = SubResource("Curve_vyav5")
 metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
 
 [sub_resource type="Curve" id="Curve_5v2kh"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Resource" id="Resource_vyav5"]

@@ -65,8 +65,8 @@ func play_message(message: Message):
 	actor = message.actor
 	if actor:
 		character_root = actor.head
-		%ColorBg.color = message.bg_color
-		%Label.add_theme_color_override("default_color", message.text_color)
+	%ColorBg.color = message.bg_color
+	%Label.add_theme_color_override("default_color", message.text_color)
 	if message.expression != null and actor:
 		actor.play("expr_%s" % message.expression)
 	await %Label.type_messages(message.instructions)

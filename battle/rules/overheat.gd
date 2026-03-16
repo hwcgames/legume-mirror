@@ -5,7 +5,7 @@ class_name Overheat
 @export var defense: Curve
 @export var dot: Curve
 @export var damage_as_heat: float
-@export var sp_gain_mul: float = 0.33
+@export var sp_gain_mul: float = 0.5
 
 func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
 	var sp = fighter.sp_component as EnergyDebt

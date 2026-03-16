@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://chlvyq6kpa1n"]
+
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_c0cbm"]
+[ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="2_7xaeo"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_n3r55"]
+[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="4_lat20"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_unni0"]
+[ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="6_kjfbe"]
+[ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="7_ijfg1"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_th7am"]
+[ext_resource type="Script" uid="uid://be5khkexb637k" path="res://battle/rules/haste.gd" id="9_yhady"]
+[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="10_i4p77"]
+[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="11_74wuu"]
+
+[sub_resource type="Resource" id="Resource_oiphp"]
+script = ExtResource("1_c0cbm")
+strength = 3
+magic = 0
+defense = 3
+finesse = 11
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_uey5t"]
+script = ExtResource("3_n3r55")
+current_hp = 150
+max_hp = 150
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_e7mn6"]
+script = ExtResource("9_yhady")
+stacks = 3
+metadata/_custom_type_script = "uid://be5khkexb637k"
+
+[sub_resource type="Resource" id="Resource_0q77f"]
+script = ExtResource("11_74wuu")
+current_sp = null
+metadata/_custom_type_script = "uid://88n3ix5h5r4a"
+
+[resource]
+script = ExtResource("10_i4p77")
+name = &"Furious Homeworker"
+hp = SubResource("Resource_uey5t")
+sp = SubResource("Resource_0q77f")
+attrs = SubResource("Resource_oiphp")
+rules = Array[ExtResource("8_th7am")]([SubResource("Resource_e7mn6")])
+costume = ExtResource("2_7xaeo")
+patterns = Array[ExtResource("5_unni0")]([ExtResource("6_kjfbe"), ExtResource("7_ijfg1")])
+metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

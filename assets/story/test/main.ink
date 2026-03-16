@@ -2,21 +2,25 @@ INCLUDE lib.ink
 INCLUDE test.ink
 INCLUDE prologue.ink
 INCLUDE dungeon_banter.ink
+INCLUDE prologue-dungeon.ink
+
 
 
 ~ dialogue_choice()
+// ~ random_choice()
+_
 + [Begin]
 -
 
-: Hello, world! #ty:written
-: This is a [i]very[/i] early prototype of my RPG, currently codenamed %v:typed%"Legume Traffick."
-: Please treat it kindly.
-: Where would you like to begin?
+%as%crow: Hello, world! #ty:bird
+%as%crow: This is a [i]very[/i] early prototype of an RPG currently codenamed %v:written%"Legume Traffick."
+%as%crow: It's a little fragile yet, so please handle it with care.
+%as%crow: Where would you like to begin?
 
 ~ dialogue_choice()
-+ [In the test dungeon]
-    ~ clear_dialogue()
-    ->test
+// + [In the test dungeon]
+//     ~ clear_dialogue()
+//     ->test
 + [At the start of the game]
     ~ clear_dialogue()
     -> prologue
@@ -49,6 +53,9 @@ INCLUDE dungeon_banter.ink
 + [Hitting the hay]
     ~ clear_dialogue()
     -> prologue.in_ciphers_room_begin_point
++ [Venturing into a dungeon.]
+    ~ clear_dialogue()
+    -> prologue_dungeon.lobby
 
 
 === die

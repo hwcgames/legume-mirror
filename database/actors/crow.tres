@@ -8,5 +8,5 @@ script = ExtResource("2_a1j1c")
 name = &"Crow"
 costume = ExtResource("1_jvtk7")
 bg_color = Color(0.081683345, 0.06458239, 0.0987817, 1)
-text_color = Color(0.5369984, 0.4697165, 0.59976125, 1)
+text_color = Color(0.6938495, 0.6353732, 0.75043035, 1)
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

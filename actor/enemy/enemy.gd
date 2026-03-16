@@ -9,6 +9,7 @@ var planned_pattern: BulletPattern
 @export var state: int = 0
 @export var null_telegraph: PackedScene = preload("uid://cdltsqr44pytk")
 @export var parleys: Array[ParleyAction] = []
+@export var active: bool = true
 var locks: Locks = Locks.new()
 
 func _ready():
@@ -111,4 +112,5 @@ static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
 	enemy.enemy_factory = enemy_factory
 	enemy.bg_color = enemy_sheet.bg_color
 	enemy.text_color = enemy_sheet.text_color
+	enemy.active = enemy_sheet.active
 	return enemy
