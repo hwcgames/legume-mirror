@@ -8,6 +8,8 @@ jobs:
         target: ["linux", "windows", "macos"]
     steps:
       - uses: https://data.forgejo.org/actions/checkout@v4
+        with:
+          repository: https://forge.wolo.dev/hwc/legume-traffic
       - name: Install Godot
         uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
         with:
