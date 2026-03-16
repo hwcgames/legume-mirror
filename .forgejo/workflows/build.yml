@@ -3,6 +3,8 @@ jobs:
   build:
     name: build-${{matrix.target}}
     runs-on: docker
+    container:
+      image: barichello/godot-ci@mono-4.6-stable
     strategy:
       matrix:
         target: ["linux", "windows", "macos"]
@@ -10,18 +12,21 @@ jobs:
       - uses: https://data.forgejo.org/actions/checkout@v4
         with:
           github-server-url: https://forge.wolo.dev
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mkdir -v -p ~/.config/
+          mv /root/.config/godot ~/.config/godot
+          mv /root/.local/share/godot/export_templates/4.6.stable.mono ~/.local/share/godot/export_templates/4.6.stable.mono
       - name: Build
-        id: build
-        uses: https://github.com/mlm-games/godot-build-action@v1.3.1
-        with:
-          EXPORT_PRESET_NAME: ${{matrix.target}}
-          GODOT_VER: 4.6-stable_mono
-          INSTALL_BLENDER: true
+        run: |
+          mkdir -p exp
+          godot --headless --verbose --export-release ${{matrix.target}}
       - name: Push artifacts
         uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
           name: "lt-${{matrix.target}}"
-          path: ${{ steps.build.outputs.build }}
+          path: exp
           compression-level: 9
       - name: Upload to itchio
         uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
