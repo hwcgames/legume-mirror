@@ -15,13 +15,15 @@ jobs:
         uses: https://github.com/mlm-games/godot-build-action@v1.3.1
         with:
           EXPORT_PRESET_NAME: ${{matrix.target}}
+          GODOT_VER: 4.6-stable_mono
+          INSTALL_BLENDER: true
       - name: Push artifacts
         uses: https://data.forgejo.org/actions/upload-artifact@v4
         with:
           name: "lt-${{matrix.target}}"
           path: ${{ steps.build.outputs.build }}
           compression-level: 9
-      - name: Upload to itchio auto-builds
+      - name: Upload to itchio
         uses: https://github.com/KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{secrets.BUTLER_API_KEY}}
