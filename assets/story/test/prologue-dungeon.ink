@@ -272,7 +272,6 @@ _
 ~ actor_move("mauve", "Player4", "glide")
 ~ actor_wait("cipher")
 _
-mauve: There's something there..! #ty:thought
 april: Is that... a bowl of soup? #ty:spoken
 ~ set_camera("dramatic_boss_camera")
 ~ sleep(6)
@@ -283,23 +282,29 @@ boss: Do you know why you're here? #ty:spoken
 - (why_are_you_here)
 ~ dialogue_choice()
 * [Dungeon]
-    cipher: To clear the dungeon.
+    cipher: To clear the dungeon. #ty:spoken
     boss: Dungeon? Is this some kind of game to you?
+    - - (why_are_you_here_hint)
+    {stopping:
+        - april: What's that supposed to mean? #ty:spoken
+        - casey: Maybe it doesn't mean why we're actually here? #ty:spoken
+        - mauve: We're in a school, maybe it's asking about that? #ty:spoken
+    }
     -> why_are_you_here
 * [Disappearances]
-    cipher: To find the people who have disappeared.
+    cipher: To find the people who have disappeared. #ty:spoken
     boss: Disappeared? What kind of myths have you brats been spreading about me?
-    -> why_are_you_here
+    -> why_are_you_here_hint
 * [Talk]
-    cipher: To talk things out.
+    cipher: To talk things out. #ty:spoken
     boss: You'd like that, wouldn't you?
-    -> why_are_you_here
+    -> why_are_you_here_hint
 + [Education]
-    cipher: To receive an education.
+    cipher: To learn about the world. #ty:spoken
     ~ set_camera("dramatic_boss_camera")
     ~ sleep(5)
     _
-    boss: Bingo.
+    boss: Exactly.
 -
 ~ hide("desk_lights")
 ~ set_camera("BattleCamera")

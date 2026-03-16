@@ -1,8 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://bjtrx0xncgqi6"]
 
+[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/gui/bars.aseprite" id="1_k0f3m"]
 [ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/fonts/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vavlv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_id7uf"]
+atlas = ExtResource("1_k0f3m")
 region = Rect2(0, 8, 16, 8)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7rq0"]
@@ -15,6 +17,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k0f3m"]
+atlas = ExtResource("1_k0f3m")
 region = Rect2(16, 0, 16, 8)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p7v5d"]
@@ -31,6 +34,7 @@ base_font = ExtResource("1_vavlv")
 spacing_bottom = -3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7v5d"]
+atlas = ExtResource("1_k0f3m")
 region = Rect2(0, 0, 16, 8)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vavlv"]
@@ -41,6 +45,7 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0p3sq"]
+atlas = ExtResource("1_k0f3m")
 region = Rect2(16, 8, 16, 8)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_id7uf"]

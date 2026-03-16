@@ -52,6 +52,10 @@
           cmake
           zig_0_13
           mesa
+          just
+          just-lsp
+          zip
+          butler
         ];
       in
         mkShell {
