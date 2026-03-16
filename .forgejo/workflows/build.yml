@@ -13,7 +13,7 @@ jobs:
       - name: Install Godot
         uses: https://git.gay/novadragon/godot-actions/install-godot@v2.5
         with:
-          godot-version: 4.6.0-stable
+          godot-version: 4.6.0-stable-mono
           install-templates: true
         id: install-godot
       - name: Build
