@@ -3,6 +3,9 @@ class_name Crush
 
 @export var amount: int = 3
 
+func priority(fighter: Fighter) -> int:
+	return 1
+
 func top(fighter: Fighter) -> bool:
 	stacks -= 1
 	return true
