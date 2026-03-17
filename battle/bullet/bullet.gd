@@ -5,6 +5,7 @@ class_name Bullet
 @export var state: int = 0
 @export var should_invuln: bool = true
 @export var should_graze: bool = true
+@export var animator: AnimationPlayer
 var enemy: Enemy
 var target: Soul
 var layer: BulletPatternLayer

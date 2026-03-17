@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://b4sfm156ewh04"
 
 [sub_resource type="Resource" id="Resource_8io7u"]
 script = ExtResource("13_qa7bc")
-name = "Hi-Sharpen"
+name = "Sharpen"
 description = "Refines an ally's weapons."
 cost = 40
 message = "%s sharpened %s's weapon!"

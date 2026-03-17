@@ -43,7 +43,7 @@ var rules: Array[BattleRule]:
 		if battlefield:
 			rules.append_array(battlefield.rules)
 		rules.append_array(Storyteller.rules)
-		rules.sort_custom(func(a, b): return a.priority() < b.priority())
+		rules.sort_custom(func(a, b): return a.priority(self) < b.priority(self))
 		return rules
 var computed_attrs: CombatAttributes:
 	get:

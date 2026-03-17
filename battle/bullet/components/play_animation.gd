@@ -1,19 +1,23 @@
 extends BulletComponent
 class_name BulletPlayAnimation
 
-@export var animator_p: NodePath
 @export var animation: StringName
 @export var state_after: int = -1
+@export var persistent: bool = false
 
 func _ready(bullet: Bullet):
 	pass
 
 var acted: bool = false
 func move(bullet: Bullet, delta: float) -> bool:
+	if not bullet.animator:
+		return false
+	if bullet.animator.current_animation != animation:
+		acted = false
 	if not acted:
 		(func():
 			acted = true
-			var animator: AnimationPlayer = bullet.get_node(animator_p)
+			var animator: AnimationPlayer = bullet.animator
 			animator.play(animation)
 			if state_after != -1:
 				await animator.animation_finished

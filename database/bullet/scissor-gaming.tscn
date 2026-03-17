@@ -20,7 +20,6 @@ metadata/_custom_type_script = "uid://dc4a4eqn62bnv"
 [sub_resource type="Resource" id="Resource_cdx6c"]
 resource_local_to_scene = true
 script = ExtResource("5_hr4p3")
-animator_p = NodePath("AnimationPlayer")
 animation = &"in"
 state_after = 1
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
@@ -35,7 +34,6 @@ metadata/_custom_type_script = "uid://bpxthdu44w1d6"
 [sub_resource type="Resource" id="Resource_nk8r2"]
 resource_local_to_scene = true
 script = ExtResource("5_hr4p3")
-animator_p = NodePath("AnimationPlayer")
 animation = &"blink"
 state_after = 2
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
@@ -50,7 +48,6 @@ metadata/_custom_type_script = "uid://bpxthdu44w1d6"
 [sub_resource type="Resource" id="Resource_n2y0l"]
 resource_local_to_scene = true
 script = ExtResource("5_hr4p3")
-animator_p = NodePath("AnimationPlayer")
 animation = &"cut"
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
 
@@ -223,7 +220,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_sprrr"]
 resource_name = "cut"
-length = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -243,10 +239,10 @@ tracks/1/path = NodePath("cut-mark:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.125, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.12156863)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.12156863), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -345,9 +341,10 @@ _data = {
 &"in": SubResource("Animation_4e4gw")
 }
 
-[node name="ScissorGaming" type="Area2D" unique_id=1008847971]
+[node name="ScissorGaming" type="Area2D" unique_id=1008847971 node_paths=PackedStringArray("animator")]
 script = ExtResource("1_h8tge")
 components = Array[ExtResource("2_4e4gw")]([SubResource("Resource_hr4p3"), SubResource("Resource_ry2sh"), SubResource("Resource_jdm2t")])
+animator = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://c1q70xh11sokb"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="." unique_id=1140898934]

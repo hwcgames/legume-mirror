@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://bnjn1cxrngomy"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_pu2r7"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_4wv4l"]
+[ext_resource type="SpriteFrames" uid="uid://tfys4sa0a28c" path="res://assets/bullet/lizard.aseprite" id="2_ljp1a"]
+[ext_resource type="Script" uid="uid://bpxthdu44w1d6" path="res://battle/bullet/components/if.gd" id="3_gxf0u"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="4_nfb6u"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="5_t3vqg"]
+[ext_resource type="Script" uid="uid://cl2yksu5ilm7p" path="res://battle/bullet/components/play_animation.gd" id="6_gsspc"]
+[ext_resource type="Script" uid="uid://ocyublhenk7f" path="res://battle/bullet/components/statechange.gd" id="7_gxf0u"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_ixu3a"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="8_37ias"]
+[ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="8_nfb6u"]
+
+[sub_resource type="Resource" id="Resource_mcxx3"]
+script = ExtResource("4_nfb6u")
+speed = 80.0
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Resource" id="Resource_gr2yd"]
+resource_local_to_scene = true
+script = ExtResource("6_gsspc")
+animator_p = NodePath("AnimationPlayer")
+animation = &"walk"
+persistent = true
+metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
+
+[sub_resource type="Curve" id="Curve_nfb6u"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.0149413), 0.0, 0.0, 0, 0, Vector2(1, 1.9306297), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_t3vqg"]
+resource_local_to_scene = true
+script = ExtResource("7_gxf0u")
+timer = SubResource("Curve_nfb6u")
+to_state = 1
+metadata/_custom_type_script = "uid://ocyublhenk7f"
+
+[sub_resource type="Resource" id="Resource_gsspc"]
+script = ExtResource("8_nfb6u")
+keep_aiming = true
+tracking_speed = 1.5
+metadata/_custom_type_script = "uid://k2gdlmf7jpuh"
+
+[sub_resource type="Curve" id="Curve_gkbrl"]
+_limits = [0.0, 15.0, 0.0, 1.0]
+_data = [Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ycyck"]
+script = ExtResource("5_t3vqg")
+value = SubResource("Curve_gkbrl")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Resource" id="Resource_qvox8"]
+resource_local_to_scene = true
+script = ExtResource("3_gxf0u")
+subcomponents = Array[ExtResource("2_4wv4l")]([SubResource("Resource_mcxx3"), SubResource("Resource_gr2yd"), SubResource("Resource_t3vqg"), SubResource("Resource_gsspc"), SubResource("Resource_ycyck")])
+states = Array[int]([0])
+metadata/_custom_type_script = "uid://bpxthdu44w1d6"
+
+[sub_resource type="Curve" id="Curve_k2w6o"]
+_limits = [0.0, 15.0, 0.0, 1.0]
+_data = [Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_ufeg0"]
+script = ExtResource("7_ixu3a")
+value = SubResource("Curve_k2w6o")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_t3vqg"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_3teug"]
+script = ExtResource("8_37ias")
+value = SubResource("Curve_t3vqg")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="Resource" id="Resource_4wv4l"]
+resource_local_to_scene = true
+script = ExtResource("6_gsspc")
+animator_p = NodePath("AnimationPlayer")
+animation = &"tailwhip"
+state_after = 0
+metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
+
+[sub_resource type="Resource" id="Resource_8j1yi"]
+resource_local_to_scene = true
+script = ExtResource("3_gxf0u")
+subcomponents = Array[ExtResource("2_4wv4l")]([SubResource("Resource_4wv4l")])
+states = Array[int]([1])
+metadata/_custom_type_script = "uid://bpxthdu44w1d6"
+
+[sub_resource type="Animation" id="Animation_idxe7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0476465]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_cloqv"]
+resource_name = "tailwhip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"tailwhip"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-7, -19), Vector2(7, -19), Vector2(-7, -19), Vector2(7, -19), Vector2(-7, -19), Vector2(7, -19), Vector2(-7, -19), Vector2(7, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [-1.0471976, 1.0476465, -1.0471976, 1.0476465, -1.0471976, 1.0476465, -1.0471976, 1.0476465]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_odq1w"]
+resource_name = "walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w734q"]
+_data = {
+&"RESET": SubResource("Animation_idxe7"),
+&"tailwhip": SubResource("Animation_cloqv"),
+&"walk": SubResource("Animation_odq1w")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0h0bb"]
+radius = 9.928204
+height = 33.980762
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sphu6"]
+height = 36.0
+
+[node name="Lizard" type="Area2D" unique_id=786061604 node_paths=PackedStringArray("animator")]
+script = ExtResource("1_pu2r7")
+components = Array[ExtResource("2_4wv4l")]([SubResource("Resource_qvox8"), SubResource("Resource_ufeg0"), SubResource("Resource_3teug"), SubResource("Resource_8j1yi")])
+animator = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1394342687]
+sprite_frames = ExtResource("2_ljp1a")
+animation = &"walk"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=992148853]
+libraries/ = SubResource("AnimationLibrary_w734q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=64754118]
+position = Vector2(7, -19)
+rotation = 1.0476465
+shape = SubResource("CapsuleShape2D_0h0bb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=965173024]
+shape = SubResource("CapsuleShape2D_sphu6")
