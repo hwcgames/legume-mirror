@@ -192,6 +192,7 @@ size = Vector2(48, 48)
 radius = 8.0
 
 [node name="Soul" type="Node2D" unique_id=1834530489]
+z_index = 1
 script = ExtResource("1_i6ykd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876981649]

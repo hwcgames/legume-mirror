@@ -55,6 +55,8 @@ func _enemy_action():
 		await board.done
 	lock.call()
 
+var stale_pattern: BulletPattern
+
 func pick_pattern():
 	planned_pattern = null
 	has_planned = false
@@ -79,6 +81,10 @@ func pick_pattern():
 	if candidates.is_empty():
 		print("No moves!")
 		return
+	if len(candidates) > 1 and stale_pattern:
+		var i = candidates.find(stale_pattern)
+		if i != -1:
+			candidates.remove_at(i)
 	for pattern in already_planned:
 		if not pattern.shared:
 			continue
@@ -88,6 +94,7 @@ func pick_pattern():
 			planned_pattern = pattern
 			return
 	planned_pattern = candidates[randi_range(0, len(candidates) - 1)]
+	stale_pattern = planned_pattern
 
 func show_telegraph():
 	for child in %TelegraphParent.get_children():

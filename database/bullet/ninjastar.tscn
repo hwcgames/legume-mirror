@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://1lno7glpoygr"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_mdtpk"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_ock03"]
+[ext_resource type="Texture2D" uid="uid://x3o4asbg1tvy" path="res://assets/bullet/ninjastar.aseprite" id="2_sfd3m"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_fky8t"]
+[ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="4_ceplj"]
+[ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="5_gled8"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="6_gled8"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="7_0kg3p"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="8_byp1w"]
+[ext_resource type="Script" uid="uid://dnef5e1a1uo4x" path="res://battle/bullet/components/rotate_node.gd" id="9_0kg3p"]
+
+[sub_resource type="Resource" id="Resource_0kg3p"]
+script = ExtResource("3_fky8t")
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Resource" id="Resource_byp1w"]
+script = ExtResource("4_ceplj")
+keep_aiming = true
+tracking_speed = 0.3
+metadata/_custom_type_script = "uid://k2gdlmf7jpuh"
+
+[sub_resource type="Curve" id="Curve_jojev"]
+_limits = [-45.0, 45.0, 0.0, 1.0]
+_data = [Vector2(0, -45), 0.0, 54.563118, 0, 0, Vector2(0.4855234, -19.274887), 51.031307, 51.031307, 0, 0, Vector2(0.51224947, 22.158508), 50.092865, 50.092865, 0, 0, Vector2(1, 45), 44.496525, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_x4qln"]
+script = ExtResource("5_gled8")
+amount = SubResource("Curve_jojev")
+metadata/_custom_type_script = "uid://xarbmru8h4kp"
+
+[sub_resource type="Curve" id="Curve_x4qln"]
+_data = [Vector2(0, 0.4808091), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_4hg68"]
+script = ExtResource("6_gled8")
+value = SubResource("Curve_x4qln")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="Curve" id="Curve_y7udx"]
+_limits = [0.0, 15.0, 0.0, 1.0]
+_data = [Vector2(0, 7.7497234), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_pxcf7"]
+script = ExtResource("7_0kg3p")
+value = SubResource("Curve_y7udx")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_vjyti"]
+_limits = [0.0, 5.0, 0.0, 1.0]
+_data = [Vector2(1, 5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_d45ys"]
+script = ExtResource("8_byp1w")
+value = SubResource("Curve_vjyti")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_byp1w"]
+_limits = [-360.0, 0.0, 0.0, 1.0]
+_data = [Vector2(0, -360), 0.0, 261.613, 0, 0, Vector2(1, -99.202), 260.4873, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_jojev"]
+resource_local_to_scene = true
+script = ExtResource("9_0kg3p")
+speed_curve = SubResource("Curve_byp1w")
+node_path = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://dnef5e1a1uo4x"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4qln"]
+
+[node name="Ninjastar" type="Area2D" unique_id=913860911]
+script = ExtResource("1_mdtpk")
+components = Array[ExtResource("2_ock03")]([SubResource("Resource_0kg3p"), SubResource("Resource_byp1w"), SubResource("Resource_x4qln"), SubResource("Resource_4hg68"), SubResource("Resource_pxcf7"), SubResource("Resource_d45ys"), SubResource("Resource_jojev")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1794463780]
+texture = ExtResource("2_sfd3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1574655221]
+shape = SubResource("CircleShape2D_x4qln")

@@ -35,7 +35,7 @@ var sp: int:
 		if sp_component:
 			sp_component.sp = sp
 @export var attrs: CombatAttributes = CombatAttributes.new()
-@export var fighter_rules: Array[BattleRule] = [] 
+@export var fighter_rules: Array[BattleRule] = []
 var rules: Array[BattleRule]:
 	get:
 		var rules: Array[BattleRule] = []
@@ -43,12 +43,13 @@ var rules: Array[BattleRule]:
 		if battlefield:
 			rules.append_array(battlefield.rules)
 		rules.append_array(Storyteller.rules)
+		rules.sort_custom(func(a, b): return a.priority() < b.priority())
 		return rules
 var computed_attrs: CombatAttributes:
 	get:
 		var attrs = self.attrs.duplicate()
 		for rule in rules:
-			if not rule.compute_attrs(self, attrs):
+			if not rule.compute_attrs(self , attrs):
 				return attrs
 		return attrs
 
@@ -56,39 +57,39 @@ var home_landmark: Marker3D
 
 func take_damage(amount: int):
 	for rule in rules:
-		if not rule.take_damage(self, amount):
+		if not rule.take_damage(self , amount):
 			return
 	hp -= amount
 
 func _died():
 	for rule in rules:
-		if not rule._died(self):
+		if not rule._died(self ):
 			return
 	if costume != null:
 		costume.play("dead")
 
 func heal(amount: int):
 	for rule in rules:
-		if not rule.heal(self, amount):
+		if not rule.heal(self , amount):
 			return
 	hp += amount
 
 func _revived():
 	for rule in rules:
-		if not rule._revived(self):
+		if not rule._revived(self ):
 			return
 	if costume != null:
 		costume.play("idle")
 
 func get_sp(amount: int):
 	for rule in rules:
-		if not rule.get_sp(self, amount):
+		if not rule.get_sp(self , amount):
 			return
 	sp += amount
 
 func use_sp(amount: int):
 	for rule in rules:
-		if not rule.use_sp(self, amount):
+		if not rule.use_sp(self , amount):
 			return
 	sp -= amount
 
@@ -110,7 +111,7 @@ func join_battle(battle: Battlefield):
 	await _join_battle(battle)
 	joined_battle.emit(battlefield)
 	for rule in rules:
-		if not rule.join_battle(self):
+		if not rule.join_battle(self ):
 			break
 
 func add_rule(rule: BattleRule) -> bool:
@@ -119,7 +120,7 @@ func add_rule(rule: BattleRule) -> bool:
 			existing.merge(rule)
 			return false
 	fighter_rules.push_back(rule)
-	rule._added(self)
+	rule._added(self )
 	return true
 
 func _join_battle(_battle: Battlefield):
@@ -127,7 +128,7 @@ func _join_battle(_battle: Battlefield):
 
 func begin():
 	for rule in rules:
-		if not rule.begin(self):
+		if not rule.begin(self ):
 			break
 	_begin()
 
@@ -135,34 +136,34 @@ func top():
 	rules = rules.filter(func(r: BattleRule):
 		var keep = r.stacks > 0
 		if not keep:
-			r._removed(self)
+			r._removed(self )
 		return keep)
 	for rule in rules:
-		if not rule.top(self):
+		if not rule.top(self ):
 			break
 	_top()
 
 func telegraph():
 	for rule in rules:
-		if not rule.telegraph(self):
+		if not rule.telegraph(self ):
 			break
 	_telegraph()
 
 func player_action():
 	for rule in rules:
-		if not rule.player_action(self):
+		if not rule.player_action(self ):
 			break
 	_player_action()
 
 func enemy_action():
 	for rule in rules:
-		if not rule.enemy_action(self):
+		if not rule.enemy_action(self ):
 			break
 	_enemy_action()
 
 func done(player_victory: bool):
 	for rule in rules:
-		if not rule.done(self, player_victory):
+		if not rule.done(self , player_victory):
 			break
 	_done(player_victory)
 

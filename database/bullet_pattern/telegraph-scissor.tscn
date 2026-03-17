@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://y3kd3b6d6xnb"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_65s4k"]
+[ext_resource type="Script" uid="uid://bd667kacyfiyw" path="res://battle/soul_proxy.gd" id="2_uyour"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="3_alao8"]
+[ext_resource type="PackedScene" uid="uid://bp34da535obwg" path="res://database/bullet/scissor-gaming.tscn" id="4_ggjpt"]
+
+[sub_resource type="Curve" id="Curve_ggjpt"]
+_limits = [-180.0, 180.0, 0.0, 1.0]
+_data = [Vector2(0, -180), 0.0, 0.0, 0, 0, Vector2(0.25, -90), 0.0, 0.0, 0, 0, Vector2(0.5, -4.7683716e-06), 0.0, 0.0, 0, 0, Vector2(0.75, 89.99999), 0.0, 0.0, 0, 0, Vector2(1, 179.99998), 0.0, 0.0, 0, 0]
+point_count = 5
+metadata/_snap_enabled = true
+metadata/_snap_count = 100
+
+[sub_resource type="Curve" id="Curve_alao8"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_rrqpk"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="BulletPatternLayer" type="Control" unique_id=2088796175]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_65s4k")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=906714229]
+script = ExtResource("2_uyour")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D" unique_id=2058486156]
+remote_path = NodePath("../../Node2D2")
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=326112417]
+
+[node name="BulletEmitter" type="Control" parent="Node2D2" unique_id=1911650781 node_paths=PackedStringArray("layer")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_alao8")
+layer = NodePath("../..")
+emission_angle = SubResource("Curve_ggjpt")
+interval = SubResource("Curve_alao8")
+amount = SubResource("Curve_rrqpk")
+start_delay = 0.5
+bullet = ExtResource("4_ggjpt")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"
