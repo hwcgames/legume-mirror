@@ -34,6 +34,8 @@ func _died():
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
 	%Telegraph.hide()
+	#if not active:
+		#queue_free()
 
 func _enemy_action():
 	%Telegraph.hide()
@@ -99,7 +101,10 @@ func pick_pattern():
 func show_telegraph():
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
-	var telegraph = planned_pattern.telegraph_scene.instantiate() if planned_pattern != null else null_telegraph.instantiate()
+	if not planned_pattern:
+		%Telegraph.hide()
+		return
+	var telegraph = planned_pattern.telegraph_scene.instantiate()
 	%TelegraphParent.add_child(telegraph)
 	%Telegraph.show()
 

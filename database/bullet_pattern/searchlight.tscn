@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://fxbf1d21sr0d"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_t267x"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_pbkqc"]
+[ext_resource type="PackedScene" uid="uid://cm486l7efwhqx" path="res://database/bullet/searchlight.tscn" id="3_3qmmd"]
+
+[sub_resource type="Curve" id="Curve_3qmmd"]
+
+[sub_resource type="Curve" id="Curve_4uc3u"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_n6ifl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="Searchlight" type="Control" unique_id=632621182]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t267x")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=2041073369]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_pbkqc")
+emission_angle = SubResource("Curve_3qmmd")
+interval = SubResource("Curve_4uc3u")
+amount = SubResource("Curve_n6ifl")
+start_delay = 1.0
+bullet = ExtResource("3_3qmmd")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

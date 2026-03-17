@@ -12,7 +12,7 @@ var acted: bool = false
 func move(bullet: Bullet, delta: float) -> bool:
 	if not bullet.animator:
 		return false
-	if bullet.animator.current_animation != animation:
+	if persistent and bullet.animator.current_animation != animation:
 		acted = false
 	if not acted:
 		(func():

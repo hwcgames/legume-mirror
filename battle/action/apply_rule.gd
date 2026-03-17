@@ -43,9 +43,9 @@ class ApplyRulePlan extends BattleActionPlan:
 		var b_lock = await battlefield.lock.shared_lock()
 		var t_lock = await target.locks.exclusive_lock() if target is Enemy else func(): return
 		if !target.alive:
-			for enemy in battlefield.enemies:
-				if enemy.alive:
-					target = enemy
+			for t in battlefield.players if friendly else battlefield.valid_enemies:
+				if t.alive:
+					target = t
 		if !target.alive:
 			print("No living targets!")
 			b_lock.call()

@@ -61,7 +61,7 @@ func _player_action():
 		turns -= 1
 		var self_lock = await lock.exclusive_lock()
 		var coroutine = Promise.new(func(resolve, _reject):
-			await action.go(self )
+			await action.go(self)
 			resolve.call())
 		self_lock.call()
 		p_lock.call_deferred()

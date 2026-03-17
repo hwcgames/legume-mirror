@@ -1,12 +1,14 @@
 extends Control
 class_name BulletEmitter
 
+@export var enabled: bool = true
 @export var layer: BulletPatternLayer
 @export var emission_angle: Curve
 @export var interval: Curve
 @export var amount: Curve
 @export var start_delay: float
 @export var bullet: PackedScene
+@export var parent: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +23,9 @@ signal fire_at_position(pos: Vector2)
 signal fire_at_angle(angle: float)
 
 func fire():
+	if not enabled:
+		get_tree().physics_frame.connect(fire, CONNECT_ONE_SHOT)
+		return
 	var delay = interval.sample_baked(randf())
 	var count = amount.sample_baked(randf())
 	for i in range(ceil(count)):
@@ -32,7 +37,7 @@ func fire():
 		var bullet_instance: Bullet = bullet.instantiate()
 		bullet_instance.layer = layer
 		bullet_instance.enemy = layer.enemy
-		layer.add_child(bullet_instance)
+		(parent if parent else layer).add_child(bullet_instance)
 		bullet_instance.global_position = global_position + get_global_transform().basis_xform(bullet_position)
 		bullet_instance.global_rotation_degrees = angle
 		#bullet_instance.reparent(, true)

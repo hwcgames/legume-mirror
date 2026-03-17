@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://encounter/encounterable.gd" id="1_kx3an"]
 [ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_miu2c"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/domesticlaborer.tres" id="3_e7mn6"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="3_e7mn6"]
 [ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="4_cxuf6"]
 [ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="5_yyryk"]
 [ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="6_qtojp"]

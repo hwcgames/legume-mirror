@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://c6dbhmhpdpqby"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_qnwos"]
+[ext_resource type="SpriteFrames" uid="uid://btb3vw88t28tn" path="res://assets/bullet/soup-ingredient.aseprite" id="2_ej7cd"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_tryg6"]
+[ext_resource type="Script" uid="uid://sbu7rbqx0uu2" path="res://battle/bullet/components/gravity.gd" id="3_ks46b"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="4_0nxh5"]
+[ext_resource type="Script" uid="uid://dnef5e1a1uo4x" path="res://battle/bullet/components/rotate_node.gd" id="5_5cqcu"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="6_rq4tr"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_8bdih"]
+[ext_resource type="Script" uid="uid://dekmobqfv2gaa" path="res://battle/bullet/components/splash.gd" id="8_cvdei"]
+[ext_resource type="PackedScene" uid="uid://bc3o5n3udqjsr" path="res://database/bullet/splash.tscn" id="9_rmy70"]
+
+[sub_resource type="Resource" id="Resource_71rb6"]
+resource_local_to_scene = true
+script = ExtResource("3_ks46b")
+vector = Vector2(0, 40)
+metadata/_custom_type_script = "uid://sbu7rbqx0uu2"
+
+[sub_resource type="Resource" id="Resource_rq4tr"]
+script = ExtResource("4_0nxh5")
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Curve" id="Curve_cvdei"]
+_limits = [-90.0, 90.0, 0.0, 1.0]
+_data = [Vector2(1e-05, -90), 0.0, 0.0, 0, 0, Vector2(1, 90), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_8bdih"]
+resource_local_to_scene = true
+script = ExtResource("5_5cqcu")
+speed_curve = SubResource("Curve_cvdei")
+node_path = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://dnef5e1a1uo4x"
+
+[sub_resource type="Curve" id="Curve_rmy70"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 20), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_a82et"]
+script = ExtResource("6_rq4tr")
+value = SubResource("Curve_rmy70")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_dt51p"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_2osq5"]
+script = ExtResource("7_8bdih")
+value = SubResource("Curve_dt51p")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Resource" id="Resource_dt51p"]
+resource_local_to_scene = true
+script = ExtResource("8_cvdei")
+splash_scene = ExtResource("9_rmy70")
+metadata/_custom_type_script = "uid://dekmobqfv2gaa"
+
+[sub_resource type="GDScript" id="GDScript_ej7cd"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var names = sprite_frames.get_animation_names()
+	animation = names[randi_range(0, len(names)-1)]
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tryg6"]
+radius = 9.0
+
+[node name="SoupIngredients" type="Area2D" unique_id=1261279805]
+script = ExtResource("1_qnwos")
+components = Array[ExtResource("2_tryg6")]([SubResource("Resource_71rb6"), SubResource("Resource_rq4tr"), SubResource("Resource_8bdih"), SubResource("Resource_a82et"), SubResource("Resource_2osq5"), SubResource("Resource_dt51p")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=641490892]
+sprite_frames = ExtResource("2_ej7cd")
+animation = &"broth"
+script = SubResource("GDScript_ej7cd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=341141072]
+shape = SubResource("CircleShape2D_tryg6")

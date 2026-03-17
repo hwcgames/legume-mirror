@@ -31,7 +31,7 @@ func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
 	var selector = %TargetMenuParent
 	for child in selector.get_children():
 		child.free()
-	var enemies = battlefield.enemies.filter(predicate)
+	var enemies = battlefield.valid_enemies.filter(predicate)
 	var back := Button.new()
 	back.text = "back"
 	back.pressed.connect(chosen_target.emit.bind(null))

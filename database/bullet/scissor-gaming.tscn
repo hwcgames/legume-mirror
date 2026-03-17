@@ -359,7 +359,6 @@ sprite_frames = ExtResource("2_i5fsa")
 animation = &"closed"
 
 [node name="cut-mark" type="ColorRect" parent="." unique_id=1846231323]
-anchors_preset = -1
 offset_left = -999.0
 offset_top = -1.0
 offset_right = 120.0

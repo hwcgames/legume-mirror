@@ -50,6 +50,7 @@ theme_override_constants/margin_bottom = 4
 [node name="BattleWorld" type="PanelContainer" parent="BattleParent/MarginContainer" unique_id=1295238390]
 unique_name_in_owner = true
 clip_children = 1
+z_index = 999
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5jau5")
 

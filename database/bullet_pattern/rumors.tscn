@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cs50paghlj63x"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_v3mma"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_tbkjx"]
+[ext_resource type="PackedScene" uid="uid://t1oj1biqflb3" path="res://database/bullet/airplane.tscn" id="3_efh17"]
+
+[sub_resource type="Curve" id="Curve_efh17"]
+_limits = [-110.0, -70.0, 0.0, 1.0]
+_data = [Vector2(0, -110), 0.0, 0.0, 0, 0, Vector2(1, -70), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ek3ue"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.0446181), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6bvc1"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[node name="Rumors" type="Control" unique_id=1300192156]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v3mma")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=1140818392]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("2_tbkjx")
+emission_angle = SubResource("Curve_efh17")
+interval = SubResource("Curve_ek3ue")
+amount = SubResource("Curve_6bvc1")
+start_delay = 1.0
+bullet = ExtResource("3_efh17")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

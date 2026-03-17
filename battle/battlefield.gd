@@ -7,6 +7,9 @@ var battle_board: BattleBoard
 @export var enemy_landmarks: Array[Marker3D]
 @export var players: Array[PartyMember]
 @export var enemies: Array[Enemy]
+var valid_enemies: Array[Enemy]:
+	get:
+		return enemies.filter(func(e): return is_instance_valid(e))
 @export var camera_priority_offset: int = 5
 @export var camera: PhantomCamera3D
 @export var song: PackedScene
@@ -104,7 +107,7 @@ func battle():
 			await get_tree().process_frame
 			await lock.wait_for_clear()
 		println("Enemy action!")
-		if enemies.all(func(e): return !e.active or !e.alive):
+		if valid_enemies.all(func(e): return !e.active or !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
 			Storyteller.choose_if_available(["battle won", "battle end"], true)
 			break

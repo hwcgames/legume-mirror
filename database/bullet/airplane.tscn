@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://t1oj1biqflb3"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_u5g1u"]
+[ext_resource type="Texture2D" uid="uid://c5kvbu7yopet7" path="res://assets/bullet/airplane.aseprite" id="2_spw8e"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_syvp7"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_v8xe2"]
+[ext_resource type="Script" uid="uid://dr0o4afnmtqf5" path="res://battle/bullet/components/move_sine.gd" id="4_4ocpq"]
+[ext_resource type="Script" uid="uid://b2v3b7v3cs4om" path="res://battle/rules/infighting.gd" id="5_4ocpq"]
+[ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://battle/bullet/components/add_rule.gd" id="6_qh88c"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_m7jdh"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="8_66col"]
+
+[sub_resource type="Resource" id="Resource_qh88c"]
+script = ExtResource("3_v8xe2")
+metadata/_custom_type_script = "uid://dds6oka6jprre"
+
+[sub_resource type="Curve" id="Curve_m7jdh"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10.066445), 0.0, 0.0, 0, 0, Vector2(1, 20), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_66col"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 3.0930233), 0.0, 0.0, 0, 0, Vector2(1, 4), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_qchei"]
+resource_local_to_scene = true
+script = ExtResource("4_4ocpq")
+amplitude = SubResource("Curve_m7jdh")
+period = SubResource("Curve_66col")
+metadata/_custom_type_script = "uid://dr0o4afnmtqf5"
+
+[sub_resource type="Resource" id="Resource_m7jdh"]
+script = ExtResource("5_4ocpq")
+stacks = 2
+metadata/_custom_type_script = "uid://b2v3b7v3cs4om"
+
+[sub_resource type="Resource" id="Resource_66col"]
+script = ExtResource("6_qh88c")
+rule = SubResource("Resource_m7jdh")
+chance = 0.2
+metadata/_custom_type_script = "uid://5ff3js1q3hr3"
+
+[sub_resource type="Curve" id="Curve_qchei"]
+_limits = [0.0, 15.0, 0.0, 1.0]
+_data = [Vector2(0, 6.64822), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_mbh2d"]
+script = ExtResource("7_m7jdh")
+value = SubResource("Curve_qchei")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_7jw36"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_d108t"]
+script = ExtResource("8_66col")
+value = SubResource("Curve_7jw36")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="GDScript" id="GDScript_vya5k"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	flip_v = get_parent().global_rotation < 0
+	pass
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_spw8e"]
+radius = 5.0
+height = 46.0
+
+[node name="Airplane" type="Area2D" unique_id=2044857714]
+script = ExtResource("1_u5g1u")
+components = Array[ExtResource("2_syvp7")]([SubResource("Resource_qh88c"), SubResource("Resource_qchei"), SubResource("Resource_66col"), SubResource("Resource_mbh2d"), SubResource("Resource_d108t")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=954778878]
+rotation = -1.5707964
+texture = ExtResource("2_spw8e")
+script = SubResource("GDScript_vya5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=521699573]
+shape = SubResource("CapsuleShape2D_spw8e")

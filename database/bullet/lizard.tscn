@@ -20,7 +20,6 @@ metadata/_custom_type_script = "uid://dds6oka6jprre"
 [sub_resource type="Resource" id="Resource_gr2yd"]
 resource_local_to_scene = true
 script = ExtResource("6_gsspc")
-animator_p = NodePath("AnimationPlayer")
 animation = &"walk"
 persistent = true
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
@@ -83,9 +82,9 @@ metadata/_custom_type_script = "uid://cidxgnwpggolf"
 [sub_resource type="Resource" id="Resource_4wv4l"]
 resource_local_to_scene = true
 script = ExtResource("6_gsspc")
-animator_p = NodePath("AnimationPlayer")
 animation = &"tailwhip"
 state_after = 0
+persistent = true
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
 
 [sub_resource type="Resource" id="Resource_8j1yi"]

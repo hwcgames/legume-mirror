@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://5lb305m8mt1w"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_ke1us"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_3lkeh"]
+[ext_resource type="Texture2D" uid="uid://dm5y3we752tno" path="res://assets/bullet/soup.aseprite" id="2_h2r6x"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="3_xl73f"]
+[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="4_f7btt"]
+[ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://battle/bullet/components/add_rule.gd" id="5_pnik5"]
+
+[sub_resource type="Curve" id="Curve_merk4"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(1, 50), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_iw6q1"]
+script = ExtResource("3_xl73f")
+value = SubResource("Curve_merk4")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Resource" id="Resource_nfqhi"]
+script = ExtResource("4_f7btt")
+metadata/_custom_type_script = "uid://5v4wkvk0drde"
+
+[sub_resource type="Resource" id="Resource_7r20t"]
+script = ExtResource("5_pnik5")
+rule = SubResource("Resource_nfqhi")
+chance = 0.8
+metadata/_custom_type_script = "uid://5ff3js1q3hr3"
+
+[sub_resource type="Animation" id="Animation_h2r6x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soup:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soup2:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3lkeh"]
+resource_name = "soup"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Soup:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 2.12, 3.84, 5.27),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-15, -4), Vector2(12, -4), Vector2(-2.999999, 5.999999), Vector2(21, -7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Soup2:skew")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5666666, 2.0766666, 3.39, 4.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.3700098, 0.23387411, 0.0, 0.2268928]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0kxt"]
+_data = {
+&"RESET": SubResource("Animation_h2r6x"),
+&"soup": SubResource("Animation_3lkeh")
+}
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2r6x"]
+
+[node name="Soup" type="Area2D" unique_id=1617176206]
+script = ExtResource("1_ke1us")
+components = Array[ExtResource("2_3lkeh")]([SubResource("Resource_iw6q1"), SubResource("Resource_7r20t")])
+should_graze = false
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Soup" type="Node2D" parent="." unique_id=720422163]
+
+[node name="TextureRect" type="TextureRect" parent="Soup" unique_id=705672484]
+offset_left = -3000.0
+offset_top = -24.0
+offset_right = 3000.0
+offset_bottom = 8.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_h2r6x")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Soup/TextureRect" unique_id=522109648]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 999.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.8235294, 0.45490196, 0, 0.6666667)
+
+[node name="Soup2" type="Node2D" parent="." unique_id=114833842]
+position = Vector2(64.66175, -7.1313305)
+
+[node name="TextureRect" type="TextureRect" parent="Soup2" unique_id=1091166367]
+offset_left = -3000.0
+offset_top = -24.0
+offset_right = 3000.0
+offset_bottom = 8.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_h2r6x")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="Soup2/TextureRect" unique_id=1346117909]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 999.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.8235294, 0.45490196, 0, 0.6666667)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=823911704]
+libraries/ = SubResource("AnimationLibrary_v0kxt")
+autoplay = &"soup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=989141795]
+shape = SubResource("WorldBoundaryShape2D_h2r6x")

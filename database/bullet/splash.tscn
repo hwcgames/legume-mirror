@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bc3o5n3udqjsr"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_2u6a0"]
+[ext_resource type="Texture2D" uid="uid://c4658ty3ow03v" path="res://assets/bullet/splash.aseprite" id="2_pc5tw"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_uxgif"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="3_67r1d"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="4_ej3bp"]
+[ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="5_fwy42"]
+[ext_resource type="Script" uid="uid://cl2yksu5ilm7p" path="res://battle/bullet/components/play_animation.gd" id="6_67r1d"]
+
+[sub_resource type="Curve" id="Curve_aq87q"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_57e4o"]
+script = ExtResource("3_67r1d")
+value = SubResource("Curve_aq87q")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
+[sub_resource type="Curve" id="Curve_8vwdb"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_2i4of"]
+script = ExtResource("4_ej3bp")
+value = SubResource("Curve_8vwdb")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="Curve" id="Curve_0oers"]
+_limits = [0.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_rf8si"]
+script = ExtResource("5_fwy42")
+value = SubResource("Curve_0oers")
+metadata/_custom_type_script = "uid://cidxgnwpggolf"
+
+[sub_resource type="Resource" id="Resource_ej3bp"]
+resource_local_to_scene = true
+script = ExtResource("6_67r1d")
+animation = &"splash"
+metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_67r1d"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_5ii7o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05jfe"]
+resource_name = "splash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.8),
+"transitions": PackedFloat32Array(1, 0.7578584, 1),
+"update": 0,
+"values": [Vector2(0.5, 1e-05), Vector2(0.8, 2), Vector2(1.5, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jfchd"]
+_data = {
+&"RESET": SubResource("Animation_5ii7o"),
+&"splash": SubResource("Animation_05jfe")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxgif"]
+size = Vector2(40, 19)
+
+[node name="Splash" type="Area2D" unique_id=1606279641 node_paths=PackedStringArray("animator")]
+script = ExtResource("1_2u6a0")
+components = Array[ExtResource("2_uxgif")]([SubResource("Resource_57e4o"), SubResource("Resource_2i4of"), SubResource("Resource_rf8si"), SubResource("Resource_ej3bp")])
+animator = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=945101248]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=224293477]
+material = SubResource("CanvasItemMaterial_67r1d")
+position = Vector2(0, -24)
+texture = ExtResource("2_pc5tw")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Node2D" unique_id=554942072]
+position = Vector2(0, -10)
+remote_path = NodePath("../../CollisionShape2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=810474689]
+deterministic = true
+libraries/ = SubResource("AnimationLibrary_jfchd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903339268]
+position = Vector2(0, -0.0001)
+scale = Vector2(0.5, 1e-05)
+shape = SubResource("RectangleShape2D_uxgif")

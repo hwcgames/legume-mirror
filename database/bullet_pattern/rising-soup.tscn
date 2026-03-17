@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://wtomn0pwvxwx"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_yhvbh"]
+[ext_resource type="PackedScene" uid="uid://5lb305m8mt1w" path="res://database/bullet/soup.tscn" id="2_f4gwu"]
+
+[sub_resource type="Animation" id="Animation_f4gwu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SoupControl:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_3hn71"]
+resource_name = "rise"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SoupControl:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kehg2"]
+_data = {
+&"RESET": SubResource("Animation_f4gwu"),
+&"rise": SubResource("Animation_3hn71")
+}
+
+[node name="RisingSoup" type="Control" unique_id=1149682815]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yhvbh")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="SoupControl" type="Control" parent="." unique_id=439664740]
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="Soup" parent="SoupControl" unique_id=1617176206 instance=ExtResource("2_f4gwu")]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1818647753]
+libraries/ = SubResource("AnimationLibrary_kehg2")
+autoplay = &"rise"

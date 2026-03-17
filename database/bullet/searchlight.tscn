@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://cm486l7efwhqx"]
+
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_146e2"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_11wvb"]
+[ext_resource type="Script" uid="uid://cgkb4pow07na" path="res://battle/bullet/components/wander.gd" id="3_0lpq3"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="4_qbv46"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="5_cq1il"]
+[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="6_4vxq0"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="7_q3i8b"]
+[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="8_n4q1p"]
+[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="9_kixtc"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="10_gf51f"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="11_cq1il"]
+[ext_resource type="Script" uid="uid://8ntvph4t6j0d" path="res://battle/bullet/components/spawn_enemy.gd" id="11_x4021"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="13_4vxq0"]
+
+[sub_resource type="Curve" id="Curve_4vxq0"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4jn8l"]
+resource_local_to_scene = true
+frequency = 0.2
+fractal_octaves = 3
+
+[sub_resource type="Resource" id="Resource_iwhhs"]
+resource_local_to_scene = true
+script = ExtResource("3_0lpq3")
+noise = SubResource("FastNoiseLite_4jn8l")
+coord_curve = SubResource("Curve_4vxq0")
+metadata/_custom_type_script = "uid://cgkb4pow07na"
+
+[sub_resource type="Resource" id="Resource_xt3y8"]
+script = ExtResource("4_qbv46")
+table = Array[ExtResource("5_cq1il")]([ExtResource("6_4vxq0"), ExtResource("7_q3i8b"), ExtResource("8_n4q1p"), ExtResource("9_kixtc"), ExtResource("10_gf51f"), ExtResource("11_cq1il")])
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_7m4er"]
+script = ExtResource("11_x4021")
+enemy_template = SubResource("Resource_xt3y8")
+chance = 1.0
+metadata/_custom_type_script = "uid://8ntvph4t6j0d"
+
+[sub_resource type="Curve" id="Curve_q3i8b"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_n4q1p"]
+script = ExtResource("13_4vxq0")
+value = SubResource("Curve_q3i8b")
+metadata/_custom_type_script = "uid://cem6eq321nrcm"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_146e2"]
+radius = 28.01785
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_146e2"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_wst70"]
+offsets = PackedFloat32Array(0, 0.7163515, 1)
+colors = PackedColorArray(1, 0.5176471, 0, 0.6392157, 1, 0.5176471, 0, 0.28627452, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_11wvb"]
+gradient = SubResource("Gradient_wst70")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_146e2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wst70"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11wvb"]
+_data = {
+&"RESET": SubResource("Animation_146e2"),
+&"in": SubResource("Animation_wst70")
+}
+
+[node name="Searchlight" type="Area2D" unique_id=125395575]
+script = ExtResource("1_146e2")
+components = Array[ExtResource("2_11wvb")]([SubResource("Resource_iwhhs"), SubResource("Resource_7m4er"), SubResource("Resource_n4q1p")])
+metadata/_custom_type_script = "uid://c1q70xh11sokb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68391782]
+shape = SubResource("CircleShape2D_146e2")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1920904150]
+material = SubResource("CanvasItemMaterial_146e2")
+texture = SubResource("GradientTexture2D_11wvb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1348532956]
+libraries/ = SubResource("AnimationLibrary_11wvb")
+autoplay = &"in"

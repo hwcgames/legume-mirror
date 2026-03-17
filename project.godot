@@ -116,3 +116,4 @@ textures/vram_compression/import_etc2_astc=true
 textures/webp_compression/compression_method=4
 textures/webp_compression/lossless_compression_factor=100.0
 2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

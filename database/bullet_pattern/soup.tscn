@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://bxt4lqmou3yom"]
+
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_3ocxq"]
+[ext_resource type="PackedScene" uid="uid://5lb305m8mt1w" path="res://database/bullet/soup.tscn" id="2_sycmd"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="3_bssps"]
+[ext_resource type="PackedScene" uid="uid://c6dbhmhpdpqby" path="res://database/bullet/soup-ingredients.tscn" id="4_hjhcr"]
+
+[sub_resource type="Animation" id="Animation_5da2u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SoupControl:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BulletEmitter:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletEmitter2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_v22tu"]
+resource_name = "soup"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SoupControl:anchor_top")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5547847, 1),
+"update": 0,
+"values": [1.0, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BulletEmitter:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BulletEmitter2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.09),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l3aqv"]
+_data = {
+&"RESET": SubResource("Animation_5da2u"),
+&"soup": SubResource("Animation_v22tu")
+}
+
+[sub_resource type="Curve" id="Curve_wbd16"]
+_limits = [15.0, 75.0, 0.0, 1.0]
+_data = [Vector2(0, 15), 0.0, 0.0, 0, 0, Vector2(1, 75), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_g7xes"]
+_data = [Vector2(0, 0.5019399), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_8l1h6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_s867x"]
+_limits = [-75.0, -15.0, 0.0, 1.0]
+_data = [Vector2(0, -75), 0.0, 0.0, 0, 0, Vector2(1, -15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Soup" type="Control" unique_id=697017052]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ocxq")
+metadata/_custom_type_script = "uid://crbwhii8v7geg"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1914214699]
+libraries/ = SubResource("AnimationLibrary_l3aqv")
+autoplay = &"soup"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=419330994]
+
+[node name="SoupControl" type="Control" parent="." unique_id=1266455062]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_vertical = 0
+
+[node name="Soup" parent="SoupControl" unique_id=1617176206 instance=ExtResource("2_sycmd")]
+unique_name_in_owner = true
+
+[node name="BulletEmitter" type="Control" parent="." unique_id=1507060076 node_paths=PackedStringArray("parent")]
+anchors_preset = 0
+offset_left = -151.0
+offset_top = 148.0
+offset_right = -111.0
+offset_bottom = 188.0
+script = ExtResource("3_bssps")
+enabled = false
+emission_angle = SubResource("Curve_wbd16")
+interval = SubResource("Curve_g7xes")
+amount = SubResource("Curve_8l1h6")
+bullet = ExtResource("4_hjhcr")
+parent = NodePath("../Node2D")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"
+
+[node name="BulletEmitter2" type="Control" parent="." unique_id=1360992578 node_paths=PackedStringArray("parent")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 111.0
+offset_top = -116.0
+offset_right = 151.0
+offset_bottom = -76.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("3_bssps")
+enabled = false
+emission_angle = SubResource("Curve_s867x")
+interval = SubResource("Curve_g7xes")
+amount = SubResource("Curve_8l1h6")
+bullet = ExtResource("4_hjhcr")
+parent = NodePath("../Node2D")
+metadata/_custom_type_script = "uid://bp8ioyq4c1gvw"

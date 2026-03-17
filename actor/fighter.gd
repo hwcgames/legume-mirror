@@ -152,7 +152,7 @@ func telegraph():
 func player_action():
 	for rule in rules:
 		if not rule.player_action(self ):
-			break
+			return
 	_player_action()
 
 func enemy_action():

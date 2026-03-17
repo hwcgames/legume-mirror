@@ -28,7 +28,7 @@ class FancyAttackPlan extends BattleActionPlan:
 		var e_lock = await target.locks.exclusive_lock()
 		#await get_tree().create_timer(1.).timeout
 		if !target.alive:
-			for enemy in battlefield.enemies:
+			for enemy in battlefield.valid_enemies:
 				if enemy.alive:
 					target = enemy
 		if !target.alive:
