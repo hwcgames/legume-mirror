@@ -8,7 +8,7 @@ class_name BulletSpawnEnemy
 func damage(bullet: Bullet, soul: Soul) -> bool:
 	if randf() > chance:
 		return false
-	if len(bullet.layer.battlefield.enemies.filter(func(e): return is_instance_valid(e))) == len(bullet.layer.battlefield.enemy_landmarks):
+	if len(bullet.layer.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(bullet.layer.battlefield.enemy_landmarks):
 		return false
 	var enemy: Enemy = Enemy.from_enemy_factory(enemy_template)
 	enemy.active = active
