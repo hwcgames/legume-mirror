@@ -508,8 +508,8 @@ _
 // ~ spawn_actor("crow", "right_on_msgbox")
 ~ actor_act("crow", "fly_in")
 ~ actor_wait("crow")
+->meet_crow->
 crow: Nice to meet you face-to-face, caw. #ty:bird
-- (meet_crow)
 crow: We'll talk more later, squawk... But we need to introduce ourselves first.
 crow: What's that? Yes, you've already named our friend %char:cipher%, caw... But I need to know [i]your[/i] name.
 : You would set your name here, if it was implemented. #ty:typed

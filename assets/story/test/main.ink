@@ -45,7 +45,7 @@ _
 + [Registering for school]
     ~ clear_dialogue()
     -> prologue.register_for_school_begin_point
-+ [Talking to a kindly elder]
++ [Talking to a kind elder]
     ~ clear_dialogue()
     ~ fade_out("black")
     _
@@ -53,10 +53,10 @@ _
 + [Hitting the hay]
     ~ clear_dialogue()
     -> prologue.in_ciphers_room_begin_point
-+ [Venturing into a dungeon.]
++ [Venturing into a dungeon]
     ~ clear_dialogue()
     -> prologue_dungeon.lobby
-+ [Fighting a formidable enemy.]
++ [Battling a formidable enemy]
     ~ clear_dialogue()
     ~ change_level("intro_dungeon", "hallway")
     _
@@ -76,3 +76,6 @@ _
 : And so %p:1%the world was lost. #ty:typed
 ~ reset()
 ->END
+
+=== meet_crow
+->->

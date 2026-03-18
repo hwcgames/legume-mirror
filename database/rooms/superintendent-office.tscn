@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_4sq8s"]
 [ext_resource type="PackedScene" uid="uid://bdx0oe6g8m38l" path="res://level/procedural_seam.tscn" id="10_ltwjw"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="11_4sq8s"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="12_hk83n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4hr62"]
 size = Vector3(15, 7, 25)
@@ -243,7 +244,7 @@ camera_3d_resource = SubResource("Resource_8bap4")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=930806263]
-transform = Transform3D(0.49999997, -0.46531516, 0.7303984, 0, 0.8433914, 0.53729963, -0.86602545, -0.2686498, 0.42169568, 6, 5, 5)
+transform = Transform3D(0.7071068, -0.07391278, 0.7032331, 0, 0.9945219, 0.104528464, -0.7071067, -0.07391279, 0.70323324, 0.09891617, 1.4999998, -4.317888)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1387975630]
@@ -270,3 +271,9 @@ wants_room_type = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 script = ExtResource("11_4sq8s")
 metadata/_custom_type_script = "uid://d1625cme8sl48"
+
+[node name="crow" parent="." unique_id=1531883211 instance=ExtResource("4_jia3g")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, -1.3152974, 0.99999976, -5.7321014)
+
+[node name="crow" parent="crow" unique_id=557331855 instance=ExtResource("12_hk83n")]
+transform = Transform3D(-1, -9.1381684e-09, 8.694387e-08, 0, 0.9945219, 0.104528464, -8.742278e-08, 0.104528464, -0.9945219, 0, 0.5, -2)

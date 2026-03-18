@@ -36,7 +36,7 @@ april: What next?
 // ~ actor_release("april")
 ->input_tutorial->
 {
-    - prologue.meet_crow: crow: Psst, player! It's me, down here, scraw! #ty:bird
+    - meet_crow: crow: Psst, player! It's me, down here, scraw! #ty:bird
     - else: crow: Hey, you, human! Up there, squawk! #ty:bird
 }
 
@@ -47,7 +47,7 @@ april: What next?
     ~ sleep(0.5)
     _
     {
-        - prologue.meet_crow:
+        - meet_crow:
             {once:
             - crow: Caw, hello, player! #ty:bird
               crow: This is the next part of the game I've been asked to guide you to.
@@ -69,13 +69,13 @@ april: What next?
             - crow: Again? All right. #ty:bird
         }
         {
-            - !prologue.meet_crow:
+            - !meet_crow:
                 crow: Cipher, the character you control, is an android of some sort who recently escaped from their mother's workplace. #ty:bird
                 crow: You will choose their actions and keep them safe as they carve a niche into the concrete jungle.
         }
         ~ set_camera("casey")
         {
-            - prologue.meet_crow:
+            - meet_crow:
                 crow: You already know Casey, of course... #ty:bird
             - else:
                 crow: This is Casey.
@@ -115,6 +115,7 @@ april: What next?
     + + [Never mind.]
         ~ set_camera("_")
         ~ actor_release("cipher")
+        ->meet_crow->
         -> lobby_walkabout
     - - -> crow_talk
 + [north]
@@ -254,6 +255,7 @@ mauve: ...Something big is coming up. #ty:thought
 + [Build superintendent-office]
 -
 ~ spawn_enemy("static/deliberatestew", "boss", "boss_chair")
+~ spawn_actor("crow", "crow")
 ~ actor_capture("boss")
 ~ hide("desk_lights")
 ~ hide("battle_lights")
@@ -319,12 +321,70 @@ boss: Prepare yourselves for a lesson in humility.
 ~ join_battle("mauve")
 ~ join_battle("boss")
 ~ start_battle()
+- (top)
+<- won_or_lost
 + [battle top]
 -
-// ~ lock_battlefield()
-// boss: 
-// ~ free_battlefield()
+<- won_or_lost
++ [battle telegraph]
+-
+~ lock_battlefield()
+{stopping:
+    - : Suddenly, the room is lit in vibrant colors. #ty:typed
+    - {shuffle:
+        - boss: Haha, is that all you've got? #ty:spoken
+        - boss: Let's see how you handle my next attack..! #ty:spoken
+    }
+}
+~ free_battlefield()
+
+<- won_or_lost
++ [battle player action]
+-
+- (player_action)
+<- won_or_lost
+* [party hits]
+    ~ lock_battlefield()
+    boss: You little..!
+    ~ free_battlefield()
+    -> player_action
+* [april hits]
+    ~ lock_battlefield()
+    april: Euch, some soup splashed on me..! #expr:fear
+    ~ free_battlefield()
+    -> player_action
++ [battle enemy action]
+-
 
 
+
+- (won_or_lost)
++ [battle won]
++ [battle lost]
+    -> die
+-
+boss: Ngh... You're a pain in my side, you know that? #ty:spoken
+~ despawn_actor("boss")
+: The soup-headed superintendent vanishes into dust. #ty:typed
+~ set_camera("crow")
+~ sleep(1)
+_
+{
+    - meet_crow:
+        crow: Hello again, player! #ty:bird
+    - else:
+        crow: Hello! #ty:bird
+        crow: You started too late in the demo, so you don't know me, but...
+}
+crow: Congratulations! You've reached the end of the demo!
+crow: Thanks so much for your time. I hope you had fun, despite the rough edges!
+crow: If you'd like to tell my boss what you think, you can send an email to %v:typed%w@wolo.dev! #ty:bird
+crow: That's %v:typed%w%v:bird% at %v:typed%wolo.dev.
+crow: Oops, it's time for us to part ways-
+crow: See you soon!
+~ fade_out("jpeg")
+_
+~ reset()
+->END
 
 
