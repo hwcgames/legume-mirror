@@ -92,19 +92,24 @@ april: What next?
         crow: This is Mauve, a strange girl you met when trying to find an explanation for your encounters with monsters in the city. #ty:bird
         crow: She founded the Paranormal Happenings Organization, a club at your school dedicated to finding the cause.
         crow: She has psychic abilities, but hides them for social reasons.
-        {once:
+        {stopping:
             - mauve: Well, "social reasons" is a bit of an understatement. #ty:thought
                 mauve: If you had X-ray vision, how would you prove you weren't using it to look through people's clothes?
                 mauve: Obviously I don't try to hear anything private, but only another mind-reader could prove that.
                 crow: Huh. #ty:bird
                 crow: I wasn't expecting her to hear that.
+                crow: Anyway, she <>
             - mauve: It was awkward enough the first time. #ty:thought
+                crow: She <>
             - mauve: [i]Come on.[/i] How many times do you have to hear it? #ty:thought
                 crow: Oughtn't you be a little more polite, caw? #ty:bird
                 crow: The game isn't very good-looking yet, you know.
                 crow: We need to make a good first impression.
                 mauve: Yeah, yeah. #ty:thought
+                crow: Anyway, she <>
+            - crow: She <>
         }
+        <>uses some of them here, but pretends they're the same kind of magic the others are using.
     + + [What do I do next?]
         ~ set_camera("show_door")
         crow: When you walk through that door... #ty:bird
@@ -250,7 +255,9 @@ _
 ->->
 
 = boss
-mauve: ...Something big is coming up. #ty:thought
+~ sleep(1)
+_
+// mauve: ...Something big is coming up. #ty:thought
 ~ queue_room("superintendent-office", "In")
 + [Build superintendent-office]
 -
@@ -259,7 +266,7 @@ mauve: ...Something big is coming up. #ty:thought
 ~ actor_capture("boss")
 ~ hide("desk_lights")
 ~ hide("battle_lights")
-cipher: ..? #ty:thought
+// cipher: ..? #ty:thought
 : The air grows yet heavier. #ty:typed
 : You feel like you've found something climactic.
 ~ actor_wait("cipher")
@@ -331,9 +338,11 @@ boss: Prepare yourselves for a lesson in humility.
 ~ lock_battlefield()
 {stopping:
     - : Suddenly, the room is lit in vibrant colors. #ty:typed
-    - {shuffle:
+    - {shuffle once:
         - boss: Haha, is that all you've got? #ty:spoken
         - boss: Let's see how you handle my next attack..! #ty:spoken
+        - : A gust of wind comes from outside the window. #ty:typed
+        - april: Is everyone doing all right? #ty:spoken
     }
 }
 ~ free_battlefield()
@@ -345,18 +354,22 @@ boss: Prepare yourselves for a lesson in humility.
 <- won_or_lost
 * [party hits]
     ~ lock_battlefield()
-    boss: You little..!
+    boss: You little..! #ty:spoken
     ~ free_battlefield()
     -> player_action
 * [april hits]
     ~ lock_battlefield()
-    april: Euch, some soup splashed on me..! #expr:fear
+    april: Euch, some soup splashed on me..! #expr:fear #ty:spoken
     ~ free_battlefield()
     -> player_action
 + [battle enemy action]
 -
 
-
+{shuffle:
+    - boss: What do you think of this? #ty:spoken
+    - boss: Prepare yourself! #ty:spoken
+    - casey: Look out, everyone! #ty:spoken
+}
 
 - (won_or_lost)
 + [battle won]
