@@ -298,6 +298,7 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 			mode = ActorModePathfind.new()
 			mode.pathfind_target = landmark.global_position
 			mode.goal_rotation = landmark.global_rotation.y
+			mode.do_rotate = true
 		"glide", _:
 			mode = ActorModeMoveTo.new(actor, landmark)
 	actor.push_mode(mode)

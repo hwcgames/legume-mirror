@@ -1,6 +1,7 @@
 extends ActorMode
 class_name ActorModePathfind
 
+var do_rotate: bool = false
 var goal_rotation: float = INF
 var pathfind_target: Vector3
 var speed: float = 10.
@@ -15,7 +16,7 @@ func _activate():
 		dont_teleport = true
 		actor.play("idle")
 		actor.global_position = pathfind_target
-		if goal_rotation != INF:
+		if do_rotate:
 			actor.global_rotation.y = goal_rotation)
 	_uncovered()
 	await actor.get_tree().process_frame
@@ -24,6 +25,8 @@ func _activate():
 			return
 		print("Emergency teleport!")
 		actor.global_position = pathfind_target
+		if do_rotate:
+			actor.global_rotation.y = goal_rotation
 		actor.play("idle")
 		finished = true)
 
@@ -39,10 +42,12 @@ func _uncovered():
 
 func _process(delta: float):
 	var next_pos = actor.navigation.get_next_path_position()
+	if finished:
+		return
 	var movement = (next_pos - actor.global_position).limit_length(speed * delta)
-	if movement.length() > 0.01:
+	if movement.length() > 0.05:
 		actor.play("walk")
-		actor.global_rotation.y = Vector3.FORWARD.signed_angle_to(movement, Vector3.UP)
+		actor.global_rotation.y = Vector3.FORWARD.signed_angle_to(next_pos - actor.global_position, Vector3.UP)
 	else:
 		actor.play("idle")
 	actor.velocity += movement / delta
