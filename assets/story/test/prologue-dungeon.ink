@@ -287,7 +287,7 @@ boss: Do you know why you're here? #ty:spoken
     - - (why_are_you_here_hint)
     {stopping:
         - april: What's that supposed to mean? #ty:spoken
-        - casey: Maybe it doesn't mean why we're actually here? #ty:spoken
+        - casey: Maybe it doesn't want to know the real reason we're here? #ty:spoken
         - mauve: We're in a school, maybe it's asking about that? #ty:spoken
     }
     -> why_are_you_here
@@ -312,7 +312,7 @@ boss: Do you know why you're here? #ty:spoken
 ~ actor_wait("boss")
 _
 ~ show("battle_lights")
-boss: Prepare yourselves.
+boss: Prepare yourselves for a lesson in humility.
 ~ join_battle("cipher")
 ~ join_battle("casey")
 ~ join_battle("april")
@@ -321,9 +321,9 @@ boss: Prepare yourselves.
 ~ start_battle()
 + [battle top]
 -
-~ lock_battlefield()
-boss: 
-~ free_battlefield()
+// ~ lock_battlefield()
+// boss: 
+// ~ free_battlefield()
 
 
 

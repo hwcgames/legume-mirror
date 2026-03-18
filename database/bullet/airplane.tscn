@@ -39,7 +39,6 @@ metadata/_custom_type_script = "uid://b2v3b7v3cs4om"
 [sub_resource type="Resource" id="Resource_66col"]
 script = ExtResource("6_qh88c")
 rule = SubResource("Resource_m7jdh")
-chance = 0.2
 metadata/_custom_type_script = "uid://5ff3js1q3hr3"
 
 [sub_resource type="Curve" id="Curve_qchei"]

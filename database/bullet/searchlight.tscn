@@ -21,7 +21,7 @@ point_count = 2
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4jn8l"]
 resource_local_to_scene = true
-frequency = 0.2
+frequency = 0.3
 fractal_octaves = 3
 
 [sub_resource type="Resource" id="Resource_iwhhs"]
