@@ -34,8 +34,10 @@ func _died():
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
 	%Telegraph.hide()
-	#if not active:
-		#queue_free()
+
+func _done(player_victory: bool):
+	if not active:
+		queue_free()
 
 func _enemy_action():
 	%Telegraph.hide()
