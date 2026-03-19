@@ -88,6 +88,7 @@ metadata/_custom_type_script = "uid://c0l3me07rdq1c"
 [sub_resource type="Resource" id="Resource_cwhhc"]
 script = ExtResource("6_vrvfl")
 name = &"Plays"
+description = &"Everybody get up, it\'s time to slam now!"
 spell_list = Array[ExtResource("7_oi4sb")]([SubResource("Resource_my3j5"), SubResource("Resource_8itmk"), SubResource("Resource_aysg4")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 

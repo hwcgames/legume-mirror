@@ -169,6 +169,7 @@ layout_mode = 2
 [node name="Button" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=1861994596 node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Basically, attack."
 text = "Basic Attack"
 script = SubResource("GDScript_ssjqy")
 planner = NodePath("../../../../..")
@@ -176,10 +177,12 @@ planner = NodePath("../../../../..")
 [node name="SkillsetParent" type="MarginContainer" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=2125419606]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Button3" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=765373599 node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Use an item from the pouch."
 text = "Pockets"
 script = SubResource("GDScript_v6vg7")
 planner = NodePath("../../../../..")
@@ -187,6 +190,7 @@ planner = NodePath("../../../../..")
 [node name="Button4" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=186659671 node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Special actions."
 text = "Tactics"
 script = SubResource("GDScript_tmopx")
 planner = NodePath("../../../../..")
@@ -194,6 +198,7 @@ planner = NodePath("../../../../..")
 [node name="Button5" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=743672786 node_paths=PackedStringArray("planner")]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Pass the baton."
 text = "Hold"
 script = SubResource("GDScript_bl1wf")
 planner = NodePath("../../../../..")

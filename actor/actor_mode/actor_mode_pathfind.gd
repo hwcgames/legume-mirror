@@ -45,7 +45,7 @@ func _process(delta: float):
 	var next_pos = actor.navigation.get_next_path_position()
 	if finished:
 		return
-	var movement = (next_pos - actor.global_position).normalized() * speed * delta
+	var movement = (next_pos - actor.global_position).limit_length(speed * delta)
 	if movement.length() > 0.05:
 		actor.play("walk")
 		actor.global_rotation.y = Vector3.FORWARD.signed_angle_to(next_pos - actor.global_position, Vector3.UP)

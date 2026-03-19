@@ -44,11 +44,10 @@ func _process(delta: float) -> void:
 [sub_resource type="GDScript" id="GDScript_dpoyh"]
 script/source = "extends Node
 
-func _process(_delta: float):
-	PlayerManager.handle_join_input()
 
 func _ready():
-	PlayerManager.join(-1)
+	pass
+	#PlayerManager.join(-1)
 "
 
 [sub_resource type="Resource" id="Resource_cwt6f"]
@@ -61,8 +60,24 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="GDScript" id="GDScript_p7oxd"]
 script/source = "extends Node
+
+static var did_my_duty: bool = false
+
 func _ready():
+	if did_my_duty:
+		$JoinMsg.hide()
+		set_process(false)
+		return
+	for n in PlayerManager.get_player_indexes():
+		PlayerManager.leave(n)
+
+func _process(_d):
+	if PlayerManager.get_player_count() == 0:
+		return
+	$JoinMsg.hide()
 	Storyteller.do_story = true
+	did_my_duty = true
+	set_process(false)
 "
 
 [node name="Node3D" type="Node3D" unique_id=1942801477]
@@ -134,6 +149,21 @@ script = ExtResource("17_yyy5f")
 
 [node name="Node" type="Node" parent="." unique_id=1399206208]
 script = SubResource("GDScript_p7oxd")
+
+[node name="JoinMsg" type="Label" parent="Node" unique_id=2054718914]
+custom_minimum_size = Vector2(524.975, 0)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press \"enter\" or \"start\" to identify a controller.
+(Multiplayer input doesn't work in menus yet, but you can do this with multiple controllers to have multiple players in the dodge phase!)"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070832867]
 unique_name_in_owner = true

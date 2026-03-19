@@ -58,13 +58,16 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [resource]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_vavlv")
 HealthBar/base_type = &"ProgressBar"
 HealthBar/styles/fill = SubResource("StyleBoxTexture_e7rq0")
 HealthBarLow/base_type = &"ProgressBar"
 HealthBarLow/styles/fill = SubResource("StyleBoxTexture_p7v5d")
-Label/font_sizes/font_size = 6
+Label/font_sizes/font_size = 12
 Label/fonts/font = ExtResource("1_vavlv")
 ProgressBar/font_sizes/font_size = 6
 ProgressBar/fonts/font = SubResource("FontVariation_k0f3m")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_vavlv")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_id7uf")
+TooltipLabel/font_sizes/font_size = 12

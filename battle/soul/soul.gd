@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func move(delta: float):
-	var command = MultiplayerInput.get_vector(device_index, "ui_left", "ui_right", "ui_up", "ui_down")
+	var command = MultiplayerInput.get_vector(device_index, "left", "right", "up", "down")
 	if command.length() > 1. and not janky_diagonals:
 		command = command.normalized()
 	var movement = command * speed * delta
@@ -69,7 +69,7 @@ func _on_graze_exited(area: Node) -> void:
 	graze_state.start("tick")
 	if invuln:
 		return
-	area._on_graze_player(self)
+	area._on_graze_player(self )
 
 func _on_hurt(area: Node) -> void:
 	if invuln:
@@ -80,7 +80,7 @@ func _on_hurt(area: Node) -> void:
 		return
 	if area in grazers:
 		grazers.remove_at(grazers.find(area))
-	area._on_hurt_player(self)
+	area._on_hurt_player(self )
 	if area.should_invuln:
 		invuln = true
 		await get_tree().create_timer(invuln_time).timeout

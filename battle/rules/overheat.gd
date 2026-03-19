@@ -21,9 +21,9 @@ func top(fighter: Fighter) -> bool:
 	return true
 
 func take_damage(fighter: Fighter, amount: int) -> bool:
-	fighter.sp -= amount * damage_as_heat
+	fighter.use_sp(amount * damage_as_heat)
 	return true
 
 func get_sp(fighter: Fighter, amount: int) -> bool:
-	fighter.sp -= amount * (1. - sp_gain_mul)
+	fighter.use_sp(amount * (1. - sp_gain_mul))
 	return true

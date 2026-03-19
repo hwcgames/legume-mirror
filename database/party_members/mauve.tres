@@ -84,6 +84,7 @@ metadata/_custom_type_script = "uid://dvrhhuu50lur1"
 [sub_resource type="Resource" id="Resource_iu2lc"]
 script = ExtResource("7_euflw")
 name = &"Psionics"
+description = &"So what if I can bend spoons? That just makes it hard to eat my curry."
 spell_list = Array[ExtResource("8_hpr46")]([SubResource("Resource_ca87r"), SubResource("Resource_hpr46"), SubResource("Resource_ahdwx")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 

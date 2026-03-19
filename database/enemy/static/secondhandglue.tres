@@ -33,6 +33,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_fntdg")
 name = &"Secondhand Glue"
+description = &"Something found under a desk."
 hp = SubResource("Resource_wkfb0")
 sp = SubResource("Resource_wpdly")
 attrs = SubResource("Resource_llmq2")

@@ -39,6 +39,7 @@ func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
 	for enemy in enemies:
 		var button := Button.new()
 		button.text = enemy.human_name
+		button.tooltip_text = enemy.enemy_sheet.description
 		button.pressed.connect(chosen_target.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()

@@ -22,6 +22,7 @@ var hp: int:
 	set(hp):
 		if hp_component:
 			hp_component.hp = hp
+		hp = hp_component.hp
 # @export var max_sp: int
 # @export var sp: int
 @export var sp_component: EnergyComponent:
@@ -34,6 +35,7 @@ var sp: int:
 	set(sp):
 		if sp_component:
 			sp_component.sp = sp
+		sp = sp_component.sp
 @export var attrs: CombatAttributes = CombatAttributes.new()
 @export var fighter_rules: Array[BattleRule] = []
 var rules: Array[BattleRule]:
@@ -59,7 +61,7 @@ func take_damage(amount: int):
 	for rule in rules:
 		if not rule.take_damage(self , amount):
 			return
-	hp -= amount
+	hp_component.hp -= amount
 
 func _died():
 	for rule in rules:
@@ -72,7 +74,7 @@ func heal(amount: int):
 	for rule in rules:
 		if not rule.heal(self , amount):
 			return
-	hp += amount
+	hp_component.hp += amount
 
 func _revived():
 	for rule in rules:
@@ -85,13 +87,13 @@ func get_sp(amount: int):
 	for rule in rules:
 		if not rule.get_sp(self , amount):
 			return
-	sp += amount
+	sp_component.sp += amount
 
 func use_sp(amount: int):
 	for rule in rules:
 		if not rule.use_sp(self , amount):
 			return
-	sp -= amount
+	sp_component.sp -= amount
 
 var battlefield: Battlefield
 
@@ -133,7 +135,7 @@ func begin():
 	_begin()
 
 func top():
-	rules = rules.filter(func(r: BattleRule):
+	fighter_rules = fighter_rules.filter(func(r: BattleRule):
 		var keep = r.stacks > 0
 		if not keep:
 			r._removed(self )

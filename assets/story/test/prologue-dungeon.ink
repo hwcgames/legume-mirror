@@ -6,13 +6,13 @@ _
 ~ set_weather("dungeon")
 ~ spawn_party("entrance")
 ~ add_party_member("casey", "entrance")
-~ add_party_member("mauve", "entrance")
 ~ add_party_member("april", "entrance")
+~ add_party_member("mauve", "entrance")
 ~ spawn_actor("crow", "crow_zone")
 ~ actor_capture("cipher")
 ~ actor_capture("casey")
-~ actor_capture("mauve")
 ~ actor_capture("april")
+~ actor_capture("mauve")
 cipher: ..? #ty:thought
 cipher: This place definitely isn't on the map of the city.
 ~ actor_move("cipher", "cipher_huddle", "walk")
@@ -37,7 +37,7 @@ april: What next?
 ->input_tutorial->
 {
     - meet_crow: crow: Psst, player! It's me, down here, scraw! #ty:bird
-    - else: crow: Hey, you, human! Up there, squawk! #ty:bird
+    - else: crow: Hey, you, human! Up in the sky, squawk! #ty:bird
 }
 
 - (lobby_walkabout)
@@ -115,9 +115,9 @@ april: What next?
         crow: When you walk through that door... #ty:bird
         ~ set_camera("crow")
         crow: You'll begin exploring the dungeon.
-        crow: There will be a series of rooms with enemies and items, with a boss at the end.
+        crow: There will be a series of rooms with enemies, with a boss at the end.
         crow: After that, the demo is over, and it'll reset for the next player.
-    + + [Never mind.]
+    + + [(Done.)]
         ~ set_camera("_")
         ~ actor_release("cipher")
         ->meet_crow->
@@ -142,7 +142,7 @@ _
 // ~ block_dungeon_progress()
 crow: Oh! By the by, squawk... #ty:bird
 crow: The story is pretty barebones from here on out.
-crow: This section focuses on gameplay, I hope you enjoy the upcoming battles.
+// crow: This section focuses on gameplay, I hope you enjoy the upcoming battles.
 crow: I'll see you afterwards, scraw!
 ~ clear_dialogue()
 ~ despawn_actor("crow")

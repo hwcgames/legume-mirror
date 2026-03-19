@@ -1,6 +1,7 @@
 extends Fighter
 class_name Enemy
 
+@export var enemy_sheet: EnemySheet
 @export var enemy_factory: EnemyFactory
 @export var patterns: Array[BulletPattern] = []
 @export var planning_priority: int
@@ -127,4 +128,5 @@ static func from_enemy_factory(enemy_factory: EnemyFactory) -> Enemy:
 	enemy.bg_color = enemy_sheet.bg_color
 	enemy.text_color = enemy_sheet.text_color
 	enemy.active = enemy_sheet.active
+	enemy.enemy_sheet = enemy_sheet
 	return enemy

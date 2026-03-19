@@ -2,10 +2,13 @@ extends Skillset
 class_name SkillsetSpellList
 
 @export var name: StringName = "Magic"
+@export var description: StringName = "Showcase your special talent."
 @export var spell_list: Array[BattleAction] = []
 
 func label(party_member: PartyMember) -> String:
 	return name
+func tooltip(party_member: PartyMember) -> String:
+	return description
 
 @export var subplanner_scene: PackedScene = preload("uid://bgym47jf3uuxo")
 

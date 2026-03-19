@@ -33,6 +33,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_lobln")
 name = &"Homeworker"
+description = &"A mathemaidical worksheet."
 hp = SubResource("Resource_uey5t")
 sp = SubResource("Resource_0q77f")
 attrs = SubResource("Resource_l46bt")

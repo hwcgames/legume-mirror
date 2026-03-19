@@ -137,7 +137,7 @@ func cmd_random_choice():
 			if len(story.GetCurrentChoices()) <= i:
 				continue
 			story.ChooseChoiceIndex(i)
-			break,
+			break ,
 		CONNECT_ONE_SHOT
 	)
 
@@ -273,7 +273,7 @@ func cmd_rm_party_member(id: String):
 
 func cmd_heal_party():
 	for pm in party_stack:
-		pm.hp += 999999
+		pm.heal(9999)
 
 func cmd_spawn_enemy(id: String, name: String, landmark_name: String):
 	var landmark = Landmark.find(landmark_name)

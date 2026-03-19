@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("9_l2kb8")
 name = &"Apprentice Blade"
+description = &"An educational cutting-tool"
 hp = SubResource("Resource_quu2w")
 sp = SubResource("Resource_4d8v0")
 attrs = SubResource("Resource_8w4iy")

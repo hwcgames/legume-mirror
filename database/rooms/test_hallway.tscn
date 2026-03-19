@@ -48,9 +48,10 @@ next_seam = NodePath("../Out")
 next_seam_key = &"forward"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
 
-[node name="forward" type="Marker3D" parent="forward" unique_id=1753202199]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9)
+[node name="forward" type="Marker3D" parent="forward" unique_id=1753202199 node_paths=PackedStringArray("next_automove")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.9)
 script = ExtResource("5_gjq8b")
+next_automove = NodePath("..")
 metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
 [node name="default" type="Marker3D" parent="." unique_id=1403257087]

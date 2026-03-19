@@ -186,11 +186,11 @@ func junction_unloaded():
 	state = STATE.WAIT_FOR_ROOM if allow_progress else STATE.HALLWAY_TO_ROOM
 
 func room_unloaded():
-	Storyteller.choose_if_available(["dungeon towards junction"], true)
 	if current_position.y == height - 1:
 		Storyteller.choose_if_available(["dungeon done"], true)
 		reset()
 		return
+	Storyteller.choose_if_available(["dungeon towards junction"], true)
 	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):

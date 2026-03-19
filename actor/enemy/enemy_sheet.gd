@@ -2,6 +2,7 @@ extends EnemyFactory
 class_name EnemySheet
 
 @export var name: StringName = "Enemy"
+@export var description: StringName = "A nefarious something-or-other."
 @export var hp: HealthComponent
 @export var sp: EnergyComponent
 @export var attrs: CombatAttributes = CombatAttributes.new()

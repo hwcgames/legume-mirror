@@ -64,6 +64,7 @@ _
     ~ spawn_party("default")
     ~ actor_capture("cipher")
     ~ sleep(0.5)
+    _
     ~ add_party_member("casey", "default")
     ~ add_party_member("mauve", "default")
     ~ add_party_member("april", "default")

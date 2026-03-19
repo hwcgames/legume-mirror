@@ -32,6 +32,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_kkxf5")
 name = &"Hall Monitor"
+description = &"An observant creature."
 hp = SubResource("Resource_4bqvg")
 sp = SubResource("Resource_vvfbp")
 attrs = SubResource("Resource_7rcfs")

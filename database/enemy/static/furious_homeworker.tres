@@ -39,6 +39,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("10_i4p77")
 name = &"Furious Homeworker"
+description = &"A perturbed servant."
 hp = SubResource("Resource_uey5t")
 sp = SubResource("Resource_0q77f")
 attrs = SubResource("Resource_oiphp")

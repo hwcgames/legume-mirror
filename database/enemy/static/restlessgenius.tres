@@ -34,6 +34,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_lcqw1")
 name = &"Restless Genius"
+description = &"An intelligent board that went for a swim to change things up.."
 hp = SubResource("Resource_5hhjj")
 sp = SubResource("Resource_tselv")
 attrs = SubResource("Resource_vr0jv")

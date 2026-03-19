@@ -37,6 +37,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_nahft")
 name = &"Maternal Organizer"
+description = &"I hear they have these in Australia."
 hp = SubResource("Resource_kx3xo")
 sp = SubResource("Resource_505bi")
 attrs = SubResource("Resource_jgsyx")

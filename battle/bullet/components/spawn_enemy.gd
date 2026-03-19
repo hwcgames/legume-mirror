@@ -11,7 +11,7 @@ func damage(bullet: Bullet, soul: Soul) -> bool:
 	if len(bullet.layer.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(bullet.layer.battlefield.enemy_landmarks):
 		return false
 	var enemy: Enemy = Enemy.from_enemy_factory(enemy_template)
-	enemy.active = active
+	enemy.active = enemy.active && active
 	for i in range(len(bullet.layer.battlefield.enemy_landmarks)):
 		var e = bullet.layer.battlefield.enemies.get(i)
 		if (not is_instance_valid(e)) or (not e.alive):

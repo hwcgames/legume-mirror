@@ -23,6 +23,29 @@ var battle_planner: BattlePlanner
 func _ready():
 	super._ready()
 	add_to_group("party_member")
+	PlayerManager.player_joined.connect(player_joined)
+	PlayerManager.player_left.connect(player_left)
+	if self != Storyteller.leader:
+		for device in PlayerManager.get_player_indexes():
+			player_joined(device)
+
+func player_joined(n: int):
+	if PlayerManager.get_player_device(n) == -1:
+		return
+	if self == Storyteller.leader:
+		return
+	if self.player != 0:
+		return
+	for pm in get_tree().get_nodes_in_group("party_member"):
+		if pm == self:
+			continue
+		if n == pm.player:
+			return
+	player = n
+
+func player_left(n: int):
+	if self.player == n:
+		self.player = 0
 
 func _join_battle(_battle: Battlefield):
 	if battle_planner != null:

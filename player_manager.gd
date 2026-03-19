@@ -12,7 +12,10 @@ signal player_left(player)
 # use get_player_data() and set_player_data() to use this dictionary.
 var player_data: Dictionary = {}
 
-const MAX_PLAYERS = 8
+const MAX_PLAYERS = 4
+
+func _process(_delta: float):
+	PlayerManager.handle_join_input()
 
 func join(device: int):
 	var player = next_player()
