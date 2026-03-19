@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_nogmd"]
 [ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="4_kn7nh"]
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="5_akbjl"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="5_gjq8b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2owtb"]
 size = Vector3(8.400001, 6.2000003, 12)
@@ -46,6 +47,11 @@ script = ExtResource("4_kn7nh")
 next_seam = NodePath("../Out")
 next_seam_key = &"forward"
 metadata/_custom_type_script = "uid://d1625cme8sl48"
+
+[node name="forward" type="Marker3D" parent="forward" unique_id=1753202199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9)
+script = ExtResource("5_gjq8b")
+metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
 [node name="default" type="Marker3D" parent="." unique_id=1403257087]
 script = ExtResource("5_akbjl")

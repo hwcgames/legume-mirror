@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://level/roomset.gd" id="8_7bs7b"]
 [ext_resource type="Resource" uid="uid://bhkf1why2fi2p" path="res://database/rooms/test_saferoom.tres" id="8_b2jov"]
 [ext_resource type="Resource" uid="uid://bwp03mle8s0k1" path="res://database/rooms/superintendent-office.tres" id="8_bb551"]
+[ext_resource type="Resource" uid="uid://dhv6a3ilg45kt" path="res://database/rooms/test_boss.tres" id="9_b2jov"]
 
 [resource]
 script = ExtResource("8_7bs7b")
-rooms = Array[ExtResource("1_w16ji")]([ExtResource("2_bb551"), ExtResource("3_b2jov"), ExtResource("4_sbm1m"), ExtResource("5_twhau"), ExtResource("7_0jfrc"), ExtResource("8_bb551"), ExtResource("8_b2jov")])
+rooms = Array[ExtResource("1_w16ji")]([ExtResource("2_bb551"), ExtResource("3_b2jov"), ExtResource("4_sbm1m"), ExtResource("5_twhau"), ExtResource("7_0jfrc"), ExtResource("8_bb551"), ExtResource("8_b2jov"), ExtResource("9_b2jov")])
 metadata/_custom_type_script = "uid://ck47u2dw5ejx7"

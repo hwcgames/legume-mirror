@@ -15,8 +15,9 @@ _data = [Vector2(0, 1.0446181), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_6bvc1"]
-_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 1
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1.002049), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Rumors" type="Control" unique_id=1300192156]
 layout_mode = 3
@@ -30,6 +31,7 @@ metadata/_custom_type_script = "uid://crbwhii8v7geg"
 
 [node name="BulletEmitter" type="Control" parent="." unique_id=1140818392]
 layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

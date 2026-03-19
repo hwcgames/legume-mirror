@@ -78,7 +78,6 @@ _
     cipher: That's a worrying possibility...
     casey: They're getting more frequent every day, so if we can't stop them...
     casey: The entire city would probably be sucked in. #expr:fear
-+ [_]
 -
 ->->
 
@@ -100,13 +99,18 @@ _
 ->->
 
 = safe_hallway
-// + ->
-// -
-->DONE
+* [anyone tired]
+    april: Oof, is anyone else ready for a break? #ty:spoken #expr:uneasysmile
+* {TURNS_SINCE(->safe_hallway) < TURNS_SINCE(->boss_hallway)} [boss wore us out]
+    casey: Is everyone holding up all right? That fight earlier really took it out of me... #ty:spoken
+-
+->->
 
 = boss_hallway
-+ [placeholder]
-    : There would be a boss here, if it was implemented.
+* [mauve feels something]
+    mauve: There's something up ahead... #ty:thought
+* [cipher feels something]
+    : The air feels harsh.
 -
 ->->
 

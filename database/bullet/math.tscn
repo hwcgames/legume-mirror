@@ -31,8 +31,8 @@ speed = 150.0
 metadata/_custom_type_script = "uid://dds6oka6jprre"
 
 [sub_resource type="Curve" id="Curve_xva6t"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 2.37325), 0.0, 14.152143, 0, 0, Vector2(1, 7.7716084), 14.493755, 0.0, 0, 0]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 10.04886), 0.0, 14.152143, 0, 0, Vector2(1, 20), 14.493755, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_tbh4j"]

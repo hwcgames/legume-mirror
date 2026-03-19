@@ -87,10 +87,20 @@ state_after = 0
 persistent = true
 metadata/_custom_type_script = "uid://cl2yksu5ilm7p"
 
+[sub_resource type="Curve" id="Curve_gsspc"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 20.154724), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_ixu3a"]
+script = ExtResource("5_t3vqg")
+value = SubResource("Curve_gsspc")
+metadata/_custom_type_script = "uid://bn3s8hpfp7myy"
+
 [sub_resource type="Resource" id="Resource_8j1yi"]
 resource_local_to_scene = true
 script = ExtResource("3_gxf0u")
-subcomponents = Array[ExtResource("2_4wv4l")]([SubResource("Resource_4wv4l")])
+subcomponents = Array[ExtResource("2_4wv4l")]([SubResource("Resource_4wv4l"), SubResource("Resource_ixu3a")])
 states = Array[int]([1])
 metadata/_custom_type_script = "uid://bpxthdu44w1d6"
 

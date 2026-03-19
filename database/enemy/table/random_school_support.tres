@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyTable" format=3 uid="uid://b32jjqhggw0er"]
+
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="1_kgt7n"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_sgdr3"]
+[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="3_bbx51"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="4_5h3c3"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="5_uibws"]
+
+[resource]
+script = ExtResource("1_kgt7n")
+table = Array[ExtResource("2_sgdr3")]([ExtResource("3_bbx51"), ExtResource("4_5h3c3"), ExtResource("5_uibws")])
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"

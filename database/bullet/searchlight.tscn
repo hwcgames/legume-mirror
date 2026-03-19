@@ -3,14 +3,7 @@
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_146e2"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_11wvb"]
 [ext_resource type="Script" uid="uid://cgkb4pow07na" path="res://battle/bullet/components/wander.gd" id="3_0lpq3"]
-[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="4_qbv46"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="5_cq1il"]
-[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="6_4vxq0"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="7_q3i8b"]
-[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="8_n4q1p"]
-[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="9_kixtc"]
-[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="10_gf51f"]
-[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="11_cq1il"]
+[ext_resource type="Resource" uid="uid://pyh05gnjl3v4" path="res://database/enemy/table/random_school.tres" id="4_iwhhs"]
 [ext_resource type="Script" uid="uid://8ntvph4t6j0d" path="res://battle/bullet/components/spawn_enemy.gd" id="11_x4021"]
 [ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="13_4vxq0"]
 
@@ -31,14 +24,9 @@ noise = SubResource("FastNoiseLite_4jn8l")
 coord_curve = SubResource("Curve_4vxq0")
 metadata/_custom_type_script = "uid://cgkb4pow07na"
 
-[sub_resource type="Resource" id="Resource_xt3y8"]
-script = ExtResource("4_qbv46")
-table = Array[ExtResource("5_cq1il")]([ExtResource("6_4vxq0"), ExtResource("7_q3i8b"), ExtResource("8_n4q1p"), ExtResource("9_kixtc"), ExtResource("10_gf51f"), ExtResource("11_cq1il")])
-metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
-
 [sub_resource type="Resource" id="Resource_7m4er"]
 script = ExtResource("11_x4021")
-enemy_template = SubResource("Resource_xt3y8")
+enemy_template = ExtResource("4_iwhhs")
 chance = 1.0
 metadata/_custom_type_script = "uid://8ntvph4t6j0d"
 

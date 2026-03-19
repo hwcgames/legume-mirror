@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyTable" format=3 uid="uid://pyh05gnjl3v4"]
+
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="1_54b1m"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_wikdi"]
+[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="3_lptnb"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="4_cru46"]
+[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="5_a8ro8"]
+[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="6_4rvym"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="7_sch2p"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="8_o6ydk"]
+
+[resource]
+script = ExtResource("1_54b1m")
+table = Array[ExtResource("2_wikdi")]([ExtResource("3_lptnb"), ExtResource("4_cru46"), ExtResource("5_a8ro8"), ExtResource("6_4rvym"), ExtResource("7_sch2p"), ExtResource("8_o6ydk")])
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"

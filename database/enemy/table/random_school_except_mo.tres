@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyTable" format=3 uid="uid://t24mhrsxixr3"]
+
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="1_dkcef"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_fdah1"]
+[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="3_moq1w"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="4_qq357"]
+[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="5_vu5as"]
+[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="6_epi83"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="7_y3myn"]
+[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="8_fdah1"]
+
+[resource]
+script = ExtResource("1_dkcef")
+table = Array[ExtResource("2_fdah1")]([ExtResource("3_moq1w"), ExtResource("4_qq357"), ExtResource("5_vu5as"), ExtResource("6_epi83"), ExtResource("7_y3myn"), ExtResource("8_fdah1")])
+weight = null
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"

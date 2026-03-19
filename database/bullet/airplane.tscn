@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://dr0o4afnmtqf5"
 
 [sub_resource type="Resource" id="Resource_m7jdh"]
 script = ExtResource("5_4ocpq")
-stacks = 2
+stacks = 3
 metadata/_custom_type_script = "uid://b2v3b7v3cs4om"
 
 [sub_resource type="Resource" id="Resource_66col"]
@@ -43,7 +43,7 @@ metadata/_custom_type_script = "uid://5ff3js1q3hr3"
 
 [sub_resource type="Curve" id="Curve_qchei"]
 _limits = [0.0, 15.0, 0.0, 1.0]
-_data = [Vector2(0, 6.64822), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 6.64822), 0.0, 0.0, 0, 0, Vector2(1, 10.892553), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_mbh2d"]
@@ -53,7 +53,7 @@ metadata/_custom_type_script = "uid://cem6eq321nrcm"
 
 [sub_resource type="Curve" id="Curve_7jw36"]
 _limits = [0.0, 0.5, 0.0, 1.0]
-_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.2842553), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Resource" id="Resource_d108t"]

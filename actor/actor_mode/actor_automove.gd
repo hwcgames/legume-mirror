@@ -10,11 +10,12 @@ func _activate():
 	if automove == null:
 		finished = true
 		return
-	var mode = automove.mode_for_actor(actor)
+	var mode: ActorMode = automove.mode_for_actor(actor)
 	if mode == null:
 		_uncovered()
 		return
 	await actor.push_mode(mode)
+	mode._process(1./60.)
 
 func _uncovered():
 	var old_automove = automove

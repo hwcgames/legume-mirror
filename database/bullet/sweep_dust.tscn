@@ -16,8 +16,8 @@ script = ExtResource("3_0d7sp")
 metadata/_custom_type_script = "uid://dds6oka6jprre"
 
 [sub_resource type="Curve" id="Curve_vyav5"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 1.9952898), 0.0, 14.432741, 0, 0, Vector2(1, 8.381561), 15.049031, 0.0, 0, 0]
+_limits = [0.0, 25.0, 0.0, 1.0]
+_data = [Vector2(0, 17.231583), 0.0, 14.432741, 0, 0, Vector2(1, 25), 15.049031, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_pbpvb"]

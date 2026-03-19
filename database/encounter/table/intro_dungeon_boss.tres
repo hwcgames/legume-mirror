@@ -2,26 +2,18 @@
 
 [ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://encounter/encounterable.gd" id="1_kx3an"]
 [ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_miu2c"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="3_e7mn6"]
+[ext_resource type="Resource" uid="uid://dg71f6dsowatf" path="res://database/enemy/table/random_school_fighter.tres" id="3_spra4"]
 [ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="4_cxuf6"]
-[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="5_yyryk"]
 [ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="6_qtojp"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="7_7xj8i"]
 [ext_resource type="Resource" uid="uid://chlvyq6kpa1n" path="res://database/enemy/static/furious_homeworker.tres" id="7_38xw7"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="8_f5f2k"]
+[ext_resource type="Resource" uid="uid://b32jjqhggw0er" path="res://database/enemy/table/random_school_support.tres" id="8_spra4"]
 [ext_resource type="Script" uid="uid://d3bxxgkhpmqmv" path="res://encounter/encounter_table.gd" id="17_l6b31"]
 
 [sub_resource type="Resource" id="Resource_38xw7"]
 script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("3_e7mn6"), ExtResource("4_cxuf6"), ExtResource("5_yyryk"), ExtResource("3_e7mn6")])
-metadata/_custom_type_script = "uid://dbypde31s8c5x"
-
-[sub_resource type="Resource" id="Resource_spra4"]
-script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("5_yyryk"), ExtResource("3_e7mn6"), ExtResource("4_cxuf6"), ExtResource("3_e7mn6")])
-metadata/_custom_type_script = "uid://dbypde31s8c5x"
-
-[sub_resource type="Resource" id="Resource_7xj8i"]
-script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("5_yyryk"), ExtResource("4_cxuf6"), ExtResource("5_yyryk")])
+enemies = Array[ExtResource("2_miu2c")]([ExtResource("3_spra4"), ExtResource("3_spra4"), ExtResource("3_spra4"), ExtResource("3_spra4")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
 [sub_resource type="Resource" id="Resource_d7xo0"]
@@ -30,7 +22,17 @@ enemies = Array[ExtResource("2_miu2c")]([ExtResource("7_38xw7"), ExtResource("4_
 weight = 0.5
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
+[sub_resource type="Resource" id="Resource_unuyc"]
+script = ExtResource("6_qtojp")
+enemies = Array[ExtResource("2_miu2c")]([ExtResource("7_7xj8i"), ExtResource("7_7xj8i"), ExtResource("7_7xj8i"), ExtResource("8_spra4")])
+metadata/_custom_type_script = "uid://dbypde31s8c5x"
+
+[sub_resource type="Resource" id="Resource_7xj8i"]
+script = ExtResource("6_qtojp")
+enemies = Array[ExtResource("2_miu2c")]([ExtResource("8_f5f2k"), ExtResource("8_f5f2k"), ExtResource("8_f5f2k"), ExtResource("8_f5f2k")])
+metadata/_custom_type_script = "uid://dbypde31s8c5x"
+
 [resource]
 script = ExtResource("17_l6b31")
-encounters = Array[ExtResource("1_kx3an")]([SubResource("Resource_38xw7"), SubResource("Resource_spra4"), SubResource("Resource_7xj8i"), SubResource("Resource_d7xo0")])
+encounters = Array[ExtResource("1_kx3an")]([SubResource("Resource_38xw7"), SubResource("Resource_d7xo0"), SubResource("Resource_unuyc"), SubResource("Resource_7xj8i")])
 metadata/_custom_type_script = "uid://d3bxxgkhpmqmv"

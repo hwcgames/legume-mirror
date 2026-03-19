@@ -7,15 +7,9 @@
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_mdhvo"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_nahft"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_53wpt"]
-[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="7_505bi"]
 [ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="7_e55sl"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="8_72coc"]
-[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="9_e55sl"]
+[ext_resource type="Resource" uid="uid://t24mhrsxixr3" path="res://database/enemy/table/random_school_except_mo.tres" id="7_mdhvo"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_wixxi"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="10_wixxi"]
-[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="11_jgsyx"]
-[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="12_8b2qv"]
-[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="13_505bi"]
 
 [sub_resource type="Resource" id="Resource_jgsyx"]
 script = ExtResource("1_2fwm5")
@@ -30,15 +24,9 @@ current_hp = 50
 max_hp = 50
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_xuxgo"]
-script = ExtResource("7_505bi")
-table = Array[ExtResource("8_72coc")]([ExtResource("9_e55sl"), ExtResource("10_wixxi"), ExtResource("11_jgsyx"), ExtResource("12_8b2qv"), ExtResource("13_505bi")])
-weight = null
-metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
-
 [sub_resource type="Resource" id="Resource_8b2qv"]
 script = ExtResource("7_e55sl")
-enemy_template = SubResource("Resource_xuxgo")
+enemy_template = ExtResource("7_mdhvo")
 metadata/_custom_type_script = "uid://dio8noar7m7xs"
 
 [sub_resource type="Resource" id="Resource_505bi"]

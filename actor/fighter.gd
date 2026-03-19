@@ -165,6 +165,7 @@ func done(player_victory: bool):
 	for rule in rules:
 		if not rule.done(self , player_victory):
 			break
+	fighter_rules = fighter_rules.filter(func(r): return r.stacks > 0)
 	_done(player_victory)
 
 func _begin():
