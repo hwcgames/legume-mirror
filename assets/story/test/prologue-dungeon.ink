@@ -185,44 +185,7 @@ _
 ~ allow_dungeon_progress()
 
 <- dungeon_loop
-+ [dungeon built safe]
-    ~ sleep(0.5)
-    _
-    ~ spawn_actor("crow", "crow")
-    + + [dungeon entered safe]
-    - -
-    ~ set_camera("crow")
-    ~ actor_release("cipher")
-    ~ actor_capture("cipher")
-    ~ actor_move("cipher", "talk_to_crow", "glide")
-    ~ actor_wait("cipher")
-    _
-    {once:
-      - crow: Hello again, caw! #ty:bird
-        crow: This is a safe-room.
-        crow: Eventually, you'll be able to save here, scraw...
-        crow: But for now, I'll restore your health!
-      - crow: Hey, we just keep running into each other! #ty:bird
-        crow: The usual, scraw?
-    }
-    ~ heal_party()
-    : You feel like new. #ty:typed
-    {once:
-      - crow: That's all, squawk! #ty:bird
-        crow: See you soon!
-    }
-    ~ set_camera("_")
-    ~ actor_start_following_path("cipher", "forward")
-    ~ clear_dialogue()
-    // - - (safe_room)
-    // ~ actor_release("cipher")
-    // <-out_of_room
-    // + + [crow]
-    //     ~ capture_actor("cipher")
-    //     ~ actor_move("cipher")
-    // - -
-    // ~ actor_cap
-    // -> safe_room
++ [dungeon built safe] ->dungeon_safe->
 + [dungeon built monster] ->dungeon_monster->
 + [dungeon built boss] ->dungeon_miniboss->
 + [dungeon built room]
@@ -252,6 +215,37 @@ _
 + [battle lost]
     ->die
 -
+->->
+
+= dungeon_safe
+~ sleep(0.5)
+_
+~ spawn_actor("crow", "crow")
++ + [dungeon entered safe]
+- -
+~ set_camera("crow")
+~ actor_release("cipher")
+~ actor_capture("cipher")
+~ actor_move("cipher", "talk_to_crow", "glide")
+~ actor_wait("cipher")
+_
+{stopping:
+  - crow: Hello again, caw! #ty:bird
+    crow: This is a safe-room.
+    crow: Eventually, you'll be able to save here, scraw...
+    crow: But for now, I'll restore your health!
+  - crow: Hey, we just keep running into each other! #ty:bird
+  - crow: The usual, {caw|scraw|squawk}? #ty:bird
+}
+~ heal_party()
+: You feel like new. #ty:typed
+{once:
+  - crow: That's all, squawk! #ty:bird
+    crow: See you soon!
+}
+~ set_camera("_")
+~ actor_start_following_path("cipher", "forward")
+~ clear_dialogue()
 ->->
 
 = boss

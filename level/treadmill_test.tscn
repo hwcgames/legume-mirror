@@ -161,7 +161,7 @@ offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press \"enter\" or \"start\" to identify a controller.
-(Multiplayer input doesn't work in menus yet, but you can do this with multiple controllers to have multiple players in the dodge phase!)"
+(Multiplayer input doesn't work in menus yet, but you can do this with multiple controllers to have multiple players for qte's and the dodge phase!)"
 horizontal_alignment = 1
 autowrap_mode = 2
 
