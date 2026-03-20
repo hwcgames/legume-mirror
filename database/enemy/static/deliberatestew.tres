@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_lv0e4")
 name = &"Deliberate Stew"
-description = &"A soup-headed souperintendent."
+description = &"The souperintendent."
 hp = SubResource("Resource_i0ppf")
 sp = SubResource("Resource_qbge6")
 attrs = SubResource("Resource_s3xtc")

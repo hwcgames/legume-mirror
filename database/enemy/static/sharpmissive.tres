@@ -31,7 +31,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 [resource]
 script = ExtResource("4_y2wmh")
 name = &"Sharp Missive"
-description = &"Some rumors spread so fast they seem to fly."
+description = &"A lie can make it half way around the world before the truth has time to put its boots on. "
 hp = SubResource("Resource_iv080")
 sp = SubResource("Resource_5xipf")
 attrs = SubResource("Resource_hnf34")

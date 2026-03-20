@@ -516,7 +516,7 @@ crow: What's that? Yes, you've already named our friend %char:cipher%, caw... Bu
 // crow: %playername%? Let me write that down, squawk.
 // crow: Oh, by the way, please don't close the game if you see me taking notes, caw. It's difficult enough to write without thumbs, you see, so I would prefer not to be interrupted.
 // crow: That said, squawk, I'm very glad that you decided to play this game. I'll get out of your hair for now.
-crow: Oh, right... This is the demo.
+crow: Oh, right... This is the demo. #ty:bird
 crow: That said, squawk, I'm very glad that you decided to play.
 crow: The next few days of the game aren't ready yet, and they wouldn't be that interesting in a demo regardless...
 crow: So, caw, my superiors have asked me to escort you further into the game.
