@@ -153,9 +153,6 @@ cipher: I see something! #ty:spoken
 casey: Get ready to fight, everyone!
 + [battle enemy action]
 -
-~ lock_battlefield()
-->dodge_tutorial->
-~ free_battlefield()
 + [battle lost]
     -> die
 + [battle won]
