@@ -6,6 +6,7 @@ INCLUDE prologue-dungeon.ink
 
 
 
+
 ~ dialogue_choice()
 // ~ random_choice()
 _
@@ -14,8 +15,8 @@ _
 
 %as%crow: Hello, world! #ty:bird
 %as%crow: This is a [i]very[/i] early prototype of an RPG currently codenamed %v:written%"Legume Traffick."
-%as%crow: It's a little fragile yet, so please handle it with care.
-%as%crow: Where would you like to begin?
+%as%crow: It's a little fragile yet, so please %expr:ohoho%handle it with care. %v:pling%(Wink, wink.)
+%as%crow: Where would you like to begin? #ty:bird
 
 ~ dialogue_choice()
 // + [In the test dungeon]
@@ -23,7 +24,7 @@ _
 //     ->test
 + [At the start of the game]
     ~ clear_dialogue()
-    -> prologue
+    -> intro_headlines
 + [On the way to school]
     ~ clear_dialogue()
     ~ change_level("intro", "walk_to_school")
@@ -70,7 +71,6 @@ _
     ~ add_party_member("april", "default")
     ~ actor_start_following_path("cipher", "forward")
     -> prologue_dungeon.boss
-
 
 === die
 ~ clear_dialogue()

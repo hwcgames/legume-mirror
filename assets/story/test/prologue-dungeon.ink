@@ -151,6 +151,11 @@ crow: I'll see you afterwards, scraw!
 -
 cipher: I see something! #ty:spoken
 casey: Get ready to fight, everyone!
++ [battle enemy action]
+-
+~ lock_battlefield()
+->dodge_tutorial->
+~ free_battlefield()
 + [battle lost]
     -> die
 + [battle won]
@@ -262,7 +267,6 @@ _
 ~ hide("battle_lights")
 // cipher: ..? #ty:thought
 : The air grows yet heavier. #ty:typed
-: You feel like you've found something climactic.
 ~ actor_wait("cipher")
 _
 _
@@ -275,6 +279,8 @@ _
 ~ actor_move("mauve", "Player4", "glide")
 ~ actor_wait("cipher")
 _
+crow: Hello, player! #ty:bird
+crow: You've just about made it to the end.
 april: Is that... a bowl of soup? #ty:spoken
 ~ set_camera("dramatic_boss_camera")
 ~ sleep(6)

@@ -197,3 +197,6 @@ EXTERNAL junction_next_room(direction)
 EXTERNAL junction_current_room()
 === function junction_current_room()
 ~ return "N/A"
+
+=== function old(-> div)
+~ return TURNS_SINCE(div) > 20

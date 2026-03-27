@@ -1,19 +1,67 @@
 === input_tutorial
 * ->
-    : Use the [b]arrow keys[/b] to move and the [b]spacebar[/b] to interact with objects and people.
+    : Use the [b]arrow keys[/b] to move and the [b]spacebar[/b] to interact with objects and people. # ty:typed
 + ->
 -
 ->->
 
 === dodge_tutorial
 * ->
-    : Use the [b]arrow keys[/b] to dodge.
+    : Use the [b]arrow keys[/b] to dodge. # ty:typed
 + ->
 -
 ->->
 
-=== prologue
+=== intro_headlines
 
+~ fade_out("black")
+: WESTON GAZETTE #ty:typed
+: 20XX-07-18
+: MISSING CHILD ALERT ISSUED FOR 6-YEAR-OLD "BRAYDEN"
+~ sleep(1)
+_
+: 20XX-07-21
+: OFFICER REMOVED FROM DUTY AFTER SHOOTING, DRUG USE SUSPECTED
+~ sleep(1)
+_
+: 20XX-07-22
+: COMMUNITY SEARCH FOR LOST DOG ENDS IN TRAGEDY
+~ sleep(1)
+_
+: 20XX-07-24
+: OPINION: THE ESTRANGEMENT CRISIS: WHY MY KIDS WON'T CALL ME BACK
+~ sleep(1)
+_
+: 20XX-07-25
+: UNION ORGANIZER MIS%i%████ █████
+~ clear_dialogue()
+: 20XX-07-25
+: EDISON CEO ANNOUNCES WEDDING VENUE
+~ sleep(1)
+_
+: 20XX-07-26
+: INSPECTOR GENERAL COMMENTS ON STRING OF DISAPPEARANCES
+~ sleep(1)
+_
+: 20XX-07-28
+: CULPRIT BEHIND BARS, CITY SAFE AGAIN
+~ sleep(5)
+_
+: 20XX-08-01
+: MISSING CHILD ALERT ISSUED FOR 14-YEAR-OLD "RACHEL"
+~ sleep(1)
+_
+: 20XX-08-02
+: OFFICER MISSING, TIPS REQUESTED
+~ sleep(1)
+_
+: 20XX-08-03
+: MANIFESTO FOUND AT COURTHOUSE, POLITICALLY MOTIVATED?
+~ sleep(5)
+_
+~ clear_dialogue()
+->prologue
+=== prologue
 ~ change_level("intro", "default")
 _
 ~ spawn_actor("intro_train", "train_entry")
@@ -25,14 +73,15 @@ _
 ~ actor_act("cipher", "sit")
 ~ gamemode = "textonly"
 ~ actor_act("cipher", "open_journal")
+~ fade_in()
 
-: Dear Diary;
-~ sleep(2)
+%as%cipher: Dear Diary; #ty:written
+~ sleep(1)
 _
-: Or... To whom it may concern; #ty:written
-: If you happen to find this... Don't bother trying to return it to its rightful owner. It isn't wanted, and I'm quite confident you couldn't find me even if it was. It's all yours, though I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
-: It's a curious emotion - at least, I think it's an emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to [i]partition[/i] their life so completely.
-: I've never been a stranger before. Painting a self-portrait from a blank canvas... The thought is exhilarating, don't you think? Though I imagine you take it for granted.
+%as%cipher: (Or... To whom it may concern;)
+%as%cipher: If you happen to find this... Don't bother trying to return it. It isn't wanted, and I'm quite confident you couldn't find me even if it was. I imagine it'd fetch quite the price if you were to sell it.%p:2% Much of it is classified, after all.
+%as%cipher: It's a curious emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to start over like this.
+%as%cipher: The thought of being a stranger is exhilarating, don't you think? Though I imagine you take it for granted.
 ~ sleep(1)
 _
 // ~ gamemode = "diorama"
@@ -41,9 +90,9 @@ _
 intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the right at Weston Pier. #ty:loudspeaker
 ~ gamemode = "textonly"
 ~ set_camera("_")
-: Thanks for humoring me, #ty:written
-: [i]A Fellow Stranger[/i]
-: P.S: Sorry I just got you fired, mom.
+%as%cipher: Thanks for humoring me, #ty:written
+%as%cipher: [i]A Fellow Stranger[/i]
+%as%cipher: P.S: Sorry I just got you fired, mom.
 
 ~ gamemode = "diorama"
 
@@ -74,16 +123,16 @@ _
 _
 ~ actor_act("intro_train", "open_doors")
 ~ actor_act("intro_train", "busy")
-~ sleep(3)
+~ sleep(2)
 _
 ~ actor_act("intro_train", "close_doors")
 ~ actor_start_following_path("intro_train", "rails")
-~ sleep(3)
+~ sleep(2)
 ~ fade_out("black")
 _
 ~ set_camera("_")
 ~ gamemode = "textonly"
-: 20XX-08-04%s:0.5%T%clock:15:23:05%%s:1%-08:00 #ty:typed
+: 20XX-08-04T15:23:05-08:00 #ty:typed
 ~ sleep(1)
 _
 ~ gamemode = "diorama"
@@ -139,11 +188,11 @@ intro_train: All passengers must leave the train.
 = train_station
 + [Leave station]
     ~ actor_capture("cipher")
-    cipher: Something catches my eye. #ty:thought
-    ~ actor_move("cipher", "take_map", "walk")
-    cipher: There are brochures with maps of the city and its transit system.
-    cipher: It would be good to have one, if only in case someone [i]else[/i] needs it.
-    ~ actor_act("cipher", "take_item")
+    // cipher: Something catches my eye. #ty:thought
+    // ~ actor_move("cipher", "take_map", "walk")
+    // cipher: There are brochures with maps of the city and its transit system.
+    // cipher: It would be good to have one, if only in case someone [i]else[/i] needs it.
+    // ~ actor_act("cipher", "take_item")
     ->walk_to_school
 * [Think in station]
     cipher: Woof, that's not a pleasant smell. #ty:thought
@@ -153,7 +202,7 @@ intro_train: All passengers must leave the train.
     ~ actor_move("cipher", "talk_to_attendant", "glide")
     ~ set_camera("talk_to_attendant")
     cipher: Hello. #ty:spoken
-    station_attendant: Hello! How can I help you? #expr:smile
+    station_attendant: Hello! #expr:smile
     cipher: ... #ty:thought
     cipher: I guess I don't know what exactly people are supposed to talk about.
     cipher: Have a nice day! #ty:spoken
@@ -166,7 +215,11 @@ intro_train: All passengers must leave the train.
 ->train_station
 =walk_to_school
 ~ actor_start_following_path("cipher", "to_highschool_prologue")
-~ sleep(3)
+~ fade_out("black")
+_
+~ sleep(1)
+_
+~ fade_in()
 
 - (walk_to_school_begin_point)
 
@@ -235,7 +288,8 @@ cipher: It's as solid as it looks.
     ~ actor_capture("cipher")
     ~ actor_act("cipher", "flinch")
     ~ play_sound("casey_scream")
-    cipher: What was that..?
+    : You hear a scream from somewhere ahead. #ty:typed
+    cipher: What was that..? #ty:spoken
     - (battle_shadow_begin_point)
     ~ actor_start_following_path("cipher", "forward")
     ~ queue_room("alley_battle", "In")
@@ -251,7 +305,7 @@ cipher: It's as solid as it looks.
 ~ actor_release("cipher")
 ~ actor_capture("cipher")
 ~ actor_act("cipher", "flinch")
-cipher: Hey! #expr:hey #ty:spoken
+cipher: Hey! #ty:spoken
 ~ actor_move("cipher", "protect_casey", "run")
 ~ actor_wait("cipher")
 _
@@ -273,11 +327,12 @@ _
 -
 ~ lock_battlefield()
 : When you meet the creature's eyes, you feel a thrum of energy around you. #ty:typed
-~ actor_act("cipher", "shiver")
-cipher: I've fought before, but this is... [i]different[/i] somehow. #ty:thought
-~ actor_act("cipher", "stance")
-cipher: No. I just need to remember my training.
-cipher: I can't go all out with her around, so I'll have to focus on hitting its [i]weak spots[/i].
+cipher: This thing looks like bad news... #ty:thought
+// ~ actor_act("cipher", "shiver")
+// cipher: I've fought before, but this is... [i]different[/i] somehow. #ty:thought
+// ~ actor_act("cipher", "stance")
+// cipher: No. I just need to remember my training.
+cipher: I'll try to find its [i]weak spots[/i].
 : When using your [b]Basic Attack[/b], try to hit the [b]spacebar[/b] at the last second.
 ~ free_battlefield()
 ~ clear_dialogue()
@@ -294,7 +349,7 @@ cipher: ..?! #expr:blink
 ~ actor_act("cipher", "flinch")
 ~ enemy_state("spookyguy", 1)
 cipher: It's angry now.
-cipher: It's good that its attention is off the girl, but I'm not invincible.
+cipher: It's good that its attention is off the human, but I'm not invincible.
 ~ actor_act("shadow 1", "roar")
 cipher: I can probably withstand a [i]few direct hits[/i], but I need to [i]dodge[/i] the others!
 ->dodge_tutorial->
@@ -349,7 +404,7 @@ cipher: Oh, you're awake-
 casey: %expr:confuse%How did I get here...? The last thing I remember is...
 ~ actor_act("casey", "sit_scared")
 casey: I was ambushed by [i]that thing[/i]. #expr:fear
-cipher: You're safe now. Are you all right?
+cipher: Are you all right?
 ~ actor_act("cipher", "intro_comfort_casey")
 ~ actor_act("casey", "intro_wow")
 casey: %expr:blush%...%expr:embarrassed%Uh, yeah. Yeah, I think I'm fine.%expr:uneasysmile% I'm Casey, what's your name?
@@ -387,8 +442,8 @@ cipher: Though if they knew what was going on... #ty:thought
 cipher: There's a chance they'd side with me, but there's also a chance they'd rat me out.
 cipher: I can't afford to take risks like that.
 casey: Your situation...? #ty:spoken
-casey: What could...? %expr:fear%Oh. Oh no, is it [i]that?[/i] #ty:thought
-casey: I'm so sorry, er... Admissions is down that hall, I think. #ty:spoken
+casey: What could...? #ty:thought #expr:fear
+casey: I'm sorry, er... Admissions is down that hall, I think. #ty:spoken
 cipher: Thanks for your help, see you later.
 casey: Yeah, thank you too-... %expr:blush%Uh, do you want to exchange numbers? Keep in touch?
 cipher: Oh, sure.
@@ -424,17 +479,16 @@ _
 _
 ~ set_camera("talk")
 milly: %expr:ohoho%Oh, hello, dearie! %expr:smile%What can I do for you? #ty:spoken
-cipher: I'm %char:cipher%, my parents said they talked to you? #expr:smile
+cipher: I'm %char:cipher%, my parents said they talked to you?
 cipher: Both of the parents she talked to were actually me, of course. #ty:thought
 cipher: She thinks a gas line broke in our house while they were away on business, so I need to live somewhere else for the foreseeable future.
-milly: %expr:ohoho%Of course! %expr:humu%They sent me your picture in the goggle, %expr:pshaww%but I'm too old for that kind of thing. %expr:smile% I bet you knew the computer better than me before you could even walk, %expr:ohoho%hoho! #ty:spoken
-cipher: Haha, good one! #expr:ohoho
-cipher: You don't know how right you are. #ty:thought
+milly: %expr:ohoho%Of course! %expr:humu%They sent me your picture in the goggle, %expr:pshaww%but I'm too old for that kind of thing.%expr:smile% I bet you were using that thing when you were still in diapers, %expr:ohoho%hoho! #ty:spoken
+cipher: ...Something like that. #ty:thought
 milly: %expr:humu%So, is there anything you need? Do you want me to help you with your bags? #ty:spoken
-cipher: No, thanks! I'm stronger than I look. #expr:smile
+cipher: No, thanks! I'm stronger than I look.
 cipher: And I don't actually [i]have[/i] any luggage to carry. #ty:thought
 milly: %expr:aww%Aww, aren't you independent? %expr:humu%Well, if you ever need anything, %expr:ohoho%just let Aunt Milly know! #ty:spoken
-cipher: You're too kind. You let me know if you ever need any help with the %expr:ohoho%"Goggle" in return, all right? #expr:smile
+cipher: You're too kind. You let me know if you ever need any help with the %expr:ohoho%"Goggle" in return, all right?
 cipher: It's a good idea to build up more of a rapport. %expr:humu%"The hand that feeds..." #ty:thought
 ~ confidant_level("milly", 1)
 _
@@ -464,12 +518,12 @@ cipher%as%casey: where the hell were we? #expr:confused
 cipher%as%casey: what would have happened to me if you hadn't shown up #expr:fear
 cipher: %i%I don't think there's any way to know for sure.
 cipher: %i%I just hope it doesn't happen again.%p:2%
-cipher%as%casey: maybe it has something to do with those disappearances? #expr:humu
-cipher: %i%Pardon?%p:1%
-cipher%as%casey: ppl are going missing, its been all over the news
-~ sleep(1)
-cipher%as%casey: i think i wasa lmost one of them #expr:embarrassed
-cipher: %i%Maybe.%p:1%
+// cipher%as%casey: maybe it has something to do with those disappearances? #expr:humu
+// cipher: %i%Pardon?%p:1%
+// cipher%as%casey: ppl are going missing, its been all over the news
+// ~ sleep(1)
+// cipher%as%casey: i think i wasa lmost one of them #expr:embarrassed
+// cipher: %i%Maybe.%p:1%
 ~ sleep(3)
 cipher%as%casey: btw #expr:curious
 cipher%as%casey: are you busy tomorrow? #expr:uneasysmile
