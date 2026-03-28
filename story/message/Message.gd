@@ -145,6 +145,7 @@ class TextLeaf extends Instruction:
 			#if in_tag:
 				#continue
 			var current_char = label.get_parsed_text()[label.visible_characters]
+			var next_char = label.get_parsed_text()[label.visible_characters + 1] if len(label.get_parsed_text()) > label.visible_characters + 1 else ' '
 			label.visible_characters += 1
 			if label.voice and \
 				idx < len(text) and \
@@ -155,9 +156,10 @@ class TextLeaf extends Instruction:
 					last_voice = self.time
 					label.voice_player.play()
 			var wait_mul: float = 1.
-			match current_char:
-				".", "!", "?", "­—": wait_mul = 15.
-				",", ";": wait_mul = 5.
+			if next_char in ' .,!?':
+				match current_char:
+					".", "!", "?", "­—": wait_mul = 15.
+					",", ";": wait_mul = 5.
 			await label.wait(label.typewriter_time * wait_mul)
 
 class Express extends Instruction:

@@ -49,8 +49,8 @@ func _on_graze(area: Node) -> void:
 		if area.get_parent() != null:
 			_on_graze(area.get_parent())
 		return
-	if area in already_grazed:
-		return
+	#if area in already_grazed:
+		#return
 	if not area.should_graze:
 		return
 	already_grazed.push_back(area)

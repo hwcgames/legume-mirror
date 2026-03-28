@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://cl2yksu5ilm7p" path="res://battle/bullet/components/play_animation.gd" id="6_67r1d"]
 
 [sub_resource type="Curve" id="Curve_aq87q"]
-_limits = [0.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
-point_count = 1
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Resource" id="Resource_57e4o"]
 script = ExtResource("3_67r1d")
@@ -125,5 +125,5 @@ libraries/ = SubResource("AnimationLibrary_jfchd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1903339268]
 position = Vector2(0, -0.0001)
-scale = Vector2(1.5, 1e-05)
+scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_uxgif")
