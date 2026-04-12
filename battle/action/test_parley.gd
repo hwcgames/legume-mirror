@@ -53,7 +53,8 @@ class ActionPlanParleyTest extends BattleActionPlan:
 			2:
 				Chatterbox.simple_message(party_member, "Change it up!")
 				target.state = 1
-		await target.pick_pattern()
+		target.planned_pattern = null
+		await target.battlefield.assign_patterns()
 		await target.show_telegraph()
 		await animate.popped
 		approach.finished = true

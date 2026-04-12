@@ -4,7 +4,7 @@ class_name Enemy
 @export var enemy_sheet: EnemySheet
 @export var enemy_factory: EnemyFactory
 @export var patterns: Array[BulletPattern] = []
-@export var planning_priority: int
+@export var planning_priority: float = 1.
 var has_planned: bool = false
 var planned_pattern: BulletPattern
 @export var state: int = 0
@@ -23,10 +23,13 @@ func _join_battle(_battle: Battlefield):
 	global_rotation = home_landmark.global_rotation
 
 func _telegraph():
-	if !self.alive:
+	if ! self.alive:
 		return
+	#await pick_pattern()
 	var lock = await battlefield.lock.shared_lock()
-	await pick_pattern()
+	for rule in rules:
+		if not rule.pick_pattern(self ):
+			return
 	await show_telegraph()
 	lock.call()
 
@@ -44,14 +47,14 @@ func _enemy_action():
 	%Telegraph.hide()
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
-	if !self.alive:
+	if ! self.alive:
 		return
 	var lock = await battlefield.lock.shared_lock()
 	if planned_pattern != null:
-		var board = planned_pattern.create(battlefield, self)
+		var board = planned_pattern.create(battlefield, self )
 		await get_tree().process_frame
 		for rule in rules:
-			if not rule.setup_battle_board(self, board):
+			if not rule.setup_battle_board(self , board):
 				await board.done
 				lock.call()
 				return
@@ -80,9 +83,9 @@ func pick_pattern():
 				(p.enemies.all(func(r): return r in enemies)) and \
 				(must_be_friends.all(func(f): return f == ResourceUID.path_to_uid(p.resource_path) or f in p.friends)) and \
 				(state in p.states)) as Array[BulletPattern]
-	for rule in rules:
-		if not rule.pick_pattern(self, candidates):
-			return
+	#for rule in rules:
+		#if not rule.pick_pattern(self , candidates):
+			#return
 	if candidates.is_empty():
 		print("No moves!")
 		return

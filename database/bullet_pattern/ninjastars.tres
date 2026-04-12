@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_lf1wc")
+category = 3
 pattern_scene = ExtResource("1_1i3xu")
 telegraph_scene = ExtResource("3_75w1m")
 metadata/_custom_type_script = "uid://bpbc3263647q8"

@@ -42,5 +42,5 @@ bg_color = Color(0.15604165, 0.043553524, 0.045210116, 1)
 text_color = Color(0.8613351, 0, 0.10442973, 1)
 costume = ExtResource("1_eribs")
 patterns = Array[ExtResource("3_k4oh0")]([ExtResource("6_41022"), ExtResource("7_kkmgx"), ExtResource("8_s3xtc")])
-planning_priority = 1
+planning_priority = 2
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

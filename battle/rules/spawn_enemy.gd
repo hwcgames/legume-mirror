@@ -11,7 +11,7 @@ func top(fighter: Fighter) -> bool:
 	if len(fighter.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(fighter.battlefield.enemy_landmarks):
 		return true
 	var enemy: Enemy = Enemy.from_enemy_factory(enemy_template)
-	enemy.active = enemy.active && active
+	enemy.active = enemy.active && active && (fighter.active if fighter is Enemy else true)
 	for i in range(len(fighter.battlefield.enemy_landmarks)):
 		var e = fighter.battlefield.enemies.get(i)
 		if (not is_instance_valid(e)) or (not e.alive):

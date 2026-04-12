@@ -92,9 +92,11 @@ func battle():
 		if Storyteller.choose_if_available(["battle telegraph"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
-		await lock.wait_for_clear()
+		var t_lock = await lock.exclusive_lock()
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
+		await assign_patterns()
+		t_lock.call()
 		await lock.wait_for_clear()
 		println("Player action!")
 		if Storyteller.choose_if_available(["battle player action"], true):
@@ -153,3 +155,94 @@ func println(text: String):
 	await get_tree().create_timer(5.).timeout
 	await label.create_tween().tween_property(label, "modulate", Color.TRANSPARENT, 1.).finished
 	label.queue_free()
+
+func assign_patterns():
+	if phase == PHASE.TELEGRAPH:
+		for enemy in enemies:
+			enemy.planned_pattern = null
+	var base_plan: Dictionary[Enemy, BulletPattern] = {}
+	for enemy in enemies:
+		if enemy.planned_pattern:
+			base_plan[enemy] = enemy.planned_pattern
+	var candidates: Array = []
+	var tries = 0
+	var total_weight = 0.
+	while len(candidates) < 100 and tries < 1000:
+		tries += 1
+		if tries % 50 == 0:
+			await get_tree().process_frame
+		# Build a random pattern
+		var plan: Dictionary[Enemy, BulletPattern] = base_plan.duplicate()
+		for enemy in enemies:
+			if enemy in plan:
+				continue
+			var candidate_patterns = enemy.patterns.filter(func(p: BulletPattern): return enemy.state in p.states)
+			if candidate_patterns.is_empty():
+				continue
+			plan[enemy] = candidate_patterns.get(randi_range(0, len(candidate_patterns)))
+		if candidates.any(func(p): return p[0] == plan):
+			continue
+		# Check that this pattern is valid
+		var solo: bool = false
+		var team: bool = false
+		var joint: BulletPattern = null
+		var support_only: bool = true
+		var valid = true
+		for pattern in (plan.values() as Array[BulletPattern]):
+			if pattern == null:
+				continue
+			if pattern.category == BulletPattern.PATTERN_CATEGORY.SOLO:
+				if solo or team or joint:
+					valid = false
+					break
+				solo = true
+				support_only = false
+			if pattern.category == BulletPattern.PATTERN_CATEGORY.TEAM:
+				if solo or joint:
+					valid = false
+					break
+				team = true
+				support_only = false
+			if pattern.category == BulletPattern.PATTERN_CATEGORY.JOINT:
+				if solo or team or (joint and joint.get_script().resource_path != pattern.get_script().resource_path):
+					valid = false
+					break
+				joint = pattern
+				support_only = false
+		if not valid:
+			continue
+		# Determine the probability of this plan.
+		var weight: float = 1.
+		for enemy in (plan.keys() as Array[Enemy]):
+			var pattern = plan[enemy]
+			var total = enemy.patterns\
+				.filter(func(p: BulletPattern): return enemy.state in p.states)\
+				.map(func(p: BulletPattern): return p.weight)\
+				.reduce(func(a, b): return a * b) + 0.01
+			var chance = (pattern.weight if pattern else 0.01) * enemy.planning_priority / total
+			weight *= chance
+		if plan.values().all(func(v): return v == null):
+			weight = 0.
+		if support_only:
+			weight /= 4.
+		if weight == 0. and total_weight > 0.:
+			continue
+		total_weight += weight
+		candidates.push_back([plan, weight])
+	if candidates.is_empty():
+		printerr("Can't find a legal plan!")
+		return
+	if total_weight > 0:
+		candidates = candidates.filter(func(c): return c[1] > 0)
+	var choice = randf_range(0., total_weight-0.01)
+	var plan: Dictionary[Enemy, BulletPattern]
+	for candidate in candidates:
+		choice -= candidate[1]
+		if choice <= 0:
+			plan = candidate[0]
+			break
+	for enemy in (plan.keys() as Array[Enemy]):
+		if enemy in base_plan:
+			continue
+		enemy.planned_pattern = plan[enemy]
+		enemy.show_telegraph()

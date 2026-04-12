@@ -24,7 +24,8 @@ class TutorialFleePlan extends BattleActionPlan:
 		Actor.find("casey").push_mode(ActorModeCargo.new(party_member))
 		Storyteller.choose_if_available(["cipher attempts to flee"])
 		enemy.state = 2
-		enemy.pick_pattern()
+		enemy.planned_pattern = null
+		await enemy.battlefield.assign_patterns()
 		await party_member.battlefield.top
 		enemy.take_damage(9999999)
 		pass

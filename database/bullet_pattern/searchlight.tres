@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("2_cfg6i")
 states = Array[int]([0, 1])
+category = 0
 pattern_scene = ExtResource("1_msl5n")
 telegraph_scene = ExtResource("3_yg3jk")
 metadata/_custom_type_script = "uid://bpbc3263647q8"
