@@ -1,7 +1,7 @@
 INCLUDE calendar.ink
 INCLUDE days.ink
-INCLUDE d0_03_28.ink
-INCLUDE d0_03_29.ink
+INCLUDE calendar/d0_03_28.ink
+INCLUDE calendar/d0_03_29.ink
 
 
 
