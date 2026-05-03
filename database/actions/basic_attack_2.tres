@@ -1,0 +1,64 @@
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://rm1l4wwrfots"]
+
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_bed2n"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="3_5avty"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="3_8s71f"]
+[ext_resource type="Script" uid="uid://dngw4t5sno15h" path="res://battle/action/dyn/dyn_self_lock.gd" id="4_5avty"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="5_0mw01"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="6_3md4w"]
+[ext_resource type="Script" uid="uid://bc1mdb1i7sg84" path="res://battle/action/dyn/pred_enemy.gd" id="6_aacax"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="7_aacax"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="7_ds6qu"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="8_ds6qu"]
+[ext_resource type="Script" uid="uid://b0c4a1wkoi6qc" path="res://battle/action/dyn/dyn_qte.gd" id="9_n6k4d"]
+[ext_resource type="Script" uid="uid://cuofqiysmxjcf" path="res://battle/action/dyn/dyn_standard_damage.gd" id="10_v4m3t"]
+
+[sub_resource type="Resource" id="Resource_ymeq6"]
+script = ExtResource("3_8s71f")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_8qa67"]
+script = ExtResource("4_5avty")
+metadata/_custom_type_script = "uid://dngw4t5sno15h"
+
+[sub_resource type="Resource" id="Resource_n6k4d"]
+script = ExtResource("6_aacax")
+metadata/_custom_type_script = "uid://bc1mdb1i7sg84"
+
+[sub_resource type="Resource" id="Resource_v4m3t"]
+script = ExtResource("7_ds6qu")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_mlacy"]
+script = ExtResource("6_3md4w")
+predicates = Array[ExtResource("5_0mw01")]([SubResource("Resource_n6k4d"), SubResource("Resource_v4m3t")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_0kpix"]
+script = ExtResource("7_aacax")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_pe81w"]
+script = ExtResource("8_ds6qu")
+animation_name = "attack"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_ldpm0"]
+script = ExtResource("9_n6k4d")
+metadata/_custom_type_script = "uid://b0c4a1wkoi6qc"
+
+[sub_resource type="Resource" id="Resource_5r1hf"]
+script = ExtResource("8_ds6qu")
+animation_name = "hit"
+register_name = "subanimation"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_g7i8o"]
+script = ExtResource("10_v4m3t")
+metadata/_custom_type_script = "uid://cuofqiysmxjcf"
+
+[resource]
+script = ExtResource("3_5avty")
+steps = Array[ExtResource("2_bed2n")]([SubResource("Resource_ymeq6"), SubResource("Resource_8qa67"), SubResource("Resource_mlacy"), SubResource("Resource_0kpix"), SubResource("Resource_pe81w"), SubResource("Resource_ldpm0"), SubResource("Resource_5r1hf"), SubResource("Resource_g7i8o")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"

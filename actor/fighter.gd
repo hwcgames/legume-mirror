@@ -47,13 +47,13 @@ var rules: Array[BattleRule]:
 		rules.append_array(Storyteller.rules)
 		rules.sort_custom(func(a, b): return a.priority(self) < b.priority(self))
 		return rules
-var computed_attrs: CombatAttributes:
-	get:
-		var attrs = self.attrs.duplicate()
-		for rule in rules:
-			if not rule.compute_attrs(self , attrs):
-				return attrs
-		return attrs
+#var computed_attrs: CombatAttributes:
+	#get:
+		#var attrs = self.attrs.duplicate()
+		#for rule in rules:
+			#if not rule.compute_attrs(self , attrs):
+				#return attrs
+		#return attrs
 
 var home_landmark: Marker3D
 

@@ -5,6 +5,7 @@ class_name TrinketsPool
 	set(new_trinkets):
 		var amt = new_trinkets - trinkets_on_field
 		trinkets_on_field = new_trinkets
+		emit_changed()
 		trinkets_changed.emit(amt)
 
 signal trinkets_changed(amount: int)

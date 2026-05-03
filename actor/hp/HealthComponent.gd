@@ -16,6 +16,7 @@ var hp: int:
 	set(health):
 		var old_hp = hp
 		_set_health(health)
+		emit_changed()
 		if old_hp <= min and hp > min:
 			revived.emit()
 		if old_hp > min and hp <= min:
@@ -31,11 +32,13 @@ var max: int:
 		return _get_max()
 	set(health):
 		_set_max(health)
+		emit_changed()
 var min: int:
 	get:
 		return _get_min()
 	set(health):
 		_set_min(health)
+		emit_changed()
 
 var fighter: Fighter
 

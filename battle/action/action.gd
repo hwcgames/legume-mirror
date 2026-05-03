@@ -11,3 +11,6 @@ func allowed(party_member: PartyMember) -> bool:
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
 	await battle_planner.get_tree().process_frame
 	return null
+
+func copy():
+	return self.duplicate()

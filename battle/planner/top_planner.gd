@@ -71,6 +71,35 @@ func pick_ally(predicate: Callable = func(p: PartyMember): return true) -> Party
 		%TabContainer.current_tab = prev_tab
 	return ally
 
+signal chosen_actor(target: Actor)
+
+func pick_actor(predicate: Callable = func(a: Actor): return true) -> Actor:
+	var prev_tab = %TabContainer.current_tab
+	var selector = %TargetMenuParent
+	for child in selector.get_children():
+		child.free()
+	var allies = battlefield.players.filter(predicate)
+	var enemies = battlefield.enemies.filter(predicate)
+	var back := Button.new()
+	back.text = "back"
+	back.pressed.connect(chosen_ally.emit.bind(null))
+	selector.add_child(back)
+	for ally in allies:
+		var button := Button.new()
+		button.text = ally.human_name
+		button.pressed.connect(chosen_target.emit.bind(ally))
+		selector.add_child(button)
+	for enemy in enemies:
+		var button := Button.new()
+		button.text = enemy.human_name
+		button.pressed.connect(chosen_target.emit.bind(enemy))
+		selector.add_child(button)
+	%TargetSelectTab.show()
+	var enemy = await chosen_ally
+	if enemy == null:
+		%TabContainer.current_tab = prev_tab
+	return enemy
+
 func _ready():
 	%IdleTab.show()
 	%Name.text = party_member.human_name

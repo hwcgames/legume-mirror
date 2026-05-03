@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 	line = story.Continue()
 	if line and line.strip_edges() != "_" and !line.is_empty():
 		print("Story line: ", line)
-		new_line.emit(line, tags)
+		new_line.emit(tr(line), tags)
 	if not story.GetCanContinue():
 		handle.call()
 		handle = await lock.exclusive_lock()
@@ -414,7 +414,8 @@ func cmd_enemy_state(enemy_name: String, state: int):
 		return
 	enemy.state = state
 	if enemy.planned_pattern:
-		enemy.pick_pattern()
+		enemy.planned_pattern = null
+		enemy.battlefield.assign_patterns()
 
 var active_camera: PhantomCamera3D
 func cmd_set_camera(camera_name: String):

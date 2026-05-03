@@ -1,3 +1,4 @@
 {
-    "godotTools.editorPath.godot4": "godot-mono"
+    "godotTools.editorPath.godot4": "godot-mono",
+    "deno.enable": true
 }

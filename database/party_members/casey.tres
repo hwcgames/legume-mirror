@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_118yb"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_up88c"]
-[ext_resource type="Script" uid="uid://cw3kpl84ymd7q" path="res://battle/action/trinket_attack.gd" id="2_8b7cy"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_e823b"]
 [ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_k0rkr"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="4_8b7cy"]
@@ -13,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="9_klkmn"]
 [ext_resource type="Script" uid="uid://bpqnkreg0hbq4" path="res://battle/action/energize.gd" id="11_klkmn"]
 [ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://battle/rules/strengthen.gd" id="12_4hgsn"]
-[ext_resource type="Script" uid="uid://o8bdd5x885xs" path="res://actor/energy/TrinketsPool.gd" id="12_klkmn"]
 [ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="13_qa7bc"]
 [ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="14_4hgsn"]
 [ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://battle/rules/magic_strength.gd" id="15_qa7bc"]
@@ -25,11 +23,6 @@ magic = 7
 defense = 2
 finesse = 3
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
-
-[sub_resource type="Resource" id="Resource_vbut3"]
-script = ExtResource("2_8b7cy")
-trinkets_amount = 4.0
-metadata/_custom_type_script = "uid://cw3kpl84ymd7q"
 
 [sub_resource type="Resource" id="Resource_r435d"]
 script = ExtResource("4_8b7cy")
@@ -107,24 +100,14 @@ description = &"The future is now, thanks to science!"
 spell_list = Array[ExtResource("8_i7811")]([SubResource("Resource_ofgp3"), SubResource("Resource_8io7u"), SubResource("Resource_m7kde"), SubResource("Resource_ptr6u")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
-[sub_resource type="Resource" id="Resource_oyb25"]
-script = ExtResource("12_klkmn")
-trinkets_on_field = 50
-current_sp = null
-max_sp = 500
-normal_sp = false
-metadata/_custom_type_script = "uid://o8bdd5x885xs"
-
 [resource]
 script = ExtResource("3_k0rkr")
-id = "casey"
+skillset = SubResource("Resource_jmo3d")
 name = &"Casey"
-hp = SubResource("Resource_r435d")
-sp = SubResource("Resource_oyb25")
-attrs = SubResource("Resource_qa7bc")
-rules = Array[ExtResource("2_e823b")]([SubResource("Resource_4hgsn")])
 bg_color = Color(0.027188174, 0.15628907, 0.104122765, 1)
 text_color = Color(0.63142216, 0.99941224, 0.7811449, 1)
-basic_attack = SubResource("Resource_vbut3")
-skillset = SubResource("Resource_jmo3d")
+id = "casey"
+hp = SubResource("Resource_r435d")
+attrs = SubResource("Resource_qa7bc")
+rules = Array[ExtResource("2_e823b")]([SubResource("Resource_4hgsn")])
 metadata/_custom_type_script = "uid://dr762xdwdn0fw"

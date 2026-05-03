@@ -6,7 +6,6 @@ class_name PartyMember
 ## How many turns this actor has left.
 ## Usually 0 or 1, but not always.
 var turns: int = 0
-var lock: Locks = Locks.new()
 var party_order_key: int = 0
 @export var player: int = 0
 var device_index:
@@ -82,6 +81,8 @@ func _player_action():
 			if not rule.player_plan(self, action):
 				return
 		turns -= 1
+		if not alive:
+			return
 		var self_lock = await lock.exclusive_lock()
 		var coroutine = Promise.new(func(resolve, _reject):
 			await action.go(self)

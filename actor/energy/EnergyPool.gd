@@ -1,8 +1,14 @@
 class_name EnergyPool
 extends EnergyComponent
 
-@export var current_sp: int = max_sp
-@export var max_sp: int
+@export var current_sp: int = max_sp:
+	set(sp):
+		current_sp = sp
+		emit_changed()
+@export var max_sp: int:
+	set(sp):
+		max_sp = sp
+		emit_changed()
 
 func _get_min() -> int:
 	return 0

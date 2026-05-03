@@ -7,8 +7,6 @@
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_mdhvo"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_nahft"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_53wpt"]
-[ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="7_e55sl"]
-[ext_resource type="Resource" uid="uid://t24mhrsxixr3" path="res://database/enemy/table/random_school_except_mo.tres" id="7_mdhvo"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_wixxi"]
 
 [sub_resource type="Resource" id="Resource_jgsyx"]
@@ -24,11 +22,6 @@ current_hp = 50
 max_hp = 50
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_8b2qv"]
-script = ExtResource("7_e55sl")
-enemy_template = ExtResource("7_mdhvo")
-metadata/_custom_type_script = "uid://dio8noar7m7xs"
-
 [sub_resource type="Resource" id="Resource_505bi"]
 script = ExtResource("9_wixxi")
 current_sp = null
@@ -41,6 +34,5 @@ description = &"I hear they have these in Australia."
 hp = SubResource("Resource_kx3xo")
 sp = SubResource("Resource_505bi")
 attrs = SubResource("Resource_jgsyx")
-rules = Array[ExtResource("6_53wpt")]([SubResource("Resource_8b2qv")])
 costume = ExtResource("1_ycft4")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

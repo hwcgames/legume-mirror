@@ -4,6 +4,9 @@ class_name BattleRule
 
 @export var stacks: int = 1
 
+@abstract
+func copy() -> BattleRule
+
 func merge(other: BattleRule):
 	self.stacks += other.stacks
 

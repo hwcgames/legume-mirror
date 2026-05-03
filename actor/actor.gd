@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Actor
 
-@export var human_name: StringName = name
+@export var human_name: StringName = name 
 @export var costume: Costume:
 	set(new_costume):
 		if costume != null:
@@ -27,6 +27,15 @@ var mode_stack: Array[ActorMode] = []
 
 @export var text_color: Color
 @export var bg_color: Color
+@export var sheet: ActorSheet
+var lock: Locks = Locks.new()
+var computed_attrs: CombatAttributes:
+	get:
+		var attrs = self.attrs.duplicate()
+		for rule in sheet.rules:
+			if not rule.compute_attrs(self , attrs):
+				return attrs
+		return attrs
 
 func _ready():
 	add_to_group("actor")

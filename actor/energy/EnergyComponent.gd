@@ -10,16 +10,19 @@ var sp: int:
 		return _get_energy()
 	set(energy):
 		_set_energy(energy)
+		emit_changed()
 var min: int:
 	get:
 		return _get_min()
 	set(energy):
 		_set_min(energy)
+		emit_changed()
 var max: int:
 	get:
 		return _get_max()
 	set(energy):
 		_set_max(energy)
+		emit_changed()
 
 var fighter: Fighter
 
