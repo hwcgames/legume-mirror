@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://del34gulleoth"
+path="res://.godot/imported/main.ink-aa59e7432272e8496aa8a82bceb42dec.res"
+
+[deps]
+
+source_file="res://assets/story/draft/main.ink"
+dest_files=["res://.godot/imported/main.ink-aa59e7432272e8496aa8a82bceb42dec.res"]
+
+[params]
+
+is_main_file=false
+compress=true

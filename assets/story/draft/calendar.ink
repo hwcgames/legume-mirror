@@ -133,6 +133,7 @@ Calendar test:
 = y0m3
 {day:
     - 28: -> d0_03_28
+    - 29: -> d0_03_29
 }
 -> default_day
 = y0m4
