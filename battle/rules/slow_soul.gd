@@ -6,14 +6,14 @@ class_name SlowSoul
 func _added_to_soul(soul: Soul):
 	soul.speed *= speed_mul
 
-func soul(player: PartyMember, soul: Soul):
+func soul(player: Actor, soul: Soul):
 	soul.speed *= speed_mul
 
-func top(fighter: Fighter) -> bool:
+func top(fighter: Actor) -> bool:
 	stacks -= 1
 	return true
 
-func done(fighter: Fighter, player_victory: bool) -> bool:
+func done(fighter: Actor, player_victory: bool) -> bool:
 	stacks = 0
 	return true
 
@@ -21,5 +21,5 @@ func merge(other: BattleRule):
 	speed_mul = (speed_mul * stacks + other.speed_mul * other.stacks) / (stacks + other.stacks)
 	stacks += other.stacks
 
-func _added(fighter: Fighter):
+func _added(fighter: Actor):
 	fighter.battlefield.println("%s turn(s) of %sx soul speed!" % [stacks, speed_mul])

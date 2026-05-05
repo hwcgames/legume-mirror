@@ -1,5 +1,5 @@
-extends Actor
-class_name Fighter
+extends Resource
+class_name Fighter__
 
 var alive: bool:
 	get:

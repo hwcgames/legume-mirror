@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_id8u5"]
 [ext_resource type="Resource" uid="uid://bd4kf7y5esh3w" path="res://database/bullet_pattern/spookybullets.tres" id="5_76awi"]
 [ext_resource type="Resource" uid="uid://dhb3cqprl2v2a" path="res://database/bullet_pattern/spookybullets2.tres" id="7_ytlyq"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_g3840"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="10_ye2o0"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="11_ye2o0"]
 
@@ -17,15 +18,21 @@
 script = ExtResource("1_wloo0")
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
+[sub_resource type="Resource" id="Resource_ytlyq"]
+script = ExtResource("3_id8u5")
+metadata/_custom_type_script = "uid://b7c42tam70b4u"
+
+[sub_resource type="Resource" id="Resource_hfx3a"]
+script = ExtResource("8_g3840")
+patterns = Array[ExtResource("3_76awi")]([ExtResource("4_76awi"), ExtResource("5_76awi"), ExtResource("7_ytlyq")])
+parleys = Array[ExtResource("2_jlxmq")]([SubResource("Resource_ytlyq")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
+
 [sub_resource type="Resource" id="Resource_wloo0"]
 script = ExtResource("2_q2x8q")
 current_hp = 99999
 max_hp = 99999
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
-
-[sub_resource type="Resource" id="Resource_ytlyq"]
-script = ExtResource("3_id8u5")
-metadata/_custom_type_script = "uid://b7c42tam70b4u"
 
 [sub_resource type="Resource" id="Resource_ye2o0"]
 script = ExtResource("11_ye2o0")
@@ -34,11 +41,12 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_id8u5")
-name = &"???"
-hp = SubResource("Resource_wloo0")
 sp = SubResource("Resource_ye2o0")
-attrs = SubResource("Resource_g3840")
-costume = ExtResource("1_jlxmq")
 patterns = Array[ExtResource("3_76awi")]([ExtResource("4_76awi"), ExtResource("5_76awi"), ExtResource("7_ytlyq")])
 parleys = Array[ExtResource("2_jlxmq")]([SubResource("Resource_ytlyq")])
+name = &"???"
+costume = ExtResource("1_jlxmq")
+hp = SubResource("Resource_wloo0")
+attrs = SubResource("Resource_g3840")
+enemy_component = SubResource("Resource_hfx3a")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

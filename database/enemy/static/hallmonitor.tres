@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_utm42"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_kkxf5"]
 [ext_resource type="Resource" uid="uid://dd87d4i7wcv1p" path="res://database/bullet_pattern/hallmonitor.tres" id="6_1yajf"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_bmplu"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_hvf54"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_ctjh5"]
 
@@ -17,6 +18,11 @@ magic = 0
 defense = 1
 finesse = 4
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_1yajf"]
+script = ExtResource("6_bmplu")
+patterns = Array[ExtResource("3_utm42")]([ExtResource("6_1yajf")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_4bqvg"]
 script = ExtResource("3_bmplu")
@@ -31,11 +37,11 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_kkxf5")
-name = &"Hall Monitor"
-description = &"An observant creature."
-hp = SubResource("Resource_4bqvg")
 sp = SubResource("Resource_vvfbp")
-attrs = SubResource("Resource_7rcfs")
-costume = ExtResource("1_wc53d")
 patterns = Array[ExtResource("3_utm42")]([ExtResource("6_1yajf")])
+name = &"Hall Monitor"
+costume = ExtResource("1_wc53d")
+hp = SubResource("Resource_4bqvg")
+attrs = SubResource("Resource_7rcfs")
+enemy_component = SubResource("Resource_1yajf")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

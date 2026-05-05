@@ -10,11 +10,11 @@ class_name BattleActionApplyRule
 @export var friendly: bool = false
 @export var alive: bool = true
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: Actor) -> bool:
 	return party_member.sp_component.remaining() > cost
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: Fighter = await battle_planner.pick_ally(func(p): return p.alive == alive)\
+	var target: Actor = await battle_planner.pick_ally(func(p): return p.alive == alive)\
 		if friendly else \
 		await battle_planner.pick_target(func(e): return e.alive == alive)
 	if target == null:
@@ -29,7 +29,7 @@ class ApplyRulePlan extends BattleActionPlan:
 	var rfl_message: String
 	var rules: Array[BattleRule]
 	var friendly: bool
-	var target: Fighter
+	var target: Actor
 	func _init(name, cost, message, rfl_message, rules, friendly, target) -> void:
 		self.name = name
 		self.cost = cost
@@ -38,10 +38,10 @@ class ApplyRulePlan extends BattleActionPlan:
 		self.rules = rules
 		self.friendly = friendly
 		self.target = target
-	func go(party_member: PartyMember):
+	func go(party_member: Actor):
 		var battlefield = party_member.battlefield
 		var b_lock = await battlefield.lock.shared_lock()
-		var t_lock = await target.locks.exclusive_lock() if target is Enemy else func(): return
+		var t_lock = await target.lock.exclusive_lock()
 		if !target.alive:
 			for t in battlefield.players if friendly else battlefield.valid_enemies:
 				if t.alive:

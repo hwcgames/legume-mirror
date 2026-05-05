@@ -5,7 +5,7 @@ class_name BattleActionFancyAttack
 @export var description = "Carefully pierce an enemy's defenses."
 @export var cost: int = 10
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: Actor) -> bool:
 	return party_member.sp_component.remaining() > cost
 
 func plan(planner: BattlePlanner) -> BattleActionPlan:
@@ -19,9 +19,9 @@ func plan(planner: BattlePlanner) -> BattleActionPlan:
 	return plan
 
 class FancyAttackPlan extends BattleActionPlan:
-	var target: Enemy
+	var target: Actor
 	var cost: int
-	func go(party_member: PartyMember):
+	func go(party_member: Actor):
 		var battlefield = party_member.battlefield
 		var p_lock = await InputLocks.lock(party_member.player).shared_lock()
 		var b_lock = await battlefield.lock.shared_lock()

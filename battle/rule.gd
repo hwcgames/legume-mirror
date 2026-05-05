@@ -4,74 +4,74 @@ class_name BattleRule
 
 @export var stacks: int = 1
 
-@abstract
-func copy() -> BattleRule
+func copy() -> BattleRule:
+	return self.duplicate()
 
 func merge(other: BattleRule):
 	self.stacks += other.stacks
 
-func priority(fighter: Fighter) -> int:
+func priority(fighter: Actor) -> int:
 	return 0
 
-func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
+func compute_attrs(fighter: Actor, attrs: CombatAttributes) -> bool:
 	return true
 
-func _added(fighter: Fighter):
+func _added(fighter: Actor):
 	pass
 
 func _added_to_soul(soul: Soul):
 	pass
 
-func _removed(fighter: Fighter):
+func _removed(fighter: Actor):
 	pass
 
-func _died(fighter: Fighter) -> bool:
+func _died(fighter: Actor) -> bool:
 	return true
 
-func _revived(fighter: Fighter) -> bool:
+func _revived(fighter: Actor) -> bool:
 	return true
 
-func take_damage(fighter: Fighter, amount: int) -> bool:
+func take_damage(fighter: Actor, amount: int) -> bool:
 	return true
 
-func heal(fighter: Fighter, amount: int) -> bool:
+func heal(fighter: Actor, amount: int) -> bool:
 	return true
 
-func use_sp(fighter: Fighter, amount: int) -> bool:
+func use_sp(fighter: Actor, amount: int) -> bool:
 	return true
 
-func get_sp(fighter: Fighter, amount: int) -> bool:
+func get_sp(fighter: Actor, amount: int) -> bool:
 	return true
 
-func join_battle(fighter: Fighter) -> bool:
+func join_battle(fighter: Actor) -> bool:
 	return true
 
-func begin(fighter: Fighter) -> bool:
+func begin(fighter: Actor) -> bool:
 	return true
 
-func top(fighter: Fighter) -> bool:
+func top(fighter: Actor) -> bool:
 	return true
 
-func telegraph(fighter: Fighter) -> bool:
+func telegraph(fighter: Actor) -> bool:
 	return true
 
-func player_action(fighter: Fighter) -> bool:
+func player_action(fighter: Actor) -> bool:
 	return true
 
-func player_plan(player: PartyMember, plan: BattleActionPlan) -> bool:
+func player_plan(player: Actor, plan: BattleActionPlan) -> bool:
 	return true
 
-func enemy_action(fighter: Fighter) -> bool:
+func enemy_action(fighter: Actor) -> bool:
 	return true
 
-func setup_battle_board(enemy: Enemy, board: BulletPatternLayer):
+func setup_battle_board(enemy: Actor, board: BulletPatternLayer):
 	return true
 
-func pick_pattern(enemy: Enemy):
+func pick_pattern(enemy: Actor):
 	return true
 
-func done(fighter: Fighter, player_victory: bool) -> bool:
+func done(fighter: Actor, player_victory: bool) -> bool:
 	return true
 
-func soul(player: PartyMember, soul: Soul):
+func soul(player: Actor, soul: Soul):
 	return true

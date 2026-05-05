@@ -2,7 +2,7 @@
 extends Control
 class_name SkillChallenge
 
-var party_member: PartyMember
+var party_member: Actor
 
 @abstract func start()
 

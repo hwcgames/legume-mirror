@@ -8,11 +8,11 @@ class_name BattleActionHeal
 @export var message: String = "%s healed %s!"
 @export var rfl_message: String = "%s healed!"
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: Actor) -> bool:
 	return party_member.sp_component.remaining() >= cost
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: PartyMember = await battle_planner.pick_ally(func(p): return p.alive)
+	var target: Actor = await battle_planner.pick_ally(func(p): return p.alive)
 	if target == null:
 		battle_planner.show_toplevel()
 		return null
@@ -20,7 +20,7 @@ func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
 
 class HealPlan extends BattleActionPlan:
 	var amount: int
-	var target: Fighter
+	var target: Actor
 	var cost: int
 	var message: String
 	var rfl_message: String
@@ -30,7 +30,7 @@ class HealPlan extends BattleActionPlan:
 		self.cost = cost
 		self.message = message
 		self.rfl_message = rfl_message
-	func go(party_member: PartyMember):
+	func go(party_member: Actor):
 		var battlefield = party_member.battlefield
 		var b_lock = await battlefield.lock.shared_lock()
 		if !target.alive:

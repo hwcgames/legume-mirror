@@ -3,9 +3,9 @@ extends Resource
 class_name BattleAction
 
 ## If this action is run from an item, it will be referenced here.
-var item: Item
+#var item: Item
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: Actor) -> bool:
 	return true
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:

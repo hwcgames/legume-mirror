@@ -10,7 +10,9 @@
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_kkmgx"]
 [ext_resource type="Resource" uid="uid://bn4ryipvfadwe" path="res://database/bullet_pattern/rising-soup.tres" id="7_kkmgx"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="8_g855p"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_i0ppf"]
 [ext_resource type="Resource" uid="uid://c1rmxpjfqspy5" path="res://database/bullet_pattern/searchlight.tres" id="8_s3xtc"]
+[ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="11_i0ppf"]
 
 [sub_resource type="Resource" id="Resource_s3xtc"]
 script = ExtResource("1_ey22i")
@@ -19,11 +21,24 @@ magic = 0
 defense = 2
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
+[sub_resource type="Resource" id="Resource_s8rjy"]
+script = ExtResource("8_i0ppf")
+patterns = Array[ExtResource("3_k4oh0")]([ExtResource("6_41022"), ExtResource("7_kkmgx"), ExtResource("8_s3xtc")])
+planning_priority = 2
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
+
 [sub_resource type="Resource" id="Resource_i0ppf"]
 script = ExtResource("3_41022")
 current_hp = 1000
 max_hp = 1000
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_01fxo"]
+script = ExtResource("11_i0ppf")
+chance = null
+active = null
+stacks = null
+metadata/_custom_type_script = "uid://dio8noar7m7xs"
 
 [sub_resource type="Resource" id="Resource_qbge6"]
 script = ExtResource("8_g855p")
@@ -33,14 +48,16 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_lv0e4")
-name = &"Deliberate Stew"
-description = &"The souperintendent."
-hp = SubResource("Resource_i0ppf")
 sp = SubResource("Resource_qbge6")
-attrs = SubResource("Resource_s3xtc")
-bg_color = Color(0.15604165, 0.043553524, 0.045210116, 1)
-text_color = Color(0.8613351, 0, 0.10442973, 1)
-costume = ExtResource("1_eribs")
 patterns = Array[ExtResource("3_k4oh0")]([ExtResource("6_41022"), ExtResource("7_kkmgx"), ExtResource("8_s3xtc")])
 planning_priority = 2
+name = &"Deliberate Stew"
+description = &"The souperintendent."
+costume = ExtResource("1_eribs")
+bg_color = Color(0.15604165, 0.043553524, 0.045210116, 1)
+text_color = Color(0.8613351, 0, 0.10442973, 1)
+hp = SubResource("Resource_i0ppf")
+attrs = SubResource("Resource_s3xtc")
+rules = Array[ExtResource("6_kkmgx")]([SubResource("Resource_01fxo")])
+enemy_component = SubResource("Resource_s8rjy")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

@@ -5,7 +5,7 @@ class_name Soul
 @export var janky_diagonals: bool = false
 @export var border_margin: float = 8.
 @export var invuln_time: float = 3.
-var players: Array[PartyMember] = []
+var players: Array[Actor] = []
 var device_index: int = -1
 var invuln: bool = false
 

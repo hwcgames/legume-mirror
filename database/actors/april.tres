@@ -1,0 +1,118 @@
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://dayxgj1lp3x74"]
+
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_njymn"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_t6q34"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_gijac"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_evodp"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="3_t6q34"]
+[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_sakq1"]
+[ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_mogjf"]
+[ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_h7sf5"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="7_q4i1a"]
+[ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://battle/rules/strengthen.gd" id="9_ihri7"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="10_ro6hx"]
+[ext_resource type="Script" uid="uid://bdenppbty3kkx" path="res://battle/action/crush.gd" id="11_f0867"]
+[ext_resource type="Script" uid="uid://c0l3me07rdq1c" path="res://battle/action/tricky_attack.gd" id="12_2jfgh"]
+[ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="13_6t26b"]
+[ext_resource type="Script" uid="uid://0ptuca8vba2u" path="res://actor/energy/EnergyDebt.gd" id="14_u7nl8"]
+[ext_resource type="Script" uid="uid://dhh217igyci1m" path="res://battle/rules/overheat.gd" id="15_iopky"]
+
+[sub_resource type="Resource" id="Resource_0l367"]
+script = ExtResource("1_t6q34")
+strength = 7
+magic = 5
+defense = 1
+finesse = 7
+metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_qaff2"]
+script = ExtResource("3_evodp")
+current_hp = 50
+max_hp = 50
+metadata/_custom_type_script = "uid://d3ww7qapcpn35"
+
+[sub_resource type="Resource" id="Resource_guj0j"]
+script = ExtResource("4_sakq1")
+description = "Attack, basically."
+metadata/_custom_type_script = "uid://sqwogqldf52c"
+
+[sub_resource type="Resource" id="Resource_5rrdr"]
+script = ExtResource("9_ihri7")
+stacks = 3
+metadata/_custom_type_script = "uid://b4sfm156ewh04"
+
+[sub_resource type="Resource" id="Resource_my3j5"]
+script = ExtResource("10_ro6hx")
+name = "Pep Talk"
+description = "Give an ally a strengthening speech."
+message = "%s pumped %s up!"
+rfl_message = "%s got pumped up!"
+rules = Array[ExtResource("2_gijac")]([SubResource("Resource_5rrdr")])
+friendly = true
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"
+
+[sub_resource type="Resource" id="Resource_8itmk"]
+script = ExtResource("11_f0867")
+name = "Free Kick"
+description = "Strike, weakening the enemy's defenses."
+cost = 30
+metadata/_custom_type_script = "uid://bdenppbty3kkx"
+
+[sub_resource type="Resource" id="Resource_aysg4"]
+script = ExtResource("12_2jfgh")
+name = "Bullseye"
+description = "Attack using finesse to avoid the target's defenses."
+cost = 30
+metadata/_custom_type_script = "uid://c0l3me07rdq1c"
+
+[sub_resource type="Resource" id="Resource_cwhhc"]
+script = ExtResource("6_h7sf5")
+name = &"Plays"
+description = &"Everybody get up, it\'s time to slam now!"
+spell_list = Array[ExtResource("7_q4i1a")]([SubResource("Resource_my3j5"), SubResource("Resource_8itmk"), SubResource("Resource_aysg4")])
+metadata/_custom_type_script = "uid://j7v5xglggqxp"
+
+[sub_resource type="Resource" id="Resource_3nye4"]
+script = ExtResource("14_u7nl8")
+metadata/_custom_type_script = "uid://0ptuca8vba2u"
+
+[sub_resource type="Resource" id="Resource_l0d81"]
+script = ExtResource("5_mogjf")
+sp = SubResource("Resource_3nye4")
+basic_attack = SubResource("Resource_guj0j")
+skillset = SubResource("Resource_cwhhc")
+metadata/_custom_type_script = "uid://cy8cuowihm45l"
+
+[sub_resource type="Curve" id="Curve_0l367"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.5837439), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_r07ue"]
+_limits = [0.0, 25.0, 0.0, 1.0]
+_data = [Vector2(0.25, 0), 0.0, 0.0, 0, 0, Vector2(0.74234694, 7.389162), 29.931026, 29.931026, 0, 0, Vector2(0.875, 25), 74.961685, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_qaff2"]
+_limits = [1.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.19689108, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_am3re"]
+script = ExtResource("15_iopky")
+strength = SubResource("Curve_qaff2")
+defense = SubResource("Curve_0l367")
+dot = SubResource("Curve_r07ue")
+damage_as_heat = 0.5
+metadata/_custom_type_script = "uid://dhh217igyci1m"
+
+[resource]
+script = ExtResource("3_t6q34")
+name = &"April"
+bg_color = Color(0.19516191, 0.093666546, 0.12472852, 1)
+text_color = Color(0.99999994, 0.78971016, 0.582179, 1)
+id = "april"
+hp = SubResource("Resource_qaff2")
+attrs = SubResource("Resource_0l367")
+rules = Array[ExtResource("2_gijac")]([SubResource("Resource_am3re")])
+party_component = SubResource("Resource_l0d81")
+metadata/_custom_type_script = "uid://cym7pt0vq3ply"

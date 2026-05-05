@@ -3,18 +3,18 @@ class_name Strengthen
 
 @export var amount: int = 3
 
-func priority(fighter: Fighter) -> int:
+func priority(fighter: Actor) -> int:
 	return 1
 
-func top(fighter: Fighter) -> bool:
+func top(fighter: Actor) -> bool:
 	stacks -= 1
 	return true
 
-func done(fighter: Fighter, player_victory: bool) -> bool:
+func done(fighter: Actor, player_victory: bool) -> bool:
 	stacks = 0
 	return true
 
-func compute_attrs(fighter: Fighter, attrs: CombatAttributes) -> bool:
+func compute_attrs(fighter: Actor, attrs: CombatAttributes) -> bool:
 	attrs.strength += amount
 	return true
 
@@ -22,5 +22,5 @@ func merge(other: BattleRule):
 	self.amount = max(self.amount, other.amount)
 	self.stacks += other.stacks
 
-func _added(fighter: Fighter):
+func _added(fighter: Actor):
 	fighter.battlefield.println("%s turn(s) of Strengthen %s." % [stacks, amount])

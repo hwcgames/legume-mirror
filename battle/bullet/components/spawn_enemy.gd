@@ -1,7 +1,7 @@
 extends BulletComponent
 class_name BulletSpawnEnemy
 
-@export var enemy_template: EnemyFactory
+@export var enemy_template: EnemyTable
 @export var chance: float = 0.2
 @export var active: bool = false
 
@@ -10,7 +10,7 @@ func damage(bullet: Bullet, soul: Soul) -> bool:
 		return false
 	if len(bullet.layer.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(bullet.layer.battlefield.enemy_landmarks):
 		return false
-	var enemy: Enemy = Enemy.from_enemy_factory(enemy_template)
+	var enemy: Actor = Actor.from_sheet(enemy_template.roll_enemy())
 	enemy.active = enemy.active && active
 	for i in range(len(bullet.layer.battlefield.enemy_landmarks)):
 		var e = bullet.layer.battlefield.enemies.get(i)

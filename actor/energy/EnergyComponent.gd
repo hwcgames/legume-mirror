@@ -24,7 +24,7 @@ var max: int:
 		_set_max(energy)
 		emit_changed()
 
-var fighter: Fighter
+var fighter: Actor
 
 @export var normal_sp: bool = true
 

@@ -4,7 +4,7 @@ class_name EnergyDebt
 @export var max_debt: int = 100
 @export var debt: int = 0:
 	set(debt):
-		self.debt = debt
+		debt = debt
 		emit_changed()
 
 func _get_max() -> int:

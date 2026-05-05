@@ -13,8 +13,8 @@ var keep_loaded_lock: Locks = Locks.new()
 var loadedness: int = 0
 
 var players_inside: int = 0
-signal player_entered(player: PartyMember)
-signal player_exited(player: PartyMember)
+signal player_entered(player: Actor)
+signal player_exited(player: Actor)
 
 func _ready():
 	keep_loaded_lock.shared_take.connect(update_loading)

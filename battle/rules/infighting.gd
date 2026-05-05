@@ -1,18 +1,18 @@
 extends BattleRule
 class_name RuleInfighting
 
-func top(fighter: Fighter) -> bool:
+func top(fighter: Actor) -> bool:
 	stacks -= 1
 	return true
 
-func done(fighter: Fighter, player_victory: bool) -> bool:
+func done(fighter: Actor, player_victory: bool) -> bool:
 	stacks = 0
 	return true
 
-func _added(fighter: Fighter):
+func _added(fighter: Actor):
 	fighter.battlefield.println("%s infights for %s turns." % [fighter.name, stacks])
 
-func player_action(fighter: Fighter) -> bool:
+func player_action(fighter: Actor) -> bool:
 	(func():
 		fighter.turns = 1
 		var self_lock = await fighter.lock.exclusive_lock()
@@ -26,7 +26,7 @@ func player_action(fighter: Fighter) -> bool:
 		if targets.is_empty():
 			self_lock.call()
 			return false
-		var target: PartyMember = targets[randi_range(0, len(targets) - 1)]
+		var target: Actor = targets[randi_range(0, len(targets) - 1)]
 		var target_lock = await target.lock.exclusive_lock() if target != fighter else func(): pass
 		var mode: ActorModeApproach
 		if target != fighter:

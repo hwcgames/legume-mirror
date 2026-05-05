@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="4_cdmto"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_mr7m4"]
 [ext_resource type="Resource" uid="uid://cfltkohl43xxx" path="res://database/bullet_pattern/telegraph-scissor.tres" id="6_j5k76"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_sl7u1"]
 [ext_resource type="Resource" uid="uid://dmtgu5lxickp" path="res://database/bullet_pattern/ninjastars.tres" id="7_ukk52"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_vcf8e"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="9_l2kb8"]
@@ -18,6 +19,11 @@ magic = 0
 defense = 2
 finesse = 12
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_6uau0"]
+script = ExtResource("7_sl7u1")
+patterns = Array[ExtResource("5_mr7m4")]([ExtResource("6_j5k76"), ExtResource("7_ukk52")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_quu2w"]
 resource_local_to_scene = true
@@ -33,11 +39,12 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("9_l2kb8")
-name = &"Apprentice Blade"
-description = &"An educational cutting-tool"
-hp = SubResource("Resource_quu2w")
 sp = SubResource("Resource_4d8v0")
-attrs = SubResource("Resource_8w4iy")
-costume = ExtResource("2_sl7u1")
 patterns = Array[ExtResource("5_mr7m4")]([ExtResource("6_j5k76"), ExtResource("7_ukk52")])
+name = &"Apprentice Blade"
+costume = ExtResource("2_sl7u1")
+id = "apprenticeblade"
+hp = SubResource("Resource_quu2w")
+attrs = SubResource("Resource_8w4iy")
+enemy_component = SubResource("Resource_6uau0")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

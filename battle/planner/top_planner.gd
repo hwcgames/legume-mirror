@@ -2,7 +2,7 @@ extends BattlePlanner
 class_name TopPlanner
 
 class BattleActionFinish extends BattleActionPlan:
-	func go(_party_member: PartyMember):
+	func go(_party_member: Actor):
 		return
 
 func choose() -> BattleActionPlan:
@@ -17,16 +17,16 @@ func choose() -> BattleActionPlan:
 func populate_skillset_button():
 	for child in %SkillsetParent.get_children():
 		child.queue_free()
-	var button := party_member.skillset.button(party_member)
+	var button := party_member.sheet.party_component.skillset.button(party_member)
 	button.pressed.connect(skillset)
 	%SkillsetParent.add_child(button)
 
 func show_toplevel():
 	%ToplevelTab.show()
 
-signal chosen_target(enemy: Enemy)
+signal chosen_target(enemy: Actor)
 
-func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
+func pick_target(predicate: Callable = func(e: Actor): return e.alive) -> Actor:
 	var prev_tab = %TabContainer.current_tab
 	var selector = %TargetMenuParent
 	for child in selector.get_children():
@@ -39,7 +39,7 @@ func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
 	for enemy in enemies:
 		var button := Button.new()
 		button.text = enemy.human_name
-		button.tooltip_text = enemy.enemy_sheet.description
+		button.tooltip_text = enemy.sheet.description
 		button.pressed.connect(chosen_target.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()
@@ -48,9 +48,9 @@ func pick_target(predicate: Callable = func(e: Enemy): return e.alive) -> Enemy:
 		%TabContainer.current_tab = prev_tab
 	return target
 
-signal chosen_ally(ally: PartyMember)
+signal chosen_ally(ally: Actor)
 
-func pick_ally(predicate: Callable = func(p: PartyMember): return true) -> PartyMember:
+func pick_ally(predicate: Callable = func(p: Actor): return true) -> Actor:
 	var prev_tab = %TabContainer.current_tab
 	var selector = %TargetMenuParent
 	for child in selector.get_children():
@@ -104,33 +104,33 @@ func _ready():
 	%IdleTab.show()
 	%Name.text = party_member.human_name
 	%Name.add_theme_color_override("font_color", party_member.text_color)
-	%ColorBg.color = party_member.character_sheet.bg_color
-	%HPBar.value = party_member.hp
-	%HPBar.min_value = party_member.sp_component.min
-	%HPBar.max_value = party_member.sp_component.max
-	%SPBar.min_value = party_member.sp_component.min
-	%SPBar.max_value = party_member.sp_component.max
-	%SPBar.value = party_member.sp
+	%ColorBg.color = party_member.sheet.bg_color
+	%HPBar.min_value = party_member.sheet.hp.min
+	%HPBar.max_value = party_member.sheet.hp.max
+	%HPBar.value = party_member.sheet.hp.hp
+	%SPBar.min_value = party_member.sheet.party_component.sp.min
+	%SPBar.max_value = party_member.sheet.party_component.sp.max
+	%SPBar.value = party_member.sheet.party_component.sp.sp
 
 var hp: int = 0
 var sp: int = 0
 
 func _process(delta: float) -> void:
 	update_bars()
-	if choosing and not battlefield.enemies.any(func(e: Enemy): return e.active and e.alive):
+	if choosing and not battlefield.enemies.any(func(e: Actor): return e.sheet.enemy_component.active and e.alive):
 		choice.emit(BattleActionFinish.new())
 
 func update_bars():
-	%HPBar.min_value = party_member.hp_component.min
-	%HPBar.max_value = party_member.hp_component.max
-	%SPBar.min_value = party_member.sp_component.min
-	%SPBar.max_value = party_member.sp_component.max
-	if party_member.hp != hp:
-		hp = party_member.hp
-		create_tween().tween_property(%HPBar, "value", party_member.hp, 0.5)
-	if party_member.sp != sp:
-		sp = party_member.sp
-		create_tween().tween_property(%SPBar, "value", party_member.sp, 0.5)
+	%HPBar.min_value = party_member.sheet.hp.min
+	%HPBar.max_value = party_member.sheet.hp.max
+	%SPBar.min_value = party_member.sheet.party_component.sp.min
+	%SPBar.max_value = party_member.sheet.party_component.sp.max
+	if party_member.sheet.hp.hp != hp:
+		hp = party_member.sheet.hp.hp
+		create_tween().tween_property(%HPBar, "value", party_member.sheet.hp.hp, 0.5)
+	if party_member.sheet.party_component.sp.sp != sp:
+		sp = party_member.sheet.party_component.sp.sp
+		create_tween().tween_property(%SPBar, "value", party_member.sheet.party_component.sp.sp, 0.5)
 
 signal chosen_item(Item)
 
@@ -172,7 +172,7 @@ func pockets():
 
 signal chosen_parley(parley: ParleyAction)
 
-func pick_parley(enemy: Enemy, predicate = func(i: ParleyAction): return true):
+func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 	var p_lock = await battlefield.parley_lock.exclusive_lock()
 	var prev_tab = %TabContainer.current_tab
 	var selector = %ParleyParent
@@ -204,7 +204,7 @@ func pick_parley(enemy: Enemy, predicate = func(i: ParleyAction): return true):
 	return parley
 
 func parley():
-	var enemy: Enemy = await pick_target()
+	var enemy: Actor = await pick_target()
 	if enemy == null:
 		choice.emit(null)
 		return
@@ -216,7 +216,7 @@ func parley():
 	choice.emit(plan)
 
 func skillset():
-	var skillset_planner = party_member.skillset.subplanner(party_member)
+	var skillset_planner = party_member.sheet.party_component.skillset.subplanner(party_member)
 	skillset_planner.battle_planner = self
 	skillset_planner.party_member = party_member
 	for child in %SkillsetTab.get_children():

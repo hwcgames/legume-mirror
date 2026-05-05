@@ -3,7 +3,7 @@ class_name BulletPatternLayer
 
 var battlefield: Battlefield
 @export var duration: float = 10.0
-@export var enemy: Enemy
+@export var enemy: Actor
 
 signal done
 

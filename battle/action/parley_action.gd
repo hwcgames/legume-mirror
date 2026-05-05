@@ -2,13 +2,13 @@
 extends BattleAction
 class_name ParleyAction
 
-var enemy: Enemy
+var enemy: Actor
 
 @abstract func label() -> String
 
 func description() -> String:
 	return "Its effect is a mystery."
 
-@abstract func allowed(party_member: PartyMember) -> bool
+@abstract func allowed(party_member: Actor) -> bool
 
-@abstract func display(party_member: PartyMember) -> bool
+@abstract func display(party_member: Actor) -> bool

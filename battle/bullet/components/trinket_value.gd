@@ -1,7 +1,7 @@
 extends BulletComponent
 class_name BulletTrinketValue
 
-var pm: PartyMember
+var pm: Actor
 @export var value: int = 10
 
 func damage(bullet: Bullet, soul: Soul) -> bool:

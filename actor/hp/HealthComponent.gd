@@ -40,7 +40,7 @@ var min: int:
 		_set_min(health)
 		emit_changed()
 
-var fighter: Fighter
+var fighter: Actor
 
 @abstract
 func _get_health() -> int

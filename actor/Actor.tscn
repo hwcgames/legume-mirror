@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dkkwsmv06k637" path="res://actor/actor.gd" id="1_0oyms"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_fe22u"]
 [ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="3_fe22u"]
+[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="4_a26hr"]
+[ext_resource type="Script" uid="uid://b3xvhtutqyk8e" path="res://story/PlayerInteractor.gd" id="5_g8ksh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
 radial_segments = 8
@@ -35,6 +37,16 @@ top_radius = 0.25
 bottom_radius = 0.0
 height = 0.5
 radial_segments = 4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f68vj"]
+height = 1.5999999
+
+[sub_resource type="GDScript" id="GDScript_g8ksh"]
+script/source = "extends Node3D
+
+func _process(delta: float) -> void:
+	global_transform = get_parent().head.global_transform if get_parent().head else get_parent().global_transform
+"
 
 [node name="Actor" type="CharacterBody3D" unique_id=158145810 node_paths=PackedStringArray("costume", "interactable") groups=["actor"]]
 collision_layer = 2
@@ -81,3 +93,60 @@ debug_fill = false
 [node name="InteractArrow" type="MeshInstance3D" parent="." unique_id=695287789]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
 mesh = SubResource("CylinderMesh_a26hr")
+
+[node name="SkillChallengeAnchor" type="Node3D" parent="." unique_id=1796656717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SkillChallengeParent" type="CanvasLayer" parent="SkillChallengeAnchor" unique_id=1010485753]
+unique_name_in_owner = true
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="SkillChallengeAnchor/SkillChallengeParent" unique_id=1493177911]
+script = ExtResource("4_a26hr")
+
+[node name="PlayerInteractionZone" type="Area3D" parent="." unique_id=417986866]
+script = ExtResource("5_g8ksh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerInteractionZone" unique_id=1846608423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79999995, 0)
+shape = SubResource("CylinderShape3D_f68vj")
+debug_color = Color(0, 0.6462937, 0.24779516, 0.41960785)
+debug_fill = false
+
+[node name="TelegraphHandle" type="Node3D" parent="." unique_id=1959902318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+script = SubResource("GDScript_g8ksh")
+
+[node name="Telegraph" type="CanvasLayer" parent="TelegraphHandle" unique_id=1122922936]
+unique_name_in_owner = true
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="TelegraphHandle/Telegraph" unique_id=176055503]
+script = ExtResource("4_a26hr")
+metadata/_custom_type_script = "uid://lcn3o02vtkmm"
+
+[node name="PanelContainer" type="PanelContainer" parent="TelegraphHandle/Telegraph" unique_id=162479273]
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=289481361]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TelegraphHandle/Telegraph/PanelContainer/Control" unique_id=278583730]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TelegraphParent" type="MarginContainer" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=1509515961]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8

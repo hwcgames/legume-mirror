@@ -17,7 +17,7 @@ func _pressed():
 		#%ToplevelTab.show()
 		#return
 	#planner._choice.emit(planner.party_member.basic_attack.bind(target))
-	planner.choice.emit(await planner.party_member.basic_attack.plan(planner))
+	planner.choice.emit(await planner.party_member.sheet.party_component.basic_attack.plan(planner))
 "
 
 [sub_resource type="GDScript" id="GDScript_v6vg7"]

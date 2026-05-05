@@ -37,8 +37,11 @@ enum PATTERN_CATEGORY {
 ## Telegraph scene that should appear
 @export var telegraph_scene: PackedScene = preload("res://battle/telegraph/null_telegraph.tscn")
 
-func create(battlefield: Battlefield, enemy: Enemy) -> Control:
+func create(battlefield: Battlefield, enemy: Actor) -> Control:
 	var pattern: BulletPatternLayer = pattern_scene.instantiate()
 	pattern.battlefield = battlefield
 	pattern.enemy = enemy
 	return pattern
+
+func copy() -> BulletPattern:
+	return self.duplicate()

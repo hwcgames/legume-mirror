@@ -7,7 +7,7 @@ class_name SaveFile
 @export var timestamp: Dictionary
 
 @export var party: Array[StringName] = []
-@export var character_sheets: Dictionary[StringName, CharacterSheet] = {}
+@export var character_sheets: Dictionary[StringName, ActorSheet] = {}
 
 @export var flags: Dictionary[StringName, bool] = {}
 @export var counters: Dictionary[StringName, int] = {}
@@ -16,10 +16,10 @@ class_name SaveFile
 @export var treadmill_allowed_themes: Array[StringName] = []
 @export var map_state: MapState
 
-func get_character_sheet(name: String) -> CharacterSheet:
+func get_character_sheet(name: String) -> ActorSheet:
 	if name in character_sheets:
 		return character_sheets[name]
-	var sheet: CharacterSheet = load("res://database/party_members/%s.tres" % name)
+	var sheet: ActorSheet = load("res://database/actors/%s.tres" % name)
 	return sheet
 
 func copy() -> SaveFile:

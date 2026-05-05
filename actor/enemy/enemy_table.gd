@@ -1,13 +1,13 @@
-extends EnemyFactory
+extends Resource
 class_name EnemyTable
 
-@export var table: Array[EnemyFactory] = []
+@export var table: Dictionary[ActorSheet, float] = {}
 
 func roll_enemy() -> EnemySheet:
-	var total = table.map(func(e): return e.weight).reduce(func(a,b): return a+b)
+	var total = table.values().reduce(func(a,b): return a+b)
 	var value = randf_range(0, total)
-	for enemy in table:
-		value -= enemy.weight
+	for enemy in table.keys():
+		value -= table[enemy]
 		if value <= 0:
-			return enemy.roll_enemy()
+			return enemy
 	return null

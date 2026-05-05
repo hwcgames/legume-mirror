@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="4_lat20"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_unni0"]
 [ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="6_kjfbe"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_7xaeo"]
 [ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="7_ijfg1"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_th7am"]
 [ext_resource type="Script" uid="uid://be5khkexb637k" path="res://battle/rules/haste.gd" id="9_yhady"]
@@ -19,6 +20,11 @@ magic = 0
 defense = 3
 finesse = 11
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_n3r55"]
+script = ExtResource("7_7xaeo")
+patterns = Array[ExtResource("5_unni0")]([ExtResource("6_kjfbe"), ExtResource("7_ijfg1")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_uey5t"]
 script = ExtResource("3_n3r55")
@@ -38,12 +44,13 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("10_i4p77")
+sp = SubResource("Resource_0q77f")
+patterns = Array[ExtResource("5_unni0")]([ExtResource("6_kjfbe"), ExtResource("7_ijfg1")])
 name = &"Furious Homeworker"
 description = &"A perturbed servant."
+costume = ExtResource("2_7xaeo")
 hp = SubResource("Resource_uey5t")
-sp = SubResource("Resource_0q77f")
 attrs = SubResource("Resource_oiphp")
 rules = Array[ExtResource("8_th7am")]([SubResource("Resource_e7mn6")])
-costume = ExtResource("2_7xaeo")
-patterns = Array[ExtResource("5_unni0")]([ExtResource("6_kjfbe"), ExtResource("7_ijfg1")])
+enemy_component = SubResource("Resource_n3r55")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

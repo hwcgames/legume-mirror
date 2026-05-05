@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="4_76jwu"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lobln"]
 [ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="5_rpyj7"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_g1f4y"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_7xxnn"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_7xxnn"]
 
@@ -18,6 +19,11 @@ magic = 0
 defense = 1
 finesse = 8
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_jnryj"]
+script = ExtResource("7_g1f4y")
+patterns = Array[ExtResource("3_rpyj7")]([ExtResource("4_76jwu"), ExtResource("5_rpyj7")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_uey5t"]
 script = ExtResource("3_m53xm")
@@ -32,11 +38,11 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_lobln")
-name = &"Homeworker"
-description = &"A mathemaidical worksheet."
-hp = SubResource("Resource_uey5t")
 sp = SubResource("Resource_0q77f")
-attrs = SubResource("Resource_l46bt")
-costume = ExtResource("1_ucycd")
 patterns = Array[ExtResource("3_rpyj7")]([ExtResource("4_76jwu"), ExtResource("5_rpyj7")])
+name = &"Homeworker"
+costume = ExtResource("1_ucycd")
+hp = SubResource("Resource_uey5t")
+attrs = SubResource("Resource_l46bt")
+enemy_component = SubResource("Resource_jnryj")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

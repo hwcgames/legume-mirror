@@ -1,7 +1,7 @@
 extends BulletPatternLayer
 class_name TrinketsOnFieldLayer
 
-@export var pm: PartyMember
+@export var pm: Actor
 @export var value_per_trinket: int = 10
 @export var trinket_scene: PackedScene = preload("uid://d4jcm0io4gafo")
 

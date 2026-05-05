@@ -23,7 +23,7 @@ enum STORY_STATE {
 	CHOOSING,
 }
 
-var leader: PartyMember:
+var leader: Actor:
 	get:
 		return Actor.find(Storyteller.story.FetchVariable("leader"))
 		
@@ -210,18 +210,18 @@ func cmd_despawn_actor(id: String):
 	var actor = Actor.find(id)
 	actor.queue_free()
 
-var party_stack: Array[PartyMember] = []
+var party_stack: Array[Actor] = []
 
 func cmd_spawn_party(landmark_name: String):
 	printerr("Stub story operation!")
 	var leader: String = story.FetchVariable("leader")
-	var leader_pm = PartyMember.find(leader)
+	var leader_pm = Actor.find(leader)
 	var landmark = Landmark.find(landmark_name)
 	if leader_pm != null:
 		leader_pm.global_transform = landmark.global_transform
 		return
 	var leader_sheet = Saver.current_save.get_character_sheet(leader)
-	leader_pm = PartyMember.from_character_sheet(leader_sheet)
+	leader_pm = Actor.from_sheet(leader_sheet)
 	leader_pm.add_to_group("party_leader")
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
@@ -243,25 +243,25 @@ func cmd_spawn_party(landmark_name: String):
 		#get_tree().current_scene.add_child(party_member)
 
 func cmd_spawn_party_member(id: String, landmark_name: String):
-	var pm = PartyMember.find(id)
+	var pm = Actor.find(id)
 	var landmark = Landmark.find(landmark_name)
 	if pm != null:
 		pm.global_transform = landmark.global_transform
 		return
 	var pm_sheet = Saver.current_save.get_character_sheet(id)
-	pm = PartyMember.from_character_sheet(pm_sheet)
+	pm = Actor.from_sheet(pm_sheet)
 	get_tree().current_scene.add_child(pm)
 	pm.global_transform = landmark.global_transform
 
 func cmd_add_party_member(id: String, landmark_name: String):
-	var pm = PartyMember.find(id)
+	var pm = Actor.find(id)
 	var landmark = Landmark.find(landmark_name)
 	if pm != null and not pm.mode_stack.any(func(m): return m is ActorModeFollow):
 		pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
 		party_stack.push_back(pm)
 		return
 	var pm_sheet = Saver.current_save.get_character_sheet(id)
-	pm = PartyMember.from_character_sheet(pm_sheet)
+	pm = Actor.from_sheet(pm_sheet)
 	get_tree().current_scene.add_child(pm)
 	pm.global_transform = landmark.global_transform
 	pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
@@ -277,8 +277,8 @@ func cmd_heal_party():
 
 func cmd_spawn_enemy(id: String, name: String, landmark_name: String):
 	var landmark = Landmark.find(landmark_name)
-	var enemy_factory: EnemyFactory = load("res://database/enemy/%s.tres" % id);
-	var enemy: Enemy = Enemy.from_enemy_factory(enemy_factory)
+	var enemy_factory: ActorSheet = load("res://database/enemy/%s.tres" % id);
+	var enemy: Actor = Actor.from_sheet(enemy_factory)
 	get_tree().current_scene.add_child(enemy)
 	enemy.global_transform = landmark.global_transform
 	enemy.name = name
@@ -381,15 +381,15 @@ func cmd_start_battle():
 	var battlefield: Battlefield = Battlefield.find()
 	battlefield.battle()
 
-func cmd_join_battle(actor_name: String):
+func cmd_join_battle(actor_name: String, as_enemy: bool = false):
 	var actor: Actor = Actor.find(actor_name)
 	if not actor:
 		return
 	var battlefield: Battlefield = Battlefield.find()
-	if actor is PartyMember:
-		battlefield.players.push_back(actor)
-	elif actor is Enemy:
+	if as_enemy:
 		battlefield.enemies.push_back(actor)
+	else:
+		battlefield.players.push_back(actor)
 
 static var battlefield_lock
 
@@ -409,7 +409,7 @@ func cmd_free_battlefield():
 	battlefield_lock = null
 
 func cmd_enemy_state(enemy_name: String, state: int):
-	var enemy: Enemy = Enemy.find(enemy_name)
+	var enemy: Actor = Actor.find(enemy_name)
 	if not enemy:
 		return
 	enemy.state = state

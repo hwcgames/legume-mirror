@@ -15,8 +15,8 @@ var retreat_time: float
 func _init(actor: Actor,
 	target: Actor,
 	relative_pos: Vector3 = Vector3.FORWARD * 2,
-	return_pos: Vector3 = actor.home_landmark.global_position if actor is Fighter else actor.global_position,
-	return_rotation: Vector3 = actor.home_landmark.global_rotation if actor is Fighter else actor.global_rotation,
+	return_pos: Vector3 = actor.home_landmark.global_position if is_instance_valid(actor.home_landmark) else actor.global_position,
+	return_rotation: Vector3 = actor.home_landmark.global_rotation if is_instance_valid(actor.home_landmark) else actor.global_rotation,
 	approach_time: float = 0.5,
 	retreat_time: float = approach_time) -> void:
 	self.target = target

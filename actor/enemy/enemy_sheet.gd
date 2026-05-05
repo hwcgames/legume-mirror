@@ -1,17 +1,8 @@
-extends EnemyFactory
+extends ActorSheet
 class_name EnemySheet
 
-@export var name: StringName = "Enemy"
-@export var description: StringName = "A nefarious something-or-other."
-@export var hp: HealthComponent
 @export var sp: EnergyComponent
-@export var attrs: CombatAttributes = CombatAttributes.new()
-@export var rules: Array[BattleRule] = []
-@export var bg_color: Color = Color.BLACK
-@export var text_color: Color = Color.WHITE
 @export var active: bool = true
-
-@export var costume: PackedScene = preload("uid://c4r2ey7i7ooq3")
 
 @export var patterns: Array[BulletPattern] = []
 @export var planning_priority: int
@@ -19,3 +10,8 @@ class_name EnemySheet
 
 func roll_enemy() -> EnemySheet:
 	return self
+
+func _join_battle(enemy: Actor, battlefield: Battlefield):
+	enemy.home_landmark = battlefield.enemy_landmarks[battlefield.enemies.find(enemy)]
+	enemy.global_position = enemy.home_landmark.global_position
+	enemy.global_rotation = enemy.home_landmark.global_rotation
