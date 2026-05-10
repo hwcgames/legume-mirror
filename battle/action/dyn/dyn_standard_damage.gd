@@ -3,6 +3,7 @@ class_name StepStandardDamage
 
 @export var target_register = "target"
 @export var skill_register = "skill"
+@export var damage_register = "damage"
 @export var crit_chance_mul: float = 1.0
 @export var crit_mul := 2.0
 
@@ -30,6 +31,7 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 			Storyteller.choose_if_available(["%s hits" % them.name, "party hit"])
 		them.battlefield.println("%s damage!" % [damage])
 		target.take_damage(damage)
+	registers[damage_register] = damage
 	return false
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):

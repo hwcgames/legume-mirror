@@ -1,13 +1,18 @@
 [gd_resource type="Resource" script_class="EnemyTable" format=3 uid="uid://dg71f6dsowatf"]
 
 [ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="1_ivt4x"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_xo0i8"]
-[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="3_6y1qb"]
-[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="4_po8i4"]
-[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="5_0yhr3"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="6_c8qsq"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_6y1qb"]
+[ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="3_po8i4"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="4_0yhr3"]
+[ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="5_c8qsq"]
+[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="6_6y1qb"]
 
 [resource]
 script = ExtResource("1_ivt4x")
-table = Array[ExtResource("2_xo0i8")]([ExtResource("3_6y1qb"), ExtResource("4_po8i4"), ExtResource("5_0yhr3"), ExtResource("6_c8qsq")])
+table = Dictionary[ExtResource("2_6y1qb"), float]({
+ExtResource("3_po8i4"): 1.0,
+ExtResource("4_0yhr3"): 1.0,
+ExtResource("5_c8qsq"): 1.0,
+ExtResource("6_6y1qb"): 1.0
+})
 metadata/_custom_type_script = "uid://dtfmjcw2d4wby"

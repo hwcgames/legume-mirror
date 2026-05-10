@@ -1,8 +1,8 @@
 extends DynActionStep
-class_name StepFieldLock
+class_name StepTrinkets
 
-@export var exclusive: bool = false
-@export var register_name: StringName = "field_lock"
+@export var damage_register_name: String = "damage"
+@export var trinkets_amount: float = 1.0
 
 func check(them: Actor) -> bool:
 	return true
@@ -11,11 +11,9 @@ func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	if exclusive:
-		registers[register_name] = await battlefield.lock.exclusive_lock()
-	else:
-		registers[register_name] = await battlefield.lock.shared_lock()
 	return false
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
-	(registers[register_name] as Callable).call()
+	var damage = registers[damage_register_name]
+	(them.sheet.party_component.sp as TrinketsPool).trinkets_on_field += damage * trinkets_amount
+	print((them.sheet.party_component.sp as TrinketsPool).trinkets_on_field)

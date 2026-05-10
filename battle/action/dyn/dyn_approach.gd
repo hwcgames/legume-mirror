@@ -11,7 +11,7 @@ func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	var mode = ActorModeApproach.new(them, Actor.find(registers[target_register_name]))
+	var mode = ActorModeApproach.new(them, registers[target_register_name])
 	registers[mode_register_name] = mode
 	await them.push_mode(mode)
 	return false

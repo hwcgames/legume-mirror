@@ -26,7 +26,7 @@ var turns: int = 0
 var player: int = 0
 var skill_challenge: SkillChallenge
 var battle_planner: BattlePlanner
-var home_landmark: Landmark
+var home_landmark: Marker3D
 var device_index:
 	get:
 		return PlayerManager.get_player_device(player)
@@ -131,7 +131,7 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	battle.done.connect(done)
 	battle.done.connect(func(_w): battle_idle.finished = true)
 	push_mode(battle_idle)
-	if as_enemy:
+	if as_enemy or not is_instance_valid(sheet.party_component):
 		battle_component = sheet.enemy_component
 		await sheet.enemy_component._join_battle(self, battlefield)
 	else:
@@ -195,8 +195,10 @@ static func find(actor_name: StringName) -> Actor:
 
 static func from_sheet(sheet: ActorSheet) -> Actor:
 	var a: Actor = preload("uid://dsmw0etg767jy").instantiate();
-	
-	a.sheet = sheet
+	if sheet.saved:
+		a.sheet = sheet
+	else:
+		a.sheet = sheet.copy()
 	if is_instance_valid(sheet.enemy_component):
 		a.sheet.enemy_component = sheet.enemy_component.copy()
 	var existing = Actor.find(sheet.id)

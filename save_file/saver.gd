@@ -5,27 +5,39 @@ var current_save: SaveFile:
 	get:
 		if current_save == null:
 			current_save = parent_save.copy()
+			current_save.parent_save_idx = parent_save.index
 		return current_save
 
+const path_template = "user://saves/%08d.save.tres"
+
+signal pre_save(file: SaveFile)
+
 func save(in_place: bool = false):
+	# Ask everyone to populate the save...
+	pre_save.emit(current_save)
+	# Ensure the existence of the saves directory.
 	DirAccess.make_dir_absolute("user://saves")
-	const path_template = "user://saves/%s.save.res"
-	if parent_save.resource_path == "":
-		while FileAccess.file_exists(path_template % parent_save.index):
-			parent_save.index += 1
-		parent_save.take_over_path(path_template % parent_save.index)
-	if in_place:
-		current_save.parent_save = parent_save.parent_save
+	# If this is an in-place save, and the parent save is a user save...
+	if in_place and parent_save.resource_path.begins_with("user://"):
+		# Overwrite the parent save.
 		current_save.take_over_path(parent_save.resource_path)
-	else:
-		current_save.parent_save = parent_save
-		while FileAccess.file_exists(path_template % current_save.index):
-			current_save.index += 1
-		current_save.take_over_path(path_template % current_save.index)
-	current_save.timestamp = Time.get_datetime_dict_from_system(true)
+		current_save.index = parent_save.index
+		ResourceSaver.save(current_save)
+		parent_save = current_save
+		current_save = null
+		return
+	# Find the smallest free save index
+	var index = current_save.index
+	while FileAccess.file_exists(path_template % index):
+		index += 1
+	current_save.index = index
+	current_save.take_over_path(path_template % index)
+	ResourceSaver.save(current_save)
 	parent_save = current_save
 	current_save = null
-	ResourceSaver.save(parent_save)
+
+signal post_load(file: SaveFile)
 
 func load(save: SaveFile):
 	parent_save = save
+	post_load.emit(save)

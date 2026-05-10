@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="1_q5xry"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_7okad"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_8fas8"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_c0535"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_wqnap"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
 [ext_resource type="Resource" uid="uid://b6maj2efm4jj8" path="res://database/bullet_pattern/rumors.tres" id="6_c0535"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_ya0mn"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_ya0mn"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_engos"]
 
@@ -16,6 +18,11 @@ strength = 0
 magic = 0
 finesse = 3
 metadata/_custom_type_script = "uid://cj535ewb28j4v"
+
+[sub_resource type="Resource" id="Resource_engos"]
+script = ExtResource("6_ya0mn")
+patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
+metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_iv080"]
 script = ExtResource("3_8fas8")
@@ -30,11 +37,13 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 
 [resource]
 script = ExtResource("4_y2wmh")
+sp = SubResource("Resource_5xipf")
+patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
 name = &"Sharp Missive"
 description = &"A lie can make it half way around the world before the truth has time to put its boots on. "
-hp = SubResource("Resource_iv080")
-sp = SubResource("Resource_5xipf")
-attrs = SubResource("Resource_hnf34")
 costume = ExtResource("1_q5xry")
-patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
+id = "sharpmissive"
+hp = SubResource("Resource_iv080")
+attrs = SubResource("Resource_hnf34")
+enemy_component = SubResource("Resource_engos")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

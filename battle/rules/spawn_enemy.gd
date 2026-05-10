@@ -11,7 +11,7 @@ func top(fighter: Actor) -> bool:
 	if len(fighter.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(fighter.battlefield.enemy_landmarks):
 		return true
 	var enemy: Actor = Actor.from_sheet(enemy_template.roll_enemy())
-	enemy.active = enemy.active && active && (fighter.sheet.enemy_component.active if is_instance_valid(fighter.sheet.enemy_component) else true)
+	enemy.sheet.enemy_component.active = enemy.sheet.enemy_component.active && active && (fighter.sheet.enemy_component.active if is_instance_valid(fighter.sheet.enemy_component) else true)
 	for i in range(len(fighter.battlefield.enemy_landmarks)):
 		var e = fighter.battlefield.enemies.get(i)
 		if (not is_instance_valid(e)) or (not e.alive):
@@ -22,5 +22,5 @@ func top(fighter: Actor) -> bool:
 			fighter.battlefield.enemies[i] = enemy
 			break
 	fighter.battlefield.add_child(enemy)
-	enemy.join_battle(fighter.battlefield)
+	enemy.join_battle(fighter.battlefield, true)
 	return true

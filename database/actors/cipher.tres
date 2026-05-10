@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_4478x"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_1ysgf"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_tt8pp"]
-[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_8218h"]
+[ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_4478x"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_o6fow"]
 [ext_resource type="Script" uid="uid://e3ovybh1pk5c" path="res://battle/skillset/unskilled.gd" id="6_1tqmt"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="7_kmrl6"]
@@ -24,13 +24,6 @@ current_hp = 75
 max_hp = 75
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_nepxs"]
-script = ExtResource("4_8218h")
-description = "Basically, attack."
-damage_mul = 1.3
-crit_mul = 4.0
-metadata/_custom_type_script = "uid://sqwogqldf52c"
-
 [sub_resource type="Resource" id="Resource_b3bsw"]
 script = ExtResource("6_1tqmt")
 metadata/_custom_type_script = "uid://e3ovybh1pk5c"
@@ -45,7 +38,7 @@ metadata/_custom_type_script = "uid://88n3ix5h5r4a"
 script = ExtResource("5_o6fow")
 sp = SubResource("Resource_kurc4")
 skill_challenge_scene = "res://battle/skill_challenge/basic_skill_challenge.tscn"
-basic_attack = SubResource("Resource_nepxs")
+basic_attack = ExtResource("4_4478x")
 skillset = SubResource("Resource_b3bsw")
 metadata/_custom_type_script = "uid://cy8cuowihm45l"
 
@@ -56,5 +49,6 @@ bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 id = "cipher"
 hp = SubResource("Resource_nyaq4")
 attrs = SubResource("Resource_bmh8q")
+saved = true
 party_component = SubResource("Resource_6as1a")
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

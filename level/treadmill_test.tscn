@@ -80,6 +80,30 @@ func _process(_d):
 	set_process(false)
 "
 
+[sub_resource type="GDScript" id="GDScript_dx04o"]
+script/source = "extends Button
+
+func _on_spin_box_value_changed(value: float) -> void:
+	save_idx = value
+	pass # Replace with function body.
+
+var save_idx: int:
+	set(idx):
+		save_idx = idx
+		update_button()
+
+func ready():
+	update_button()
+
+func update_button():
+	var path = Saver.path_template % save_idx
+	disabled = not FileAccess.file_exists(path)
+
+func _pressed() -> void:
+	var save: SaveFile = load(Saver.path_template % save_idx)
+	Saver.load(save)
+"
+
 [node name="Node3D" type="Node3D" unique_id=1942801477]
 
 [node name="DungeonMap" type="Node" parent="." unique_id=1087382368 node_paths=PackedStringArray("treadmill")]
@@ -168,4 +192,21 @@ autowrap_mode = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2070832867]
 unique_name_in_owner = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1452452785]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1644214184]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="SpinBox" type="SpinBox" parent="CanvasLayer/HBoxContainer" unique_id=728891309]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer" unique_id=115125580]
+layout_mode = 2
+text = "Load save?"
+script = SubResource("GDScript_dx04o")
+
 [connection signal="pressed" from="DungeonMap/Button" to="DungeonMap" method="generate_map"]
+[connection signal="value_changed" from="CanvasLayer/HBoxContainer/SpinBox" to="CanvasLayer/HBoxContainer/Button" method="_on_spin_box_value_changed"]

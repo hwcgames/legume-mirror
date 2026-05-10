@@ -10,9 +10,8 @@ class_name PartyComponent
 
 func copy() -> PartyComponent:
 	var new = self.duplicate()
+	new.sp = sp.duplicate()
 	new.skillset = self.skillset.duplicate()
-	new.basic_attack = self.basic_attack.duplicate()
-	new.attrs = self.attrs.duplicate()
 	return new
 
 func _join_battle(actor: Actor, _battle: Battlefield):

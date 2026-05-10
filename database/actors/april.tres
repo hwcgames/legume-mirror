@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_gijac"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_evodp"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="3_t6q34"]
-[ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_sakq1"]
+[ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_sakq1"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_mogjf"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_h7sf5"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="7_q4i1a"]
@@ -30,11 +30,6 @@ script = ExtResource("3_evodp")
 current_hp = 50
 max_hp = 50
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
-
-[sub_resource type="Resource" id="Resource_guj0j"]
-script = ExtResource("4_sakq1")
-description = "Attack, basically."
-metadata/_custom_type_script = "uid://sqwogqldf52c"
 
 [sub_resource type="Resource" id="Resource_5rrdr"]
 script = ExtResource("9_ihri7")
@@ -79,7 +74,7 @@ metadata/_custom_type_script = "uid://0ptuca8vba2u"
 [sub_resource type="Resource" id="Resource_l0d81"]
 script = ExtResource("5_mogjf")
 sp = SubResource("Resource_3nye4")
-basic_attack = SubResource("Resource_guj0j")
+basic_attack = ExtResource("4_sakq1")
 skillset = SubResource("Resource_cwhhc")
 metadata/_custom_type_script = "uid://cy8cuowihm45l"
 
@@ -114,5 +109,6 @@ id = "april"
 hp = SubResource("Resource_qaff2")
 attrs = SubResource("Resource_0l367")
 rules = Array[ExtResource("2_gijac")]([SubResource("Resource_am3re")])
+saved = true
 party_component = SubResource("Resource_l0d81")
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

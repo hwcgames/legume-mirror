@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://y0iwsfufb6ht"]
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://y0iwsfufb6ht"]
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_lobln"]
 [ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="1_ucycd"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_76jwu"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_jnryj"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_m53xm"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_rpyj7"]
 [ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="4_76jwu"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lobln"]
 [ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="5_rpyj7"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_g1f4y"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_7xxnn"]
-[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_7xxnn"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_0r5tb"]
 
 [sub_resource type="Resource" id="Resource_l46bt"]
 script = ExtResource("1_lobln")
@@ -31,17 +30,11 @@ current_hp = 150
 max_hp = 150
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_0q77f"]
-script = ExtResource("9_7xxnn")
-current_sp = null
-metadata/_custom_type_script = "uid://88n3ix5h5r4a"
-
 [resource]
-script = ExtResource("4_lobln")
-sp = SubResource("Resource_0q77f")
-patterns = Array[ExtResource("3_rpyj7")]([ExtResource("4_76jwu"), ExtResource("5_rpyj7")])
+script = ExtResource("10_0r5tb")
 name = &"Homeworker"
 costume = ExtResource("1_ucycd")
+id = "homeworker"
 hp = SubResource("Resource_uey5t")
 attrs = SubResource("Resource_l46bt")
 enemy_component = SubResource("Resource_jnryj")

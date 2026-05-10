@@ -44,4 +44,4 @@ func create(battlefield: Battlefield, enemy: Actor) -> Control:
 	return pattern
 
 func copy() -> BulletPattern:
-	return self.duplicate()
+	return self

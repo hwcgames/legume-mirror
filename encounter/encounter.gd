@@ -13,8 +13,7 @@ func apply_to_battlefield(battlefield: Battlefield):
 		enemy.queue_free()
 	battlefield.enemies.clear()
 	for enemy_factory in enemies:
-		var enemy_sheet: ActorSheet = enemy_factory.roll_enemy()
-		var enemy: Actor = Actor.from_sheet(enemy_sheet)
+		var enemy: Actor = Actor.from_sheet(enemy_factory.roll_enemy())
 		battlefield.enemies.push_back(enemy)
 		enemy.home_landmark = battlefield.enemy_landmarks[len(battlefield.enemies)-1]
 		battlefield.add_child(enemy)

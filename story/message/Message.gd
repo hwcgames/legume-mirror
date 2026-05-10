@@ -56,16 +56,12 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	return msg
 
 static func get_colors(name: String) -> Array[Color]:
-	var as_pm: CharacterSheet = load("res://database/party_members/%s.tres" % name)
 	var as_actor: ActorSheet = load("res://database/actors/%s.tres" % name)
-	var as_enemy: EnemyFactory = load("res://database/enemy/%s.tres" % name)
-	if as_pm:
-		return [as_pm.text_color, as_pm.bg_color]
 	if as_actor:
 		return [as_actor.text_color, as_actor.bg_color]
+	var as_enemy: ActorSheet = load("res://database/enemy/%s.tres" % name)
 	if as_enemy:
-		var enemy = as_enemy.roll_enemy()
-		return [enemy.text_color, enemy.bg_color]
+		return [as_enemy.text_color, as_enemy.bg_color]
 	return [Color.WHITE, Color.BLACK]
 
 @abstract class Instruction extends RefCounted:

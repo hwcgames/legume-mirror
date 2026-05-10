@@ -174,12 +174,15 @@ func assign_patterns():
 		# Build a random pattern
 		var plan: Dictionary[Actor, BulletPattern] = base_plan.duplicate()
 		for enemy in enemies:
+			if !enemy.alive:
+				plan.erase(enemy)
+				continue
 			if enemy in plan:
 				continue
 			var candidate_patterns = enemy.sheet.enemy_component.patterns.filter(func(p: BulletPattern): return enemy.state in p.states)
 			if candidate_patterns.is_empty():
 				continue
-			plan[enemy] = candidate_patterns.get(randi_range(0, len(candidate_patterns)))
+			plan[enemy] = candidate_patterns.get(randi_range(0, len(candidate_patterns)-1))
 		if candidates.any(func(p): return p[0] == plan):
 			continue
 		# Check that this pattern is valid

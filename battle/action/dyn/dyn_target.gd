@@ -17,9 +17,10 @@ func check(them: Actor) -> bool:
 
 func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	var target = await planner.pick_actor(func(a: Actor):
-		predicates.all(func(p: ActorPredicate): return p.test(a, planner.battlefield)))
+		return predicates.all(func(p: ActorPredicate): return p.test(a, planner.battlefield)))
 	if target == null:
 		return true
+	registers[register_name] = target
 	return false
 
 func lock_for(target: Actor) -> Callable:
@@ -31,10 +32,14 @@ func lock_for(target: Actor) -> Callable:
 	return func(): pass
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	var target: Actor = registers[register_name]
-	var lock = await lock_for(target)
+	var target: Actor 
+	if register_name in registers:
+		target = registers[register_name]
+	var lock = func(): pass
+	if is_instance_valid(target):
+		lock = await lock_for(target)
 	# Do we have a lock for an acceptable target?
-	while !predicates.all(func(p): p.test(target)):
+	while !is_instance_valid(target) or !predicates.all(func(p: ActorPredicate): return p.test(target, battlefield)):
 		var other_targets = (battlefield.players as Array[Actor]) + (battlefield.enemies as Array[Actor]).filter(func(a: Actor):
 			predicates.all(func(p: ActorPredicate): return p.test(a, battlefield)))
 		if other_targets.is_empty():

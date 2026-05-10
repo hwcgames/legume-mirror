@@ -4,4 +4,4 @@ class_name EnemyFactory
 
 @export var weight: float = 1.
 
-@abstract func roll_enemy() -> EnemySheet
+@abstract func roll_enemy() -> ActorSheet

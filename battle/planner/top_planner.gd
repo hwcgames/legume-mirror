@@ -82,20 +82,20 @@ func pick_actor(predicate: Callable = func(a: Actor): return true) -> Actor:
 	var enemies = battlefield.enemies.filter(predicate)
 	var back := Button.new()
 	back.text = "back"
-	back.pressed.connect(chosen_ally.emit.bind(null))
+	back.pressed.connect(chosen_actor.emit.bind(null))
 	selector.add_child(back)
 	for ally in allies:
 		var button := Button.new()
 		button.text = ally.human_name
-		button.pressed.connect(chosen_target.emit.bind(ally))
+		button.pressed.connect(chosen_actor.emit.bind(ally))
 		selector.add_child(button)
 	for enemy in enemies:
 		var button := Button.new()
 		button.text = enemy.human_name
-		button.pressed.connect(chosen_target.emit.bind(enemy))
+		button.pressed.connect(chosen_actor.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()
-	var enemy = await chosen_ally
+	var enemy = await chosen_actor
 	if enemy == null:
 		%TabContainer.current_tab = prev_tab
 	return enemy

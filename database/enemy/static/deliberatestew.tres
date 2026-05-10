@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://hsovlpvfc1fv"]
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://hsovlpvfc1fv"]
 
 [ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="1_eribs"]
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_ey22i"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_whc7m"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_41022"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_k4oh0"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_lv0e4"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_s3xtc"]
 [ext_resource type="Resource" uid="uid://dus3ihqtdemu0" path="res://database/bullet_pattern/soup.tres" id="6_41022"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_kkmgx"]
 [ext_resource type="Resource" uid="uid://bn4ryipvfadwe" path="res://database/bullet_pattern/rising-soup.tres" id="7_kkmgx"]
-[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="8_g855p"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_i0ppf"]
 [ext_resource type="Resource" uid="uid://c1rmxpjfqspy5" path="res://database/bullet_pattern/searchlight.tres" id="8_s3xtc"]
 [ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="11_i0ppf"]
+[ext_resource type="Resource" uid="uid://pyh05gnjl3v4" path="res://database/enemy/table/random_school.tres" id="11_qbge6"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="12_i0ppf"]
 
 [sub_resource type="Resource" id="Resource_s3xtc"]
 script = ExtResource("1_ey22i")
@@ -35,27 +35,20 @@ metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
 [sub_resource type="Resource" id="Resource_01fxo"]
 script = ExtResource("11_i0ppf")
+enemy_template = ExtResource("11_qbge6")
 chance = null
 active = null
 stacks = null
 metadata/_custom_type_script = "uid://dio8noar7m7xs"
 
-[sub_resource type="Resource" id="Resource_qbge6"]
-script = ExtResource("8_g855p")
-current_sp = 50
-max_sp = 50
-metadata/_custom_type_script = "uid://88n3ix5h5r4a"
-
 [resource]
-script = ExtResource("4_lv0e4")
-sp = SubResource("Resource_qbge6")
-patterns = Array[ExtResource("3_k4oh0")]([ExtResource("6_41022"), ExtResource("7_kkmgx"), ExtResource("8_s3xtc")])
-planning_priority = 2
+script = ExtResource("12_i0ppf")
 name = &"Deliberate Stew"
-description = &"The souperintendent."
+description = "The souperintendent."
 costume = ExtResource("1_eribs")
 bg_color = Color(0.15604165, 0.043553524, 0.045210116, 1)
 text_color = Color(0.8613351, 0, 0.10442973, 1)
+id = "deliberatestew"
 hp = SubResource("Resource_i0ppf")
 attrs = SubResource("Resource_s3xtc")
 rules = Array[ExtResource("6_kkmgx")]([SubResource("Resource_01fxo")])

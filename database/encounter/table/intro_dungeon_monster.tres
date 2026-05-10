@@ -1,42 +1,79 @@
 [gd_resource type="Resource" script_class="EncounterTable" format=3 uid="uid://dibp6q6l08c1v"]
 
 [ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://encounter/encounterable.gd" id="1_or5fg"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_klqmc"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_fmuya"]
 [ext_resource type="Resource" uid="uid://dg71f6dsowatf" path="res://database/enemy/table/random_school_fighter.tres" id="3_3iyew"]
 [ext_resource type="Resource" uid="uid://b32jjqhggw0er" path="res://database/enemy/table/random_school_support.tres" id="4_7fiox"]
-[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="4_xc08d"]
 [ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="5_p07b3"]
 [ext_resource type="Script" uid="uid://d3bxxgkhpmqmv" path="res://encounter/encounter_table.gd" id="6_3iyew"]
-[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="6_klqmc"]
-[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="9_splwb"]
-[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="10_52ekt"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="6_splwb"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="7_52ekt"]
+[ext_resource type="Resource" uid="uid://xol3bpg3u6k3" path="res://database/enemy/static/restlessgenius.tres" id="8_a4c7u"]
+[ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="9_gw2j7"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="10_u37t5"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="11_7fiox"]
 
-[sub_resource type="Resource" id="Resource_ygdm1"]
+[sub_resource type="Resource" id="Resource_38xw7"]
 script = ExtResource("5_p07b3")
-enemies = Array[ExtResource("2_klqmc")]([ExtResource("3_3iyew"), ExtResource("4_7fiox")])
+enemies = Array[ExtResource("2_fmuya")]([ExtResource("3_3iyew"), ExtResource("4_7fiox")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
+
+[sub_resource type="Resource" id="Resource_d5pkl"]
+script = ExtResource("6_splwb")
+table = Dictionary[ExtResource("7_52ekt"), float]({
+ExtResource("8_a4c7u"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_gtkta"]
+script = ExtResource("6_splwb")
+table = Dictionary[ExtResource("7_52ekt"), float]({
+ExtResource("9_gw2j7"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
 
 [sub_resource type="Resource" id="Resource_pfv2v"]
 script = ExtResource("5_p07b3")
-enemies = Array[ExtResource("2_klqmc")]([ExtResource("6_klqmc"), ExtResource("4_xc08d")])
+enemies = Array[ExtResource("2_fmuya")]([SubResource("Resource_d5pkl"), SubResource("Resource_gtkta")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
+
+[sub_resource type="Resource" id="Resource_dccxo"]
+script = ExtResource("6_splwb")
+table = Dictionary[ExtResource("7_52ekt"), float]({
+ExtResource("10_u37t5"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_5j0gn"]
+script = ExtResource("6_splwb")
+table = Dictionary[ExtResource("7_52ekt"), float]({
+ExtResource("10_u37t5"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
 
 [sub_resource type="Resource" id="Resource_a4c7u"]
 script = ExtResource("5_p07b3")
-enemies = Array[ExtResource("2_klqmc")]([ExtResource("9_splwb"), ExtResource("9_splwb")])
+enemies = Array[ExtResource("2_fmuya")]([SubResource("Resource_dccxo"), SubResource("Resource_5j0gn")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
+
+[sub_resource type="Resource" id="Resource_splwb"]
+script = ExtResource("6_splwb")
+table = Dictionary[ExtResource("7_52ekt"), float]({
+ExtResource("11_7fiox"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
 
 [sub_resource type="Resource" id="Resource_gw2j7"]
 script = ExtResource("5_p07b3")
-enemies = Array[ExtResource("2_klqmc")]([ExtResource("4_7fiox"), ExtResource("4_7fiox"), ExtResource("10_52ekt")])
+enemies = Array[ExtResource("2_fmuya")]([ExtResource("4_7fiox"), ExtResource("4_7fiox"), SubResource("Resource_splwb")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
 [sub_resource type="Resource" id="Resource_u37t5"]
 script = ExtResource("5_p07b3")
-enemies = Array[ExtResource("2_klqmc")]([ExtResource("3_3iyew"), ExtResource("3_3iyew"), ExtResource("4_7fiox")])
+enemies = Array[ExtResource("2_fmuya")]([ExtResource("3_3iyew"), ExtResource("3_3iyew"), ExtResource("4_7fiox")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
 [resource]
 script = ExtResource("6_3iyew")
-encounters = Array[ExtResource("1_or5fg")]([SubResource("Resource_ygdm1"), SubResource("Resource_pfv2v"), SubResource("Resource_a4c7u"), SubResource("Resource_gw2j7"), SubResource("Resource_u37t5")])
+encounters = Array[ExtResource("1_or5fg")]([SubResource("Resource_38xw7"), SubResource("Resource_pfv2v"), SubResource("Resource_a4c7u"), SubResource("Resource_gw2j7"), SubResource("Resource_u37t5")])
 metadata/_custom_type_script = "uid://d3bxxgkhpmqmv"

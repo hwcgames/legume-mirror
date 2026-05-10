@@ -1,20 +1,20 @@
-[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://cmj5rkcrae0xn"]
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://cmj5rkcrae0xn"]
 
 [ext_resource type="PackedScene" uid="uid://dx5x2fwnkpurx" path="res://database/costume/builtbody.tscn" id="1_fle57"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_x07tn"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="2_kna7d"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_kna7d"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_6512l"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="4_kna7d"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="5_6512l"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="6_6512l"]
 
 [sub_resource type="Resource" id="Resource_3y1yq"]
 script = ExtResource("4_kna7d")
 metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [resource]
-script = ExtResource("4_6512l")
+script = ExtResource("6_6512l")
 name = &"Unbuilt Body"
 costume = ExtResource("1_fle57")
-hp = 100
+id = "unbuiltbody"
 enemy_component = SubResource("Resource_3y1yq")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

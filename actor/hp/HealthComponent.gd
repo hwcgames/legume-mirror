@@ -42,6 +42,9 @@ var min: int:
 
 var fighter: Actor
 
+func copy() -> HealthComponent:
+	return self.duplicate()
+
 @abstract
 func _get_health() -> int
 @abstract

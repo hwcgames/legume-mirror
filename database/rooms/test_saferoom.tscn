@@ -13,7 +13,9 @@ duration = 0.0
 [node name="TestHallway" unique_id=164551721 instance=ExtResource("1_lwcrj")]
 
 [node name="In" parent="." index="1" unique_id=225994617 node_paths=PackedStringArray("automoves")]
-automoves = {}
+automoves = {
+"forward": NodePath("../forward")
+}
 
 [node name="crow" type="Marker3D" parent="." index="6" unique_id=354553873]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0, -1)

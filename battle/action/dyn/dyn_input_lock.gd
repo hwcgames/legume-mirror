@@ -1,8 +1,7 @@
 extends DynActionStep
-class_name StepFieldLock
+class_name StepInputLock
 
-@export var exclusive: bool = false
-@export var register_name: StringName = "field_lock"
+@export var register_name: StringName = "input_lock"
 
 func check(them: Actor) -> bool:
 	return true
@@ -11,10 +10,7 @@ func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	if exclusive:
-		registers[register_name] = await battlefield.lock.exclusive_lock()
-	else:
-		registers[register_name] = await battlefield.lock.shared_lock()
+	registers[register_name] = await InputLocks.lock(them.player).shared_lock()
 	return false
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):

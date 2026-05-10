@@ -2,37 +2,116 @@
 
 [ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://encounter/encounterable.gd" id="1_kx3an"]
 [ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_miu2c"]
-[ext_resource type="Resource" uid="uid://dg71f6dsowatf" path="res://database/enemy/table/random_school_fighter.tres" id="3_spra4"]
-[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="4_cxuf6"]
+[ext_resource type="Resource" uid="uid://dg71f6dsowatf" path="res://database/enemy/table/random_school_fighter.tres" id="3_345jx"]
+[ext_resource type="Resource" uid="uid://b32jjqhggw0er" path="res://database/enemy/table/random_school_support.tres" id="4_f5ngj"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="5_spra4"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="6_7xj8i"]
 [ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="6_qtojp"]
-[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="7_7xj8i"]
-[ext_resource type="Resource" uid="uid://chlvyq6kpa1n" path="res://database/enemy/static/furious_homeworker.tres" id="7_38xw7"]
-[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="8_f5f2k"]
-[ext_resource type="Resource" uid="uid://b32jjqhggw0er" path="res://database/enemy/table/random_school_support.tres" id="8_spra4"]
+[ext_resource type="Resource" uid="uid://chlvyq6kpa1n" path="res://database/enemy/static/furious_homeworker.tres" id="7_f5f2k"]
+[ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="8_unuyc"]
+[ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="9_unuyc"]
+[ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="11_h0m8o"]
 [ext_resource type="Script" uid="uid://d3bxxgkhpmqmv" path="res://encounter/encounter_table.gd" id="17_l6b31"]
 
-[sub_resource type="Resource" id="Resource_38xw7"]
+[sub_resource type="Resource" id="Resource_345jx"]
 script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("3_spra4"), ExtResource("3_spra4"), ExtResource("3_spra4"), ExtResource("3_spra4")])
+enemies = Array[ExtResource("2_miu2c")]([ExtResource("3_345jx"), ExtResource("3_345jx"), ExtResource("3_345jx"), ExtResource("3_345jx")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
-[sub_resource type="Resource" id="Resource_d7xo0"]
+[sub_resource type="Resource" id="Resource_h0m8o"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("7_f5f2k"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_57jsw"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("8_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_co2a6"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("8_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_afysp"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("8_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_f5ngj"]
 script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("7_38xw7"), ExtResource("4_cxuf6"), ExtResource("4_cxuf6"), ExtResource("4_cxuf6")])
+enemies = Array[ExtResource("2_miu2c")]([SubResource("Resource_h0m8o"), SubResource("Resource_57jsw"), SubResource("Resource_co2a6"), SubResource("Resource_afysp")])
 weight = 0.5
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
-[sub_resource type="Resource" id="Resource_unuyc"]
+[sub_resource type="Resource" id="Resource_kx3an"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("9_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_miu2c"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("9_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_e7mn6"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("9_unuyc"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_38xw7"]
 script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("7_7xj8i"), ExtResource("7_7xj8i"), ExtResource("7_7xj8i"), ExtResource("8_spra4")])
+enemies = Array[ExtResource("2_miu2c")]([SubResource("Resource_kx3an"), SubResource("Resource_miu2c"), SubResource("Resource_e7mn6"), ExtResource("4_f5ngj")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
-[sub_resource type="Resource" id="Resource_7xj8i"]
+[sub_resource type="Resource" id="Resource_cxuf6"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("11_h0m8o"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_yyryk"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("11_h0m8o"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_qtojp"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("11_h0m8o"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_2laqy"]
+script = ExtResource("5_spra4")
+table = Dictionary[ExtResource("6_7xj8i"), float]({
+ExtResource("11_h0m8o"): 1.0
+})
+metadata/_custom_type_script = "uid://dtfmjcw2d4wby"
+
+[sub_resource type="Resource" id="Resource_spra4"]
 script = ExtResource("6_qtojp")
-enemies = Array[ExtResource("2_miu2c")]([ExtResource("8_f5f2k"), ExtResource("8_f5f2k"), ExtResource("8_f5f2k"), ExtResource("8_f5f2k")])
+enemies = Array[ExtResource("2_miu2c")]([SubResource("Resource_cxuf6"), SubResource("Resource_yyryk"), SubResource("Resource_qtojp"), SubResource("Resource_2laqy")])
 metadata/_custom_type_script = "uid://dbypde31s8c5x"
 
 [resource]
 script = ExtResource("17_l6b31")
-encounters = Array[ExtResource("1_kx3an")]([SubResource("Resource_38xw7"), SubResource("Resource_d7xo0"), SubResource("Resource_unuyc"), SubResource("Resource_7xj8i")])
+encounters = Array[ExtResource("1_kx3an")]([SubResource("Resource_345jx"), SubResource("Resource_f5ngj"), SubResource("Resource_38xw7"), SubResource("Resource_spra4")])
 metadata/_custom_type_script = "uid://d3bxxgkhpmqmv"

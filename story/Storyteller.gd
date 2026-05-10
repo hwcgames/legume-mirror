@@ -1,9 +1,10 @@
 extends Node
 
-var story: InkStory = preload("uid://c8fvftm0kh5t"):
+var story: InkStory = load("uid://c8fvftm0kh5t"):
 	set(new_story):
 		story = new_story
-		_ready()
+		if is_instance_valid(story):
+			_ready()
 var lock: Locks = Locks.new()
 var do_story: bool = false
 
@@ -31,6 +32,8 @@ var rules: Array[BattleRule] = []
 
 func _ready():
 	story.changed.connect(setup)
+	Saver.pre_save.connect(pre_save)
+	Saver.post_load.connect(post_load)
 	setup()
 func setup():
 	for function in self.get_method_list():
@@ -44,6 +47,30 @@ func setup():
 	if last_state:
 		story.LoadState(last_state)
 	#do_story = true
+
+func pre_save(file: SaveFile):
+	file.ink_save = story.SaveState()
+	file.active_camera = active_camera.name if is_instance_valid(active_camera) else null
+
+func post_load(file: SaveFile):
+	do_story = false
+	var handle = await lock.shared_lock()
+	# oh boy this is unsafe!
+	while not story.unreference():
+		pass
+	story = load("uid://c8fvftm0kh5t")
+	await get_tree().process_frame
+	last_state = file.ink_save
+	story.LoadState(file.ink_save)
+	handle.call()
+	await get_tree().process_frame
+	handle = await lock.exclusive_lock()
+	handle.call()
+	if file.active_camera != null and file.active_camera != "":
+		cmd_set_camera(file.active_camera)
+	Chatterbox.clear()
+	do_story = true
+
 var last_state
 
 func _process(delta: float) -> void:
@@ -223,6 +250,7 @@ func cmd_spawn_party(landmark_name: String):
 	var leader_sheet = Saver.current_save.get_character_sheet(leader)
 	leader_pm = Actor.from_sheet(leader_sheet)
 	leader_pm.add_to_group("party_leader")
+	leader_pm.add_to_group("loading_root")
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
 	leader_pm.push_mode(ActorPlayerControl.new())
@@ -250,6 +278,9 @@ func cmd_spawn_party_member(id: String, landmark_name: String):
 		return
 	var pm_sheet = Saver.current_save.get_character_sheet(id)
 	pm = Actor.from_sheet(pm_sheet)
+	if pm.id == story.FetchVariable("leader"):
+		pm.add_to_group("party_leader")
+		pm.add_to_group("loading_root")
 	get_tree().current_scene.add_child(pm)
 	pm.global_transform = landmark.global_transform
 
@@ -337,7 +368,7 @@ func cmd_actor_wait(actor_name: String):
 			print("Already idle")
 			lock.call()
 			return
-		while actor.top_mode is not ActorModeStoryCanary:
+		while actor.top_mode is not ActorModeStoryCanary and actor.mode_stack.any(func(m): return m is ActorModeStoryCanary):
 			await get_tree().process_frame
 		print("Actor is idle")
 		lock.call()
@@ -357,7 +388,7 @@ func cmd_actor_release(actor_name: String):
 		if index == -1:
 			return
 		while len(actor.mode_stack) > index:
-			actor.pop_mode()
+			await actor.pop_mode()
 	).call()
 
 func cmd_play_sound(sound: String):
@@ -472,6 +503,15 @@ func cmd_hide(name: String):
 	var h = Hidable.find(name)
 	if h:
 		h.hide()
+
+func cmd_save(in_place: bool):
+	(func():
+		var handle = await lock.exclusive_lock()
+		Saver.save(in_place)
+		handle.call()
+		# This prevents us from accidentally forgetting to set things back up after saving!
+		Saver.load(Saver.parent_save)
+	).call()
 
 #func obs_party(_name, new_value: Array[String]):
 	#if len(new_value) == 0:

@@ -3,7 +3,7 @@ class_name DynAction
 
 @export var steps: Array[DynActionStep] = []
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: Actor) -> bool:
 	return steps.all(func(p: DynActionStep):
 		return p.check(party_member))
 
@@ -22,7 +22,7 @@ class DynActionPlan extends BattleActionPlan:
 		self.registers = registers
 		self.steps = steps
 	
-	func go(party_member: PartyMember):
+	func go(party_member: Actor):
 		var depth: int = 0
 		while depth < len(steps):
 			var p = steps[depth]
@@ -35,3 +35,4 @@ class DynActionPlan extends BattleActionPlan:
 		while depth >= 0:
 			var p = steps[depth]
 			await p.after(party_member, party_member.battlefield, registers)
+			depth -= 1

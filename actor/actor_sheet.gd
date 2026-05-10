@@ -13,9 +13,21 @@ var alive: bool:
 		return hp.alive
 @export var attrs: CombatAttributes = CombatAttributes.new()
 @export var rules: Array[BattleRule] = []
+@export var saved: bool = false
 
 @export var party_component: PartyComponent
 @export var enemy_component: EnemyComponent
 
 func copy():
-	return self.duplicate(true)
+	var out = self.duplicate(false)
+	if is_instance_valid(hp):
+		out.hp = hp.copy()
+	if is_instance_valid(attrs):
+		out.attrs = attrs.duplicate()
+	if is_instance_valid(party_component):
+		out.party_component = party_component.copy()
+	if is_instance_valid(enemy_component):
+		out.enemy_component = enemy_component.copy()
+	for i in range(len(out.rules)):
+		out.rules[i] = out.rules[i].copy()
+	return out

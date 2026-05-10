@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://weo0fhsjc7ws"]
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://weo0fhsjc7ws"]
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_kfyhd"]
 [ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/apprenticeblade.tscn" id="2_sl7u1"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_6uau0"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="4_cdmto"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_cdmto"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_mr7m4"]
 [ext_resource type="Resource" uid="uid://cfltkohl43xxx" path="res://database/bullet_pattern/telegraph-scissor.tres" id="6_j5k76"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_sl7u1"]
 [ext_resource type="Resource" uid="uid://dmtgu5lxickp" path="res://database/bullet_pattern/ninjastars.tres" id="7_ukk52"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_vcf8e"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="9_l2kb8"]
-[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="10_2gwao"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_kfyhd"]
 
 [sub_resource type="Resource" id="Resource_8w4iy"]
 script = ExtResource("1_kfyhd")
@@ -32,15 +31,8 @@ current_hp = 100
 max_hp = 100
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_4d8v0"]
-script = ExtResource("10_2gwao")
-current_sp = null
-metadata/_custom_type_script = "uid://88n3ix5h5r4a"
-
 [resource]
-script = ExtResource("9_l2kb8")
-sp = SubResource("Resource_4d8v0")
-patterns = Array[ExtResource("5_mr7m4")]([ExtResource("6_j5k76"), ExtResource("7_ukk52")])
+script = ExtResource("10_kfyhd")
 name = &"Apprentice Blade"
 costume = ExtResource("2_sl7u1")
 id = "apprenticeblade"

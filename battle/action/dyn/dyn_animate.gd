@@ -11,7 +11,7 @@ func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	if registers[register_name] is ActorModeAnimate and !registers[register_name].finished:
+	if register_name in registers and registers[register_name] is ActorModeAnimate and !registers[register_name].finished:
 		registers[register_name].finished = true
 		await registers[register_name].popped
 	registers[register_name] = null

@@ -13,4 +13,4 @@ func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
 	return null
 
 func copy():
-	return self.duplicate()
+	return self

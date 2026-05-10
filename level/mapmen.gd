@@ -46,6 +46,22 @@ enum ROOM_TYPE {
 	SHOP
 }
 
+func to_room_info_type(room_type: ROOM_TYPE) -> RoomInfo.ROOM_TYPE:
+	match room_type:
+		ROOM_TYPE.MONSTER:
+			return RoomInfo.ROOM_TYPE.MONSTER
+		ROOM_TYPE.ITEM:
+			return RoomInfo.ROOM_TYPE.ITEM
+		ROOM_TYPE.EVENT:
+			return RoomInfo.ROOM_TYPE.EVENT
+		ROOM_TYPE.SAFE:
+			return RoomInfo.ROOM_TYPE.SAFE
+		ROOM_TYPE.BOSS:
+			return RoomInfo.ROOM_TYPE.BOSS
+		ROOM_TYPE.SHOP:
+			return RoomInfo.ROOM_TYPE.SHOP
+	return RoomInfo.ROOM_TYPE.UNKNOWN
+
 func name_room(room: ROOM_TYPE):
 	match room:
 		ROOM_TYPE.EMPTY:
@@ -100,6 +116,8 @@ func make_path(p: Vector2i = Vector2i(randi_range(0, width), 0)):
 func roll_room(p: Vector2i) -> ROOM_TYPE:
 	if p.y == 0:
 		return ROOM_TYPE.MONSTER
+	if p.y == 1:
+		return ROOM_TYPE.SAFE
 	if p.y == 8:
 		return ROOM_TYPE.ITEM
 	#if p.y == height - 1:
@@ -175,6 +193,53 @@ func _ready():
 		#CONNECT_ONE_SHOT)
 	#generate_map()
 	treadmill.wants_room_for.connect(fill_handler)
+	Saver.pre_save.connect(pre_save)
+	Saver.post_load.connect(post_load)
+	if is_instance_valid(loading_save):
+		load_after_reload(loading_save)
+
+func pre_save(file: SaveFile):
+	file.map_state = MapState.new()
+	file.map_state.current_position = current_position
+	file.map_state.height = height
+	file.map_state.width = width
+	file.map_state.map = map.duplicate()
+	file.treadmill_roomset = treadmill.roomset
+	file.treadmill_allowed_themes = treadmill.allowed_themes
+
+static var loading_save: SaveFile = null
+static var loading_handle: Callable = func(): pass
+
+func post_load(save: SaveFile):
+	loading_handle = await Storyteller.lock.shared_lock()
+	loading_save = save
+	var tree = get_tree()
+	tree.reload_current_scene()
+func load_after_reload(save: SaveFile):
+	loading_save = null
+	var tree = get_tree()
+	var map: DungeonMap = tree.current_scene.get_node("%DungeonMap")
+	var treadmill = map.treadmill
+	treadmill.allowed_themes = save.treadmill_allowed_themes
+	treadmill.roomset = save.treadmill_roomset
+	map.map = save.map_state.map
+	map.height = save.map_state.height
+	map.width = save.map_state.width
+	map.current_position = save.map_state.current_position
+	if map.map.is_empty():
+		state = STATE.GENERATE
+		loading_handle.call()
+		return
+	state = STATE.ROOM
+	var candidates = treadmill.rooms.filter(func(r: RoomInfo):
+		var room_type = r.room_type
+		var wanted = to_room_info_type(map.map[map.current_position].room_type)
+		return room_type == wanted \
+			and r.theme in treadmill.allowed_themes)
+	var choice = candidates[randi_range(0, len(candidates) - 1)]
+	var new_room = treadmill.spawn_initial_room(choice)
+	new_room.tree_exited.connect(room_unloaded)
+	loading_handle.call()
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
