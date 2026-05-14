@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_cdmto"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_mr7m4"]
 [ext_resource type="Resource" uid="uid://cfltkohl43xxx" path="res://database/bullet_pattern/telegraph-scissor.tres" id="6_j5k76"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_sl7u1"]
+[ext_resource type="Script" path="res://actor/enemy/enemy_component.gd" id="7_sl7u1"]
 [ext_resource type="Resource" uid="uid://dmtgu5lxickp" path="res://database/bullet_pattern/ninjastars.tres" id="7_ukk52"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_vcf8e"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_kfyhd"]

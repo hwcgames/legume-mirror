@@ -59,60 +59,189 @@ func _pressed():
 	planner.choice.emit(BattleActionHold.new().plan(planner))
 "
 
-[node name="TestBattlePlanner" type="MarginContainer" unique_id=774439161]
-custom_minimum_size = Vector2(128, 0)
-offset_right = 196.0
-offset_bottom = 196.0
+[node name="TestBattlePlanner" type="SubViewportContainer" unique_id=290553141]
+custom_minimum_size = Vector2(160, 512)
 grow_vertical = 0
-theme = ExtResource("1_bl1wf")
+size_flags_horizontal = 3
+stretch = true
 script = ExtResource("1_ssjqy")
 
-[node name="Panel" type="Panel" parent="." unique_id=1673414313]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1578319064]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(160, 512)
+render_target_update_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport" unique_id=953036837]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="SubViewport/MarginContainer" unique_id=1571792309]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1356191493]
+[node name="TabContainer" type="TabContainer" parent="SubViewport/MarginContainer/VBoxContainer2" unique_id=1423141991]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
+current_tab = 0
+tabs_visible = false
+
+[node name="IdleTab" type="VBoxContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=1130378943]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/IdleTab" unique_id=424013667]
+layout_mode = 2
+text = "(idle)"
+horizontal_alignment = 1
+
+[node name="ToplevelTab" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=989136421]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab" unique_id=1827435454]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BasicAttackButton" type="Button" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab/HFlowContainer" unique_id=1861994596 node_paths=PackedStringArray("planner")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Basically, attack."
+text = "Basic Attack"
+script = SubResource("GDScript_ssjqy")
+planner = NodePath("../../../../../../..")
+
+[node name="SkillsetParent" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab/HFlowContainer" unique_id=2125419606]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button3" type="Button" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab/HFlowContainer" unique_id=765373599 node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Use an item from the pouch."
+text = "Pockets"
+script = SubResource("GDScript_v6vg7")
+planner = NodePath("../../../../../../..")
+
+[node name="Button4" type="Button" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab/HFlowContainer" unique_id=186659671 node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Special actions."
+text = "Tactics"
+script = SubResource("GDScript_tmopx")
+planner = NodePath("../../../../../../..")
+
+[node name="Button5" type="Button" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ToplevelTab/HFlowContainer" unique_id=743672786 node_paths=PackedStringArray("planner")]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Pass the baton."
+text = "Hold"
+script = SubResource("GDScript_bl1wf")
+planner = NodePath("../../../../../../..")
+
+[node name="TargetSelectTab" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=681802441]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="TargetMenuParent" type="HFlowContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/TargetSelectTab" unique_id=2001456860]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PocketsTab" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=1022370633]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ItemParent" type="HFlowContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/PocketsTab" unique_id=192860101]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ParleyTab" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=2052488773]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="ParleyParent" type="HFlowContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer/ParleyTab" unique_id=599746509]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SkillsetTab" type="Control" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=156111040]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="TestBattlePlanner" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2" unique_id=774439161]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme = ExtResource("1_bl1wf")
+
+[node name="Panel" type="Panel" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner" unique_id=1673414313]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1931754981]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner" unique_id=1356191493]
 layout_mode = 2
 
-[node name="ColorBg" type="ColorRect" parent="VBoxContainer/MarginContainer2" unique_id=147776012]
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer" unique_id=1931754981]
+layout_mode = 2
+
+[node name="ColorBg" type="ColorRect" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2" unique_id=147776012]
 unique_name_in_owner = true
 layout_mode = 2
 color = Color(0.19667313, 0.12050388, 0.09327137, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2" unique_id=846926520]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2" unique_id=846926520]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer" unique_id=1334568636]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer" unique_id=1334568636]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=1736662163]
+[node name="TextureRect" type="TextureRect" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=1736662163]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 texture = ExtResource("2_ssjqy")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=533494585]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer" unique_id=533494585]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer" unique_id=261813938]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer" unique_id=261813938]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=548990227]
+[node name="Name" type="Label" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=548990227]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
 text = "Name"
 vertical_alignment = 1
 
-[node name="HPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=815082020]
+[node name="HPBar" type="ProgressBar" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=815082020]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -122,7 +251,7 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
-[node name="SPBar" type="ProgressBar" parent="VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=758113937]
+[node name="SPBar" type="ProgressBar" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=758113937]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -130,111 +259,3 @@ size_flags_vertical = 3
 max_value = 1.0
 value = 0.5
 show_percentage = false
-
-[node name="Control" type="Control" parent="." unique_id=2141785952]
-layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="Control" unique_id=1423141991]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
-current_tab = 1
-tabs_visible = false
-
-[node name="IdleTab" type="VBoxContainer" parent="Control/TabContainer" unique_id=1130378943]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-alignment = 1
-metadata/_tab_index = 0
-
-[node name="Label" type="Label" parent="Control/TabContainer/IdleTab" unique_id=424013667]
-layout_mode = 2
-text = "(idle)"
-horizontal_alignment = 1
-
-[node name="ToplevelTab" type="MarginContainer" parent="Control/TabContainer" unique_id=989136421]
-unique_name_in_owner = true
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="HFlowContainer" type="HFlowContainer" parent="Control/TabContainer/ToplevelTab" unique_id=1827435454]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=1861994596 node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Basically, attack."
-text = "Basic Attack"
-script = SubResource("GDScript_ssjqy")
-planner = NodePath("../../../../..")
-
-[node name="SkillsetParent" type="MarginContainer" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=2125419606]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Button3" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=765373599 node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Use an item from the pouch."
-text = "Pockets"
-script = SubResource("GDScript_v6vg7")
-planner = NodePath("../../../../..")
-
-[node name="Button4" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=186659671 node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Special actions."
-text = "Tactics"
-script = SubResource("GDScript_tmopx")
-planner = NodePath("../../../../..")
-
-[node name="Button5" type="Button" parent="Control/TabContainer/ToplevelTab/HFlowContainer" unique_id=743672786 node_paths=PackedStringArray("planner")]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Pass the baton."
-text = "Hold"
-script = SubResource("GDScript_bl1wf")
-planner = NodePath("../../../../..")
-
-[node name="TargetSelectTab" type="MarginContainer" parent="Control/TabContainer" unique_id=681802441]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="TargetMenuParent" type="HFlowContainer" parent="Control/TabContainer/TargetSelectTab" unique_id=2001456860]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PocketsTab" type="MarginContainer" parent="Control/TabContainer" unique_id=1022370633]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 3
-
-[node name="ItemParent" type="HFlowContainer" parent="Control/TabContainer/PocketsTab" unique_id=192860101]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="ParleyTab" type="MarginContainer" parent="Control/TabContainer" unique_id=2052488773]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 4
-
-[node name="ParleyParent" type="HFlowContainer" parent="Control/TabContainer/ParleyTab" unique_id=599746509]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="SkillsetTab" type="MarginContainer" parent="Control/TabContainer" unique_id=97403501]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 5

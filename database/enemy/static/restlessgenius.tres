@@ -8,7 +8,7 @@
 [ext_resource type="Resource" uid="uid://bmugfrf5c28qh" path="res://database/bullet_pattern/draw_lines.tres" id="6_6qrpg"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_umf0y"]
 [ext_resource type="Resource" uid="uid://cie0nf2vwtx1t" path="res://database/bullet_pattern/smartboard-calibration.tres" id="7_5g4qd"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_5hhjj"]
+[ext_resource type="Script" path="res://actor/enemy/enemy_component.gd" id="8_5hhjj"]
 [ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="8_vr0jv"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="11_5g4qd"]
 

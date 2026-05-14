@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_rpyj7"]
 [ext_resource type="Resource" uid="uid://le7orq1iiwmy" path="res://database/bullet_pattern/sweepsweep.tres" id="4_76jwu"]
 [ext_resource type="Resource" uid="uid://6orvajuivvwi" path="res://database/bullet_pattern/mathismath.tres" id="5_rpyj7"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_g1f4y"]
+[ext_resource type="Script" path="res://actor/enemy/enemy_component.gd" id="7_g1f4y"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_7xxnn"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_0r5tb"]
 

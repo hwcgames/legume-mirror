@@ -59,8 +59,8 @@
         ];
       in
         mkShell {
-          nativeBuildInputs = deps;
-          LD_LIBRARY_PATH = lib.makeLibraryPath deps;
+          buildInputs = deps;
+          # LD_LIBRARY_PATH = lib.makeLibraryPath deps;
         };
       # packages.default =
       # pkgs.callPackage ./pkg.nix {

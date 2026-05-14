@@ -23,6 +23,7 @@ func populate_skillset_button():
 
 func show_toplevel():
 	%ToplevelTab.show()
+	%BasicAttackButton.grab_focus()
 
 signal chosen_target(enemy: Actor)
 
@@ -36,13 +37,17 @@ func pick_target(predicate: Callable = func(e: Actor): return e.alive) -> Actor:
 	back.text = "back"
 	back.pressed.connect(chosen_target.emit.bind(null))
 	selector.add_child(back)
+	back.grab_focus()
+	var enemy_buttons: Array[Button] = []
 	for enemy in enemies:
 		var button := Button.new()
+		enemy_buttons.push_back(button)
 		button.text = enemy.human_name
 		button.tooltip_text = enemy.sheet.description
 		button.pressed.connect(chosen_target.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()
+	enemy_buttons[0].grab_focus()
 	var target = await chosen_target
 	if target == null:
 		%TabContainer.current_tab = prev_tab
@@ -60,12 +65,17 @@ func pick_ally(predicate: Callable = func(p: Actor): return true) -> Actor:
 	back.text = "back"
 	back.pressed.connect(chosen_ally.emit.bind(null))
 	selector.add_child(back)
+	back.grab_focus()
+	var ally_buttons: Array[Button] = []
 	for ally in allies:
 		var button := Button.new()
+		ally_buttons.push_back(button)
 		button.text = ally.human_name
 		button.pressed.connect(chosen_ally.emit.bind(ally))
 		selector.add_child(button)
 	%TargetSelectTab.show()
+	if !ally_buttons.is_empty():
+		ally_buttons[0].grab_focus()
 	var ally = await chosen_ally
 	if ally == null:
 		%TabContainer.current_tab = prev_tab
@@ -84,17 +94,23 @@ func pick_actor(predicate: Callable = func(a: Actor): return true) -> Actor:
 	back.text = "back"
 	back.pressed.connect(chosen_actor.emit.bind(null))
 	selector.add_child(back)
+	back.grab_focus()
+	var actor_buttons: Array[Button] = []
 	for ally in allies:
 		var button := Button.new()
+		actor_buttons.push_back(button)
 		button.text = ally.human_name
 		button.pressed.connect(chosen_actor.emit.bind(ally))
 		selector.add_child(button)
 	for enemy in enemies:
 		var button := Button.new()
+		actor_buttons.push_back(button)
 		button.text = enemy.human_name
 		button.pressed.connect(chosen_actor.emit.bind(enemy))
 		selector.add_child(button)
 	%TargetSelectTab.show()
+	if !actor_buttons.is_empty():
+		actor_buttons[0].grab_focus()
 	var enemy = await chosen_actor
 	if enemy == null:
 		%TabContainer.current_tab = prev_tab
@@ -111,6 +127,10 @@ func _ready():
 	%SPBar.min_value = party_member.sheet.party_component.sp.min
 	%SPBar.max_value = party_member.sheet.party_component.sp.max
 	%SPBar.value = party_member.sheet.party_component.sp.sp
+	%BasicAttackButton.grab_focus()
+	%TabContainer.tab_changed.connect(func(idx):
+		if idx == %ToplevelTab.get_index():
+			%BasicAttackButton.grab_focus())
 
 var hp: int = 0
 var sp: int = 0
@@ -145,13 +165,18 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 	back.text = "back"
 	back.pressed.connect(chosen_item.emit.bind(null))
 	selector.add_child(back)
+	back.grab_focus()
+	var item_buttons: Array[Button] = []
 	for item in items:
 		var button := Button.new()
+		item_buttons.push_back(button)
 		button.text = item.name
 		button.tooltip_text = item.description
 		button.pressed.connect(chosen_item.emit.bind(item))
 		selector.add_child(button)
 	%PocketsTab.show()
+	if !item_buttons.is_empty():
+		item_buttons[0].grab_focus()
 	var item = await chosen_item
 	if item == null:
 		%TabContainer.current_tab = prev_tab
@@ -164,7 +189,8 @@ func pockets():
 		choice.emit(null)
 		return
 	var action = item.battle_action.duplicate()
-	action.item = item
+	if "item" in action:
+		action.item = item
 	var plan = await action.plan(self)
 	if plan != null:
 		Inventory.items.remove_at(Inventory.items.find(item))
@@ -183,20 +209,25 @@ func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 	back.text = "back"
 	back.pressed.connect(chosen_parley.emit.bind(null))
 	selector.add_child(back)
-	var parleys = enemy.parleys.filter(predicate) \
+	back.grab_focus()
+	var parleys = enemy.sheet.enemy_component.parleys.filter(predicate) \
 		.map(func(p):
 			var parley = p.duplicate()
 			parley.enemy = enemy
 			return parley) \
 		.filter(func(p: ParleyAction): return p.display(party_member))
+	var parley_buttons: Array[Button] = []
 	for parley in parleys:
 		var button := Button.new()
+		parley_buttons.push_back(button)
 		button.text = parley.label()
 		button.tooltip_text = parley.description()
 		button.pressed.connect(chosen_parley.emit.bind(parley))
 		button.disabled = not parley.allowed(party_member)
 		selector.add_child(button)
 	%ParleyTab.show()
+	if !parley_buttons.is_empty():
+		parley_buttons[0].grab_focus()
 	var parley = await chosen_parley
 	if parley == null:
 		%TabContainer.current_tab = prev_tab
@@ -225,3 +256,10 @@ func skillset():
 	%SkillsetTab.show()
 	var plan = await skillset_planner.choose()
 	choice.emit(plan)
+
+func _propagate_input_event(event: InputEvent) -> bool:
+	var player_no = party_member.player
+	var player_idx = PlayerManager.get_player_device(player_no)
+	return (player_idx == -1 and
+			(event is InputEventMouse or event is InputEventKey))\
+		or event.device == player_idx

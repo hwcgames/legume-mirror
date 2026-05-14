@@ -124,12 +124,6 @@ right={
 ]
 }
 
-[internationalization]
-
-locale/translations=PackedStringArray("res://assets/lang/en.pot")
-locale/translation_add_builtin_strings_to_pot=true
-pseudolocalization/expansion_ratio=0.3
-
 [layer_names]
 
 3d_physics/layer_1="terrain"
