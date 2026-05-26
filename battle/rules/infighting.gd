@@ -28,19 +28,19 @@ func player_action(fighter: Actor) -> bool:
 			return false
 		var target: Actor = targets[randi_range(0, len(targets) - 1)]
 		var target_lock = await target.lock.exclusive_lock() if target != fighter else func(): pass
-		var mode: ActorModeApproach
-		if target != fighter:
-			mode = ActorModeApproach.new(fighter, target)
-			await fighter.push_mode(mode)
+		#var mode: ActorModeApproach
+		#if target != fighter:
+			#mode = ActorModeApproach.new(fighter, target)
+			#await fighter.push_mode(mode)
 		fighter.battlefield.println(("%s struck %s in confusion!" % [fighter.human_name, target.human_name])\
 			if target != fighter\
 			else ("%s was injured in their confusion!" % fighter.human_name))
 		@warning_ignore("integer_division")
 		target.take_damage((fighter.computed_attrs.strength*100/20)-(3*target.computed_attrs.defense))
 		await fighter.get_tree().create_timer(1.).timeout
-		if target != fighter:
-			mode.finished = true
-			await mode.popped
+		#if target != fighter:
+			#mode.finished = true
+			#await mode.popped
 		target_lock.call()
 		self_lock.call()
 		fighter.turns = 0

@@ -41,10 +41,11 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 	# Do we have a lock for an acceptable target?
 	while !is_instance_valid(target) or !predicates.all(func(p: ActorPredicate): return p.test(target, battlefield)):
 		var other_targets = (battlefield.players as Array[Actor]) + (battlefield.enemies as Array[Actor]).filter(func(a: Actor):
-			predicates.all(func(p: ActorPredicate): return p.test(a, battlefield)))
+			return is_instance_valid(a) and predicates.all(func(p: ActorPredicate): return p.test(a, battlefield)))
 		if other_targets.is_empty():
 			battlefield.println("No valid targets!")
 			return true
+		
 		target = other_targets[0]
 		lock.call()
 		lock = await lock_for(target)

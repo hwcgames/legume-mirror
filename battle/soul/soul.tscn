@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_fckym"]
 [ext_resource type="Script" uid="uid://blt210xa2bynh" path="res://battle/soul/soul.gd" id="1_i6ykd"]
+[ext_resource type="AudioStream" uid="uid://diemeklko7n5q" path="res://assets/sfx/ratchet/ratchet.tres" id="3_qmes5"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6ykd"]
 animation = &"fade"
@@ -174,6 +175,33 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.39215687)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qmes5")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qmes5")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qmes5")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_qmes5")
+}],
+"times": PackedFloat32Array(0, 0.03333334, 0.06666666, 0.099999994)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6omp"]
 _data = {
@@ -230,6 +258,10 @@ debug_color = Color(0, 0.6, 0.69803923, 0.09411765)
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_i6ykd")
 debug_color = Color(0.9222214, 0.048371576, 0.6714262, 0.41960785)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2112302902]
+max_polyphony = 10
+playback_type = 2
 
 [connection signal="area_entered" from="Graze" to="." method="_on_graze"]
 [connection signal="area_exited" from="Graze" to="." method="_on_graze_exited"]

@@ -55,17 +55,17 @@ class ApplyRulePlan extends BattleActionPlan:
 			battlefield.println(message % [party_member.human_name, target.human_name])
 		else:
 			battlefield.println(rfl_message % party_member.human_name)
-		var approach = ActorModeApproach.new(party_member, target)
-		if target != party_member:
-			await party_member.push_mode(approach)
-		var animate = ActorModeAnimate.new("friendly_magic" if friendly else "hostile_magic")
-		await party_member.push_mode(animate)
+		#var approach = ActorModeApproach.new(party_member, target)
+		#if target != party_member:
+			#await party_member.push_mode(approach)
+		#var animate = ActorModeAnimate.new("friendly_magic" if friendly else "hostile_magic")
+		#await party_member.push_mode(animate)
 		party_member.sp -= cost
 		for rule in rules:
 			target.add_rule(rule.duplicate())
-		await animate.popped
-		approach.finished = true
+		#await animate.popped
+		#approach.finished = true
 		b_lock.call()
 		t_lock.call()
-		if target != party_member:
-			await approach.popped
+		#if target != party_member:
+			#await approach.popped

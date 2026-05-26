@@ -42,13 +42,13 @@ class ResurrectPlan extends BattleActionPlan:
 			b_lock.call()
 			return
 		battlefield.println(message % [party_member.human_name, target.human_name])
-		var approach = ActorModeApproach.new(party_member, target)
-		var animate = ActorModeAnimate.new("friendly_magic")
-		await party_member.push_mode(animate)
+		#var approach = ActorModeApproach.new(party_member, target)
+		#var animate = ActorModeAnimate.new("friendly_magic")
+		#await party_member.push_mode(animate)
 		party_member.sp -= cost
 		target.heal((party_member.hp_component.max - party_member.hp_component.min) * amount)
 		target.turns = 0
-		await animate.popped
-		approach.finished = true
+		#await animate.popped
+		#approach.finished = true
 		b_lock.call()
-		await approach.popped
+		#await approach.popped

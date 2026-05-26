@@ -3,77 +3,6 @@
 [ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_p37jh"]
 [ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/costume/pixel-test.aseprite" id="2_ff6sg"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3vb1"]
-animation = &"attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_acko4"]
-animation = &"attack_hit"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d84hy"]
-animation = &"attack_magic"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4l1l"]
-animation = &"dead"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3lfb"]
-animation = &"friendly_magic"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oqmnq"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8p3ad"]
-animation = &"walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4l1l"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t82wu"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6tt0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ebf7i"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_du2j5"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b8u3c"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cahlv"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_18yx3"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ja1h"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pfcj8"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4by52"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a13g6"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acko4"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_acko4"]
-states/attack/node = SubResource("AnimationNodeAnimation_u3vb1")
-states/attack/position = Vector2(514, -12)
-states/attack_hit/node = SubResource("AnimationNodeAnimation_acko4")
-states/attack_hit/position = Vector2(581, 62)
-states/attack_magic/node = SubResource("AnimationNodeAnimation_d84hy")
-states/attack_magic/position = Vector2(564, 151)
-states/dead/node = SubResource("AnimationNodeAnimation_p4l1l")
-states/dead/position = Vector2(242, 219)
-states/friendly_magic/node = SubResource("AnimationNodeAnimation_g3lfb")
-states/friendly_magic/position = Vector2(410, 233)
-states/idle/node = SubResource("AnimationNodeAnimation_oqmnq")
-states/idle/position = Vector2(326, 100)
-states/walk/node = SubResource("AnimationNodeAnimation_8p3ad")
-states/walk/position = Vector2(318, -12)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_p4l1l"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_t82wu"), "attack", "attack_hit", SubResource("AnimationNodeStateMachineTransition_t6tt0"), "attack_hit", "idle", SubResource("AnimationNodeStateMachineTransition_ebf7i"), "idle", "attack_magic", SubResource("AnimationNodeStateMachineTransition_du2j5"), "attack_magic", "idle", SubResource("AnimationNodeStateMachineTransition_b8u3c"), "idle", "friendly_magic", SubResource("AnimationNodeStateMachineTransition_cahlv"), "friendly_magic", "idle", SubResource("AnimationNodeStateMachineTransition_18yx3"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_4ja1h"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_pfcj8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_4by52"), "dead", "idle", SubResource("AnimationNodeStateMachineTransition_a13g6"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_acko4")]
-graph_offset = Vector2(52, -79)
-
 [sub_resource type="Animation" id="Animation_g3lfb"]
 length = 0.001
 tracks/0/type = "value"
@@ -252,12 +181,6 @@ billboard = 2
 texture_filter = 0
 sprite_frames = ExtResource("2_ff6sg")
 animation = &"idle"
-
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=586561644]
-unique_name_in_owner = true
-root_node = NodePath("%AnimationTree/..")
-tree_root = SubResource("AnimationNodeStateMachine_acko4")
-anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=43950148]
 unique_name_in_owner = true

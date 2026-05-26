@@ -55,6 +55,12 @@ script/source = "extends Button
 
 @export var planner: BattlePlanner
 
+func _process(delta: float) -> void:
+	#if !visible:
+		#return
+	var players_with_turns = len(planner.battlefield.players.filter(func(p: Actor): return p.turns > 0))
+	disabled = players_with_turns <= 1
+
 func _pressed():
 	planner.choice.emit(BattleActionHold.new().plan(planner))
 "
@@ -90,11 +96,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_bl1wf")
-current_tab = 0
+current_tab = 1
 tabs_visible = false
 
 [node name="IdleTab" type="VBoxContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=1130378943]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 alignment = 2
 metadata/_tab_index = 0
@@ -106,7 +113,6 @@ horizontal_alignment = 1
 
 [node name="ToplevelTab" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TabContainer" unique_id=989136421]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

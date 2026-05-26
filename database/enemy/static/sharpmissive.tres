@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_wqnap"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
 [ext_resource type="Resource" uid="uid://b6maj2efm4jj8" path="res://database/bullet_pattern/rumors.tres" id="6_c0535"]
-[ext_resource type="Script" path="res://actor/enemy/enemy_component.gd" id="6_ya0mn"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_ya0mn"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_ya0mn"]
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="9_engos"]
 

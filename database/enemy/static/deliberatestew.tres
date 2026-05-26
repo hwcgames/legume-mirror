@@ -10,8 +10,6 @@
 [ext_resource type="Resource" uid="uid://bn4ryipvfadwe" path="res://database/bullet_pattern/rising-soup.tres" id="7_kkmgx"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_i0ppf"]
 [ext_resource type="Resource" uid="uid://c1rmxpjfqspy5" path="res://database/bullet_pattern/searchlight.tres" id="8_s3xtc"]
-[ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="11_i0ppf"]
-[ext_resource type="Resource" uid="uid://pyh05gnjl3v4" path="res://database/enemy/table/random_school.tres" id="11_qbge6"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="12_i0ppf"]
 
 [sub_resource type="Resource" id="Resource_s3xtc"]
@@ -33,14 +31,6 @@ current_hp = 1000
 max_hp = 1000
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_01fxo"]
-script = ExtResource("11_i0ppf")
-enemy_template = ExtResource("11_qbge6")
-chance = null
-active = null
-stacks = null
-metadata/_custom_type_script = "uid://dio8noar7m7xs"
-
 [resource]
 script = ExtResource("12_i0ppf")
 name = &"Deliberate Stew"
@@ -51,6 +41,5 @@ text_color = Color(0.8613351, 0, 0.10442973, 1)
 id = "deliberatestew"
 hp = SubResource("Resource_i0ppf")
 attrs = SubResource("Resource_s3xtc")
-rules = Array[ExtResource("6_kkmgx")]([SubResource("Resource_01fxo")])
 enemy_component = SubResource("Resource_s8rjy")
 metadata/_custom_type_script = "uid://cebpcbl6iqrrc"

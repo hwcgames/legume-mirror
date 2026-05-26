@@ -21,8 +21,8 @@ class TutorialFleePlan extends BattleActionPlan:
 	func _init(enemy: Actor):
 		self.enemy = enemy
 	func go(party_member: Actor):
-		Actor.find("casey").push_mode(ActorModeCargo.new(party_member))
-		Storyteller.choose_if_available(["cipher attempts to flee"])
+		Actor.find("casey").cargo(party_member)
+		Storyteller.choose_if_available(["%s attempts to flee" % party_member.name])
 		enemy.state = 2
 		enemy.planned_pattern = null
 		await enemy.battlefield.assign_patterns()

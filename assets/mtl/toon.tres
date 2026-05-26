@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bhstq6hjl7kp0"]
+
+[ext_resource type="Shader" uid="uid://dw0l1eaiimvw4" path="res://assets/mtl/toon.gdshader" id="1_v16at"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v16at")

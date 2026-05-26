@@ -6,7 +6,7 @@ class_name Automove
 @export var next_seam: RoomSeam
 @export var next_seam_key: StringName
 
-@abstract func mode_for_actor(actor: Actor) -> ActorMode
+@abstract func apply_to_actor(actor: Actor)
 
 func _ready():
 	add_to_group("automove")

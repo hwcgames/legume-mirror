@@ -36,14 +36,15 @@ predicates = Array[ExtResource("5_0mw01")]([SubResource("Resource_n6k4d"), SubRe
 lock_type = 2
 metadata/_custom_type_script = "uid://ep3gmugpuiaw"
 
-[sub_resource type="Resource" id="Resource_0kpix"]
-script = ExtResource("7_aacax")
-metadata/_custom_type_script = "uid://c0m4c7iutlam5"
-
 [sub_resource type="Resource" id="Resource_pe81w"]
 script = ExtResource("8_ds6qu")
 animation_name = "attack"
+after_animation_name = "idle"
 metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_0kpix"]
+script = ExtResource("7_aacax")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
 
 [sub_resource type="Resource" id="Resource_ldpm0"]
 script = ExtResource("9_n6k4d")
@@ -52,10 +53,10 @@ metadata/_custom_type_script = "uid://b0c4a1wkoi6qc"
 [sub_resource type="Resource" id="Resource_5r1hf"]
 script = ExtResource("8_ds6qu")
 animation_name = "attack_hit"
-register_name = "subanimation"
+after_animation_name = "attack"
 metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
 
-[sub_resource type="Resource" id="Resource_ds6qu"]
+[sub_resource type="Resource" id="Resource_mhg4y"]
 script = ExtResource("11_aacax")
 after_wait = 0.75
 metadata/_custom_type_script = "uid://d1g602whyq8ty"
@@ -66,5 +67,5 @@ metadata/_custom_type_script = "uid://cuofqiysmxjcf"
 
 [resource]
 script = ExtResource("3_5avty")
-steps = Array[ExtResource("2_bed2n")]([SubResource("Resource_ima6r"), SubResource("Resource_ymeq6"), SubResource("Resource_mlacy"), SubResource("Resource_0kpix"), SubResource("Resource_pe81w"), SubResource("Resource_ldpm0"), SubResource("Resource_5r1hf"), SubResource("Resource_ds6qu"), SubResource("Resource_g7i8o")])
+steps = Array[ExtResource("2_bed2n")]([SubResource("Resource_ima6r"), SubResource("Resource_ymeq6"), SubResource("Resource_mlacy"), SubResource("Resource_pe81w"), SubResource("Resource_0kpix"), SubResource("Resource_ldpm0"), SubResource("Resource_5r1hf"), SubResource("Resource_mhg4y"), SubResource("Resource_g7i8o")])
 metadata/_custom_type_script = "uid://dk3txc50al1fb"

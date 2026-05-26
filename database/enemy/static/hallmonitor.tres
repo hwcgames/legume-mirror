@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_bmplu"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_utm42"]
 [ext_resource type="Resource" uid="uid://dd87d4i7wcv1p" path="res://database/bullet_pattern/hallmonitor.tres" id="6_1yajf"]
-[ext_resource type="Script" path="res://actor/enemy/enemy_component.gd" id="6_bmplu"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_bmplu"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_hvf54"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="9_j6b80"]
 

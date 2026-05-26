@@ -6,6 +6,7 @@ class_name Bullet
 @export var should_invuln: bool = true
 @export var should_graze: bool = true
 @export var animator: AnimationPlayer
+@export var hitsound: AudioStream
 var enemy: Actor
 var target: Soul
 var layer: BulletPatternLayer

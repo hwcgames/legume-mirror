@@ -1,4 +1,6 @@
 {
     "godotTools.editorPath.godot4": "godot-mono",
-    "deno.enable": true
+    "deno.enable": true,
+    "ink.countAllVisits": false,
+    "ink.compileOnSave": false
 }

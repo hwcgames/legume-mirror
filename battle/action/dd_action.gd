@@ -9,10 +9,17 @@ func allowed(party_member: Actor) -> bool:
 
 func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
 	var registers = {}
-	for p in steps:
+	var depth: int = 0
+	while depth < len(steps):
+		var p = steps[depth]
 		var cancel = await p.plan(battle_planner.party_member, battle_planner, registers)
 		if cancel:
+			while bool(depth > 0):
+				p = steps[depth]
+				await p.unplan(battle_planner.party_member, battle_planner, registers)
+				depth -= 1
 			return null
+		depth += 1
 	return DynActionPlan.new(registers, steps)
 
 class DynActionPlan extends BattleActionPlan:

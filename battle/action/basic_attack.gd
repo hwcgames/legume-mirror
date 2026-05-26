@@ -40,10 +40,6 @@ class BasicAttackPlan extends BattleActionPlan:
 			return
 		battlefield.println("%s attacks %s!" % [party_member.human_name, target.human_name])
 		#await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
-		var approach = ActorModeApproach.new(party_member, target)
-		await party_member.push_mode(approach)
-		var animate = ActorModeAnimate.new("attack", false)
-		await party_member.push_mode(animate)
 		var challenge: SkillChallenge = party_member.setup_challenge()
 		challenge.frame_count = randi_range(20,40)
 		challenge.start()
@@ -53,7 +49,6 @@ class BasicAttackPlan extends BattleActionPlan:
 			if randf() < crit_chance:
 				skill *= crit_mul
 		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
-		animate.finished = true
 		if damage > 0:
 			if skill >= 250:
 				Storyteller.choose_if_available(["%s finesse hits" % party_member.name, "%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
@@ -66,15 +61,10 @@ class BasicAttackPlan extends BattleActionPlan:
 			battlefield.println("%s damage!" % [damage])
 			Chatterbox.simple_message(target, "%s!" % [damage])
 			target.take_damage(damage)
-			var sub_animate = ActorModeAnimate.new("attack_hit", false)
-			await party_member.push_mode(sub_animate)
 		else:
 			Storyteller.choose_if_available(["%s misses" % party_member.name, "party misses"])
 			battlefield.println("Swing and a miss...")
-		await animate.popped
-		approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
 		p_lock.call()
 		b_lock.call()
 		e_lock.call()
-		await approach.popped

@@ -253,7 +253,7 @@ func cmd_spawn_party(landmark_name: String):
 	leader_pm.add_to_group("loading_root")
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
-	leader_pm.push_mode(ActorPlayerControl.new())
+	leader_pm.mode = Actor.MODE.HUMAN
 	party_stack = [leader_pm]
 	#var landmark = Landmark.find(landmark_name)
 	#var party: InkList = story.FetchVariable("party")
@@ -287,15 +287,15 @@ func cmd_spawn_party_member(id: String, landmark_name: String):
 func cmd_add_party_member(id: String, landmark_name: String):
 	var pm = Actor.find(id)
 	var landmark = Landmark.find(landmark_name)
-	if pm != null and not pm.mode_stack.any(func(m): return m is ActorModeFollow):
-		pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
+	if pm != null and not pm.mode == Actor.MODE.FOLLOWING:
+		pm.follow_actor(party_stack[-1])
 		party_stack.push_back(pm)
 		return
 	var pm_sheet = Saver.current_save.get_character_sheet(id)
 	pm = Actor.from_sheet(pm_sheet)
 	get_tree().current_scene.add_child(pm)
 	pm.global_transform = landmark.global_transform
-	pm.push_mode(ActorModeFollow.new(party_stack[-1], 3.))
+	pm.follow_actor(party_stack[-1])
 	party_stack.push_back(pm)
 
 func cmd_rm_party_member(id: String):
@@ -318,45 +318,38 @@ func cmd_actor_act(actor_name: String, action: String):
 	var actor = Actor.find(actor_name)
 	if not actor:
 		return
-	actor.push_mode(ActorModeAnimate.new(action))
+	actor.costume.play(action)
 
 func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var landmark = Landmark.find(landmark_name)
 	var actor = Actor.find(actor_name)
-	var mode: ActorMode
 	match style:
-		"walk", "run":
-			mode = ActorModePathfind.new()
-			mode.pathfind_target = landmark.global_position
-			mode.goal_rotation = landmark.global_rotation.y
-			mode.do_rotate = true
-		"glide", _:
-			mode = ActorModeMoveTo.new(actor, landmark)
-	actor.push_mode(mode)
+		"walk", "run", _:
+			actor.pathfind_to(landmark.global_position, landmark.global_rotation.y)
 
 func cmd_actor_cargo(actor_name: String, carrier_name: String):
 	var actor: Actor = Actor.find(actor_name)
 	var carrier: Actor = Actor.find(carrier_name)
-	actor.push_mode(ActorModeCargo.new(carrier))
+	actor.cargo(carrier)
 
 func cmd_actor_start_following_path(actor_name: String, path_name: String):
 	(func():
 		var actor = Actor.find(actor_name)
 		var automove = Automove.find(actor, path_name)
-		await actor.push_mode(ActorModeAutomove.new(automove))
+		actor.automove_along(automove)
 	).call()
 
 func cmd_actor_start_following_actor(follower_name: String, followee_name: String, _style: String):
 	(func():
 		var follower = Actor.find(follower_name)
 		var followee = Actor.find(followee_name)
-		await follower.push_mode(ActorModeFollow.new(followee, 1.))
+		follower.follow_actor(followee)
 	).call()
 
 func cmd_actor_stop(actor_name: String):
 	(func():
 		var actor = Actor.find(actor_name)
-		await actor.pop_mode()
+		actor.mode = Actor.MODE.IDLE
 	).call()
 
 func cmd_actor_wait(actor_name: String):
@@ -364,31 +357,31 @@ func cmd_actor_wait(actor_name: String):
 		print("Wait for %s..." % actor_name)
 		var lock = await lock.shared_lock()
 		var actor = Actor.find(actor_name)
-		if actor.top_mode is ActorModeStoryCanary:
-			print("Already idle")
-			lock.call()
-			return
-		while actor.top_mode is not ActorModeStoryCanary and actor.mode_stack.any(func(m): return m is ActorModeStoryCanary):
-			await get_tree().process_frame
-		print("Actor is idle")
+		await actor.wait_for_idle()
+		#if actor.mode is ActorIdle or actor.mode is ActorPlayerControl:
+			#print("Already idle")
+			#lock.call()
+			#return
+		#while actor.mode is not ActorModeStoryCanary and actor.mode_stack.any(func(m): return m is ActorModeStoryCanary):
+			#await get_tree().process_frame
+		#print("Actor is idle")
 		lock.call()
 	).call()
 
 func cmd_actor_capture(actor_name: String):
+	print_debug("Capturing %s" % actor_name)
 	(func():
 		var actor = Actor.find(actor_name)
-		await actor.push_mode(ActorModeStoryCanary.new())
+		actor.captured = true
 	).call()
 
 func cmd_actor_release(actor_name: String):
+	print_debug("Releasing %s" % actor_name)
 	(func():
 		var actor = Actor.find(actor_name)
-		var index = actor.mode_stack.rfind_custom(func(mode): return mode is ActorModeStoryCanary)
-		assert(index != -1, "Inconsistency: Double-released actor")
-		if index == -1:
-			return
-		while len(actor.mode_stack) > index:
-			await actor.pop_mode()
+		if not actor.captured:
+			printerr("Inconsistency: Double-released actor")
+		actor.captured = false
 	).call()
 
 func cmd_play_sound(sound: String):
