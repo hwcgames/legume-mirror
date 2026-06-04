@@ -24,7 +24,7 @@ class CrushPlan extends BattleActionPlan:
 	func go(party_member: Actor):
 		var battlefield = party_member.battlefield
 		var b_lock = await battlefield.lock.shared_lock()
-		var e_lock = await target.locks.exclusive_lock()
+		var e_lock = await target.lock.exclusive_lock()
 		#await get_tree().create_timer(1.).timeout
 		if !target.alive:
 			for enemy in battlefield.valid_enemies:

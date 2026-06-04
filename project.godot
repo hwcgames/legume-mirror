@@ -31,7 +31,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Legume Traffick"
 run/main_scene="uid://cw0r478jvhrnn"
-config/features=PackedStringArray("4.6", "C#")
+config/features=PackedStringArray("4.7", "C#")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -64,7 +64,7 @@ movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/GodotInk/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/GodotInk/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
 
 [global_group]
 
@@ -144,5 +144,6 @@ textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_etc2_astc=true
 textures/webp_compression/compression_method=4
 textures/webp_compression/lossless_compression_factor=100.0
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

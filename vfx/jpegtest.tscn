@@ -18,25 +18,25 @@ func _physics_process(delta: float) -> void:
 	rotate_y(2. * PI * delta)
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_p0vdq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qrcus"]
 viewport_path = NodePath("3DOnly")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6jbj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68ox6"]
 resource_local_to_scene = true
 shader = ExtResource("3_qrcus")
-shader_parameter/viewport = SubResource("ViewportTexture_p0vdq")
+shader_parameter/viewport = SubResource("ViewportTexture_qrcus")
 shader_parameter/quantize = ExtResource("4_68ox6")
 shader_parameter/block_size = 8
 shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
 shader_parameter/quality = 100.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qb82o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4splm"]
 viewport_path = NodePath("DCT")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kma7f"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0vdq"]
 resource_local_to_scene = true
 shader = ExtResource("5_4splm")
-shader_parameter/dct = SubResource("ViewportTexture_qb82o")
+shader_parameter/dct = SubResource("ViewportTexture_4splm")
 shader_parameter/block_size = 8
 shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
 
@@ -58,6 +58,7 @@ viewport_path = NodePath("CanvasLayer/RGB")
 [node name="Jpegtest" type="Node3D" unique_id=1224458022]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582849569]
+transform = Transform3D(0.52398586, 0.20893492, 0.8257027, 0, 0.96944535, -0.24530739, -0.85172695, 0.1285376, 0.50797564, 0, 0, 0)
 mesh = SubResource("BoxMesh_udemh")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdymb")
 script = SubResource("GDScript_coq5b")
@@ -68,10 +69,10 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
 [node name="JpegEffect" parent="." unique_id=1051463828 instance=ExtResource("2_nkyqf")]
 
 [node name="DCT" parent="JpegEffect/DCT" parent_id_path=PackedInt32Array(1051463828, 559845007) index="0" unique_id=606558410]
-material = SubResource("ShaderMaterial_r6jbj")
+material = SubResource("ShaderMaterial_68ox6")
 
 [node name="IDCT" parent="JpegEffect/IDCT" parent_id_path=PackedInt32Array(1051463828, 1720533226) index="0" unique_id=2062453490]
-material = SubResource("ShaderMaterial_kma7f")
+material = SubResource("ShaderMaterial_p0vdq")
 
 [node name="FlowContainer" type="HBoxContainer" parent="." unique_id=2145968169]
 anchors_preset = 15
@@ -83,8 +84,8 @@ alignment = 1
 
 [node name="Original" type="TextureRect" parent="FlowContainer" unique_id=1720227581]
 texture_filter = 2
-clip_contents = true
 custom_minimum_size = Vector2(0, 128)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("ViewportTexture_coq5b")
@@ -94,8 +95,8 @@ stretch_mode = 3
 [node name="YCbCr" type="TextureRect" parent="FlowContainer" unique_id=412810753]
 visible = false
 texture_filter = 2
-clip_contents = true
 custom_minimum_size = Vector2(0, 128)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("ViewportTexture_udemh")
@@ -104,8 +105,8 @@ stretch_mode = 3
 
 [node name="DCT" type="TextureRect" parent="FlowContainer" unique_id=492097293]
 texture_filter = 2
-clip_contents = true
 custom_minimum_size = Vector2(0, 128)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("ViewportTexture_bdymb")
@@ -114,8 +115,8 @@ stretch_mode = 3
 
 [node name="IDCT" type="TextureRect" parent="FlowContainer" unique_id=2074573028]
 texture_filter = 2
-clip_contents = true
 custom_minimum_size = Vector2(0, 128)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("ViewportTexture_ee8xc")
@@ -125,8 +126,8 @@ stretch_mode = 3
 [node name="RGB" type="TextureRect" parent="FlowContainer" unique_id=747382910]
 visible = false
 texture_filter = 2
-clip_contents = true
 custom_minimum_size = Vector2(0, 128)
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("ViewportTexture_tdxwt")
