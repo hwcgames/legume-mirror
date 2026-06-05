@@ -20,8 +20,10 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 	registers[miss_register] = skill <= 0
 	if skill <= 0:
 		Storyteller.choose_if_available(["%s misses" % them.name, "party misses"])
-		battlefield.println("Swing and a miss...")
+		battlefield.println(miss_message.format(registers))
+		registers[miss_register] = true
 		return true
+	registers[miss_register] = false
 	return false
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):

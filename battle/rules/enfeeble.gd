@@ -23,4 +23,7 @@ func merge(other: BattleRule):
 	self.stacks += other.stacks
 
 func _added(fighter: Actor):
-	fighter.battlefield.println("%s turn(s) of Enfeeble %s." % [stacks, amount])
+	fighter.battlefield.println("%s round(s) of Enfeeble %s." % [stacks, amount])
+
+func message(fighter: Actor) -> String:
+	return "Strength reduced by {amount} (to {strength}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)

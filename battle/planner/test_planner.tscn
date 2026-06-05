@@ -197,6 +197,11 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 5
 
+[node name="StatusContainer" type="HFlowContainer" parent="SubViewport/MarginContainer/VBoxContainer2" unique_id=951611918]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
 [node name="TestBattlePlanner" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2" unique_id=774439161]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2

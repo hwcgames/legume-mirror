@@ -1,20 +1,20 @@
 extends DynActionStep
-class_name StepEnergy
+class_name StepMessage
 
-@export var cost: int = 10
-@export var soft: bool = false
+@export var before_message: String
+@export var after_message: String
 
 func check(them: Actor) -> bool:
-	if soft:
-		return them.sp_component.remaining() >= cost
 	return true
 
 func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
 func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	them.use_sp(cost)
+	if !before_message.is_empty():
+		battlefield.println(before_message.format(registers))
 	return false
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
-	pass
+	if !after_message.is_empty():
+		battlefield.println(after_message.format(registers))

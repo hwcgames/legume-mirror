@@ -113,6 +113,7 @@ metadata/_custom_type_script = "uid://cy8cuowihm45l"
 
 [sub_resource type="Resource" id="Resource_8hlbw"]
 script = ExtResource("16_8hlbw")
+stacks = -1
 metadata/_custom_type_script = "uid://cleyr14grm50y"
 
 [resource]

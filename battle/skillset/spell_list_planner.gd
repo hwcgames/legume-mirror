@@ -22,6 +22,7 @@ func _ready():
 			choice.emit(plan))
 		button.disabled = not spell.allowed(party_member)
 		add_child(button)
+	(get_child(1 if get_child_count() > 1 else 0) as Control).grab_focus()
 
 func choose() -> BattleActionPlan:
 	return await choice

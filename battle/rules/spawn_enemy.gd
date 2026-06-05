@@ -6,6 +6,7 @@ class_name RuleSpawnEnemies
 @export var active: bool = true
 
 func top(fighter: Actor) -> bool:
+	activated.emit()
 	if not fighter.alive:
 		return true
 	if len(fighter.battlefield.enemies.filter(func(e): return is_instance_valid(e) and e.alive)) == len(fighter.battlefield.enemy_landmarks):
@@ -24,3 +25,6 @@ func top(fighter: Actor) -> bool:
 	fighter.battlefield.add_child(enemy)
 	enemy.join_battle(fighter.battlefield, true)
 	return true
+
+func message(fighter: Actor) -> String:
+	return "TODO"

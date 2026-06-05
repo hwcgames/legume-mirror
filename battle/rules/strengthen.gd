@@ -24,3 +24,6 @@ func merge(other: BattleRule):
 
 func _added(fighter: Actor):
 	fighter.battlefield.println("%s turn(s) of Strengthen %s." % [stacks, amount])
+
+func message(fighter: Actor) -> String:
+	return "Strength increased by {amount} (to {strength}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)

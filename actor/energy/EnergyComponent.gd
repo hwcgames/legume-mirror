@@ -36,6 +36,10 @@ func _get_max() -> int
 func _set_min(energy: int)
 @abstract
 func _set_max(energy: int)
+func use_energy(amt: int):
+	sp -= amt
+func get_energy(amt: int):
+	sp += amt
 
 @abstract
 func _get_energy() -> int

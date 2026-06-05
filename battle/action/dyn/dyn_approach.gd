@@ -16,6 +16,8 @@ func before(us: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	#registers[mode_register_name] = mode
 	#await them.push_mode(mode)
 	var them: Actor = registers[target_register_name]
+	if us == them:
+		return false
 	await us.snap_to_position(
 		them.global_position + them.global_basis * Vector3.FORWARD * distance,
 		them.global_rotation.y + PI

@@ -34,3 +34,6 @@ func enemy_action(fighter: Actor) -> bool:
 			fighter.battlefield.players_died.connect(board.done.emit)
 		#(fighter as Enemy).pick_pattern()
 	return true
+
+func message(fighter: Actor) -> String:
+	return "Strength reduced by {amount} (to {strength}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)

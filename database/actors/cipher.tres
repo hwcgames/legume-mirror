@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://actor/energy/EnergyPool.gd" id="7_kmrl6"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_nitsd"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="9_0n18g"]
+[ext_resource type="Script" uid="uid://bnan3w70eprcx" path="res://battle/rules/no_magic.gd" id="9_1ysgf"]
 
 [sub_resource type="Resource" id="Resource_bmh8q"]
 script = ExtResource("1_4478x")
@@ -42,6 +43,11 @@ basic_attack = ExtResource("4_4478x")
 skillset = SubResource("Resource_b3bsw")
 metadata/_custom_type_script = "uid://cy8cuowihm45l"
 
+[sub_resource type="Resource" id="Resource_3a6vy"]
+script = ExtResource("9_1ysgf")
+stacks = -1
+metadata/_custom_type_script = "uid://bnan3w70eprcx"
+
 [resource]
 script = ExtResource("9_0n18g")
 name = &"Cipher"
@@ -50,6 +56,7 @@ bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 id = "cipher"
 hp = SubResource("Resource_nyaq4")
 attrs = SubResource("Resource_bmh8q")
+rules = Array[ExtResource("8_nitsd")]([SubResource("Resource_3a6vy")])
 saved = true
 party_component = SubResource("Resource_6as1a")
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

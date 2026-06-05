@@ -1,6 +1,8 @@
 extends BattleAction
 class_name DynAction
 
+@export var name: String
+@export var description: String
 @export var steps: Array[DynActionStep] = []
 
 func allowed(party_member: Actor) -> bool:
@@ -30,16 +32,17 @@ class DynActionPlan extends BattleActionPlan:
 		self.steps = steps
 	
 	func go(party_member: Actor):
+		registers["me"] = party_member
 		var depth: int = 0
-		while depth < len(steps):
+		while bool(depth < len(steps)):
 			var p = steps[depth]
 			var cancel = await p.before(party_member, party_member.battlefield, registers)
 			if cancel:
 				break
 			depth += 1
-		if depth >= len(steps):
+		if bool(depth >= len(steps)):
 			depth -= 1
-		while depth >= 0:
+		while bool(depth >= 0):
 			var p = steps[depth]
 			await p.after(party_member, party_member.battlefield, registers)
 			depth -= 1

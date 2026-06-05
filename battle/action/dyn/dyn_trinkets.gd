@@ -15,5 +15,10 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 
 func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
 	var damage = registers[damage_register_name]
+	for rule in them.sheet.rules:
+		print(rule)
+		print(rule is TrinketsRule)
+		if rule is TrinketsRule:
+			rule.activated.emit()
 	(them.sheet.party_component.sp as TrinketsPool).trinkets_on_field += damage * trinkets_amount
 	print((them.sheet.party_component.sp as TrinketsPool).trinkets_on_field)

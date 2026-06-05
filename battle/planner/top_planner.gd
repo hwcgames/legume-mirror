@@ -131,6 +131,28 @@ func _ready():
 	%TabContainer.tab_changed.connect(func(idx):
 		if idx == %ToplevelTab.get_index():
 			%BasicAttackButton.grab_focus())
+	party_member.new_rule.connect(new_rule)
+	for rule in party_member.sheet.rules:
+		new_rule(rule)
+	battlefield.top.connect(sort_rules)
+
+func new_rule(rule: BattleRule):
+	var indicator: Control = rule.make_marker(party_member)
+	if !is_instance_valid(indicator):
+		return
+	print(indicator)
+	%StatusContainer.add_child(indicator)
+	rule.removed.connect(func():
+		print("Removed")
+		if is_instance_valid(indicator):
+			indicator.queue_free())
+	sort_rules()
+
+func sort_rules():
+	var children = %StatusContainer.get_children()
+	children.sort_custom(func(l, r): return l.amount < r.amount)
+	for child in children:
+		%StatusContainer.move_child(child, -1)
 
 var hp: int = 0
 var sp: int = 0

@@ -2,6 +2,8 @@ extends CharacterBody3D
 class_name Actor
 
 @export var human_name: StringName = name 
+func _to_string() -> String:
+	return human_name
 @export var costume: Costume:
 	set(new_costume):
 		if costume != null:
@@ -55,7 +57,7 @@ var computed_attrs: CombatAttributes:
 	get:
 		var attrs = self.sheet.attrs.duplicate()
 		for rule in sheet.rules:
-			if not rule.compute_attrs(self , attrs):
+			if not rule.compute_attrs(self, attrs):
 				return attrs
 		return attrs
 var hp_component: HealthComponent:
@@ -164,6 +166,8 @@ static func from_sheet(sheet: ActorSheet) -> Actor:
 	a.bg_color = sheet.bg_color
 	return a
 
+signal new_rule(rule: BattleRule)
+
 func add_rule(rule: BattleRule) -> bool:
 	for existing in sheet.rules:
 		if existing.get_script() == rule.get_script():
@@ -171,6 +175,7 @@ func add_rule(rule: BattleRule) -> bool:
 			return false
 	sheet.rules.push_back(rule)
 	rule._added(self )
+	new_rule.emit(rule)
 	return true
 
 func take_damage(amount: int):
@@ -199,13 +204,15 @@ func get_sp(amount: int):
 	for rule in sheet.rules:
 		if not rule.get_sp(self , amount):
 			return
-	sheet.party_component.sp.sp += amount
+	print("Get %s SP" % amount)
+	sheet.party_component.sp.get_energy(amount)
 
 func use_sp(amount: int):
 	for rule in sheet.rules:
 		if not rule.use_sp(self , amount):
 			return
-	sheet.party_component.sp.sp -= amount
+	print("Use %s SP" % amount)
+	sheet.party_component.sp.use_energy(amount)
 
 func begin():
 	for rule in sheet.rules:
@@ -217,9 +224,11 @@ func top():
 	for rule in sheet.rules:
 		if not rule.top(self ):
 			break
+		rule.changed.emit()
 	sheet.rules = sheet.rules.filter(func(r: BattleRule):
-		var keep = r.stacks > 0
+		var keep = r.stacks != 0
 		if not keep:
+			r.removed.emit()
 			r._removed(self )
 		return keep)
 	await battle_component._top(self)

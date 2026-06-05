@@ -2,7 +2,12 @@
 extends Resource
 class_name BattleRule
 
-@export var stacks: int = 1
+@export var stacks: int = 1:
+	set(new_stacks):
+		stacks = new_stacks
+		changed.emit()
+signal removed
+signal activated
 
 func copy() -> BattleRule:
 	return self.duplicate()
@@ -75,3 +80,23 @@ func done(fighter: Actor, player_victory: bool) -> bool:
 
 func soul(player: Actor, soul: Soul):
 	return true
+
+
+func marker_scene(fighter: Actor) -> PackedScene:
+	return preload("uid://bj4rgc3br1tr6")
+func icon(fighter: Actor) -> Texture2D:
+	return preload("uid://bky25goc74wma")
+@abstract
+func message(fighter: Actor) -> String
+func make_marker(fighter: Actor) -> Control:
+	var m = marker_scene(fighter).instantiate()
+	m.fighter = fighter
+	m.rule = self
+	#m.amount = stacks
+	#m.icon = icon(fighter)
+	#m.message = message(fighter)
+	#changed.connect(func():
+		#m.amount = stacks
+		#m.icon = icon(fighter)
+		#m.message = message(fighter))
+	return m

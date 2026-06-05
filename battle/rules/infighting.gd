@@ -13,15 +13,16 @@ func _added(fighter: Actor):
 	fighter.battlefield.println("%s infights for %s turns." % [fighter.name, stacks])
 
 func player_action(fighter: Actor) -> bool:
+	activated.emit()
 	(func():
 		fighter.turns = 1
 		var self_lock = await fighter.lock.exclusive_lock()
 		if not fighter.alive:
 			self_lock.call()
 			return true
-		var targets = fighter\
-			.battlefield\
-			.players\
+		var targets = fighter \
+			.battlefield \
+			.players \
 			.filter(func(p): return p.alive)
 		if targets.is_empty():
 			self_lock.call()
@@ -32,11 +33,11 @@ func player_action(fighter: Actor) -> bool:
 		#if target != fighter:
 			#mode = ActorModeApproach.new(fighter, target)
 			#await fighter.push_mode(mode)
-		fighter.battlefield.println(("%s struck %s in confusion!" % [fighter.human_name, target.human_name])\
-			if target != fighter\
+		fighter.battlefield.println(("%s struck %s in confusion!" % [fighter.human_name, target.human_name]) \
+			if target != fighter \
 			else ("%s was injured in their confusion!" % fighter.human_name))
 		@warning_ignore("integer_division")
-		target.take_damage((fighter.computed_attrs.strength*100/20)-(3*target.computed_attrs.defense))
+		target.take_damage((fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense))
 		await fighter.get_tree().create_timer(1.).timeout
 		#if target != fighter:
 			#mode.finished = true
@@ -46,3 +47,7 @@ func player_action(fighter: Actor) -> bool:
 		fighter.turns = 0
 	).call()
 	return false
+
+
+func message(fighter: Actor) -> String:
+	return "Can't tell friend from foe for {stacks} round(s).".format(self )

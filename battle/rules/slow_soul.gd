@@ -7,6 +7,7 @@ func _added_to_soul(soul: Soul):
 	soul.speed *= speed_mul
 
 func soul(player: Actor, soul: Soul):
+	activated.emit()
 	soul.speed *= speed_mul
 
 func top(fighter: Actor) -> bool:
@@ -23,3 +24,6 @@ func merge(other: BattleRule):
 
 func _added(fighter: Actor):
 	fighter.battlefield.println("%s turn(s) of %sx soul speed!" % [stacks, speed_mul])
+
+func message(fighter: Actor) -> String:
+	return "The soul is {speed_mul}x slower for {stacks} round(s). (Stacks!)".format(self )

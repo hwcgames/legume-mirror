@@ -11,6 +11,9 @@ func damage(bullet: Bullet, soul: Soul) -> bool:
 	for p in soul.players:
 		if p.sp_component is not TrinketsPool:
 			continue
+		for rule in p.sheet.rules:
+			if rule is TrinketsRule:
+				rule.activated.emit()
 		p.sp += value
 		(p.sp_component as TrinketsPool).trinkets_on_field -= value
 		bullet.queue_free()

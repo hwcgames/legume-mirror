@@ -3,22 +3,52 @@ class_name EnergyDebt
 
 @export var max_debt: int = 100
 @export var debt: int = 0:
-	set(debt):
-		debt = debt
+	set(new_debt):
+		debt = new_debt
 		emit_changed()
 
 func _get_max() -> int:
-	return 0
+	return max_debt
 func _get_min() -> int:
-	return -max_debt
+	return 0
+
 func _set_max(energy: int):
-	return
+	max_debt = energy
 func _set_min(energy: int):
-	max_debt = -energy
+	return
+
 func _get_energy() -> int:
-	return -debt
+	return debt
 func _set_energy(energy: int):
-	debt = clamp(-energy, 0, max_debt)
+	debt = energy
+
+func use_energy(amt: int):
+	print(amt)
+	debt = clamp(debt + amt, 0, max_debt)
+	print(debt)
+func get_energy(amt: int):
+	print(amt)
+	debt = clamp(debt - amt, 0, max_debt)
+	print(debt)
+
+func remaining() -> int:
+	return max_debt - debt
 
 func battle_end():
 	debt = 0
+
+#func _get_max() -> int:
+	#return 0
+#func _get_min() -> int:
+	#return -max_debt
+#func _set_max(energy: int):
+	#return
+#func _set_min(energy: int):
+	#max_debt = -energy
+#func _get_energy() -> int:
+	#return -debt
+#func _set_energy(energy: int):
+	#debt = clamp(-energy, 0, max_debt)
+#
+#func battle_end():
+	#debt = 0
