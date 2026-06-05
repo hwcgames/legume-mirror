@@ -132,7 +132,7 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	battle.player_action.connect(player_action)
 	battle.enemy_action.connect(enemy_action)
 	battle.done.connect(done)
-	mode = MODE.IDLE
+	active_component = %Component/Idle
 	if as_enemy or not is_instance_valid(sheet.party_component):
 		battle_component = sheet.enemy_component
 		await sheet.enemy_component._join_battle(self, battlefield)
@@ -216,13 +216,13 @@ func use_sp(amount: int):
 
 func begin():
 	for rule in sheet.rules:
-		if not rule.begin(self ):
+		if not rule.begin(self):
 			break
 	await battle_component._begin(self)
 
 func top():
 	for rule in sheet.rules:
-		if not rule.top(self ):
+		if not rule.top(self):
 			break
 		rule.changed.emit()
 	sheet.rules = sheet.rules.filter(func(r: BattleRule):
@@ -235,7 +235,7 @@ func top():
 
 func telegraph():
 	for rule in sheet.rules:
-		if not rule.telegraph(self ):
+		if not rule.telegraph(self):
 			break
 	await battle_component._telegraph(self)
 
@@ -276,7 +276,7 @@ func done(player_victory: bool):
 	battlefield = null
 	mode_done()
 
-func snap_to_landmark(landmark: Landmark):
+func snap_to_landmark(landmark: Node3D):
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
@@ -299,207 +299,100 @@ func snap_to_position(position: Vector3, rotation: float = INF):
 	await tween.finished
 
 func wait_for_idle():
-	while mode not in [MODE.IDLE, MODE.HUMAN]:
+	while not ((active_component is ActorIdle) or (active_component is ActorHuman)):
 		await new_mode
 
+var goal_rotation: float
 
-
-
-
-
-
-#region STATES
-var captured: bool = false
-signal new_mode(mode: int)
-var mode: MODE = MODE.IDLE:
-	set(m):
-		mode = m
-		if mode not in mode_start:
-			printerr("ERROR: Unhandled mode %s!!!" % mode)
-		mode_start[mode].call()
-		new_mode.emit(mode)
-enum MODE {
-	IDLE,
-	HUMAN,
-	PATHING,
-	NAIVE_WALKING,
-	GLIDING,
-	FOLLOWING,
-	AUTOMOVING,
-	CARGO,
-}
-var pose: String = "normal"
-
+var components: Array[ActorComponent]:
+	get:
+		var out: Array[ActorComponent] = []
+		for component in %Component.get_children():
+			out.push_back(component as ActorComponent)
+		return out
+@export var active_component: ActorComponent:
+	set(new_active):
+		if new_active == active_component:
+			return
+		if is_instance_valid(active_component):
+			active_component._deactivate()
+		print("{0} -> {1}".format([active_component, new_active]))
+		active_component = new_active
+		active_component._activate()
+		new_mode.emit(active_component)
 
 func _physics_process(delta: float):
-	if mode not in mode_tick:
-		printerr("ERROR: Unhandled mode %s!!!" % mode)
-	velocity = Vector3.ZERO
-	mode_tick[mode].call(delta)
+	while !is_instance_valid(active_component):
+		mode_done()
+		return
+	if active_component._reset_velocity():
+		velocity = Vector3.ZERO
+	active_component._active(delta)
+	
 	move_and_slide()
 
-#region MODE IMPL
-var mode_start: Dictionary[MODE, Callable] = {
-	MODE.IDLE: func(): pass,
-	MODE.HUMAN: func(): pass,
-	MODE.PATHING: pathing_start,
-	MODE.FOLLOWING: following_start,
-	MODE.AUTOMOVING: func(): pass,
-	MODE.CARGO: cargo_start
-}
-var mode_tick: Dictionary[MODE, Callable] = {
-	MODE.IDLE: idle_tick,
-	MODE.HUMAN: human_tick,
-	MODE.PATHING: pathing_tick,
-	MODE.FOLLOWING: following_tick,
-	MODE.AUTOMOVING: automoving_tick,
-	MODE.CARGO: cargo_tick
-}
 func mode_done():
+	print("{human_name} {active_component} mode done".format(self))
+	var party_pos = Storyteller.party_stack.find(self)
+	print(%Component/Automove.current)
 	if is_instance_valid(battlefield):
-		mode = MODE.IDLE
-	elif is_instance_valid(automove_current):
-		mode = MODE.AUTOMOVING
+		active_component = %Component/Idle
+	elif is_instance_valid(%Component/Automove.current):
+		active_component = %Component/Automove
+	elif captured:
+		active_component = %Component/Idle
 	elif leader:
-		mode = MODE.HUMAN
+		active_component = %Component/Human
+	elif party_pos != -1:
+		follow_actor(Storyteller.party_stack[party_pos-1])
 	else:
-		mode = MODE.IDLE
+		active_component = %Component/Idle
+	print("-> {active_component}".format(self))
 
-#region IDLE
-var goal_rotation = 0.
-func idle_tick(delta: float):
-	if Vector2(velocity.x, velocity.z).length() > 0.02:
-		goal_rotation = Vector3.FORWARD.signed_angle_to(velocity, Vector3.UP)
-	global_rotation.y = move_toward(global_rotation.y, lerp_angle(global_rotation.y, goal_rotation, 1.), 4. * PI * delta)
-	if is_on_floor():
-		return
-	velocity += Vector3.DOWN * 5.
-
-#region HUMAN
-var human_last_camera_rotation: float
-func human_tick(delta: float):
-	if captured:
-		idle_tick(delta)
-		return
-	var camera = get_viewport().get_camera_3d()
-	var input_rotation = camera.global_rotation.y
-	var active_pcam = PhantomCameraManager.get_phantom_camera_hosts()[0].get_active_pcam()
-	if active_pcam.has_meta("move_align"):
-		input_rotation = (active_pcam.get_node(active_pcam.get_meta("move_align"))).global_rotation.y
-	var input = MultiplayerInput.get_vector(PlayerManager.get_player_device(player), "left", "right", "down", "up")
-	if input.length() < 0.1 or abs(angle_difference(input_rotation, human_last_camera_rotation)) < 0.5:
-		human_last_camera_rotation = input_rotation
-	var forward = Vector3.FORWARD.rotated(Vector3.UP, human_last_camera_rotation)
-	var right = Vector3.RIGHT.rotated(Vector3.UP, human_last_camera_rotation)
-	if player not in PlayerManager.player_data:
-		return
-	var movement = (forward * input.y + right * input.x) * 10.
-	velocity += movement
-	idle_tick(delta)
-
-#region GLIDING
-var glide_target: Vector3
-var glide_speed: float
-var glide_rotation: float = INF
-func glide_to(target: Vector3, speed = 10., rotation = INF):
-	glide_target = target
-	glide_speed = speed
-	glide_rotation = rotation
-	mode = MODE.GLIDING
-func glide_start():
-	var glide_time = global_position.distance_to(glide_target) / glide_speed
-	var t = create_tween()
-	t.tween_property(self, "global_position", glide_target, glide_time)
-	if is_finite(glide_rotation):
-		t.parallel()
-		t.tween_property(self, "global_rotation.y", lerp_angle(global_rotation.y, glide_rotation, 1.), glide_time)
-	t.play()
-	await t.finished
-	if mode == MODE.GLIDING:
+var captured: bool = false:
+	set(new_cap):
+		if new_cap == captured:
+			return
+		captured = new_cap
 		mode_done()
+signal new_mode(mode: ActorComponent)
+var pose: String = "normal"
 
-#region FOLLOWING
-var follow_target: Actor
-var follow_speed: float = 10.
-var follow_distance: float
-var follow_history: Array[Vector3]
-func follow_actor(actor: Actor, at_distance: float = 3., at_speed: float = 10.):
-	follow_distance = at_distance
-	follow_speed = at_speed
-	follow_target = actor
-	mode = MODE.FOLLOWING
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return components.any(func(c: ActorComponent): return c.wants_line(line, tags))
+func take_line(line: String, tags: Array[String]):
+	var idx = components.find_custom(func(c: ActorComponent): return c.wants_line(line, tags))
+	components[idx].take_line(line, tags)
+
+func glide_to(target, speed = 10., rotation = INF):
+	var glide: ActorGlide = %Component/Glide
+	glide.target = (func(): return target.global_position) if target is Node3D else (func(): return target)
+	glide.speed = speed
+	glide.rotation = rotation
+	active_component = glide
 	await new_mode
-func following_start():
-	follow_history = [follow_target.global_position]
-func following_tick(delta: float):
-	if follow_history.is_empty() or follow_history[-1].distance_to(follow_target.global_position) > 0.1:
-		follow_history.push_back(follow_target.global_position)
-	var speed_this_frame = follow_speed * delta
-	while (not follow_history.is_empty()) and global_position.distance_to(follow_history[0]) < speed_this_frame:
-		follow_history.pop_front()
-	if not follow_history.is_empty():
-		velocity = global_position.direction_to(follow_history[0]) * follow_speed
-
-
-#region PATHING
-var pathing_speed: float = 10.
+func follow_actor(actor: Actor, at_distance: float = 1.5, at_speed: float = 10.):
+	var follow: ActorFollow = %Component/Follow
+	follow.distance = at_distance
+	follow.speed = at_speed
+	follow.target = actor
+	active_component = follow
+	await new_mode
 func pathfind_to(target: Vector3, rotation: float = INF):
-	pathing_target = target
-	pathing_rotation = rotation
-	mode = MODE.PATHING
+	var pathing: ActorPathing = %Component/Pathing
+	pathing.target = target
+	pathing.rotation = rotation
+	active_component = pathing
 	await new_mode
-var pathing_target: Vector3
-var pathing_rotation: float
-func pathing_start():
-	navigation.target_position = pathing_target
-	navigation.navigation_finished.connect(func():
-		if mode == MODE.PATHING:
-			mode_done()
-			if is_finite(pathing_rotation):
-				await get_tree().process_frame
-				goal_rotation = pathing_rotation
-				velocity = Vector3.ZERO)
-func pathing_tick(delta: float):
-	var next_pos = navigation.get_next_path_position()
-	velocity = (next_pos - global_position).normalized() * pathing_speed
-	idle_tick(delta)
-
-#region AUTOMOVING
-func automove_along(automove: Automove):
-	automove_current = automove
-	mode = MODE.AUTOMOVING
-	while is_instance_valid(automove_current):
+func automove_along(automove_node: Automove):
+	var automove: ActorAutomove = %Component/Automove
+	automove.current = automove_node
+	active_component = automove
+	while is_instance_valid(automove.current):
 		await new_mode
-var automove_current: Automove
-func automoving_tick(_delta: float):
-	if !is_instance_valid(automove_current) and mode == MODE.AUTOMOVING:
-		mode_done()
-	automove_current.apply_to_actor(self)
-	if is_instance_valid(automove_current.next_automove):
-		automove_current = automove_current.next_automove
-	elif is_instance_valid(automove_current.next_seam) \
-		and is_instance_valid(automove_current.next_seam.partner) \
-		and is_instance_valid(automove_current.next_seam.partner.automoves.get(automove_current.next_seam_key)):
-		automove_current = automove_current.next_seam.partner.automoves.get(automove_current.next_seam_key)
-	else:
-		automove_current = null
-
-#region CARGO
 func cargo(carrier: Actor):
-	cargo_carrier = carrier
-	mode = MODE.CARGO
-var cargo_carrier: Actor
-func cargo_start():
-	var colliders = get_children()\
-		.filter(func(c): return c is CollisionShape3D and not c.disabled)\
-		.map(func(c): return c as CollisionShape3D)
-	for c in colliders:
-		c.disabled = true
-	hide()
-	await new_mode # Our own new_mode
-	await new_mode # When this mode ends
-	for c in colliders:
-		c.disabled = false
-	show()
-func cargo_tick(_delta: float):
-	global_transform = cargo_carrier.global_transform
+	var cargo: ActorCargo = %Component/Cargo
+	cargo.carrier = carrier
+	active_component = cargo
+
+##region CARGO

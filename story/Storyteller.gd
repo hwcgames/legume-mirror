@@ -226,11 +226,13 @@ func cmd_spawn_actor(id: String, landmark_name: String):
 	var landmark = Landmark.find(landmark_name)
 	if actor != null:
 		actor.global_transform = landmark.global_transform
+		actor.goal_rotation = landmark.global_rotation.y
 		return
 	var actor_sheet = load("res://database/actors/%s.tres" % id);
 	actor = Actor.from_sheet(actor_sheet)
 	get_tree().current_scene.add_child(actor)
 	actor.global_transform = landmark.global_transform
+	actor.goal_rotation = landmark.global_rotation.y
 	pass
 
 func cmd_despawn_actor(id: String):
@@ -253,7 +255,8 @@ func cmd_spawn_party(landmark_name: String):
 	leader_pm.add_to_group("loading_root")
 	get_tree().current_scene.add_child(leader_pm)
 	leader_pm.global_transform = landmark.global_transform
-	leader_pm.mode = Actor.MODE.HUMAN
+	leader_pm.goal_rotation = landmark.global_rotation.y
+	leader_pm.mode_done()
 	party_stack = [leader_pm]
 	#var landmark = Landmark.find(landmark_name)
 	#var party: InkList = story.FetchVariable("party")
@@ -287,7 +290,7 @@ func cmd_spawn_party_member(id: String, landmark_name: String):
 func cmd_add_party_member(id: String, landmark_name: String):
 	var pm = Actor.find(id)
 	var landmark = Landmark.find(landmark_name)
-	if pm != null and not pm.mode == Actor.MODE.FOLLOWING:
+	if pm != null and not pm.active_component is ActorFollow:
 		pm.follow_actor(party_stack[-1])
 		party_stack.push_back(pm)
 		return
@@ -324,8 +327,10 @@ func cmd_actor_move(actor_name: String, landmark_name: String, style: String):
 	var landmark = Landmark.find(landmark_name)
 	var actor = Actor.find(actor_name)
 	match style:
-		"walk", "run", _:
+		"walk", "run":
 			actor.pathfind_to(landmark.global_position, landmark.global_rotation.y)
+		"glide", _:
+			actor.glide_to(landmark, 10., landmark.global_rotation.y)
 
 func cmd_actor_cargo(actor_name: String, carrier_name: String):
 	var actor: Actor = Actor.find(actor_name)
@@ -349,7 +354,7 @@ func cmd_actor_start_following_actor(follower_name: String, followee_name: Strin
 func cmd_actor_stop(actor_name: String):
 	(func():
 		var actor = Actor.find(actor_name)
-		actor.mode = Actor.MODE.IDLE
+		actor.mode_done()
 	).call()
 
 func cmd_actor_wait(actor_name: String):

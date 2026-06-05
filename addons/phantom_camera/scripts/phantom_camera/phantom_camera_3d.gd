@@ -953,6 +953,7 @@ func _ready():
 
 
 func _process(delta: float) -> void:
+	_follow_target_physics_based = true
 	if Engine.is_editor_hint() and _draw_gizmo:
 		update_gizmos()
 
@@ -961,6 +962,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_follow_target_physics_based = true
 	if not _follow_target_physics_based or _is_active: return
 	process_logic(delta)
 

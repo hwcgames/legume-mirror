@@ -35,8 +35,9 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	match Array(speaker_str.split("%as%")):
 		[var actor]:
 			msg.actor = Actor.find(actor)
-			msg.text_color = msg.actor.text_color if msg.actor else msg.text_color
-			msg.bg_color = msg.actor.bg_color if msg.actor else msg.bg_color
+			var colors = get_colors(actor)
+			msg.text_color = msg.actor.text_color if msg.actor else colors[0]
+			msg.bg_color = msg.actor.bg_color if msg.actor else colors[1]
 		[var actor, var speaker]:
 			msg.actor = Actor.find(actor)
 			var colors = get_colors(speaker)

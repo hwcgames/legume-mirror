@@ -1,0 +1,32 @@
+extends ActorComponent
+class_name ActorAutomove
+
+var current: Automove
+
+func _activate():
+	while active:
+		if !is_instance_valid(current):
+			actor.mode_done()
+			return
+		current.apply_to_actor(actor)
+		if is_instance_valid(current.next_automove):
+			current = current.next_automove
+			continue
+		for _i in range(5):
+			if !(is_instance_valid(current.next_seam) and is_instance_valid(current.next_seam.partner)):
+				await get_tree().process_frame
+			else:
+				break
+		if !is_instance_valid(current):
+			actor.mode_done()
+			return
+		if is_instance_valid(current.next_seam) \
+			and is_instance_valid(current.next_seam.partner) \
+			and is_instance_valid(current.next_seam.partner.automoves.get(current.next_seam_key)):
+			current = current.next_seam.partner.automoves.get(current.next_seam_key)
+		else:
+			current = null
+func _active(delta: float):
+	pass
+func _reset_velocity() -> bool:
+	return false

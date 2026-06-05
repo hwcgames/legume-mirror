@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://dsmw0etg767jy"]
 
 [ext_resource type="Script" uid="uid://dkkwsmv06k637" path="res://actor/actor.gd" id="1_0oyms"]
+[ext_resource type="Script" uid="uid://bwisdhgxnk2yl" path="res://actor/component/actor_idle.gd" id="2_3lm2u"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_fe22u"]
 [ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="3_fe22u"]
+[ext_resource type="Script" uid="uid://3nbu03qev8ae" path="res://actor/component/actor_human.gd" id="3_k3ftn"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="4_a26hr"]
+[ext_resource type="Script" uid="uid://bt8dvfwcf7cs6" path="res://actor/component/actor_glide.gd" id="4_k3ftn"]
 [ext_resource type="Script" uid="uid://b3xvhtutqyk8e" path="res://story/PlayerInteractor.gd" id="5_g8ksh"]
+[ext_resource type="Script" uid="uid://rwpvleaxidij" path="res://actor/component/actor_follow.gd" id="5_tvpus"]
+[ext_resource type="Script" uid="uid://d0ym2jrtlwpvt" path="res://actor/component/actor_pathing.gd" id="6_7esib"]
+[ext_resource type="Script" uid="uid://c8yn1evbmnbd3" path="res://actor/component/actor_automove.gd" id="7_47x2q"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
 radial_segments = 8
@@ -48,12 +54,39 @@ func _process(delta: float) -> void:
 	global_transform = get_parent().head.global_transform if get_parent().head else get_parent().global_transform
 "
 
-[node name="Actor" type="CharacterBody3D" unique_id=158145810 node_paths=PackedStringArray("costume", "interactable") groups=["actor"]]
+[node name="Actor" type="CharacterBody3D" unique_id=158145810 node_paths=PackedStringArray("costume", "interactable") groups=["actor", "story_listener"]]
 collision_layer = 2
 script = ExtResource("1_0oyms")
 costume = NodePath("test_costume")
 interactable = NodePath("Interactable")
 metadata/_custom_type_script = "uid://dkkwsmv06k637"
+
+[node name="Component" type="Node" parent="." unique_id=1071448262]
+unique_name_in_owner = true
+
+[node name="Idle" type="Node" parent="Component" unique_id=1480240457]
+script = ExtResource("2_3lm2u")
+metadata/_custom_type_script = "uid://bwisdhgxnk2yl"
+
+[node name="Human" type="Node" parent="Component" unique_id=142863705]
+script = ExtResource("3_k3ftn")
+metadata/_custom_type_script = "uid://3nbu03qev8ae"
+
+[node name="Glide" type="Node" parent="Component" unique_id=1480289516]
+script = ExtResource("4_k3ftn")
+metadata/_custom_type_script = "uid://bt8dvfwcf7cs6"
+
+[node name="Follow" type="Node" parent="Component" unique_id=395693404]
+script = ExtResource("5_tvpus")
+metadata/_custom_type_script = "uid://rwpvleaxidij"
+
+[node name="Pathing" type="Node" parent="Component" unique_id=279737647]
+script = ExtResource("6_7esib")
+metadata/_custom_type_script = "uid://d0ym2jrtlwpvt"
+
+[node name="Automove" type="Node" parent="Component" unique_id=236403863]
+script = ExtResource("7_47x2q")
+metadata/_custom_type_script = "uid://c8yn1evbmnbd3"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=49623517]
 unique_name_in_owner = true

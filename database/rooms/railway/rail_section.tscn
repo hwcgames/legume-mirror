@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2qh7mlkra6lu"]
+[gd_scene format=3 uid="uid://d2qh7mlkra6lu"]
 
 [ext_resource type="PackedScene" uid="uid://b6apyocbr84ec" path="res://assets/rooms/railway/railtunnel_general.blend" id="1_lrg78"]
 [ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_omblp"]
@@ -18,19 +18,19 @@ _data = {
 point_count = 2
 up_vector_enabled = false
 
-[node name="RailSection" type="Area3D"]
+[node name="RailSection" type="Area3D" unique_id=1542071661]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_omblp")
 metadata/_custom_type_script = "uid://wm2krehx1x27"
 
-[node name="railtunnel_general" parent="." instance=ExtResource("1_lrg78")]
+[node name="railtunnel_general" parent="." unique_id=18987543 instance=ExtResource("1_lrg78")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=139890831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 shape = SubResource("BoxShape3D_shjar")
 
-[node name="In" type="Marker3D" parent="." node_paths=PackedStringArray("automoves")]
+[node name="In" type="Marker3D" parent="." unique_id=1566472573 node_paths=PackedStringArray("automoves")]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 0)
 script = ExtResource("2_shjar")
@@ -42,7 +42,7 @@ automoves = {
 }
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="Out" type="Marker3D" parent="."]
+[node name="Out" type="Marker3D" parent="." unique_id=886964535]
 unique_name_in_owner = true
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 12, 0, 0)
 script = ExtResource("2_shjar")
@@ -50,17 +50,17 @@ profile = &"Railway"
 wants_room_type = 1
 metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
 
-[node name="TrainPath" type="Path3D" parent="."]
+[node name="TrainPath" type="Path3D" parent="." unique_id=929216406]
 unique_name_in_owner = true
 curve = SubResource("Curve3D_shjar")
 
-[node name="rails" type="Marker3D" parent="." node_paths=PackedStringArray("next_automove")]
+[node name="rails" type="Marker3D" parent="." unique_id=1066084839 node_paths=PackedStringArray("next_automove")]
 unique_name_in_owner = true
 script = ExtResource("4_n5nqi")
 next_automove = NodePath("../rails_out")
 metadata/_custom_type_script = "uid://dgryx2ii0n4p"
 
-[node name="rails_out" type="Marker3D" parent="." node_paths=PackedStringArray("next_seam")]
+[node name="rails_out" type="Marker3D" parent="." unique_id=1479481264 node_paths=PackedStringArray("next_seam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 script = ExtResource("5_t2sy4")
 glide_speed = 20.0
@@ -68,7 +68,7 @@ next_seam = NodePath("../Out")
 next_seam_key = &"rails"
 metadata/_custom_type_script = "uid://de4gmccb2y5c1"
 
-[node name="train_entry" type="Marker3D" parent="." groups=["landmark"]]
+[node name="train_entry" type="Marker3D" parent="." unique_id=451015194 groups=["landmark"]]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0, 0)
 script = ExtResource("6_t2sy4")

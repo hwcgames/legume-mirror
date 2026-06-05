@@ -15,6 +15,12 @@ func _ready():
 		await self.message(message)
 		l.call())
 
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return Message.from_str(line, tags) != null
+func take_line(line: String, tags: Array[String]):
+	await message(Message.from_str(line, tags))
+
+
 func queue_dialogue_choice():
 	Storyteller.new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
 

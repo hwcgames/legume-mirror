@@ -12,4 +12,10 @@ class_name AutomoveBattle
 		#mode.finished = true)
 	#return mode
 func apply_to_actor(actor: Actor):
-	actor.mode = Actor.MODE.IDLE
+	for player in Storyteller.party_stack:
+		battlefield.players.push_back(player)
+	actor.battlefield = battlefield
+	battlefield.battle.call_deferred()
+	battlefield.done.connect(func(_w):
+		actor.mode_done())
+	actor.mode_done()

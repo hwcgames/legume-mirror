@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_j5g7b"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_eb8e3"]
 [ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="7_e13po"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_wqs1p"]
 [ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="9_eb8e3"]
 [ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://level/automove/automove_glide.gd" id="10_e13po"]
 
@@ -101,6 +100,7 @@ shape = SubResource("BoxShape3D_crqpl")
 [node name="PhantomCamera3D" type="Node3D" parent="CameraTrigger" unique_id=1600573770 node_paths=PackedStringArray("look_at_target") groups=["camera"]]
 transform = Transform3D(0.9408874, -0.064452074, 0.33253092, 0, 0.98172957, 0.19028156, -0.33871952, -0.17903352, 0.92369694, 2.5, 8.2, 7)
 script = ExtResource("5_j5g7b")
+priority_override = true
 look_at_mode = 2
 look_at_target = NodePath("../LeaderProxy")
 tween_resource = SubResource("Resource_drtur")
@@ -136,15 +136,6 @@ transform = Transform3D(0.9848075, 0.05939115, -0.1631759, 7.0012547e-09, 0.9396
 script = ExtResource("5_j5g7b")
 tween_resource = SubResource("Resource_j5g7b")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1396861218]
-transform = Transform3D(0.9848075, 0.05939115, -0.1631759, 7.0012547e-09, 0.93969244, 0.34202003, 0.1736481, -0.336824, 0.9254165, -5.475, 10.1, 3.5)
-top_level = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=2070424801]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("8_wqs1p")
 
 [node name="LeaveTrain" type="RigidBody3D" parent="." unique_id=953449881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 7.3)

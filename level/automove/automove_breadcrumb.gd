@@ -9,5 +9,6 @@ class_name AutomoveBreadcrumb
 	#return mode
 
 func apply_to_actor(actor: Actor):
-	actor.pathing_target = global_position
-	actor.mode = Actor.MODE.PATHING
+	#actor.pathing_target = global_position
+	#actor.mode = Actor.MODE.PATHING
+	actor.pathfind_to(global_position)

@@ -7,7 +7,15 @@ class_name ActorSheet
 @export var bg_color: Color = Color.BLACK
 @export var text_color: Color = Color.WHITE
 @export var id: String
-@export var hp: HealthComponent
+@export var hp: HealthComponent:
+	get:
+		if is_instance_valid(hp):
+			return hp
+		else:
+			var h = HealthPool.new()
+			h.max_hp = 1
+			h.current_hp = 1
+			return h
 var alive: bool:
 	get:
 		return hp.alive

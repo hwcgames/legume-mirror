@@ -10,7 +10,7 @@ friction = 0.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdhre"]
 
-[node name="Chatterbox" type="CanvasLayer" unique_id=991073897]
+[node name="Chatterbox" type="CanvasLayer" unique_id=991073897 groups=["story_listener"]]
 script = ExtResource("1_85akc")
 chat_balloon_scene = ExtResource("2_pdhre")
 choice_balloon_scene = ExtResource("3_sayom")

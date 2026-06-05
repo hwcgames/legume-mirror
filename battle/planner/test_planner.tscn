@@ -58,6 +58,8 @@ script/source = "extends Button
 func _process(delta: float) -> void:
 	#if !visible:
 		#return
+	if !is_instance_valid(planner.battlefield):
+		return
 	var players_with_turns = len(planner.battlefield.players.filter(func(p: Actor): return p.turns > 0))
 	disabled = players_with_turns <= 1
 

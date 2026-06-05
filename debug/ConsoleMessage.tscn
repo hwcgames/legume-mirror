@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brr7nwc3bt4rg"]
+
+[ext_resource type="Script" uid="uid://vxuq1he42yhb" path="res://debug/console_message.gd" id="1_35163"]
+
+[node name="ConsoleMessage" type="RichTextLabel" unique_id=1574316472]
+script = ExtResource("1_35163")
