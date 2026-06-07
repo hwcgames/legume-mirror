@@ -25,5 +25,9 @@ func merge(other: BattleRule):
 func _added(fighter: Actor):
 	fighter.battlefield.println("%s round(s) of Enfeeble %s." % [stacks, amount])
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("STR-", 0)
+
 func message(fighter: Actor) -> String:
 	return "Strength reduced by {amount} (to {strength}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)

@@ -24,7 +24,7 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 		var crit_chance: float = crit_chance_mul * them.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
 		if randf() < crit_chance:
 			skill *= crit_mul
-	var damage = (them.computed_attrs.strength * skill / 20) - (3 * target.computed_attrs.defense)
+	var damage = (them.computed_attrs[our_skill] * skill / 20) - (3 * target.computed_attrs[their_skill])
 	if damage > 0:
 		if skill >= 250:
 			Storyteller.choose_if_available(["%s finesse hits" % them.name, "%s perfect hits" % them.name, "%s hits" % them.name, "party hit"])

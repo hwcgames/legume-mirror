@@ -34,5 +34,9 @@ func enemy_action(fighter: Actor) -> bool:
 	fighter.battlefield.players_died.connect(board.done.emit)
 	return true
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("DEF-", 0)
+
 func message(fighter: Actor) -> String:
 	return "Energy is governed by trinkets.\nScatter trinkets on the board with your basic attack.\nCollect them; they persist between battles."

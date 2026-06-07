@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d4a07582e1vr1"]
+
+[ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_b7xf8"]
+[ext_resource type="PackedScene" uid="uid://b353nhv3axp71" path="res://assets/char/bird.blend" id="2_r88gl"]
+
+[node name="Bird" type="Node3D" unique_id=725741409 node_paths=PackedStringArray("head")]
+script = ExtResource("1_b7xf8")
+head = NodePath("Head")
+metadata/_custom_type_script = "uid://csq0jt1cnob8c"
+
+[node name="bird" parent="." unique_id=1885240468 instance=ExtResource("2_r88gl")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Head" type="Marker3D" parent="." unique_id=933431032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29663926, 0.08647776)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=469550616]
+unique_name_in_owner = true

@@ -25,5 +25,9 @@ func merge(other: BattleRule):
 func _added(fighter: Actor):
 	fighter.battlefield.println("%s turn(s) of %sx soul speed!" % [stacks, speed_mul])
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("SLOW_SOUL", 0)
+
 func message(fighter: Actor) -> String:
 	return "The soul is {speed_mul}x slower for {stacks} round(s). (Stacks!)".format(self )

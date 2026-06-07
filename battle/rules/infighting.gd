@@ -48,6 +48,9 @@ func player_action(fighter: Actor) -> bool:
 	).call()
 	return false
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("INFIGHT", 0)
 
 func message(fighter: Actor) -> String:
 	return "Can't tell friend from foe for {stacks} round(s).".format(self )

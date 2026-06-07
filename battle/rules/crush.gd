@@ -25,5 +25,9 @@ func merge(other: BattleRule):
 func _added(fighter: Actor):
 	fighter.battlefield.println("%s round(s) of Crush %s." % [stacks, amount])
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("DEF-", 0)
+
 func message(fighter: Actor) -> String:
 	return "Armor reduced by {amount} (to {defense}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://bvl8t3gdjhcan"]
 
-[ext_resource type="PackedScene" uid="uid://ccijxtd2o6tpu" path="res://database/costume/crow.tscn" id="1_jvtk7"]
+[ext_resource type="PackedScene" uid="uid://d4a07582e1vr1" path="res://database/costume/bird.tscn" id="1_a1j1c"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_a1j1c"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_ejb7c"]
 
 [resource]
 script = ExtResource("2_a1j1c")
 name = &"Crow"
-costume = ExtResource("1_jvtk7")
+costume = ExtResource("1_a1j1c")
 bg_color = Color(0.081683345, 0.06458239, 0.0987817, 1)
 text_color = Color(0.6938495, 0.6353732, 0.75043035, 1)
 id = "crow"

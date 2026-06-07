@@ -34,6 +34,10 @@ func take_damage(fighter: Actor, amount: int) -> bool:
 	#fighter.use_sp(amount * (1. - sp_gain_mul))
 	#return true
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("OVERHEAT", 0)
+
 func message(fighter: Actor) -> String:
 	var sp = fighter.sheet.party_component.sp as EnergyDebt
 	var debt = float(sp.debt) / float(sp.max_debt)
