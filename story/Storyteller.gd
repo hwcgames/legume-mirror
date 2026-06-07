@@ -415,7 +415,7 @@ func cmd_join_battle(actor_name: String, as_enemy: bool = false):
 	if not actor:
 		return
 	var battlefield: Battlefield = Battlefield.find()
-	if as_enemy:
+	if is_instance_valid(actor.sheet.enemy_component):
 		battlefield.enemies.push_back(actor)
 	else:
 		battlefield.players.push_back(actor)

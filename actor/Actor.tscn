@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://rwpvleaxidij" path="res://actor/component/actor_follow.gd" id="5_tvpus"]
 [ext_resource type="Script" uid="uid://d0ym2jrtlwpvt" path="res://actor/component/actor_pathing.gd" id="6_7esib"]
 [ext_resource type="Script" uid="uid://c8yn1evbmnbd3" path="res://actor/component/actor_automove.gd" id="7_47x2q"]
+[ext_resource type="Script" uid="uid://dvnykp2tlth33" path="res://actor/component/actor_cargo.gd" id="8_ndhxd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
 radial_segments = 8
@@ -87,6 +88,10 @@ metadata/_custom_type_script = "uid://d0ym2jrtlwpvt"
 [node name="Automove" type="Node" parent="Component" unique_id=236403863]
 script = ExtResource("7_47x2q")
 metadata/_custom_type_script = "uid://c8yn1evbmnbd3"
+
+[node name="Cargo" type="Node" parent="Component" unique_id=1675060991]
+script = ExtResource("8_ndhxd")
+metadata/_custom_type_script = "uid://dvnykp2tlth33"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=49623517]
 unique_name_in_owner = true

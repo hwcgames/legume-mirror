@@ -3,7 +3,19 @@ class_name ActorGlide
 var target: Callable
 var speed: float
 var rotation: float = INF
+var timer: Timer = Timer.new()
+func _ready() -> void:
+	add_child(timer)
+	timer.timeout.connect(func():
+		if not active:
+			return
+		print("Glide took too long. Emergency teleport!")
+		actor.global_position = target.call()
+		actor.goal_rotation = rotation
+		actor.mode_done())
 func _activate():
+	var movement_time = actor.global_position.distance_to(target.call()) / speed
+	timer.start(movement_time * 2)
 	pass
 	#t.tween_property(actor, "global_position", target, glide_time)
 	#t.play()
@@ -26,3 +38,5 @@ func _active(delta: float):
 			actor.goal_rotation = rotation
 		actor.mode_done()
 	pass
+func _deactivate():
+	timer.stop()

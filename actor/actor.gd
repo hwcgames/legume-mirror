@@ -159,7 +159,10 @@ static func from_sheet(sheet: ActorSheet) -> Actor:
 	if is_instance_valid(sheet.enemy_component):
 		a.sheet.enemy_component = sheet.enemy_component.copy()
 	var existing = Actor.find(sheet.id)
-	a.name = sheet.id if !is_instance_valid(existing) else sheet.id + "-" + str(randi())
+	if not sheet.id.is_empty():
+		a.name = sheet.id if !is_instance_valid(existing) else sheet.id + "-" + str(randi())
+	else:
+		a.name = sheet.resource_path.rsplit("/", false, 2)[-1].split(".", false, 2)[0]
 	a.human_name = sheet.name
 	a.costume = sheet.costume.instantiate()
 	a.text_color = sheet.text_color

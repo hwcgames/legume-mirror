@@ -2,7 +2,7 @@ extends ActorComponent
 class_name ActorCargo
 
 var carrier: Actor
-var colliders: Array[CollisionShape3D]
+var colliders
 func _activate():
 	colliders = actor.get_children()\
 		.filter(func(c): return c is CollisionShape3D and not c.disabled)\
