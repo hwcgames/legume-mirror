@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_pp6h7"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_auujr"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="3_4lsed"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_nf2gh"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_ranyg"]
 [ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_pp6h7"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_l3sar"]
@@ -102,7 +103,7 @@ metadata/_custom_type_script = "uid://bwdiitfe2immc"
 [resource]
 script = ExtResource("3_4lsed")
 name = &"Mauve"
-bg_color = Color(0.087991826, 0.09712886, 0.19360727, 1)
+bg_color = Color(0.48475915, 0.0020174487, 0.73249334, 1)
 text_color = Color(0.77691454, 0.72727233, 1, 1)
 id = "mauve"
 hp = SubResource("Resource_hnmfk")

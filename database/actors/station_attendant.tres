@@ -3,11 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_fypuy"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_8ttdn"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_i3bmq"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="2_wxhsb"]
 
 [resource]
 script = ExtResource("2_i3bmq")
 name = &"Station Attendant"
-bg_color = Color(0.15203461, 0.1297999, 0.17466855, 1)
+bg_color = Color(0.18, 0, 0.36, 1)
 text_color = Color(0.421888, 0.51084584, 0.3623934, 1)
 id = "station_attendant"
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

@@ -70,10 +70,38 @@
     ~ weekday = 1
 }
 
+=== function season(m, d)
+{m:
+    - 1: ~ return "Winter"
+    - 2: ~ return "Winter"
+    - 3: {
+        - d < 20: ~ return "Winter"
+        - d >= 20: ~ return "Spring"
+    }
+    - 4: ~ return "Spring"
+    - 5: ~ return "Spring"
+    - 6: {
+        - d < 20: ~ return "Spring"
+        - d >= 20: ~ return "Summer"
+    }
+    - 7: ~ return "Summer"
+    - 8: ~ return "Summer"
+    - 9: {
+        - d < 22: ~ return "Summer"
+        - d >= 22: ~ return "Fall"
+    }
+    - 10: ~ return "Fall"
+    - 11: ~ return "Fall"
+    - 12: {
+        - d < 21: ~ return "Fall"
+        - d >= 21: ~ return "Winter"
+    }
+}
+
 === calendar
 VAR year = 0
-VAR month = 3
-VAR day = 28
+VAR month = 8
+VAR day = 12
 VAR weekday = 5
 VAR time = 0
 ->DONE
@@ -87,6 +115,7 @@ Calendar test:
 ->loop
 
 = run_day
+->draw_up_to(4)->
 {year:
     - 0: ->y0->
     - 1: ->y1->
@@ -100,11 +129,6 @@ Calendar test:
 
 = y0
 {month:
-    - 3: -> y0m3
-    - 4: -> y0m4
-    - 5: -> y0m5
-    - 6: -> y0m6
-    - 7: -> y0m7
     - 8: -> y0m8
     - 9: -> y0m9
     - 10: -> y0m10
@@ -130,35 +154,10 @@ Calendar test:
     - else: -> END
 }
 
-= y0m3
-{day:
-    - 28: -> d0_03_28
-    - 29: -> d0_03_29
-}
--> default_day
-= y0m4
-{day:
-    - 0: -> default_day
-}
--> default_day
-= y0m5
-{day:
-    - 0: -> default_day
-}
--> default_day
-= y0m6
-{day:
-    - 0: -> default_day
-}
--> default_day
-= y0m7
-{day:
-    - 0: -> default_day
-}
--> default_day
 = y0m8
 {day:
-    - 0: -> default_day
+    - 12: -> d0_08_12
+    - 13: -> d0_08_13
 }
 -> default_day
 = y0m9

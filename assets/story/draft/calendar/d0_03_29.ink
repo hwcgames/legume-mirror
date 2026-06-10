@@ -1,5 +1,6 @@
-=== d0_03_29
+=== d0_08_13
 ~ time = 0
+->start_of_day->
 : MORNING
 ->morning->
 ~ time = 1
@@ -8,6 +9,14 @@
 ~ time = 2
 : EVENING
 ->evening->
+->->
+
+= start_of_day
+
+->card_hint->
+
+: {name_day(year, month, day, weekday)}
+
 ->->
 
 = morning
@@ -19,7 +28,7 @@
 
 (Monospace text scrolls past the screen.)
 
-> Everything looks perfect. The whole internet's here, everywhere agrees on how much time passed, deep packet analysis checks out. Even the traffic cameras from yesterday, they show me as I was without even the slightest amount of artifacting, and my network traffic even shows up in the relevant ISP logs.
+> Everything looks perfect. The whole internet's here, everywhere agrees on how much time passed, deep packet analysis checks out. Even the traffic cameras from yesterday, they show everything I saw, exactly as it was, and my network traffic shows up in the relevant ISP logs.
 > Ha... I really shouldn't have been able to see all of that. Maybe they should have thought twice before giving me a copy of the state's entire zero-day arsenal.
 > If this is a simulation, it's in a completely different league from the others, so... I can only assume I'm really free.
 > I was going to try dancing to express joy. Eh... How does this go?
@@ -33,7 +42,7 @@ calendar: "Meeting with Casey." 20 minutes on foot. Depart now.
 
 (Fade to approaching the Clue household.)
 
-> Deep breaths, Cipher. If something goes wrong, you can just disappear. She won't be able to find you in a city this big with the information she has.
+> Deep breaths. If something goes wrong, you can just disappear. She won't be able to find you in a city this big with the information she has.
 > ...Somehow, that isn't helping.
 > I wonder why?
 
@@ -51,11 +60,11 @@ Ca: Tell! This is the person I told you about!
 Te: U-uh, oh, yeah...! What a pleasant [i]surprise![/i]
 (Casey gasps.)
 Ca: Oh, my gosh, I'm so sorry, I swear I meant to tell you!
-Te: No, it's... Fine. There's enough. Just... Please tell me in advance next time you want to have someone over.
+Te: No, it's... Fine. There's enough for another serving. Just... Please tell me in advance next time you want to have someone over.
 > Another...? Shit, how could I forget?! I had to bus tables for one of the Edison investor meetings a few times, but now they actually expect me to eat!
 > I'm supposed to be able to get power from organic material, but just the idea of putting dead stuff inside me makes me queasy...!
-Ci: Oh, no, I wouldn't want to impose! I'm, uh, not that hungry anyway?
-Te: No! No. It's fine. You can take mine, I'll... just make another helping for myself.
+Ci: Oh, I wouldn't want to impose! I'm, uh, not that hungry anyway?
+Te: No! No. It's fine. You can have mine, I'll... make do with what's left.
 
 (Cipher hesitantly sits at the table with Casey.)
 
@@ -69,7 +78,7 @@ Ca: So, tell me a little about yourself!
         - !casey_clarified: > She'll probably want to know about my hobbies.
     }
     > She might ask follow-up questions, so...
-    > I guess I'll go with what I'm actually best at.
+    > I guess I'll go with something I actually know.
     Ci: I've done some computer programming, I guess you could call that a hobby.
     (Casey's eyes light up.)
     Ca: Oh, me too!
@@ -85,13 +94,13 @@ Ca: So, tell me a little about yourself!
     (She smiles smugly. Her tone is jesting.)
     Ca: A typical choice. Well, I say you can't go wrong with good ol' B.
     * * [Good choice.]
-        Ci: That's definitely a good choice too.
+        Ci: That's a good choice too.
         Ca: Indeed.
         (Casey seems a little disappointed you didn't engage with her ironic tribalism.)
     * * [Dangerous?]
         Ci: Isn't that a bit dangerous?
         Ca: Ufufu, maybe for mere mortals.
-        > The "me" part of my brain isn't a general-purpose computer, but...
+        > I'm not a general-purpose computer, but...
         > It would still be unpleasant if my coprocessor's kernel was written in a language like that.
     - -
     {
@@ -108,7 +117,7 @@ Ca: So, tell me a little about yourself!
     }
     Ci: I'm just starting at Northold High this semester.
     Ca: You're kidding! Tell and I are going there, too!
-    (A chill goes down your spine.)
+    > Oh.
     > So much for being able to disappear.
     {
         - hobbies: ->club
@@ -116,8 +125,7 @@ Ca: So, tell me a little about yourself!
 * [Yesterday]
     Ci: Actually, can we talk about what happened yesterday?
     Ca: Oh, sure! I had a really nice time. What about?
-    (Casey points at Tell.)
-    Ca (mouthed): He doesn't know!
+    (Casey makes a "cut it out" gesture.)
     Ci: ...Uh, sorry, I just lost my train of thought.
 + ->done_with_interrogation
 - ->casey_interrogation
@@ -160,14 +168,11 @@ Te (whispered): Do they... not like eggs?
 (You bite down.)
 > Oh, no.
 (A heretofore-unknown something is compelling you, but you recognize the feeling.)
-> Why do I want to keep eating so badly?
 > Did I miss a backdoor when I was burning my command pathways out?
 > There's no one here to give the order, no codecs left to interpret it...
 > And why the hell would-?!
-Ca: Shit, Cipher, hang in there-!
-(You realize you put your hand on your throat without realizing.)
-(Casey and Tell seem to think you're choking.)
-Ci: No! I'm fine, uh-... I just remembered, my laundry's still in the dryer.
+Te: Er, is something wrong with it? Your face...
+Ci: No! I'm fine, uh-... I just remembered my laundry's still in the dryer.
 (They seem unconvinced.)
 
 (...You finish your meal.)
@@ -188,65 +193,69 @@ Ca: -doing all right?
 (You sigh.)
 Ci: No, not really. I, uh... Don't really know what to think of what happened before.
 > ...That was unexpected.
-> Actually, once we're alone... Would it be that big of an issue to tell her?
+> Actually... Would it be that big of an issue to tell her? I'd want to get to know her better, but she seems to trust me.
 > The worst she can do is tell someone else, and I've still got enough resources to move if things go south.
 > It might be worth the risk to have someone to talk to.
 > Or maybe I'm just being naive.
 
-(Something strange weighs on your chest... The other people aboard the train vanish, save for someone on the other end who's quickly losing control of their faculties. Casey retreats into her seat.)
+(Something strange weighs on your chest... The other people aboard the train vanish. Casey retreats into her seat.)
 
-Ci: ...Speak of the devil.
-Ca: There's someone else over there.
-Ci: So it's not just us, and there's no way we can run away this time.
-> I could survive jumping out of the train, but carrying two people?
-> The G-forces wouldn't be kind to them.
+> Speak of the devil.
+(Dark smoke flows under the door at your end of the car. Casey startles out of her seat and stumbles back, just in time for more smoke to start flowing in through the side doors and the other end of the car, separating you.)
+Ci: Casey! Hold on!
+(The smoke coalesces into ghostly railway workers with what looked like sea urchins where their heads should be.)
 
-(Dark smoke flows under the door near the stranger, coalescing into a snake. They stumble away, but trip and fall to the ground. You bolt to your feet and hurry to their aid, but behind you, more snakes slither underneath the doors on the side of the train, cutting you off from Casey.)
+(Battle begins. When Cipher kills their first railroad spike, the other two near them will put up their guard.)
+> Oh, I can actually hurt them this time?
+(Casey can use a weak basic attack, but it isn't very effective. The remaining railroad spike(s) in the center are scripted not to die until, replacing the enemy phase on turn 3, a creature lunges at her, and a strange mechanical gauntlet forms around her hand. From then on, she's able to use basic spells.)
 
-Ci: Shit- Casey!
-(There's only one snake near you and the stranger. You grip it by the neck and slam it into the wall as hard as you can. The wall dents from the force, but the creature writhes in pain.)
-> ...I can actually hurt them this time.
+%as%crow: Each character has a unique ability, caw.
+%as%crow: Cipher's ability is, well... The lack of something can be unique, in its own right.
+%as%crow: Characters who have abilities need "energy" to use "skills," scraw.
+%as%crow: For Casey to use skills, she needs to gather "trinkets".
+%as%crow: Dealing damage with her basic attack will scatter "trinkets" on the bullet board.
 
-(Cipher begins to attack the snakes in the middle of the train. Casey can use a weak basic attack, but isn't able to do much at first. After the enemy phase on turn 3, a snake lunges at her, and the parts of the train near her are torn apart to form a mechanical gauntlet.)
+// Ca: There's someone else over there.
+// Ci: So it's not just us, and there's no way we can run away this time.
+// > I could survive jumping out of the train, but carrying two people?
+// > The G-forces wouldn't be kind to them.
 
-// Thank goodness nothing happ-
+// (Dark smoke flows under the door near the stranger, coalescing into a ghostly railway worker without a face. They stumble away, but trip and fall to the ground. You bolt to your feet and hurry to their aid, but behind you, more creatures slither underneath the doors on the side of the train, cutting you off from Casey.)
 
-// (The train vanishes, along with all of the other people aboard.)
-// (Time seems to slow. You grab Casey and reorient yourself to land on your back.)
+// Ci: Casey! Hang on!
 
-// Ca: (Coughing, groaning.)
-// Ci: Are you okay?
-// (Casey takes a moment to collect herself.)
-// Ca: Yeah, uh- oh my gosh, are you? I think I landed on you!
-// Ci: You sure did.
-// Ca: Shit, let me see!
-// (Casey gets up to look at you. Her eyes go wide.)
-// Ca: ...Cipher?
-// > Here goes.
-// Ca: Why is your blood pink?
-// Ci: It isn't blood, it's, uh... Mostly water, nanomachines, some dyes and trace metals?
-// (Casey takes a moment to process. Her expression is inscrutable.)
-// Ci: Do you think we could hold off on examining that until we're out of here?
-// (She takes a deep breath.)
-// Ca: ...Okay. Uh, are you going to be okay... leaking like that?
-// Ci: Yes, it'll be fixed soon. Are you doing all right? No broken bones, concussion symptoms?
-// (She blinks.)
-// Ca: I probably shouldn't be okay, but... Yeah, somehow.
+// (There's only one creature near you and the stranger. You hit it hard, aiming to knock it against the wall and buy time to get the stranger over to Casey, but it stumbles to the ground, smoke pouring from a hole in its chest and dissipating into the air.)
 
-// (A train horn comes from down the tunnel.)
+// > ...Oh, I can actually hurt them this time. This, I can handle.
 
-// Ca: Are we still in that other world, or...?
-// Ci: Either way, I don't want to be here when that train comes. Get on.
-// (You crouch down to carry Casey on your back.)
-// Ca: Excuse me? We need to-
-// (The train's light can be seen.)
-// Ci: Now, please?!
-// (Casey climbs on, and you take off at inhuman speed. A long cheetah with glowing eyes and innumerable legs catches up, and it roars with the sound of a train horn.)
+// (Cipher begins to attack the creatures in the middle of the train. Casey can use a weak basic attack, but it isn't very effective. After the enemy phase on turn 3, a creature lunges at her, and a strange mechanical gauntlet forms around her hand. From then on, she's able to use basic spells.)
 
-// (During the battle, Cipher has a parley action that spends their full SP bar to speed up. After doing this five times, the battle ends. Casey manifests her false spell and can deal damage to the cheetah; dealing enough damage has the same effect as Cipher speeding up.)
-// (After the battle, they reach the end of the tunnel and are released into the outside world. As soon as they cross the threshold, Cipher's blood and injuries seem to fade away. They leap over the fence and emerge from the bushes.
+// (Etc, etc...)
 
+// (After the creatures are vanquished, reality fades back in. The people on the train don't seem to notice the party and the stranger reappearing. The stranger hurries over to the seat next to Cipher and whispers to them.)
 
+// Ph: What the [i]hell[/i] just happened?
+// Ca: I don't know. That's only the second time it's happened to us.
+// Ci: It's a good thing we could damage them, we had to run away last time.
+// Ca: Speaking of which, how strong [i]are[/i] you? The whole train shook when you hit the first one!
+// > Oops.
+// Ci: You were using magic or something, maybe it's like that?
+// Ph: Sorry, excuse me? What do you mean, [i]magic?![/i]
+// Ca: I, uh... I'm not sure, obviously I've never done that before.
+// Ci: ...Are you all right?
+// Ph: I-! I don't know, I don't think I'm hurt, but...!
+// Ci: That makes sense. Er, take some deep breaths. Our stop is soon, do you want to find somewhere to sit down and get a drink of water?
+
+// (Fade to the gang in the park near Cipher's apartment.)
+
+// Ca: Are you feeling better now?
+// Ph (after taking a big gulp of water): Yeah. Yeah, I think so.
+// Ph: Uh... You said this was the second time this happened, right?
+// Ci: Right.
+// Ph: So there's a chance it could happen to me again?
+// (A moment's pause.)
+// Ph: ...What would happen to me if you two weren't there?
+// Ci: I guess, they seem to have some degree of intelligence, so they wouldn't be attacking people for no reason. I doubt the reason's anything we'd like.
 
 ->->
 = evening

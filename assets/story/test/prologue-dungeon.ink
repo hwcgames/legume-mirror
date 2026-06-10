@@ -152,6 +152,7 @@ crow: I'll see you afterwards, scraw!
 cipher: I see something! #ty:spoken
 casey: Get ready to fight, everyone!
 + [battle enemy action]
++ [battle end] -> dungeon_loop
 -
 + [battle lost]
     -> die
@@ -223,22 +224,49 @@ _
 ~ sleep(0.5)
 _
 ~ spawn_actor("crow", "crow")
-+ + [dungeon entered safe]
-- -
++ [dungeon entered safe]
+-
 ~ set_camera("crow")
 ~ actor_release("cipher")
-~ actor_capture("cipher")
+_
 ~ actor_move("cipher", "talk_to_crow", "glide")
 ~ actor_wait("cipher")
+~ actor_capture("cipher")
 _
 {stopping:
   - crow: Hello again, caw! #ty:bird
     crow: This is a safe-room.
-    crow: Eventually, you'll be able to save here, scraw...
-    crow: But for now, I'll restore your health!
   - crow: Hey, we just keep running into each other! #ty:bird
   - crow: The usual, {caw|scraw|squawk}? #ty:bird
 }
+crow: Would you like to [b]save?[/b]
+~ dialogue_choice()
+_
++ [Yes, please.]
+    {once:
+        - crow: All right, scraw. Just a moment.
+        - crow: Sure thing, caw.
+    }
+    ~ fade_out("black")
+    _
+    ~ save(true)
+    _
+    _
+    _
+    ~ spawn_actor("crow", "crow")
+    ~ set_weather("dungeon")
+    ~ fade_in()
+    ~ spawn_party("talk_to_crow")
+    ~ add_party_member("casey", "talk_to_crow")
+    ~ add_party_member("april", "talk_to_crow")
+    ~ add_party_member("mauve", "talk_to_crow")
+    ~ actor_capture("cipher")
+    _
++ [No, thank you.]
+    {once:
+        - crow: Oh, well, caw - don't say I didn't warn you.
+    }
+-
 ~ heal_party()
 : You feel like new. #ty:typed
 {once:

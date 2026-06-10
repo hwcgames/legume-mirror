@@ -14,6 +14,8 @@
 
 = start_of_day
 
+->card_hint->
+
 : {name_day(year, month, day, weekday)}
 
 ->->

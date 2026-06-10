@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_5hhjj"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_6qrpg"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_vcogv"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_vr0jv"]
 [ext_resource type="Resource" uid="uid://bmugfrf5c28qh" path="res://database/bullet_pattern/draw_lines.tres" id="6_6qrpg"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_umf0y"]
 [ext_resource type="Resource" uid="uid://cie0nf2vwtx1t" path="res://database/bullet_pattern/smartboard-calibration.tres" id="7_5g4qd"]

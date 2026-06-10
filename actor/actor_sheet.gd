@@ -4,8 +4,9 @@ class_name ActorSheet
 @export var name: StringName = "Actor"
 @export var description: String = "Whozemawhatsit"
 @export var costume: PackedScene = preload("uid://c4r2ey7i7ooq3")
-@export var bg_color: Color = Color.BLACK
+@export var bg_color: Color = Color.WHITE
 @export var text_color: Color = Color.WHITE
+@export var default_voice: Voice = preload("uid://coudm8kl2h00x")
 @export var id: String
 @export var hp: HealthComponent:
 	get:

@@ -10,6 +10,10 @@ EXTERNAL actor_exists(actor)
 === function actor_exists(actor)
 ~ return true
 
+EXTERNAL save(in_place)
+=== function save(in_place)
+>>> Saved{in_place: in place}.
+
 // Track the characters in the party
 
 // LIST party = (cipher), casey, tell, mauve, vince, prince, april

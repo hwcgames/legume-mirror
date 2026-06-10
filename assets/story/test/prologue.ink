@@ -13,6 +13,7 @@
 ->->
 
 === intro_headlines
+->prologue
 
 ~ fade_out("black")
 : WESTON GAZETTE #ty:typed

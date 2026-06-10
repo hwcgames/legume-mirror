@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_njymn"]
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_t6q34"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_gijac"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_72raw"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_evodp"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="3_t6q34"]
 [ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_sakq1"]
@@ -375,7 +376,7 @@ metadata/_custom_type_script = "uid://dhh217igyci1m"
 [resource]
 script = ExtResource("3_t6q34")
 name = &"April"
-bg_color = Color(0.19516191, 0.093666546, 0.12472852, 1)
+bg_color = Color(1, 0, 0.3000002, 1)
 text_color = Color(0.99999994, 0.78971016, 0.582179, 1)
 id = "april"
 hp = SubResource("Resource_qaff2")

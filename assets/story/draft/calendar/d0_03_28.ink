@@ -1,5 +1,5 @@
 
-=== d0_03_28
+=== d0_08_12
 ~ time = 0
 : MORNING
 ->morning->
@@ -52,28 +52,28 @@ Fade in from black.
 Cipher is aboard a train crossing a bridge.
 They're alone, apart from someone asleep on the other end of the car.
 
-Dear Diary;
+Dear Diary,
 (They cross it out.)
-To whom it may concern;
-If you happen to find this... Don't bother trying to return it. It isn't wanted, and I'm quite confident you couldn't find me even if it was. I imagine it'd fetch quite the price if you were to sell it. Much of it is classified, after all.
-It's a curious emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to start over like this.
-The thought of being a stranger is exhilarating, don't you think? Though I imagine you take it for granted.
+To whom it may concern,
+I'm not going to belabor my situation - you've probably already been briefed on it. If you haven't, well... I'm sure someone will reach out to you soon. Regardless, I'm quite confident this is the last you'll be hearing from me. Arguably, leaving this here is a big risk, but when I imagine the look on the safety director's face... Well, if you know him, you'll understand why I decided to indulge. 
+// If you happen to find this... Don't bother trying to return it. It isn't wanted, and I'm quite confident you couldn't find me even if it was. I imagine it'd fetch quite the price if you were to sell it. Much of it is classified, after all.
+// It's a curious emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to start over like this.
+I've been thinking about what this means. I've never had to tell someone [i]who I am[/i] before. Will it be difficult? Scary? I've read that a person's "personality" is like a muscle: it develops when you have other people to bounce it off of, but atrophes when you're alone. Will they be able to tell I haven't been able to use mine?
 
 (The train announces its approach to Weston Pier.)
 
 Thanks for humoring me,
 A Fellow Stranger.
-P.S: I'm not sure if you count as my mother, but... Regardless, I'm going to miss you. Sorry if I got you fired.
 
-(Cipher opens the window and throws their journal out.)
-> My journal thuds against the wall of the bridge.
-> I watch it tumble to a stop, quickly falling behind and out of view.
+P.S: I'm not sure if I can call you "mom," but... Regardless, if you're reading this somehow: thanks for everything. Sorry if I got you fired.
 
-(Fade to black. The train is heard announcing its arrival at Northold, twentieth street north and twelfth avenue east, as far as this train goes.)
-(Fade back into Cipher walking down a busy street.)
+(Cipher tears the last page out of their journal and leaves it on the seat.)
+(They open the window and throw the rest of it into the ocean. After a moment, a splash is heard.)
+
+(Fade through black to Cipher walking down a busy street.)
 
 > I've never been around so many people.
-> A storm of feelings burbles in my chest, but it's set on a backdrop of joy.
+> A mix of feelings burbles in my chest, but it's set on a backdrop of joy.
 > If a human felt like this, they'd probably dance, or sing, or something like that.
 > I'd like to try, but people would ask questions if I did it here.
 > ...I feel a little dizzy.
@@ -104,7 +104,7 @@ P.S: I'm not sure if you count as my mother, but... Regardless, I'm going to mis
 (They encounter Casey, lying on the ground, with a strange creature standing over her. Tutorial battle...)
 
 > ...Oh!
-> The human just moved.
+> She just moved.
 
 (Cipher sets her down.)
 
@@ -113,14 +113,14 @@ Ci: Hello, are you all right?
 Ca: Huh-!
 (Casey startles.)
 Ca: Oh, you... Did you save me?
-Ci: Yes. You got hurt pretty bad, do you mind if I look you over?
+Ci: Yes. You were unconscious, do you mind if I look you over?
 Ca: Yeah, er- Wait, that was real!?
-> I'm not sure if [i]you're[/i] real yet.
+> I hope so.
 Ci: As far as I know.
 Ca: How did you even beat that thing?
 Ci: I didn't.
 (Casey looks around, alarmed.)
-Ci: Oh, no- I mean, I just picked you up and ran. Eventually, I got out of... Wherever that was.
+Ci: It's not like that. I just picked you up and ran. Eventually, I got out of... Wherever that was.
 (Cipher steps back.)
 Ci: Wait, your wounds are all gone?
 (Casey looks herself over.)
@@ -128,15 +128,18 @@ Ca: ...Huh. It couldn't have been some kind of dream, right? Since you found me 
 Ci: I guess not. Are you doing all right? I have an obligation in a few minutes that I need to get to.
 (Casey digs her phone out of her pocket.)
 Ca: Yeah, uh- but before you go, do you want to get each other's chat IDs so we can keep in touch?
+(The world freezes and dissolves into blocky noise.)
 > Oops, just a sec-
-(The world freezes and dissolves into blocky noise. A registration webpage appears.)
+(A registration webpage appears.)
 > Ugh, I can't say I'm a fan of the world-net. Too many CAPTCHAs.
 (The player picks their display name and username.)
 > There, now I have an account.
 (The world falls back into focus.)
-Ci: Sure, I'm null_hypothesis. What's yours?
+Ci: Yes, I'm null_hypothesis. You?
 Ca: clueXfour.
-(Cipher turns to leave and waves goodbye. The camera lingers on Casey.)
+(Cipher turns to leave and waves goodbye.)
+Ci: Okay, I'll put you in once I get home.
+(The camera lingers on Casey.)
 Ca (whisper): null_hypothesis... There it is. Oh, I guess their name's Cipher. Haha, what's that say about me, asking their chat ID first?
 (She laughs to herself, but something catches her eye.)
 Ca (whisper): Registered... just now? But they didn't...
@@ -155,7 +158,6 @@ Ca (whisper): Registered... just now? But they didn't...
 
 Mi: Oh, hello, dearie! What can I do for you?
 Ci: I'm Cipher, my parents said they talked to you?
-> Doing impressions comes naturally to me, as one could imagine.
 Mi: Of course, of course! They said they'd send me your picture in "the goggle," but, oh, you know how it is with those new electric computers. So complicated!
 > I'm flattered.
 + (told_milly_computers_are_hard) Ci: Tell me about it!
@@ -164,13 +166,13 @@ Mi: Of course, of course! They said they'd send me your picture in "the goggle,"
     Mi: Well, of course, kids your age have had them your whole lives.
 -
 Mi: Say, I'm supposed to get a "goggle letter" for my taxes soon, would it be a bother to help me get it?
-Mi: I don't want to go all the way to the DMV to get them to print it out for me.
+Mi: I don't want to go all the way to the bank to get them to print it out for me.
 > ...I'm not even going to ask what she means by that.
 > This could be an opportunity, though. Having a rapport will make it easier to work with her.
 Ci: Of course! Call me anytime.
 Mi: You're a peach, thank you. Do you need help with your bags?
 Ci: No, I couldn't ask you to help with that. Besides, I'm stronger than I look!
-> I don't have any luggage to carry regardless, but if there's ever a semi truck blocking her driveway...
+> I don't actually have any luggage, but if a semi truck ever breaks down in front of her driveway...
 Mi: Aww, aren't you independent? Well, if you ever need anything, just let Aunt Milly know!
 
 ->->
@@ -191,7 +193,7 @@ Mi: Aww, aren't you independent? Well, if you ever need anything, just let Aunt 
 cxf: hello, stranger!
 nh: Hello.
 cxf: thanks again for saving me today
-cxf: i still dont' understand
+cxf: i still don't understand
 cxf: where the hell were we? #expr:confused
 cxf: what would have happened to me if you hadn't shown up #expr:fear
 nh: I don't think there's any way to know for sure.
@@ -206,7 +208,7 @@ cxf: ok
 cxf: but consider
 cxf: i want to get to know you
 cxf: and i'm offering you free breakfast
-cxf: and tbh i'm scared to go out alone after that but i have to buy school supplies
+cxf: and tbh i'm scared to go out alone in case it happens again but i have to buy school supplies
 > Oh. I wasn't expecting something like this to happen so fast.
 > Am I ready? Probably not, if I'm being honest, but...
 nh: Okay. Time and place?

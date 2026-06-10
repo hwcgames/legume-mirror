@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Voice" load_steps=25 format=3 uid="uid://coudm8kl2h00x"]
+[gd_resource type="Resource" script_class="Voice" format=3 uid="uid://coudm8kl2h00x"]
 
 [ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://story/voice.gd" id="1_fewhh"]
 [ext_resource type="AudioStream" uid="uid://hc2w2bck7he4" path="res://assets/sfx/typing/key1.wav" id="2_jthbv"]

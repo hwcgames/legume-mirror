@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_8fas8"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_c0535"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_wqnap"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_ya0mn"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
 [ext_resource type="Resource" uid="uid://b6maj2efm4jj8" path="res://database/bullet_pattern/rumors.tres" id="6_c0535"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_ya0mn"]
@@ -40,7 +41,6 @@ script = ExtResource("4_y2wmh")
 sp = SubResource("Resource_5xipf")
 patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
 name = &"Sharp Missive"
-description = &"A lie can make it half way around the world before the truth has time to put its boots on. "
 costume = ExtResource("1_q5xry")
 id = "sharpmissive"
 hp = SubResource("Resource_iv080")

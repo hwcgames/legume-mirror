@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_lobln"]
 [ext_resource type="PackedScene" uid="uid://dhi0pehthpuwk" path="res://database/costume/homeworker.tscn" id="1_ucycd"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_g1f4y"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_jnryj"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_m53xm"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_rpyj7"]
