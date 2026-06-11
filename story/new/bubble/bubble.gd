@@ -2,7 +2,7 @@ extends CenterContainer
 class_name NDialogueBubble
 
 func wants_line(line: String, tags: Array[String]) -> bool:
-	return NMessage.from_str(line, tags) != null
+	return RMessage.from_str(line, tags) != null
 func take_line(line: String, tags: Array[String]):
 	await message(NMessage.from_str(line, tags))
 

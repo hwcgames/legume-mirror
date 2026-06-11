@@ -1,3 +1,5 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -p just -i 'just -f'
 set unstable
 
 all: linux-zip windows-zip
@@ -21,9 +23,6 @@ linux-zip: linux
 windows-zip: windows
     cd build/windows; zip -r9 ../windows.zip .
 
-macos-zip: macos
-    cd build/macos; zip -r9 ../macos.zip .
-
 linux: licenses
     mkdir -p build/linux
     cp -r build/licenses/* build/linux
@@ -38,6 +37,18 @@ macos: licenses
     mkdir -p build/macos
     cp -r build/licenses/* build/macos
     godot4.6-mono --headless --verbose --export-release "macos"
+
+linux-rust:
+    #!/usr/bin/env bash
+    cd rs
+    cargo b --target x86_64-unknown-linux-gnu
+    cargo b --release --target x86_64-unknown-linux-gnu
+
+windows-rust:
+    #!/usr/bin/env bash
+    cd rs
+    cargo b --target x86_64-pc-windows-gnu
+    cargo b --release --target x86_64-pc-windows-gnu
 
 [script]
 licenses: 
