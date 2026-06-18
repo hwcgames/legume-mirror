@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cd2oktw58ov5s"]
 
-[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/fonts/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vem1w"]
+[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/art/fnt/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vem1w"]
 
 [sub_resource type="FontVariation" id="FontVariation_44a1c"]
 base_font = ExtResource("1_vem1w")

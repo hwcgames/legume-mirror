@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bwabdscdybnu7"
+path="res://.godot/imported/broth.aseprite-53f64b1833c6d85ddb1633489b27d457.res"
+
+[deps]
+
+source_file="res://assets/art/bullet/broth.aseprite"
+dest_files=["res://.godot/imported/broth.aseprite-53f64b1833c6d85ddb1633489b27d457.res"]
+
+[params]
+

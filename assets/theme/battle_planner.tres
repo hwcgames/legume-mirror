@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://bjtrx0xncgqi6"]
 
-[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/gui/bars.aseprite" id="1_k0f3m"]
-[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/fonts/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vavlv"]
+[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/art/gui/bars.aseprite" id="1_k0f3m"]
+[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/art/fnt/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vavlv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_id7uf"]
 atlas = ExtResource("1_k0f3m")
