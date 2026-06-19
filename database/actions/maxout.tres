@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://d2omhl2fq1cog"]
+
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_hwyq2"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_sd6wq"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="3_7kfsa"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://battle/action/dyn/dyn_energy.gd" id="4_5kypn"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="5_qrsvi"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="6_r5w0v"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_r6fbp"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://battle/action/dyn/dyn_apply_rule.gd" id="8_4isto"]
+[ext_resource type="Script" uid="uid://c5ws07wcekdv7" path="res://battle/rules/reduce_sp.gd" id="9_uesnt"]
+
+[sub_resource type="Resource" id="Resource_tstue"]
+script = ExtResource("3_7kfsa")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_ejrof"]
+script = ExtResource("4_5kypn")
+cost = 50
+soft = true
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_tfesu"]
+script = ExtResource("5_qrsvi")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_ub3fw"]
+script = ExtResource("6_r5w0v")
+before_wait = 0.3
+after_wait = 0.5
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_jdhth"]
+script = ExtResource("9_uesnt")
+stacks = 5
+metadata/_custom_type_script = "uid://c5ws07wcekdv7"
+
+[sub_resource type="Resource" id="Resource_oscri"]
+script = ExtResource("8_4isto")
+target_register = "me"
+message = "????"
+rfl_message = "{me} is overheating!"
+self_rules = Array[ExtResource("7_r6fbp")]([SubResource("Resource_jdhth")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
+[resource]
+script = ExtResource("1_hwyq2")
+name = "Max-out"
+description = "Hit your limits, reducing your heat recovery."
+steps = Array[ExtResource("2_sd6wq")]([SubResource("Resource_tstue"), SubResource("Resource_ejrof"), SubResource("Resource_tfesu"), SubResource("Resource_ub3fw"), SubResource("Resource_oscri")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"

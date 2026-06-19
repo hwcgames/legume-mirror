@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://bc3hbmt83s2x8"
+path="res://.godot/imported/lib.ink-825da0d6ff99c6ad571c47eef372545c.res"
+
+[deps]
+
+source_file="res://assets/story/draft/characters/lib.ink"
+dest_files=["res://.godot/imported/lib.ink-825da0d6ff99c6ad571c47eef372545c.res"]
+
+[params]
+
+is_main_file=false
+compress=true

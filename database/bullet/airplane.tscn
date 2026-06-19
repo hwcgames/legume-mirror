@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t1oj1biqflb3"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_u5g1u"]
-[ext_resource type="Texture2D" uid="uid://c5kvbu7yopet7" path="res://assets/bullet/airplane.aseprite" id="2_spw8e"]
+[ext_resource type="Texture2D" uid="uid://c5kvbu7yopet7" path="res://assets/art/bullet/airplane.aseprite" id="2_spw8e"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_syvp7"]
 [ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_v8xe2"]
 [ext_resource type="Script" uid="uid://dr0o4afnmtqf5" path="res://battle/bullet/components/move_sine.gd" id="4_4ocpq"]

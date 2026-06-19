@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7e7s4n4gr63p"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_7ufy6"]
-[ext_resource type="SpriteFrames" uid="uid://bxn04fij5jy1t" path="res://assets/bullet/math.aseprite" id="2_7ufy6"]
+[ext_resource type="SpriteFrames" uid="uid://bxn04fij5jy1t" path="res://assets/art/bullet/math.aseprite" id="2_7ufy6"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_35dea"]
 [ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="3_x5wgv"]
 [ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="4_utlu3"]

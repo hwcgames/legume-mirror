@@ -32,7 +32,7 @@ func _ready():
 		#ConnectFlags.CONNECT_ONE_SHOT)
 
 func _exit_tree() -> void:
-	Storyteller.choose_if_available(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
+	Storyteller2.choose(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
 
 func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):

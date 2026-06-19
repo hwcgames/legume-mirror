@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="5_31qda"]
 [ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="6_wl237"]
 [ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="7_j8seu"]
-[ext_resource type="SpriteFrames" uid="uid://bkwk8tio25xt" path="res://assets/bullet/spookybullet.aseprite" id="8_neg8j"]
+[ext_resource type="SpriteFrames" uid="uid://bkwk8tio25xt" path="res://assets/art/bullet/spookybullet.aseprite" id="8_neg8j"]
 
 [sub_resource type="Resource" id="Resource_e36c4"]
 script = ExtResource("3_soojm")

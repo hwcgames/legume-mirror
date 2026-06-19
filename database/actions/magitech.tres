@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://dvb8w6sqx5opj"]
+
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_k70tn"]
+[ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://battle/rules/magic_strength.gd" id="2_i4eud"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="3_pvwhj"]
+
+[sub_resource type="Resource" id="Resource_iaevo"]
+script = ExtResource("2_i4eud")
+decay = true
+stacks = 3
+metadata/_custom_type_script = "uid://bwdiitfe2immc"
+
+[resource]
+script = ExtResource("3_pvwhj")
+name = "Magitech"
+description = "Gives an ally magical strength."
+cost = 30
+message = "%s gave %s magical strength!"
+rfl_message = "%s powered her weapon with magic!"
+rules = Array[ExtResource("1_k70tn")]([SubResource("Resource_iaevo")])
+friendly = true
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"

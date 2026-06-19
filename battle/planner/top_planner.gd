@@ -120,7 +120,7 @@ func _ready():
 	%IdleTab.show()
 	%Name.text = party_member.human_name
 	%Name.add_theme_color_override("font_color", party_member.text_color)
-	%ColorBg.color = party_member.sheet.bg_color
+	%ColorBg.modulate = party_member.sheet.bg_color
 	%HPBar.min_value = party_member.sheet.hp.min
 	%HPBar.max_value = party_member.sheet.hp.max
 	%HPBar.value = party_member.sheet.hp.hp
@@ -193,8 +193,14 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 		var button := Button.new()
 		item_buttons.push_back(button)
 		button.text = item.name
-		button.tooltip_text = item.description
+		button.tooltip_text = item.description.format({
+			"me": party_member,
+			"item": item,
+			"charges": item.charges
+		})
 		button.pressed.connect(chosen_item.emit.bind(item))
+		if not (item as Item).battle_action.allowed(party_member, item):
+			button.disabled = true
 		selector.add_child(button)
 	%PocketsTab.show()
 	if !item_buttons.is_empty():
@@ -213,9 +219,9 @@ func pockets():
 	var action = item.battle_action.duplicate()
 	if "item" in action:
 		action.item = item
-	var plan = await action.plan(self)
-	if plan != null:
-		Inventory.items.remove_at(Inventory.items.find(item))
+	var plan = await action.plan(self, item)
+	#if plan != null:
+		#Inventory.items.remove_at(Inventory.items.find(item))
 	choice.emit(plan)
 
 signal chosen_parley(parley: ParleyAction)
@@ -265,7 +271,7 @@ func parley():
 	if parley_action == null:
 		choice.emit(null)
 		return
-	var plan = await parley_action.plan(self)
+	var plan = await parley_action.plan(self, enemy.sheet.enemy_component)
 	choice.emit(plan)
 
 func skillset():

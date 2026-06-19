@@ -14,5 +14,5 @@ func tooltip(party_member: Actor) -> String:
 
 func subplanner(party_member: Actor) -> SubPlanner:
 	var subplanner: SpellListPlanner = subplanner_scene.instantiate()
-	subplanner.spells = spell_list
+	subplanner.list = self
 	return subplanner

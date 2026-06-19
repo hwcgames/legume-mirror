@@ -16,7 +16,7 @@ func allowed(party_member: PartyMember) -> bool:
 func display(party_member: PartyMember) -> bool:
 	return true
 
-func plan(battle_planner: BattlePlanner) -> ActionPlanParleyTest:
+func plan(battle_planner: BattlePlanner, source: Object) -> ActionPlanParleyTest:
 	var plan = ActionPlanParleyTest.new()
 	plan.target = enemy
 	return plan

@@ -229,7 +229,7 @@ func serve_queue(candidates: Array[RoomInfo], seam: ProceduralSeam) -> RoomInfo:
 		return null
 	if room_queue[0].room in candidates:
 		var req = room_queue.pop_front()
-		Storyteller.choose_if_available(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")], true)
+		Storyteller2.choose(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")], true)
 		seam.wants_partner_name = req.seam
 		return req.room
 	candidates.sort_custom(func(a: RoomInfo, b: RoomInfo):

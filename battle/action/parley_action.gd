@@ -9,6 +9,6 @@ var enemy: Actor
 func description() -> String:
 	return "Its effect is a mystery."
 
-@abstract func allowed(party_member: Actor) -> bool
+@abstract func allowed(party_member: Actor, source: Object) -> bool
 
 @abstract func display(party_member: Actor) -> bool

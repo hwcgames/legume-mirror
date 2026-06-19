@@ -202,6 +202,102 @@ VAR reversed = ()
 {name_card(card, r)}: {explain_card(card, r)}.
 ->->
 
+=== dream_hint
+(You had a dream last night. You can't remember the details, but it seemed... <>
+~ temp c = LIST_RANDOM(cards)
+~ temp upright = !(reversed ? c)
+{c:
+    - Fool: {upright:
+        - true: Free
+        - false: Naive
+    }
+    - Magician: {upright:
+        - true: Creative
+        - false: Gullible
+    }
+    - HighPriestess: {upright:
+        - true: Intuitive
+        - false: Numb
+    }
+    - Empress: {upright:
+        - true: (Caring
+        - false: (Helpless
+    }
+    - Emperor: {upright:
+        - true: Structured
+        - false: Cold
+    }
+    - Hierophant: {upright:
+        - true: Traditional
+        - false: Rebellious
+    }
+    - Lovers: {upright:
+        - true: Friendly
+        - false: Discordant
+    }
+    - Chariot: {upright:
+        - true: Willful
+        - false: Lost
+    }
+    - Strength: {upright:
+        - true: Brave
+        - false: Insecure
+    }
+    - Hermit: {upright:
+        - true: Thoughtful
+        - false: Lonely
+    }
+    - WheelOfFortune: {upright:
+        - true: Ever-changing
+        - false: At fate's mercy
+    }
+    - Justice: {upright:
+        - true: Perceptive
+        - false: Cheated
+    }
+    - HangedMan: {upright:
+        - true: Self-sacrificial
+        - false: Stuck
+    }
+    - Death: {upright:
+        - true: Change
+        - false: Stagnant
+    }
+    - Temperance: {upright:
+        - true: Patient
+        - false: Off-balance
+    }
+    - Devil: {upright:
+        - true: Playful
+        - false: Free
+    }
+    - Tower: {upright:
+        - true: Dreadful
+        - false: Worried
+    }
+    - Star: {upright:
+        - true: Hopeful
+        - false: Discouraged
+    }
+    - Moon: {upright:
+        - true: Dreamy
+        - false: Confused
+    }
+    - Sun: {upright:
+        - true: Happy
+        - false: Pessimistic
+    }
+    - Judgement: {upright:
+        - true: Awake
+        - false: Like a mess
+    }
+    - World: {upright:
+        - true: Complete
+        - false: Dissatisfied
+    }
+}<>.)
+->->
+
 === explain_all_cards(list)
 {list == ():
     ->->

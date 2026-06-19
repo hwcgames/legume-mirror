@@ -7,7 +7,7 @@ class_name Interactable
 var interactable: bool:
 	get:
 		for choice_name in choices:
-			var matching = Storyteller.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name))
+			var matching = Storyteller2.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name))
 			var choice = matching.get(0) if not matching.is_empty() else null
 			if choice:
 				return true
@@ -21,7 +21,7 @@ func _ready():
 func hover():
 	var choice: InkChoice
 	for choice_name in choices:
-		choice = Storyteller.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name)).get(0)
+		choice = Storyteller2.choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name)).get(0)
 		if choice:
 			break
 	if !choice:
@@ -31,7 +31,7 @@ func hover():
 	marker.show()
 
 func go():
-	Storyteller.choose_if_available(choices)
+	Storyteller2.choose(choices)
 
 func blur():
 	marker.hide()

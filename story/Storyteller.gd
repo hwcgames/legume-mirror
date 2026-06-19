@@ -26,7 +26,7 @@ enum STORY_STATE {
 
 var leader: Actor:
 	get:
-		return Actor.find(Storyteller.story.FetchVariable("leader"))
+		return Actor.find(story.FetchVariable("leader"))
 		
 var rules: Array[BattleRule] = []
 
@@ -68,7 +68,7 @@ func post_load(file: SaveFile):
 	handle.call()
 	if file.active_camera != null and file.active_camera != "":
 		cmd_set_camera(file.active_camera)
-	Chatterbox.clear()
+	#Chatterbox.clear()
 	do_story = true
 
 var last_state
@@ -137,18 +137,21 @@ func cmd_reset():
 	get_tree().quit()
 
 func cmd_say(actor: String, text: String):
-	await Chatterbox.simple_message(Actor.find(actor), text)
+	#await Chatterbox.simple_message(Actor.find(actor), text)
+	pass
 
 func cmd_clear_dialogue():
-	var top = Chatterbox.oldest
-	while top != null:
-		top.queue_free()
-		top = top.next_balloon
-	Chatterbox.newest = null
-	Chatterbox.oldest = null
+	return
+	#var top = Chatterbox.oldest
+	#while top != null:
+		#top.queue_free()
+		#top = top.next_balloon
+	#Chatterbox.newest = null
+	#Chatterbox.oldest = null
 
 func cmd_dialogue_choice():
-	Chatterbox.queue_dialogue_choice()
+	#Chatterbox.queue_dialogue_choice()
+	pass
 
 func cmd_random_choice():
 	new_choices.connect(func(_c):

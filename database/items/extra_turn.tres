@@ -1,15 +1,85 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://ds8ix4qtcllk0"]
 
 [ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_kl5wy"]
-[ext_resource type="Script" uid="uid://cwko2gk7u70l2" path="res://battle/action/extra_turn.gd" id="1_q3ccl"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_wy7ga"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_3p074"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://battle/action/dyn/dyn_input_lock.gd" id="3_qp3wj"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="4_37j1a"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="5_632p4"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="6_rrq2o"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://battle/action/dyn/pred_ally.gd" id="7_go8n5"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="8_6wcft"]
+[ext_resource type="Script" uid="uid://cwik356y6vqsy" path="res://battle/action/dyn/dyn_charges.gd" id="9_6wcft"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="10_snx2v"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="11_otdjk"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="12_kfmbr"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="13_m63hr"]
+[ext_resource type="Script" uid="uid://be5khkexb637k" path="res://battle/rules/haste.gd" id="14_p4u78"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://battle/action/dyn/dyn_apply_rule.gd" id="15_odhxj"]
 
-[sub_resource type="Resource" id="Resource_pi58w"]
-script = ExtResource("1_q3ccl")
-metadata/_custom_type_script = "uid://cwko2gk7u70l2"
+[sub_resource type="Resource" id="Resource_snx2v"]
+script = ExtResource("3_qp3wj")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_otdjk"]
+script = ExtResource("4_37j1a")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_kfmbr"]
+script = ExtResource("6_rrq2o")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_m63hr"]
+script = ExtResource("7_go8n5")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_p4u78"]
+script = ExtResource("8_6wcft")
+predicates = Array[ExtResource("5_632p4")]([SubResource("Resource_kfmbr"), SubResource("Resource_m63hr")])
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_unvra"]
+script = ExtResource("9_6wcft")
+metadata/_custom_type_script = "uid://cwik356y6vqsy"
+
+[sub_resource type="Resource" id="Resource_fdtew"]
+script = ExtResource("10_snx2v")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_d180d"]
+script = ExtResource("11_otdjk")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_juaoo"]
+script = ExtResource("12_kfmbr")
+before_wait = 0.2
+after_wait = 0.2
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_y0aff"]
+script = ExtResource("14_p4u78")
+amount = 2
+metadata/_custom_type_script = "uid://be5khkexb637k"
+
+[sub_resource type="Resource" id="Resource_d3xnm"]
+script = ExtResource("15_odhxj")
+message = "{me} gave {target} a pick-me-up!"
+rfl_message = "{me} used a pick-me-up!"
+rules = Array[ExtResource("13_m63hr")]([SubResource("Resource_y0aff")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
+[sub_resource type="Resource" id="Resource_odhxj"]
+script = ExtResource("1_wy7ga")
+name = "Extra Turn"
+steps = Array[ExtResource("2_3p074")]([SubResource("Resource_snx2v"), SubResource("Resource_otdjk"), SubResource("Resource_p4u78"), SubResource("Resource_unvra"), SubResource("Resource_fdtew"), SubResource("Resource_d180d"), SubResource("Resource_juaoo"), SubResource("Resource_d3xnm")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"
 
 [resource]
 script = ExtResource("1_kl5wy")
 name = &"Energy Snack"
 description = &"Give one ally an extra turn."
-battle_action = SubResource("Resource_pi58w")
+battle_action = SubResource("Resource_odhxj")
+charges = 1
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

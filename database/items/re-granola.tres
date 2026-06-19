@@ -1,19 +1,87 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://7gjwi8rriruw"]
 
-[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://battle/action/heal.gd" id="1_44oi2"]
 [ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_cwhgo"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_mwyoa"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_i44l1"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://battle/action/dyn/dyn_input_lock.gd" id="3_i1hgy"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="4_hhmrr"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="5_miqwk"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://battle/action/dyn/pred_ally.gd" id="6_wcliw"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="6_y000t"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="7_817xh"]
+[ext_resource type="Script" uid="uid://cwik356y6vqsy" path="res://battle/action/dyn/dyn_charges.gd" id="7_gho2w"]
+[ext_resource type="Script" uid="uid://du6gh0b8mud05" path="res://battle/action/dyn/pred_can_heal.gd" id="8_817xh"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="8_i1hgy"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="9_hhmrr"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="10_miqwk"]
+[ext_resource type="Script" uid="uid://bpvfdvwsaad0d" path="res://battle/action/dyn/dyn_message.gd" id="11_y000t"]
+[ext_resource type="Script" uid="uid://d3bj8bnrfqslq" path="res://battle/action/dyn/dyn_heal.gd" id="12_y000t"]
 
-[sub_resource type="Resource" id="Resource_dc85l"]
-script = ExtResource("1_44oi2")
-name = "Re-Granola"
-cost = 0
-message = "%s gave %s a healthy snack!"
-rfl_message = "%s chowed down!"
-metadata/_custom_type_script = "uid://dhfmc3oyqnanb"
+[sub_resource type="Resource" id="Resource_wcliw"]
+script = ExtResource("3_i1hgy")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_817xh"]
+script = ExtResource("4_hhmrr")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_5a0lh"]
+script = ExtResource("6_wcliw")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_gqmlg"]
+script = ExtResource("7_817xh")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_5a231"]
+script = ExtResource("8_817xh")
+metadata/_custom_type_script = "uid://du6gh0b8mud05"
+
+[sub_resource type="Resource" id="Resource_sh1nr"]
+script = ExtResource("6_y000t")
+predicates = Array[ExtResource("5_miqwk")]([SubResource("Resource_5a0lh"), SubResource("Resource_gqmlg"), SubResource("Resource_5a231")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_l376t"]
+script = ExtResource("7_gho2w")
+metadata/_custom_type_script = "uid://cwik356y6vqsy"
+
+[sub_resource type="Resource" id="Resource_miqwk"]
+script = ExtResource("8_i1hgy")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_y000t"]
+script = ExtResource("9_hhmrr")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_gho2w"]
+script = ExtResource("10_miqwk")
+before_wait = 0.2
+after_wait = 0.2
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_63t8n"]
+script = ExtResource("12_y000t")
+metadata/_custom_type_script = "uid://d3bj8bnrfqslq"
+
+[sub_resource type="Resource" id="Resource_tivy2"]
+script = ExtResource("11_y000t")
+before_message = "{me} gave {target} a healthy snack! (+{heal_amt})"
+before_message_rfl = "{me} took a snack break! (+{heal_amt})"
+metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
+
+[sub_resource type="Resource" id="Resource_vlqo5"]
+script = ExtResource("1_mwyoa")
+steps = Array[ExtResource("2_i44l1")]([SubResource("Resource_wcliw"), SubResource("Resource_817xh"), SubResource("Resource_sh1nr"), SubResource("Resource_l376t"), SubResource("Resource_miqwk"), SubResource("Resource_y000t"), SubResource("Resource_gho2w"), SubResource("Resource_63t8n"), SubResource("Resource_tivy2")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"
 
 [resource]
 script = ExtResource("1_cwhgo")
 name = &"Re-Granola"
-description = &"A medical-grade granola bar."
-battle_action = SubResource("Resource_dc85l")
+description = &"A medical-grade granola bar. Heal 30 to a living ally. {charges} bite(s) left."
+battle_action = SubResource("Resource_vlqo5")
+charges = 3
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

@@ -4,13 +4,13 @@ class_name StepAnimate
 @export var animation_name: String
 @export var after_animation_name: String
 
-func check(them: Actor) -> bool:
+func check(source: Object, them: Actor) -> bool:
 	return true
 
-func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
+func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
-func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
+func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	#if register_name in registers and registers[register_name] is ActorModeAnimate and !registers[register_name].finished:
 		#registers[register_name].finished = true
 		#await registers[register_name].popped
@@ -22,7 +22,7 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 		them.costume.play(animation_name)
 	return false
 
-func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
+func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
 	#if registers[register_name] is ActorModeAnimate and !registers[register_name].finished:
 		#registers[register_name].finished = true
 		#await registers[register_name].popped

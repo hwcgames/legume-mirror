@@ -10,11 +10,11 @@ class_name BattleActionApplyRule
 @export var friendly: bool = false
 @export var alive: bool = true
 
-func allowed(party_member: Actor) -> bool:
+func allowed(party_member: Actor, source: Object) -> bool:
 	return party_member.sp_component.remaining() > cost
 
-func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
-	var target: Actor = await battle_planner.pick_ally(func(p): return p.alive == alive)\
+func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
+	var target: Actor = await battle_planner.pick_ally(func(p): return p.alive == alive) \
 		if friendly else \
 		await battle_planner.pick_target(func(e): return e.alive == alive)
 	if target == null:

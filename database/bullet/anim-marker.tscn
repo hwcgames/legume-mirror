@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bnx05rk2th0v8" path="res://battle/bullet/components/trail.gd" id="3_i7nt6"]
 [ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="4_vom7j"]
 [ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="5_m2cj3"]
-[ext_resource type="Texture2D" uid="uid://jorf61www6qn" path="res://assets/bullet/marker.aseprite" id="7_igs1b"]
+[ext_resource type="Texture2D" uid="uid://jorf61www6qn" path="res://assets/art/bullet/marker.aseprite" id="7_igs1b"]
 
 [sub_resource type="Resource" id="Resource_yc1r6"]
 resource_local_to_scene = true

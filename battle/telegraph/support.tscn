@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cx1cbdhpkhlcm"]
 
-[ext_resource type="Texture2D" uid="uid://bmae383wc8vyo" path="res://assets/gui/support.aseprite" id="1_xddb7"]
+[ext_resource type="Texture2D" uid="uid://bmae383wc8vyo" path="res://assets/art/gui/support.aseprite" id="1_xddb7"]
 
 [node name="Support" type="MarginContainer" unique_id=1324976850]
 

@@ -8,10 +8,10 @@ class_name BattleActionEnergize
 @export var message: String = "%s invigorated %s!"
 @export var rfl_message: String = "%s wasted SP!"
 
-func allowed(party_member: Actor) -> bool:
+func allowed(party_member: Actor, source: Object) -> bool:
 	return party_member.sheet.party_component.sp.remaining() >= cost
 
-func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
+func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	var target: Actor = await battle_planner.pick_ally(func(p): return p.alive)
 	if target == null:
 		battle_planner.show_toplevel()
@@ -51,10 +51,9 @@ class EnergizePlan extends BattleActionPlan:
 		#var animate = ActorModeAnimate.new("friendly_magic")
 		#await party_member.push_mode(animate)
 		party_member.sp -= cost
-		target.sp += amount
+		target.get_sp(amount)
 		#await animate.popped
 		#approach.finished = true
 		b_lock.call()
 		#if target != party_member:
 			#await approach.popped
-		

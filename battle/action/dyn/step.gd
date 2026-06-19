@@ -2,11 +2,11 @@
 extends Resource
 class_name DynActionStep
 
-@abstract func check(them: Actor) -> bool
-@abstract func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool
-func unplan(them: Actor, planner: BattlePlanner, registers: Dictionary):
+@abstract func check(source: Object, them: Actor) -> bool
+@abstract func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool
+func unplan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary):
 	@warning_ignore("redundant_await")
 	await true
 	pass
-@abstract func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool
-@abstract func after(them: Actor, battlefield: Battlefield, registers: Dictionary)
+@abstract func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool
+@abstract func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary)

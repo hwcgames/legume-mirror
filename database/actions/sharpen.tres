@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bj4hgfexf0c5u"]
+
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_la0ru"]
+[ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://battle/rules/strengthen.gd" id="2_oaf83"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="3_mawsj"]
+
+[sub_resource type="Resource" id="Resource_t1icn"]
+script = ExtResource("2_oaf83")
+amount = 7
+stacks = 3
+metadata/_custom_type_script = "uid://b4sfm156ewh04"
+
+[resource]
+script = ExtResource("3_mawsj")
+name = "Sharpen"
+description = "Refines an ally's weapons."
+cost = 40
+message = "%s sharpened %s's weapon!"
+rfl_message = "%s sharpened their weapon!"
+rules = Array[ExtResource("1_la0ru")]([SubResource("Resource_t1icn")])
+friendly = true
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"

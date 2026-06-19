@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4r2ey7i7ooq3"]
 
 [ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_p37jh"]
-[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/costume/pixel-test.aseprite" id="2_ff6sg"]
+[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/art/char/pixel/pixel-test.aseprite" id="2_ff6sg"]
 
 [sub_resource type="Animation" id="Animation_g3lfb"]
 length = 0.001

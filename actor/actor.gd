@@ -27,7 +27,7 @@ var head_position: Vector3:
 # Player flags
 var leader: bool:
 	get:
-		return name == Storyteller.story.FetchVariable("leader")
+		return name == Storyteller2.story.FetchVariable("leader")
 var turns: int = 0
 var player: int = 0
 var skill_challenge: SkillChallenge
@@ -98,7 +98,7 @@ func _ready():
 		add_to_group("party_member")
 		PlayerManager.player_joined.connect(player_joined)
 		PlayerManager.player_left.connect(player_left)
-		if self != Storyteller.leader:
+		if self != Storyteller2.leader:
 			for device in PlayerManager.get_player_indexes():
 				player_joined(device)
 	if interactable:
@@ -107,7 +107,7 @@ func _ready():
 func player_joined(n: int):
 	if PlayerManager.get_player_device(n) == -1:
 		return
-	if self == Storyteller.leader:
+	if self == Storyteller2.leader:
 		return
 	if self.player != 0:
 		return
@@ -145,7 +145,7 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 			break
 
 static func find(actor_name: StringName) -> Actor:
-	for node in Storyteller.get_tree().get_nodes_in_group("actor"):
+	for node in Storyteller2.get_tree().get_nodes_in_group("actor"):
 		if node.name == actor_name:
 			return node
 	return null
@@ -336,7 +336,7 @@ func _physics_process(delta: float):
 
 func mode_done():
 	print("{human_name} {active_component} mode done".format(self))
-	var party_pos = Storyteller.party_stack.find(self)
+	var party_pos = Storyteller2.party_stack.find(self)
 	print(%Component/Automove.current)
 	if is_instance_valid(battlefield):
 		active_component = %Component/Idle
@@ -347,7 +347,7 @@ func mode_done():
 	elif leader:
 		active_component = %Component/Human
 	elif party_pos != -1:
-		follow_actor(Storyteller.party_stack[party_pos-1])
+		follow_actor(Storyteller2.party_stack[party_pos-1])
 	else:
 		active_component = %Component/Idle
 	print("-> {active_component}".format(self))

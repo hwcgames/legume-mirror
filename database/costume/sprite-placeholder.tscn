@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ct4shmi68fnq7"]
 
-[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/costume/pixel-test.aseprite" id="2_i562j"]
+[ext_resource type="SpriteFrames" uid="uid://j4kbw0sajt" path="res://assets/art/char/pixel/pixel-test.aseprite" id="2_i562j"]
 
 [sub_resource type="GDScript" id="GDScript_bwtku"]
 script/source = "extends Costume

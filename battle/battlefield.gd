@@ -46,7 +46,7 @@ enum PHASE {
 var phase := PHASE.IDLE
 
 static func find() -> Battlefield:
-	return Storyteller.get_tree().get_nodes_in_group("battlefield").get(0)
+	return Storyteller2.get_tree().get_nodes_in_group("battlefield").get(0)
 
 func _ready() -> void:
 	%BattleHUD.hide()
@@ -77,10 +77,10 @@ func battle():
 		println("[center]- Top of the round! -[/center]")
 		if players.all(func(p: Actor): return !p.alive):
 			println("[center]- Player defeat! -[/center]")
-			Storyteller.choose_if_available(["battle lost", "battle end"], true)
+			Storyteller2.choose(["battle lost", "battle end"], true)
 			break
 		%BattleHUD.hide()
-		if Storyteller.choose_if_available(["battle top"], true):
+		if Storyteller2.choose(["battle top"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -89,7 +89,7 @@ func battle():
 		top.emit()
 		await lock.wait_for_clear()
 		println("Telegraph phase!")
-		if Storyteller.choose_if_available(["battle telegraph"], true):
+		if Storyteller2.choose(["battle telegraph"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		var t_lock = await lock.exclusive_lock()
@@ -99,7 +99,7 @@ func battle():
 		t_lock.call()
 		await lock.wait_for_clear()
 		println("Player action!")
-		if Storyteller.choose_if_available(["battle player action"], true):
+		if Storyteller2.choose(["battle player action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -111,9 +111,9 @@ func battle():
 		println("Enemy action!")
 		if valid_enemies.all(func(e): return !e.sheet.enemy_component.active or !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
-			Storyteller.choose_if_available(["battle won", "battle end"], true)
+			Storyteller2.choose(["battle won", "battle end"], true)
 			break
-		if Storyteller.choose_if_available(["battle enemy action"], true):
+		if Storyteller2.choose(["battle enemy action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -129,7 +129,7 @@ func battle():
 		battle_board = null
 	phase = PHASE.DONE
 	done.emit(enemies.all(func(e): return e.sheet.enemy_component.active and !e.alive))
-	Chatterbox.clear()
+	#Chatterbox.clear()
 	%BattleHUD.hide()
 	if camera != null:
 		camera.priority -= camera_priority_offset

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bghrxu4maqlni"]
+
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_ud026"]
+[ext_resource type="Script" uid="uid://cjjkcf5nlwwnd" path="res://battle/rules/enfeeble.gd" id="2_wh73t"]
+[ext_resource type="Script" uid="uid://dfyjfraeggk2q" path="res://battle/rules/crush.gd" id="3_0da2b"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="4_lflys"]
+
+[sub_resource type="Resource" id="Resource_m6f7q"]
+script = ExtResource("2_wh73t")
+stacks = 3
+metadata/_custom_type_script = "uid://cjjkcf5nlwwnd"
+
+[sub_resource type="Resource" id="Resource_bwa58"]
+script = ExtResource("3_0da2b")
+stacks = 3
+metadata/_custom_type_script = "uid://dfyjfraeggk2q"
+
+[resource]
+script = ExtResource("4_lflys")
+name = "Hex"
+description = "Cast an insidious curse on an enemy, weakening their offense and defense."
+cost = 25
+message = "%s hexed %s!"
+rules = Array[ExtResource("1_ud026")]([SubResource("Resource_m6f7q"), SubResource("Resource_bwa58")])
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"

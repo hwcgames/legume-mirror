@@ -7,7 +7,6 @@ script = ExtResource("1_ofeis")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1096239339]
 custom_minimum_size = Vector2(256, 0)
-anchors_preset = -1
 
 [node name="CmdLine" type="VBoxContainer" parent="VBoxContainer" unique_id=201759911]
 unique_name_in_owner = true
@@ -28,6 +27,10 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="MessageParent" type="VBoxContainer" parent="VBoxContainer" unique_id=727570305]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ChoiceButtons" type="HFlowContainer" parent="VBoxContainer" unique_id=1983127478]
 unique_name_in_owner = true
 layout_mode = 2
 

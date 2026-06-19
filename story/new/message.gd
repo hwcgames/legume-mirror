@@ -7,6 +7,7 @@ class Region:
 	func _init(b: int, e: int):
 		begin = b
 		end = e
+var sheet: ActorSheet
 var text: String = ""
 signal new_text(text: String)
 var bg_color: Color
@@ -14,30 +15,62 @@ var text_color: Color
 var voice: Voice:
 	set(new_voice):
 		voice = new_voice
-		voice_stream = AudioStreamRandomizer.new()
-		for stream in voice.sounds:
-			voice_stream.add_stream(-1, stream)
+		if is_instance_valid(voice):
+			voice_stream = AudioStreamRandomizer.new()
+			for stream in voice.sounds:
+				voice_stream.add_stream(-1, stream)
+var tags: Array[String] = []
 var voice_stream: AudioStreamRandomizer
 var regions: Dictionary[String, Region] = {}
 var special: Dictionary[int, Callable] = {}
+
+static var last_character: String = ""
+static var last_voice: Voice
 
 static func from_str(line: String, tags: Array[String]) -> NMessage:
 	if line.begins_with(">>>"):
 		return null
 	var m = NMessage.new()
-	var iof = line.find(": ")
-	if iof == -1:
-		return null
+	m.tags = tags
+	var iof = -1
+	if line.begins_with("> "):
+		iof = 0
+	elif line.begins_with("("):
+		pass
+	else:
+		iof = line.find(": ")
+		if iof == -1:
+			return null
 	#var split = line.split(": ", false, 2)
-	var split = [line.substr(0, iof), line.substr(iof + 2)]
+	var split = [line.substr(0, iof), line.substr(iof + 2 if iof != -1 else 0)]
 	if len(split) < 2:
 		return null
 	var name = split[0]
 	var path = "res://database/actors/%s.tres" % name
-	var sheet: ActorSheet = load(path) if FileAccess.file_exists(path) else ActorSheet.new()
-	m.bg_color = sheet.bg_color
-	m.text_color = sheet.text_color
-	m.voice = sheet.default_voice
+	var enemy_path = "res://database/enemy/static/%s.tres" % name
+	m.sheet = load(path) if FileAccess.file_exists(path) else load(enemy_path) if FileAccess.file_exists(enemy_path) else ActorSheet.new()
+	if m.sheet.name == "Actor":
+		m.sheet.name = name
+	m.bg_color = m.sheet.bg_color
+	m.text_color = m.sheet.text_color
+	m.voice = m.sheet.default_voice
+	if name != last_character:
+		last_voice = null
+		last_character = name
+	if line.begins_with("("):
+		m.sheet.name = "Narrator"
+		m.voice = null
+	if line.begins_with(">"):
+		m.sheet.name = "Thought"
+		m.voice = load("res://database/voices/pling.tres")
+	if is_instance_valid(last_voice):
+		m.voice = last_voice
+	for tag in tags:
+		if tag.begins_with("v:"):
+			last_voice = load("res://database/voices/%s.tres" % tag.trim_prefix("v:"))
+			m.voice = last_voice
+			break
+	last_voice = m.voice
 	line = split[1]
 	var cursor = 0
 	while cursor < len(line):
@@ -137,7 +170,7 @@ var interval = 0.03
 var skipping = false
 var timer: float = 0.
 
-const silent_chars: String = " !,.?\"\'"
+const silent_chars: String = " !,.?\"\'() "
 func interval_mul(c: String):
 	match c:
 		".", "!", "?", "­—": return 15.
@@ -169,29 +202,40 @@ func play_on(label: RichTextLabel):
 	label.visible_characters = 0
 	label.visible_characters_behavior = TextServer.VC_CHARS_AFTER_SHAPING
 	var last_color := Color.TRANSPARENT
-	while label.visible_characters < len(text):
-		var bracket = text[label.visible_characters] == '['
+	var player = AudioStreamPlayer.new()
+	label.add_child(player)
+	var cursor = 0
+	while cursor < len(text):
+		var bracket = text[cursor] == '['
 		while bracket:
-			bracket &= text[label.visible_characters] != ']'
-			if label.visible_characters in special:
-				special[label.visible_characters-1].call(self, label)
-			label.visible_characters += 1
-		if label.visible_characters >= len(text):
+			bracket = bracket && text[cursor] != ']'
+			if cursor in special:
+				special[cursor-1].call(self, label)
+			cursor += 1
+		if cursor >= len(text):
 			break
-		if timer - last_voice > voice.min_delay and text[label.visible_characters] not in silent_chars:
+		var c = text[cursor]
+		var parsed = label.get_parsed_text()
+		var voice_c = parsed[label.visible_characters] if label.visible_characters < len(parsed) else ' '
+		if is_instance_valid(voice) and timer - last_voice > voice.min_delay and (not (voice_c in silent_chars)) and label.visible_characters < len(parsed)-1:
 			last_voice = timer
-			var player = AudioStreamPlayer.new()
-			label.add_child(player)
-			player.finished.connect(player.queue_free)
-			player.stream = voice_stream
+			player.max_polyphony = voice.polyphony
+			if player.stream != voice_stream:
+				player.stream = voice_stream
 			player.volume_db = voice.volume
 			player.play()
 		if label.visible_characters in special:
 			await special[label.visible_characters].call(self, label)
-		if not skipping:
-			#await label.get_tree().create_timer(interval).timeout
-			await wait(interval)
 		label.visible_characters += 1
+		cursor += 1
+		if (not skipping):
+			#await label.get_tree().create_timer(interval).timeout
+			var mul = 1.
+			match voice_c:
+				'.', '!', '?': mul = 15.
+				',', ';', ':': mul = 10.
+				' ': mul = 0.
+			await wait(interval * mul)
 	label.get_tree().physics_frame.disconnect(tick)
 	label.get_tree().physics_frame.disconnect(reset_waited)
 	label.get_tree().physics_frame.disconnect(start_skipping)

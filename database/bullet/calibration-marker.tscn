@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dir377gvqxvhr"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_yxpv0"]
-[ext_resource type="Texture2D" uid="uid://cdm6hofe8p3f8" path="res://assets/bullet/calibration-marker.aseprite" id="2_jpqah"]
+[ext_resource type="Texture2D" uid="uid://cdm6hofe8p3f8" path="res://assets/art/bullet/calibration-marker.aseprite" id="2_jpqah"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jpqah"]
 radius = 5.0

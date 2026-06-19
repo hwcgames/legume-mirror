@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="Voice" format=3 uid="uid://dnagmac0n0npb"]
 
 [ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://story/voice.gd" id="1_qfpvv"]
-[ext_resource type="AudioStream" uid="uid://5cbw6mw675ly" path="res://assets/sfx/beepo/a.wav" id="3_rkgjt"]
-[ext_resource type="AudioStream" uid="uid://dv4hibxq3orax" path="res://assets/sfx/beepo/b.wav" id="4_pby0o"]
-[ext_resource type="AudioStream" uid="uid://bal8sv4j031hm" path="res://assets/sfx/beepo/c2.wav" id="4_y2q8i"]
-[ext_resource type="AudioStream" uid="uid://bu7cmnsrtjgj0" path="res://assets/sfx/beepo/c.wav" id="5_pqp5u"]
-[ext_resource type="AudioStream" uid="uid://bmatqnx0i61wg" path="res://assets/sfx/beepo/d.wav" id="6_pt818"]
-[ext_resource type="AudioStream" uid="uid://iknrnmp5b5vy" path="res://assets/sfx/beepo/e.wav" id="7_5jpm7"]
-[ext_resource type="AudioStream" uid="uid://bs8amjhfyrae" path="res://assets/sfx/beepo/f.wav" id="8_1uqa1"]
-[ext_resource type="AudioStream" uid="uid://dt52ahj65b4lf" path="res://assets/sfx/beepo/g.wav" id="9_orddr"]
+[ext_resource type="AudioStream" uid="uid://5cbw6mw675ly" path="res://assets/audio/sfx/beepo/a.wav" id="3_rkgjt"]
+[ext_resource type="AudioStream" uid="uid://dv4hibxq3orax" path="res://assets/audio/sfx/beepo/b.wav" id="4_pby0o"]
+[ext_resource type="AudioStream" uid="uid://bal8sv4j031hm" path="res://assets/audio/sfx/beepo/c2.wav" id="4_y2q8i"]
+[ext_resource type="AudioStream" uid="uid://bu7cmnsrtjgj0" path="res://assets/audio/sfx/beepo/c.wav" id="5_pqp5u"]
+[ext_resource type="AudioStream" uid="uid://bmatqnx0i61wg" path="res://assets/audio/sfx/beepo/d.wav" id="6_pt818"]
+[ext_resource type="AudioStream" uid="uid://iknrnmp5b5vy" path="res://assets/audio/sfx/beepo/e.wav" id="7_5jpm7"]
+[ext_resource type="AudioStream" uid="uid://bs8amjhfyrae" path="res://assets/audio/sfx/beepo/f.wav" id="8_1uqa1"]
+[ext_resource type="AudioStream" uid="uid://dt52ahj65b4lf" path="res://assets/audio/sfx/beepo/g.wav" id="9_orddr"]
 
 [resource]
 script = ExtResource("1_qfpvv")

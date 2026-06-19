@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0h2smoo1462b"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_7iga8"]
-[ext_resource type="SpriteFrames" uid="uid://c2k2d3hmgfvvr" path="res://assets/costume/restlessgenius.aseprite" id="2_7iga8"]
+[ext_resource type="SpriteFrames" uid="uid://c2k2d3hmgfvvr" path="res://assets/art/char/pixel/restlessgenius.aseprite" id="2_7iga8"]
 
 [node name="test_costume" unique_id=1583408049 instance=ExtResource("1_7iga8")]
 

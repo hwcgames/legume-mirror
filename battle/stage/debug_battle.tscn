@@ -1,9 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvtbjdytsu2ft"]
+[gd_scene format=3 uid="uid://dvtbjdytsu2ft"]
 
-[ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
+[ext_resource type="Texture2D" uid="uid://dqkle3vkyd1u0" path="res://assets/art/devel/kenney_prototype-textures/Vector/texture_02.svg" id="1_3ix4j"]
 [ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="1_7ugeq"]
 [ext_resource type="Script" uid="uid://sqwogqldf52c" path="res://battle/action/basic_attack.gd" id="4_5jau5"]
-[ext_resource type="PackedScene" uid="uid://b0hnypxq8ieth" path="res://actor/party_member/test_party_member.tscn" id="4_ndkpn"]
+[ext_resource type="PackedScene" path="res://actor/party_member/test_party_member.tscn" id="4_ndkpn"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_5jau5"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="5_8uhe6"]
 [ext_resource type="PackedScene" uid="uid://745auqrpfcb5" path="res://actor/enemy/test_enemy.tscn" id="5_lbtbq"]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx5x2fwnkpurx"]
+[gd_scene format=3 uid="uid://dx5x2fwnkpurx"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_q4exl"]
-[ext_resource type="SpriteFrames" uid="uid://juh3axob1erl" path="res://assets/costume/builtbody.aseprite" id="2_a2yns"]
+[ext_resource type="SpriteFrames" uid="uid://juh3axob1erl" path="res://assets/art/char/pixel/builtbody.aseprite" id="2_a2yns"]
 
 [node name="test_costume" instance=ExtResource("1_q4exl")]
 

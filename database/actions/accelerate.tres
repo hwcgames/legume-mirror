@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://b2vupbw7vhbpt"]
+
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_br8x6"]
+[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="2_bp7f7"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="3_gc1fv"]
+
+[sub_resource type="Resource" id="Resource_elo6r"]
+script = ExtResource("2_bp7f7")
+speed_mul = 2.0
+stacks = 3
+metadata/_custom_type_script = "uid://5v4wkvk0drde"
+
+[resource]
+script = ExtResource("3_gc1fv")
+name = "Accelerate"
+description = "Speeds up the soul."
+message = "%s made %s's heart race!"
+rfl_message = "%s's heart is racing!"
+rules = Array[ExtResource("1_br8x6")]([SubResource("Resource_elo6r")])
+friendly = true
+metadata/_custom_type_script = "uid://dvrhhuu50lur1"

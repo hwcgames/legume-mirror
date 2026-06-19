@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfoetjectcmne" path="res://story/ChatBalloon.gd" id="1_bstpd"]
 [ext_resource type="Script" uid="uid://b8u7lhccxkx00" path="res://story/Typewriter.gd" id="2_jf04l"]
-[ext_resource type="SpriteFrames" uid="uid://coukhi6i64aqw" path="res://assets/gui/face.aseprite" id="3_4d6td"]
+[ext_resource type="SpriteFrames" uid="uid://coukhi6i64aqw" path="res://assets/art/gui/face.aseprite" id="3_4d6td"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bstpd"]
 resource_local_to_scene = true

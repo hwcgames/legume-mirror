@@ -10,11 +10,10 @@
 [ext_resource type="Resource" uid="uid://dn81qqtmqv00q" path="res://database/actions/trinkets_attack.tres" id="4_8hlbw"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="4_bhd62"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="5_myh4w"]
-[ext_resource type="Script" uid="uid://bpqnkreg0hbq4" path="res://battle/action/energize.gd" id="6_u2j1j"]
-[ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://battle/rules/strengthen.gd" id="8_4wro2"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="9_4etuu"]
-[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="10_8hlbw"]
-[ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://battle/rules/magic_strength.gd" id="11_rmvcg"]
+[ext_resource type="Resource" uid="uid://dgrirhd0bvufi" path="res://database/actions/wind-up.tres" id="9_8hlbw"]
+[ext_resource type="Resource" uid="uid://bj4hgfexf0c5u" path="res://database/actions/sharpen.tres" id="10_rmvcg"]
+[ext_resource type="Resource" uid="uid://b2vupbw7vhbpt" path="res://database/actions/accelerate.tres" id="11_h3afr"]
+[ext_resource type="Resource" uid="uid://dvb8w6sqx5opj" path="res://database/actions/magitech.tres" id="12_cfw6d"]
 [ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="12_h3afr"]
 [ext_resource type="Script" uid="uid://o8bdd5x885xs" path="res://actor/energy/TrinketsPool.gd" id="14_u2j1j"]
 [ext_resource type="PackedScene" uid="uid://dhpww5nxtbn2n" path="res://battle/rules/trinkets_on_field/trinkets_on_field.tscn" id="15_4etuu"]
@@ -34,68 +33,11 @@ current_hp = 50
 max_hp = 50
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_ofgp3"]
-script = ExtResource("6_u2j1j")
-name = "Wind-Up"
-description = "Gives an ally a boost of energy"
-message = "%s wound %s!"
-metadata/_custom_type_script = "uid://bpqnkreg0hbq4"
-
-[sub_resource type="Resource" id="Resource_t1icn"]
-script = ExtResource("8_4wro2")
-amount = 7
-stacks = 3
-metadata/_custom_type_script = "uid://b4sfm156ewh04"
-
-[sub_resource type="Resource" id="Resource_8io7u"]
-script = ExtResource("9_4etuu")
-name = "Sharpen"
-description = "Refines an ally's weapons."
-cost = 40
-message = "%s sharpened %s's weapon!"
-rfl_message = "%s sharpened their weapon!"
-rules = Array[ExtResource("4_4yvr8")]([SubResource("Resource_t1icn")])
-friendly = true
-metadata/_custom_type_script = "uid://dvrhhuu50lur1"
-
-[sub_resource type="Resource" id="Resource_elo6r"]
-script = ExtResource("10_8hlbw")
-speed_mul = 2.0
-stacks = 3
-metadata/_custom_type_script = "uid://5v4wkvk0drde"
-
-[sub_resource type="Resource" id="Resource_m7kde"]
-script = ExtResource("9_4etuu")
-name = "Accelerate"
-description = "Speeds up the soul."
-message = "%s made %s's heart race!"
-rfl_message = "%s's heart is racing!"
-rules = Array[ExtResource("4_4yvr8")]([SubResource("Resource_elo6r")])
-friendly = true
-metadata/_custom_type_script = "uid://dvrhhuu50lur1"
-
-[sub_resource type="Resource" id="Resource_iaevo"]
-script = ExtResource("11_rmvcg")
-decay = true
-stacks = 3
-metadata/_custom_type_script = "uid://bwdiitfe2immc"
-
-[sub_resource type="Resource" id="Resource_ptr6u"]
-script = ExtResource("9_4etuu")
-name = "Magitech"
-description = "Gives an ally magical strength."
-cost = 30
-message = "%s gave %s magical strength!"
-rfl_message = "%s powered her weapon with magic!"
-rules = Array[ExtResource("4_4yvr8")]([SubResource("Resource_iaevo")])
-friendly = true
-metadata/_custom_type_script = "uid://dvrhhuu50lur1"
-
 [sub_resource type="Resource" id="Resource_jmo3d"]
 script = ExtResource("4_bhd62")
 name = &"Gadgets"
 description = &"The future is now, thanks to science!"
-spell_list = Array[ExtResource("5_myh4w")]([SubResource("Resource_ofgp3"), SubResource("Resource_8io7u"), SubResource("Resource_m7kde"), SubResource("Resource_ptr6u")])
+spell_list = Array[ExtResource("5_myh4w")]([ExtResource("9_8hlbw"), ExtResource("10_rmvcg"), ExtResource("11_h3afr"), ExtResource("12_cfw6d")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [sub_resource type="Resource" id="Resource_4wro2"]

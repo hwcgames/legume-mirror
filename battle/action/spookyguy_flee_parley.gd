@@ -7,13 +7,13 @@ func label() -> String:
 func description() -> String:
 	return "Grab the stranger and run."
 
-func allowed(party_member: Actor) -> bool:
+func allowed(party_member: Actor, source: Object) -> bool:
 	return true
 
 func display(party_member: Actor) -> bool:
 	return enemy.state == 2
 
-func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
+func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	return TutorialFleePlan.new(enemy)
 
 class TutorialFleePlan extends BattleActionPlan:
@@ -22,7 +22,7 @@ class TutorialFleePlan extends BattleActionPlan:
 		self.enemy = enemy
 	func go(party_member: Actor):
 		Actor.find("casey").cargo(party_member)
-		Storyteller.choose_if_available(["%s attempts to flee" % party_member.name])
+		Storyteller2.choose(["%s attempts to flee" % party_member.name])
 		enemy.state = 2
 		enemy.planned_pattern = null
 		await enemy.battlefield.assign_patterns()

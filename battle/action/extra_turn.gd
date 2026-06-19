@@ -3,7 +3,7 @@ class_name BattleActionExtraTurn
 
 @export var amt: int = 1
 
-func plan(planner: BattlePlanner) -> BattleActionPlan:
+func plan(planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	var ally = await planner.pick_ally()
 	if ally == null:
 		planner.show_toplevel()
@@ -32,7 +32,7 @@ class ExtraTurnPlan extends BattleActionPlan:
 			t_lock.call()
 			return
 		if item != null:
-			Inventory.items.remove_at(Inventory.items.find(self))
+			Inventory.items.remove_at(Inventory.items.find(self ))
 		var approach = ActorModeApproach.new(party_member, ally)
 		await party_member.push_mode(approach)
 		var animate = ActorModeAnimate.new("friendly_magic")

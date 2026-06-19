@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("2_n0wle")
 name = &"Milly"
-bg_color = Color(0.5697555, 0, 0.18071744, 1)
+bg_color = Color(0.99998397, 0.39760235, 0.4828722, 1)
 text_color = Color(1, 0.78217983, 0.94776815, 1)
 id = "milly"
 metadata/_custom_type_script = "uid://cym7pt0vq3ply"

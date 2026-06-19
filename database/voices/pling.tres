@@ -1,14 +1,14 @@
-[gd_resource type="Resource" script_class="Voice" load_steps=10 format=3 uid="uid://bvk3nutakep3s"]
+[gd_resource type="Resource" script_class="Voice" format=3 uid="uid://bvk3nutakep3s"]
 
 [ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://story/voice.gd" id="1_calwh"]
-[ext_resource type="AudioStream" uid="uid://c4l3j7yuacmby" path="res://assets/sfx/pling/a.wav" id="2_5v07t"]
-[ext_resource type="AudioStream" uid="uid://b6wpuu8pn0j67" path="res://assets/sfx/pling/b.wav" id="3_gwq46"]
-[ext_resource type="AudioStream" uid="uid://7umyrt7qumnb" path="res://assets/sfx/pling/c2.wav" id="4_iqoux"]
-[ext_resource type="AudioStream" uid="uid://dunweqbiah5x8" path="res://assets/sfx/pling/c.wav" id="5_2md5o"]
-[ext_resource type="AudioStream" uid="uid://dsynlq5w3nr1p" path="res://assets/sfx/pling/d.wav" id="6_3wa3i"]
-[ext_resource type="AudioStream" uid="uid://btmu1bjvofxco" path="res://assets/sfx/pling/e.wav" id="7_8ody6"]
-[ext_resource type="AudioStream" uid="uid://b21hgfflc6rcq" path="res://assets/sfx/pling/f.wav" id="8_d4gc4"]
-[ext_resource type="AudioStream" uid="uid://cderm7gsif4kt" path="res://assets/sfx/pling/g.wav" id="9_pkj2p"]
+[ext_resource type="AudioStream" uid="uid://c4l3j7yuacmby" path="res://assets/audio/sfx/pling/a.wav" id="2_5v07t"]
+[ext_resource type="AudioStream" uid="uid://b6wpuu8pn0j67" path="res://assets/audio/sfx/pling/b.wav" id="3_gwq46"]
+[ext_resource type="AudioStream" uid="uid://7umyrt7qumnb" path="res://assets/audio/sfx/pling/c2.wav" id="4_iqoux"]
+[ext_resource type="AudioStream" uid="uid://dunweqbiah5x8" path="res://assets/audio/sfx/pling/c.wav" id="5_2md5o"]
+[ext_resource type="AudioStream" uid="uid://dsynlq5w3nr1p" path="res://assets/audio/sfx/pling/d.wav" id="6_3wa3i"]
+[ext_resource type="AudioStream" uid="uid://btmu1bjvofxco" path="res://assets/audio/sfx/pling/e.wav" id="7_8ody6"]
+[ext_resource type="AudioStream" uid="uid://b21hgfflc6rcq" path="res://assets/audio/sfx/pling/f.wav" id="8_d4gc4"]
+[ext_resource type="AudioStream" uid="uid://cderm7gsif4kt" path="res://assets/audio/sfx/pling/g.wav" id="9_pkj2p"]
 
 [resource]
 script = ExtResource("1_calwh")

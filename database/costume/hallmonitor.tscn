@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0bifw6ps4i8d"]
+[gd_scene format=3 uid="uid://d0bifw6ps4i8d"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_fyba0"]
-[ext_resource type="SpriteFrames" uid="uid://cwxjb2r0538cs" path="res://assets/costume/hallmonitor.aseprite" id="2_fyba0"]
+[ext_resource type="SpriteFrames" uid="uid://cwxjb2r0538cs" path="res://assets/art/char/pixel/hallmonitor.aseprite" id="2_fyba0"]
 
 [node name="test_costume" instance=ExtResource("1_fyba0")]
 

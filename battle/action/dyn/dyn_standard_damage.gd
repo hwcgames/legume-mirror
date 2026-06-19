@@ -12,32 +12,32 @@ class_name StepStandardDamage
 @export var our_crit = "finesse"
 @export var their_crit = "finesse"
 
-func check(them: Actor) -> bool:
+func check(source: Object, me: Actor) -> bool:
 	return true
-func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
+func plan(source: Object, me: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
-func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
+func before(source: Object, me: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	var target: Actor = registers[target_register]
 	var skill: int = registers[skill_register] if skill_register in registers else default_skill
 	if skill >= 120:
-		var crit_chance: float = crit_chance_mul * them.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
+		var crit_chance: float = crit_chance_mul * me.computed_attrs[our_crit] / (target.computed_attrs[their_crit] * 10)
 		if randf() < crit_chance:
 			skill *= crit_mul
-	var damage = (them.computed_attrs[our_skill] * skill / 20) - (3 * target.computed_attrs[their_skill])
+	var damage = (me.computed_attrs[our_skill] * skill / 20) - (3 * target.computed_attrs[their_skill])
 	if damage > 0:
 		if skill >= 250:
-			Storyteller.choose_if_available(["%s finesse hits" % them.name, "%s perfect hits" % them.name, "%s hits" % them.name, "party hit"])
-			them.battlefield.println("A masterful attack!")
+			Storyteller2.choose(["%s finesse hits" % me.name, "%s perfect hits" % me.name, "%s hits" % me.name, "party hit"])
+			me.battlefield.println("A masterful attack!")
 		elif skill >= 150:
-			Storyteller.choose_if_available(["%s perfect hits" % them.name, "%s hits" % them.name, "party hit"])
-			them.battlefield.println("A precise attack!")
+			Storyteller2.choose(["%s perfect hits" % me.name, "%s hits" % me.name, "party hit"])
+			me.battlefield.println("A precise attack!")
 		else:
-			Storyteller.choose_if_available(["%s hits" % them.name, "party hit"])
-		them.battlefield.println("%s damage!" % [damage])
+			Storyteller2.choose(["%s hits" % me.name, "party hit"])
+		me.battlefield.println("%s damage!" % [damage])
 		target.take_damage(damage)
 	registers[damage_register] = damage
 	return false
 
-func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
+func after(source: Object, me: Actor, battlefield: Battlefield, registers: Dictionary):
 	pass

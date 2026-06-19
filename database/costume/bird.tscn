@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4a07582e1vr1"]
 
 [ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_b7xf8"]
-[ext_resource type="PackedScene" uid="uid://b353nhv3axp71" path="res://assets/char/bird.blend" id="2_r88gl"]
+[ext_resource type="PackedScene" uid="uid://b353nhv3axp71" path="res://assets/art/char/bird.blend" id="2_r88gl"]
 
 [node name="Bird" type="Node3D" unique_id=725741409 node_paths=PackedStringArray("head")]
 script = ExtResource("1_b7xf8")

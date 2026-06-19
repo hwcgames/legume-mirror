@@ -17,7 +17,9 @@ func _pressed():
 		#%ToplevelTab.show()
 		#return
 	#planner._choice.emit(planner.party_member.basic_attack.bind(target))
-	planner.choice.emit(await planner.party_member.sheet.party_component.basic_attack.plan(planner))
+	planner.choice.emit(
+		await planner.party_member.sheet.party_component.basic_attack.plan(planner, planner.party_member.sheet)
+	)
 "
 
 [sub_resource type="GDScript" id="GDScript_v6vg7"]
@@ -64,7 +66,7 @@ func _process(delta: float) -> void:
 	disabled = players_with_turns <= 1
 
 func _pressed():
-	planner.choice.emit(BattleActionHold.new().plan(planner))
+	planner.choice.emit(BattleActionHold.new().plan(planner, planner.party_member.sheet))
 "
 
 [node name="TestBattlePlanner" type="SubViewportContainer" unique_id=290553141]
@@ -221,7 +223,7 @@ layout_mode = 2
 [node name="ColorBg" type="ColorRect" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2" unique_id=147776012]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.19667313, 0.12050388, 0.09327137, 1)
+color = Color(0.34, 0.34, 0.34, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer2/TestBattlePlanner/VBoxContainer/MarginContainer2" unique_id=846926520]
 layout_mode = 2

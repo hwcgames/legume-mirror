@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://wo46dt5u5egm"]
 
-[ext_resource type="Texture2D" uid="uid://kyhk4rc7fqn6" path="res://assets/gui/angy.aseprite" id="1_cmevy"]
+[ext_resource type="Texture2D" uid="uid://kyhk4rc7fqn6" path="res://assets/art/gui/angy.aseprite" id="1_cmevy"]
 
 [node name="Angy" type="MarginContainer" unique_id=1324976850]
 

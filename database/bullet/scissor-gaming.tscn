@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_h8tge"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_4e4gw"]
-[ext_resource type="SpriteFrames" uid="uid://bgtcrdhfff3g7" path="res://assets/bullet/scissors.aseprite" id="2_i5fsa"]
+[ext_resource type="SpriteFrames" uid="uid://bgtcrdhfff3g7" path="res://assets/art/bullet/scissors.aseprite" id="2_i5fsa"]
 [ext_resource type="Script" uid="uid://bpxthdu44w1d6" path="res://battle/bullet/components/if.gd" id="3_j55o3"]
 [ext_resource type="Script" uid="uid://dc4a4eqn62bnv" path="res://battle/bullet/components/follow_soul.gd" id="4_h1jgb"]
 [ext_resource type="Script" uid="uid://cl2yksu5ilm7p" path="res://battle/bullet/components/play_animation.gd" id="5_hr4p3"]

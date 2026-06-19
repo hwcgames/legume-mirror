@@ -35,5 +35,9 @@ func enemy_action(fighter: Actor) -> bool:
 		#(fighter as Enemy).pick_pattern()
 	return true
 
+func icon(fighter: Actor) -> Texture2D:
+	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
+	return sheet.get_frame_texture("HASTE", 0)
+
 func message(fighter: Actor) -> String:
-	return "Strength reduced by {amount} (to {strength}) for {stacks} round(s).".format(self ).format(fighter.computed_attrs)
+	return "Action count increased by {amount} (currently {turns}) for {stacks} round(s).".format(self ).format(fighter)

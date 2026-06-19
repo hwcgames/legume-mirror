@@ -54,7 +54,12 @@
 }
 
 ===function name_day(y, m, d, w)
-{name_weekday(w)}, {name_month(m)} {ordinal(d)}, {y}
+{name_weekday(w)}, {name_month(m)} {ordinal(d)}, 20X<>{y:
+    - 0: X
+    - 1: Y
+    - 2: Z
+    - else: {y}
+}
 === function next_day()
 ~ day += 1
 ~ weekday += 1
@@ -102,7 +107,7 @@
 VAR year = 0
 VAR month = 8
 VAR day = 12
-VAR weekday = 5
+VAR weekday = 6
 VAR time = 0
 ->DONE
 
@@ -121,7 +126,7 @@ Calendar test:
     - 1: ->y1->
     - else: ->END
 }
-: EOD
+>>> EOD
 + [Move on.]
 -
 ~ next_day()
@@ -158,6 +163,9 @@ Calendar test:
 {day:
     - 12: -> d0_08_12
     - 13: -> d0_08_13
+    - 14: -> d0_08_14
+    - 15: -> d0_08_15
+    - 16: -> d0_08_16
 }
 -> default_day
 = y0m9

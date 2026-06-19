@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccijxtd2o6tpu"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_qyph8"]
-[ext_resource type="SpriteFrames" uid="uid://c2sgyfvssmdtx" path="res://assets/costume/crow.aseprite" id="2_11xdt"]
+[ext_resource type="SpriteFrames" uid="uid://c2sgyfvssmdtx" path="res://assets/art/char/pixel/crow.aseprite" id="2_11xdt"]
 
 [node name="test_costume" unique_id=712750896 instance=ExtResource("1_qyph8")]
 

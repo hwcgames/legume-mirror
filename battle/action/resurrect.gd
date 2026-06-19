@@ -8,10 +8,10 @@ class_name BattleActionResurrect
 @export var message: String = "%s brought %s back to life!"
 @export var rfl_message: String = "%s???"
 
-func allowed(party_member: Actor) -> bool:
+func allowed(party_member: Actor, source: Object) -> bool:
 	return party_member.sp_component.remaining() >= cost
 
-func plan(battle_planner: BattlePlanner) -> BattleActionPlan:
+func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	var target: Actor = await battle_planner.pick_ally(func(p): return not p.alive)
 	if target == null:
 		battle_planner.show_toplevel()

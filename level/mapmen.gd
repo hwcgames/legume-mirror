@@ -211,7 +211,7 @@ static var loading_save: SaveFile = null
 static var loading_handle: Callable = func(): pass
 
 func post_load(save: SaveFile):
-	loading_handle = await Storyteller.lock.shared_lock()
+	loading_handle = await Storyteller2.lock.shared_lock()
 	loading_save = save
 	var tree = get_tree()
 	tree.reload_current_scene()
@@ -243,7 +243,7 @@ func load_after_reload(save: SaveFile):
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
-	Storyteller.choose_if_available([
+	Storyteller2.choose([
 		"dungeon choice %s" % choice,
 		"dungeon towards %s" % name_room(map[current_position].room_type),
 		"dungeon towards room"
@@ -252,10 +252,10 @@ func junction_unloaded():
 
 func room_unloaded():
 	if current_position.y == height - 1:
-		Storyteller.choose_if_available(["dungeon done"], true)
+		Storyteller2.choose(["dungeon done"], true)
 		reset()
 		return
-	Storyteller.choose_if_available(["dungeon towards junction"], true)
+	Storyteller2.choose(["dungeon towards junction"], true)
 	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
@@ -282,7 +282,7 @@ func fill_handler(seam: ProceduralSeam):
 			var lock = await new_room.keep_loaded_lock.shared_lock()
 			new_room.tree_exited.connect(junction_unloaded)
 			new_room.player_entered.connect(func(_p):
-				Storyteller.choose_if_available([
+				Storyteller2.choose([
 					"dungeon entered junction"
 				], true)
 				lock.call(), CONNECT_ONE_SHOT)
@@ -335,7 +335,7 @@ func fill_handler(seam: ProceduralSeam):
 			if not treadmill.rooms.any(func(r: RoomInfo): return r.room_type == seam.wants_room_type):
 				printerr("Can't find any rooms that match the type requested by the map, moving on to a junction.")
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
-				Storyteller.choose_if_available([
+				Storyteller2.choose([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
 				], true)
@@ -344,12 +344,12 @@ func fill_handler(seam: ProceduralSeam):
 			var new_room = await treadmill.fill_seam(seam, false)
 			state = STATE.ROOM
 			current_room = new_room
-			Storyteller.choose_if_available([
+			Storyteller2.choose([
 				"dungeon built %s" % name_room(map[current_position].room_type),
 				"dungeon built room"
 			], true)
 			new_room.player_entered.connect(func(_p):
-				Storyteller.choose_if_available([
+				Storyteller2.choose([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
 				], true),

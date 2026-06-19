@@ -7,13 +7,13 @@ class_name StepApplyRule
 @export var rules: Array[BattleRule]
 @export var self_rules: Array[BattleRule]
 
-func check(them: Actor) -> bool:
+func check(source: Object, them: Actor) -> bool:
 	return true
 
-func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
+func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	return false
 
-func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
+func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	var registers_clone = registers.duplicate()
 	registers_clone["me"] = them
 	if target_register in registers:
@@ -27,5 +27,5 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 		them.add_rule(rule.duplicate())
 	return false
 
-func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
+func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
 	pass

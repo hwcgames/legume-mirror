@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_mdtpk"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_ock03"]
-[ext_resource type="Texture2D" uid="uid://x3o4asbg1tvy" path="res://assets/bullet/ninjastar.aseprite" id="2_sfd3m"]
+[ext_resource type="Texture2D" uid="uid://x3o4asbg1tvy" path="res://assets/art/bullet/ninjastar.aseprite" id="2_sfd3m"]
 [ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_fky8t"]
 [ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="4_ceplj"]
 [ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="5_gled8"]

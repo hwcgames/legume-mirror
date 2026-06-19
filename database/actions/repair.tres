@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattleActionHeal" format=3 uid="uid://chabn528vo0yw"]
+
+[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://battle/action/heal.gd" id="1_7vh2f"]
+
+[resource]
+script = ExtResource("1_7vh2f")
+name = "Repair"
+amount = 40
+cost = 15
+rfl_message = "%s healed herself!"
+metadata/_custom_type_script = "uid://dhfmc3oyqnanb"

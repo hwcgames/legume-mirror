@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://h17p46r5fjev"]
+
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_i3amq"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_hkd3j"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://battle/action/dyn/dyn_input_lock.gd" id="3_bkl18"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="4_0nv6c"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="5_id5xy"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="6_bxld1"]
+[ext_resource type="Script" uid="uid://bc1mdb1i7sg84" path="res://battle/action/dyn/pred_enemy.gd" id="7_ujyt3"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="8_vlmuo"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://battle/action/dyn/dyn_energy.gd" id="9_1npuj"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="10_narlo"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="11_d32km"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="12_84pbg"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="13_f4ahr"]
+[ext_resource type="Script" uid="uid://dfyjfraeggk2q" path="res://battle/rules/crush.gd" id="14_xjfhb"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://battle/action/dyn/dyn_apply_rule.gd" id="15_s7y8p"]
+[ext_resource type="Script" uid="uid://cuofqiysmxjcf" path="res://battle/action/dyn/dyn_standard_damage.gd" id="16_7am0i"]
+
+[sub_resource type="Resource" id="Resource_imc7i"]
+script = ExtResource("3_bkl18")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_2rsti"]
+script = ExtResource("4_0nv6c")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_o2btj"]
+script = ExtResource("6_bxld1")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_ff6sg"]
+script = ExtResource("7_ujyt3")
+metadata/_custom_type_script = "uid://bc1mdb1i7sg84"
+
+[sub_resource type="Resource" id="Resource_1aany"]
+script = ExtResource("8_vlmuo")
+predicates = Array[ExtResource("5_id5xy")]([SubResource("Resource_o2btj"), SubResource("Resource_ff6sg")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_piq7q"]
+script = ExtResource("9_1npuj")
+cost = 15
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_n7p57"]
+script = ExtResource("10_narlo")
+animation_name = "attack"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_x24ht"]
+script = ExtResource("11_d32km")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_lo54c"]
+script = ExtResource("12_84pbg")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_x6l5n"]
+script = ExtResource("10_narlo")
+animation_name = "attack_hit"
+after_animation_name = "attack"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_1sib4"]
+script = ExtResource("14_xjfhb")
+stacks = 3
+metadata/_custom_type_script = "uid://dfyjfraeggk2q"
+
+[sub_resource type="Resource" id="Resource_r6ld7"]
+script = ExtResource("15_s7y8p")
+message = "{me} broke {target}'s guard!"
+rfl_message = "?????"
+rules = Array[ExtResource("13_f4ahr")]([SubResource("Resource_1sib4")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
+[sub_resource type="Resource" id="Resource_72raw"]
+script = ExtResource("16_7am0i")
+default_skill = 100
+crit_chance_mul = 0.0
+metadata/_custom_type_script = "uid://cuofqiysmxjcf"
+
+[resource]
+script = ExtResource("1_i3amq")
+name = "Free Kick"
+description = "Strike reliably, breaking the target's guard."
+steps = Array[ExtResource("2_hkd3j")]([SubResource("Resource_imc7i"), SubResource("Resource_2rsti"), SubResource("Resource_1aany"), SubResource("Resource_piq7q"), SubResource("Resource_n7p57"), SubResource("Resource_x24ht"), SubResource("Resource_lo54c"), SubResource("Resource_x6l5n"), SubResource("Resource_r6ld7"), SubResource("Resource_72raw")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"

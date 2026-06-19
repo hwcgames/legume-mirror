@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6w0ios1iql84"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_5qdsl"]
-[ext_resource type="Texture2D" uid="uid://dwoqrjqdrhn8e" path="res://assets/bullet/chewing-gum.aseprite" id="2_0p13c"]
+[ext_resource type="Texture2D" uid="uid://dwoqrjqdrhn8e" path="res://assets/art/bullet/chewing-gum.aseprite" id="2_0p13c"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_f5nc7"]
 [ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://battle/bullet/components/add_rule.gd" id="3_fipyx"]
 [ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="3_yo52g"]

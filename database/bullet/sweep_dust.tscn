@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="5_0d7sp"]
 [ext_resource type="Script" uid="uid://cidxgnwpggolf" path="res://battle/bullet/components/graze_save_time.gd" id="6_noc4m"]
 [ext_resource type="Script" uid="uid://dnef5e1a1uo4x" path="res://battle/bullet/components/rotate_node.gd" id="7_5v2kh"]
-[ext_resource type="Texture2D" uid="uid://wtycogbxnvnm" path="res://assets/bullet/dust.aseprite" id="7_noc4m"]
+[ext_resource type="Texture2D" uid="uid://wtycogbxnvnm" path="res://assets/art/bullet/dust.aseprite" id="7_noc4m"]
 [ext_resource type="Script" uid="uid://k2gdlmf7jpuh" path="res://battle/bullet/components/aim_at_soul.gd" id="8_pbpvb"]
 [ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="9_s1r80"]
 

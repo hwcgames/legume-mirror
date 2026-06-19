@@ -12,10 +12,10 @@ enum LOCK_TYPE {
 @export var register_name: StringName = "target"
 @export var lock_register_name: StringName = "target_lock"
 
-func check(them: Actor) -> bool:
+func check(source: Object, them: Actor) -> bool:
 	return true
 
-func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
+func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	var target = await planner.pick_actor(func(a: Actor):
 		return predicates.all(func(p: ActorPredicate): return p.test(a, planner.battlefield)))
 	if target == null:
@@ -31,8 +31,8 @@ func lock_for(target: Actor) -> Callable:
 			return await target.lock.exclusive_lock()
 	return func(): pass
 
-func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	var target: Actor 
+func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
+	var target: Actor
 	if register_name in registers:
 		target = registers[register_name]
 	var lock = func(): pass
@@ -55,6 +55,6 @@ func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> boo
 	registers[lock_register_name] = lock
 	return false
 
-func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
+func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
 	(registers[lock_register_name] as Callable).call()
 	pass

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_fckym"]
 [ext_resource type="Script" uid="uid://blt210xa2bynh" path="res://battle/soul/soul.gd" id="1_i6ykd"]
-[ext_resource type="AudioStream" uid="uid://diemeklko7n5q" path="res://assets/sfx/ratchet/ratchet.tres" id="3_qmes5"]
+[ext_resource type="AudioStream" uid="uid://diemeklko7n5q" path="res://assets/audio/sfx/ratchet/ratchet.tres" id="3_qmes5"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6ykd"]
 animation = &"fade"

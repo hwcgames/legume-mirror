@@ -15,5 +15,5 @@ func damage(bullet: Bullet, soul: Soul) -> bool:
 		3 * (bullet.enemy.computed_attrs.magic if magic else bullet.enemy.computed_attrs.strength) - \
 		3 * (target.computed_attrs.finesse if finesse else target.computed_attrs.defense))
 	target.take_damage(damage)
-	Chatterbox.simple_message(target, "%s!" % damage)
+	#Chatterbox.simple_message(target, "%s!" % damage)
 	return false

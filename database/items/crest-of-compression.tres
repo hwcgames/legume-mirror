@@ -1,16 +1,85 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://bqx5k045i42qm"]
 
 [ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="1_2v1q1"]
-[ext_resource type="Script" uid="uid://cnkv5px66oitk" path="res://battle/action/resurrect.gd" id="1_uaaen"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_17vsg"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_6qavg"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://battle/action/dyn/dyn_input_lock.gd" id="3_32dgx"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="3_c3y83"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="4_7ao1u"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://battle/action/dyn/pred_ally.gd" id="4_dwfs1"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="5_34bdx"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="7_1r20y"]
+[ext_resource type="Script" uid="uid://cwik356y6vqsy" path="res://battle/action/dyn/dyn_charges.gd" id="9_2ueiw"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="10_yic5h"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="11_h7uaw"]
+[ext_resource type="Script" uid="uid://bpvfdvwsaad0d" path="res://battle/action/dyn/dyn_message.gd" id="12_1r20y"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="12_2ueiw"]
+[ext_resource type="Script" uid="uid://bqdab812e1wj5" path="res://battle/action/dyn/dyn_resurrect.gd" id="13_2ueiw"]
 
-[sub_resource type="Resource" id="Resource_nkofu"]
-script = ExtResource("1_uaaen")
-cost = 0
-metadata/_custom_type_script = "uid://cnkv5px66oitk"
+[sub_resource type="Resource" id="Resource_8hpaw"]
+script = ExtResource("3_32dgx")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_xxoqu"]
+script = ExtResource("4_7ao1u")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_gehrc"]
+script = ExtResource("4_dwfs1")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_b8dax"]
+script = ExtResource("7_1r20y")
+dead = true
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_32dgx"]
+script = ExtResource("5_34bdx")
+predicates = Array[ExtResource("3_c3y83")]([SubResource("Resource_gehrc"), SubResource("Resource_b8dax")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_ngra2"]
+script = ExtResource("9_2ueiw")
+metadata/_custom_type_script = "uid://cwik356y6vqsy"
+
+[sub_resource type="Resource" id="Resource_e0ach"]
+script = ExtResource("10_yic5h")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_ahmxx"]
+script = ExtResource("11_h7uaw")
+distance = 3.0
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_xv5qk"]
+script = ExtResource("12_2ueiw")
+before_wait = 0.3
+after_wait = 0.3
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_yic5h"]
+script = ExtResource("12_1r20y")
+before_message = "{me} brought {target} back!"
+before_message_rfl = "????"
+metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
+
+[sub_resource type="Resource" id="Resource_h7uaw"]
+script = ExtResource("13_2ueiw")
+metadata/_custom_type_script = "uid://bqdab812e1wj5"
+
+[sub_resource type="Resource" id="Resource_7ao1u"]
+script = ExtResource("1_17vsg")
+name = "Resurrect"
+description = "Bring an ally from the brink of death."
+steps = Array[ExtResource("2_6qavg")]([SubResource("Resource_8hpaw"), SubResource("Resource_xxoqu"), SubResource("Resource_32dgx"), SubResource("Resource_ngra2"), SubResource("Resource_e0ach"), SubResource("Resource_ahmxx"), SubResource("Resource_xv5qk"), SubResource("Resource_yic5h"), SubResource("Resource_h7uaw")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"
 
 [resource]
 script = ExtResource("1_2v1q1")
 name = &"Crest of Compression"
-description = &"A golden crest with the power to restart the heart."
-battle_action = SubResource("Resource_nkofu")
+description = &"A golden symbol with the power to restore consciousness."
+battle_action = SubResource("Resource_7ao1u")
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

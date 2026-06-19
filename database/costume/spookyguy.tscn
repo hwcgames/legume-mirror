@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnvcxu0u2mx2a"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_68o8g"]
-[ext_resource type="SpriteFrames" uid="uid://cahthjmhspr6u" path="res://assets/costume/spookyguy.aseprite" id="2_yboex"]
+[ext_resource type="SpriteFrames" uid="uid://cahthjmhspr6u" path="res://assets/art/char/pixel/spookyguy.aseprite" id="2_yboex"]
 
 [node name="test_costume" unique_id=53504753 instance=ExtResource("1_68o8g")]
 

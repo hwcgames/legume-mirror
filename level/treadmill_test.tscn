@@ -45,7 +45,7 @@ func _process(_d):
 	if PlayerManager.get_player_count() == 0:
 		return
 	$JoinMsg.hide()
-	Storyteller.do_story = true
+	Storyteller2.busy = false
 	did_my_duty = true
 	set_process(false)
 "
@@ -86,8 +86,8 @@ metadata/_custom_type_script = "uid://b6qb50juwahol"
 [node name="Control" type="Node2D" parent="DungeonMap" unique_id=1716469755 node_paths=PackedStringArray("map")]
 position = Vector2(20, 0)
 script = ExtResource("3_dx04o")
-cell_size = Vector2(12, -12)
 map = NodePath("..")
+cell_size = Vector2(12, -12)
 
 [node name="Button" type="Button" parent="DungeonMap" unique_id=1154591830]
 visible = false
@@ -131,6 +131,7 @@ align_position_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1342583119]
+physics_interpolation_mode = 1
 transform = Transform3D(0.99999946, 0, 0, 0, 0.707106, 0.707106, 0, -0.707106, 0.707106, 0, 10.60659, 10.60659)
 top_level = true
 current = true

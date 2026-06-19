@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drchwqfkw8n6l"]
 
 [ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_fra1c"]
-[ext_resource type="PackedScene" uid="uid://bculkp20ympry" path="res://assets/char/cipher.blend" id="2_wqcg4"]
+[ext_resource type="PackedScene" uid="uid://bculkp20ympry" path="res://assets/art/char/cipher.blend" id="2_wqcg4"]
 
 [node name="Cipher" type="Node3D" unique_id=1272044062 node_paths=PackedStringArray("head")]
 script = ExtResource("1_fra1c")

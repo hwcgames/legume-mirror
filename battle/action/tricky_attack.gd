@@ -5,10 +5,10 @@ class_name BattleActionFancyAttack
 @export var description = "Carefully pierce an enemy's defenses."
 @export var cost: int = 10
 
-func allowed(party_member: Actor) -> bool:
+func allowed(party_member: Actor, source: Object) -> bool:
 	return party_member.sp_component.remaining() > cost
 
-func plan(planner: BattlePlanner) -> BattleActionPlan:
+func plan(planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	var target = await planner.pick_target()
 	if target == null:
 		planner.show_toplevel()

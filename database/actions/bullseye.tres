@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://l2ym3mw6cunh"]
+
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://battle/action/dd_action.gd" id="1_x4pro"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://battle/action/dyn/step.gd" id="2_1pjad"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://battle/action/dyn/dyn_input_lock.gd" id="3_55yo2"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://battle/action/dyn/dyn_battlefield_lock.gd" id="4_rxray"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://battle/action/dyn/actor_predicate.gd" id="5_d86w4"]
+[ext_resource type="Script" uid="uid://bc1mdb1i7sg84" path="res://battle/action/dyn/pred_enemy.gd" id="6_ydp8k"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://battle/action/dyn/pred_alive.gd" id="7_xknm6"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://battle/action/dyn/dyn_target.gd" id="8_2hgv3"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://battle/action/dyn/dyn_energy.gd" id="9_mrcub"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://battle/action/dyn/dyn_animate.gd" id="10_pxkv5"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://battle/action/dyn/dyn_approach.gd" id="11_h7w05"]
+[ext_resource type="Script" uid="uid://b0c4a1wkoi6qc" path="res://battle/action/dyn/dyn_qte.gd" id="12_m60sv"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://battle/action/dyn/dyn_wait.gd" id="13_mergd"]
+[ext_resource type="Script" uid="uid://bpvfdvwsaad0d" path="res://battle/action/dyn/dyn_message.gd" id="14_a7f0r"]
+[ext_resource type="Script" uid="uid://cuofqiysmxjcf" path="res://battle/action/dyn/dyn_standard_damage.gd" id="15_vhexy"]
+
+[sub_resource type="Resource" id="Resource_q2sws"]
+script = ExtResource("3_55yo2")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_ysf50"]
+script = ExtResource("4_rxray")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_cghot"]
+script = ExtResource("6_ydp8k")
+metadata/_custom_type_script = "uid://bc1mdb1i7sg84"
+
+[sub_resource type="Resource" id="Resource_hy3cs"]
+script = ExtResource("7_xknm6")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_2bh71"]
+script = ExtResource("8_2hgv3")
+predicates = Array[ExtResource("5_d86w4")]([SubResource("Resource_cghot"), SubResource("Resource_hy3cs")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_cj3td"]
+script = ExtResource("9_mrcub")
+cost = 20
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_l44kx"]
+script = ExtResource("10_pxkv5")
+animation_name = "attack"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_hmjtj"]
+script = ExtResource("11_h7w05")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_p52tw"]
+script = ExtResource("12_m60sv")
+metadata/_custom_type_script = "uid://b0c4a1wkoi6qc"
+
+[sub_resource type="Resource" id="Resource_a71cg"]
+script = ExtResource("10_pxkv5")
+animation_name = "attack_hit"
+after_animation_name = "attack"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_gm2vi"]
+script = ExtResource("13_mergd")
+after_wait = 0.75
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_uqgdr"]
+script = ExtResource("14_a7f0r")
+before_message = "{me} struck {target} with tricky technique!"
+metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
+
+[sub_resource type="Resource" id="Resource_k4rif"]
+script = ExtResource("15_vhexy")
+crit_chance_mul = 0.0
+our_skill = "finesse"
+their_skill = "finesse"
+metadata/_custom_type_script = "uid://cuofqiysmxjcf"
+
+[resource]
+script = ExtResource("1_x4pro")
+name = "Bullseye"
+description = "Attack in a contest of finesse."
+steps = Array[ExtResource("2_1pjad")]([SubResource("Resource_q2sws"), SubResource("Resource_ysf50"), SubResource("Resource_2bh71"), SubResource("Resource_cj3td"), SubResource("Resource_l44kx"), SubResource("Resource_hmjtj"), SubResource("Resource_p52tw"), SubResource("Resource_a71cg"), SubResource("Resource_gm2vi"), SubResource("Resource_uqgdr"), SubResource("Resource_k4rif")])
+metadata/_custom_type_script = "uid://dk3txc50al1fb"

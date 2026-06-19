@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6dbhmhpdpqby"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_qnwos"]
-[ext_resource type="SpriteFrames" uid="uid://btb3vw88t28tn" path="res://assets/bullet/soup-ingredient.aseprite" id="2_ej7cd"]
+[ext_resource type="SpriteFrames" uid="uid://btb3vw88t28tn" path="res://assets/art/bullet/soup-ingredient.aseprite" id="2_ej7cd"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_tryg6"]
 [ext_resource type="Script" uid="uid://sbu7rbqx0uu2" path="res://battle/bullet/components/gravity.gd" id="3_ks46b"]
 [ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="4_0nxh5"]

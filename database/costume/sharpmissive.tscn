@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn3g63lnjpoby"]
+[gd_scene format=3 uid="uid://bn3g63lnjpoby"]
 
 [ext_resource type="PackedScene" uid="uid://ct4shmi68fnq7" path="res://database/costume/sprite-placeholder.tscn" id="1_cerx2"]
-[ext_resource type="SpriteFrames" uid="uid://dw1dqw2fkvtdf" path="res://assets/costume/sharpmissive.aseprite" id="2_cerx2"]
+[ext_resource type="SpriteFrames" uid="uid://dw1dqw2fkvtdf" path="res://assets/art/char/pixel/sharpmissive.aseprite" id="2_cerx2"]
 
 [node name="test_costume" instance=ExtResource("1_cerx2")]
 

@@ -14,4 +14,5 @@ script = ExtResource("1_askjb")
 name = &"Ritual Ration"
 description = &"A glow-stick-like item which releases magic when activated."
 battle_action = SubResource("Resource_jhbii")
+charges = 1
 metadata/_custom_type_script = "uid://7fyk4nkeo01r"

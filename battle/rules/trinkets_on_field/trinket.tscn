@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d4jcm0io4gafo"]
 
 [ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_x4lvw"]
-[ext_resource type="SpriteFrames" uid="uid://bcxbwmhju3wpv" path="res://assets/bullet/trinket.aseprite" id="2_fvvbh"]
+[ext_resource type="SpriteFrames" uid="uid://bcxbwmhju3wpv" path="res://assets/art/bullet/trinket.aseprite" id="2_fvvbh"]
 [ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_n6c1r"]
 [ext_resource type="Script" uid="uid://dnlc3dhhybdtn" path="res://battle/bullet/components/trinket_value.gd" id="3_r7ffw"]
 [ext_resource type="Script" uid="uid://xarbmru8h4kp" path="res://battle/bullet/components/randomize_rotation.gd" id="4_r7ffw"]

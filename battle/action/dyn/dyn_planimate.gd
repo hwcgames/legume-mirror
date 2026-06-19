@@ -4,10 +4,10 @@ class_name StepPlanimate
 @export var animation_name: String
 @export var register_name: String = "planimation"
 
-func check(them: Actor) -> bool:
+func check(source: Object, them: Actor) -> bool:
 	return true
 
-func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
+func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 	registers[register_name] = them.costume.player.current_animation
 	them.costume.play(animation_name)
 	#if registers[register_name] is ActorModeAnimate and !registers[register_name].finished:
@@ -23,8 +23,8 @@ func plan(them: Actor, planner: BattlePlanner, registers: Dictionary) -> bool:
 func unplan(them: Actor, planner: BattlePlanner, registers: Dictionary):
 	them.costume.play(registers[animation_name])
 
-func before(them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
+func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	return false
 
-func after(them: Actor, battlefield: Battlefield, registers: Dictionary):
+func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
 	pass

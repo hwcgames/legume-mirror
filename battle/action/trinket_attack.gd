@@ -3,7 +3,7 @@ class_name BattleActionTrinketAttack
 
 @export var trinkets_amount: float = 0.5
 
-func plan(planner: BattlePlanner) -> BattleActionPlan:
+func plan(planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	var target = await planner.pick_target()
 	if target == null:
 		planner.show_toplevel()
@@ -39,14 +39,14 @@ class BasicAttackPlan extends BattleActionPlan:
 		var animate = ActorModeAnimate.new("attack", false)
 		await party_member.push_mode(animate)
 		var challenge: SkillChallenge = party_member.setup_challenge()
-		challenge.frame_count = randi_range(20,40)
+		challenge.frame_count = randi_range(20, 40)
 		challenge.start()
 		var skill = await challenge.result
 		if skill >= 120:
 			var crit_chance: float = party_member.computed_attrs.finesse / (target.computed_attrs.finesse * 10)
 			if randf() < crit_chance:
 				skill *= 2
-		var damage = (party_member.computed_attrs.strength*skill/20)-(3*target.computed_attrs.defense)
+		var damage = (party_member.computed_attrs.strength * skill / 20) - (3 * target.computed_attrs.defense)
 		animate.finished = true
 		if damage > 0:
 			if skill >= 250:
