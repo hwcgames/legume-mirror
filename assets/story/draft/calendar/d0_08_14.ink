@@ -80,21 +80,21 @@ mauve: Just a feeling.
 
 (In Cipher's apartment... A signal!)
 
-mstuart: [MESSAGE REQUEST: Meeting up]
+wnw: [MESSAGE REQUEST: Meeting up]
 nh: Who is this?
-mstuart: Mauve. We spoke earlier today.
+wnw: Mauve. We spoke earlier today.
 nh: Oh. I never got your name.
 nh: How did you find this account?
-mstuart: You're the only "Cipher" in Northold.
-mstuart: Cool name, by the way.
+wnw: You're the only "Cipher" in Northold.
+wnw: Cool name, by the way.
 nh: I see. I would prefer if you just asked next time.
-mstuart: I want to talk after school tomorrow in the old club room.
+wnw: I want to talk after school tomorrow in the old club room.
 nh: What about?
 (She takes a moment to start typing.)
-mstuart: Just to get to know one another.
+wnw: Just to get to know one another.
 > Suspicious.
 nh: Sure. Should I invite Casey too?
-mstuart: I'd prefer if you didn't.
+wnw: I'd prefer if you didn't.
 nh: Why?
 (A moment's pause.)
 > [b]I don't think I ever told her my name?[/b]

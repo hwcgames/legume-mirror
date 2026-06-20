@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://d0ym2jrtlwpvt" path="res://actor/component/actor_pathing.gd" id="6_7esib"]
 [ext_resource type="Script" uid="uid://c8yn1evbmnbd3" path="res://actor/component/actor_automove.gd" id="7_47x2q"]
 [ext_resource type="Script" uid="uid://dvnykp2tlth33" path="res://actor/component/actor_cargo.gd" id="8_ndhxd"]
+[ext_resource type="Script" uid="uid://c621np73sy2wx" path="res://actor/costume/afterimages.gd" id="13_v2mwp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
 radial_segments = 8
@@ -188,3 +189,9 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+
+[node name="Afterimager" type="Node3D" parent="." unique_id=1012253379]
+unique_name_in_owner = true
+top_level = true
+script = ExtResource("13_v2mwp")
+metadata/_custom_type_script = "uid://c621np73sy2wx"

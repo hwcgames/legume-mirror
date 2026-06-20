@@ -10,6 +10,7 @@ func _to_string() -> String:
 			costume.hide()
 			costume.queue_free()
 		costume = new_costume
+		%Afterimager.target = costume
 		if not is_ancestor_of(new_costume):
 			if new_costume.is_inside_tree():
 				new_costume.reparent(self , false)
@@ -93,6 +94,8 @@ var sp: float:
 
 func _ready():
 	add_to_group("actor")
+	%Afterimager.target = costume
+	goal_rotation = global_rotation.y
 	%Telegraph.hide()
 	if is_instance_valid(sheet.party_component):
 		add_to_group("party_member")
@@ -139,6 +142,12 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	else:
 		battle_component = sheet.party_component
 		await sheet.party_component._join_battle(self, battlefield)
+	if battlefield.phase == Battlefield.PHASE.SETUP:
+		snap_to_landmark(home_landmark, true)
+	else:
+		global_position = home_landmark.global_position
+		global_rotation = home_landmark.global_rotation
+		goal_rotation = home_landmark.global_rotation.y
 	joined_battle.emit(battlefield)
 	for rule in sheet.rules:
 		if not rule.join_battle(self ):
@@ -279,27 +288,35 @@ func done(player_victory: bool):
 	battlefield = null
 	mode_done()
 
-func snap_to_landmark(landmark: Node3D):
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(self, "goal_rotation", lerp_angle(goal_rotation, landmark.global_rotation.y, 1), 0.3)
-	tween.parallel()
-	tween.tween_property(self, "global_position", landmark.global_position, 0.3)
-	tween.tween_callback(func():
-		global_rotation = landmark.global_rotation)
-	tween.play()
-	await tween.finished
-func snap_to_position(position: Vector3, rotation: float = INF):
+func snap_to_landmark(landmark: Node3D, afterimages: bool = false):
+	#var tween = create_tween()
+	#tween.set_ease(Tween.EASE_IN_OUT)
+	#tween.set_trans(Tween.TRANS_QUAD)
+	#tween.tween_property(self, "goal_rotation", lerp_angle(goal_rotation, landmark.global_rotation.y, 1), 0.3)
+	#tween.parallel()
+	#tween.tween_property(self, "global_position", landmark.global_position, 0.3)
+	#tween.tween_callback(func():
+		#global_rotation = landmark.global_rotation)
+	#tween.play()
+	#await tween.finished
+	await snap_to_position(landmark.global_position, landmark.global_rotation.y, afterimages)
+func snap_to_position(position: Vector3, rotation: float = INF, afterimages: bool = false):
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "global_position", position, 0.3)
 	if is_finite(rotation):
 		tween.parallel()
-		tween.tween_property(self, "goal_rotation", lerp_angle(goal_rotation, rotation, 1), 0.3)
+		tween.tween_property(self, "goal_rotation", lerp_angle(goal_rotation, rotation, 1), 0.2)
 	tween.play()
+	var atween = create_tween()
+	if afterimages:
+		var count = round(global_position.distance_to(position)) * 4
+		for n in range(count+5):
+			atween.tween_callback(func(): afterimage_stationary(0.2)).set_delay(0 if n == 0 else (0.2 / count))
+		atween.play()
 	await tween.finished
+	atween.kill()
 
 func wait_for_idle():
 	while not ((active_component is ActorIdle) or (active_component is ActorHuman)):
@@ -367,11 +384,13 @@ func take_line(line: String, tags: Array[String]):
 	var idx = components.find_custom(func(c: ActorComponent): return c.wants_line(line, tags))
 	components[idx].take_line(line, tags)
 
-func glide_to(target, speed = 10., rotation = INF):
+func glide_to(target, speed = 10., rotation = INF, afterimage_duration: float = 0., afterimage_count: int = 0):
 	var glide: ActorGlide = %Component/Glide
 	glide.target = (func(): return target.global_position) if target is Node3D else (func(): return target)
 	glide.speed = speed
 	glide.rotation = rotation
+	glide.afterimage_duration = afterimage_duration
+	glide.afterimage_count = afterimage_count
 	active_component = glide
 	await new_mode
 func follow_actor(actor: Actor, at_distance: float = 1.5, at_speed: float = 10.):
@@ -398,4 +417,22 @@ func cargo(carrier: Actor):
 	cargo.carrier = carrier
 	active_component = cargo
 
-##region CARGO
+func afterimage_stationary(duration: float = 1.) -> Node3D:
+	var tween = create_tween()
+	var image = %Afterimager.create_afterimage(
+	func(m: BaseMaterial3D): 
+		if m is StandardMaterial3D:
+			m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+			#m.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+			tween.tween_property(m, "albedo_color", Color(m.albedo_color, 0.), duration).from(Color(m.albedo_color, 0.5)).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+			tween.parallel()
+	, func(sprite: SpriteBase3D):
+		tween.tween_property(sprite, "modulate", Color(sprite.modulate, 0.), duration).from(Color(sprite.modulate, 0.5)).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel()
+	)
+	var camera_transform = get_viewport().get_camera_3d().global_transform
+	var forward = camera_transform.basis * Vector3.FORWARD
+	image.global_position += forward * 0.1
+	tween.tween_callback(func(): image.queue_free()).set_delay(duration)
+	tween.play()
+	return image

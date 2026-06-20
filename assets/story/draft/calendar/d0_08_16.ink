@@ -111,9 +111,31 @@ mauve: Cipher told me about your hand thing. I've got something similar.
 
 (They clear the first floor of the dungeon. Mauve is clearly a little confused at the start, but doesn't say why.)
 
+>>> fade black
 ->->
 
 = evening
+>>> fade in
+
+(In Cipher's room...)
+> ...Woof.
+> I feel [i]tired[/i].
+> That's not usually easy to do.
+> There must be something about that place...
+
+nh: How are you all feeling about today?
+cxf: i'm exhausted...
+cxf: i didn't realize it until i got home, then it hit me all at once!
+nh: I'm feeling similar.
+wnw: That's normal.
+wnw: I'm more used to it, but it still takes a lot out of me.
+cxf: i think i'm going to call it a night
+cxf: i still need to catch up on sleep after last night
+
+> My battery ran completely dry. It's a good thing I have a backup...
+> I wonder how Mauve would have reacted yesterday if she knew how much of my weight was plutonium.
+> Well. I guess I'll head to bed, too.
+
 ->->
 
 

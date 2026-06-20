@@ -75,11 +75,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="ContentsParent" type="Control" parent="Bubble2" unique_id=388486422]
+[node name="Decorations" type="Control" parent="Bubble2" unique_id=388486422]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Continue" type="Button" parent="Bubble2/ContentsParent" unique_id=2143612698]
+[node name="Continue" type="Button" parent="Bubble2/Decorations" unique_id=2143612698]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 1

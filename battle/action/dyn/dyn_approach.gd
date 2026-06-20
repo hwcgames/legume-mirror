@@ -3,7 +3,7 @@ class_name StepApproach
 
 @export var target_register_name: String = "target"
 @export var mode_register_name: String = "approach"
-@export var distance: float =3.
+@export var distance: float = 1.5
 
 func check(source: Object, them: Actor) -> bool:
 	return true
@@ -20,9 +20,10 @@ func before(source: Object, us: Actor, battlefield: Battlefield, registers: Dict
 		return false
 	await us.snap_to_position(
 		them.global_position + them.global_basis * Vector3.FORWARD * distance,
-		them.global_rotation.y + PI
+		them.global_rotation.y + PI,
+		true
 	)
 	return false
 
 func after(source: Object, us: Actor, battlefield: Battlefield, registers: Dictionary):
-	await us.snap_to_landmark(us.home_landmark)
+	await us.snap_to_landmark(us.home_landmark, true)

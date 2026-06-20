@@ -19,9 +19,6 @@ func copy() -> EnemyComponent:
 
 func _join_battle(enemy: Actor, battlefield: Battlefield):
 	enemy.home_landmark = battlefield.enemy_landmarks[battlefield.enemies.find(enemy)]
-	enemy.global_position = enemy.home_landmark.global_position
-	enemy.global_rotation = enemy.home_landmark.global_rotation
-	enemy.goal_rotation = enemy.home_landmark.global_rotation.y
 
 
 func _telegraph(actor: Actor):

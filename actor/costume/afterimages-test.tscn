@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://tyni5tstdopp"]
+
+[ext_resource type="PackedScene" uid="uid://dsmw0etg767jy" path="res://actor/Actor.tscn" id="1_83rcs"]
+[ext_resource type="Resource" uid="uid://bvl8t3gdjhcan" path="res://database/actors/crow.tres" id="2_kdvxa"]
+[ext_resource type="PackedScene" uid="uid://d4a07582e1vr1" path="res://database/costume/bird.tscn" id="3_83rcs"]
+
+[sub_resource type="GDScript" id="GDScript_83rcs"]
+script/source = "extends Button
+
+@onready var actor = $\"../Actor\"
+@onready var afterimager: Afterimager = $\"../Actor/Afterimager\"
+
+func _ready() -> void:
+	$\"../AnimationPlayer\".play(\"a\")
+
+func _pressed() -> void:
+	var tween = create_tween()
+	var image = afterimager.create_afterimage(
+	func(m: BaseMaterial3D): 
+		if m is StandardMaterial3D:
+			m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
+			#m.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS
+			tween.tween_property(m, \"albedo_color\", Color(m.albedo_color, 0.), 1).from(Color(m.albedo_color, 0.75)).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+			tween.parallel()
+	, func(sprite: SpriteBase3D):
+		tween.tween_property(sprite, \"modulate\", Color.TRANSPARENT, 1).from_current().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel()
+	)
+	image.top_level = true
+	var camera_transform = get_viewport().get_camera_3d().global_transform
+	var forward = camera_transform.basis * Vector3.FORWARD
+	image.global_position += forward * 0.1
+	var direction = camera_transform.basis * Vector3(3, 0, 0)
+	tween.tween_property(
+		image,
+		\"global_position\",
+		image.global_position + direction * 0.25 + forward * 0.2,
+		1.5
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_callback(func(): image.queue_free())
+	tween.play()
+"
+
+[sub_resource type="Animation" id="Animation_dvqgb"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Actor:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Actor:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Actor:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_83rcs"]
+resource_name = "a"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Actor:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.16666667, 0, 0, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Actor:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.25, -0.25, 0, 1, 0, -0.25, -1, 0, 1, 0, 0.25, -1, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Actor:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.16666667, 0, 0, 0, 0, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kdvxa"]
+_data = {
+&"RESET": SubResource("Animation_dvqgb"),
+&"a": SubResource("Animation_83rcs")
+}
+
+[node name="AfterimagesTest" type="Node3D" unique_id=465185351]
+
+[node name="Actor" parent="." unique_id=158145810 node_paths=PackedStringArray("costume", "active_component") instance=ExtResource("1_83rcs")]
+process_mode = 4
+transform = Transform3D(-0.5619824, 0, 0.8271492, 0, 1, 0, -0.8271492, 0, -0.5619824, 0, 0, 0)
+human_name = &"Crow"
+costume = NodePath("Bird")
+sheet = ExtResource("2_kdvxa")
+active_component = NodePath("Component/Idle")
+
+[node name="test_costume" parent="Actor" index="2" unique_id=1167759721]
+visible = false
+
+[node name="Bird" parent="Actor" unique_id=725741409 instance=ExtResource("3_83rcs")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1690290429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, -0.25, 0)
+visible = false
+use_collision = true
+size = Vector3(3.8, 0.5, 1)
+
+[node name="Button" type="Button" parent="." unique_id=144895396]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Create Afterimage"
+script = SubResource("GDScript_83rcs")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=468240941]
+transform = Transform3D(1, 0, 0, 0, 0.9970675, 0.07652762, 0, -0.07652762, 0.9970675, 0.49631786, 0.36368406, 1.0382636)
+projection = 1
+size = 1.4569012
+
+[node name="Timer" type="Timer" parent="." unique_id=1456629287]
+wait_time = 0.07
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=454339833]
+libraries/ = SubResource("AnimationLibrary_kdvxa")
+
+[connection signal="timeout" from="Timer" to="Button" method="_pressed"]
+[connection signal="timeout" from="Timer" to="Timer" method="start"]
+
+[editable path="Actor"]
+[editable path="Actor/Bird"]

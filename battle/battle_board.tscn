@@ -37,27 +37,30 @@ grow_vertical = 2
 
 [node name="BattleBackground" type="Panel" parent="BattleParent" unique_id=674281342]
 unique_name_in_owner = true
+z_index = -999
+z_as_relative = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lbtbq")
 
 [node name="MarginContainer" type="MarginContainer" parent="BattleParent" unique_id=1972733688]
+z_as_relative = false
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="BattleWorld" type="PanelContainer" parent="BattleParent/MarginContainer" unique_id=1295238390]
-unique_name_in_owner = true
+[node name="BattleClip" type="PanelContainer" parent="BattleParent/MarginContainer" unique_id=1295238390]
 clip_children = 1
-z_index = 999
+z_index = 1
+z_as_relative = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5jau5")
 
-[node name="Landmarks" type="Control" parent="BattleParent" unique_id=1403604313]
+[node name="Landmarks" type="Control" parent="BattleParent/MarginContainer/BattleClip" unique_id=1403604313]
 layout_mode = 2
 
-[node name="SoulHome" type="Control" parent="BattleParent/Landmarks" unique_id=838037984]
+[node name="SoulHome" type="Control" parent="BattleParent/MarginContainer/BattleClip/Landmarks" unique_id=838037984]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -67,3 +70,9 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BattleWorld" type="Control" parent="BattleParent/MarginContainer/BattleClip" unique_id=493947964]
+unique_name_in_owner = true
+z_index = 1
+z_as_relative = false
+layout_mode = 2
