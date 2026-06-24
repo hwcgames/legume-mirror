@@ -21,5 +21,5 @@ func new_choice(choices: Array[InkChoice]):
 		var choice: InkChoice = b_choices[key]
 		button.text = choice.GetText()
 		button.pressed.connect(func():
-			Storyteller2.choose([choice.GetText()])
+			Storyteller.find().choose([choice.GetText()])
 			queue_free())

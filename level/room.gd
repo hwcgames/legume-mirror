@@ -32,7 +32,7 @@ func _ready():
 		#ConnectFlags.CONNECT_ONE_SHOT)
 
 func _exit_tree() -> void:
-	Storyteller2.choose(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
+	Storyteller.find().choose(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
 
 func _body_entered(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):
@@ -47,7 +47,7 @@ func _body_entered(body: PhysicsBody3D):
 		players_inside += 1
 func _body_exited(body: PhysicsBody3D):
 	if body.is_in_group("loading_root"):
-		keep_loaded_lock.shared_locks = max(keep_loaded_lock.shared_locks-1, 0)
+		keep_loaded_lock.shared_locks = max(keep_loaded_lock.shared_locks - 1, 0)
 		update_loading()
 	if body.is_in_group("party_leader"):
 		player_exited.emit(body)

@@ -1,7 +1,7 @@
 extends DynActionStep
 class_name StepSP
 
-@export var damage_register_name: String = "damage"
+@export var sp_register_name: String = "damage"
 @export var sp_amount: float = 0.2
 
 func check(source: Object, them: Actor) -> bool:
@@ -14,5 +14,5 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 	return false
 
 func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
-	var damage = registers[damage_register_name]
-	them.get_sp(damage * sp_amount)
+	var damage = registers[sp_register_name]
+	them.sp_change(SpChange.new(them, them, damage * sp_amount))

@@ -41,5 +41,18 @@ func refresh():
 	icon = rule.icon(fighter)
 	message = rule.message(fighter)
 
+@onready var tween: Tween
 func blink():
+	if !is_inside_tree():
+		await tree_entered
 	%AnimationPlayer.play("flash")
+	if is_instance_valid(tween):
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(self, "offset_transform_rotation", randf_range(-PI/4, PI/4), 0.1).set_ease(Tween.EASE_OUT)
+	tween.parallel()
+	tween.tween_property(self, "offset_transform_scale", Vector2(randf_range(0.9, 1.5), randf_range(0.9, 1.5)), 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "offset_transform_rotation", 0, 0.2).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel()
+	tween.tween_property(self, "offset_transform_scale", Vector2.ONE, 0.3).set_ease(Tween.EASE_IN_OUT)
+	tween.play()

@@ -30,8 +30,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Legume Traffick"
-run/main_scene="uid://cw0r478jvhrnn"
-config/features=PackedStringArray("4.6", "C#")
+run/main_scene="uid://c1i7t54hhg2tf"
+run/print_header=false
+config/features=PackedStringArray("4.7", "C#")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -39,15 +41,9 @@ config/icon="res://icon.svg"
 MultiplayerInput="*uid://64bdsrtamugy"
 InputLocks="*res://InputLocks.gd"
 PlayerManager="*res://player_manager.gd"
-Inventory="*res://inventory/inventory.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-Saver="*res://save_file/saver.gd"
 MusicMan="*res://music/musicman.gd"
-Storyteller="res://story/Storyteller.gd"
 Fader="*uid://cqcl700i7h12u"
-Bubble="*uid://be2gc6grdbuu0"
-Console="*uid://cqo64bk7kg48g"
-Storyteller2="*uid://dabijjykhigp0"
 
 [display]
 
@@ -66,7 +62,7 @@ movie_writer/movie_file="/mnt/data/godot/legume-traffick/movie.ogv"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/GodotInk/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/GodotInk/plugin.cfg", "res://addons/InstanceDock/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/multiplayer_input/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/room_seam_gizmo/plugin.cfg")
 
 [global_group]
 
@@ -144,6 +140,7 @@ cmdline={
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
 
 [rendering]

@@ -15,7 +15,7 @@ func copy() -> BattleRule:
 func merge(other: BattleRule):
 	self.stacks += other.stacks
 
-func priority(fighter: Actor) -> int:
+func priority() -> int:
 	return 0
 
 func compute_attrs(fighter: Actor, attrs: CombatAttributes) -> bool:
@@ -36,16 +36,10 @@ func _died(fighter: Actor) -> bool:
 func _revived(fighter: Actor) -> bool:
 	return true
 
-func take_damage(fighter: Actor, amount: int) -> bool:
+func hp_change(fighter: Actor, instance: HpChange) -> bool:
 	return true
 
-func heal(fighter: Actor, amount: int) -> bool:
-	return true
-
-func use_sp(fighter: Actor, amount: int) -> bool:
-	return true
-
-func get_sp(fighter: Actor, amount: int) -> bool:
+func sp_change(fighter: Actor, instance: SpChange) -> bool:
 	return true
 
 func join_battle(fighter: Actor) -> bool:

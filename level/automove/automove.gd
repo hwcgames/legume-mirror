@@ -13,7 +13,7 @@ func _ready():
 
 static func find(actor: Actor, automove_name: StringName) -> Automove:
 	var candidates: Array[Automove] = []
-	for node in Storyteller2.get_tree().get_nodes_in_group("automove"):
+	for node in Storyteller.find().get_tree().get_nodes_in_group("automove"):
 		if node.name == automove_name:
 			candidates.push_back(node)
 	if candidates.is_empty():

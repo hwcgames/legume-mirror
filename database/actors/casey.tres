@@ -1,10 +1,8 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://vpkkayvon17n"]
 
-[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_3wnso"]
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_xxmoq"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_inpf1"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_myh4w"]
-[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_rmvcg"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="3_xrom7"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="4_4yvr8"]
 [ext_resource type="Resource" uid="uid://dn81qqtmqv00q" path="res://database/actions/trinkets_attack.tres" id="4_8hlbw"]

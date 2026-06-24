@@ -1,4 +1,5 @@
 extends Node
+class_name Saver
 
 var parent_save: SaveFile = preload("uid://07q2yjh6h41t")
 var current_save: SaveFile:
@@ -11,6 +12,31 @@ var current_save: SaveFile:
 const path_template = "user://saves/%08d.save.tres"
 
 signal pre_save(file: SaveFile)
+
+static var me: Saver
+static func find() -> Saver:
+	return me
+
+func _ready():
+	me = self
+	add_to_group("story_listener")
+
+func _to_string() -> String:
+	return "Saver"
+
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return is_instance_valid(do_line(line, tags))
+func take_line(line: String, tags: Array[String]):
+	do_line(line, tags).call()
+func do_line(line: String, tags: Array[String]):
+	match line.split(" ", false):
+		[">>>", "save"]:
+			return func():
+				save(false)
+		[">>>", "save", "in", "place"]:
+			return func():
+				save(true)
+	return null
 
 func save(in_place: bool = false):
 	# Ask everyone to populate the save...

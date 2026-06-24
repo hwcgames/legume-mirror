@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_2fwm5"]
 [ext_resource type="PackedScene" uid="uid://c6ru066xlmxbf" path="res://database/costume/maternalorganizer.tscn" id="1_ycft4"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_0besb"]
-[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_53wpt"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_e55sl"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_mdhvo"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="5_mdhvo"]
@@ -21,6 +19,10 @@ metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_e55sl"]
 script = ExtResource("5_mdhvo")
+active = null
+patterns = null
+planning_priority = null
+parleys = null
 metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_kx3xo"]

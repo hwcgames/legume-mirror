@@ -20,19 +20,15 @@ func top(fighter: Actor) -> bool:
 	var damage = dot.sample(debt)
 	if damage > 0:
 		activated.emit()
-		fighter.take_damage(damage)
+		fighter.hp_change(HpChange.new(fighter, fighter, damage))
 	return true
 
-func take_damage(fighter: Actor, amount: int) -> bool:
+func hp_change(fighter: Actor, instance: HpChange) -> bool:
+	if instance.amount >= 0:
+		return true
 	activated.emit()
-	fighter.use_sp(amount * damage_as_heat)
+	fighter.sp_change(SpChange.new(fighter, fighter, instance.amount * damage_as_heat))
 	return true
-
-#func get_sp(fighter: Actor, amount: int) -> bool:
-	#if amount <= 0:
-		#return true
-	#fighter.use_sp(amount * (1. - sp_gain_mul))
-	#return true
 
 func icon(fighter: Actor) -> Texture2D:
 	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")

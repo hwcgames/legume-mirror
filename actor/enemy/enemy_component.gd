@@ -18,7 +18,7 @@ func copy() -> EnemyComponent:
 	return out
 
 func _join_battle(enemy: Actor, battlefield: Battlefield):
-	enemy.home_landmark = battlefield.enemy_landmarks[battlefield.enemies.find(enemy)]
+	enemy.home_landmark = enemy.battlefield.enemy_landmarks[enemy.battlefield.enemies.find(enemy) % len(enemy.battlefield.enemy_landmarks)]
 
 
 func _telegraph(actor: Actor):

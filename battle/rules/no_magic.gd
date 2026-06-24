@@ -1,10 +1,10 @@
 extends BattleRule
 class_name RuleNoMagic
 
-func get_sp(fighter: Actor, amount: int) -> bool:
+func sp_change(fighter: Actor, instance: SpChange) -> bool:
 	activated.emit()
-	fighter.sp = 0
-	fighter.heal(amount / 2)
+	fighter.hp_change(HpChange.new(instance.from, fighter, instance.amount / 2.))
+	instance.amount = 0
 	return false
 
 func icon(fighter: Actor) -> Texture2D:

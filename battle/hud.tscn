@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://b3h4g32vo7ya3"]
+
+[ext_resource type="Theme" uid="uid://cd2oktw58ov5s" path="res://assets/theme/battle_hud.tres" id="1_vwdkw"]
+[ext_resource type="Theme" uid="uid://bjtrx0xncgqi6" path="res://assets/theme/battle_planner.tres" id="2_opxj0"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1441129794]
+
+[node name="AllyZone2" type="MarginContainer" parent="." unique_id=972724246]
+visible = false
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_vwdkw")
+
+[node name="Panel" type="Panel" parent="AllyZone2" unique_id=936586526]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AllyZone2" unique_id=1384580317]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="LogZone" type="VBoxContainer" parent="AllyZone2/HBoxContainer" unique_id=611846707]
+layout_mode = 2
+
+[node name="BattleText" type="RichTextLabel" parent="AllyZone2/HBoxContainer/LogZone" unique_id=1988644985]
+custom_minimum_size = Vector2(196, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_following = true
+
+[node name="PlayerZone" type="HBoxContainer" parent="AllyZone2/HBoxContainer" unique_id=1172237008]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="." unique_id=608627894]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 128.0
+theme = ExtResource("1_vwdkw")
+
+[node name="EnemyZone" type="HBoxContainer" parent="Control" unique_id=212345444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="." unique_id=517279290]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_opxj0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2" unique_id=1189761207]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_right = 23.5
+offset_bottom = 14.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="Control2/MarginContainer" unique_id=255660803]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/MarginContainer" unique_id=2116006100]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LogZone" type="VBoxContainer" parent="Control2/MarginContainer/MarginContainer" unique_id=216016512]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="Control2/MarginContainer/MarginContainer/LogZone" unique_id=1473257883]
+layout_mode = 2
+text = "Combat Log"
+horizontal_alignment = 1
+
+[node name="BottomPanel" type="MarginContainer" parent="Control2" unique_id=1363723623]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="Control2/BottomPanel" unique_id=1318447042]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control2/BottomPanel" unique_id=1660304547]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control2/BottomPanel/Panel" unique_id=1841029252]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="PlayerZone" type="HBoxContainer" parent="Control2/BottomPanel/Panel/ScrollContainer" unique_id=946564984]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+alignment = 1

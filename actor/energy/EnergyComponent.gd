@@ -47,6 +47,12 @@ func _get_energy() -> int
 @abstract
 func _set_energy(energy: int)
 
+func apply(instance: SpChange):
+	if instance.amount > 0:
+		get_energy(instance.amount)
+	if instance.amount < 0:
+		use_energy(-instance.amount)
+
 func remaining() -> int:
 	return max(0, sp - min)
 

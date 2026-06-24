@@ -6,6 +6,7 @@ class_name SaveFile
 @export var parent_save_idx: int = 0
 @export var timestamp: Dictionary
 
+@export_file_path("*.ink") var story: String
 @export var ink_save: String
 
 @export var active_camera: String

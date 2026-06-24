@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="CharacterSheet" format=3 uid="uid://cal5yy0thhvjg"]
 
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="2_pwv88"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_uy55x"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="3_jkj8j"]
 [ext_resource type="Script" uid="uid://dr762xdwdn0fw" path="res://actor/party_member/character_sheet.gd" id="3_pwv88"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_uqreb"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="7_6bwi3"]
-[ext_resource type="PackedScene" uid="uid://bgym47jf3uuxo" path="res://battle/skillset/spell_list.tscn" id="8_d5l07"]
+
+[sub_resource type="PackedScene" id="PackedScene_jkj8j"]
 
 [sub_resource type="Resource" id="Resource_xuaaf"]
 script = ExtResource("6_uqreb")

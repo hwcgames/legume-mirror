@@ -1,4 +1,5 @@
 extends Node
+class_name Storyteller
 
 var story: InkStory = load("uid://del34gulleoth"):
 	set(new_story):
@@ -10,10 +11,20 @@ func bind_functions():
 	if safety_save != "":
 		story.LoadState(safety_save)
 
+static var me: Storyteller
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	bind_functions()
+	me = self
 	story.changed.connect(bind_functions)
+	add_to_group("story_listener")
+	var spec_timer = Timer.new()
+	spec_timer.timeout.connect(func():
+		spec_timer.start(2)
+		runahead())
+
+static func find() -> Storyteller:
+	return me
 
 var listeners: Array[Node]:
 	get:
@@ -71,10 +82,32 @@ func choice_choosers(choice: InkChoice) -> Array[Node]:
 	return listeners \
 		.filter(func(l: Node): return l.has_method("wants_choice") and l.wants_choice(choice))
 
+func wants_line(message: String, tags: Array[String]) -> bool:
+	match message.split(" ", false):
+		[">>>", "divert", var address]:
+			return true
+	return false
+func take_line(message: String, tags: Array[String]):
+	match message.split(" ", false):
+		[">>>", "divert", var address]:
+			story.ChoosePathString(address)
+
 signal new_choice(choices: Array[InkChoice])
 signal chosen(choice: InkChoice)
 
 var safety_save: String = ""
+
+func runahead():
+	if !story.GetCanContinue():
+		return []
+	var save: String = story.SaveState()
+	var counter: int = 0
+	while story.GetCanContinue() and counter < 10:
+		counter += 1
+		var line = story.Continue()
+		var tags: Array[String] = story.GetCurrentTags()
+		advise_line(line, tags)
+	story.LoadState(save)
 
 func _process(delta: float) -> void:
 	if busy or !is_instance_valid(story):
@@ -90,6 +123,7 @@ func _process(delta: float) -> void:
 		new_choice.emit(choices)
 		return
 	while story.GetCanContinue():
+		story.SwitchToDefaultFlow()
 		var line = story.Continue()
 		safety_save = story.SaveState()
 		var tags: Array[String] = story.GetCurrentTags()
@@ -146,3 +180,10 @@ func send_line(line: String, tags: Array[String]):
 	).call()
 	if not was_busy:
 		busy = false
+
+func advise_line(line: String, tags: Array[String]):
+	var wanted_by: Array[Node] = message_listeners(line, tags)
+	for wanter in wanted_by:
+		if !wanter.has_method("notice_line"):
+			continue
+		wanter.notice_line(line, tags)

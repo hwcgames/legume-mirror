@@ -1,3 +1,27 @@
 [gd_scene format=3 uid="uid://h5ppkq5boigl"]
 
+[ext_resource type="Script" uid="uid://vxx3gfeh8j62" path="res://src/core/main_game/main_game.gd" id="1_57sy6"]
+[ext_resource type="Script" uid="uid://koi6kck7np3o" path="res://inventory/inventory.gd" id="1_l3iix"]
+[ext_resource type="PackedScene" uid="uid://be2gc6grdbuu0" path="res://story/new/bubble/bubble.tscn" id="1_o4umv"]
+[ext_resource type="Script" uid="uid://d15sjotyl8c8v" path="res://save_file/saver.gd" id="3_3l65w"]
+[ext_resource type="Script" uid="uid://dabijjykhigp0" path="res://story/new/Storyteller2.gd" id="3_7isfe"]
+[ext_resource type="PackedScene" uid="uid://cqo64bk7kg48g" path="res://debug/Console.tscn" id="4_swx0j"]
+
 [node name="MainGame" type="Node" unique_id=1194474861]
+script = ExtResource("1_57sy6")
+
+[node name="Storyteller" type="Node" parent="." unique_id=504516552]
+script = ExtResource("3_7isfe")
+metadata/_custom_type_script = "uid://dabijjykhigp0"
+
+[node name="Saver" type="Node" parent="." unique_id=105723332]
+script = ExtResource("3_3l65w")
+metadata/_custom_type_script = "uid://d15sjotyl8c8v"
+
+[node name="Bubble" parent="." unique_id=465563387 instance=ExtResource("1_o4umv")]
+
+[node name="Inventory" type="Node" parent="." unique_id=289567370]
+script = ExtResource("1_l3iix")
+metadata/_custom_type_script = "uid://koi6kck7np3o"
+
+[node name="Console" parent="." unique_id=936557544 instance=ExtResource("4_swx0j")]

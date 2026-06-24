@@ -1,8 +1,8 @@
 extends CanvasLayer
-
+class_name Console
 
 func _on_line_edit_text_changed(new_text: String) -> void:
-	var listeners = Storyteller2.message_listeners(new_text, [])
+	var listeners = Storyteller.find().message_listeners(new_text, [])
 	for child in %WantedBy.get_children():
 		child.queue_free()
 	for listener in listeners:
@@ -17,7 +17,7 @@ func _on_line_edit_text_changed(new_text: String) -> void:
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	Storyteller2.send_line(new_text, [])
+	Storyteller.find().send_line(new_text, ["!W:main"])
 	for child in %WantedBy.get_children():
 		child.queue_free()
 	%CmdLine.hide()
@@ -25,8 +25,8 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 
 func _ready() -> void:
 	%CmdLine.hide()
-	Storyteller2.new_choice.connect(new_choices)
-	Storyteller2.chosen.connect(func(_c):
+	Storyteller.find().new_choice.connect(new_choices)
+	Storyteller.find().chosen.connect(func(_c):
 		for child in %ChoiceButtons.get_children():
 			child.queue_free())
 
@@ -50,4 +50,4 @@ func new_choices(choices: Array[InkChoice]):
 		var b = Button.new()
 		b.text = choice.GetText()
 		b.pressed.connect(func():
-			Storyteller2.choose([choice.GetText()]))
+			Storyteller.find().choose([choice.GetText()]))

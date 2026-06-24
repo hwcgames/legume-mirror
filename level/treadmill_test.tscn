@@ -45,7 +45,7 @@ func _process(_d):
 	if PlayerManager.get_player_count() == 0:
 		return
 	$JoinMsg.hide()
-	Storyteller2.busy = false
+	Storyteller.find().busy = false
 	did_my_duty = true
 	set_process(false)
 "

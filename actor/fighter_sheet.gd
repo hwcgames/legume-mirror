@@ -1,2 +1,0 @@
-extends ActorSheet
-class_name FighterSheet

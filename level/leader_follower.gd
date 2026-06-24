@@ -1,11 +1,11 @@
 extends Node3D
 class_name LeaderProxy
 
-@onready var leader = Storyteller2.story.FetchVariable("leader")
+@onready var leader = Storyteller.find().story.FetchVariable("leader")
 @onready var pm = Actor.find(leader)
 
 func _physics_process(delta: float) -> void:
-	var new_leader = Storyteller2.story.FetchVariable("leader")
+	var new_leader = Storyteller.find().story.FetchVariable("leader")
 	if new_leader == null:
 		return
 	if new_leader != leader:

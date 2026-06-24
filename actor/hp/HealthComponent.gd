@@ -45,6 +45,9 @@ var fighter: Actor
 func copy() -> HealthComponent:
 	return self.duplicate()
 
+func apply(instance: HpChange):
+	hp += instance.amount
+
 @abstract
 func _get_health() -> int
 @abstract

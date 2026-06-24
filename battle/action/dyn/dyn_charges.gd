@@ -9,7 +9,7 @@ class_name StepCharges
 func check(source: Object, them: Actor) -> bool:
 	if not (source is Item):
 		return true
-	var item: = source as Item
+	var item := source as Item
 	if (not soft) and item.charges < charges:
 		return false
 	return true
@@ -20,16 +20,16 @@ func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictio
 func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	if not (source is Item):
 		return true
-	var item: = source as Item
+	var item := source as Item
 	item.charges = max(item.charges - charges, 0)
 	return false
 
 func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
 	if not (source is Item):
 		return true
-	var item: = source as Item
+	var item := source as Item
 	if item.charges == 0 and destroy:
 		if is_instance_valid(replace):
-			Inventory.items[Inventory.items.find(item)] = replace.duplicate()
+			Inventory.find().items[Inventory.find().items.find(item)] = replace.duplicate()
 		else:
-			Inventory.items.remove_at(Inventory.items.find(item))
+			Inventory.find().items.remove_at(Inventory.find().items.find(item))

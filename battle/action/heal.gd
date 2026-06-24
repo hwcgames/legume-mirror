@@ -51,7 +51,7 @@ class HealPlan extends BattleActionPlan:
 		#var animate = ActorModeAnimate.new("friendly_magic")
 		#await party_member.push_mode(animate)
 		party_member.sp -= cost
-		target.heal(amount)
+		target.hp_change(HpChange.new(party_member, target, amount))
 		#await animate.popped
 		#approach.finished = true
 		b_lock.call()

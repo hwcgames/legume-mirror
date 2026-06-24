@@ -46,7 +46,7 @@ class ResurrectPlan extends BattleActionPlan:
 		#var animate = ActorModeAnimate.new("friendly_magic")
 		#await party_member.push_mode(animate)
 		party_member.sp -= cost
-		target.heal((party_member.hp_component.max - party_member.hp_component.min) * amount)
+		target.hp_change(HpChange.new(party_member, target, (party_member.hp_component.max - party_member.hp_component.min) * amount))
 		target.turns = 0
 		#await animate.popped
 		#approach.finished = true

@@ -13,13 +13,16 @@ func begin(fighter: Actor) -> bool:
 	(fighter.sheet.party_component.sp as TrinketsPool).trinkets_on_field = 0
 	return true
 
-func get_sp(fighter: Actor, amount: int) -> bool:
+func sp_change(fighter: Actor, instance: SpChange) -> bool:
+	if instance.amount <= 0:
+		return false
 	activated.emit()
 	return false
 
-func take_damage(fighter: Actor, amount: int) -> bool:
-	fighter.use_sp(amount)
-	(fighter.sheet.party_component.sp as TrinketsPool).trinkets_on_field += amount * 1.5
+func hp_change(fighter: Actor, instance: HpChange) -> bool:
+	if instance.amount < 0:
+		fighter.sp_change(SpChange.new(instance.from, instance.to, instance.amount))
+	(fighter.sheet.party_component.sp as TrinketsPool).trinkets_on_field += instance.amount * 1.5
 	return true
 
 func enemy_action(fighter: Actor) -> bool:
@@ -36,7 +39,7 @@ func enemy_action(fighter: Actor) -> bool:
 
 func icon(fighter: Actor) -> Texture2D:
 	var sheet: SpriteFrames = preload("uid://dd807705h8yfd")
-	return sheet.get_frame_texture("DEF-", 0)
+	return sheet.get_frame_texture("TRINKETS", 0)
 
 func message(fighter: Actor) -> String:
 	return "Energy is governed by trinkets.\nScatter trinkets on the board with your basic attack.\nCollect them; they persist between battles."

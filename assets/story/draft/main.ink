@@ -13,8 +13,6 @@ INCLUDE calendar/d0_08_16.ink
 
 
 
-
-
 {in_inky(): {SEED_RANDOM(2765)}}
 
 - (day_loop)
@@ -31,8 +29,8 @@ EXTERNAL ask(name, default)
 
 VAR leader = "cipher"
 
-
-
+=== function ___title()
+~ return "Legume Traffick"
 
 
 

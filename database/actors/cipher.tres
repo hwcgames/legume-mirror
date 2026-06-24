@@ -1,8 +1,6 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://mrhj275hyvtx"]
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_4478x"]
-[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_1ysgf"]
-[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_8218h"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_tt8pp"]
 [ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_4478x"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_o6fow"]
@@ -52,6 +50,9 @@ metadata/_custom_type_script = "uid://bnan3w70eprcx"
 [resource]
 script = ExtResource("9_0n18g")
 name = &"Cipher"
+description = null
+bg_color = null
+text_color = null
 id = "cipher"
 hp = SubResource("Resource_nyaq4")
 attrs = SubResource("Resource_bmh8q")

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cba4fdjrd5sls"]
 
 [ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="1_c5njq"]
+[ext_resource type="Script" uid="uid://dabijjykhigp0" path="res://story/new/Storyteller2.gd" id="1_e7dsr"]
 [ext_resource type="Script" uid="uid://lg024kntdcli" path="res://battle/battle_test_menu.gd" id="2_dbdw0"]
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="3_iuwny"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_rwc2o"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_corkb"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_e7dsr"]
+[ext_resource type="Script" uid="uid://koi6kck7np3o" path="res://inventory/inventory.gd" id="7_corkb"]
 
 [sub_resource type="GDScript" id="GDScript_iuwny"]
 script/source = "extends Button
@@ -30,6 +32,10 @@ func _ready():
 script = ExtResource("6_e7dsr")
 
 [node name="Battletest" type="Node3D" unique_id=900758082]
+
+[node name="Storyteller" type="Node" parent="." unique_id=865096077]
+script = ExtResource("1_e7dsr")
+metadata/_custom_type_script = "uid://dabijjykhigp0"
 
 [node name="Battlefield" parent="." unique_id=144661304 node_paths=PackedStringArray("player_landmarks", "enemy_landmarks") instance=ExtResource("1_c5njq")]
 unique_name_in_owner = true
@@ -151,6 +157,10 @@ transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.965
 script = ExtResource("5_corkb")
 tween_resource = SubResource("Resource_rwc2o")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Inventory" type="Node" parent="." unique_id=125022345]
+script = ExtResource("7_corkb")
+metadata/_custom_type_script = "uid://koi6kck7np3o"
 
 [connection signal="pressed" from="Window/VBoxContainer/HBoxContainer2/Fight" to="Battlefield" method="battle"]
 [connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/SpawnAlly" to="Window" method="spawn_selected_ally"]

@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name NDialogueBubble
+class_name Bubble
 
 func safety_time() -> float:
 	return INF
@@ -8,13 +8,15 @@ func wants_line(line: String, tags: Array[String]) -> bool:
 	var is_dialogue = NMessage.from_str(line, tags) != null
 	var is_queue_choice = line.begins_with(">>> choice ")
 	var is_clear = line == ">>> clear"
-	var wanted = is_dialogue or is_queue_choice or is_clear
+	var is_hide = line == ">>> close dialogue"
+	var wanted = is_dialogue or is_queue_choice or is_clear or is_hide
 	return wanted
 
 func take_line(line: String, tags: Array[String]):
 	var dialogue = NMessage.from_str(line, tags)
 	var is_queue_choice = line.begins_with(">>> choice ")
 	var is_clear = line == ">>> clear"
+	var is_hide = line == ">>> close dialogue"
 	if dialogue != null:
 		await message(NMessage.from_str(line, tags))
 	elif is_queue_choice:
@@ -22,21 +24,30 @@ func take_line(line: String, tags: Array[String]):
 	elif is_clear:
 		for child in %ContentsZone.get_children():
 			child.queue_free()
+	elif is_hide:
+		hide()
+
+func _to_string() -> String:
+	return "Main Dialogue Bubble"
 
 func wants_choice(choice: InkChoice) -> bool:
-	return choice.GetTags().any(func(t: String): return t in ["c:up","c:down","c:left","c:right"])
+	return choice.GetTags().any(func(t: String): return t in ["c:up", "c:down", "c:left", "c:right"])
 
 var choice_msg: String
+static var me: Bubble
+static func find() -> Bubble:
+	return me
 
 func _ready() -> void:
 	%Sprite.play("idle")
-	Storyteller2.new_choice.connect(new_choice)
-	Storyteller2.chosen.connect(chosen)
-	Storyteller2.new_line.connect(func(line: String, tags: Array[String]):
+	Storyteller.find().new_choice.connect(new_choice)
+	Storyteller.find().chosen.connect(chosen)
+	Storyteller.find().new_line.connect(func(line: String, tags: Array[String]):
 		if not wants_line(line, tags):
 			hide())
 	%Continue.hide()
-	hide()
+	me = self
+	visible = false
 
 var last_character: String
 
@@ -74,7 +85,11 @@ func message(m: NMessage):
 var picker: Picker
 
 func new_choice(choices: Array[InkChoice]):
+	if choices.is_empty():
+		return
 	show()
+	if is_instance_valid(picker):
+		picker.queue_free()
 	picker = preload("uid://c2mfjwaf7yy16").instantiate()
 	for child in %ContentsZone.get_children():
 		child.queue_free()

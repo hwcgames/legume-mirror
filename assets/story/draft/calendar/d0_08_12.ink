@@ -63,16 +63,16 @@
 
 (Fade through black to Cipher walking down a busy street.)
 
-> I've never been around so many people.
-> A mix of feelings burbles in my chest, but it's set on a backdrop of joy.
-> If a human felt like this, they'd probably dance, or sing, or something like that.
-> I'd like to try, but people would ask questions if I did it here.
-> ...I feel a little dizzy.
-> This is a lot at once. I should find someplace to rest.
+> So many people...
+> I haven't felt like this before. I don't think I know the right word.
+// > If a human felt like this, they'd probably dance, or sing, or something like that.
+// > I'd like to try, but people would ask questions if I did it here.
+> Anxiety, trepidation... "Dizzy," maybe.
+> Woof. I should find someplace to rest.
 
 (Cipher ducks into an alleyway, but shortly after they sit down, the opening is replaced with a brick wall, faster than the blink of an eye, and they startle away from it.)
 
-> What the..?
+> Huh..?
 
 (They bang on the wall.)
 
@@ -80,7 +80,7 @@
 
 (They go stiff.)
 
-> Wait. No, it's impossible.
+> Wh-wait, have I...?
 
 (The world dissolves into blocky noise. Monospace text flies past the screen before fading out.)
 
@@ -124,11 +124,11 @@ casey: Yeah, uh- but before you go, do you want to get each other's chat IDs so 
 (The world freezes and dissolves into blocky noise.)
 > Oops, just a sec-
 (A registration webpage appears.)
-> Ugh, I can't say I'm a fan of the world-net. Too many CAPTCHAs.
+> Ugh, I hate the world-net. Too many CAPTCHAs.
 (The player picks their display name and username.)
 > There, now I have an account.
 (The world falls back into focus.)
-cipher: Yes, I'm null_hypothesis. You?
+cipher: Yes, I'm null_hypothesis. How about you?
 casey: clueXfour.
 (Cipher turns to leave and waves goodbye.)
 cipher: Okay, I'll put you in once I get home.
@@ -161,11 +161,11 @@ milly: Of course, of course! They said they'd send me your picture in "the goggl
 milly: Say, I'm supposed to get a "goggle letter" for my taxes soon, would it be a bother to help me get it?
 milly: I don't want to go all the way to the bank to get them to print it out for me.
 > ...I'm not even going to ask what she means by that.
-> This could be an opportunity, though. Having a rapport will make her more likely to back me up if things go south.
+> This is an opportunity, though. Having a rapport will make her more likely to back me up if things go south.
 cipher: Of course! Call me anytime.
 milly: You're a peach, thank you. Do you need help with your bags?
 cipher: No, I couldn't ask you to help with that. Besides, I'm stronger than I look!
-> I don't actually have any luggage, but if a semi truck ever breaks down in front of her driveway...
+> I don't actually have any luggage. If a semi truck ever breaks down in front of her driveway...
 milly: Aww, aren't you independent? Well, if you ever need anything, just let Aunt Milly know!
 
 ->->
@@ -181,11 +181,12 @@ milly: Aww, aren't you independent? Well, if you ever need anything, just let Au
 > The possibility that I'm still stuck inside a simulation is difficult to ignore.
 > How would I know, though? Maybe I could-
 (A signal! Cipher almost trips.)
-> Ah! Right, I gave her my ID.
 
 cxf: hello, stranger!
+> Oh. Right.
 nh: Hello.
 cxf: thanks again for saving me today
+> What else could I have done?
 cxf: i still don't understand
 cxf: where the hell were we? #expr:confused
 cxf: what would have happened to me if you hadn't shown up #expr:fear
@@ -196,16 +197,16 @@ cxf: btw
 cxf: are you busy tomorrow?
 nh: No, why?
 cxf: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch to repay you
+> Oh no. This is way too soon for something like that.
 nh: That's really not necessary, I was just in the right place at the right time.
 cxf: ok
 cxf: but consider
 cxf: i want to get to know you
 cxf: and i'm offering you free breakfast
 cxf: and tbh i'm scared to go out alone in case it happens again but i have to buy school supplies
-> Oh. I wasn't expecting something like this to happen so fast.
-> Am I ready? Probably not, if I'm being honest, but...
+> Damn. If it's for safety, I can't say no.
 nh: Okay. Time and place?
-(A calendar file, sent quickly. It's at 9 AM tomorrow, a little less than a mile north of here.)
+(A calendar file. It's at 9 AM tomorrow, a little less than a mile north of here.)
 > Did she just... have that at the ready?
 cxf: is that ok?
 (A moment's pause.)

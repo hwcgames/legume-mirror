@@ -8,10 +8,10 @@ func _init() -> void:
 
 static func find(name: String) -> Landmark:
 	var found = []
-	for landmark in Storyteller2.get_tree().get_nodes_in_group("landmark"):
+	for landmark in Storyteller.find().get_tree().get_nodes_in_group("landmark"):
 		if landmark.name == name:
 			found.push_back(landmark)
-	var leader = Storyteller2.leader
+	var leader = Storyteller.find().leader
 	if leader:
 		found.sort_custom(func(a, b):
 			return a.global_position.distance_to(leader.global_position) < b.global_position.distance_to(leader.global_position))

@@ -19,7 +19,7 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 	registers[result_register] = skill
 	registers[miss_register] = skill <= 0
 	if skill <= 0:
-		Storyteller2.choose(["%s misses" % them.name, "party misses"])
+		Storyteller.find().choose(["%s misses" % them.name, "party misses"])
 		battlefield.println(miss_message.format(registers))
 		registers[miss_register] = true
 		return true

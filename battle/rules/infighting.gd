@@ -37,7 +37,13 @@ func player_action(fighter: Actor) -> bool:
 			if target != fighter \
 			else ("%s was injured in their confusion!" % fighter.human_name))
 		@warning_ignore("integer_division")
-		target.take_damage((fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense))
+		target.hp_change(
+			HpChange.new(
+				fighter,
+				target,
+				(fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense)
+			)
+		)
 		await fighter.get_tree().create_timer(1.).timeout
 		#if target != fighter:
 			#mode.finished = true
@@ -53,4 +59,4 @@ func icon(fighter: Actor) -> Texture2D:
 	return sheet.get_frame_texture("INFIGHT", 0)
 
 func message(fighter: Actor) -> String:
-	return "Can't tell friend from foe for {stacks} round(s).".format(self )
+	return "Can't tell friend from foe for {stacks} round(s).".format(self)

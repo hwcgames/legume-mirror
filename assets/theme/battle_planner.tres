@@ -1,7 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://bjtrx0xncgqi6"]
 
-[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/gui/bars.aseprite" id="1_k0f3m"]
-[ext_resource type="FontFile" uid="uid://dgrubkahj22ek" path="res://assets/fonts/NbPixelFontBundle_v1_0/TinyPixie2.ttf" id="1_vavlv"]
+[ext_resource type="Texture2D" uid="uid://dwh7ukxc0o5x8" path="res://assets/art/gui/bars.aseprite" id="1_k0f3m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_id7uf"]
 atlas = ExtResource("1_k0f3m")
@@ -30,7 +29,6 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="FontVariation" id="FontVariation_k0f3m"]
-base_font = ExtResource("1_vavlv")
 spacing_bottom = -3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p7v5d"]
@@ -59,13 +57,13 @@ axis_stretch_vertical = 1
 
 [resource]
 Button/font_sizes/font_size = 12
-Button/fonts/font = ExtResource("1_vavlv")
+Button/fonts/font = null
 HealthBar/base_type = &"ProgressBar"
 HealthBar/styles/fill = SubResource("StyleBoxTexture_e7rq0")
 HealthBarLow/base_type = &"ProgressBar"
 HealthBarLow/styles/fill = SubResource("StyleBoxTexture_p7v5d")
 Label/font_sizes/font_size = 12
-Label/fonts/font = ExtResource("1_vavlv")
+Label/fonts/font = null
 ProgressBar/font_sizes/font_size = 6
 ProgressBar/fonts/font = SubResource("FontVariation_k0f3m")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_vavlv")

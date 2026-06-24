@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_oaodf"]
 [ext_resource type="PackedScene" uid="uid://fsvh4uev5at2" path="res://database/costume/secondhandglue.tscn" id="1_wxroi"]
-[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_2hyda"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_3pwic"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_by5dd"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_r55a0"]
@@ -22,7 +21,10 @@ metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_wpdly"]
 script = ExtResource("7_cktpo")
+active = null
 patterns = Array[ExtResource("3_r55a0")]([ExtResource("6_2hyda"), ExtResource("7_by5dd")])
+planning_priority = null
+parleys = null
 metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_wkfb0"]

@@ -12,7 +12,7 @@ class_name AutomoveBattle
 		#mode.finished = true)
 	#return mode
 func apply_to_actor(actor: Actor):
-	for player in Storyteller2.party_stack:
+	for player in Storyteller.find().party_stack:
 		battlefield.players.push_back(player)
 	actor.battlefield = battlefield
 	battlefield.battle.call_deferred()

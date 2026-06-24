@@ -36,6 +36,9 @@ var path_amt: int = 6
 
 var map: Dictionary[Vector2i, MapRoom] = {}
 
+func _to_string() -> String:
+	return "Map manager"
+
 enum ROOM_TYPE {
 	EMPTY,
 	MONSTER,
@@ -81,7 +84,7 @@ func name_room(room: ROOM_TYPE):
 
 func reset():
 	map = {}
-	current_position = Vector2i(floor(width/2), 0)
+	current_position = Vector2i(floor(width / 2), 0)
 	state = STATE.GENERATE
 
 func are_connected(from: Vector2i, to: Vector2i):
@@ -142,11 +145,11 @@ func roll_room(p: Vector2i) -> ROOM_TYPE:
 		var wants = ROOM_TYPE.EMPTY
 		if roll < 0.45:
 			wants = ROOM_TYPE.MONSTER
-		elif roll < 0.45+0.22:
+		elif roll < 0.45 + 0.22:
 			wants = ROOM_TYPE.EVENT
-		elif roll < 0.45+0.22+0.16:
+		elif roll < 0.45 + 0.22 + 0.16:
 			wants = ROOM_TYPE.BOSS
-		elif roll < 0.45+0.22+0.16+0.12:
+		elif roll < 0.45 + 0.22 + 0.16 + 0.12:
 			wants = ROOM_TYPE.SAFE
 		else:
 			wants = ROOM_TYPE.SHOP
@@ -161,7 +164,7 @@ func generate_map():
 	var center: int = floor(width / 2)
 	for y in range(height):
 		for x in range(width):
-			if abs(x-center) >= height - y or abs(x-center) >= (y+1):
+			if abs(x - center) >= height - y or abs(x - center) >= (y + 1):
 				continue
 			map[Vector2i(x, y)] = MapRoom.new()
 	for n in range(path_amt):
@@ -173,7 +176,7 @@ func generate_map():
 		for x in range(width):
 			if Vector2i(x, y) not in map:
 				continue
-			if (y == 0 and map[Vector2i(x,y)].outgoing.is_empty()) \
+			if (y == 0 and map[Vector2i(x, y)].outgoing.is_empty()) \
 			or (y > 0 and map[Vector2i(x, y)].incoming.is_empty()):
 				map.erase(Vector2i(x, y))
 	for y in range(height):
@@ -193,8 +196,8 @@ func _ready():
 		#CONNECT_ONE_SHOT)
 	#generate_map()
 	treadmill.wants_room_for.connect(fill_handler)
-	Saver.pre_save.connect(pre_save)
-	Saver.post_load.connect(post_load)
+	Saver.find().pre_save.connect(pre_save)
+	Saver.find().post_load.connect(post_load)
 	if is_instance_valid(loading_save):
 		load_after_reload(loading_save)
 
@@ -211,7 +214,7 @@ static var loading_save: SaveFile = null
 static var loading_handle: Callable = func(): pass
 
 func post_load(save: SaveFile):
-	loading_handle = await Storyteller2.lock.shared_lock()
+	loading_handle = await Storyteller.find().lock.shared_lock()
 	loading_save = save
 	var tree = get_tree()
 	tree.reload_current_scene()
@@ -243,7 +246,7 @@ func load_after_reload(save: SaveFile):
 
 func junction_unloaded():
 	current_position += Vector2i(choice, 1)
-	Storyteller2.choose([
+	Storyteller.find().choose([
 		"dungeon choice %s" % choice,
 		"dungeon towards %s" % name_room(map[current_position].room_type),
 		"dungeon towards room"
@@ -252,10 +255,10 @@ func junction_unloaded():
 
 func room_unloaded():
 	if current_position.y == height - 1:
-		Storyteller2.choose(["dungeon done"], true)
+		Storyteller.find().choose(["dungeon done"], true)
 		reset()
 		return
-	Storyteller2.choose(["dungeon towards junction"], true)
+	Storyteller.find().choose(["dungeon towards junction"], true)
 	state = STATE.WAIT_FOR_JUNCTION if allow_progress else STATE.HALLWAY_TO_JUNCTION
 
 func fill_handler(seam: ProceduralSeam):
@@ -282,7 +285,7 @@ func fill_handler(seam: ProceduralSeam):
 			var lock = await new_room.keep_loaded_lock.shared_lock()
 			new_room.tree_exited.connect(junction_unloaded)
 			new_room.player_entered.connect(func(_p):
-				Storyteller2.choose([
+				Storyteller.find().choose([
 					"dungeon entered junction"
 				], true)
 				lock.call(), CONNECT_ONE_SHOT)
@@ -335,7 +338,7 @@ func fill_handler(seam: ProceduralSeam):
 			if not treadmill.rooms.any(func(r: RoomInfo): return r.room_type == seam.wants_room_type):
 				printerr("Can't find any rooms that match the type requested by the map, moving on to a junction.")
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY
-				Storyteller2.choose([
+				Storyteller.find().choose([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
 				], true)
@@ -344,12 +347,12 @@ func fill_handler(seam: ProceduralSeam):
 			var new_room = await treadmill.fill_seam(seam, false)
 			state = STATE.ROOM
 			current_room = new_room
-			Storyteller2.choose([
+			Storyteller.find().choose([
 				"dungeon built %s" % name_room(map[current_position].room_type),
 				"dungeon built room"
 			], true)
 			new_room.player_entered.connect(func(_p):
-				Storyteller2.choose([
+				Storyteller.find().choose([
 					"dungeon entered %s" % name_room(map[current_position].room_type),
 					"dungeon entered room"
 				], true),

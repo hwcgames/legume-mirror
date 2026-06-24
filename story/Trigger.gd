@@ -25,7 +25,7 @@ func entered(body: Node):
 		return
 	players_colliding += 1
 	if players_colliding == 1:
-		var chose = Storyteller2.choose(choices) if not wall_only else Storyteller2.choices.any(func(c: InkChoice): return c.GetText() in choices)
+		var chose = Storyteller.find().choose(choices) if not wall_only else Storyteller.find().choices.any(func(c: InkChoice): return c.GetText() in choices)
 		if not chose:
 			collision_layer = 3 if important else 0
 		else:

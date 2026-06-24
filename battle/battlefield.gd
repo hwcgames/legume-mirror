@@ -13,8 +13,9 @@ var valid_enemies: Array[Actor]:
 @export var camera_priority_offset: int = 5
 @export var camera: PhantomCamera3D
 @export var song: PackedScene
-@onready var log_zone: Control = %LogZone
-@onready var player_zone: Control = %PlayerZone
+@onready var hud: CanvasLayer = %HUD
+@onready var log_zone: Control = hud.get_node("%LogZone")
+@onready var player_zone: Control = hud.get_node("%PlayerZone")
 var lock: Locks = Locks.new()
 var inventory_lock: Locks = Locks.new()
 var parley_lock: Locks = Locks.new()
@@ -46,10 +47,10 @@ enum PHASE {
 var phase := PHASE.IDLE
 
 static func find() -> Battlefield:
-	return Storyteller2.get_tree().get_nodes_in_group("battlefield").get(0)
+	return Storyteller.find().get_tree().get_nodes_in_group("battlefield").get(0)
 
 func _ready() -> void:
-	%BattleHUD.hide()
+	hud.hide()
 	add_to_group("battlefield")
 
 func _process(delta: float) -> void:
@@ -65,7 +66,7 @@ func battle():
 	if camera != null:
 		camera.priority += camera_priority_offset
 	begin.emit()
-	%BattleHUD.show()
+	hud.show()
 	println("[center]- Battle!!! -[/center]")
 	var prev_song: Song
 	#if song != null:
@@ -77,19 +78,19 @@ func battle():
 		println("[center]- Top of the round! -[/center]")
 		if players.all(func(p: Actor): return !p.alive):
 			println("[center]- Player defeat! -[/center]")
-			Storyteller2.choose(["battle lost", "battle end"], true)
+			Storyteller.find().choose(["battle lost", "battle end"], true)
 			break
-		%BattleHUD.hide()
-		if Storyteller2.choose(["battle top"], true):
+		hud.hide()
+		if Storyteller.find().choose(["battle top"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
-		%BattleHUD.show()
+		hud.show()
 		phase = PHASE.TOP
 		top.emit()
 		await lock.wait_for_clear()
 		println("Telegraph phase!")
-		if Storyteller2.choose(["battle telegraph"], true):
+		if Storyteller.find().choose(["battle telegraph"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		var t_lock = await lock.exclusive_lock()
@@ -99,7 +100,7 @@ func battle():
 		t_lock.call()
 		await lock.wait_for_clear()
 		println("Player action!")
-		if Storyteller2.choose(["battle player action"], true):
+		if Storyteller.find().choose(["battle player action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -111,9 +112,9 @@ func battle():
 		println("Enemy action!")
 		if valid_enemies.all(func(e): return !e.sheet.enemy_component.active or !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
-			Storyteller2.choose(["battle won", "battle end"], true)
+			Storyteller.find().choose(["battle won", "battle end"], true)
 			break
-		if Storyteller2.choose(["battle enemy action"], true):
+		if Storyteller.find().choose(["battle enemy action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
 		await lock.wait_for_clear()
@@ -130,7 +131,7 @@ func battle():
 	phase = PHASE.DONE
 	done.emit(enemies.all(func(e): return e.sheet.enemy_component.active and !e.alive))
 	#Chatterbox.clear()
-	%BattleHUD.hide()
+	hud.hide()
 	if camera != null:
 		camera.priority -= camera_priority_offset
 	if song != null:
@@ -182,7 +183,7 @@ func assign_patterns():
 			var candidate_patterns = enemy.sheet.enemy_component.patterns.filter(func(p: BulletPattern): return enemy.state in p.states)
 			if candidate_patterns.is_empty():
 				continue
-			plan[enemy] = candidate_patterns.get(randi_range(0, len(candidate_patterns)-1))
+			plan[enemy] = candidate_patterns.get(randi_range(0, len(candidate_patterns) - 1))
 		if candidates.any(func(p): return p[0] == plan):
 			continue
 		# Check that this pattern is valid
@@ -218,16 +219,16 @@ func assign_patterns():
 		var weight: float = 1.
 		for enemy in (plan.keys() as Array[Actor]):
 			var pattern = plan[enemy]
-			var total = enemy.sheet.enemy_component.patterns\
-				.filter(func(p: BulletPattern): return enemy.state in p.states)\
-				.map(func(p: BulletPattern): return p.weight)\
+			var total = enemy.sheet.enemy_component.patterns \
+				.filter(func(p: BulletPattern): return enemy.state in p.states) \
+				.map(func(p: BulletPattern): return p.weight) \
 				.reduce(func(a, b): return a * b) + 0.01
 			var chance = (pattern.weight if pattern else 0.01) * enemy.sheet.enemy_component.planning_priority / total
 			weight *= chance
 		if plan.values().all(func(v): return v == null):
 			weight = 0.
 		if support_only:
-			weight /= 4.
+			weight /= 10.
 		if weight == 0. and total_weight > 0.:
 			continue
 		total_weight += weight
@@ -237,7 +238,7 @@ func assign_patterns():
 		return
 	if total_weight > 0:
 		candidates = candidates.filter(func(c): return c[1] > 0)
-	var choice = randf_range(0., total_weight-0.01)
+	var choice = randf_range(0., total_weight - 0.01)
 	var plan: Dictionary[Actor, BulletPattern]
 	for candidate in candidates:
 		choice -= candidate[1]

@@ -7,10 +7,10 @@ func top(fighter: Actor) -> bool:
 	stacks -= 1
 	return true
 
-func get_sp(fighter: Actor, amount: int) -> bool:
-	if amount <= 0:
+func sp_change(_fighter: Actor, instance: SpChange) -> bool:
+	if instance.amount <= 0:
 		return true
-	fighter.use_sp(amount * (1. - pow(sp_gain_mul_per_stack, stacks)))
+	instance.amount *= pow(sp_gain_mul_per_stack, stacks)
 	return true
 
 func icon(fighter: Actor) -> Texture2D:

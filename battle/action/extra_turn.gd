@@ -32,7 +32,7 @@ class ExtraTurnPlan extends BattleActionPlan:
 			t_lock.call()
 			return
 		if item != null:
-			Inventory.items.remove_at(Inventory.items.find(self ))
+			Inventory.find().items.remove_at(Inventory.find().items.find(self))
 		var approach = ActorModeApproach.new(party_member, ally)
 		await party_member.push_mode(approach)
 		var animate = ActorModeAnimate.new("friendly_magic")

@@ -79,7 +79,7 @@ static func from_str(line: String, tags: Array[String]) -> NMessage:
 			m.text += c
 			cursor += 1
 			continue
-		if c == "{" and cursor < len(line)-1 and line[cursor+1] == "{":
+		if c == "{" and cursor < len(line) - 1 and line[cursor + 1] == "{":
 			m.text += c
 			cursor += 2
 			continue
@@ -88,9 +88,9 @@ static func from_str(line: String, tags: Array[String]) -> NMessage:
 			printerr("ERROR: Opening command bracket isn't allowed at the end of a line: ", line)
 			return null
 		if closing == -1:
-			print_rich("ERROR: Unmatched command bracket: ", line.substr(0, cursor), "[color=red]", line[cursor], "[/color]", line.substr(cursor+1))
+			print_rich("ERROR: Unmatched command bracket: ", line.substr(0, cursor), "[color=red]", line[cursor], "[/color]", line.substr(cursor + 1))
 			return null
-		var command = command_from_str(line.substr(cursor+1, closing-(cursor+1)), tags)
+		var command = command_from_str(line.substr(cursor + 1, closing - (cursor + 1)), tags)
 		var others = (func(m, l): m.special[cursor].call(m, l)) if cursor in m.special else func(m, l): pass
 		m.special[cursor] = func(m, l):
 			await others.call(m, l)
@@ -106,7 +106,7 @@ static func command_from_str(cmd: String, tags: Array[String]) -> Callable:
 				m.regions[r] = Region.new(l.visible_characters, l.visible_characters)
 		["/region", var r]:
 			return func(m: NMessage, l: RichTextLabel):
-				m.regions[r].end = l.visible_characters+1
+				m.regions[r].end = l.visible_characters + 1
 		["swap", var r, ..]:
 			var rest = Array(words.slice(2)).reduce(func(a, b): return "{0} {1}".format([a, b]))
 			return func(m: NMessage, l: RichTextLabel):
@@ -116,9 +116,9 @@ static func command_from_str(cmd: String, tags: Array[String]) -> Callable:
 			return func(m: NMessage, l: RichTextLabel):
 				m.interval = interval
 		["cmd", ..]:
-			var rest = Array(words.slice(1)).reduce(func(a, b): return "{0} {1}".format([a, b])) 
+			var rest = Array(words.slice(1)).reduce(func(a, b): return "{0} {1}".format([a, b]))
 			return func(m: NMessage, l: RichTextLabel):
-				await Storyteller2.send_line(rest, [])
+				await Storyteller.find().send_line(rest, [])
 		["voice", var v]:
 			var path = "res://database/voices/%s.tres" % v
 			if FileAccess.file_exists(path):
@@ -181,7 +181,7 @@ var waited_this_frame = 0.
 func wait(time: float):
 	waited_this_frame += time
 	if waited_this_frame > 1. / Engine.physics_ticks_per_second:
-		await Storyteller2.get_tree().create_timer(time).timeout
+		await Storyteller.find().get_tree().create_timer(time).timeout
 
 func play_on(label: RichTextLabel):
 	var last_voice = -999.
@@ -210,14 +210,14 @@ func play_on(label: RichTextLabel):
 		while bracket:
 			bracket = bracket && text[cursor] != ']'
 			if cursor in special:
-				special[cursor-1].call(self, label)
+				special[cursor - 1].call(self, label)
 			cursor += 1
 		if cursor >= len(text):
 			break
 		var c = text[cursor]
 		var parsed = label.get_parsed_text()
 		var voice_c = parsed[label.visible_characters] if label.visible_characters < len(parsed) else ' '
-		if is_instance_valid(voice) and timer - last_voice > voice.min_delay and (not (voice_c in silent_chars)) and label.visible_characters < len(parsed)-1:
+		if is_instance_valid(voice) and timer - last_voice > voice.min_delay and (not (voice_c in silent_chars)) and label.visible_characters < len(parsed) - 1:
 			last_voice = timer
 			player.max_polyphony = voice.polyphony
 			if player.stream != voice_stream:

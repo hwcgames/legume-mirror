@@ -50,8 +50,8 @@ class EnergizePlan extends BattleActionPlan:
 			#await party_member.push_mode(approach)
 		#var animate = ActorModeAnimate.new("friendly_magic")
 		#await party_member.push_mode(animate)
-		party_member.sp -= cost
-		target.get_sp(amount)
+		party_member.sp_change(SpChange.new(party_member, party_member, -cost))
+		target.sp_change(SpChange.new(party_member, target, amount))
 		#await animate.popped
 		#approach.finished = true
 		b_lock.call()

@@ -63,7 +63,7 @@ func _on_graze_exited(area: Node) -> void:
 	graze_state.start("tick")
 	if invuln:
 		return
-	area._on_graze_player(self )
+	area._on_graze_player(self)
 
 func _on_hurt(area: Node) -> void:
 	if invuln:

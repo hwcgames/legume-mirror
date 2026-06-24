@@ -7,9 +7,9 @@ func _ready():
 var last_hover: Interactable
 
 func _physics_process(delta: float) -> void:
-	if get_parent() != Storyteller2.leader:
+	if get_parent() != Storyteller.find().leader:
 		return
-	var hoverable: Array = get_overlapping_areas()\
+	var hoverable: Array = get_overlapping_areas() \
 		.filter(func(a: Area3D): return a is Interactable and a.interactable)
 	hoverable.sort_custom(func(a, b): return a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position))
 	var hovered: Interactable = hoverable.get(0) if not hoverable.is_empty() else null

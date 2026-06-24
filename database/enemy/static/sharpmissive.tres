@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="1_q5xry"]
 [ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_7okad"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_8fas8"]
-[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_c0535"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_wqnap"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_ya0mn"]
 [ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
@@ -22,7 +21,10 @@ metadata/_custom_type_script = "uid://cj535ewb28j4v"
 
 [sub_resource type="Resource" id="Resource_engos"]
 script = ExtResource("6_ya0mn")
+active = null
 patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
+planning_priority = null
+parleys = null
 metadata/_custom_type_script = "uid://dish7jlyi16g4"
 
 [sub_resource type="Resource" id="Resource_iv080"]

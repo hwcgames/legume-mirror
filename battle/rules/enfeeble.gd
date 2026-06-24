@@ -3,7 +3,7 @@ class_name Enfeeble
 
 @export var amount: int = 3
 
-func priority(fighter: Actor) -> int:
+func priority() -> int:
 	return 1
 
 func top(fighter: Actor) -> bool:

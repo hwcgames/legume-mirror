@@ -13,7 +13,7 @@ func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictio
 	return false
 
 func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
-	them.use_sp(cost)
+	them.sp_change(SpChange.new(them, them, cost))
 	return false
 
 func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):

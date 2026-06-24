@@ -39,11 +39,11 @@ func setup():
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("cmd_"):
 			continue
-		story.BindExternalFunction((function["name"] as String).substr(4), Callable(self , function["name"]), false)
+		story.BindExternalFunction((function["name"] as String).substr(4), Callable(self, function["name"]), false)
 	for function in self.get_method_list():
 		if not (function["name"] as String).begins_with("obs_"):
 			continue
-		story.ObserveVariable((function["name"] as String).substr(4), Callable(self , function["name"]))
+		story.ObserveVariable((function["name"] as String).substr(4), Callable(self, function["name"]))
 	if last_state:
 		story.LoadState(last_state)
 	#do_story = true
@@ -310,7 +310,7 @@ func cmd_rm_party_member(id: String):
 
 func cmd_heal_party():
 	for pm in party_stack:
-		pm.heal(9999)
+		pm.hp_change(HpChange.new(pm, pm, 9999))
 
 func cmd_spawn_enemy(id: String, name: String, landmark_name: String):
 	var landmark = Landmark.find(landmark_name)

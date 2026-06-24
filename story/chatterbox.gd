@@ -9,8 +9,8 @@ var choice_balloon: ChoiceBalloon
 var actors: Dictionary[String, Actor] = {}
 
 func _ready():
-	Storyteller2.new_line.connect(func(line: String, tags: Array[String]):
-		var l = await Storyteller2.take_barriers(["main"])
+	Storyteller.find().new_line.connect(func(line: String, tags: Array[String]):
+		var l = await Storyteller.find().take_barriers(["main"])
 		var message = Message.from_str(line, tags)
 		await self.message(message)
 		l.call())
@@ -22,7 +22,7 @@ func _ready():
 
 
 func queue_dialogue_choice():
-	Storyteller2.new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
+	Storyteller.find().new_choices.connect(choose, ConnectFlags.CONNECT_ONE_SHOT)
 
 func _physics_process(_delta: float) -> void:
 	if oldest == null or not is_instance_valid(newest):
@@ -88,4 +88,4 @@ func choose(choices: Array[InkChoice]):
 	choice_balloon.queue_free()
 	if newest:
 		newest.separation = old_separation
-	Storyteller2.story.ChooseChoiceIndex(choice)
+	Storyteller.find().story.ChooseChoiceIndex(choice)

@@ -182,7 +182,7 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 	var selector = %ItemParent
 	for child in selector.get_children():
 		child.free()
-	var items = Inventory.items.filter(predicate)
+	var items = Inventory.find().items.filter(predicate)
 	var back := Button.new()
 	back.text = "back"
 	back.pressed.connect(chosen_item.emit.bind(null))
@@ -221,7 +221,7 @@ func pockets():
 		action.item = item
 	var plan = await action.plan(self, item)
 	#if plan != null:
-		#Inventory.items.remove_at(Inventory.items.find(item))
+		#Inventory.find().items.remove_at(Inventory.find().items.find(item))
 	choice.emit(plan)
 
 signal chosen_parley(parley: ParleyAction)
@@ -232,7 +232,7 @@ func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 	var selector = %ParleyParent
 	for child in selector.get_children():
 		child.free()
-	var items = Inventory.items.filter(predicate)
+	var items = Inventory.find().items.filter(predicate)
 	var back := Button.new()
 	back.text = "back"
 	back.pressed.connect(chosen_parley.emit.bind(null))
@@ -289,5 +289,5 @@ func _propagate_input_event(event: InputEvent) -> bool:
 	var player_no = party_member.player
 	var player_idx = PlayerManager.get_player_device(player_no)
 	return (player_idx == -1 and
-			(event is InputEventMouse or event is InputEventKey))\
+			(event is InputEventMouse or event is InputEventKey)) \
 		or event.device == player_idx

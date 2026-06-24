@@ -38,12 +38,12 @@ static func from_str(str: String, tags: Array[String]) -> Message:
 	match Array(speaker_str.split("%as%")):
 		[], [""]:
 			pass
-		[var actor]:
+		[ var actor]:
 			msg.actor = Actor.find(actor)
 			var colors = get_colors(actor)
 			msg.text_color = msg.actor.text_color if msg.actor else colors[0]
 			msg.bg_color = msg.actor.bg_color if msg.actor else colors[1]
-		[var actor, var speaker]:
+		[ var actor, var speaker]:
 			msg.actor = Actor.find(actor)
 			var colors = get_colors(speaker)
 			msg.text_color = colors[0]
@@ -121,7 +121,7 @@ class TextLeaf extends Instruction:
 	var text: String
 	func _init(text: String):
 		self.text = text
-		Storyteller2.get_tree().physics_frame.connect(func():
+		Storyteller.find().get_tree().physics_frame.connect(func():
 			self.time += 1.0 / Engine.physics_ticks_per_second)
 	var start: int
 	var end: int

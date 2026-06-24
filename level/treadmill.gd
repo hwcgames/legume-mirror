@@ -47,7 +47,7 @@ func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
 			candidates = candidates.filter(func(n: Node): return n.name == seam.wants_partner_name)
 		elif candidates.any(func(s: ProceduralSeam): return s.backtrack != seam.backtrack):
 			candidates = candidates.filter(func(s: ProceduralSeam): return s.backtrack != seam.backtrack)
-		partner = candidates[randi_range(0, len(candidates)-1)]
+		partner = candidates[randi_range(0, len(candidates) - 1)]
 	elif seam is StaticSeam:
 		var path = "%%%s" % seam.target_name
 		partner = room.get_node(path)
@@ -69,7 +69,7 @@ func resolve_partners():
 				seams_without_partners.push_back(seam)
 	for left_index in range(len(seams_without_partners)):
 		var left = seams_without_partners[left_index]
-		for right_index in range(left_index+1, len(seams_without_partners)):
+		for right_index in range(left_index + 1, len(seams_without_partners)):
 			var right = seams_without_partners[right_index]
 			if right.partner != null:
 				continue
@@ -168,7 +168,7 @@ func _process(delta: float) -> void:
 		did_anything = false
 		var rooms_to_cull: Array[Room] = existing_rooms.filter(func(room: Room):
 			return room.loadedness == 0)
-		rooms_to_cull.sort_custom(func(a,b):
+		rooms_to_cull.sort_custom(func(a, b):
 			return a.global_position.distance_to(self.global_position) > b.global_position.distance_to(self.global_position))
 		var seams_to_fill: Array[RoomSeam] = []
 		resolve_partners()
@@ -229,20 +229,20 @@ func serve_queue(candidates: Array[RoomInfo], seam: ProceduralSeam) -> RoomInfo:
 		return null
 	if room_queue[0].room in candidates:
 		var req = room_queue.pop_front()
-		Storyteller2.choose(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")], true)
+		Storyteller.find().choose(["Build %s" % req.room.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")], true)
 		seam.wants_partner_name = req.seam
 		return req.room
 	candidates.sort_custom(func(a: RoomInfo, b: RoomInfo):
-		var a_prox = a.proc_seams\
-			.filter(func(s): return a.seam_backtrack[s])\
-			.map(func(s): return a.seam_profiles[s])\
-			.map(func(p): return profile_proximity[p])\
+		var a_prox = a.proc_seams \
+			.filter(func(s): return a.seam_backtrack[s]) \
+			.map(func(s): return a.seam_profiles[s]) \
+			.map(func(p): return profile_proximity[p]) \
 			.min()
 		a_prox = a_prox if a_prox != null else 99999
-		var b_prox = b.proc_seams\
-			.filter(func(s): return b.seam_backtrack[s])\
-			.map(func(s): return b.seam_profiles[s])\
-			.map(func(p): return profile_proximity[p])\
+		var b_prox = b.proc_seams \
+			.filter(func(s): return b.seam_backtrack[s]) \
+			.map(func(s): return b.seam_profiles[s]) \
+			.map(func(p): return profile_proximity[p]) \
 			.min()
 		b_prox = b_prox if b_prox != null else 99999
 		return a_prox < b_prox)

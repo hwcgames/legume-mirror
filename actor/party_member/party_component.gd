@@ -7,6 +7,8 @@ class_name PartyComponent
 @export_file_path("*.tscn") var battle_planner_scene = "uid://d21yudvneounm"
 @export var basic_attack: BattleAction = BattleActionBasicAttack.new()
 @export var skillset: Skillset = SkillsetUnskilled.new()
+@export var equip_slots: Dictionary[String, int] = {}
+@export var equips: Array[Item] = []
 
 func copy() -> PartyComponent:
 	var new = self.duplicate()
@@ -21,7 +23,7 @@ func _join_battle(actor: Actor, _battle: Battlefield):
 	actor.battle_planner.party_member = actor
 	actor.battlefield.player_zone.add_child(actor.battle_planner)
 	#var b_lock = await actor.battlefield.lock.shared_lock()
-	actor.home_landmark = actor.battlefield.player_landmarks[actor.battlefield.players.find(actor)]
+	actor.home_landmark = actor.battlefield.player_landmarks[actor.battlefield.players.find(actor) % len(actor.battlefield.player_landmarks)]
 	#await create_tween() \
 		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
 	#await actor.create_tween().tween_property(actor, "global_rotation", actor.home_landmark.global_rotation, 0.25).finished

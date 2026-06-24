@@ -1,11 +1,13 @@
 extends CharacterBody3D
 class_name Actor
 
-@export var human_name: StringName = name 
+@export var human_name: StringName = name
 func _to_string() -> String:
 	return human_name
 @export var costume: Costume:
 	set(new_costume):
+		if not is_instance_valid(new_costume):
+			return
 		if costume != null:
 			costume.hide()
 			costume.queue_free()
@@ -13,7 +15,7 @@ func _to_string() -> String:
 		%Afterimager.target = costume
 		if not is_ancestor_of(new_costume):
 			if new_costume.is_inside_tree():
-				new_costume.reparent(self , false)
+				new_costume.reparent(self, false)
 			else:
 				add_child(new_costume)
 @export var interactable: Interactable
@@ -28,7 +30,7 @@ var head_position: Vector3:
 # Player flags
 var leader: bool:
 	get:
-		return name == Storyteller2.story.FetchVariable("leader")
+		return name == Storyteller.find().story.FetchVariable("leader")
 var turns: int = 0
 var player: int = 0
 var skill_challenge: SkillChallenge
@@ -57,7 +59,7 @@ var lock: Locks = Locks.new()
 var computed_attrs: CombatAttributes:
 	get:
 		var attrs = self.sheet.attrs.duplicate()
-		for rule in sheet.rules:
+		for rule in sheet.get_rules():
 			if not rule.compute_attrs(self, attrs):
 				return attrs
 		return attrs
@@ -101,7 +103,7 @@ func _ready():
 		add_to_group("party_member")
 		PlayerManager.player_joined.connect(player_joined)
 		PlayerManager.player_left.connect(player_left)
-		if self != Storyteller2.leader:
+		if self != Storyteller.find().leader:
 			for device in PlayerManager.get_player_indexes():
 				player_joined(device)
 	if interactable:
@@ -110,7 +112,7 @@ func _ready():
 func player_joined(n: int):
 	if PlayerManager.get_player_device(n) == -1:
 		return
-	if self == Storyteller2.leader:
+	if self == Storyteller.find().leader:
 		return
 	if self.player != 0:
 		return
@@ -149,12 +151,12 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 		global_rotation = home_landmark.global_rotation
 		goal_rotation = home_landmark.global_rotation.y
 	joined_battle.emit(battlefield)
-	for rule in sheet.rules:
-		if not rule.join_battle(self ):
+	for rule in sheet.get_rules():
+		if not rule.join_battle(self):
 			break
 
 static func find(actor_name: StringName) -> Actor:
-	for node in Storyteller2.get_tree().get_nodes_in_group("actor"):
+	for node in Storyteller.find().get_tree().get_nodes_in_group("actor"):
 		if node.name == actor_name:
 			return node
 	return null
@@ -181,59 +183,43 @@ static func from_sheet(sheet: ActorSheet) -> Actor:
 signal new_rule(rule: BattleRule)
 
 func add_rule(rule: BattleRule) -> bool:
-	for existing in sheet.rules:
-		if existing.get_script() == rule.get_script():
-			existing.merge(rule)
-			return false
-	sheet.rules.push_back(rule)
-	rule._added(self )
-	new_rule.emit(rule)
-	return true
+	var added = sheet.add_rule(rule)
+	if added:
+		rule._added(self)
+		new_rule.emit(rule)
+	return added
 
-func take_damage(amount: int):
-	for rule in sheet.rules:
-		if not rule.take_damage(self , amount):
+func hp_change(instance: HpChange):
+	for rule in sheet.get_rules():
+		if not rule.hp_change(self, instance):
 			return
-	sheet.hp.hp -= amount
+	sheet.hp.apply(instance)
 
 func _died():
-	for rule in sheet.rules:
-		if not rule._died(self ):
+	for rule in sheet.get_rules():
+		if not rule._died(self):
 			return
-
-func heal(amount: int):
-	for rule in sheet.rules:
-		if not rule.heal(self , amount):
-			return
-	sheet.hp.hp += amount
 
 func _revived():
-	for rule in sheet.rules:
-		if not rule._revived(self ):
+	for rule in sheet.get_rules():
+		if not rule._revived(self):
 			return
 
-func get_sp(amount: int):
-	for rule in sheet.rules:
-		if not rule.get_sp(self , amount):
+func sp_change(change: SpChange):
+	for rule in sheet.get_rules():
+		if not rule.sp_change(self, change):
 			return
-	print("Get %s SP" % amount)
-	sheet.party_component.sp.get_energy(amount)
+	sheet.party_component.sp.apply(change)
 
-func use_sp(amount: int):
-	for rule in sheet.rules:
-		if not rule.use_sp(self , amount):
-			return
-	print("Use %s SP" % amount)
-	sheet.party_component.sp.use_energy(amount)
 
 func begin():
-	for rule in sheet.rules:
+	for rule in sheet.get_rules():
 		if not rule.begin(self):
 			break
 	await battle_component._begin(self)
 
 func top():
-	for rule in sheet.rules:
+	for rule in sheet.get_rules():
 		if not rule.top(self):
 			break
 		rule.changed.emit()
@@ -241,12 +227,12 @@ func top():
 		var keep = r.stacks != 0
 		if not keep:
 			r.removed.emit()
-			r._removed(self )
+			r._removed(self)
 		return keep)
 	await battle_component._top(self)
 
 func telegraph():
-	for rule in sheet.rules:
+	for rule in sheet.get_rules():
 		if not rule.telegraph(self):
 			break
 	await battle_component._telegraph(self)
@@ -262,8 +248,8 @@ func show_telegraph():
 	%Telegraph.show()
 
 func player_action():
-	for rule in sheet.rules:
-		if not rule.player_action(self ):
+	for rule in sheet.get_rules():
+		if not rule.player_action(self):
 			return
 	await battle_component._player_action(self)
 
@@ -274,14 +260,14 @@ func setup_challenge(scene: PackedScene = load(sheet.party_component.skill_chall
 	return skill_challenge
 
 func enemy_action():
-	for rule in sheet.rules:
-		if not rule.enemy_action(self ):
+	for rule in sheet.get_rules():
+		if not rule.enemy_action(self):
 			break
 	await battle_component._enemy_action(self)
 
 func done(player_victory: bool):
-	for rule in sheet.rules:
-		if not rule.done(self , player_victory):
+	for rule in sheet.get_rules():
+		if not rule.done(self, player_victory):
 			break
 	sheet.rules = sheet.rules.filter(func(r): return r.stacks > 0)
 	await battle_component._done(self, player_victory)
@@ -312,7 +298,7 @@ func snap_to_position(position: Vector3, rotation: float = INF, afterimages: boo
 	var atween = create_tween()
 	if afterimages:
 		var count = round(global_position.distance_to(position)) * 4
-		for n in range(count+5):
+		for n in range(count + 5):
 			atween.tween_callback(func(): afterimage_stationary(0.2)).set_delay(0 if n == 0 else (0.2 / count))
 		atween.play()
 	await tween.finished
@@ -353,7 +339,7 @@ func _physics_process(delta: float):
 
 func mode_done():
 	print("{human_name} {active_component} mode done".format(self))
-	var party_pos = Storyteller2.party_stack.find(self)
+	var party_pos = Storyteller.find().party_stack.find(self)
 	print(%Component/Automove.current)
 	if is_instance_valid(battlefield):
 		active_component = %Component/Idle
@@ -364,7 +350,7 @@ func mode_done():
 	elif leader:
 		active_component = %Component/Human
 	elif party_pos != -1:
-		follow_actor(Storyteller2.party_stack[party_pos-1])
+		follow_actor(Storyteller.find().party_stack[party_pos - 1])
 	else:
 		active_component = %Component/Idle
 	print("-> {active_component}".format(self))
@@ -420,7 +406,7 @@ func cargo(carrier: Actor):
 func afterimage_stationary(duration: float = 1.) -> Node3D:
 	var tween = create_tween()
 	var image = %Afterimager.create_afterimage(
-	func(m: BaseMaterial3D): 
+	func(m: BaseMaterial3D):
 		if m is StandardMaterial3D:
 			m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA_DEPTH_PRE_PASS
 			#m.depth_draw_mode = BaseMaterial3D.DEPTH_DRAW_ALWAYS

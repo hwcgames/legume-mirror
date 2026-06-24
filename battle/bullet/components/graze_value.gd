@@ -7,5 +7,5 @@ func graze(bullet: Bullet, soul: Soul) -> bool:
 	print("Grazed ", soul);
 	var amount = value.sample_baked(randf())
 	for p in soul.players:
-		p.get_sp(amount)
+		(p as Actor).sp_change(SpChange.new(bullet.enemy, p, amount))
 	return false

@@ -8,8 +8,8 @@ var players_inside: int = 0
 
 func _ready() -> void:
 	body_entered.connect(func(other: PhysicsBody3D):
-		if Storyteller2.leader == other:
+		if Storyteller.find().leader == other:
 			camera.priority += priority_offset)
 	body_exited.connect(func(other: PhysicsBody3D):
-		if Storyteller2.leader == other:
+		if Storyteller.find().leader == other:
 			camera.priority -= priority_offset)

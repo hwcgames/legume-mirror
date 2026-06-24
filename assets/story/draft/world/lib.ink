@@ -30,3 +30,11 @@ VAR map_accessible = true
 ->DONE
 = weston
 ->DONE
+
+=== function ___location_name()
+{location:
+    - "map": ~ return "A bird's-eye view."
+    - "school_front": ~ return "Before a learned place."
+    - "apartment": ~ return "Someplace yours."
+    - else: ~ return "A place outside place."
+}

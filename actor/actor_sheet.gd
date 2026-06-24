@@ -21,7 +21,33 @@ var alive: bool:
 	get:
 		return hp.alive
 @export var attrs: CombatAttributes = CombatAttributes.new()
+
 @export var rules: Array[BattleRule] = []
+
+func get_rules() -> Array[BattleRule]:
+	var rules: Array[BattleRule] = rules.duplicate()
+	if is_instance_valid(party_component):
+		for equip in party_component.equips:
+			rules.append_array(equip.rules)
+	rules.sort_custom(func(a: BattleRule, b: BattleRule): return a.priority() < b.priority())
+	return rules
+
+func add_rule(rule: BattleRule) -> bool:
+	for existing in rules:
+		if existing.get_script() == rule.get_script():
+			existing.merge(rule)
+			return false
+	rules.push_back(rule)
+	return true
+
+func remove_rule(rule: BattleRule) -> bool:
+	var idx = rules.find(rule)
+	if idx == -1:
+		return false
+	rules.remove_at(idx)
+	rule.removed.emit()
+	changed.emit()
+	return true
 @export var saved: bool = false
 
 @export var party_component: PartyComponent

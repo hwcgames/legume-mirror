@@ -62,19 +62,20 @@ metadata/_custom_type_script = "uid://d1g602whyq8ty"
 
 [sub_resource type="Resource" id="Resource_k12pj"]
 script = ExtResource("12_a1xxy")
-before_message = "{me} got {target} pumped up!"
+before_message = "{me} sharpened {target}'s weapon!"
 before_message_rfl = "{me} got pumped up!"
 metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
 
 [sub_resource type="Resource" id="Resource_k4fgx"]
 script = ExtResource("14_g2kj7")
+amount = 7
 stacks = 3
 metadata/_custom_type_script = "uid://b4sfm156ewh04"
 
 [sub_resource type="Resource" id="Resource_p37jh"]
 script = ExtResource("15_qbda4")
 message = "{me} pumped {target} up!"
-rfl_message = "{me} got pumped up!"
+rfl_message = "{me} sharpened their weapon!"
 rules = Array[ExtResource("13_tx5xh")]([SubResource("Resource_k4fgx")])
 metadata/_custom_type_script = "uid://dskoe68fh6uxg"
 

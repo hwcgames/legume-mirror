@@ -51,18 +51,18 @@ class BasicAttackPlan extends BattleActionPlan:
 		var damage = (party_member.computed_attrs.strength * skill / 20) - (3 * target.computed_attrs.defense)
 		if damage > 0:
 			if skill >= 250:
-				Storyteller2.choose(["%s finesse hits" % party_member.name, "%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
+				Storyteller.find().choose(["%s finesse hits" % party_member.name, "%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
 				battlefield.println("A masterful attack!")
 			elif skill >= 150:
-				Storyteller2.choose(["%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
+				Storyteller.find().choose(["%s perfect hits" % party_member.name, "%s hits" % party_member.name, "party hit"])
 				battlefield.println("A precise attack!")
 			else:
-				Storyteller2.choose(["%s hits" % party_member.name, "party hit"])
+				Storyteller.find().choose(["%s hits" % party_member.name, "party hit"])
 			battlefield.println("%s damage!" % [damage])
 			#Chatterbox.simple_message(target, "%s!" % [damage])
-			target.take_damage(damage)
+			target.hp_change(HpChange.new(party_member, target, damage))
 		else:
-			Storyteller2.choose(["%s misses" % party_member.name, "party misses"])
+			Storyteller.find().choose(["%s misses" % party_member.name, "party misses"])
 			battlefield.println("Swing and a miss...")
 		await party_member.get_tree().create_timer(0.5).timeout
 		p_lock.call()

@@ -15,7 +15,7 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 	var target: Actor = registers[target_register]
 	var amt = registers[amount_register] if amount_register in registers else amount
 	var old_hp = target.hp
-	target.heal(amt)
+	target.hp_change(HpChange.new(them, target, amt))
 	registers[amount_register] = target.hp - old_hp
 	return false
 
