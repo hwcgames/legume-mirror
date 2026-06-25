@@ -9,14 +9,14 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_e7dsr"]
 [ext_resource type="Script" uid="uid://koi6kck7np3o" path="res://inventory/inventory.gd" id="7_corkb"]
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iuwny"]
+
 [sub_resource type="GDScript" id="GDScript_iuwny"]
 script/source = "extends Button
 
 func _pressed() -> void:
 	get_tree().reload_current_scene()
 "
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iuwny"]
 
 [sub_resource type="GDScript" id="GDScript_yrs0h"]
 script/source = "extends Node
@@ -37,10 +37,81 @@ script = ExtResource("6_e7dsr")
 script = ExtResource("1_e7dsr")
 metadata/_custom_type_script = "uid://dabijjykhigp0"
 
-[node name="Battlefield" parent="." unique_id=144661304 node_paths=PackedStringArray("player_landmarks", "enemy_landmarks") instance=ExtResource("1_c5njq")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1719894281]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=620807241]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1940116637]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 0
+
+[node name="Battlefield" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=144661304 node_paths=PackedStringArray("player_landmarks", "enemy_landmarks") instance=ExtResource("1_c5njq")]
 unique_name_in_owner = true
+transform = Transform3D(0.9294343, 0, 0.36898777, 0, 1, 0, -0.36898777, 0, 0.9294343, 170.16658, 0, -148.0696)
 player_landmarks = [NodePath("../Ally1"), NodePath("../Ally2"), NodePath("../Ally3"), NodePath("../Ally4")]
 enemy_landmarks = [NodePath("../Enemy1"), NodePath("../Enemy2"), NodePath("../Enemy3"), NodePath("../Enemy4")]
+
+[node name="Ally1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=677341901]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.56972, 0, -149.19049)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally2" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2124653465]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.37827, 0, -146.96263)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally3" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1419154939]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.18681, 0, -144.73479)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally4" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=666824984]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 166.99535, 0, -142.50693)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2050000683]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 171.28748, 0, -150.66644)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy2" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1981669287]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 172.95488, 0, -149.17656)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy3" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=495398]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 174.62228, 0, -147.68669)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy4" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=455467718]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 176.28969, 0, -146.1968)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Camera3D2" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=874304436]
+physics_interpolation_mode = 1
+transform = Transform3D(0.92943424, -0.095501065, 0.3564148, -3.8818927e-11, 0.9659258, 0.25881904, -0.36898777, -0.24055535, 0.8977646, 174.59442, 4, -136.9164)
+top_level = true
+projection = 1
+current = true
+size = 10.373
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1965557859]
+transform = Transform3D(0.9294343, 0, 0.36898777, 0, 1, 0, -0.36898777, 0, 0.9294343, 170.16658, 0, -148.0696)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/SubViewportContainer/SubViewport/StaticBody3D2" unique_id=989209866]
+shape = SubResource("WorldBoundaryShape3D_iuwny")
 
 [node name="Window" type="Window" parent="." unique_id=1770133891]
 oversampling_override = 1.0
@@ -104,46 +175,6 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_rwc2o")
 
-[node name="Ally1" type="Marker3D" parent="." unique_id=677341901]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0, -2)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Ally2" type="Marker3D" parent="." unique_id=2124653465]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0, 0)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Ally3" type="Marker3D" parent="." unique_id=1419154939]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, 2)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Ally4" type="Marker3D" parent="." unique_id=666824984]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 0, 4)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Enemy1" type="Marker3D" parent="." unique_id=2050000683]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 2, 0, -2)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Enemy2" type="Marker3D" parent="." unique_id=1981669287]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 3, 0, 0)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Enemy3" type="Marker3D" parent="." unique_id=495398]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4, 0, 2)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
-[node name="Enemy4" type="Marker3D" parent="." unique_id=455467718]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 5, 0, 4)
-script = ExtResource("3_iuwny")
-metadata/_custom_type_script = "uid://difp6yos5jwjy"
-
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=458697334]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1207446700]
@@ -162,6 +193,8 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 script = ExtResource("7_corkb")
 metadata/_custom_type_script = "uid://koi6kck7np3o"
 
-[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer2/Fight" to="Battlefield" method="battle"]
+[connection signal="begin" from="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" to="CanvasLayer" method="show"]
+[connection signal="done" from="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" to="CanvasLayer" method="hide"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer2/Fight" to="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" method="battle"]
 [connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/SpawnAlly" to="Window" method="spawn_selected_ally"]
 [connection signal="pressed" from="Window/VBoxContainer/HBoxContainer3/SpawnEnemy" to="Window" method="spawn_selected_enemy"]

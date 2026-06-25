@@ -16,3 +16,9 @@ func subplanner(party_member: Actor) -> SubPlanner:
 	var subplanner: SpellListPlanner = subplanner_scene.instantiate()
 	subplanner.list = self
 	return subplanner
+
+func get_spells(actor: Actor) -> Array[BattleAction]:
+	var spells = spell_list.duplicate()
+	for item in actor.sheet.party_component.equips:
+		spells.append_array(item.equip_actions)
+	return spells

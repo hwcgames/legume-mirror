@@ -14,3 +14,6 @@ func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
 
 func copy():
 	return self
+
+func _tags() -> Array[String]:
+	return []

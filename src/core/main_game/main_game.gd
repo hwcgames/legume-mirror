@@ -2,7 +2,7 @@ extends Node
 class_name MainGame
 
 enum MODE {
-	IDLE,
+	NONE,
 	LEVEL,
 	BATTLE,
 }
@@ -17,6 +17,10 @@ static func find() -> MainGame:
 func _ready() -> void:
 	me = self
 
+var mode: MODE:
+	get:
+		if is_instance_valid(battle):
+			
 var level: Node
 var battle: Node
 
@@ -43,7 +47,8 @@ func notice_line(line: String, tags: Array[String]):
 			ResourceLoader.load_threaded_request("res://database/room/%s.tres" % room)
 
 func load_level(name: String, room_name: String):
-	var level: Level = load("res://database/level/%s.tres" % name)
-	var room: RoomInfo = load("res://database/rooms/%s.tres" % room_name)
+	var level_r: Level = load("res://database/level/%s.tres" % name)
+	var room_r: RoomInfo = load("res://database/rooms/%s.tres" % room_name)
 	assert(room in level.roomset.rooms)
+	
 	pass

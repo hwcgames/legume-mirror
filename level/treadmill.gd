@@ -4,7 +4,6 @@ class_name Treadmill
 #@export var load_range: float = 24.
 var existing_rooms: Array[Room] = []
 @export var roomset: RoomSet
-@export var center: Node3D
 var allowed_themes: Array[StringName]:
 	get:
 		return roomset.allowed_themes
@@ -161,8 +160,6 @@ func find_room_for(seam: ProceduralSeam) -> RoomInfo:
 	#return out
 
 func _process(delta: float) -> void:
-	if center != null:
-		global_transform = center.global_transform
 	var did_anything = true
 	while did_anything:
 		did_anything = false

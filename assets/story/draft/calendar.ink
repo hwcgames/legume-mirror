@@ -103,6 +103,10 @@
     }
 }
 
+VAR _day_name = ""
+=== function ___update_day_name()
+~ _day_name = name_day(year, month, day, weekday)
+
 === calendar
 VAR year = 0
 VAR month = 8
@@ -110,6 +114,7 @@ VAR day = 12
 VAR weekday = 6
 VAR time = 0
 ->DONE
+
 
 = test_days
 Calendar test:

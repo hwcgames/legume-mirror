@@ -12,7 +12,7 @@ class_name DungeonMap
 				STATE.HALLWAY_TO_ROOM:
 					state = STATE.WAIT_FOR_ROOM
 @export var treadmill: Treadmill
-@export var start_junction: RoomInfo
+#@export var start_junction: RoomInfo
 
 enum STATE {
 	GENERATE,

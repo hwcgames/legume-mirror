@@ -25,11 +25,12 @@ func _to_string() -> String:
 	return "Saver"
 
 func wants_line(line: String, tags: Array[String]) -> bool:
-	return is_instance_valid(do_line(line, tags))
+	return do_line(line, tags) != null
 func take_line(line: String, tags: Array[String]):
 	do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
-	match line.split(" ", false):
+	print(line.split(" ", false))
+	match Array(line.split(" ", false)):
 		[">>>", "save"]:
 			return func():
 				save(false)

@@ -7,12 +7,13 @@ class_name SaveFile
 @export var timestamp: Dictionary
 
 @export_file_path("*.ink") var story: String
-@export var ink_save: String
+@export var ink_save: Dictionary
 
 @export var active_camera: String
 
 @export var party: Array[StringName] = []
 @export var character_sheets: Dictionary[StringName, ActorSheet] = {}
+@export var inventory: Array[FossilizedItem] = []
 
 @export var treadmill_roomset: RoomSet
 @export var treadmill_allowed_themes: Array[StringName] = []

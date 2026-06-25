@@ -10,13 +10,13 @@
 [node name="MainGame" type="Node" unique_id=1194474861]
 script = ExtResource("1_57sy6")
 
-[node name="Storyteller" type="Node" parent="." unique_id=504516552]
-script = ExtResource("3_7isfe")
-metadata/_custom_type_script = "uid://dabijjykhigp0"
-
 [node name="Saver" type="Node" parent="." unique_id=105723332]
 script = ExtResource("3_3l65w")
 metadata/_custom_type_script = "uid://d15sjotyl8c8v"
+
+[node name="Storyteller" type="Node" parent="." unique_id=504516552]
+script = ExtResource("3_7isfe")
+metadata/_custom_type_script = "uid://dabijjykhigp0"
 
 [node name="Bubble" parent="." unique_id=465563387 instance=ExtResource("1_o4umv")]
 

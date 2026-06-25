@@ -54,7 +54,7 @@ func load_save(path: String):
 		return
 	var save: SaveFile = s
 	saves[save.index] = save
-	error = ResourceLoader.load_threaded_request(save.story)
+	error = ResourceLoader.load_threaded_request(save.story, "InkStory")
 	match error:
 		Error.OK:
 			pass
@@ -63,7 +63,7 @@ func load_save(path: String):
 			return
 	while ResourceLoader.load_threaded_get_status(save.story) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		await get_tree().process_frame
-	match ResourceLoader.load_threaded_get_status(path):
+	match ResourceLoader.load_threaded_get_status(save.story):
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
 			load_error(path, "This is written in crayon. (This save file's story appears to be corrupted.)")
 			return
@@ -72,20 +72,18 @@ func load_save(path: String):
 			return
 	s = ResourceLoader.load_threaded_get(save.story)
 	if s is not InkStory:
-		load_error(path, "Why are you buying {0} at the InkStory store? (I understand the story this refers to, but it looks like a {0} instead of an InkStory.)".format([s.get_script().get_global_name()]))
+		load_error(path, "Why are you buying {0} at the InkStory store? (I understand the \"story\" this file points to, but it looks like a {0} instead of an InkStory.)".format([s.get_script().get_global_name()]))
 		return
 	var story: InkStory = s
-	story.LoadState(save.ink_save)
+	story.LoadState(JSON.stringify(save.ink_save))
 	stories[save.index] = story
+	var location: String = story.FetchVariable("location")
 	var year: int = story.FetchVariable("year")
 	var month: int = story.FetchVariable("month")
 	var day: int = story.FetchVariable("day")
-	var week: int = story.FetchVariable("week")
+	var weekday: int = story.FetchVariable("weekday")
 	var day_idx: int = year * 366 + month * 32 + day
 	day_indices[save.index] = day_idx
-	#var title: String = story.EvaluateFunction("___title")
-	var location: String = story.EvaluateFunction("___location_name")
-	var date_string: String = story.EvaluateFunction("name_day", year, month, day, week)
 
 @export var error_parent: Control
 

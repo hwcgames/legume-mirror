@@ -25,7 +25,8 @@ var head: Marker3D:
 var head_position: Vector3:
 	get:
 		return head.global_position
-
+## Used to store saved positions... or, perhaps, anything else.
+var registers: Dictionary = {}
 
 # Player flags
 var leader: bool:
@@ -144,6 +145,10 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	else:
 		battle_component = sheet.party_component
 		await sheet.party_component._join_battle(self, battlefield)
+	registers["position_before_battle"] = global_position
+	registers["rotation_before_battle"] = global_rotation.y
+	registers["parent_before_battle"] = get_parent()
+	visual_reparent(battlefield)
 	if battlefield.phase == Battlefield.PHASE.SETUP:
 		snap_to_landmark(home_landmark, true)
 	else:
@@ -214,13 +219,13 @@ func sp_change(change: SpChange):
 
 func begin():
 	for rule in sheet.get_rules():
-		if not rule.begin(self):
+		if not await rule.begin(self):
 			break
 	await battle_component._begin(self)
 
 func top():
 	for rule in sheet.get_rules():
-		if not rule.top(self):
+		if not await rule.top(self):
 			break
 		rule.changed.emit()
 	sheet.rules = sheet.rules.filter(func(r: BattleRule):
@@ -233,7 +238,7 @@ func top():
 
 func telegraph():
 	for rule in sheet.get_rules():
-		if not rule.telegraph(self):
+		if not await rule.telegraph(self):
 			break
 	await battle_component._telegraph(self)
 
@@ -249,7 +254,7 @@ func show_telegraph():
 
 func player_action():
 	for rule in sheet.get_rules():
-		if not rule.player_action(self):
+		if not await rule.player_action(self):
 			return
 	await battle_component._player_action(self)
 
@@ -261,16 +266,18 @@ func setup_challenge(scene: PackedScene = load(sheet.party_component.skill_chall
 
 func enemy_action():
 	for rule in sheet.get_rules():
-		if not rule.enemy_action(self):
+		if not await rule.enemy_action(self):
 			break
 	await battle_component._enemy_action(self)
 
 func done(player_victory: bool):
 	for rule in sheet.get_rules():
-		if not rule.done(self, player_victory):
+		if not await rule.done(self, player_victory):
 			break
 	sheet.rules = sheet.rules.filter(func(r): return r.stacks > 0)
 	await battle_component._done(self, player_victory)
+	visual_reparent(registers["parent_before_battle"])
+	snap_to_position(registers["position_before_battle"], registers["rotation_before_battle"], true)
 	battlefield = null
 	mode_done()
 
@@ -297,7 +304,7 @@ func snap_to_position(position: Vector3, rotation: float = INF, afterimages: boo
 	tween.play()
 	var atween = create_tween()
 	if afterimages:
-		var count = round(global_position.distance_to(position)) * 4
+		var count = round(global_position.distance_to(position)) * 2
 		for n in range(count + 5):
 			atween.tween_callback(func(): afterimage_stationary(0.2)).set_delay(0 if n == 0 else (0.2 / count))
 		atween.play()
@@ -328,13 +335,14 @@ var components: Array[ActorComponent]:
 		new_mode.emit(active_component)
 
 func _physics_process(delta: float):
+	if global_position.y < -1000:
+		queue_free()
 	while !is_instance_valid(active_component):
 		mode_done()
 		return
 	if active_component._reset_velocity():
 		velocity = Vector3.ZERO
 	active_component._active(delta)
-	
 	move_and_slide()
 
 func mode_done():
@@ -422,3 +430,12 @@ func afterimage_stationary(duration: float = 1.) -> Node3D:
 	tween.tween_callback(func(): image.queue_free()).set_delay(duration)
 	tween.play()
 	return image
+
+func visual_reparent(new_parent: Node3D):
+	print(global_position)
+	var transform_relative_to_camera: Transform3D = global_transform * get_viewport().get_camera_3d().global_transform.inverse()
+	var new_transform: Transform3D = new_parent.get_viewport().get_camera_3d().global_transform * transform_relative_to_camera
+	global_transform = new_transform
+	reparent(new_parent, true)
+	print(global_position)
+	reset_physics_interpolation()

@@ -6,10 +6,14 @@ class_name Item
 ### The battle action for this item, if it's usable in combat.
 @export var battle_action: BattleAction
 @export var charges: int = 0
+@export var registers: Dictionary = {}
 @export var tags: Array[String] = []
 
 @export var equip_sizes: Dictionary[String, int] = {}
 @export var rules: Array[BattleRule]
+### The skill actions this item provides when equipped.
+@export var equip_actions: Array[BattleAction]
+var path: String = ""
 
 enum CanEquip {
 	YES,
@@ -30,3 +34,15 @@ func can_equip(party: PartyComponent) -> CanEquip:
 		if capacity < 0:
 			return CanEquip.SMALL_SLOT
 	return CanEquip.YES
+
+func copy() -> Item:
+	var new = self.duplicate()
+	new.path = self.resource_path
+	return new
+
+func fossilize() -> FossilizedItem:
+	var item = FossilizedItem.new()
+	item.charges = charges
+	item.registers = registers.duplicate()
+	item.item = path
+	return item

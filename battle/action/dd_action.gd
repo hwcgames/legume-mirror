@@ -4,6 +4,10 @@ class_name DynAction
 @export var name: String
 @export var description: String
 @export var steps: Array[DynActionStep] = []
+@export var tags: Array[String] = []
+
+func _tags() -> Array[String]:
+	return tags
 
 func allowed(party_member: Actor, source: Object) -> bool:
 	return steps.all(func(p: DynActionStep):

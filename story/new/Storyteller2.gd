@@ -19,9 +19,22 @@ func _ready() -> void:
 	story.changed.connect(bind_functions)
 	add_to_group("story_listener")
 	var spec_timer = Timer.new()
-	spec_timer.timeout.connect(func():
-		spec_timer.start(2)
-		runahead())
+	#spec_timer.timeout.connect(func():
+		#spec_timer.start(2)
+		#runahead())
+	if is_instance_valid(Saver.find()):
+		Saver.find().pre_save.connect(pre_save)
+		Saver.find().post_load.connect(post_load)
+
+func pre_save(file: SaveFile):
+	file.story = ResourceUID.path_to_uid(story.resource_path)
+	file.ink_save = JSON.parse_string(story.SaveState())
+
+func post_load(file: SaveFile):
+	var save = JSON.stringify(file.ink_save)
+	safety_save = save
+	story = load(file.story)
+	story.LoadState(save)
 
 static func find() -> Storyteller:
 	return me
@@ -187,3 +200,57 @@ func advise_line(line: String, tags: Array[String]):
 		if !wanter.has_method("notice_line"):
 			continue
 		wanter.notice_line(line, tags)
+
+static func ordinal(num: int) -> String:
+	var suffix: String
+	if floor(num / 10) == 1:
+		suffix = "th"
+	else:
+		match num % 10:
+			1: suffix = "st"
+			2: suffix = "nd"
+			3: suffix = "rd"
+			_: suffix = "th"
+	return str(num)+suffix
+static func name_day(year: int, month: int, day: int, weekday: int) -> String:
+	var year_name: String
+	match year:
+		0: year_name = "20XX"
+		1: year_name = "20XY"
+		2: year_name = "20XZ"
+		_: year_name = str(year)
+	var month_name: String
+	match month:
+		1: month_name = "January"
+		2: month_name = "February"
+		3: month_name = "March"
+		4: month_name = "April"
+		5: month_name = "May"
+		6: month_name = "June"
+		7: month_name = "July"
+		8: month_name = "August"
+		9: month_name = "September"
+		10: month_name = "October"
+		11: month_name = "November"
+		12: month_name = "December"
+	var weekday_name: String
+	match weekday:
+		1: weekday_name = "Monday"
+		2: weekday_name = "Tuesday"
+		3: weekday_name = "Wednesday"
+		4: weekday_name = "Thursday"
+		5: weekday_name = "Friday"
+		6: weekday_name = "Saturday"
+		7: weekday_name = "Sunday"
+	var ordinal = ordinal(day)
+	return weekday_name + ", " + month_name + " " + ordinal + ", " + year_name
+const location_names: Dictionary[String, String] = {
+	"map": "A bird's-eye view.",
+	"school_front": "Before a learned one.",
+	"apartment": "Yours."
+}
+const location_fallback: String = "A place outside place."
+static func name_location(location: String) -> String:
+	if location in location_names:
+		return location_names[location]
+	return location_fallback

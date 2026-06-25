@@ -43,7 +43,7 @@ func before(source: Object, me: Actor, battlefield: Battlefield, registers: Dict
 		critical
 	)
 	damage.registers["skill"] = skill
-	if damage.amount > 0:
+	if damage.amount < 0:
 		if skill >= 250:
 			Storyteller.find().choose(["%s finesse hits" % me.name, "%s perfect hits" % me.name, "%s hits" % me.name, "party hit"])
 			me.battlefield.println("A masterful attack!")
@@ -52,7 +52,7 @@ func before(source: Object, me: Actor, battlefield: Battlefield, registers: Dict
 			me.battlefield.println("A precise attack!")
 		else:
 			Storyteller.find().choose(["%s hits" % me.name, "party hit"])
-		me.battlefield.println("%s damage!" % [damage])
+		me.battlefield.println("%s damage!" % [-damage.amount])
 		target.hp_change(damage)
 	registers[damage_register] = -damage.amount
 	return false
