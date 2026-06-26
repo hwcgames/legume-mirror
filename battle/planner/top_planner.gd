@@ -9,7 +9,10 @@ func choose() -> BattleActionPlan:
 	populate_skillset_button()
 	%ToplevelTab.show()
 	choosing = true
-	var plan = await choice
+	var plan = await wait_or_die(choice)
+	if plan is Died:
+		%IdleTab.show()
+		return null
 	choosing = false
 	%IdleTab.show()
 	return plan
@@ -24,6 +27,25 @@ func populate_skillset_button():
 func show_toplevel():
 	%ToplevelTab.show()
 	%BasicAttackButton.grab_focus()
+
+class Died:
+	pass
+func wait_or_die(sig: Signal) -> Variant:
+	var p = Promise.new(func(resolve, _reject):
+		sig.connect(resolve)
+		party_member.hp_component.died.connect(func(): resolve.call(Died.new()))
+		party_member.out_of_turns.connect(func(): resolve.call(Died.new()))
+	)
+	await p.settled
+	return p.last_result.payload
+func coroutine_or_die(coroutine: Callable) -> Variant:
+	var p = Promise.new(func(resolve, reject):
+		party_member.hp_component.died.connect(func(): resolve.call(Died.new()))
+		party_member.out_of_turns.connect(func(): resolve.call(Died.new()))
+		resolve.call(await coroutine.call())
+	)
+	await p.settled
+	return p.last_result.payload
 
 signal chosen_target(enemy: Actor)
 
@@ -48,7 +70,12 @@ func pick_target(predicate: Callable = func(e: Actor): return e.alive) -> Actor:
 		selector.add_child(button)
 	%TargetSelectTab.show()
 	enemy_buttons[0].grab_focus()
-	var target = await chosen_target
+	var target = await wait_or_die(chosen_target)
+	if target is Died:
+		return null
+	#var target = null
+	#chosen_target.connect(func(t): target = t, CONNECT_ONE_SHOT)
+	#while !is_instance_valid(target)
 	if target == null:
 		%TabContainer.current_tab = prev_tab
 	return target
@@ -76,7 +103,9 @@ func pick_ally(predicate: Callable = func(p: Actor): return true) -> Actor:
 	%TargetSelectTab.show()
 	if !ally_buttons.is_empty():
 		ally_buttons[0].grab_focus()
-	var ally = await chosen_ally
+	var ally = await wait_or_die(chosen_ally)
+	if ally is Died:
+		return null
 	if ally == null:
 		%TabContainer.current_tab = prev_tab
 	return ally
@@ -111,10 +140,12 @@ func pick_actor(predicate: Callable = func(a: Actor): return true) -> Actor:
 	%TargetSelectTab.show()
 	if !actor_buttons.is_empty():
 		actor_buttons[0].grab_focus()
-	var enemy = await chosen_actor
-	if enemy == null:
+	var actor = await wait_or_die(chosen_actor)
+	if actor is Died:
+		return null
+	if actor == null:
 		%TabContainer.current_tab = prev_tab
-	return enemy
+	return actor
 
 func _ready():
 	%IdleTab.show()
@@ -159,7 +190,10 @@ var sp: int = 0
 
 func _process(delta: float) -> void:
 	update_bars()
-	if choosing and not battlefield.enemies.any(func(e: Actor): return e.sheet.enemy_component.active and e.alive):
+	if choosing \
+		and not battlefield.enemies.any(func(e: Actor): return e.sheet.enemy_component.active and e.alive):
+		choice.emit(BattleActionFinish.new())
+	elif choosing and !party_member.alive:
 		choice.emit(BattleActionFinish.new())
 
 func update_bars():
@@ -205,7 +239,9 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 	%PocketsTab.show()
 	if !item_buttons.is_empty():
 		item_buttons[0].grab_focus()
-	var item = await chosen_item
+	var item = await wait_or_die(chosen_item)
+	if item is Died:
+		return null
 	if item == null:
 		%TabContainer.current_tab = prev_tab
 	i_lock.call()
@@ -219,7 +255,9 @@ func pockets():
 	var action = item.battle_action.duplicate()
 	if "item" in action:
 		action.item = item
-	var plan = await action.plan(self, item)
+	var plan = await coroutine_or_die(func(): return await action.plan(self, item))
+	if plan is Died:
+		return null
 	#if plan != null:
 		#Inventory.find().items.remove_at(Inventory.find().items.find(item))
 	choice.emit(plan)
@@ -256,7 +294,9 @@ func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 	%ParleyTab.show()
 	if !parley_buttons.is_empty():
 		parley_buttons[0].grab_focus()
-	var parley = await chosen_parley
+	var parley = await wait_or_die(chosen_parley)
+	if parley is Died:
+		return null
 	if parley == null:
 		%TabContainer.current_tab = prev_tab
 	p_lock.call()
@@ -271,7 +311,7 @@ func parley():
 	if parley_action == null:
 		choice.emit(null)
 		return
-	var plan = await parley_action.plan(self, enemy.sheet.enemy_component)
+	var plan = await coroutine_or_die(func(): return await parley_action.plan(self, enemy.sheet.enemy_component))
 	choice.emit(plan)
 
 func skillset():
@@ -282,7 +322,7 @@ func skillset():
 		child.queue_free()
 	%SkillsetTab.add_child(skillset_planner)
 	%SkillsetTab.show()
-	var plan = await skillset_planner.choose()
+	var plan = await coroutine_or_die(func(): return await skillset_planner.choose())
 	choice.emit(plan)
 
 func _propagate_input_event(event: InputEvent) -> bool:

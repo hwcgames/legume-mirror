@@ -9,6 +9,8 @@ INCLUDE world/lib.ink
 INCLUDE quests/lib.ink
 INCLUDE characters/lib.ink
 INCLUDE calendar/d0_08_16.ink
+INCLUDE test.ink
+
 
 
 

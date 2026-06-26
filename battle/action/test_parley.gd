@@ -10,10 +10,10 @@ func label() -> String:
 		_:
 			return "???"
 
-func allowed(party_member: PartyMember) -> bool:
+func allowed(party_member: PartyMember, source: Object) -> bool:
 	return true
 
-func display(party_member: PartyMember) -> bool:
+func display(party_member: PartyMember, source: Object) -> bool:
 	return true
 
 func plan(battle_planner: BattlePlanner, source: Object) -> ActionPlanParleyTest:

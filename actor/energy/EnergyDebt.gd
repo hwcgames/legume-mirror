@@ -31,6 +31,7 @@ func get_energy(amt: int):
 	debt = clamp(debt - amt, 0, max_debt)
 	print(debt)
 
+
 func remaining() -> int:
 	return max_debt - debt
 

@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://d15sjotyl8c8v"
 script = ExtResource("3_7isfe")
 metadata/_custom_type_script = "uid://dabijjykhigp0"
 
-[node name="Actors" type="Node" parent="." unique_id=1867415543]
+[node name="Actors" type="Node3D" parent="." unique_id=1469199338]
 unique_name_in_owner = true
 script = ExtResource("4_4farq")
 

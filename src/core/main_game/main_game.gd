@@ -49,10 +49,11 @@ func do_line(line: String, tags: Array[String]):
 				if is_instance_valid(battle):
 					printerr("WARNING: Battle already active!")
 					return null
-				var environment = load("res://assets/battlefield/%s.tscn" % environment_name).instantiate()
+				var env_path = "res://database/battlefield/%s.tscn" % environment_name
+				var environment = load(env_path).instantiate()
 				battle = preload("uid://cyxdvd335kc1p").instantiate()
-				battle.setup(environment)
 				%BattleWorldParent.add_child(battle)
+				battle.setup(environment)
 	return null
 func notice_line(line: String, tags: Array[String]):
 	match line.split(" ", false):

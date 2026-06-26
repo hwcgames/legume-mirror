@@ -39,25 +39,33 @@ func _telegraph(actor: Actor):
 	pass
 
 func _player_action(actor: Actor):
-	if not actor.alive:
-		return
+	#if not actor.alive:
+		#return
 	actor.turns = 1
 	while is_instance_valid(actor.battlefield) and actor.battlefield.phase == Battlefield.PHASE.PLAYER_ACTION:
-		if actor.turns == 0:
+		if actor.turns == 0 or !actor.alive:
 			await actor.get_tree().process_frame
 			continue
-		await InputLocks.lock(actor.player).wait_for_clear()
+		while !InputLocks.lock(actor.player).is_clear():
+			await InputLocks.lock(actor.player).wait_for_clear()
 		var p_lock = await InputLocks.lock(actor.player).shared_lock()
+		print(InputLocks.lock(actor.player).is_clear())
 		var action: BattleActionPlan = null
-		while action == null:
+		while action == null and actor.turns > 0 and actor.alive:
 			action = await actor.battle_planner.choose()
 			await actor.get_tree().process_frame
+		if actor.turns <= 0 or not actor.alive:
+			p_lock.call_deferred()
+			continue
+		var cancel = false
 		for rule in actor.sheet.rules:
 			if not rule.player_plan(actor, action):
-				return
+				cancel = true
+				break
+		if cancel or !actor.alive or actor.turns <= 0:
+			p_lock.call_deferred()
+			continue
 		actor.turns -= 1
-		if not actor.alive:
-			return
 		var coroutine = Promise.new(func(resolve, _reject):
 			await action.go(actor)
 			resolve.call())

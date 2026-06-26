@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://rm1l4wwrfots" path="res://database/actions/basic_attack_2.tres" id="4_sakq1"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://actor/party_member/party_component.gd" id="5_mogjf"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://battle/skillset/spell_list.gd" id="6_h7sf5"]
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="6_q4i1a"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="7_q4i1a"]
 [ext_resource type="Resource" uid="uid://1dmgkwcqe362" path="res://database/actions/rally.tres" id="9_h7sf5"]
 [ext_resource type="Resource" uid="uid://h17p46r5fjev" path="res://database/actions/free_kick.tres" id="10_q4i1a"]

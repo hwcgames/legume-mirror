@@ -32,7 +32,12 @@ var registers: Dictionary = {}
 var leader: bool:
 	get:
 		return name == Storyteller.find().story.FetchVariable("leader")
-var turns: int = 0
+var turns: int = 0:
+	set(new_turns):
+		turns = new_turns
+		if turns <= 0:
+			out_of_turns.emit()
+signal out_of_turns
 var player: int = 0
 var skill_challenge: SkillChallenge
 var battle_planner: BattlePlanner
@@ -130,6 +135,12 @@ func do_line(line: String, tags: Array[String]):
 			return func():
 				global_position += Vector3(0, 1000, 0)
 				active_component = %Component/Uninit
+		[">>>", name, "die"]:
+			return func():
+				hp_change(HpChange.new(self, self, -999999))
+		[">>>", name, "heal"]:
+			return func():
+				hp_change(HpChange.new(self, self, 999999))
 		pass
 	return null
 
@@ -161,6 +172,7 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	battle.player_action.connect(player_action)
 	battle.enemy_action.connect(enemy_action)
 	battle.done.connect(done)
+	var was_uninit = active_component is ActorUninit
 	active_component = %Component/Idle
 	if as_enemy or not is_instance_valid(sheet.party_component):
 		battle_component = sheet.enemy_component
@@ -174,14 +186,22 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 	registers["parent_before_battle"] = get_parent()
 	visual_reparent(battlefield)
 	if battlefield.phase == Battlefield.PHASE.SETUP:
-		snap_to_landmark(home_landmark, true)
+		if not was_uninit:
+			snap_to_landmark(home_landmark, true)
+		else:
+			global_transform = home_landmark.global_transform
+			goal_rotation = home_landmark.global_rotation.y
+			var t = create_tween()
+			t.tween_property(self, "scale", scale, 0.4).from(Vector3.ZERO).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			t.play()
+			mode_done()
 	else:
 		global_position = home_landmark.global_position
 		global_rotation = home_landmark.global_rotation
 		goal_rotation = home_landmark.global_rotation.y
 	joined_battle.emit(battlefield)
 	for rule in sheet.get_rules():
-		if not rule.join_battle(self):
+		if not await rule.join_battle(self):
 			break
 
 static func find(actor_name: StringName) -> Actor:
@@ -453,6 +473,9 @@ func afterimage_stationary(duration: float = 1.) -> Node3D:
 func visual_reparent(new_parent: Node3D):
 	if new_parent == get_parent():
 		return
+	if !is_instance_valid(get_viewport().get_camera_3d()):
+		reparent(new_parent, true)
+		reset_physics_interpolation()
 	var transform_relative_to_camera: Transform3D = global_transform * get_viewport().get_camera_3d().global_transform.inverse()
 	var new_transform: Transform3D = new_parent.get_viewport().get_camera_3d().global_transform * transform_relative_to_camera
 	global_transform = new_transform

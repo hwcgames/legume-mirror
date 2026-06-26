@@ -41,7 +41,7 @@ func player_action(fighter: Actor) -> bool:
 			HpChange.new(
 				fighter,
 				target,
-				(fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense)
+				-((fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense))
 			)
 		)
 		await fighter.get_tree().create_timer(1.).timeout

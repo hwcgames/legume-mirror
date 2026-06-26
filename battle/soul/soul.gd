@@ -4,7 +4,7 @@ class_name Soul
 @export var speed: float = 196.
 @export var janky_diagonals: bool = false
 @export var border_margin: float = 8.
-@export var invuln_time: float = 3.
+@export var invuln_time: float = 1.
 var players: Array[Actor] = []
 var device_index: int = -1
 var invuln: bool = false

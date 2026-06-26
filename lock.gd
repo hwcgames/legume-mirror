@@ -39,3 +39,5 @@ func wait_for_clear():
 			await shared_free
 		while exclusive_locked:
 			await exclusive_free
+func is_clear():
+	return !(shared_locks > 0 or exclusive_locked)

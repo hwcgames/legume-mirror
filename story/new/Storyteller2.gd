@@ -137,7 +137,7 @@ func _process(delta: float) -> void:
 		return
 	while story.GetCanContinue():
 		story.SwitchToDefaultFlow()
-		var line = story.Continue()
+		var line = story.Continue().strip_edges()
 		safety_save = story.SaveState()
 		var tags: Array[String] = story.GetCurrentTags()
 		await send_line(line, tags)

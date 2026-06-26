@@ -62,8 +62,9 @@ func set_player_data(player: int, key: StringName, value: Variant):
 # this is an example of how to look for an action on all devices
 func handle_join_input():
 	for device in get_unjoined_devices():
-		if MultiplayerInput.is_action_just_pressed(device, "join"):
-			join(device)
+		for action in ["join", "ui_up", "ui_left", "ui_down", "ui_right", "ui_accept"]:
+			if MultiplayerInput.is_action_just_pressed(device, action):
+				join(device)
 
 # to see if anybody is pressing the "start" action
 # this is an example of how to look for an action on all players
