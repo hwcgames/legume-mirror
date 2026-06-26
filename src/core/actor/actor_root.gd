@@ -14,8 +14,10 @@ func take_line(line: String, tags: Array[String]):
 	do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
-		[">>>", "spawn", var actor_name]:
+		["/", "spawn", var actor_name]:
 			return func():
+				if is_instance_valid(actor_name):
+					return
 				var sheet: ActorSheet = ActorSheet.find(actor_name)
 				var actor: Actor = Actor.from_sheet(sheet)
 				actor.active_component = actor.get_node("%Component/Uninit")

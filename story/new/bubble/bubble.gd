@@ -4,28 +4,53 @@ class_name Bubble
 func safety_time() -> float:
 	return INF
 
-func wants_line(line: String, tags: Array[String]) -> bool:
-	var is_dialogue = NMessage.from_str(line, tags) != null
-	var is_queue_choice = line.begins_with(">>> choice ")
-	var is_clear = line == ">>> clear"
-	var is_hide = line == ">>> close dialogue"
-	var wanted = is_dialogue or is_queue_choice or is_clear or is_hide
-	return wanted
+#func wants_line(line: String, tags: Array[String]) -> bool:
+	#var is_dialogue = NMessage.from_str(line, tags) != null
+	#var is_queue_choice = line.begins_with("/ choice ")
+	#var is_clear = line == "/ clear"
+	#var is_hide = line == "/ done"
+	#var wanted = is_dialogue or is_queue_choice or is_clear or is_hide
+	#return wanted
+#
+#func take_line(line: String, tags: Array[String]):
+	#var dialogue = NMessage.from_str(line, tags)
+	#var is_queue_choice = line.begins_with("/ choice ")
+	#var is_clear = line == "/ clear"
+	#var is_hide = line == "/ done"
+	#if dialogue != null:
+		#await message(NMessage.from_str(line, tags))
+	#elif is_queue_choice:
+		#choice_msg = line.trim_prefix("/ choice ")
+	#elif is_clear:
+		#for child in %ContentsZone.get_children():
+			#child.queue_free()
+	#elif is_hide:
+		#hide()
 
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return do_line(line, tags) is Callable
 func take_line(line: String, tags: Array[String]):
+	await do_line(line, tags).call()
+func do_line(line: String, tags: Array[String]):
 	var dialogue = NMessage.from_str(line, tags)
-	var is_queue_choice = line.begins_with(">>> choice ")
-	var is_clear = line == ">>> clear"
-	var is_hide = line == ">>> close dialogue"
-	if dialogue != null:
-		await message(NMessage.from_str(line, tags))
-	elif is_queue_choice:
-		choice_msg = line.trim_prefix(">>> choice ")
-	elif is_clear:
-		for child in %ContentsZone.get_children():
-			child.queue_free()
-	elif is_hide:
-		hide()
+	if is_instance_valid(dialogue):
+		return func():
+			await message(dialogue)
+	var words = line.split(" ", false)
+	match Array(words):
+		["/", "choice", ..]:
+			return func():
+				choice_msg = Array(words.slice(2)).reduce(func(a, b): return a + " " + b)
+		["/", "clear"]:
+			return func():
+				for child in %ContentsZone.get_children():
+					child.queue_free()
+		["/", "done"]:
+			return func():
+				for child in %ContentsZone.get_children():
+					child.queue_free()
+				hide()
+	return null
 
 func _to_string() -> String:
 	return "Main Dialogue Bubble"
@@ -86,6 +111,8 @@ var picker: Picker
 
 func new_choice(choices: Array[InkChoice]):
 	if choices.is_empty():
+		return
+	if not (is_instance_valid(choice_msg) and not choice_msg.is_empty()):
 		return
 	show()
 	if is_instance_valid(picker):

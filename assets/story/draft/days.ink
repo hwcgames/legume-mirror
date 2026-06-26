@@ -2,13 +2,13 @@
 === day_template(-> start, -> morning, -> afternoon, -> evening)
 ~ time = 0
 ->start->
->>> MORNING
+/ time morning
 ->morning->
 ~ time = 1
->>> AFTERNOON
+/ time afternoon
 ->afternoon->
 ~ time = 2
->>> EVENING
+/ time evening
 ->evening->
 ->->
 
@@ -17,29 +17,21 @@
 ->->
 // ~ time = 0
 // ->start_of_day->
-// >>> MORNING
+// / MORNING
 // ->morning->
 // ~ time = 1
-// >>> AFTERNOON
+// / AFTERNOON
 // ->afternoon->
 // ~ time = 2
-// >>> EVENING
+// / EVENING
 // ->evening->
 // ->->
-
-VAR do_hint = false
 
 = start_of_day
 
 // ->card_hint->
 
->>> day {name_day(year, month, day, weekday)}
-
-{do_hint:
-- (<>
-    ->card_hint->
-    <>)
-}
+({name_day(year, month, day, weekday)})
 
 ->->
 

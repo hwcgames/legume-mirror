@@ -8,6 +8,6 @@ func _active(delta: float):
 		lerp_angle(actor.global_rotation.y, actor.goal_rotation, 1.),
 		4. * PI * delta
 	)
-	if actor.is_on_floor():
+	if actor.is_on_floor() or !actor.gravity:
 		return
 	actor.velocity += Vector3.DOWN * 5.

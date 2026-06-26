@@ -23,8 +23,8 @@ calendar: "Meeting with Casey." 20 minutes on foot. Depart now.
 
 > Right! That! I'm ready! Why wouldn't I be? I snuck through a nuclear reactor yesterday, why would I be scared of breakfast with a human?
 
->>> fade black
->>> fade in
+/ fade black
+/ fade in
 (Outside the Clue household...)
 
 > Deep breaths. If something goes wrong, you can just disappear. She won't be able to find you in a city this big with the information she has.
@@ -162,13 +162,13 @@ cipher: No! I'm fine, uh-... I just realized I forgot my laundry.
 
 (...You finish your meal.)
 
->>> fade black
+/ fade black
 
 ->->
 = afternoon
 (You and Casey reach the store and buy groceries without incident.)
 (Aboard the train on the way back from the store...)
->>> fade in
+/ fade in
 
 casey: Hey, Cipher? Can I ask you something?
 > Oh, no.
@@ -233,14 +233,14 @@ cipher: Thanks.
 casey: Does that make us even?
 cipher: Ha... Yeah, I guess.
 
->>> fade black
+/ fade black
 ->->
 
 = evening
 
 (You're back at your apartment, lying supine on the floor.)
 
->>> fade in
+/ fade in
 > Whew.
 > Today was pretty dense.
 > And tomorrow is the first day of classes...

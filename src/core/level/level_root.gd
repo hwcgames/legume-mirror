@@ -15,6 +15,6 @@ func take_line(line: String, tags: Array[String]):
 	do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
-		[">>>", "level", "end"]:
+		["/", "level", "end"]:
 			return func(): queue_free()
 	return null

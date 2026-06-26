@@ -5,7 +5,7 @@
 = start_of_day
 ->default_day.start_of_day->
 
->>> fade in
+/ fade in
 (A signal...?)
 > Who's texting me at 4 AM?
 casey: hey uh
@@ -45,12 +45,12 @@ cipher: Well, try to get at least some sleep, we can talk more after school.
 casey: ok
 
 (You shut back down for the night.) #!b:main
->>> fade black
+/ fade black
 ->->
 
 = morning
 ->default_day.morning->
->>> fade in
+/ fade in
 
 (A signal.)
 : Group channel.
@@ -74,11 +74,11 @@ cxf: i can take a nap in class
 cxf: cipher can you take notes for me
 nh: Sure.
 cxf: yeah i'll be fineeeee
->>> fade black
+/ fade black
 ->->
 
 = afternoon
->>> fade in
+/ fade in
 
 (In the club room...)
 (Casey is blinking sleep out of her eyes.)
@@ -92,9 +92,9 @@ cipher: It's not anything special, I-I keep a journal, so I get a lot of practic
 (Casey looks your notes up and down.)
 casey: ...Maybe I should give that a try.
 
->>> fade black
+/ fade black
 (In the basement...)
->>> fade in
+/ fade in
 
 mauve: Nearly there.
 (You round the corner. Mauve walks up to a door.)
@@ -111,11 +111,11 @@ mauve: Cipher told me about your hand thing. I've got something similar.
 
 (They clear the first floor of the dungeon. Mauve is clearly a little confused at the start, but doesn't say why.)
 
->>> fade black
+/ fade black
 ->->
 
 = evening
->>> fade in
+/ fade in
 
 (In Cipher's room...)
 > ...Woof.

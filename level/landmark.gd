@@ -11,9 +11,9 @@ static func find(name: String) -> Landmark:
 	var mg := MainGame.find()
 	if is_instance_valid(mg):
 		match mg.mode:
-			MainGame.MODE.LEVEL:
-				predicate = func(l: Landmark):
-					return mg.level.is_ancestor_of(l)
+			#MainGame.MODE.LEVEL:
+				#predicate = func(l: Landmark):
+					#return mg.level.is_ancestor_of(l)
 			MainGame.MODE.BATTLE:
 				predicate = func(l: Landmark):
 					return mg.battle.is_ancestor_of(l)

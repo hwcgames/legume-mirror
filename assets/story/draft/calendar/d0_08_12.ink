@@ -1,10 +1,11 @@
 
 === d0_08_12
-->day_template(-> default_day.start_of_day, -> morning, -> afternoon,->  evening)->
+->day_template(-> default_day.start_of_day, -> morning, -> afternoon, -> evening)->
 ->->
 
 = morning
->>> cut black
+/ cut black
+-> skip_news
 > WESTON GAZETTE #v:typed
 > 20XX-07-18
 > MISSING CHILD ALERT ISSUED FOR 6-YEAR-OLD "BRAYDEN"
@@ -36,8 +37,20 @@
 
 > 20XX-08-03
 > MANIFESTO FOUND AT COURTHOUSE, POLITICALLY MOTIVATED?
-
->>> fade in
+- (skip_news)
+/ level intro default
+/ spawn intro_train
+/ spawn cipher
+/ intro_train float
+/ intro_train capture
+/ intro_train appear train_entry
+/ intro_train follow path rails
+/ cipher capture
+/ cipher appear train_cipher_seat
+/ cipher pose sit
+/ cipher act open_journal
+/ camera 
+/ fade in
 
 (Cipher is aboard a train crossing a bridge.)
 (They're alone, apart from someone asleep on the other end of the car.)
@@ -50,10 +63,14 @@
 // It's a curious emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to start over like this.
 - (test)
 > I've been thinking about what this means. I've never had to tell someone [i]who I am[/i] before. Will it be difficult? Scary? I've read that a person's "personality" is like a muscle: it develops when you have other people to bounce it off of, but atrophes when you're alone. Will they be able to tell I haven't been able to use mine?
+> Even just this - it's my first time writing my own words for someone else to read. 
 
-(The train announces its approach to Weston Pier.)
+/ camera focus_on_speaker
+/ sound train_bingbong
+intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the left at Weston Pier. #v:speaker
 
-> Thanks for humoring me, #v:written
+
+> Goodbye, #v:written
 > A Fellow Stranger.
 
 > P.S: I'm not sure if I can call you "mom," but... Regardless, if you're reading this somehow: thanks for everything. Sorry if I got you fired.
@@ -83,9 +100,10 @@
 > Wh-wait, have I...?
 
 (The world dissolves into blocky noise. Monospace text flies past the screen before fading out.)
+(You perform a diagnostic.)
+(You hop on your toes.)
 
-> My body's real as far as I can tell, but the forces are off by almost a percent.
-> (Cipher hops on their toes.)
+> My body's real as far as I can tell, but the forces are off by almost ten percent.
 > Don't tell me... The whole time, I've-?
 
 (Cipher hears a scream from further down the alley.)
@@ -94,7 +112,70 @@
 > There's a human in trouble.
 > If there's any chance this isn't a simulation..!
 
-(They encounter Casey, lying on the ground, with a strange creature standing over her. Tutorial battle...)
+-> tutorial_battle
+= tutorial_battle
+
+(They encounter Casey, lying on the ground, with a strange creature standing over her.)
+/ spawn cipher
+/ battle setup devel
+/ spawn static/spookyguy
+/ cipher joins battle
+/ spookyguy joins battle
+/ battle!
+
++ [battle top]
+-
+/ battle lock
+(You meet the creature's eyes.)
+(There's a thrum of energy around you.)
+/ done
+/ battle unlock
+
++ [party hits]
+-
++ [battle enemy action]
+-
+/ battle lock
+/ spookyguy state 1
+/ sound roar
+/ spookyguy act roar #!W:main
+(The creature lets out a gurgling roar.) #!W:main
+> Good. Its attention is off of the human.
+/ spookyguy act roar
+(Dodge using the arrow keys.)
+/ done
+/ battle unlock
+
++ [battle top]
++ [battle lost]
+    (Death message.)
+    -> DONE
+-
+/ battle lock
+/ spookyguy state 2
+> It's fighting like I didn't even hit it...
+> This is a losing game.
+(Take special actions in combat using the "tactics" button.)
+/ done
+/ battle unlock
++ [cipher attempts to flee]
++ [battle lost]
+    (Death message.)
+    ->DONE
+-
+/ casey disappear
+/ battle lock
+> I can't defend us both at once...
+> I need to be careful now.
+/ done
+/ battle unlock
+
++ [battle won]
++ [battle lost]
+    (Death message.)
+    -> DONE
+-
+
 
 > ...Oh!
 > She just moved.

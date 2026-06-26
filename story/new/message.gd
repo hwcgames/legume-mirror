@@ -28,7 +28,7 @@ static var last_character: String = ""
 static var last_voice: Voice
 
 static func from_str(line: String, tags: Array[String]) -> NMessage:
-	if line.begins_with(">>>"):
+	if line.begins_with("/"):
 		return null
 	var m = NMessage.new()
 	m.tags = tags

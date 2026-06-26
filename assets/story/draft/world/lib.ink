@@ -6,7 +6,7 @@ VAR location = "uninit"
 === world_map
 VAR map_accessible = true
 ~ location = "map"
->>> world map
+/ world map
 
 {map_accessible:
     <- northold
@@ -16,7 +16,7 @@ VAR map_accessible = true
 }
 + [map back]
 -
->>> exit map
+/ exit map
 ->->
 = northold
 + {apartment_accessible} [map apartment]

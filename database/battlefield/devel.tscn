@@ -455,7 +455,7 @@ remote_path = NodePath("../../Cube2")
 update_position = false
 
 [node name="Cube2" type="MeshInstance3D" parent="." unique_id=815924883]
-transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 4.5, 0.8689998, -2)
+transform = Transform3D(0.7071067, 0.70710677, -8.4293696e-08, -0.579228, 0.57922786, -0.57357645, -0.4055798, 0.40557972, 0.81915206, 4.5, 0.8689998, -2)
 mesh = SubResource("BoxMesh_rm46o")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047568903]

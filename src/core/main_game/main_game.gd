@@ -34,7 +34,7 @@ func take_line(line: String, tags: Array[String]):
 	do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
-		[">>>", "level", var name, var room]:
+		["/", "level", var name, var room]:
 			var level_r = load("res://database/level/%s.tres" % name)
 			if !(is_instance_valid(level_r) and level_r is Level):
 				printerr("WARNING: Invalid level.")
@@ -44,7 +44,7 @@ func do_line(line: String, tags: Array[String]):
 				return null
 			return func():
 				load_level(name, room)
-		[">>>", "battle", var environment_name]:
+		["/", "battle", "setup", var environment_name]:
 			return func():
 				if is_instance_valid(battle):
 					printerr("WARNING: Battle already active!")
@@ -57,7 +57,7 @@ func do_line(line: String, tags: Array[String]):
 	return null
 func notice_line(line: String, tags: Array[String]):
 	match line.split(" ", false):
-		[">>>", "level", var name, "room", var room]:
+		["/", "level", var name, "room", var room]:
 			ResourceLoader.load_threaded_request("res://database/level/%s.tres" % name)
 			ResourceLoader.load_threaded_request("res://database/room/%s.tres" % room)
 

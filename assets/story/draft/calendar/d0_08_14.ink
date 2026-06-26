@@ -20,11 +20,11 @@ emily: Good morning, class!
 (The students fall silent.)
 emily: Let's get the boilerplate out of the way. You can call me Dr. Fitzpatrick, I will be your history teacher this year. You can pick up a copy of the syllabus at the front of the class if you haven't already...
 
->>> fade black
+/ fade black
 ->->
 
 = afternoon
->>> fade in
+/ fade in
 
 (After class, in the halls...)
 (Casey meets up with you as you're about to leave.)
@@ -37,9 +37,9 @@ casey: Check this out.
 cipher: Do you think someone there might know what happened?
 casey: Yeah, it says they're in room 209.
 
->>> fade black
+/ fade black
 (At the PHO club room...)
->>> fade in
+/ fade in
 
 (There's nothing on the door...)
 casey: Is this it...?
@@ -72,11 +72,11 @@ mauve: Have you seen anything else? Anything special you can do?
 cipher: ...No? Why do you ask?
 mauve: Just a feeling.
 
->>> fade black
+/ fade black
 ->->
 
 = evening
->>> fade in
+/ fade in
 
 (In Cipher's apartment... A signal!)
 
@@ -98,7 +98,7 @@ wnw: I'd prefer if you didn't.
 nh: Why?
 (A moment's pause.)
 > [b]I don't think I ever told her my name?[/b]
->>> fade black
+/ fade black
 ->->
 
 

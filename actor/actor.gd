@@ -119,28 +119,42 @@ func _ready():
 func wants_line(line: String, tags: Array[String]) -> bool:
 	return do_line(line, tags) is Callable
 func take_line(line: String, tags: Array[String]):
-	do_line(line, tags).call()
+	await do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
-		[">>>", name, "appear", var landmark_name]:
+		["/", name, "appear", var landmark_name]:
 			var landmark: Landmark = Landmark.find(landmark_name)
 			if !is_instance_valid(landmark):
 				print("Can't find landmark %s" % landmark_name)
 				return null
 			return func():
 				global_transform = landmark.global_transform
+				goal_rotation = landmark.global_rotation.y
 				if active_component is ActorUninit:
 					mode_done()
-		[">>>", name, "disappear"]:
+		["/", name, "disappear"]:
 			return func():
 				global_position += Vector3(0, 1000, 0)
 				active_component = %Component/Uninit
-		[">>>", name, "die"]:
+		["/", name, "die"]:
 			return func():
 				hp_change(HpChange.new(self, self, -999999))
-		[">>>", name, "heal"]:
+		["/", name, "heal"]:
 			return func():
 				hp_change(HpChange.new(self, self, 999999))
+		["/", name, "float"]:
+			return func():
+				gravity = false
+		["/", name, "fall"]:
+			return func():
+				gravity = true
+		["/", name, "state", var n]:
+			var state_n := int(n)
+			return func():
+				state = state_n
+				if planned_pattern and is_instance_valid(battlefield):
+					planned_pattern = null
+					battlefield.assign_patterns()
 		pass
 	return null
 
@@ -414,6 +428,7 @@ var captured: bool = false:
 			return
 		captured = new_cap
 		mode_done()
+var gravity: bool = true
 signal new_mode(mode: ActorComponent)
 var pose: String = "normal"
 

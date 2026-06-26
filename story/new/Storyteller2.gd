@@ -97,12 +97,12 @@ func choice_choosers(choice: InkChoice) -> Array[Node]:
 
 func wants_line(message: String, tags: Array[String]) -> bool:
 	match message.split(" ", false):
-		[">>>", "divert", var address]:
+		["/", "divert", var address]:
 			return true
 	return false
 func take_line(message: String, tags: Array[String]):
 	match message.split(" ", false):
-		[">>>", "divert", var address]:
+		["/", "divert", var address]:
 			story.ChoosePathString(address)
 
 signal new_choice(choices: Array[InkChoice])
@@ -211,7 +211,7 @@ static func ordinal(num: int) -> String:
 			2: suffix = "nd"
 			3: suffix = "rd"
 			_: suffix = "th"
-	return str(num)+suffix
+	return str(num) + suffix
 static func name_day(year: int, month: int, day: int, weekday: int) -> String:
 	var year_name: String
 	match year:

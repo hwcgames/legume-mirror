@@ -289,7 +289,7 @@ func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 		button.text = parley.label()
 		button.tooltip_text = parley.description()
 		button.pressed.connect(chosen_parley.emit.bind(parley))
-		button.disabled = not parley.allowed(party_member)
+		button.disabled = not parley.allowed(party_member, enemy)
 		selector.add_child(button)
 	%ParleyTab.show()
 	if !parley_buttons.is_empty():

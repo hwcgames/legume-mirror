@@ -4,7 +4,7 @@
 ->->
 
 = afternoon
->>> fade in
+/ fade in
 (After school...)
 
 (Monospace text flies past the screen.)
@@ -55,7 +55,7 @@ cipher: And now we're even.
 (She nods sagely.)
 mauve: Mutually assured destruction.
 
->>> confidant mauve 1
+/ confidant mauve 1
 
 (You stand to leave.)
 mauve: Hang on.

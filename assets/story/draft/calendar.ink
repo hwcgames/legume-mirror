@@ -131,7 +131,7 @@ Calendar test:
     - 1: ->y1->
     - else: ->END
 }
->>> EOD
+/ EOD
 + [Move on.]
 -
 ~ next_day()
