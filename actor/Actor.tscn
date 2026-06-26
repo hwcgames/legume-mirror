@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkkwsmv06k637" path="res://actor/actor.gd" id="1_0oyms"]
 [ext_resource type="Script" uid="uid://bwisdhgxnk2yl" path="res://actor/component/actor_idle.gd" id="2_3lm2u"]
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_fe22u"]
+[ext_resource type="Script" uid="uid://bs5il3y5goma5" path="res://actor/component/actor_uninit.gd" id="2_h68fb"]
 [ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://story/interactable.gd" id="3_fe22u"]
 [ext_resource type="Script" uid="uid://3nbu03qev8ae" path="res://actor/component/actor_human.gd" id="3_k3ftn"]
 [ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://canvas_layer_follows_parent.gd" id="4_a26hr"]
@@ -65,6 +66,9 @@ metadata/_custom_type_script = "uid://dkkwsmv06k637"
 
 [node name="Component" type="Node" parent="." unique_id=1071448262]
 unique_name_in_owner = true
+
+[node name="Uninit" type="Node" parent="Component" unique_id=499509284]
+script = ExtResource("2_h68fb")
 
 [node name="Idle" type="Node" parent="Component" unique_id=1480240457]
 script = ExtResource("2_3lm2u")

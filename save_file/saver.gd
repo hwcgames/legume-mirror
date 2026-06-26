@@ -29,7 +29,6 @@ func wants_line(line: String, tags: Array[String]) -> bool:
 func take_line(line: String, tags: Array[String]):
 	do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
-	print(line.split(" ", false))
 	match Array(line.split(" ", false)):
 		[">>>", "save"]:
 			return func():

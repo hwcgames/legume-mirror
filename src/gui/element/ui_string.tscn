@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bm01e26km38fx"]
+
+[ext_resource type="Script" uid="uid://ctkuep3ftt4bl" path="res://src/gui/element/ui_string.gd" id="1_g75px"]
+[ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="2_2frdp"]
+
+[sub_resource type="Curve" id="Curve_2frdp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50043404, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0006139316, 0.0, 0, 0]
+point_count = 3
+
+[node name="Line2D" type="Line2D" unique_id=1829088125 node_paths=PackedStringArray("target")]
+position = Vector2(444.99997, 331)
+rotation = 0.107767545
+width = 4.0
+width_curve = SubResource("Curve_2frdp")
+antialiased = true
+script = ExtResource("1_g75px")
+target = NodePath("Node2D")
+handle_len = 196.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1575860791]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_2frdp")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=225286427]
+top_level = true
+position = Vector2(292, 187.00002)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1637460956]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_2frdp")

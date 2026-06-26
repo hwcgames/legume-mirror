@@ -31,6 +31,11 @@ top_radius = 0.0
 height = 1.0
 radial_segments = 4
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_k2i2f"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 1.6
+
 [node name="test_costume" type="Node3D" unique_id=712750896 node_paths=PackedStringArray("sprite", "head")]
 script = SubResource("GDScript_bwtku")
 sprite = NodePath("AnimatedSprite3D")
@@ -61,3 +66,8 @@ skeleton = NodePath("../AnimationPlayer")
 
 [node name="Head" type="Marker3D" parent="." unique_id=357107110]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5725505, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=144483231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+cast_shadow = 3
+mesh = SubResource("CylinderMesh_k2i2f")

@@ -1,0 +1,469 @@
+[gd_scene format=3 uid="uid://ccr3fgha4vs2l"]
+
+[ext_resource type="Script" uid="uid://c5xnu2n206sin" path="res://src/battle/battle_environment.gd" id="1_blbpg"]
+[ext_resource type="Shader" uid="uid://3oqou7dkrwrl" path="res://vfx/keiichi.gdshader" id="1_vegfx"]
+[ext_resource type="Texture2D" uid="uid://cwvxawip4ho4t" path="res://assets/art/devel/kenney_prototype-textures/PNG/Orange/texture_08.png" id="2_blbpg"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_blbpg"]
+
+[sub_resource type="Curve" id="Curve_3r65r"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1164993), 0.0, 0.30565885, 0, 0, Vector2(0.9105075, 0), -1.8184845, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kgxvl"]
+curve = SubResource("Curve_3r65r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n633h"]
+render_priority = 0
+shader = ExtResource("1_vegfx")
+shader_parameter/albedo_color = Color(0, 0, 0, 1)
+shader_parameter/albedo_texture = ExtResource("2_blbpg")
+shader_parameter/shade_color = Color(0.31, 0, 0, 1)
+shader_parameter/exp_curve = SubResource("CurveTexture_kgxvl")
+shader_parameter/exp_mul = 4.0
+shader_parameter/rotate = 1.147
+shader_parameter/uv_offset = Vector2(0.4, 0.6)
+shader_parameter/uv_scale = Vector2(-0.625, 0.625)
+shader_parameter/line_weight = 1.2
+shader_parameter/base_line_interval = 128.0
+shader_parameter/wobble_amt = 2.0
+shader_parameter/skip = false
+shader_parameter/kernel_size = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5p0aq"]
+next_pass = SubResource("ShaderMaterial_n633h")
+
+[sub_resource type="QuadMesh" id="QuadMesh_46f2f"]
+material = SubResource("StandardMaterial3D_5p0aq")
+size = Vector2(5, 5)
+
+[sub_resource type="Curve" id="Curve_vegfx"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1164993), 0.0, 0.30565885, 0, 0, Vector2(0.9105075, 0), -1.8184845, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_blbpg"]
+curve = SubResource("Curve_vegfx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r65r"]
+render_priority = 0
+shader = ExtResource("1_vegfx")
+shader_parameter/albedo_color = Color(0, 0, 0, 1)
+shader_parameter/albedo_texture = ExtResource("2_blbpg")
+shader_parameter/shade_color = Color(0.31, 0, 0, 1)
+shader_parameter/exp_curve = SubResource("CurveTexture_blbpg")
+shader_parameter/exp_mul = 4.0
+shader_parameter/rotate = -1.147
+shader_parameter/uv_offset = Vector2(0.4, 0.6)
+shader_parameter/uv_scale = Vector2(0.625, 0.625)
+shader_parameter/line_weight = 1.2
+shader_parameter/base_line_interval = 128.0
+shader_parameter/wobble_amt = 2.0
+shader_parameter/skip = false
+shader_parameter/kernel_size = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgxvl"]
+next_pass = SubResource("ShaderMaterial_3r65r")
+
+[sub_resource type="QuadMesh" id="QuadMesh_k2i2f"]
+material = SubResource("StandardMaterial3D_kgxvl")
+size = Vector2(5, 5)
+
+[sub_resource type="Curve" id="Curve_blbpg"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1164993), 0.0, 0.30565885, 0, 0, Vector2(0.9105075, 0), -1.8184845, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3r65r"]
+curve = SubResource("Curve_blbpg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kgxvl"]
+render_priority = 0
+shader = ExtResource("1_vegfx")
+shader_parameter/albedo_color = Color(0, 0, 0, 1)
+shader_parameter/albedo_texture = ExtResource("2_blbpg")
+shader_parameter/shade_color = Color(0.31, 0, 0, 1)
+shader_parameter/exp_curve = SubResource("CurveTexture_3r65r")
+shader_parameter/exp_mul = 4.2
+shader_parameter/rotate = 0.546
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1.5, 1)
+shader_parameter/line_weight = 1.2
+shader_parameter/base_line_interval = 128.0
+shader_parameter/wobble_amt = 2.0
+shader_parameter/skip = false
+shader_parameter/kernel_size = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n633h"]
+next_pass = SubResource("ShaderMaterial_kgxvl")
+
+[sub_resource type="BoxMesh" id="BoxMesh_k2i2f"]
+material = SubResource("StandardMaterial3D_n633h")
+
+[sub_resource type="Curve" id="Curve_kgxvl"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.1164993), 0.0, 0.30565885, 0, 0, Vector2(0.9105075, 0), -1.8184845, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_n633h"]
+curve = SubResource("Curve_kgxvl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5p0aq"]
+render_priority = 0
+shader = ExtResource("1_vegfx")
+shader_parameter/albedo_color = Color(0, 0, 0, 1)
+shader_parameter/albedo_texture = ExtResource("2_blbpg")
+shader_parameter/shade_color = Color(0.31, 0, 0, 1)
+shader_parameter/exp_curve = SubResource("CurveTexture_n633h")
+shader_parameter/exp_mul = 4.2
+shader_parameter/rotate = -0.546
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1.5, 1)
+shader_parameter/line_weight = 1.2
+shader_parameter/base_line_interval = 128.0
+shader_parameter/wobble_amt = 2.0
+shader_parameter/skip = false
+shader_parameter/kernel_size = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46f2f"]
+next_pass = SubResource("ShaderMaterial_5p0aq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_rm46o"]
+material = SubResource("StandardMaterial3D_46f2f")
+
+[sub_resource type="Animation" id="Animation_vegfx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.61086524, -2.5725901e-08, -0.78539824)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.5, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Right:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Left:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.5, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Left:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_blbpg"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Vector3(0.61086524, 2.951352, -0.7853982), Vector3(0.61086524, 0, -0.7853982)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector3(22.5, 0, 0), Vector3(2.5, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Right:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Left:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector3(-22.5, 0, 0), Vector3(-2.5, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Left:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3r65r"]
+resource_name = "loop"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(0.3, 0.3, 0.3, 0.3, 1),
+"update": 0,
+"values": [Vector3(0.61086524, -2.5725901e-08, -0.78539824), Vector3(0.61086524, 1.5707964, -0.7853982), Vector3(0.61086524, 3.1415927, -0.7853982), Vector3(0.61086524, 4.712389, -0.7853982), Vector3(0.61086524, 6.2831855, -0.7853982)]
+}
+
+[sub_resource type="Animation" id="Animation_kgxvl"]
+resource_name = "out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.4, 0.4),
+"update": 0,
+"values": [Vector3(0.61086524, 0, -0.7853982), Vector3(0.61086524, 2.951352, -0.7853982)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.4, 0.4),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 0.3),
+"update": 0,
+"values": [Vector3(2.5, 0, 0), Vector3(22.5, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Right:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 0.3),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Left:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 0.3),
+"update": 0,
+"values": [Vector3(-2.5, 0, 0), Vector3(-22.5, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Left:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.3, 0.3),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgxvl"]
+_data = {
+&"RESET": SubResource("Animation_vegfx"),
+&"in": SubResource("Animation_blbpg"),
+&"loop": SubResource("Animation_3r65r"),
+&"out": SubResource("Animation_kgxvl")
+}
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ehsfc"]
+
+[node name="Devel" type="Node3D" unique_id=1964808635 node_paths=PackedStringArray("players", "enemies", "player")]
+script = ExtResource("1_blbpg")
+players = [NodePath("Ally1"), NodePath("Ally2"), NodePath("Ally3"), NodePath("Ally4")]
+enemies = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3"), NodePath("Enemy4")]
+player = NodePath("AnimationPlayer")
+
+[node name="Left" type="MeshInstance3D" parent="." unique_id=1297216651]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.5, 0, 0)
+mesh = SubResource("QuadMesh_46f2f")
+
+[node name="Right" type="MeshInstance3D" parent="." unique_id=87349819]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.5, 0, 0)
+mesh = SubResource("QuadMesh_k2i2f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=144148666]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 2, 6)
+fov = 70.0
+
+[node name="Ally1" type="Marker3D" parent="." unique_id=224424501]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.4, 0.1, -1)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally2" type="Marker3D" parent="." unique_id=172256993]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.8, 0.1, 0)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally3" type="Marker3D" parent="." unique_id=1830315454]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2, 0.1, 1)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally4" type="Marker3D" parent="." unique_id=1957662508]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.2, 0.1, 2)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy" type="Marker3D" parent="." unique_id=1110886193]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 1.4, 0.1, -1)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy2" type="Marker3D" parent="." unique_id=878629601]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 1.8, 0.1, 0)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy3" type="Marker3D" parent="." unique_id=1281439723]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 2, 0.1, 1)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy4" type="Marker3D" parent="." unique_id=1322461120]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.2, 0.1, 2)
+script = ExtResource("4_blbpg")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=431875501]
+transform = Transform3D(0.6901267, -0.69902945, 0.18730436, 0, 0.25881907, 0.96592593, -0.7236886, -0.66661125, 0.17861794, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Cube" type="MeshInstance3D" parent="." unique_id=1501657807]
+transform = Transform3D(0.7071067, 0.7071068, -2.1073426e-08, -0.579228, 0.5792279, -0.57357645, -0.4055798, 0.40557978, 0.81915206, -4.5, 0.869, -2)
+mesh = SubResource("BoxMesh_k2i2f")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Cube" unique_id=846056324]
+transform = Transform3D(1, 2.9802322e-08, -5.9604645e-08, 0, 0.9999999, -2.9802322e-08, 0, 0, 1, 6.3639607, 6.3639607, 0)
+remote_path = NodePath("../../Cube2")
+update_position = false
+
+[node name="Cube2" type="MeshInstance3D" parent="." unique_id=815924883]
+transform = Transform3D(0.7071067, 0.70710677, -8.4293696e-08, -0.579228, 0.57922786, -0.57357645, -0.4055798, 0.40557972, 0.81915206, 4.5, 0.8689998, -2)
+mesh = SubResource("BoxMesh_rm46o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047568903]
+libraries/ = SubResource("AnimationLibrary_kgxvl")
+autoplay = &"in"
+next/in = &"loop"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=106693814]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1788800912]
+shape = SubResource("WorldBoundaryShape3D_ehsfc")

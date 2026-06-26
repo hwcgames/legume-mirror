@@ -8,10 +8,14 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 uniform sampler3D wobble;
 uniform sampler2D exp_curve;
 uniform float exp_mul = 4.;
+uniform float rotate = 0.;
+uniform vec2 uv_offset = vec2(0., 0.);
+uniform vec2 uv_scale = vec2(1., 1.);
 uniform float line_weight = 1;
 uniform float base_line_interval = 20.;
 uniform float wobble_amt = 2.;
 uniform bool skip = false;
+uniform int kernel_size = 3;
 
 //void vertex() {
 	// Called for every vertex the material is visible on.
@@ -26,12 +30,12 @@ float _hatch(float interval, float weight, vec2 fragcoord, vec2 direction, vec2 
 
 void fragment() {
 	float brightness = 0.;
-	for (int dx = -3; dx <= 3; dx++) {
-		for (int dy = -3; dy <= 3; dy++) {
+	for (int dx = -kernel_size; dx <= kernel_size; dx++) {
+		for (int dy = -kernel_size; dy <= kernel_size; dy++) {
 			brightness += length(texture(screen_texture, SCREEN_UV + (vec2(float(dx), float(dy)) / VIEWPORT_SIZE)).rgb);
 		}
 	}
-	brightness /= 49.;
+	brightness /= pow(1. + 2. * float(kernel_size), 2.);
 	highp float time = TIME / 5.;
 	vec2 wobble_by = vec2(texture(wobble, vec3(UV, time)).r, texture(wobble, vec3(UV, time + 0.58)).r) * wobble_amt;
 	//vec3 camera_x = (vec4(1, 0, 0, 0) * INV_VIEW_MATRIX * MODEL_MATRIX).xyz;
@@ -42,7 +46,7 @@ void fragment() {
 	float line_interval = base_line_interval / pow(2, floor(exponent));
 	float progress = smoothstep(0., 1., mod(exponent, 1.));
 	vec4 forward = INV_VIEW_MATRIX * vec4(0, 0, 1, 0);
-	float angle = atan(forward.z, forward.x);
+	float angle = atan(forward.z, forward.x) + rotate;
 	mat2 rotation = mat2(
 		vec2(cos(angle), -sin(angle)),
 		vec2(sin(angle), cos(angle))
@@ -85,7 +89,7 @@ void fragment() {
 	}
 	float hatch = min(less_hatch, more_hatch);//less_hatch * (1. - progress) + more_hatch * progress;
 	hatch = clamp(hatch, 0., 1.);
-	vec4 tex = texture(albedo_texture, UV);
+	vec4 tex = texture(albedo_texture, (UV + uv_offset) * uv_scale);
 	vec4 albedo = tex * tex.a + albedo_color * (1. - tex.a);
 	vec4 color = shade_color * (1. - hatch) + albedo * hatch;
 	ALPHA = color.a;

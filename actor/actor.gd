@@ -97,6 +97,7 @@ var sp: float:
 
 func _ready():
 	add_to_group("actor")
+	add_to_group("story_listener")
 	%Afterimager.target = costume
 	goal_rotation = global_rotation.y
 	%Telegraph.hide()
@@ -109,6 +110,28 @@ func _ready():
 				player_joined(device)
 	if interactable:
 		interactable.choices.insert(0, "%s" % human_name)
+
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return do_line(line, tags) is Callable
+func take_line(line: String, tags: Array[String]):
+	do_line(line, tags).call()
+func do_line(line: String, tags: Array[String]):
+	match Array(line.split(" ", false)):
+		[">>>", name, "appear", var landmark_name]:
+			var landmark: Landmark = Landmark.find(landmark_name)
+			if !is_instance_valid(landmark):
+				print("Can't find landmark %s" % landmark_name)
+				return null
+			return func():
+				global_transform = landmark.global_transform
+				if active_component is ActorUninit:
+					mode_done()
+		[">>>", name, "disappear"]:
+			return func():
+				global_position += Vector3(0, 1000, 0)
+				active_component = %Component/Uninit
+		pass
+	return null
 
 func player_joined(n: int):
 	if PlayerManager.get_player_device(n) == -1:
@@ -147,6 +170,7 @@ func join_battle(battle: Battlefield, as_enemy: bool = false):
 		await sheet.party_component._join_battle(self, battlefield)
 	registers["position_before_battle"] = global_position
 	registers["rotation_before_battle"] = global_rotation.y
+	registers["transform_before_battle"] = global_transform
 	registers["parent_before_battle"] = get_parent()
 	visual_reparent(battlefield)
 	if battlefield.phase == Battlefield.PHASE.SETUP:
@@ -276,9 +300,9 @@ func done(player_victory: bool):
 			break
 	sheet.rules = sheet.rules.filter(func(r): return r.stacks > 0)
 	await battle_component._done(self, player_victory)
-	visual_reparent(registers["parent_before_battle"])
-	snap_to_position(registers["position_before_battle"], registers["rotation_before_battle"], true)
 	battlefield = null
+	visual_reparent(registers["parent_before_battle"])
+	await snap_to_position(registers["position_before_battle"], registers["rotation_before_battle"], true)
 	mode_done()
 
 func snap_to_landmark(landmark: Node3D, afterimages: bool = false):
@@ -293,6 +317,7 @@ func snap_to_landmark(landmark: Node3D, afterimages: bool = false):
 	#tween.play()
 	#await tween.finished
 	await snap_to_position(landmark.global_position, landmark.global_rotation.y, afterimages)
+	global_transform = landmark.global_transform
 func snap_to_position(position: Vector3, rotation: float = INF, afterimages: bool = false):
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
@@ -372,12 +397,6 @@ var captured: bool = false:
 signal new_mode(mode: ActorComponent)
 var pose: String = "normal"
 
-func wants_line(line: String, tags: Array[String]) -> bool:
-	return components.any(func(c: ActorComponent): return c.wants_line(line, tags))
-func take_line(line: String, tags: Array[String]):
-	var idx = components.find_custom(func(c: ActorComponent): return c.wants_line(line, tags))
-	components[idx].take_line(line, tags)
-
 func glide_to(target, speed = 10., rotation = INF, afterimage_duration: float = 0., afterimage_count: int = 0):
 	var glide: ActorGlide = %Component/Glide
 	glide.target = (func(): return target.global_position) if target is Node3D else (func(): return target)
@@ -432,10 +451,10 @@ func afterimage_stationary(duration: float = 1.) -> Node3D:
 	return image
 
 func visual_reparent(new_parent: Node3D):
-	print(global_position)
+	if new_parent == get_parent():
+		return
 	var transform_relative_to_camera: Transform3D = global_transform * get_viewport().get_camera_3d().global_transform.inverse()
 	var new_transform: Transform3D = new_parent.get_viewport().get_camera_3d().global_transform * transform_relative_to_camera
 	global_transform = new_transform
 	reparent(new_parent, true)
-	print(global_position)
 	reset_physics_interpolation()

@@ -66,3 +66,15 @@ func copy():
 	for i in range(len(out.rules)):
 		out.rules[i] = out.rules[i].copy()
 	return out
+
+static func find(name: String) -> ActorSheet:
+	var saver = Saver.find()
+	if is_instance_valid(saver) and name in saver.current_save.character_sheets:
+		return saver.current_save.character_sheets
+	var player: ActorSheet = load("res://database/actors/%s.tres" % name)
+	if is_instance_valid(player):
+		return player
+	var enemy: ActorSheet = load("res://database/enemy/%s.tres" % name)
+	if is_instance_valid(enemy):
+		return enemy
+	return null

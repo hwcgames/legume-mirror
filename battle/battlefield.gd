@@ -52,6 +52,37 @@ static func find() -> Battlefield:
 func _ready() -> void:
 	hud.hide()
 	add_to_group("battlefield")
+	add_to_group("story_listener")
+
+func wants_line(line: String, tags: Array[String]) -> bool:
+	match Array(line.split(" ", false)):
+		[">>>", _, "joins", "battle"], [">>>", _, "joins", "battle", "as", "player"], [">>>", _, "joins", "battle", "as", "enemy"]:
+			return true
+		[">>>", "battle!"]:
+			return true
+	return false
+func take_line(line: String, tags: Array[String]):
+	match Array(line.split(" ", false)):
+		[">>>", var actor_name, "joins", "battle"]:
+			var actor = Actor.find(actor_name)
+			assert(is_instance_valid(actor), "Actor should exist")
+			if is_instance_valid(actor.sheet.party_component):
+				players.push_back(actor)
+			elif is_instance_valid(actor.sheet.enemy_component):
+				enemies.push_back(actor)
+			else:
+				printerr("Tried to add actor %s to the battle, but I don't know where to place them.")
+		[">>>", var actor_name, "joins", "battle", "as", "player"]:
+			var actor = Actor.find(actor_name)
+			assert(is_instance_valid(actor), "Actor should exist")
+			players.push_back(actor)
+		[">>>", var actor_name, "joins", "battle", "as", "enemy"]:
+			var actor = Actor.find(actor_name)
+			assert(is_instance_valid(actor), "Actor should exist")
+			enemies.push_back(actor)
+		[">>>", "battle!"]:
+			battle()
+
 
 func _process(delta: float) -> void:
 	if phase == PHASE.ENEMY_ACTION and not players.any(func(p: Actor): return p.alive):
