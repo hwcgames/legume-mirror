@@ -16,7 +16,14 @@ var players_inside: int = 0
 signal player_entered(player: Actor)
 signal player_exited(player: Actor)
 
+static var room_table: Dictionary[String, Room] = {}
+static func find(room_name: String) -> Room:
+	return room_table[room_name] if room_name in room_table else null
+
 func _ready():
+	if name not in room_table:
+		room_table[name] = self
+		tree_exiting.connect(func(): room_table.erase(name))
 	keep_loaded_lock.shared_take.connect(update_loading)
 	keep_loaded_lock.shared_free.connect(update_loading)
 	body_entered.connect(_body_entered)
