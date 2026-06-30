@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Encounter" format=3 uid="uid://cix704qsq4o0j"]
 
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="1_2w8yt"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="1_i1dea"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="1_2w8yt"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://src/actor/enemy/enemy_factory.gd" id="1_i1dea"]
 [ext_resource type="Resource" uid="uid://hsovlpvfc1fv" path="res://database/enemy/static/deliberatestew.tres" id="2_5ps6b"]
-[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="2_x58px"]
-[ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="3_i1dea"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://src/actor/enemy/enemy_table.gd" id="2_x58px"]
+[ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://src/battle/encounter/encounter.gd" id="3_i1dea"]
 
 [sub_resource type="Resource" id="Resource_i0il1"]
 script = ExtResource("2_x58px")

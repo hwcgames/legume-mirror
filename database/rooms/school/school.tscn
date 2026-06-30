@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dty6oxcwp1okh"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_tw5bv"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_tw5bv"]
 [ext_resource type="PackedScene" uid="uid://b1cd0k6ikqx7j" path="res://assets/rooms/school.blend" id="2_bxaoc"]
-[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="3_bdagx"]
-[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="4_07h7n"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="3_bdagx"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="4_07h7n"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_bdagx"]
-[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="6_qx32x"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://src/level/leader_follower.gd" id="6_qx32x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n00oq"]
 size = Vector3(41, 11, 41)

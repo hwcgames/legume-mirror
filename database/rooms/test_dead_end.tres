@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://bu2dfqvryiut0"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://bu2dfqvryiut0"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_twlq2"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_twlq2"]
 [ext_resource type="PackedScene" uid="uid://csudlkx55lorl" path="res://database/rooms/test_dead_end.tscn" id="1_w1sqp"]
 
 [resource]

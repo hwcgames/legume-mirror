@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cqi1bw725k76o"]
-
-[ext_resource type="Script" uid="uid://nueu4xp13uhs" path="res://level/camera_trigger.gd" id="1_4oq51"]
-
-[node name="CameraTrigger" type="Area3D" unique_id=1898166500]
-script = ExtResource("1_4oq51")
-metadata/_custom_type_script = "uid://nueu4xp13uhs"

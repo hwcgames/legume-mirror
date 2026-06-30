@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cm486l7efwhqx"]
 
-[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_146e2"]
-[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_11wvb"]
-[ext_resource type="Script" uid="uid://cgkb4pow07na" path="res://battle/bullet/components/wander.gd" id="3_0lpq3"]
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://src/battle/bullet/bullet.gd" id="1_146e2"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://src/battle/bullet/component.gd" id="2_11wvb"]
+[ext_resource type="Script" uid="uid://cgkb4pow07na" path="res://src/battle/bullet/components/wander.gd" id="3_0lpq3"]
 [ext_resource type="Resource" uid="uid://pyh05gnjl3v4" path="res://database/enemy/table/random_school.tres" id="4_iwhhs"]
-[ext_resource type="Script" uid="uid://8ntvph4t6j0d" path="res://battle/bullet/components/spawn_enemy.gd" id="11_x4021"]
-[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="13_4vxq0"]
+[ext_resource type="Script" uid="uid://8ntvph4t6j0d" path="res://src/battle/bullet/components/spawn_enemy.gd" id="11_x4021"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://src/battle/bullet/components/graze_value.gd" id="13_4vxq0"]
 
 [sub_resource type="Curve" id="Curve_4vxq0"]
 _limits = [0.0, 1.0, -1.0, 1.0]

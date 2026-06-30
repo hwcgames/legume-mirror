@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://bemkqvwrm1k2y"]
 
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_laibw"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://battle/action/parley_action.gd" id="2_y15hm"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_gqfk7"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://actor/enemy/enemy_sheet.gd" id="4_2joj0"]
+[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://src/battle/action/old/parley_action.gd" id="2_y15hm"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_gqfk7"]
+[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://src/actor/enemy/enemy_sheet.gd" id="4_2joj0"]
 [ext_resource type="Resource" uid="uid://eit3j1cwloa5" path="res://database/bullet_pattern/test.tres" id="4_gqfk7"]
 [ext_resource type="Resource" uid="uid://bya2jyqc4r2cq" path="res://database/bullet_pattern/test2.tres" id="5_2joj0"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_t4yvc"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_4aeqa"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="6_t4yvc"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="7_4aeqa"]
 
 [sub_resource type="Resource" id="Resource_0jyjc"]
 script = ExtResource("6_t4yvc")

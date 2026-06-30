@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://cwiuf5g3cvh5t"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://cwiuf5g3cvh5t"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_crscw"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_crscw"]
 [ext_resource type="PackedScene" uid="uid://cq5d80a3b3ng0" path="res://database/rooms/prologue_alleyway.tscn" id="1_qu06b"]
 
 [resource]

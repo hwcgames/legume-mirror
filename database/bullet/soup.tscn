@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://5lb305m8mt1w"]
 
-[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_ke1us"]
-[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_3lkeh"]
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://src/battle/bullet/bullet.gd" id="1_ke1us"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://src/battle/bullet/component.gd" id="2_3lkeh"]
 [ext_resource type="Texture2D" uid="uid://dm5y3we752tno" path="res://assets/art/bullet/soup.aseprite" id="2_h2r6x"]
-[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="3_xl73f"]
-[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://battle/rules/slow_soul.gd" id="4_f7btt"]
-[ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://battle/bullet/components/add_rule.gd" id="5_pnik5"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://src/battle/bullet/components/damage.gd" id="3_xl73f"]
+[ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://src/battle/rules/slow_soul.gd" id="4_f7btt"]
+[ext_resource type="Script" uid="uid://5ff3js1q3hr3" path="res://src/battle/bullet/components/add_rule.gd" id="5_pnik5"]
 
 [sub_resource type="Curve" id="Curve_merk4"]
 _limits = [0.0, 50.0, 0.0, 1.0]

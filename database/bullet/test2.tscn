@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://co3tak7uc6u68"]
 
-[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="1_xslpg"]
-[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="2_atoox"]
-[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://battle/bullet/components/move_linear.gd" id="3_atoox"]
-[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="4_wj0yh"]
-[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="5_q7hl2"]
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://src/battle/bullet/bullet.gd" id="1_xslpg"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://src/battle/bullet/component.gd" id="2_atoox"]
+[ext_resource type="Script" uid="uid://dds6oka6jprre" path="res://src/battle/bullet/components/move_linear.gd" id="3_atoox"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://src/battle/bullet/components/damage.gd" id="4_wj0yh"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://src/battle/bullet/components/graze_value.gd" id="5_q7hl2"]
 
 [sub_resource type="Resource" id="Resource_sa44c"]
 script = ExtResource("3_atoox")

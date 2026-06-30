@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://dus3ihqtdemu0"]
 
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="1_3wem4"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="1_3wem4"]
 [ext_resource type="PackedScene" uid="uid://bxt4lqmou3yom" path="res://database/bullet_pattern/soup.tscn" id="1_dv6xw"]
-[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://battle/telegraph/angy.tscn" id="3_cdt6b"]
+[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://src/battle/telegraph/angy.tscn" id="3_cdt6b"]
 
 [resource]
 script = ExtResource("1_3wem4")

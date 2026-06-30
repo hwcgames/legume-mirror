@@ -14,6 +14,7 @@ class_name Item
 ### The skill actions this item provides when equipped.
 @export var equip_actions: Array[BattleAction]
 var path: String = ""
+@export var require_actor_tags: Array[String]
 
 enum CanEquip {
 	YES,
@@ -34,6 +35,18 @@ func can_equip(party: PartyComponent) -> CanEquip:
 		if capacity < 0:
 			return CanEquip.SMALL_SLOT
 	return CanEquip.YES
+
+func capacity_after_equip(party: PartyComponent) -> Dictionary[String, int]:
+	var out = {}
+	for slot in equip_sizes.keys():
+		if slot not in party.equip_slots:
+			return {}
+		var capacity: int = party.equip_slots[slot]
+		capacity -= equip_sizes[slot]
+		for equip in party.equips:
+			capacity -= equip.equip_sizes[slot] if slot in equip.equip_sizes else 0
+		out[slot] = capacity
+	return out
 
 func copy() -> Item:
 	var new = self.duplicate()

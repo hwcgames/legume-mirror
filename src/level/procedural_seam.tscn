@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bdx0oe6g8m38l"]
+
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="1_07mt3"]
+
+[node name="ProceduralSeam" type="Marker3D" unique_id=468565821]
+script = ExtResource("1_07mt3")
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"

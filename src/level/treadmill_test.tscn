@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://cw0r478jvhrnn"]
+
+[ext_resource type="Script" uid="uid://dkkwsmv06k637" path="res://src/actor/actor.gd" id="1_v4p0m"]
+[ext_resource type="Script" uid="uid://bs5il3y5goma5" path="res://src/actor/component/actor_uninit.gd" id="2_83iay"]
+[ext_resource type="Script" uid="uid://bwisdhgxnk2yl" path="res://src/actor/component/actor_idle.gd" id="3_nqani"]
+[ext_resource type="Script" uid="uid://3nbu03qev8ae" path="res://src/actor/component/actor_human.gd" id="4_vj3jx"]
+[ext_resource type="Script" uid="uid://bt8dvfwcf7cs6" path="res://src/actor/component/actor_glide.gd" id="5_s6j6g"]
+[ext_resource type="Script" uid="uid://rwpvleaxidij" path="res://src/actor/component/actor_follow.gd" id="6_ookw6"]
+[ext_resource type="Script" uid="uid://d0ym2jrtlwpvt" path="res://src/actor/component/actor_pathing.gd" id="7_vi3ti"]
+[ext_resource type="Script" uid="uid://c8yn1evbmnbd3" path="res://src/actor/component/actor_automove.gd" id="8_wyo6j"]
+[ext_resource type="Script" uid="uid://dvnykp2tlth33" path="res://src/actor/component/actor_cargo.gd" id="9_no4pu"]
+[ext_resource type="Script" uid="uid://c4iv4oqwvlfny" path="res://src/actor/component/actor_root.gd" id="10_y6px1"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="11_lkcet"]
+[ext_resource type="Script" uid="uid://c5hjplxfgh5hc" path="res://src/story/interactable.gd" id="12_6nlew"]
+[ext_resource type="Script" uid="uid://lcn3o02vtkmm" path="res://src/gui/canvas_layer_follows_parent.gd" id="13_w08mq"]
+[ext_resource type="Script" uid="uid://b3xvhtutqyk8e" path="res://src/story/PlayerInteractor.gd" id="14_buuma"]
+[ext_resource type="Script" uid="uid://c621np73sy2wx" path="res://src/actor/costume/afterimages.gd" id="15_5sorw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a26hr"]
+radial_segments = 8
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ksh"]
+shading_mode = 2
+rim = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f68vj"]
+top_radius = 0.0
+height = 1.0
+radial_segments = 4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0oyms"]
+height = 1.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0oyms"]
+height = 1.6
+radius = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fe22u"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.64705884, 1)
+billboard_mode = 2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a26hr"]
+material = SubResource("StandardMaterial3D_fe22u")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 0.5
+radial_segments = 4
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f68vj"]
+height = 1.5999999
+
+[sub_resource type="GDScript" id="GDScript_g8ksh"]
+script/source = "extends Node3D
+
+func _process(delta: float) -> void:
+	global_transform = get_parent().head.global_transform if get_parent().head else get_parent().global_transform
+"
+
+[node name="Actor2" type="CharacterBody3D" unique_id=158145810 node_paths=PackedStringArray("costume", "interactable") groups=["actor", "story_listener"]]
+collision_layer = 2
+script = ExtResource("1_v4p0m")
+costume = NodePath("test_costume")
+interactable = NodePath("Interactable")
+
+[node name="Component" type="Node" parent="." unique_id=1071448262]
+unique_name_in_owner = true
+
+[node name="Uninit" type="Node" parent="Component" unique_id=499509284]
+script = ExtResource("2_83iay")
+
+[node name="Idle" type="Node" parent="Component" unique_id=1480240457]
+script = ExtResource("3_nqani")
+metadata/_custom_type_script = "uid://bwisdhgxnk2yl"
+
+[node name="Human" type="Node" parent="Component" unique_id=142863705]
+script = ExtResource("4_vj3jx")
+metadata/_custom_type_script = "uid://3nbu03qev8ae"
+
+[node name="Glide" type="Node" parent="Component" unique_id=1480289516]
+script = ExtResource("5_s6j6g")
+metadata/_custom_type_script = "uid://bt8dvfwcf7cs6"
+
+[node name="Follow" type="Node" parent="Component" unique_id=395693404]
+script = ExtResource("6_ookw6")
+metadata/_custom_type_script = "uid://rwpvleaxidij"
+
+[node name="Pathing" type="Node" parent="Component" unique_id=279737647]
+script = ExtResource("7_vi3ti")
+metadata/_custom_type_script = "uid://d0ym2jrtlwpvt"
+
+[node name="Automove" type="Node" parent="Component" unique_id=236403863]
+script = ExtResource("8_wyo6j")
+metadata/_custom_type_script = "uid://c8yn1evbmnbd3"
+
+[node name="Cargo" type="Node" parent="Component" unique_id=1675060991]
+script = ExtResource("9_no4pu")
+metadata/_custom_type_script = "uid://dvnykp2tlth33"
+
+[node name="Rooted" type="Node" parent="Component" unique_id=633853839]
+script = ExtResource("10_y6px1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=49623517]
+unique_name_in_owner = true
+target_desired_distance = 0.5
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="test_costume" parent="." unique_id=1167759721 instance=ExtResource("11_lkcet")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1485948394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_a26hr")
+surface_material_override/0 = SubResource("StandardMaterial3D_g8ksh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=312367215]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 1, -0.5)
+visible = false
+mesh = SubResource("CylinderMesh_f68vj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1969970074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_0oyms")
+
+[node name="Interactable" type="Area3D" parent="." unique_id=1680055429 node_paths=PackedStringArray("marker")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("12_6nlew")
+marker = NodePath("../InteractArrow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=2123989363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CylinderShape3D_0oyms")
+debug_color = Color(0.2845478, 0.63101405, 0, 0.41960785)
+debug_fill = false
+
+[node name="InteractArrow" type="MeshInstance3D" parent="." unique_id=695287789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
+mesh = SubResource("CylinderMesh_a26hr")
+
+[node name="SkillChallengeAnchor" type="Node3D" parent="." unique_id=1796656717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SkillChallengeParent" type="CanvasLayer" parent="SkillChallengeAnchor" unique_id=1010485753]
+unique_name_in_owner = true
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="SkillChallengeAnchor/SkillChallengeParent" unique_id=1493177911]
+script = ExtResource("13_w08mq")
+
+[node name="PlayerInteractionZone" type="Area3D" parent="." unique_id=417986866]
+script = ExtResource("14_buuma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerInteractionZone" unique_id=1846608423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79999995, 0)
+shape = SubResource("CylinderShape3D_f68vj")
+debug_color = Color(0, 0.6462937, 0.24779516, 0.41960785)
+debug_fill = false
+
+[node name="TelegraphHandle" type="Node3D" parent="." unique_id=1959902318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+script = SubResource("GDScript_g8ksh")
+
+[node name="Telegraph" type="CanvasLayer" parent="TelegraphHandle" unique_id=1122922936]
+unique_name_in_owner = true
+
+[node name="CanvasLayerFollowsParent" type="Node" parent="TelegraphHandle/Telegraph" unique_id=176055503]
+script = ExtResource("13_w08mq")
+metadata/_custom_type_script = "uid://lcn3o02vtkmm"
+
+[node name="PanelContainer" type="PanelContainer" parent="TelegraphHandle/Telegraph" unique_id=162479273]
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[node name="Control" type="Control" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=289481361]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="TelegraphHandle/Telegraph/PanelContainer/Control" unique_id=278583730]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TelegraphParent" type="MarginContainer" parent="TelegraphHandle/Telegraph/PanelContainer" unique_id=1509515961]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Afterimager" type="Node3D" parent="." unique_id=1012253379]
+unique_name_in_owner = true
+top_level = true
+script = ExtResource("15_5sorw")
+metadata/_custom_type_script = "uid://c621np73sy2wx"

@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://c7nmjgg6ypqt7"]
 
-[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_oaodf"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_oaodf"]
 [ext_resource type="PackedScene" uid="uid://fsvh4uev5at2" path="res://database/costume/secondhandglue.tscn" id="1_wxroi"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_3pwic"]
-[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_by5dd"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_r55a0"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_by5dd"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_r55a0"]
 [ext_resource type="Resource" uid="uid://dktprncmf5gpv" path="res://database/bullet_pattern/ewwthrowthataway.tres" id="6_2hyda"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_3pwic"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="7_3pwic"]
 [ext_resource type="Resource" uid="uid://cp0gwkegja08b" path="res://database/bullet_pattern/ewwthrowthataway2.tres" id="7_by5dd"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_cktpo"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_llmq2"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="7_cktpo"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="10_llmq2"]
 
 [sub_resource type="Resource" id="Resource_llmq2"]
 script = ExtResource("1_oaodf")

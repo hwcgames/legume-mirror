@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="RoomSet" format=3 uid="uid://4ep2fpkadiow"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_njqu3"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_njqu3"]
 [ext_resource type="Resource" uid="uid://bu2dfqvryiut0" path="res://database/rooms/test_dead_end.tres" id="2_aumr3"]
-[ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://level/roomset.gd" id="2_tyuxp"]
+[ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://src/level/roomset.gd" id="2_tyuxp"]
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_dnx6d"]
 [ext_resource type="Resource" uid="uid://0wqul1et2sdo" path="res://database/rooms/test_junction.tres" id="4_3mdo3"]
 [ext_resource type="Resource" uid="uid://6ko4lafitey5" path="res://database/rooms/test_monster.tres" id="5_or2wc"]

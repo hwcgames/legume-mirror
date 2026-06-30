@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://bmsg2ufyjj1xf"]
 
-[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_2fwm5"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_2fwm5"]
 [ext_resource type="PackedScene" uid="uid://c6ru066xlmxbf" path="res://database/costume/maternalorganizer.tscn" id="1_ycft4"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_e55sl"]
-[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_mdhvo"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="5_mdhvo"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_53wpt"]
-[ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://battle/rules/spawn_enemy.gd" id="8_53wpt"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_mdhvo"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="5_mdhvo"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="6_53wpt"]
+[ext_resource type="Script" uid="uid://dio8noar7m7xs" path="res://src/battle/rules/spawn_enemy.gd" id="8_53wpt"]
 [ext_resource type="Resource" uid="uid://t24mhrsxixr3" path="res://database/enemy/table/random_school_except_mo.tres" id="9_e55sl"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_mdhvo"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="10_mdhvo"]
 
 [sub_resource type="Resource" id="Resource_jgsyx"]
 script = ExtResource("1_2fwm5")

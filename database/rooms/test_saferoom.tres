@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://bhkf1why2fi2p"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_3pmql"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_3pmql"]
 [ext_resource type="PackedScene" uid="uid://51iy0q5n3idd" path="res://database/rooms/test_saferoom.tscn" id="1_qfavl"]
 
 [resource]

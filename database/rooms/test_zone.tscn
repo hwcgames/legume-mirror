@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://digiahfpjc1v5"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ghfn5"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_ghfn5"]
 [ext_resource type="PackedScene" uid="uid://cmrojy3m0pd16" path="res://assets/rooms/testzone.blend" id="2_leiud"]
-[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_jfic3"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_leiud"]
-[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="5_jfic3"]
-[ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="6_k7nk8"]
-[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="7_ifn70"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="3_jfic3"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="4_leiud"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://src/level/automove/automove_breadcrumb.gd" id="5_jfic3"]
+[ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://src/story/Trigger.gd" id="6_k7nk8"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="7_ifn70"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ifn70"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ghfn5"]

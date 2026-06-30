@@ -47,6 +47,7 @@
 / intro_train follow path rails
 / cipher capture
 / cipher appear train_cipher_seat
+/ cipher root train_cipher_seat
 / cipher pose sit
 / cipher act open_journal
 / camera 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyTable" format=3 uid="uid://t24mhrsxixr3"]
 
-[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="1_dkcef"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_fdah1"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://src/actor/enemy/enemy_table.gd" id="1_dkcef"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="2_fdah1"]
 [ext_resource type="Resource" uid="uid://weo0fhsjc7ws" path="res://database/enemy/static/apprenticeblade.tres" id="3_moq1w"]
 [ext_resource type="Resource" uid="uid://y0iwsfufb6ht" path="res://database/enemy/static/homeworker.tres" id="4_qq357"]
 [ext_resource type="Resource" uid="uid://gj6fincut8tu" path="res://database/enemy/static/hallmonitor.tres" id="5_vu5as"]

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c2mfjwaf7yy16"]
+
+[ext_resource type="Script" uid="uid://du30tptbt0qhy" path="res://src/gui/dialogue-bubble/picker.gd" id="1_tuga2"]
+
+[node name="Picker" type="MarginContainer" unique_id=2063430739]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_tuga2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=71002115]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" unique_id=1058385009]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Up" type="Button" parent="VBoxContainer/VBoxContainer2" unique_id=21034507]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Up"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=56701864]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Control" type="HBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1469368292]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Left" type="Button" parent="VBoxContainer/HBoxContainer/Control" unique_id=1672946746]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Left"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer" unique_id=349320024]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Prompt" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/CenterContainer" unique_id=1162982052]
+layout_mode = 2
+bbcode_enabled = true
+text = "Hello, world!"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Control2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=546572038]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Right" type="Button" parent="VBoxContainer/HBoxContainer/Control2" unique_id=1869094894]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Right"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer" unique_id=1029399384]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Down" type="Button" parent="VBoxContainer/VBoxContainer3" unique_id=343623351]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Down"

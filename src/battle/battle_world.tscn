@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cyxdvd335kc1p"]
 
 [ext_resource type="Script" uid="uid://dvnxkgq1nyfwn" path="res://src/battle/battle_world.gd" id="1_i1jwv"]
-[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="3_dc76w"]
+[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://src/battle/battlefield.tscn" id="3_dc76w"]
 
 [node name="BattleWorld" type="CanvasLayer" unique_id=864636441]
 script = ExtResource("1_i1jwv")

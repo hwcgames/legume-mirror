@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://cbl4hu87l4xv3"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://cbl4hu87l4xv3"]
 
 [ext_resource type="PackedScene" uid="uid://cktev6135pdvg" path="res://database/rooms/prologue_alleyway_deadend.tscn" id="1_3eylb"]
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_ebcsc"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_ebcsc"]
 
 [resource]
 script = ExtResource("1_ebcsc")

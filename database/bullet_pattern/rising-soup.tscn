@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://wtomn0pwvxwx"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_yhvbh"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_yhvbh"]
 [ext_resource type="PackedScene" uid="uid://5lb305m8mt1w" path="res://database/bullet/soup.tscn" id="2_f4gwu"]
 
 [sub_resource type="Animation" id="Animation_f4gwu"]

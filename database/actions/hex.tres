@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bghrxu4maqlni"]
 
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_ud026"]
-[ext_resource type="Script" uid="uid://cjjkcf5nlwwnd" path="res://battle/rules/enfeeble.gd" id="2_wh73t"]
-[ext_resource type="Script" uid="uid://dfyjfraeggk2q" path="res://battle/rules/crush.gd" id="3_0da2b"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="4_lflys"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_ud026"]
+[ext_resource type="Script" uid="uid://cjjkcf5nlwwnd" path="res://src/battle/rules/enfeeble.gd" id="2_wh73t"]
+[ext_resource type="Script" uid="uid://dfyjfraeggk2q" path="res://src/battle/rules/crush.gd" id="3_0da2b"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="4_lflys"]
 
 [sub_resource type="Resource" id="Resource_m6f7q"]
 script = ExtResource("2_wh73t")

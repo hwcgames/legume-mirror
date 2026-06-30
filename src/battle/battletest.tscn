@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://cba4fdjrd5sls"]
+
+[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://src/battle/battlefield.tscn" id="1_c5njq"]
+[ext_resource type="Script" uid="uid://dabijjykhigp0" path="res://src/story/Storyteller2.gd" id="1_e7dsr"]
+[ext_resource type="Script" uid="uid://lg024kntdcli" path="res://src/battle/battle_test_menu.gd" id="2_dbdw0"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="3_iuwny"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_rwc2o"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_corkb"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_e7dsr"]
+[ext_resource type="Script" uid="uid://koi6kck7np3o" path="res://src/inventory/inventory.gd" id="7_corkb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iuwny"]
+
+[sub_resource type="GDScript" id="GDScript_iuwny"]
+script/source = "extends Button
+
+func _pressed() -> void:
+	get_tree().reload_current_scene()
+"
+
+[sub_resource type="GDScript" id="GDScript_yrs0h"]
+script/source = "extends Node
+
+func _process(_delta: float):
+	PlayerManager.handle_join_input()
+
+func _ready():
+	PlayerManager.join(-1)
+"
+
+[sub_resource type="Resource" id="Resource_rwc2o"]
+script = ExtResource("6_e7dsr")
+
+[node name="Battletest" type="Node3D" unique_id=900758082]
+
+[node name="Storyteller" type="Node" parent="." unique_id=865096077]
+script = ExtResource("1_e7dsr")
+metadata/_custom_type_script = "uid://dabijjykhigp0"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1719894281]
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=620807241]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1940116637]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 0
+
+[node name="Battlefield" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=144661304 node_paths=PackedStringArray("player_landmarks", "enemy_landmarks") instance=ExtResource("1_c5njq")]
+unique_name_in_owner = true
+transform = Transform3D(0.9294343, 0, 0.36898777, 0, 1, 0, -0.36898777, 0, 0.9294343, 170.16658, 0, -148.0696)
+player_landmarks = [NodePath("../Ally1"), NodePath("../Ally2"), NodePath("../Ally3"), NodePath("../Ally4")]
+enemy_landmarks = [NodePath("../Enemy1"), NodePath("../Enemy2"), NodePath("../Enemy3"), NodePath("../Enemy4")]
+
+[node name="Ally1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=677341901]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.56972, 0, -149.19049)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally2" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2124653465]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.37827, 0, -146.96263)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally3" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1419154939]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 167.18681, 0, -144.73479)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Ally4" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=666824984]
+transform = Transform3D(0.36898774, 0, -0.92943436, 0, 1, 0, 0.92943436, 0, 0.36898774, 166.99535, 0, -142.50693)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy1" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=2050000683]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 171.28748, 0, -150.66644)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy2" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1981669287]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 172.95488, 0, -149.17656)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy3" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=495398]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 174.62228, 0, -147.68669)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Enemy4" type="Marker3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=455467718]
+transform = Transform3D(-0.36898762, 0, 0.92943436, 0, 1, 0, -0.92943436, 0, -0.36898762, 176.28969, 0, -146.1968)
+script = ExtResource("3_iuwny")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="Camera3D2" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=874304436]
+physics_interpolation_mode = 1
+transform = Transform3D(0.92943424, -0.095501065, 0.3564148, -3.8818927e-11, 0.9659258, 0.25881904, -0.36898777, -0.24055535, 0.8977646, 174.59442, 4, -136.9164)
+top_level = true
+projection = 1
+current = true
+size = 10.373
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1965557859]
+transform = Transform3D(0.9294343, 0, 0.36898777, 0, 1, 0, -0.36898777, 0, 0.9294343, 170.16658, 0, -148.0696)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CanvasLayer/SubViewportContainer/SubViewport/StaticBody3D2" unique_id=989209866]
+shape = SubResource("WorldBoundaryShape3D_iuwny")
+
+[node name="Window" type="Window" parent="." unique_id=1770133891]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(256, 128)
+script = ExtResource("2_dbdw0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window" unique_id=114244532]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=1561560282]
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="Window/VBoxContainer/HBoxContainer2" unique_id=626195237]
+layout_mode = 2
+text = "Reset"
+script = SubResource("GDScript_iuwny")
+
+[node name="Fight" type="Button" parent="Window/VBoxContainer/HBoxContainer2" unique_id=277968782]
+layout_mode = 2
+text = "Fight!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=1833768397]
+layout_mode = 2
+
+[node name="PartyPicker" type="OptionButton" parent="Window/VBoxContainer/HBoxContainer" unique_id=249254445]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpawnAlly" type="Button" parent="Window/VBoxContainer/HBoxContainer" unique_id=1581671686]
+layout_mode = 2
+text = "Spawn Ally"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Window/VBoxContainer" unique_id=1958309137]
+layout_mode = 2
+
+[node name="EnemyPicker" type="OptionButton" parent="Window/VBoxContainer/HBoxContainer3" unique_id=155565102]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpawnEnemy" type="Button" parent="Window/VBoxContainer/HBoxContainer3" unique_id=419760360]
+layout_mode = 2
+text = "Spawn Enemy"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1270587041]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 4, 12)
+top_level = true
+projection = 1
+current = true
+size = 10.373
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1865587381]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_rwc2o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=458697334]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1207446700]
+shape = SubResource("WorldBoundaryShape3D_iuwny")
+
+[node name="PlayersJoin" type="Node" parent="." unique_id=1124132470]
+script = SubResource("GDScript_yrs0h")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=184501324]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 4, 12)
+script = ExtResource("5_corkb")
+tween_resource = SubResource("Resource_rwc2o")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Inventory" type="Node" parent="." unique_id=125022345]
+script = ExtResource("7_corkb")
+metadata/_custom_type_script = "uid://koi6kck7np3o"
+
+[connection signal="begin" from="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" to="CanvasLayer" method="show"]
+[connection signal="done" from="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" to="CanvasLayer" method="hide"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer2/Fight" to="CanvasLayer/SubViewportContainer/SubViewport/Battlefield" method="battle"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer/SpawnAlly" to="Window" method="spawn_selected_ally"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer3/SpawnEnemy" to="Window" method="spawn_selected_enemy"]

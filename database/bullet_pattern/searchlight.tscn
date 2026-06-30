@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fxbf1d21sr0d"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_t267x"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_pbkqc"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_t267x"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="2_pbkqc"]
 [ext_resource type="PackedScene" uid="uid://cm486l7efwhqx" path="res://database/bullet/searchlight.tscn" id="3_3qmmd"]
 
 [sub_resource type="Curve" id="Curve_3qmmd"]

@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="EncounterTable" format=3 uid="uid://cy4wls3ckp4ir"]
 
-[ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://encounter/encounterable.gd" id="1_kx3an"]
-[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://actor/enemy/enemy_factory.gd" id="2_miu2c"]
+[ext_resource type="Script" uid="uid://ck3sr5d5rncne" path="res://src/battle/encounter/encounterable.gd" id="1_kx3an"]
+[ext_resource type="Script" uid="uid://d0wnfueitaqhk" path="res://src/actor/enemy/enemy_factory.gd" id="2_miu2c"]
 [ext_resource type="Resource" uid="uid://dg71f6dsowatf" path="res://database/enemy/table/random_school_fighter.tres" id="3_345jx"]
 [ext_resource type="Resource" uid="uid://b32jjqhggw0er" path="res://database/enemy/table/random_school_support.tres" id="4_f5ngj"]
-[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://actor/enemy/enemy_table.gd" id="5_spra4"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="6_7xj8i"]
-[ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://encounter/encounter.gd" id="6_qtojp"]
+[ext_resource type="Script" uid="uid://dtfmjcw2d4wby" path="res://src/actor/enemy/enemy_table.gd" id="5_spra4"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="6_7xj8i"]
+[ext_resource type="Script" uid="uid://dbypde31s8c5x" path="res://src/battle/encounter/encounter.gd" id="6_qtojp"]
 [ext_resource type="Resource" uid="uid://chlvyq6kpa1n" path="res://database/enemy/static/furious_homeworker.tres" id="7_f5f2k"]
 [ext_resource type="Resource" uid="uid://c7nmjgg6ypqt7" path="res://database/enemy/static/secondhandglue.tres" id="8_unuyc"]
 [ext_resource type="Resource" uid="uid://uoapvnqqd0gf" path="res://database/enemy/static/sharpmissive.tres" id="9_unuyc"]
 [ext_resource type="Resource" uid="uid://bmsg2ufyjj1xf" path="res://database/enemy/static/maternalorganizer.tres" id="11_h0m8o"]
-[ext_resource type="Script" uid="uid://d3bxxgkhpmqmv" path="res://encounter/encounter_table.gd" id="17_l6b31"]
+[ext_resource type="Script" uid="uid://d3bxxgkhpmqmv" path="res://src/battle/encounter/encounter_table.gd" id="17_l6b31"]
 
 [sub_resource type="Resource" id="Resource_345jx"]
 script = ExtResource("6_qtojp")

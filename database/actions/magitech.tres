@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://dvb8w6sqx5opj"]
 
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_k70tn"]
-[ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://battle/rules/magic_strength.gd" id="2_i4eud"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="3_pvwhj"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_k70tn"]
+[ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://src/battle/rules/magic_strength.gd" id="2_i4eud"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_pvwhj"]
 
 [sub_resource type="Resource" id="Resource_iaevo"]
 script = ExtResource("2_i4eud")

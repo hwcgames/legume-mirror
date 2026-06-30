@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cs50paghlj63x"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_v3mma"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_tbkjx"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_v3mma"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="2_tbkjx"]
 [ext_resource type="PackedScene" uid="uid://t1oj1biqflb3" path="res://database/bullet/airplane.tscn" id="3_efh17"]
 
 [sub_resource type="Curve" id="Curve_efh17"]

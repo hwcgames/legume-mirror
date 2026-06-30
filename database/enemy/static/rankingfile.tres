@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://x7hxph5xkbj2"]
 
 [ext_resource type="PackedScene" uid="uid://be8skvtwov6oo" path="res://database/costume/rankingfile.tscn" id="1_043vo"]
-[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="2_5lamp"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_5lamp"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="4_2wtgy"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="5_hb0ue"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="6_u2hed"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://src/battle/action/action.gd" id="2_5lamp"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_5lamp"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="4_2wtgy"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="5_hb0ue"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="6_u2hed"]
 
 [sub_resource type="Resource" id="Resource_ai34q"]
 script = ExtResource("4_2wtgy")

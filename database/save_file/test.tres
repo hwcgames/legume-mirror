@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SaveFile" format=3 uid="uid://deujhdqh6wxae"]
 
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="1_kyjuh"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="1_kyjuh"]
 [ext_resource type="Resource" uid="uid://cal5yy0thhvjg" path="res://database/party_members/test_party.tres" id="2_8rfdh"]
-[ext_resource type="Script" uid="uid://q1fu06udbngq" path="res://save_file/save_file.gd" id="2_tbffc"]
+[ext_resource type="Script" uid="uid://q1fu06udbngq" path="res://src/story/save_file/save_file.gd" id="2_tbffc"]
 
 [resource]
 script = ExtResource("2_tbffc")

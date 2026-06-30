@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://snosyl6pcyrb"]
 
-[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://battle/action/heal.gd" id="1_dg7uf"]
+[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://src/battle/action/old/heal.gd" id="1_dg7uf"]
 [ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="2_ni1ir"]
 
 [sub_resource type="Resource" id="Resource_dc85l"]

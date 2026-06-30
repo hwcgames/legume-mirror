@@ -39,16 +39,18 @@ config/icon="res://icon.svg"
 [autoload]
 
 MultiplayerInput="*uid://64bdsrtamugy"
-InputLocks="*res://InputLocks.gd"
-PlayerManager="*res://player_manager.gd"
+InputLocks="*res://src/core/input/InputLocks.gd"
+PlayerManager="*res://src/core/input/player_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-MusicMan="*res://music/musicman.gd"
+MusicMan="*res://src/audio/musicman.gd"
 Fader="*uid://cqcl700i7h12u"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 

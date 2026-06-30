@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://x7xfpi7ad2rr"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://x7xfpi7ad2rr"]
 
 [ext_resource type="PackedScene" uid="uid://d2qh7mlkra6lu" path="res://database/rooms/railway/rail_section.tscn" id="1_sjf6f"]
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_yl51b"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_yl51b"]
 
 [resource]
 script = ExtResource("1_yl51b")

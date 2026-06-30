@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://bi1eveta3fdye"]
 
 [ext_resource type="PackedScene" uid="uid://candb0ijvfxik" path="res://database/costume/intro_train.tscn" id="1_s7kf1"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="2_hc3bu"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="2_hc3bu"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="2_na6rf"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="2_qiuo2"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="2_qiuo2"]
 
 [resource]
 script = ExtResource("2_qiuo2")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bt31mqs0phyc8"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_0uuvt"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_6hrag"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_0uuvt"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="2_6hrag"]
 [ext_resource type="PackedScene" uid="uid://dw7q8xmxypuo8" path="res://database/bullet/squigglemarker.tscn" id="3_7ss03"]
 
 [sub_resource type="Curve" id="Curve_7ss03"]

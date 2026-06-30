@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://51iy0q5n3idd"]
 
 [ext_resource type="PackedScene" uid="uid://dh67uun11xxrp" path="res://database/rooms/test_hallway.tscn" id="1_lwcrj"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="2_c6d1o"]
-[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="3_ogdv1"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="2_c6d1o"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="3_ogdv1"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_88tip"]
-[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="4_ar3k2"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="4_ar3k2"]
 
 [sub_resource type="Resource" id="Resource_nptt0"]
 script = ExtResource("4_88tip")

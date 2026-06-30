@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5a0f31c5gtl2"]
+[gd_scene format=3 uid="uid://c5a0f31c5gtl2"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_ijfo7"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_ijfo7"]
 [ext_resource type="PackedScene" uid="uid://d324nrk22emqt" path="res://assets/rooms/test-junction.blend" id="2_dltjm"]
-[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_oajtf"]
-[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="4_s6mmw"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="3_oajtf"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://src/level/automove/automove_breadcrumb.gd" id="4_s6mmw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_oajtf"]
 height = 6.4500003

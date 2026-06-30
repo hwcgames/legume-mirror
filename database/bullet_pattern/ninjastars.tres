@@ -1,11 +1,15 @@
 [gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://dmtgu5lxickp"]
 
 [ext_resource type="PackedScene" uid="uid://bdem8naa18rbd" path="res://database/bullet_pattern/ninjastars.tscn" id="1_1i3xu"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="1_lf1wc"]
-[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://battle/telegraph/angy.tscn" id="3_75w1m"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="1_lf1wc"]
+[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://src/battle/telegraph/angy.tscn" id="3_75w1m"]
 
 [resource]
 script = ExtResource("1_lf1wc")
+enemies = null
+shared = null
+states = null
+weight = null
 category = 3
 pattern_scene = ExtResource("1_1i3xu")
 telegraph_scene = ExtResource("3_75w1m")

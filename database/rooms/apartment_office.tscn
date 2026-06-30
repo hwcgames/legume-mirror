@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dhel745ujxkc2"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_2ol8j"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_2ol8j"]
 [ext_resource type="PackedScene" uid="uid://dx8n1acdb7bcm" path="res://assets/rooms/apartment-office.blend" id="2_55kgo"]
 [ext_resource type="LightmapGIData" uid="uid://d2ior5my3k0ab" path="res://database/rooms/apartment_office.lmbake" id="3_eyf8n"]
-[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="4_laf48"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="4_laf48"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_1kpcp"]
-[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="6_h003l"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="6_h003l"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_h003l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eyf8n"]

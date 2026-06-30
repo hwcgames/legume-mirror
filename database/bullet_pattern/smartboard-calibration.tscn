@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dg4wvtl31u51h"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_b1xxq"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_b1xxq"]
 [ext_resource type="PackedScene" uid="uid://d2hd5nf6a6qwo" path="res://database/bullet/anim-marker.tscn" id="2_2t3y3"]
-[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="3_q4c0d"]
-[ext_resource type="Script" uid="uid://bnx05rk2th0v8" path="res://battle/bullet/components/trail.gd" id="4_ythvj"]
-[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="5_idb6h"]
-[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="6_w3diy"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://src/battle/bullet/component.gd" id="3_q4c0d"]
+[ext_resource type="Script" uid="uid://bnx05rk2th0v8" path="res://src/battle/bullet/components/trail.gd" id="4_ythvj"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://src/battle/bullet/components/damage.gd" id="5_idb6h"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://src/battle/bullet/components/graze_value.gd" id="6_w3diy"]
 [ext_resource type="PackedScene" uid="uid://dir377gvqxvhr" path="res://database/bullet/calibration-marker.tscn" id="7_36abo"]
 
 [sub_resource type="Animation" id="Animation_wbcfb"]

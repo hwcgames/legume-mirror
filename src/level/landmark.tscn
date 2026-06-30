@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bpl2wbx06t8vu"]
+
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="1_f0shu"]
+
+[node name="Landmark" type="Marker3D" unique_id=246181278 groups=["landmark"]]
+script = ExtResource("1_f0shu")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"

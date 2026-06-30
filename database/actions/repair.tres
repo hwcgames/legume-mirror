@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BattleActionHeal" format=3 uid="uid://chabn528vo0yw"]
 
-[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://battle/action/heal.gd" id="1_7vh2f"]
+[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://src/battle/action/old/heal.gd" id="1_7vh2f"]
 
 [resource]
 script = ExtResource("1_7vh2f")

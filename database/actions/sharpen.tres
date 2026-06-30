@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bj4hgfexf0c5u"]
 
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="1_la0ru"]
-[ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://battle/rules/strengthen.gd" id="2_oaf83"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://battle/action/apply_rule.gd" id="3_mawsj"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_la0ru"]
+[ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://src/battle/rules/strengthen.gd" id="2_oaf83"]
+[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_mawsj"]
 
 [sub_resource type="Resource" id="Resource_e7dsr"]
 script = ExtResource("2_oaf83")

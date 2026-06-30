@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://cntbffk3frtv"]
 
 [ext_resource type="PackedScene" uid="uid://dh67uun11xxrp" path="res://database/rooms/test_hallway.tscn" id="1_ahjq4"]
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_j648a"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_j648a"]
 
 [resource]
 script = ExtResource("1_j648a")

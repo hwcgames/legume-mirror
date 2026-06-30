@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdem8naa18rbd"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_dpcic"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="2_oqfm4"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_dpcic"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="2_oqfm4"]
 [ext_resource type="PackedScene" uid="uid://1lno7glpoygr" path="res://database/bullet/ninjastar.tscn" id="3_hay81"]
 
 [sub_resource type="Curve" id="Curve_ho78a"]

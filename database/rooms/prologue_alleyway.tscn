@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://cq5d80a3b3ng0"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_7pd5f"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_7pd5f"]
 [ext_resource type="PackedScene" uid="uid://byoxcwolgrgv3" path="res://assets/rooms/prologue_alleyway.blend" id="2_7pd5f"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_qil6o"]
-[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="4_u43fo"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://src/level/leader_follower.gd" id="4_u43fo"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_w8kx4"]
-[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="6_nftlj"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="6_nftlj"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="7_hx22r"]
-[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="9_cfhh3"]
-[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="9_hx22r"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="10_hx22r"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://src/level/automove/automove_breadcrumb.gd" id="9_cfhh3"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://src/level/automove/automove_nop.gd" id="9_hx22r"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="10_hx22r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pd5f"]
 size = Vector3(4, 6, 8)

@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://gj6fincut8tu"]
 
-[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_j6b80"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_j6b80"]
 [ext_resource type="PackedScene" uid="uid://d0bifw6ps4i8d" path="res://database/costume/hallmonitor.tscn" id="1_wc53d"]
-[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_bmplu"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_bmplu"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_hvf54"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_utm42"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_utm42"]
 [ext_resource type="Resource" uid="uid://dd87d4i7wcv1p" path="res://database/bullet_pattern/hallmonitor.tres" id="6_1yajf"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="6_bmplu"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="7_hvf54"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="9_j6b80"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="6_bmplu"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="7_hvf54"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="9_j6b80"]
 
 [sub_resource type="Resource" id="Resource_7rcfs"]
 script = ExtResource("1_j6b80")

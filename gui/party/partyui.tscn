@@ -1,0 +1,1091 @@
+[gd_scene format=3 uid="uid://c05v0nb8dofil"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2i2f"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehsfc"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Control" type="Control" unique_id=397488696]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=2021109113]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer" unique_id=1699171913]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/VBoxContainer" unique_id=1117322419]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HBoxContainer" unique_id=376878395]
+layout_mode = 2
+text = "LV1"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer/HBoxContainer" unique_id=1594738067]
+layout_mode = 2
+text = "Character Name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer/VBoxContainer" unique_id=83342494]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Character Title"
+fit_content = true
+scroll_active = false
+
+[node name="HFlowContainer" type="HFlowContainer" parent="GridContainer/VBoxContainer" unique_id=782470370]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=495812375]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer" unique_id=1074997554]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "ARMOR"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer" unique_id=1331736473]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 10.0
+value = 6.0
+show_percentage = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=368077959]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer2" unique_id=285344952]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "HAT'S"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer2" unique_id=1000356331]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 2.0
+value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=810581170]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer3" unique_id=44090541]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "CHEST"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer3" unique_id=1440490050]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 2.0
+value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=726959199]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer4" unique_id=1111051752]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "HELD"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer4" unique_id=2114418086]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 2.0
+value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=249779623]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer5" unique_id=1007834362]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "GLOVE"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer5" unique_id=74657690]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 4.0
+value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=1996570834]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer6" unique_id=1617994521]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LEGS"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer6" unique_id=297552779]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 4.0
+value = 1.0
+show_percentage = false
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="GridContainer/VBoxContainer/HFlowContainer" unique_id=998973293]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer7" unique_id=979970887]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "CARDS"
+
+[node name="ProgressBar" type="ProgressBar" parent="GridContainer/VBoxContainer/HFlowContainer/HBoxContainer7" unique_id=1777392149]
+custom_minimum_size = Vector2(104, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 52.0
+value = 40.0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer" unique_id=1491011490]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer/HBoxContainer" unique_id=2080038016]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GridContainer/HBoxContainer/HBoxContainer" unique_id=1636828831]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GridContainer/HBoxContainer/HBoxContainer/PanelContainer" unique_id=2053842514]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="GridContainer/HBoxContainer/HBoxContainer" unique_id=704705747]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GridContainer/HBoxContainer/HBoxContainer/PanelContainer2" unique_id=1434044]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="GridContainer/HBoxContainer/HBoxContainer" unique_id=717398425]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GridContainer/HBoxContainer/HBoxContainer/PanelContainer3" unique_id=1844652491]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="GridContainer/HBoxContainer/HBoxContainer" unique_id=1392908029]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="GridContainer/HBoxContainer/HBoxContainer/PanelContainer4" unique_id=2014373939]
+custom_minimum_size = Vector2(64, 128)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="GridContainer/HBoxContainer" unique_id=1122446140]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/HBoxContainer/GridContainer" unique_id=1010315099]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer" unique_id=1334080969]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "STR"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer" unique_id=221260408]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer/HBoxContainer/GridContainer" unique_id=1214579695]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer2" unique_id=1511531447]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "DEF"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer2" unique_id=2101801779]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer/HBoxContainer/GridContainer" unique_id=1263207406]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer3" unique_id=786112665]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer3" unique_id=1805290332]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "MAG"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="GridContainer/HBoxContainer/GridContainer" unique_id=1344816847]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer4" unique_id=1937056561]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/HBoxContainer/GridContainer/VBoxContainer4" unique_id=966142201]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "FIN"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer" unique_id=754682828]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="GridContainer/VBoxContainer2" unique_id=870019391]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer2/PanelContainer" unique_id=1826773396]
+layout_mode = 2
+text = "Equipped"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/VBoxContainer2" unique_id=176391943]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/VBoxContainer2/ScrollContainer" unique_id=1592548068]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer" unique_id=1196597182]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=772885745]
+layout_mode = 2
+text = "Item"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1647537235]
+layout_mode = 2
+text = "Item"
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1224137933]
+layout_mode = 2
+text = "Item"
+
+[node name="Label4" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1137356624]
+layout_mode = 2
+text = "Item"
+
+[node name="Label5" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=857736367]
+layout_mode = 2
+text = "Item"
+
+[node name="Label6" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1398543439]
+layout_mode = 2
+text = "Item"
+
+[node name="Label7" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1054923385]
+layout_mode = 2
+text = "Item"
+
+[node name="Label8" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=231292080]
+layout_mode = 2
+text = "Item"
+
+[node name="Label9" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1260860696]
+layout_mode = 2
+text = "Item"
+
+[node name="Label10" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=219932745]
+layout_mode = 2
+text = "Item"
+
+[node name="Label11" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=179774539]
+layout_mode = 2
+text = "Item"
+
+[node name="Label12" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1325668564]
+layout_mode = 2
+text = "Item"
+
+[node name="Label13" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1170047296]
+layout_mode = 2
+text = "Item"
+
+[node name="Label14" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=567016677]
+layout_mode = 2
+text = "Item"
+
+[node name="Label15" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1230314967]
+layout_mode = 2
+text = "Item"
+
+[node name="Label16" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1384054321]
+layout_mode = 2
+text = "Item"
+
+[node name="Label17" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1776289857]
+layout_mode = 2
+text = "Item"
+
+[node name="Label18" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1520866878]
+layout_mode = 2
+text = "Item"
+
+[node name="Label19" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=738337728]
+layout_mode = 2
+text = "Item"
+
+[node name="Label20" type="Label" parent="GridContainer/VBoxContainer2/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1061211900]
+layout_mode = 2
+text = "Item"
+
+[node name="VBoxContainer3" type="TabContainer" parent="GridContainer" unique_id=1525741063]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Weapons" type="ScrollContainer" parent="GridContainer/VBoxContainer3" unique_id=1102798443]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/VBoxContainer3/Weapons" unique_id=1451084117]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer" unique_id=846855372]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HFlowContainer" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer" unique_id=2065122147]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1612380091]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=959336615]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1732838733]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label4" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=311575121]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label5" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=113188780]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label6" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=273548498]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label7" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=889256093]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label8" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=925128625]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label9" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1606314212]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label10" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=773540147]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label11" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=798376351]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label12" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=639037774]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label13" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1467770168]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label14" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=412190833]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label15" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1702977487]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label16" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1780020434]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label17" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1204220522]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label18" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1470186751]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label19" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1297590826]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label20" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=559145107]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label21" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=437383382]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label22" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=278017289]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label23" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=893069188]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label24" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=266562172]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label25" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1490133977]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label26" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=70462184]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label27" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=275315735]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label28" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=43978103]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label29" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=436205903]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label30" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1975328002]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label31" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1704323213]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label32" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=992434117]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label33" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1527618942]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label34" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=424162991]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label35" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1773816421]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label36" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=18959404]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label37" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2107396572]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label38" type="Label" parent="GridContainer/VBoxContainer3/Weapons/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1828198051]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Armor" type="ScrollContainer" parent="GridContainer/VBoxContainer3" unique_id=1188419788]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/VBoxContainer3/Armor" unique_id=2061332051]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer" unique_id=1376912932]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HFlowContainer" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer" unique_id=355008810]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=651106283]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1963296691]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=679741013]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label4" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=669755820]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label5" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=613625754]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label6" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1464842769]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label7" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1880412372]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label8" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1417858021]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label9" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1978257738]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label10" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=827473469]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label11" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1465480100]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label12" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=677194667]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label13" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=635095399]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label14" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=822904229]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label15" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1263469673]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label16" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=305241791]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label17" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=850601117]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label18" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=313560739]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label19" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1323631348]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label20" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=138571643]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label21" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1696008184]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label22" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=329182755]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label23" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2095236012]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label24" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1862510911]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label25" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1275257245]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label26" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=609556628]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label27" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=999532424]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label28" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=535779365]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label29" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1618554251]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label30" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1545621500]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label31" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1830852939]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label32" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1287980104]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label33" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=375236491]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label34" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1459068182]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label35" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1301629809]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label36" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1386177406]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label37" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1193602799]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label38" type="Label" parent="GridContainer/VBoxContainer3/Armor/ScrollContainer/MarginContainer/VBoxContainer" unique_id=435500125]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Spells" type="ScrollContainer" parent="GridContainer/VBoxContainer3" unique_id=1055060218]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/VBoxContainer3/Spells" unique_id=13869904]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer" unique_id=427572012]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HFlowContainer" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer" unique_id=1293088279]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2094445190]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2017713154]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1511602749]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label4" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1992917742]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label5" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=378165597]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label6" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=31617709]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label7" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1043805861]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label8" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=354511380]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label9" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=445058659]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label10" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1624983602]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label11" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=611715740]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label12" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=492530229]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label13" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=711263265]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label14" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=321487457]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label15" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=57110990]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label16" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=315536133]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label17" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1824856277]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label18" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=119146606]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label19" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1878189900]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label20" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=781275216]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label21" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1581297964]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label22" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=614499994]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label23" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2019605291]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label24" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1991441619]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label25" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=438015712]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label26" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=331212504]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label27" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1969367661]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label28" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1341832019]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label29" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1418905099]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label30" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1504264407]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label31" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1186130552]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label32" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=474429681]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label33" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=971628027]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label34" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=908495514]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label35" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=253063803]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label36" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=150282834]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label37" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=665082154]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label38" type="Label" parent="GridContainer/VBoxContainer3/Spells/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1219254220]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Consumables" type="ScrollContainer" parent="GridContainer/VBoxContainer3" unique_id=817245270]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer/VBoxContainer3/Consumables" unique_id=2138024529]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer" unique_id=1880220658]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HFlowContainer" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer" unique_id=896844957]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=476967578]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label2" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=240754093]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label3" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1555061679]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label4" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=881722282]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label5" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1171617730]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label6" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1031563081]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label7" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=746790370]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label8" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1040577297]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label9" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1411811189]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label10" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1632110896]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label11" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=894825173]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label12" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1202288083]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label13" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1801225217]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label14" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1634405875]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label15" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=842052109]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label16" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=848872371]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label17" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=295172292]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label18" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=840483927]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label19" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1612225132]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label20" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1151853054]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label21" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=826006395]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label22" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=718505667]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label23" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1082641912]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label24" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=838673677]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label25" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=945782295]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label26" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=735625776]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label27" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=191598872]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label28" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=408782921]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label29" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=992798410]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label30" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1863418944]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label31" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1069914940]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label32" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1845192745]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label33" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1354567321]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label34" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=636898013]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label35" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=261429130]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label36" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1197900304]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label37" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=487623068]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Label38" type="Label" parent="GridContainer/VBoxContainer3/Consumables/ScrollContainer/MarginContainer/VBoxContainer" unique_id=19413018]
+layout_mode = 2
+text = "Weapon"

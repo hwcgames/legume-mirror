@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RoomSet" format=3 uid="uid://doh7xnfg541yk"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_uisbr"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_uisbr"]
 [ext_resource type="Resource" uid="uid://dn7djqfxda2h5" path="res://database/rooms/railway/rail_station.tres" id="2_y50re"]
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_w8s74"]
 [ext_resource type="Resource" uid="uid://x7xfpi7ad2rr" path="res://database/rooms/railway/rail_section.tres" id="4_73d3s"]
@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://cbl4hu87l4xv3" path="res://database/rooms/prologue_alleyway_deadend.tres" id="7_bitfo"]
 [ext_resource type="Resource" uid="uid://dat1uh4yrn4mq" path="res://database/rooms/alley_battle.tres" id="8_5dn1u"]
 [ext_resource type="Resource" uid="uid://ccofvilcxnssm" path="res://database/rooms/school/school.tres" id="9_08j17"]
-[ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://level/roomset.gd" id="10_b4mvt"]
+[ext_resource type="Script" uid="uid://ck47u2dw5ejx7" path="res://src/level/roomset.gd" id="10_b4mvt"]
 [ext_resource type="Resource" uid="uid://c30bgrvw15iqu" path="res://database/rooms/my-apartment.tres" id="10_y50re"]
 [ext_resource type="Resource" uid="uid://1htqgcsou6wo" path="res://database/rooms/apartment_office.tres" id="11_w8s74"]
 

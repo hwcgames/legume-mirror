@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SaveFile" format=3 uid="uid://07q2yjh6h41t"]
+
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="1_to8a5"]
+[ext_resource type="Script" uid="uid://q1fu06udbngq" path="res://src/story/save_file/save_file.gd" id="2_3wbcy"]
+[ext_resource type="Script" uid="uid://gpgsuwfla7vm" path="res://database/items/fossilized_item.gd" id="2_u03hc"]
+
+[resource]
+script = ExtResource("2_3wbcy")
+parent_save_idx = -1
+metadata/_custom_type_script = "uid://q1fu06udbngq"

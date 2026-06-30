@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bwb7q7c32k7x3"]
 
 [ext_resource type="Script" uid="uid://bkenimfaahxqi" path="res://database/fade/jpeg.gd" id="1_drub5"]
-[ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://vfx/jpeg.tscn" id="2_8i1gv"]
-[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://vfx/jpeg.gdshader" id="3_drub5"]
-[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://vfx/jpeg_quantize.png" id="4_hugu3"]
-[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://vfx/unjpeg.gdshader" id="5_w5vun"]
+[ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://src/gui/vfx/jpeg.tscn" id="2_8i1gv"]
+[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://src/gui/vfx/jpeg.gdshader" id="3_drub5"]
+[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://src/gui/vfx/jpeg_quantize.png" id="4_hugu3"]
+[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://src/gui/vfx/unjpeg.gdshader" id="5_w5vun"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hugu3"]
 viewport_path = NodePath("3DOnly")

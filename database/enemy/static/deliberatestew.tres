@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://hsovlpvfc1fv"]
 
 [ext_resource type="PackedScene" uid="uid://bk2p20dio0vj1" path="res://database/costume/deliberatestew.tscn" id="1_eribs"]
-[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_ey22i"]
-[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_41022"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="3_k4oh0"]
-[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://battle/action/action.gd" id="3_s3xtc"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_ey22i"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_41022"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_k4oh0"]
+[ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://src/battle/action/action.gd" id="3_s3xtc"]
 [ext_resource type="Resource" uid="uid://dus3ihqtdemu0" path="res://database/bullet_pattern/soup.tres" id="6_41022"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="6_kkmgx"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="6_kkmgx"]
 [ext_resource type="Resource" uid="uid://bn4ryipvfadwe" path="res://database/bullet_pattern/rising-soup.tres" id="7_kkmgx"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="8_i0ppf"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="8_i0ppf"]
 [ext_resource type="Resource" uid="uid://c1rmxpjfqspy5" path="res://database/bullet_pattern/searchlight.tres" id="8_s3xtc"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="12_i0ppf"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="12_i0ppf"]
 
 [sub_resource type="Resource" id="Resource_s3xtc"]
 script = ExtResource("1_ey22i")

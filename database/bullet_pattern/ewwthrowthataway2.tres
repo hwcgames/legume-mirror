@@ -1,11 +1,15 @@
 [gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://cp0gwkegja08b"]
 
 [ext_resource type="PackedScene" uid="uid://cumv3j1hrhydj" path="res://database/bullet_pattern/ewwthrowthataway2.tscn" id="1_o83t3"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="2_dv021"]
-[ext_resource type="PackedScene" uid="uid://cx1cbdhpkhlcm" path="res://battle/telegraph/support.tscn" id="3_kwei2"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="2_dv021"]
+[ext_resource type="PackedScene" uid="uid://cx1cbdhpkhlcm" path="res://src/battle/telegraph/support.tscn" id="3_kwei2"]
 
 [resource]
 script = ExtResource("2_dv021")
+enemies = null
+shared = null
+states = null
+weight = null
 category = 3
 pattern_scene = ExtResource("1_o83t3")
 telegraph_scene = ExtResource("3_kwei2")

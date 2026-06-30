@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://y3kd3b6d6xnb"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_65s4k"]
-[ext_resource type="Script" uid="uid://bd667kacyfiyw" path="res://battle/soul_proxy.gd" id="2_uyour"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="3_alao8"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_65s4k"]
+[ext_resource type="Script" uid="uid://bd667kacyfiyw" path="res://src/battle/soul_proxy.gd" id="2_uyour"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="3_alao8"]
 [ext_resource type="PackedScene" uid="uid://bp34da535obwg" path="res://database/bullet/scissor-gaming.tscn" id="4_ggjpt"]
 
 [sub_resource type="Curve" id="Curve_ggjpt"]

@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://b3j12l146q3bq"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_75jar"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_75jar"]
 [ext_resource type="PackedScene" uid="uid://pedhctq0i51" path="res://assets/rooms/alley_battle.blend" id="2_jc1t7"]
-[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="3_thiek"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="4_bdq0l"]
-[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://battle/battlefield.tscn" id="5_75jar"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="3_thiek"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="4_bdq0l"]
+[ext_resource type="PackedScene" uid="uid://cuqcu57f1672c" path="res://src/battle/battlefield.tscn" id="5_75jar"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_myjx5"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_vulkq"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_jc1t7"]
-[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://level/automove/automove_breadcrumb.gd" id="8_unom3"]
-[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="10_thiek"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://src/level/automove/automove_breadcrumb.gd" id="8_unom3"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://src/level/automove/automove_nop.gd" id="10_thiek"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5fcu3"]
 size = Vector3(31, 9, 13)

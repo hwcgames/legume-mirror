@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dlgw7w5wm0qsv"]
+
+[ext_resource type="Texture2D" uid="uid://bky25goc74wma" path="res://icon.svg" id="1_ncmek"]
+[ext_resource type="PackedScene" uid="uid://coyy027j1g2fg" path="res://src/gui/vfx/jpeg.tscn" id="2_nkyqf"]
+[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://src/gui/vfx/jpeg.gdshader" id="3_qrcus"]
+[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://src/gui/vfx/jpeg_quantize.png" id="4_68ox6"]
+[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://src/gui/vfx/unjpeg.gdshader" id="5_4splm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_udemh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdymb"]
+albedo_texture = ExtResource("1_ncmek")
+
+[sub_resource type="GDScript" id="GDScript_coq5b"]
+script/source = "extends MeshInstance3D
+
+func _physics_process(delta: float) -> void:
+	rotate_y(2. * PI * delta)
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qrcus"]
+viewport_path = NodePath("3DOnly")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68ox6"]
+resource_local_to_scene = true
+shader = ExtResource("3_qrcus")
+shader_parameter/viewport = SubResource("ViewportTexture_qrcus")
+shader_parameter/quantize = ExtResource("4_68ox6")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+shader_parameter/quality = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4splm"]
+viewport_path = NodePath("DCT")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0vdq"]
+resource_local_to_scene = true
+shader = ExtResource("5_4splm")
+shader_parameter/dct = SubResource("ViewportTexture_4splm")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_coq5b"]
+viewport_path = NodePath("JpegEffect/3DOnly")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_udemh"]
+viewport_path = NodePath("CanvasLayer/YCbCr")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bdymb"]
+viewport_path = NodePath("JpegEffect/DCT")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ee8xc"]
+viewport_path = NodePath("JpegEffect/IDCT")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tdxwt"]
+viewport_path = NodePath("CanvasLayer/RGB")
+
+[node name="Jpegtest" type="Node3D" unique_id=1224458022]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582849569]
+transform = Transform3D(0.52398586, 0.20893492, 0.8257027, 0, 0.96944535, -0.24530739, -0.85172695, 0.1285376, 0.50797564, 0, 0, 0)
+mesh = SubResource("BoxMesh_udemh")
+surface_material_override/0 = SubResource("StandardMaterial3D_bdymb")
+script = SubResource("GDScript_coq5b")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=198506398]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
+
+[node name="JpegEffect" parent="." unique_id=1051463828 instance=ExtResource("2_nkyqf")]
+
+[node name="DCT" parent="JpegEffect/DCT" parent_id_path=PackedInt32Array(1051463828, 559845007) index="0" unique_id=606558410]
+material = SubResource("ShaderMaterial_68ox6")
+
+[node name="IDCT" parent="JpegEffect/IDCT" parent_id_path=PackedInt32Array(1051463828, 1720533226) index="0" unique_id=2062453490]
+material = SubResource("ShaderMaterial_p0vdq")
+
+[node name="FlowContainer" type="HBoxContainer" parent="." unique_id=2145968169]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Original" type="TextureRect" parent="FlowContainer" unique_id=1720227581]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 128)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_coq5b")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="YCbCr" type="TextureRect" parent="FlowContainer" unique_id=412810753]
+visible = false
+texture_filter = 2
+custom_minimum_size = Vector2(0, 128)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_udemh")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="DCT" type="TextureRect" parent="FlowContainer" unique_id=492097293]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 128)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_bdymb")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="IDCT" type="TextureRect" parent="FlowContainer" unique_id=2074573028]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 128)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_ee8xc")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="RGB" type="TextureRect" parent="FlowContainer" unique_id=747382910]
+visible = false
+texture_filter = 2
+custom_minimum_size = Vector2(0, 128)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_tdxwt")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=603344337]
+transform = Transform3D(-0.33709532, 0.93631303, 0.09841051, 0, -0.10452851, 0.9945219, 0.9414705, 0.33524868, 0.03523607, 0, 4.93, 0)
+
+[node name="QualitySlider" type="HSlider" parent="." unique_id=2086323164]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+offset_right = 8.0
+offset_bottom = 16.0
+value = 100.0
+
+[editable path="JpegEffect"]

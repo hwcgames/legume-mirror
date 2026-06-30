@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://dat1uh4yrn4mq"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_q00tx"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_q00tx"]
 [ext_resource type="PackedScene" uid="uid://b3j12l146q3bq" path="res://database/rooms/alley_battle.tscn" id="1_rymjr"]
 
 [resource]

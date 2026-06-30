@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="RoomInfo" load_steps=3 format=3 uid="uid://bn42ltiv2ex3h"]
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://bn42ltiv2ex3h"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_004cu"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_004cu"]
 [ext_resource type="PackedScene" uid="uid://by2ggu36brgjb" path="res://database/rooms/test_shop.tscn" id="1_jnm08"]
 
 [resource]

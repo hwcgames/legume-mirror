@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://coyy027j1g2fg"]
+
+[ext_resource type="Shader" uid="uid://c6eplmits5vin" path="res://src/gui/vfx/jpeg.gdshader" id="1_hplv2"]
+[ext_resource type="Texture2D" uid="uid://43cj4orvu4f7" path="res://src/gui/vfx/jpeg_quantize.png" id="2_3ugxq"]
+[ext_resource type="Shader" uid="uid://418tkld2onk" path="res://src/gui/vfx/unjpeg.gdshader" id="3_1e3y6"]
+
+[sub_resource type="GDScript" id="GDScript_udemh"]
+script/source = "extends CanvasLayer
+
+@export var quality: int = 50:
+	set(new_quality):
+		quality = int(new_quality)
+		(%DCT.material as ShaderMaterial).set_shader_parameter(\"quality\", int(new_quality))
+
+func _ready() -> void:
+	get_viewport().size_changed.connect(size_changed)
+	size_changed()
+	RenderingServer.frame_pre_draw.connect(update)
+	#%YIQ.material = %YIQ.material.duplicate(true)
+	#(%YIQ.material as ShaderMaterial).set_shader_parameter(\"viewport\", %\"3DOnly\".get_texture())
+
+func update():
+	var camera = get_viewport().get_camera_3d()
+	%PuppetCamera.environment = camera.environment
+	%PuppetCamera.fov = camera.fov
+	%PuppetCamera.near = camera.near
+	%PuppetCamera.far = camera.far
+	%PuppetCamera.projection = camera.projection
+	%PuppetCamera.attributes = camera.attributes
+	%PuppetCamera.global_transform = camera.global_transform
+
+func size_changed():
+	var size = get_viewport().size / 2
+	for child in get_children():
+		if child is SubViewport:
+			child.size = size
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hplv2"]
+viewport_path = NodePath("3DOnly")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdymb"]
+resource_local_to_scene = true
+shader = ExtResource("1_hplv2")
+shader_parameter/viewport = SubResource("ViewportTexture_hplv2")
+shader_parameter/quantize = ExtResource("2_3ugxq")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+shader_parameter/quality = 100.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ugxq"]
+viewport_path = NodePath("DCT")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7viwi"]
+resource_local_to_scene = true
+shader = ExtResource("3_1e3y6")
+shader_parameter/dct = SubResource("ViewportTexture_3ugxq")
+shader_parameter/block_size = 8
+shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
+
+[node name="JpegEffect" type="CanvasLayer" unique_id=916669023]
+script = SubResource("GDScript_udemh")
+
+[node name="3DOnly" type="SubViewport" parent="." unique_id=1567145533]
+unique_name_in_owner = true
+render_target_update_mode = 3
+
+[node name="PuppetCamera" type="Camera3D" parent="3DOnly" unique_id=1485368033]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
+
+[node name="DCT" type="SubViewport" parent="." unique_id=559845007]
+use_hdr_2d = true
+render_target_update_mode = 3
+
+[node name="DCT" type="ColorRect" parent="DCT" unique_id=606558410]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_bdymb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IDCT" type="SubViewport" parent="." unique_id=1720533226]
+use_hdr_2d = true
+render_target_update_mode = 3
+
+[node name="IDCT" type="ColorRect" parent="IDCT" unique_id=2062453490]
+material = SubResource("ShaderMaterial_7viwi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

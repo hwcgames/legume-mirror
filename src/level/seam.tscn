@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cp1m35nrpbbx2"]
+
+[ext_resource type="Script" uid="uid://bojv1eb8jykvg" path="res://src/level/static_seam.gd" id="1_wrq3n"]
+
+[node name="Seam" type="Marker3D" unique_id=1707902277]
+script = ExtResource("1_wrq3n")
+metadata/_custom_type_script = "uid://bojv1eb8jykvg"

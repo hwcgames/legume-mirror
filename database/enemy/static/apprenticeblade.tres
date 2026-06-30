@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://weo0fhsjc7ws"]
 
-[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://actor/CombatAttributes.gd" id="1_kfyhd"]
+[ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_kfyhd"]
 [ext_resource type="PackedScene" uid="uid://c3r6521316dlh" path="res://database/costume/apprenticeblade.tscn" id="2_sl7u1"]
-[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://actor/hp/HealthPool.gd" id="3_6uau0"]
+[ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_6uau0"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_sl7u1"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="5_mr7m4"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="5_mr7m4"]
 [ext_resource type="Resource" uid="uid://cfltkohl43xxx" path="res://database/bullet_pattern/telegraph-scissor.tres" id="6_j5k76"]
-[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://actor/enemy/enemy_component.gd" id="7_sl7u1"]
+[ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="7_sl7u1"]
 [ext_resource type="Resource" uid="uid://dmtgu5lxickp" path="res://database/bullet_pattern/ninjastars.tres" id="7_ukk52"]
-[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://battle/rule.gd" id="8_vcf8e"]
-[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://actor/actor_sheet.gd" id="10_kfyhd"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="8_vcf8e"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="10_kfyhd"]
 
 [sub_resource type="Resource" id="Resource_8w4iy"]
 script = ExtResource("1_kfyhd")

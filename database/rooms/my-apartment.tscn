@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dkc1rr0hum6g4"]
 
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_p6b5y"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_p6b5y"]
 [ext_resource type="PackedScene" uid="uid://b8d6t7rotm6nu" path="res://assets/rooms/my-apartment.blend" id="2_2028s"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_7rs5b"]
-[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://level/camera.tscn" id="3_ncxq2"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="3_ncxq2"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_74kvl"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_7rs5b"]
 [ext_resource type="LightmapGIData" uid="uid://cor8btjfcchph" path="res://database/rooms/my-apartment.lmbake" id="5_74kvl"]
-[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://level/landmark.tscn" id="7_7rs5b"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="7_7rs5b"]
 
 [sub_resource type="Resource" id="Resource_odghc"]
 script = ExtResource("3_7rs5b")
@@ -41,7 +41,6 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 [node name="MyApartment" type="Area3D" unique_id=250436160 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_p6b5y")
 camera = NodePath("Camera")
-metadata/_custom_type_script = "uid://wm2krehx1x27"
 
 [node name="Camera" parent="." unique_id=557331855 instance=ExtResource("3_ncxq2")]
 transform = Transform3D(-4.371139e-08, -0.095845744, 0.99539614, 0, 0.99539614, 0.095845744, -1, 4.1895505e-09, -4.3510145e-08, 13, 3, 0)
@@ -50,6 +49,7 @@ camera_3d_resource = SubResource("Resource_acowt")
 environment = SubResource("Environment_2028s")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=459477551]
+physics_interpolation_mode = 1
 transform = Transform3D(0.90630776, -0.10224062, 0.41006467, -5.0964966e-09, 0.9702957, 0.2419219, -0.42261824, -0.21925573, 0.8793866, 2.4, 2, -0.9)
 top_level = true
 environment = SubResource("Environment_7rs5b")

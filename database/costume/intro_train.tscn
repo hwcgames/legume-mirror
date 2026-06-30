@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://candb0ijvfxik"]
 
-[ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://actor/costume/costume.gd" id="1_qaig1"]
+[ext_resource type="Script" uid="uid://csq0jt1cnob8c" path="res://src/actor/costume/costume.gd" id="1_qaig1"]
 [ext_resource type="PackedScene" uid="uid://b7fcbas803rqq" path="res://assets/art/char/train.blend" id="2_4fq6r"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="3_e4tdh"]
-[ext_resource type="Script" uid="uid://nueu4xp13uhs" path="res://level/camera_trigger.gd" id="4_4fq6r"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="3_e4tdh"]
+[ext_resource type="Script" uid="uid://nueu4xp13uhs" path="res://src/level/camera_trigger.gd" id="4_4fq6r"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_j5g7b"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_eb8e3"]
-[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://level/leader_follower.gd" id="7_e13po"]
-[ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://story/Trigger.gd" id="9_eb8e3"]
-[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://level/automove/automove_glide.gd" id="10_e13po"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://src/level/leader_follower.gd" id="7_e13po"]
+[ext_resource type="Script" uid="uid://cbk74e41f61h8" path="res://src/story/Trigger.gd" id="9_eb8e3"]
+[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://src/level/automove/automove_glide.gd" id="10_e13po"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfvbf"]
 size = Vector3(29, 0.5, 8)

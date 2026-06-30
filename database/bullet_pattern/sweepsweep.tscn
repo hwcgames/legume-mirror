@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cmyvpqr74mhts"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_w16km"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_w16km"]
 [ext_resource type="PackedScene" uid="uid://c2oru2jrnvum0" path="res://database/bullet/sweep_dust.tscn" id="2_w16km"]
 [ext_resource type="Texture2D" uid="uid://c30toleumy6a6" path="res://assets/art/bullet/broom.aseprite" id="3_2l10m"]
-[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://battle/bullet/bullet.gd" id="4_pieu5"]
-[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://battle/bullet/component.gd" id="5_xhvq5"]
-[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://battle/bullet/components/damage.gd" id="6_pmk5r"]
-[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://battle/bullet/components/graze_value.gd" id="7_sag2b"]
+[ext_resource type="Script" uid="uid://c1q70xh11sokb" path="res://src/battle/bullet/bullet.gd" id="4_pieu5"]
+[ext_resource type="Script" uid="uid://8hs1iwoy8nqv" path="res://src/battle/bullet/component.gd" id="5_xhvq5"]
+[ext_resource type="Script" uid="uid://bn3s8hpfp7myy" path="res://src/battle/bullet/components/damage.gd" id="6_pmk5r"]
+[ext_resource type="Script" uid="uid://cem6eq321nrcm" path="res://src/battle/bullet/components/graze_value.gd" id="7_sag2b"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w16km"]
 animation = &"start"

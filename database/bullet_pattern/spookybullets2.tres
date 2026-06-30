@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BulletPattern" format=3 uid="uid://dhb3cqprl2v2a"]
 
 [ext_resource type="PackedScene" uid="uid://c2nch6pme0yo7" path="res://database/bullet_pattern/spookybullets2.tscn" id="1_bnv7g"]
-[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://battle/pattern.gd" id="2_o3bx3"]
-[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://battle/telegraph/angy.tscn" id="3_bnv7g"]
+[ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="2_o3bx3"]
+[ext_resource type="PackedScene" uid="uid://wo46dt5u5egm" path="res://src/battle/telegraph/angy.tscn" id="3_bnv7g"]
 
 [resource]
 script = ExtResource("2_o3bx3")

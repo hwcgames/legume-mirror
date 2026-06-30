@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d2qh7mlkra6lu"]
 
 [ext_resource type="PackedScene" uid="uid://b6apyocbr84ec" path="res://assets/rooms/railway/railtunnel_general.blend" id="1_lrg78"]
-[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://level/room.gd" id="1_omblp"]
-[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://level/procedural_seam.gd" id="2_shjar"]
-[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://level/automove/automove_nop.gd" id="4_n5nqi"]
-[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://level/automove/automove_glide.gd" id="5_t2sy4"]
-[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://level/landmark.gd" id="6_t2sy4"]
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_omblp"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="2_shjar"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://src/level/automove/automove_nop.gd" id="4_n5nqi"]
+[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://src/level/automove/automove_glide.gd" id="5_t2sy4"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="6_t2sy4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shjar"]
 size = Vector3(25, 14, 13)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Level" format=3 uid="uid://olekabap7omo"]
 
-[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://level/room_info.gd" id="1_4udu2"]
-[ext_resource type="Script" uid="uid://qrik54a0gvtv" path="res://level/level.gd" id="2_7dqgg"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_4udu2"]
+[ext_resource type="Script" uid="uid://qrik54a0gvtv" path="res://src/level/level.gd" id="2_7dqgg"]
 [ext_resource type="Resource" uid="uid://baxp2ij0m0vve" path="res://database/rooms/test_zone.tres" id="2_oae8c"]
 [ext_resource type="Resource" uid="uid://cntbffk3frtv" path="res://database/rooms/test_hallway.tres" id="3_p4wii"]
 [ext_resource type="Resource" uid="uid://dug18pt0enlav" path="res://database/roomsets/intro_dungeon.tres" id="4_afpgu"]

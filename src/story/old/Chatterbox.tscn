@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dtoq2iy4yxr21"]
+
+[ext_resource type="Script" uid="uid://bemx0kc01jhbf" path="res://src/story/old/chatterbox.gd" id="1_85akc"]
+[ext_resource type="PackedScene" uid="uid://c4rwt45fkm2s" path="res://src/story/old/ChatBalloon.tscn" id="2_pdhre"]
+[ext_resource type="Script" uid="uid://c7n4tkrog0ado" path="res://src/story/old/ChatLine.gd" id="2_wr5kr"]
+[ext_resource type="PackedScene" uid="uid://c6o5dlxt7q0ly" path="res://src/story/old/ChoiceBalloon.tscn" id="3_sayom"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sayom"]
+friction = 0.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pdhre"]
+
+[node name="Chatterbox" type="CanvasLayer" unique_id=991073897 groups=["story_listener"]]
+script = ExtResource("1_85akc")
+chat_balloon_scene = ExtResource("2_pdhre")
+choice_balloon_scene = ExtResource("3_sayom")
+
+[node name="ChatLine" type="Line2D" parent="." unique_id=46719075]
+unique_name_in_owner = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_wr5kr")
+
+[node name="Control" type="Control" parent="." unique_id=1826897566]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control" unique_id=753507555]
+physics_material_override = SubResource("PhysicsMaterial_sayom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D" unique_id=2055137246]
+shape = SubResource("WorldBoundaryShape2D_pdhre")
+
+[node name="Control2" type="Control" parent="." unique_id=1368617928]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control2" unique_id=1033515719]
+physics_material_override = SubResource("PhysicsMaterial_sayom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control2/StaticBody2D" unique_id=421632543]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_pdhre")
+
+[node name="Control3" type="Control" parent="." unique_id=1039479137]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control3" unique_id=1347411548]
+physics_material_override = SubResource("PhysicsMaterial_sayom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control3/StaticBody2D" unique_id=865383872]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_pdhre")

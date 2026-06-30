@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://6tj74y0i8vfn"]
+
+[ext_resource type="Script" uid="uid://cojpoyit2qj6p" path="res://src/story/old/draganddrophelper.gd" id="1_4m8xi"]
+[ext_resource type="Script" uid="uid://cfoetjectcmne" path="res://src/story/old/ChatBalloon.gd" id="2_rg8tj"]
+[ext_resource type="Script" uid="uid://c7n4tkrog0ado" path="res://src/story/old/ChatLine.gd" id="3_kwqkr"]
+
+[sub_resource type="GDScript" id="GDScript_kwqkr"]
+script/source = "extends Button
+
+@export var force: float = 2000.
+@export var base_range: float = 100.
+@onready var area: Area2D = $\"../Area2D\"
+
+func _pressed() -> void:
+	var bodies = area.get_overlapping_bodies()
+	for body in bodies:
+		var force_over_distance: float = force * pow(base_range, 2) \\
+			/ max(self.global_position.distance_squared_to(body.global_position), pow(base_range, 2))
+		if body is RigidBody2D:
+			body.apply_central_impulse(self.global_position.direction_to(body.global_position) * force_over_distance)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwqkr"]
+radius = 400.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_686y0"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rg8tj"]
+
+[node name="ChatterboxTest" type="CanvasLayer"]
+
+[node name="ChatLine" type="Line2D" parent="." node_paths=PackedStringArray("top_balloon")]
+default_color = Color(0.46229059, 0.46229059, 0.46229059, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_kwqkr")
+top_balloon = NodePath("../Bubble3")
+
+[node name="CharacterRootA" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_left = 83.0
+offset_top = 411.0
+offset_right = 93.0
+offset_bottom = 421.0
+script = ExtResource("1_4m8xi")
+
+[node name="Node2D" type="Node2D" parent="CharacterRootA"]
+
+[node name="CharacterRootB" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_left = 83.0
+offset_top = 411.0
+offset_right = 93.0
+offset_bottom = 421.0
+script = ExtResource("1_4m8xi")
+
+[node name="Node2D" type="Node2D" parent="CharacterRootB"]
+
+[node name="ExplosionButton" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_left = 368.0
+offset_top = 197.0
+offset_right = 378.0
+offset_bottom = 207.0
+script = ExtResource("1_4m8xi")
+
+[node name="Button" type="Button" parent="ExplosionButton"]
+layout_mode = 0
+offset_left = -35.0
+offset_top = 20.0
+offset_right = 52.0
+offset_bottom = 51.0
+text = "Explosion!"
+script = SubResource("GDScript_kwqkr")
+force = 1000.0
+base_range = 300.0
+
+[node name="Area2D" type="Area2D" parent="ExplosionButton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionButton/Area2D"]
+shape = SubResource("CircleShape2D_kwqkr")
+
+[node name="Bubble" type="RigidBody2D" parent="." node_paths=PackedStringArray("character_root")]
+position = Vector2(171, 331)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 3.0
+script = ExtResource("2_rg8tj")
+character_root = NodePath("../CharacterRootA/Node2D")
+force = Vector2(1000, 700)
+satisfactory_distance = 100.0
+separation = 32.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Bubble"]
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Bubble/PanelContainer"]
+layout_mode = 2
+text = "Chat bubble!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble"]
+shape = SubResource("RectangleShape2D_686y0")
+
+[node name="Bubble2" type="RigidBody2D" parent="." node_paths=PackedStringArray("character_root", "next_balloon")]
+position = Vector2(168, 271)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 3.0
+script = ExtResource("2_rg8tj")
+character_root = NodePath("../CharacterRootB/Node2D")
+next_balloon = NodePath("../Bubble")
+force = Vector2(1000, 700)
+satisfactory_distance = 100.0
+separation = 32.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Bubble2"]
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Bubble2/PanelContainer"]
+layout_mode = 2
+text = "Long chat bubble!
+Long chat bubble!
+Long chat bubble!
+Long chat bubble!
+Long chat bubble!
+Long chat bubble!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble2"]
+shape = SubResource("RectangleShape2D_686y0")
+
+[node name="Bubble3" type="RigidBody2D" parent="." node_paths=PackedStringArray("character_root", "next_balloon")]
+position = Vector2(160, 207)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 3.0
+script = ExtResource("2_rg8tj")
+character_root = NodePath("../CharacterRootA/Node2D")
+next_balloon = NodePath("../Bubble2")
+force = Vector2(1000, 700)
+satisfactory_distance = 100.0
+separation = 32.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Bubble3"]
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Bubble3/PanelContainer"]
+layout_mode = 2
+text = "Chat bubble!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bubble3"]
+shape = SubResource("RectangleShape2D_686y0")
+
+[node name="Control" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_rg8tj")
+
+[node name="Control2" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control2/StaticBody2D"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_rg8tj")
+
+[node name="Control3" type="Control" parent="."]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Control3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control3/StaticBody2D"]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_rg8tj")

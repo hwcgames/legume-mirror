@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cqo64bk7kg48g"]
+
+[ext_resource type="Script" uid="uid://b005yeir3xo7h" path="res://src/debug/console.gd" id="1_ofeis"]
+
+[node name="Console" type="CanvasLayer" unique_id=936557544]
+script = ExtResource("1_ofeis")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1096239339]
+custom_minimum_size = Vector2(256, 0)
+
+[node name="CmdLine" type="VBoxContainer" parent="VBoxContainer" unique_id=201759911]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/CmdLine" unique_id=920483449]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Command..."
+
+[node name="Label" type="Label" parent="VBoxContainer/CmdLine" unique_id=767488581]
+layout_mode = 2
+text = "Wanted by..."
+
+[node name="WantedBy" type="FlowContainer" parent="VBoxContainer/CmdLine" unique_id=1086963624]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MessageParent" type="VBoxContainer" parent="VBoxContainer" unique_id=727570305]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ChoiceButtons" type="HFlowContainer" parent="VBoxContainer" unique_id=1983127478]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="focus_exited" from="VBoxContainer/CmdLine/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/CmdLine/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/CmdLine/LineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weather" format=3 uid="uid://ctt8l3cxaqydn"]
 
-[ext_resource type="Script" uid="uid://dbie0bvr6dd3l" path="res://level/weather.gd" id="1_tap6f"]
+[ext_resource type="Script" uid="uid://dbie0bvr6dd3l" path="res://src/level/weather.gd" id="1_tap6f"]
 
 [sub_resource type="Environment" id="Environment_tap6f"]
 background_energy_multiplier = 0.25

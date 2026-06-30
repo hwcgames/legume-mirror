@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bxt4lqmou3yom"]
 
-[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://battle/pattern/pattern.gd" id="1_3ocxq"]
+[ext_resource type="Script" uid="uid://crbwhii8v7geg" path="res://src/battle/pattern/pattern.gd" id="1_3ocxq"]
 [ext_resource type="PackedScene" uid="uid://5lb305m8mt1w" path="res://database/bullet/soup.tscn" id="2_sycmd"]
-[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://battle/pattern/emitter/emitter.gd" id="3_bssps"]
+[ext_resource type="Script" uid="uid://bp8ioyq4c1gvw" path="res://src/battle/pattern/emitter/emitter.gd" id="3_bssps"]
 [ext_resource type="PackedScene" uid="uid://c6dbhmhpdpqby" path="res://database/bullet/soup-ingredients.tscn" id="4_hjhcr"]
 
 [sub_resource type="Animation" id="Animation_5da2u"]
