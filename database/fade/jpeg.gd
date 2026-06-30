@@ -1,10 +1,13 @@
 extends Fade
 
-func fade_out():
+func fade_out(instant: bool = false):
 	hide()
-	var tween = create_tween().tween_property(%JpegEffect, "quality", 92, 1.)
+	var tween = create_tween().tween_property(%JpegEffect, "quality", 92, 1. if not instant else 0)
 	await get_tree().process_frame
 	show()
-	await tween.finished
-func fade_in():
-	await create_tween().tween_property(%JpegEffect, "quality", 100, 1.).finished
+	if not instant:
+		await tween.finished
+func fade_in(instant: bool = false):
+	var tween = await create_tween().tween_property(%JpegEffect, "quality", 100, 1. if not instant else 0).finished
+	if not instant:
+		await tween.finished

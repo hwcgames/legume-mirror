@@ -9,5 +9,7 @@ func _pressed() -> void:
 	if not starting_address.text.is_empty():
 		st.story.ChoosePathString(starting_address.text)
 	var tree := get_tree()
+	if PlayerManager.get_player_count() == 0:
+		PlayerManager.join(-1)
 	tree.change_scene_to_node(main_game)
 	st.busy = false

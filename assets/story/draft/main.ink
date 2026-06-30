@@ -17,6 +17,8 @@ INCLUDE test.ink
 
 {in_inky(): {SEED_RANDOM(2765)}}
 
+/ cut black
+
 - (day_loop)
 -> calendar.run_day ->
 -> day_loop
