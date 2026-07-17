@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dkc1rr0hum6g4"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_p6b5y"]
+[ext_resource type="PackedScene" uid="uid://b8d6t7rotm6nu" path="res://assets/rooms/my-apartment.blend" id="2_2028s"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_7rs5b"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="3_ncxq2"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_74kvl"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_7rs5b"]
+[ext_resource type="LightmapGIData" uid="uid://cor8btjfcchph" path="res://database/rooms/old/my-apartment.lmbake" id="5_74kvl"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="7_7rs5b"]
+
+[sub_resource type="Resource" id="Resource_odghc"]
+script = ExtResource("3_7rs5b")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_acowt"]
+script = ExtResource("4_74kvl")
+fov = 24.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Environment" id="Environment_2028s"]
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+
+[sub_resource type="Environment" id="Environment_7rs5b"]
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7rs5b"]
+size = Vector3(14, 5, 15)
+
+[sub_resource type="Resource" id="Resource_7rs5b"]
+script = ExtResource("3_7rs5b")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_rrjow"]
+script = ExtResource("4_74kvl")
+fov = 32.5
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="MyApartment" type="Area3D" unique_id=250436160 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_p6b5y")
+camera = NodePath("Camera")
+
+[node name="Camera" parent="." unique_id=557331855 instance=ExtResource("3_ncxq2")]
+transform = Transform3D(-4.371139e-08, -0.095845744, 0.99539614, 0, 0.99539614, 0.095845744, -1, 4.1895505e-09, -4.3510145e-08, 13, 3, 0)
+tween_resource = SubResource("Resource_odghc")
+camera_3d_resource = SubResource("Resource_acowt")
+environment = SubResource("Environment_2028s")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=459477551]
+physics_interpolation_mode = 1
+transform = Transform3D(0.90630776, -0.10224062, 0.41006467, -5.0964966e-09, 0.9702957, 0.2419219, -0.42261824, -0.21925573, 0.8793866, 2.4, 2, -0.9)
+top_level = true
+environment = SubResource("Environment_7rs5b")
+fov = 32.5
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=2019913088]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("5_7rs5b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=101929858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+light_energy = 0.0
+
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=57944016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+supersampling = true
+bounces = 5
+directional = true
+interior = true
+environment_mode = 0
+light_data = ExtResource("5_74kvl")
+
+[node name="my-apartment" parent="LightmapGI" unique_id=532711396 instance=ExtResource("2_2028s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="windowsill" parent="." unique_id=246181278 instance=ExtResource("7_7rs5b")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.4, 1, -3)
+
+[node name="entrance_to_myroom" parent="." unique_id=215611797 instance=ExtResource("7_7rs5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.9)
+
+[node name="center_of_room" parent="." unique_id=1429765662 instance=ExtResource("7_7rs5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.9000001)
+
+[node name="against_wall" parent="." unique_id=840763633 instance=ExtResource("7_7rs5b")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6000001, 0, 5.9604645e-08)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1601881773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -1)
+shape = SubResource("BoxShape3D_7rs5b")
+
+[node name="live_crow_reaction" parent="." unique_id=904496162 instance=ExtResource("3_ncxq2")]
+transform = Transform3D(0.90630776, -0.10224062, 0.41006467, -5.0964966e-09, 0.9702957, 0.2419219, -0.42261824, -0.21925573, 0.8793866, 2.4, 2, -0.9)
+tween_resource = SubResource("Resource_7rs5b")
+camera_3d_resource = SubResource("Resource_rrjow")

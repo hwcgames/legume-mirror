@@ -14,6 +14,8 @@ class_name DungeonMap
 @export var treadmill: Treadmill
 #@export var start_junction: RoomInfo
 
+const room_registry: Registry = preload("uid://qyg5tv6sg4pu")
+
 enum STATE {
 	GENERATE,
 	HALLWAY_TO_JUNCTION,
@@ -207,8 +209,9 @@ func pre_save(file: SaveFile):
 	file.map_state.height = height
 	file.map_state.width = width
 	file.map_state.map = map.duplicate()
-	file.treadmill_roomset = treadmill.roomset
-	file.treadmill_allowed_themes = treadmill.allowed_themes
+	file.treadmill_rooms = []
+	for r in treadmill.rooms:
+		file.treadmill_rooms.push_back(room_registry.get_string_id_of(r))
 
 static var loading_save: SaveFile = null
 static var loading_handle: Callable = func(): pass

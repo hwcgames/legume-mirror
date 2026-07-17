@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://51iy0q5n3idd"]
+
+[ext_resource type="PackedScene" uid="uid://dh67uun11xxrp" path="res://database/rooms/old/test_hallway.tscn" id="1_lwcrj"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="2_c6d1o"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="3_ogdv1"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_88tip"]
+[ext_resource type="PackedScene" uid="uid://bpl2wbx06t8vu" path="res://src/level/landmark.tscn" id="4_ar3k2"]
+
+[sub_resource type="Resource" id="Resource_nptt0"]
+script = ExtResource("4_88tip")
+duration = 0.0
+
+[node name="TestHallway" unique_id=164551721 instance=ExtResource("1_lwcrj")]
+
+[node name="In" parent="." index="1" unique_id=225994617 node_paths=PackedStringArray("automoves")]
+automoves = {
+"forward": NodePath("../forward")
+}
+
+[node name="crow" type="Marker3D" parent="." index="6" unique_id=354553873]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 0, -1)
+script = ExtResource("2_c6d1o")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="crow" parent="crow" index="0" unique_id=557331855 instance=ExtResource("3_ogdv1")]
+transform = Transform3D(-0.8660253, 0.18730333, -0.463592, 0, 0.92718387, 0.37460658, 0.50000006, 0.32441884, -0.8029647, -1.5000001, 1.91, -3.8)
+tween_resource = SubResource("Resource_nptt0")
+
+[node name="talk_to_crow" parent="." index="7" unique_id=246181278 instance=ExtResource("4_ar3k2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, -1)

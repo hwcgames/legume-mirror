@@ -10,7 +10,9 @@ var room_info: RoomInfo
 @export var loading_range: int = 3
 ## If this lock has shared references, this room is treated as a loading root.
 var keep_loaded_lock: Locks = Locks.new()
-var loadedness: int = 0
+var loadedness: int = 0:
+	set(v):
+		loadedness = v
 
 var players_inside: int = 0
 signal player_entered(player: Actor)
@@ -42,10 +44,11 @@ func _exit_tree() -> void:
 	Storyteller.find().choose(["Unload %s" % room_info.resource_path.trim_prefix("res://database/rooms/").trim_suffix(".tres")])
 
 func _body_entered(body: PhysicsBody3D):
-	if body.is_in_group("loading_root"):
+	var is_leader = body is Actor and body.leader
+	if body.is_in_group("loading_root") or is_leader:
 		keep_loaded_lock.shared_locks += 1
 		update_loading()
-	if body.is_in_group("party_leader"):
+	if is_leader:
 		player_entered.emit(body)
 		if players_inside == 0 and camera != null:
 			get_tree().process_frame.connect(func():
@@ -53,10 +56,11 @@ func _body_entered(body: PhysicsBody3D):
 			, CONNECT_ONE_SHOT)
 		players_inside += 1
 func _body_exited(body: PhysicsBody3D):
-	if body.is_in_group("loading_root"):
+	var is_leader = body is Actor and body.leader
+	if body.is_in_group("loading_root") or is_leader:
 		keep_loaded_lock.shared_locks = max(keep_loaded_lock.shared_locks - 1, 0)
 		update_loading()
-	if body.is_in_group("party_leader"):
+	if is_leader:
 		player_exited.emit(body)
 		players_inside -= 1
 		if players_inside == 0 and camera != null:

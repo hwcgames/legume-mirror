@@ -423,6 +423,8 @@ var components: Array[ActorComponent]:
 		active_component._activate()
 		new_mode.emit(active_component)
 
+var skip_physics: bool = false
+
 func _physics_process(delta: float):
 	if global_position.y < -1000:
 		queue_free()
@@ -432,7 +434,8 @@ func _physics_process(delta: float):
 	if active_component._reset_velocity():
 		velocity = Vector3.ZERO
 	active_component._active(delta)
-	move_and_slide()
+	if not skip_physics:
+		move_and_slide()
 
 func mode_done():
 	print("{human_name} {active_component} mode done".format(self))
@@ -450,7 +453,7 @@ func mode_done():
 		follow_actor(Storyteller.find().party_stack[party_pos - 1])
 	else:
 		active_component = %Component/Idle
-	print("-> {active_component}".format(self))
+	print("DONE -> {active_component}".format(self))
 
 var captured: bool = false:
 	set(new_cap):
@@ -464,7 +467,7 @@ var pose: String = "normal"
 
 func glide_to(target, speed = 10., rotation = INF, afterimage_duration: float = 0., afterimage_count: int = 0):
 	var glide: ActorGlide = %Component/Glide
-	glide.target = (func(): return target.global_position) if target is Node3D else (func(): return target)
+	glide.target = (func(): return target.global_position if is_instance_valid(target) else Vector3.ZERO) if target is Node3D else (func(): return target)
 	glide.speed = speed
 	glide.rotation = rotation
 	glide.afterimage_duration = afterimage_duration

@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://rsgcot5rrgge"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_b5w43"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="2_b5w43"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://src/level/automove/automove_nop.gd" id="3_7gl14"]
+[ext_resource type="Script" uid="uid://de4gmccb2y5c1" path="res://src/level/automove/automove_glide.gd" id="4_rv6xn"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="5_rv6xn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
+transparency = 2
+alpha_scissor_threshold = 0.519
+alpha_antialiasing_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehsfc"]
+shading_mode = 0
+albedo_color = Color(0.20784314, 0.15686275, 0.14901961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j41c"]
+shading_mode = 0
+albedo_color = Color(0.36519998, 0.37268, 0.44, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c3h5"]
+shading_mode = 0
+albedo_color = Color(0.22894034, 0.1522448, 0.053590782, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkanc"]
+size = Vector3(14.024414, 11.533203, 32)
+
+[node name="Tunnel" type="Area3D" unique_id=366881119]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_b5w43")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1747724304]
+use_collision = true
+
+[node name="Outside" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1625938281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+size = Vector3(10.5, 11.5, 5)
+material = SubResource("StandardMaterial3D_k2i2f")
+
+[node name="Inside" type="CSGBox3D" parent="CSGCombiner3D" unique_id=14186257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+operation = 2
+size = Vector3(10, 11, 5)
+material = SubResource("StandardMaterial3D_ehsfc")
+
+[node name="LRail" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1291182199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000006, 0.049999997, 0)
+size = Vector3(0.2, 0.1, 5)
+material = SubResource("StandardMaterial3D_1j41c")
+
+[node name="RRail" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2121354702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.05, 0)
+size = Vector3(0.2, 0.1, 5)
+material = SubResource("StandardMaterial3D_1j41c")
+
+[node name="Plank" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2102365466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -2)
+size = Vector3(1.8, 0.05, 0.4)
+material = SubResource("StandardMaterial3D_4c3h5")
+
+[node name="Plank2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=961283075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -1)
+size = Vector3(1.8, 0.05, 0.4)
+material = SubResource("StandardMaterial3D_4c3h5")
+
+[node name="Plank3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=494330963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+size = Vector3(1.8, 0.05, 0.4)
+material = SubResource("StandardMaterial3D_4c3h5")
+
+[node name="Plank4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1430721077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 1)
+size = Vector3(1.8, 0.05, 0.4)
+material = SubResource("StandardMaterial3D_4c3h5")
+
+[node name="Plank5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1942051408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 2)
+size = Vector3(1.8, 0.05, 0.4)
+material = SubResource("StandardMaterial3D_4c3h5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=800578164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015136719, 5.2666016, 0)
+shape = SubResource("BoxShape3D_tkanc")
+
+[node name="In" type="Marker3D" parent="." unique_id=1201749224 node_paths=PackedStringArray("automoves")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.5)
+script = ExtResource("2_b5w43")
+profile = &"train_tunnel"
+backtrack = true
+wants_room_type = 1
+automoves = {
+"rails": NodePath("../rails2")
+}
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="Out" type="Marker3D" parent="." unique_id=1642563120]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, -2.5)
+script = ExtResource("2_b5w43")
+profile = &"train_tunnel"
+wants_room_type = 1
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="rails" type="Marker3D" parent="." unique_id=1916432250 node_paths=PackedStringArray("next_automove")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+script = ExtResource("3_7gl14")
+next_automove = NodePath("../rails2")
+metadata/_custom_type_script = "uid://dgryx2ii0n4p"
+
+[node name="rails2" type="Marker3D" parent="." unique_id=325455501 node_paths=PackedStringArray("next_seam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+script = ExtResource("4_rv6xn")
+next_seam = NodePath("../Out")
+next_seam_key = &"rails"
+metadata/_custom_type_script = "uid://de4gmccb2y5c1"
+
+[node name="default" type="Marker3D" parent="." unique_id=1868876397]
+script = ExtResource("5_rv6xn")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"

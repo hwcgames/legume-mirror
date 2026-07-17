@@ -1,7 +1,7 @@
 extends Resource
 class_name FossilizedItem
 
-@export_file_path(".tres") var item: String
+@export_file(".tres") var item: String
 @export var charges: int = 0
 @export var registers: Dictionary = {}
 

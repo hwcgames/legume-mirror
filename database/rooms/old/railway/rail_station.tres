@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://dn7djqfxda2h5"]
+
+[ext_resource type="PackedScene" uid="uid://b68vg84u0n7kc" path="res://database/rooms/old/railway/rail_station.tscn" id="1_3c2s5"]
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_xfp0y"]
+
+[resource]
+script = ExtResource("1_xfp0y")
+autoplace = false
+room_scene = ExtResource("1_3c2s5")
+proc_seams = Array[String](["In", "Out"])
+seam_backtrack = Dictionary[String, bool]({
+"In": true,
+"Out": true
+})
+seam_profiles = Dictionary[String, String]({
+"In": "Railway",
+"Out": "Railway"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

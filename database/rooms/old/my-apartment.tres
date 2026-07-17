@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://c30bgrvw15iqu"]
+
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_80uc1"]
+
+[resource]
+script = ExtResource("1_80uc1")
+autoplace = false
+room_scene = "uid://dkc1rr0hum6g4"
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

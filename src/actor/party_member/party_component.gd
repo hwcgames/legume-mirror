@@ -3,8 +3,8 @@ class_name PartyComponent
 
 @export var sp: EnergyComponent
 
-@export_file_path("*.tscn") var skill_challenge_scene = "uid://bbpp48kcropih"
-@export_file_path("*.tscn") var battle_planner_scene = "uid://d21yudvneounm"
+@export_file("*.tscn") var skill_challenge_scene = "uid://bbpp48kcropih"
+@export_file("*.tscn") var battle_planner_scene = "uid://d21yudvneounm"
 @export var basic_attack: BattleAction = BattleActionBasicAttack.new()
 @export var skillset: Skillset = SkillsetUnskilled.new()
 @export var equip_slots: Dictionary[String, int] = {

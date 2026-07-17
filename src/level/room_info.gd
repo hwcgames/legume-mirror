@@ -22,7 +22,7 @@ enum ROOM_TYPE {
 @export var autoplace: bool = true
 @export var room_type: ROOM_TYPE = ROOM_TYPE.UNKNOWN
 @export var theme: StringName = "default"
-@export var room_scene: PackedScene
+@export_file("*.tscn") var room_scene: String
 @export var static_seams: Array[String] = []
 @export var proc_seams: Array[String] = []
 @export var seam_backtrack: Dictionary[String, bool] = {}
@@ -37,7 +37,7 @@ func repopulate():
 	seam_profiles = {}
 	seam_target_rooms = {}
 	seam_target_name = {}
-	var room: Node3D = room_scene.instantiate()
+	var room: Node3D = load(room_scene).instantiate()
 	walk(room)
 
 func walk(node: Node):

@@ -26,6 +26,7 @@ func _activate():
 			current = current.next_seam.partner.automoves.get(current.next_seam_key)
 		else:
 			current = null
+		var _a = 1
 func _active(delta: float):
 	pass
 func _reset_velocity() -> bool:

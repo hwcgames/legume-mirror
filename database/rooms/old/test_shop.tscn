@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://by2ggu36brgjb"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_a2dgh"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_hermd"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="10_etayg"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="11_3pt0n"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="12_uykox"]
+
+[sub_resource type="Resource" id="Resource_0wfon"]
+script = ExtResource("11_3pt0n")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f03gb"]
+size = Vector3(10, 5, 17)
+
+[node name="TestShop" type="Area3D" unique_id=1066302998 node_paths=PackedStringArray("camera")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_a2dgh")
+camera = NodePath("PhantomCamera3D")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2135319587]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.9, 2.3, -5.5)
+text = "Shop"
+font_size = 497
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2099056600]
+physics_interpolation_mode = 1
+transform = Transform3D(0.49999997, -0.30328852, 0.81118196, 0, 0.9366722, 0.3502074, -0.86602545, -0.17510368, 0.46833608, 7.155, 4.3599997, 0)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1838031971]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_hermd")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1633800684]
+transform = Transform3D(0.49999997, -0.30328852, 0.81118196, 0, 0.9366722, 0.3502074, -0.86602545, -0.17510368, 0.46833608, 7.155, 4.3599997, 0)
+script = ExtResource("10_etayg")
+tween_resource = SubResource("Resource_0wfon")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=317812583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5.5)
+shape = SubResource("BoxShape3D_f03gb")
+debug_fill = false
+
+[node name="In" type="Marker3D" parent="." unique_id=1951161618]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 3)
+script = ExtResource("12_uykox")
+profile = &"8x6"
+backtrack = true
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="Out" type="Marker3D" parent="." unique_id=596574716]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, -14)
+script = ExtResource("12_uykox")
+profile = &"8x6"
+wants_room_type = 1
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"

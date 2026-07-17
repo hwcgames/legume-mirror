@@ -6,7 +6,7 @@ class_name SaveFile
 @export var parent_save_idx: int = 0
 @export var timestamp: Dictionary
 
-@export_file_path("*.ink") var story: String
+@export_file("*.ink") var story: String
 @export var ink_save: Dictionary
 
 @export var active_camera: String
@@ -15,8 +15,7 @@ class_name SaveFile
 @export var character_sheets: Dictionary[StringName, ActorSheet] = {}
 @export var inventory: Array[FossilizedItem] = []
 
-@export var treadmill_roomset: RoomSet
-@export var treadmill_allowed_themes: Array[StringName] = []
+@export var treadmill_rooms: Array[String] = []
 @export var map_state: MapState
 
 func get_character_sheet(name: String) -> ActorSheet:

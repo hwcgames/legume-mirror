@@ -1,5 +1,6 @@
 extends Resource
 class_name RoomSet
 
-@export var rooms: Array[RoomInfo] = []
-@export var allowed_themes: Array[StringName] = ["default"]
+## The rooms to load in this roomset.
+@export var rooms: Array[String] = []
+#@export var allowed_themes: Array[StringName] = ["default"]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RoomInfo" format=3 uid="uid://6ko4lafitey5"]
+
+[ext_resource type="Script" uid="uid://y8wmbbngb0r2" path="res://src/level/room_info.gd" id="1_05ysi"]
+
+[resource]
+script = ExtResource("1_05ysi")
+room_type = 4
+room_scene = "uid://hcuunputmcw4"
+proc_seams = Array[String](["In", "Out"])
+seam_backtrack = Dictionary[String, bool]({
+"In": true,
+"Out": false
+})
+seam_profiles = Dictionary[String, String]({
+"In": "8x6",
+"Out": "8x6"
+})
+metadata/_custom_type_script = "uid://y8wmbbngb0r2"

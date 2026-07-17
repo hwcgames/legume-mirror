@@ -28,6 +28,8 @@ var mode: MODE:
 var level: LevelRoot
 var battle: BattleWorld
 
+const level_registry: Registry = preload("uid://dt4eemr0431fl")
+
 func wants_line(line: String, tags: Array[String]) -> bool:
 	return do_line(line, tags) is Callable
 func take_line(line: String, tags: Array[String]):
@@ -35,13 +37,7 @@ func take_line(line: String, tags: Array[String]):
 func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
 		["/", "level", var name, var room]:
-			var level_r = load("res://database/level/%s.tres" % name)
-			if !(is_instance_valid(level_r) and level_r is Level):
-				printerr("WARNING: Invalid level.")
-				return null
-			if room not in (level_r as Level).entrances:
-				printerr("WARNING: Invalid room.")
-				return null
+			var level_r: Level = level_registry.load_entry(name) # load("res://database/level/%s.tres" % name)
 			return func():
 				load_level(name, room)
 		["/", "battle", "setup", var environment_name]:

@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://cjfulib2gm8vy"]
+
+[ext_resource type="Shader" uid="uid://3oqou7dkrwrl" path="res://src/gui/vfx/crosshatch.gdshader" id="1_nhrmg"]
+
+[sub_resource type="Gradient" id="Gradient_7ibny"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t3o51"]
+gradient = SubResource("Gradient_7ibny")
+
+[sub_resource type="Gradient" id="Gradient_nhrmg"]
+offsets = PackedFloat32Array(0, 0.23523755, 0.56144905, 0.74817574)
+colors = PackedColorArray(1, 1, 1, 1, 0.1719802, 0.1719802, 0.1719802, 1, 0.13557476, 0.13557476, 0.13557476, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nhrmg"]
+gradient = SubResource("Gradient_nhrmg")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ibny"]
+frequency = 0.1075
+fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_nhrmg"]
+width = 128
+height = 128
+depth = 32
+noise = SubResource("FastNoiseLite_7ibny")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4euuk"]
+render_priority = 0
+shader = ExtResource("1_nhrmg")
+shader_parameter/albedo_color = Color(1, 0.31, 0.31, 1)
+shader_parameter/albedo_texture = SubResource("GradientTexture1D_t3o51")
+shader_parameter/shade_color = Color(0.35, 0, 0, 1)
+shader_parameter/wobble = SubResource("NoiseTexture3D_nhrmg")
+shader_parameter/exp_curve = SubResource("GradientTexture1D_nhrmg")
+shader_parameter/exp_mul = 4.0
+shader_parameter/line_weight = 1.0
+shader_parameter/base_line_interval = 20.0
+shader_parameter/wobble_amt = 0.0
+shader_parameter/skip = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0alym"]
+next_pass = SubResource("ShaderMaterial_4euuk")
+disable_fog = true
+
+[sub_resource type="Gradient" id="Gradient_0alym"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jfpke"]
+gradient = SubResource("Gradient_0alym")
+
+[sub_resource type="Gradient" id="Gradient_7vuw8"]
+offsets = PackedFloat32Array(0.48036894, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8phwj"]
+gradient = SubResource("Gradient_7vuw8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x0clx"]
+frequency = 0.1075
+fractal_gain = 0.0
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_2imcv"]
+width = 128
+height = 128
+depth = 32
+noise = SubResource("FastNoiseLite_x0clx")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erdcf"]
+render_priority = 0
+shader = ExtResource("1_nhrmg")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = SubResource("GradientTexture1D_jfpke")
+shader_parameter/shade_color = Color(0, 0, 0, 1)
+shader_parameter/wobble = SubResource("NoiseTexture3D_2imcv")
+shader_parameter/exp_curve = SubResource("GradientTexture1D_8phwj")
+shader_parameter/exp_mul = 4.0
+shader_parameter/line_weight = 5.0
+shader_parameter/base_line_interval = 100.0
+shader_parameter/wobble_amt = 100.0
+shader_parameter/skip = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
+next_pass = SubResource("ShaderMaterial_erdcf")
+
+[sub_resource type="Environment" id="Environment_nhrmg"]
+ambient_light_source = 1
+ambient_light_energy = 0.0
+adjustment_enabled = true
+
+[node name="KeiichiShaderTest" type="Node3D" unique_id=1357309044]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1368577126]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=101486495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.0126464, 0)
+size = Vector3(10, 6.025293, 10)
+material = SubResource("StandardMaterial3D_0alym")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1613296873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3126831, 3.297338, 0.2296753)
+size = Vector3(8.817993, 1.5550293, 8.59314)
+
+[node name="CSGCylinder3D" type="CSGSphere3D" parent="CSGCombiner3D" unique_id=1340938016]
+transform = Transform3D(1, 0, 0, 0, 0.4061287, 0, 0, 0, 1, 0, -0.3401422, -0.09666759)
+operation = 2
+radius = 1.5600586
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_k2i2f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=204897013]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7.361534, -0.5129374)
+light_angular_distance = 15.95
+shadow_enabled = true
+directional_shadow_blend_splits = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1718706858]
+environment = SubResource("Environment_nhrmg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2030341052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7867007, 0.64802086, 1.0722497)
+light_energy = 0.441
+omni_range = 4.911
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1928380361]
+transform = Transform3D(1, 0, 0, 0, 0.7241719, 0.68961954, 0, -0.68961954, 0.7241719, -0.61497784, 1.4397173, 6.185835)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccr3fgha4vs2l"]
 
 [ext_resource type="Script" uid="uid://c5xnu2n206sin" path="res://src/battle/battle_environment.gd" id="1_blbpg"]
-[ext_resource type="Shader" uid="uid://3oqou7dkrwrl" path="res://src/gui/vfx/keiichi.gdshader" id="1_vegfx"]
+[ext_resource type="Shader" uid="uid://3oqou7dkrwrl" path="res://src/gui/vfx/crosshatch.gdshader" id="1_vegfx"]
 [ext_resource type="Texture2D" uid="uid://cwvxawip4ho4t" path="res://assets/art/devel/kenney_prototype-textures/PNG/Orange/texture_08.png" id="2_blbpg"]
 [ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="4_blbpg"]
 

@@ -3,16 +3,7 @@ class_name Treadmill
 
 #@export var load_range: float = 24.
 var existing_rooms: Array[Room] = []
-@export var roomset: RoomSet
-var allowed_themes: Array[StringName]:
-	get:
-		return roomset.allowed_themes
-	set(new_themes):
-		roomset.allowed_themes = new_themes
-var rooms: Array[RoomInfo] = []:
-	get:
-		var out: Array[RoomInfo] = []
-		return roomset.rooms.filter(func(r: RoomInfo): return r is RoomInfo and r.theme in allowed_themes)
+var rooms: Array[RoomInfo] = []
 
 func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 	var room: Room
@@ -35,7 +26,7 @@ func fill_seam(seam: RoomSeam, allow_handlers: bool = true) -> Room:
 
 func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
 	var lock = await seam.loading_lock.exclusive_lock()
-	var room: Room = room_info.room_scene.instantiate()
+	var room: Room = load(room_info.room_scene).instantiate()
 	room.room_info = room_info
 	room.position = Vector3(1000, 0, 0)
 	add_child(room)
@@ -105,7 +96,7 @@ func auto_fill_proc_seam(seam: ProceduralSeam, allow_handlers: bool = true) -> R
 	return await fill_seam_with(seam, choice)
 
 func spawn_initial_room(room_info: RoomInfo) -> Node3D:
-	var room: Node3D = room_info.room_scene.instantiate()
+	var room: Room = load(room_info.room_scene).instantiate()
 	room.room_info = room_info
 	room.top_level = true
 	existing_rooms.push_back(room)

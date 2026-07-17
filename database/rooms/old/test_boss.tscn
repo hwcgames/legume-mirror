@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b1ughfrpeqc8l"]
+
+[ext_resource type="PackedScene" uid="uid://hcuunputmcw4" path="res://database/rooms/old/test_monster.tscn" id="1_2awyf"]
+[ext_resource type="Resource" uid="uid://cy4wls3ckp4ir" path="res://database/encounter/table/intro_dungeon_boss.tres" id="2_j2e6u"]
+
+[node name="TestBoss" unique_id=616380030 instance=ExtResource("1_2awyf")]
+encounter = ExtResource("2_j2e6u")
+
+[node name="In" parent="." index="1" unique_id=1101506697 node_paths=PackedStringArray("automoves")]
+automoves = {
+"forward": NodePath("../AutomoveBattle")
+}
