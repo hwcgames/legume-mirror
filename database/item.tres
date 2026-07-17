@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://c37jq2mwww20t"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_boubo"]
+
+[resource]
+script = ExtResource("1_boubo")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"Item"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["database/items"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://7fyk4nkeo01r": &"item",
+&"uid://7gjwi8rriruw": &"re-granola",
+&"uid://bqx5k045i42qm": &"crest-of-compression",
+&"uid://cbkywy3xowxdo": &"crest-of-compression2",
+&"uid://cdi7clkw7gpa7": &"ritual-ration",
+&"uid://ciuonlgp16jc3": &"extra_turn2",
+&"uid://cpsvr70kbcuvn": &"pocket-coffee",
+&"uid://ds8ix4qtcllk0": &"extra_turn",
+&"uid://snosyl6pcyrb": &"re-granola2"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"crest-of-compression": &"uid://bqx5k045i42qm",
+&"crest-of-compression2": &"uid://cbkywy3xowxdo",
+&"extra_turn": &"uid://ds8ix4qtcllk0",
+&"extra_turn2": &"uid://ciuonlgp16jc3",
+&"item": &"uid://7fyk4nkeo01r",
+&"pocket-coffee": &"uid://cpsvr70kbcuvn",
+&"re-granola": &"uid://7gjwi8rriruw",
+&"re-granola2": &"uid://snosyl6pcyrb",
+&"ritual-ration": &"uid://cdi7clkw7gpa7"
+})

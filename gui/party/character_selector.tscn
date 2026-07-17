@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bwe8ntgtu46sc"]
+
+[ext_resource type="PackedScene" uid="uid://b08awxoknn3ag" path="res://gui/party/character_button.tscn" id="1_1rtfh"]
+[ext_resource type="Script" uid="uid://c5lm7d0jice3o" path="res://gui/party/character_selector.gd" id="1_51pkc"]
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=1086778859]
+size_flags_horizontal = 3
+script = ExtResource("1_51pkc")
+
+[node name="PanelContainer" parent="." unique_id=2031283531 instance=ExtResource("1_1rtfh")]
+layout_mode = 2
+
+[node name="PanelContainer2" parent="." unique_id=1411168522 instance=ExtResource("1_1rtfh")]
+layout_mode = 2
+
+[node name="PanelContainer3" parent="." unique_id=1866364872 instance=ExtResource("1_1rtfh")]
+layout_mode = 2
+
+[node name="PanelContainer4" parent="." unique_id=882808901 instance=ExtResource("1_1rtfh")]
+layout_mode = 2

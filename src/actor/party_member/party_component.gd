@@ -15,6 +15,9 @@ class_name PartyComponent
 	"legs": 2,
 	"feet": 1,
 }
+@export var visible_slots: Array[String] = [
+	"armor",
+]
 @export var equips: Array[Item] = []
 @export var tags: Array[String] = []
 

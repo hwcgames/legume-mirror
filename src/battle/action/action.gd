@@ -12,6 +12,12 @@ func plan(battle_planner: BattlePlanner, source: Object) -> BattleActionPlan:
 	await battle_planner.get_tree().process_frame
 	return null
 
+func peaceful_allowed(source: Object, target: Actor) -> bool:
+	return false
+
+func peaceful_apply(source: Object, target: Actor):
+	pass
+
 func copy():
 	return self
 

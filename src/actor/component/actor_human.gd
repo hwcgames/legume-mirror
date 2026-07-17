@@ -10,8 +10,8 @@ func _active(delta: float):
 	if actor.player not in PlayerManager.player_data:
 		return
 	var camera = get_viewport().get_camera_3d()
-	var input_rotation = camera.global_rotation.y
-	var active_pcam = PhantomCameraManager.get_phantom_camera_hosts()[0].get_active_pcam()
+	var input_rotation = camera.global_rotation.y if is_instance_valid(camera) else 0
+	var active_pcam = PhantomCameraManager.get_phantom_camera_hosts()[0].get_active_pcam() if !PhantomCameraManager.get_phantom_camera_hosts().is_empty() else null
 	if is_instance_valid(active_pcam) and active_pcam.has_meta("move_align"):
 		input_rotation = (active_pcam.get_node(active_pcam.get_meta("move_align"))).global_rotation.y
 	var input = MultiplayerInput.get_vector(PlayerManager.get_player_device(actor.player), "left", "right", "down", "up")

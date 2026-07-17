@@ -1,8 +1,62 @@
-[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bj4hgfexf0c5u"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://bj4hgfexf0c5u"]
 
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_la0ru"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_ni82a"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_mplt8"]
 [ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://src/battle/rules/strengthen.gd" id="2_oaf83"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_mawsj"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_whlf5"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_ofnc1"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_rwq7c"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://src/battle/action/predicate/pred_ally.gd" id="6_si84l"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_f5w20"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_6hr7c"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_x6aab"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_2rmkf"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_wu360"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_p345y"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="15_cil38"]
+
+[sub_resource type="Resource" id="Resource_xjc62"]
+script = ExtResource("3_whlf5")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_o2kjf"]
+script = ExtResource("4_ofnc1")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_t3r75"]
+script = ExtResource("6_si84l")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_f5w20")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_4ll6m"]
+script = ExtResource("8_6hr7c")
+predicates = Array[ExtResource("5_rwq7c")]([SubResource("Resource_t3r75"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_n2hoj"]
+script = ExtResource("9_x6aab")
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_6k2u5"]
+script = ExtResource("10_2rmkf")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_mt3v8"]
+script = ExtResource("11_wu360")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_c0k0a"]
+script = ExtResource("12_p345y")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
 
 [sub_resource type="Resource" id="Resource_e7dsr"]
 script = ExtResource("2_oaf83")
@@ -10,13 +64,16 @@ amount = 7
 stacks = 3
 metadata/_custom_type_script = "uid://b4sfm156ewh04"
 
+[sub_resource type="Resource" id="Resource_tr57u"]
+script = ExtResource("15_cil38")
+message = "{me} sharpened {target}'s weapon!"
+rfl_message = "{me} sharpened their weapon!"
+rules = Array[ExtResource("1_la0ru")]([SubResource("Resource_e7dsr")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
 [resource]
-script = ExtResource("3_mawsj")
+script = ExtResource("1_ni82a")
 name = "Sharpen"
 description = "Refines an ally's weapons."
-cost = 40
-message = "%s sharpened %s's weapon!"
-rfl_message = "%s sharpened their weapon!"
-rules = Array[ExtResource("1_la0ru")]([SubResource("Resource_e7dsr")])
-friendly = true
+steps = Array[ExtResource("2_mplt8")]([SubResource("Resource_xjc62"), SubResource("Resource_o2kjf"), SubResource("Resource_4ll6m"), SubResource("Resource_n2hoj"), SubResource("Resource_6k2u5"), SubResource("Resource_mt3v8"), SubResource("Resource_c0k0a"), SubResource("Resource_tr57u")])
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"

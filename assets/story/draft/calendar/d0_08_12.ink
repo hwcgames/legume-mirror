@@ -38,7 +38,7 @@
 > 20XX-08-03
 > MANIFESTO FOUND AT COURTHOUSE, POLITICALLY MOTIVATED?
 - (skip_news)
-/ level intro default
+/ level railway tunnel
 / spawn intro_train
 / spawn cipher
 / intro_train float
@@ -50,7 +50,7 @@
 / cipher root train_cipher_seat
 / cipher pose sit
 / cipher act open_journal
-/ camera 
+/ camera train_cipher_seat
 / fade in
 
 (Cipher is aboard a train crossing a bridge.)
@@ -69,6 +69,7 @@
 / camera focus_on_speaker
 / sound train_bingbong
 intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the left at Weston Pier. #v:speaker
+/ camera back
 
 
 > Goodbye, #v:written
@@ -79,48 +80,94 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 (Cipher tears the last page out of their journal and leaves it on the seat.)
 (They open the window and throw the rest of it into the ocean. After a moment, a splash is heard.)
 
+/ fade black
+/ save in place
+/ level city street
+/ weather light_rain instant
+/ crowd umbrellas
+/ spawn cipher
+/ cipher capture
+/ cipher appear default
+/ cipher follow path forward
+/ fade in
+
 (Fade through black to Cipher walking down a busy street.)
 
 > So many people...
 > I haven't felt like this before. I don't think I know the right word.
 // > If a human felt like this, they'd probably dance, or sing, or something like that.
 // > I'd like to try, but people would ask questions if I did it here.
+/ queue room alleyway_branch
 > Anxiety, trepidation... "Dizzy," maybe.
 > Woof. I should find someplace to rest.
 
-(Cipher ducks into an alleyway, but shortly after they sit down, the opening is replaced with a brick wall, faster than the blink of an eye, and they startle away from it.)
+/ cipher wait
+/ cipher pose trudge
+/ cipher walk resting
+/ cipher pose sit
+> Bwah...
+> That's a little better.
+/ delete room alleyway_branch
+/ build room alleyway_wall a:cipher/backward forward
+/ weather overworld_dungeon instant
+/ cipher face alleyway_wall
+/ cipher pose default
+/ cipher act startle_back
+/ cipher emote startle
 
 > Huh..?
-
-(They bang on the wall.)
-
+/ cipher run alleyway_wall
+/ cipher act punch_wall
+/ sound punch_wall
 > It's solid.
 
-(They go stiff.)
+/ cipher emote unnerved
 
 > Wh-wait, have I...?
-
-(The world dissolves into blocky noise. Monospace text flies past the screen before fading out.)
+/ fade jpeg #!W:main
 (You perform a diagnostic.)
-(You hop on your toes.)
+/ fade in #!b:main
+/ cipher act hop_on_toes #!b:main
 
 > My body's real as far as I can tell, but the forces are off by almost ten percent.
 > Don't tell me... The whole time, I've-?
 
-(Cipher hears a scream from further down the alley.)
+/ cipher face forward
+/ cipher act startle_back
+/ cipher emote startle
+/ sound fem_scream
+(You hear a scream from further down the alley.)
 
-> !!!
-> There's a human in trouble.
+> ...There's a human in trouble.
+/ cipher emote determined
 > If there's any chance this isn't a simulation..!
+
+/ queue room alley_battle
++ [build alley_battle]
+-
+/ spawn casey
+/ casey capture
+/ casey appear behind_p1
+/ casey pose unconscious
+/ spawn static/spookyguy
+/ spookyguy appear loom
+/ spookyguy pose loom
+/ wait 1
+/ cipher stop
+> !!!
+/ cipher run p1
+/ cipher act kick
 
 -> tutorial_battle
 = tutorial_battle
 
-(They encounter Casey, lying on the ground, with a strange creature standing over her.)
-/ spawn cipher
 / battle setup devel
-/ spawn static/spookyguy
+/ spawn cipher
+/ spawn casey
+/ casey capture
+/ spawn spookyguy
 / cipher joins battle
+/ casey spectates battle
 / spookyguy joins battle
 / battle!
 
@@ -134,10 +181,10 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 
 + [party hits]
 -
-+ [battle enemy action]
--
-/ battle lock
 / spookyguy state 1
+/ spookyguy act splash
+/ battle lock
+(The creature breaks up into droplets before reforming. Something smells electric.)
 / sound roar
 / spookyguy act roar #!W:main
 (The creature lets out a gurgling roar.) #!W:main
@@ -159,7 +206,20 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 (Take special actions in combat using the "tactics" button.)
 / done
 / battle unlock
+- (flee_loop)
 + [cipher attempts to flee]
++ [battle top]
+    / battle lock
+    {stopping:
+        - > It's still not doing anything.
+        - > I should find another solution.
+        - > I don't think I'm doing any damage.
+        - > Maybe I could get her away from it somehow?
+        - (Use the "flee" action in the "tactics" menu.)
+    }
+    / done
+    / battle unlock
+    ->flee_loop
 + [battle lost]
     (Death message.)
     ->DONE
@@ -177,49 +237,70 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
     -> DONE
 -
 
+/ battle end
+/ casey spawn
+/ casey cargo cipher
 
 > ...Oh!
 > She just moved.
 
-(Cipher sets her down.)
+/ cipher middle
+/ casey stop
+/ casey appear by_wall
+/ casey pose sit
+/ casey act headache #!b:main
 
 casey: Ugh, my head...!
 cipher: Hello, are you all right?
+/ casey act startle #!b:main
 casey: Huh-!
-(Casey startles.)
 casey: Oh, you... Did you save me?
 cipher: Yes. You were unconscious, do you mind if I look you over?
-casey: Yeah, er- Wait, that was real!?
+casey: Yeah, er- \{cmd / casey act startle\}Wait, that was real!?
 > I hope so.
 cipher: As far as I know.
 casey: How did you even beat that thing?
 cipher: I didn't.
-(Casey looks around, alarmed.)
-cipher: It's not like that. I just picked you up and ran. Eventually, I got out of... Wherever that was.
-(Cipher steps back.)
+/ casey act look_around #!b:main
+cipher: It's not like that. I just \{cmd / casey emote blush\}picked you up and ran. Eventually, I got out of... Wherever that was.
+/ cipher emote confused
 cipher: Wait, your wounds are all gone?
-(Casey looks herself over.)
+/ casey act self_examine
 casey: ...Huh. It couldn't have been some kind of dream, right? Since you found me there?
 cipher: I guess not. Are you doing all right? I have an obligation in a few minutes that I need to get to.
-(Casey digs her phone out of her pocket.)
-casey: Yeah, uh- but before you go, do you want to get each other's chat IDs so we can keep in touch?
-(The world freezes and dissolves into blocky noise.)
-> Oops, just a sec-
-(A registration webpage appears.)
-> Ugh, I hate the world-net. Too many CAPTCHAs.
+/ cipher walk forward #!b:main
+/ casey pose stand
+/ casey act get_phone
+casey: Uh- before you go, do you want to get each other's chat IDs so we can keep in touch?
+/ pause
+/ fade jpeg
+> Just a sec-
+/ done
+/ gui chat_signup captcha
+> Ugh.
+/ done
+/ gui animation captcha
+/ gui page signup
 (The player picks their display name and username.)
 > There, now I have an account.
-(The world falls back into focus.)
+/ gui close
+/ fade in
+/ unpause
 cipher: Yes, I'm null_hypothesis. How about you?
 casey: clueXfour.
-(Cipher turns to leave and waves goodbye.)
 cipher: Okay, I'll put you in once I get home.
-(The camera lingers on Casey.)
-Ca (whisper): null_hypothesis... There it is. Oh, I guess their name's Cipher. Haha, what's that say about me, asking their chat ID first?
-(She laughs to herself, but something catches her eye.)
-Ca (whisper): Registered... just now? But they didn't...
+/ camera stick
+/ cipher face forward
+/ cipher act wave
+/ cipher follow path forward
 
-(Camera moves after Cipher, fade to black.)
+casey: null_hypothesis... There it is. Oh, I guess their name's Cipher. Haha, what's that say about me, asking their chat ID first? #v:whisper
+/ casey emote heh
+/ casey emote huh
+casey: Registered... just now? But they didn't... #v:whisper
+/ camera back
+/ fade black
+/ save in place
 
 ->->
 

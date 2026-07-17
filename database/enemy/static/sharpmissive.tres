@@ -1,16 +1,14 @@
-[gd_resource type="Resource" script_class="EnemySheet" format=3 uid="uid://uoapvnqqd0gf"]
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://uoapvnqqd0gf"]
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_hgwxx"]
 [ext_resource type="PackedScene" uid="uid://bn3g63lnjpoby" path="res://database/costume/sharpmissive.tscn" id="1_q5xry"]
-[ext_resource type="Script" uid="uid://b5gid0loy6lpy" path="res://src/battle/action/old/parley_action.gd" id="2_7okad"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_8fas8"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_wqnap"]
 [ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_ya0mn"]
-[ext_resource type="Script" uid="uid://cebpcbl6iqrrc" path="res://src/actor/enemy/enemy_sheet.gd" id="4_y2wmh"]
 [ext_resource type="Resource" uid="uid://b6maj2efm4jj8" path="res://database/bullet_pattern/rumors.tres" id="6_c0535"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="6_ya0mn"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="7_ya0mn"]
-[ext_resource type="Script" uid="uid://88n3ix5h5r4a" path="res://src/actor/energy/EnergyPool.gd" id="9_engos"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="9_hgwxx"]
 
 [sub_resource type="Resource" id="Resource_hnf34"]
 script = ExtResource("1_hgwxx")
@@ -33,15 +31,8 @@ current_hp = 100
 max_hp = 100
 metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 
-[sub_resource type="Resource" id="Resource_5xipf"]
-script = ExtResource("9_engos")
-current_sp = null
-metadata/_custom_type_script = "uid://88n3ix5h5r4a"
-
 [resource]
-script = ExtResource("4_y2wmh")
-sp = SubResource("Resource_5xipf")
-patterns = Array[ExtResource("3_wqnap")]([ExtResource("6_c0535")])
+script = ExtResource("9_hgwxx")
 name = &"Sharp Missive"
 costume = ExtResource("1_q5xry")
 id = "sharpmissive"

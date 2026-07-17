@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://0k3raad5w4k4"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_ecyk4"]
+
+[resource]
+script = ExtResource("1_ecyk4")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"PackedScene"]),
+&"recursive_scan": false,
+&"scan_directories": Array[String](["database/costume"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://6cwnmchkvi81": &"restroomspirit",
+&"uid://batcbmsn1knfv": &"paperpugilist",
+&"uid://be8skvtwov6oo": &"rankingfile",
+&"uid://bk2p20dio0vj1": &"deliberatestew",
+&"uid://bn3g63lnjpoby": &"sharpmissive",
+&"uid://c3r6521316dlh": &"apprenticeblade",
+&"uid://c4r2ey7i7ooq3": &"test",
+&"uid://c6ru066xlmxbf": &"maternalorganizer",
+&"uid://candb0ijvfxik": &"intro_train",
+&"uid://ccijxtd2o6tpu": &"crow",
+&"uid://cnvcxu0u2mx2a": &"spookyguy",
+&"uid://ct4shmi68fnq7": &"sprite-placeholder",
+&"uid://d0bifw6ps4i8d": &"hallmonitor",
+&"uid://d0h2smoo1462b": &"restlessgenius",
+&"uid://d4a07582e1vr1": &"bird",
+&"uid://dhi0pehthpuwk": &"homeworker",
+&"uid://drchwqfkw8n6l": &"cipher",
+&"uid://dx5x2fwnkpurx": &"builtbody",
+&"uid://fsvh4uev5at2": &"secondhandglue"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"apprenticeblade": &"uid://c3r6521316dlh",
+&"bird": &"uid://d4a07582e1vr1",
+&"builtbody": &"uid://dx5x2fwnkpurx",
+&"cipher": &"uid://drchwqfkw8n6l",
+&"crow": &"uid://ccijxtd2o6tpu",
+&"deliberatestew": &"uid://bk2p20dio0vj1",
+&"hallmonitor": &"uid://d0bifw6ps4i8d",
+&"homeworker": &"uid://dhi0pehthpuwk",
+&"intro_train": &"uid://candb0ijvfxik",
+&"maternalorganizer": &"uid://c6ru066xlmxbf",
+&"paperpugilist": &"uid://batcbmsn1knfv",
+&"rankingfile": &"uid://be8skvtwov6oo",
+&"restlessgenius": &"uid://d0h2smoo1462b",
+&"restroomspirit": &"uid://6cwnmchkvi81",
+&"secondhandglue": &"uid://fsvh4uev5at2",
+&"sharpmissive": &"uid://bn3g63lnjpoby",
+&"spookyguy": &"uid://cnvcxu0u2mx2a",
+&"sprite-placeholder": &"uid://ct4shmi68fnq7",
+&"test": &"uid://c4r2ey7i7ooq3"
+})

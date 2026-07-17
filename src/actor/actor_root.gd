@@ -19,6 +19,9 @@ func do_line(line: String, tags: Array[String]):
 				if is_instance_valid(Actor.find(actor_name)):
 					return
 				var sheet: ActorSheet = ActorSheet.find(actor_name)
+				if !is_instance_valid(sheet):
+					printerr("Can't find actor %s" % actor_name)
+					return
 				var actor: Actor = Actor.from_sheet(sheet)
 				actor.active_component = actor.get_node("%Component/Uninit")
 				add_child(actor)

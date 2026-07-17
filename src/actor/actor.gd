@@ -64,10 +64,10 @@ var alive:
 var lock: Locks = Locks.new()
 var computed_attrs: CombatAttributes:
 	get:
-		var attrs = self.sheet.attrs.duplicate()
-		for rule in sheet.get_rules():
-			if not rule.compute_attrs(self, attrs):
-				return attrs
+		var attrs = self.sheet.compute_attrs()
+		#for rule in sheet.get_rules():
+			#if not rule.compute_attrs(self, attrs):
+				#return attrs
 		return attrs
 var hp_component: HealthComponent:
 	get:
@@ -136,6 +136,19 @@ func do_line(line: String, tags: Array[String]):
 			return func():
 				global_position += Vector3(0, 1000, 0)
 				active_component = %Component/Uninit
+		["/", name, "capture"]:
+			return func():
+				captured = true
+		["/", name, "release"]:
+			return func():
+				captured = false
+		["/", name, "wait"]:
+			return func():
+				while not (active_component is ActorUninit\
+				or active_component is ActorIdle\
+				or active_component is ActorHuman\
+				or active_component is ActorFollow):
+					await new_mode
 		["/", name, "die"]:
 			return func():
 				hp_change(HpChange.new(self, self, -999999))
@@ -498,7 +511,8 @@ func afterimage_stationary(duration: float = 1.) -> Node3D:
 		tween.tween_property(sprite, "modulate", Color(sprite.modulate, 0.), duration).from(Color(sprite.modulate, 0.5)).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel()
 	)
-	var camera_transform = get_viewport().get_camera_3d().global_transform
+	var camera = get_viewport().get_camera_3d()
+	var camera_transform = camera.global_transform if is_instance_valid(camera) else Transform3D.IDENTITY
 	var forward = camera_transform.basis * Vector3.FORWARD
 	image.global_position += forward * 0.1
 	tween.tween_callback(func(): image.queue_free()).set_delay(duration)
@@ -512,7 +526,8 @@ func visual_reparent(new_parent: Node3D):
 		reparent(new_parent, true)
 		reset_physics_interpolation()
 	var transform_relative_to_camera: Transform3D = global_transform * get_viewport().get_camera_3d().global_transform.inverse()
-	var new_transform: Transform3D = new_parent.get_viewport().get_camera_3d().global_transform * transform_relative_to_camera
+	var new_parent_camera = new_parent.get_viewport().get_camera_3d()
+	var new_transform: Transform3D = new_parent_camera.global_transform * transform_relative_to_camera if is_instance_valid(new_parent_camera) else Transform3D.IDENTITY
 	global_transform = new_transform
 	reparent(new_parent, true)
 	reset_physics_interpolation()

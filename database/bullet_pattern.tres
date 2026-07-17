@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://c3p6mrf0mpqgf"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_4rjum"]
+
+[resource]
+script = ExtResource("1_4rjum")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"BulletPattern"]),
+&"recursive_scan": false,
+&"scan_directories": Array[String](["res://database/bullet_pattern"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://6orvajuivvwi": &"mathismath",
+&"uid://b6maj2efm4jj8": &"rumors",
+&"uid://bd4kf7y5esh3w": &"spookybullets",
+&"uid://bmugfrf5c28qh": &"draw_lines",
+&"uid://bn4ryipvfadwe": &"rising-soup",
+&"uid://bya2jyqc4r2cq": &"test2",
+&"uid://c1rmxpjfqspy5": &"searchlight",
+&"uid://cfltkohl43xxx": &"telegraph-scissor",
+&"uid://cie0nf2vwtx1t": &"smartboard-calibration",
+&"uid://cp0gwkegja08b": &"ewwthrowthataway2",
+&"uid://dd87d4i7wcv1p": &"hallmonitor",
+&"uid://dhb3cqprl2v2a": &"spookybullets2",
+&"uid://dktprncmf5gpv": &"ewwthrowthataway",
+&"uid://dmtgu5lxickp": &"ninjastars",
+&"uid://dus3ihqtdemu0": &"soup",
+&"uid://e6m4r64ex7wt": &"spookyroar",
+&"uid://eit3j1cwloa5": &"test",
+&"uid://le7orq1iiwmy": &"sweepsweep"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"draw_lines": &"uid://bmugfrf5c28qh",
+&"ewwthrowthataway": &"uid://dktprncmf5gpv",
+&"ewwthrowthataway2": &"uid://cp0gwkegja08b",
+&"hallmonitor": &"uid://dd87d4i7wcv1p",
+&"mathismath": &"uid://6orvajuivvwi",
+&"ninjastars": &"uid://dmtgu5lxickp",
+&"rising-soup": &"uid://bn4ryipvfadwe",
+&"rumors": &"uid://b6maj2efm4jj8",
+&"searchlight": &"uid://c1rmxpjfqspy5",
+&"smartboard-calibration": &"uid://cie0nf2vwtx1t",
+&"soup": &"uid://dus3ihqtdemu0",
+&"spookybullets": &"uid://bd4kf7y5esh3w",
+&"spookybullets2": &"uid://dhb3cqprl2v2a",
+&"spookyroar": &"uid://e6m4r64ex7wt",
+&"sweepsweep": &"uid://le7orq1iiwmy",
+&"telegraph-scissor": &"uid://cfltkohl43xxx",
+&"test": &"uid://eit3j1cwloa5",
+&"test2": &"uid://bya2jyqc4r2cq"
+})

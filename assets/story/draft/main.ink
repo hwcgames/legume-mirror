@@ -11,10 +11,6 @@ INCLUDE characters/lib.ink
 INCLUDE calendar/d0_08_16.ink
 INCLUDE test.ink
 
-
-
-
-
 {in_inky(): {SEED_RANDOM(2765)}}
 
 / cut black

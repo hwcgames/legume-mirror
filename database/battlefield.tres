@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://cmnysf5bja1gl"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_4vaar"]
+
+[resource]
+script = ExtResource("1_4vaar")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"PackedScene"]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://database/battlefield/"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://ccr3fgha4vs2l": &"devel"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"devel": &"uid://ccr3fgha4vs2l"
+})

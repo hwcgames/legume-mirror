@@ -1,9 +1,64 @@
-[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://bghrxu4maqlni"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://bghrxu4maqlni"]
 
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_epwcc"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_ud026"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_cxfo4"]
 [ext_resource type="Script" uid="uid://cjjkcf5nlwwnd" path="res://src/battle/rules/enfeeble.gd" id="2_wh73t"]
 [ext_resource type="Script" uid="uid://dfyjfraeggk2q" path="res://src/battle/rules/crush.gd" id="3_0da2b"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="4_lflys"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_x7g26"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_fj36e"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_55f23"]
+[ext_resource type="Script" uid="uid://bc1mdb1i7sg84" path="res://src/battle/action/predicate/pred_enemy.gd" id="6_fj36e"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_d282e"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_x14t4"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_denmx"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_7t27l"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_b2ftr"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_w8dnk"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="15_iu2x6"]
+
+[sub_resource type="Resource" id="Resource_fj36e"]
+script = ExtResource("3_x7g26")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_55f23"]
+script = ExtResource("4_fj36e")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_6hqka"]
+script = ExtResource("6_fj36e")
+metadata/_custom_type_script = "uid://bc1mdb1i7sg84"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_d282e")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_5qetq"]
+script = ExtResource("8_x14t4")
+predicates = Array[ExtResource("5_55f23")]([SubResource("Resource_6hqka"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_d282e"]
+script = ExtResource("9_denmx")
+cost = 25
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_x14t4"]
+script = ExtResource("10_7t27l")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_denmx"]
+script = ExtResource("11_b2ftr")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_7t27l"]
+script = ExtResource("12_w8dnk")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
 
 [sub_resource type="Resource" id="Resource_m6f7q"]
 script = ExtResource("2_wh73t")
@@ -15,11 +70,16 @@ script = ExtResource("3_0da2b")
 stacks = 3
 metadata/_custom_type_script = "uid://dfyjfraeggk2q"
 
+[sub_resource type="Resource" id="Resource_b2ftr"]
+script = ExtResource("15_iu2x6")
+message = "{me} hexed {target!"
+rfl_message = "{me} applied a rule to themselves!"
+rules = Array[ExtResource("1_ud026")]([SubResource("Resource_m6f7q"), SubResource("Resource_bwa58")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
 [resource]
-script = ExtResource("4_lflys")
+script = ExtResource("1_epwcc")
 name = "Hex"
 description = "Cast an insidious curse on an enemy, weakening their offense and defense."
-cost = 25
-message = "%s hexed %s!"
-rules = Array[ExtResource("1_ud026")]([SubResource("Resource_m6f7q"), SubResource("Resource_bwa58")])
+steps = Array[ExtResource("2_cxfo4")]([SubResource("Resource_fj36e"), SubResource("Resource_55f23"), SubResource("Resource_5qetq"), SubResource("Resource_d282e"), SubResource("Resource_x14t4"), SubResource("Resource_denmx"), SubResource("Resource_7t27l"), SubResource("Resource_b2ftr")])
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"

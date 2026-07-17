@@ -1,11 +1,77 @@
-[gd_resource type="Resource" script_class="BattleActionHeal" format=3 uid="uid://chabn528vo0yw"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://chabn528vo0yw"]
 
-[ext_resource type="Script" uid="uid://dhfmc3oyqnanb" path="res://src/battle/action/old/heal.gd" id="1_7vh2f"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_sb1kf"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_y0d5o"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_uhmbd"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_ifpdc"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_0shmb"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://src/battle/action/predicate/pred_ally.gd" id="6_0n7ud"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_txj6d"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_0muvl"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_lk767"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_dn4xs"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_2q0o6"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_vjd8x"]
+[ext_resource type="Script" uid="uid://bpvfdvwsaad0d" path="res://src/battle/action/step/dyn_message.gd" id="13_id3xw"]
+[ext_resource type="Script" uid="uid://d3bj8bnrfqslq" path="res://src/battle/action/step/dyn_heal.gd" id="13_kxclv"]
+
+[sub_resource type="Resource" id="Resource_uhmbd"]
+script = ExtResource("3_uhmbd")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_ifpdc"]
+script = ExtResource("4_ifpdc")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_rwc2o"]
+script = ExtResource("6_0n7ud")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_txj6d")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_0shmb"]
+script = ExtResource("8_0muvl")
+predicates = Array[ExtResource("5_0shmb")]([SubResource("Resource_rwc2o"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_0n7ud"]
+script = ExtResource("9_lk767")
+cost = 15
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_txj6d"]
+script = ExtResource("10_dn4xs")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_0muvl"]
+script = ExtResource("11_2q0o6")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_lk767"]
+script = ExtResource("12_vjd8x")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_id3xw"]
+script = ExtResource("13_id3xw")
+before_message = "{me} healed {target}!"
+before_message_rfl = "{me} healed!"
+metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
+
+[sub_resource type="Resource" id="Resource_c4f84"]
+script = ExtResource("13_kxclv")
+amount = 40
+metadata/_custom_type_script = "uid://d3bj8bnrfqslq"
 
 [resource]
-script = ExtResource("1_7vh2f")
+script = ExtResource("1_sb1kf")
 name = "Repair"
-amount = 40
-cost = 15
-rfl_message = "%s healed herself!"
+description = "Close an ally's wounds."
+steps = Array[ExtResource("2_y0d5o")]([SubResource("Resource_uhmbd"), SubResource("Resource_ifpdc"), SubResource("Resource_0shmb"), SubResource("Resource_0n7ud"), SubResource("Resource_txj6d"), SubResource("Resource_0muvl"), SubResource("Resource_lk767"), SubResource("Resource_id3xw"), SubResource("Resource_c4f84")])
 metadata/_custom_type_script = "uid://dhfmc3oyqnanb"

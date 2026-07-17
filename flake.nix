@@ -25,8 +25,8 @@
       with xorg; let
         deps = [
           # godotpkgs."4_5_1_stable"
-          godotPackages_4_6.godot-mono
-          godotPackages_4_6.export-templates-mono-bin
+          # godotPackages_4_6.godot-mono
+          # godotPackages_4_6.export-templates-mono-bin
           # godot-mono
           alsa-lib
           libGL
@@ -56,6 +56,7 @@
           just-lsp
           zip
           butler
+          inklecate
         ];
       in
         mkShell {

@@ -21,13 +21,14 @@ func _ready() -> void:
 
 func update():
 	var camera = get_viewport().get_camera_3d()
-	%PuppetCamera.environment = camera.environment
-	%PuppetCamera.fov = camera.fov
-	%PuppetCamera.near = camera.near
-	%PuppetCamera.far = camera.far
-	%PuppetCamera.projection = camera.projection
-	%PuppetCamera.attributes = camera.attributes
-	%PuppetCamera.global_transform = camera.global_transform
+	if is_instance_valid(camera):
+		%PuppetCamera.environment = camera.environment
+		%PuppetCamera.fov = camera.fov
+		%PuppetCamera.near = camera.near
+		%PuppetCamera.far = camera.far
+		%PuppetCamera.projection = camera.projection
+		%PuppetCamera.attributes = camera.attributes
+		%PuppetCamera.global_transform = camera.global_transform
 
 func size_changed():
 	var size = get_viewport().size / 2

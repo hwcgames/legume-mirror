@@ -79,6 +79,8 @@ var leader: Actor:
 		return Actor.find(story.FetchVariable("leader"))
 var party_stack: Array[Actor] = []
 
+var choice_queue: Array[StringName] = []
+
 func choose(names: Array[String], persistent: bool = false, dry: bool = false) -> bool:
 	if persistent:
 		printerr("TODO reimplement persistent choices")
@@ -92,6 +94,8 @@ func choose(names: Array[String], persistent: bool = false, dry: bool = false) -
 					if busy:
 						busy = false
 				return true
+	if persistent:
+		choice_queue.append_array(names)
 	return false
 
 func message_listeners(message: String, tags: Array[String]) -> Array[Node]:
@@ -133,6 +137,10 @@ func _process(delta: float) -> void:
 		return
 	if !story.GetCanContinue():
 		choices = story.GetCurrentChoices()
+		while !choice_queue.is_empty():
+			var choice = choice_queue.pop_front()
+			if choose([choice], false):
+				return
 		for choice in choices:
 			var wanted: bool = listeners.any(func(l: Node):
 				return l.has_method("wants_choice") and l.wants_choice(choice))

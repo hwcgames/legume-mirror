@@ -77,5 +77,6 @@ metadata/_custom_type_script = "uid://ddqde5d4pvapq"
 
 [resource]
 script = ExtResource("1_bx31o")
+name = "Trinkets Attack"
 steps = Array[ExtResource("2_5cm2a")]([SubResource("Resource_vejaa"), SubResource("Resource_ymeq6"), SubResource("Resource_mlacy"), SubResource("Resource_wi6cg"), SubResource("Resource_0kpix"), SubResource("Resource_pe81w"), SubResource("Resource_ldpm0"), SubResource("Resource_5r1hf"), SubResource("Resource_l3ygy"), SubResource("Resource_g7i8o"), SubResource("Resource_ftqp3")])
 metadata/_custom_type_script = "uid://dk3txc50al1fb"

@@ -51,3 +51,4 @@ func new_choices(choices: Array[InkChoice]):
 		b.text = choice.GetText()
 		b.pressed.connect(func():
 			Storyteller.find().choose([choice.GetText()]))
+		%ChoiceButtons.add_child(b)

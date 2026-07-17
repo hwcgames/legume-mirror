@@ -1,8 +1,63 @@
-[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://dvb8w6sqx5opj"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://dvb8w6sqx5opj"]
 
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_e8xvs"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_k70tn"]
 [ext_resource type="Script" uid="uid://bwdiitfe2immc" path="res://src/battle/rules/magic_strength.gd" id="2_i4eud"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_pvwhj"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_k70tn"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_tuoon"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_0u8kh"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_mrc6d"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://src/battle/action/predicate/pred_ally.gd" id="6_tuoon"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_4yo3c"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_uxb02"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_q0dlq"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_d8kcw"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_e00g0"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_pt4lw"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="16_uo63s"]
+
+[sub_resource type="Resource" id="Resource_53iuw"]
+script = ExtResource("3_tuoon")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_s8i7e"]
+script = ExtResource("4_0u8kh")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_tju8k"]
+script = ExtResource("6_tuoon")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_4yo3c")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_7lvby"]
+script = ExtResource("8_uxb02")
+predicates = Array[ExtResource("5_mrc6d")]([SubResource("Resource_tju8k"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_f7h7n"]
+script = ExtResource("9_q0dlq")
+cost = 30
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_1wg5l"]
+script = ExtResource("10_d8kcw")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_ea5r3"]
+script = ExtResource("11_e00g0")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_t31bo"]
+script = ExtResource("12_pt4lw")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
 
 [sub_resource type="Resource" id="Resource_iaevo"]
 script = ExtResource("2_i4eud")
@@ -10,13 +65,16 @@ decay = true
 stacks = 3
 metadata/_custom_type_script = "uid://bwdiitfe2immc"
 
+[sub_resource type="Resource" id="Resource_2nu6r"]
+script = ExtResource("16_uo63s")
+message = "{me} gave {target} magical strength!"
+rfl_message = "{me} powered her weapon with magic!"
+rules = Array[ExtResource("1_k70tn")]([SubResource("Resource_iaevo")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
 [resource]
-script = ExtResource("3_pvwhj")
+script = ExtResource("1_e8xvs")
 name = "Magitech"
 description = "Gives an ally magical strength."
-cost = 30
-message = "%s gave %s magical strength!"
-rfl_message = "%s powered her weapon with magic!"
-rules = Array[ExtResource("1_k70tn")]([SubResource("Resource_iaevo")])
-friendly = true
+steps = Array[ExtResource("2_k70tn")]([SubResource("Resource_53iuw"), SubResource("Resource_s8i7e"), SubResource("Resource_7lvby"), SubResource("Resource_f7h7n"), SubResource("Resource_1wg5l"), SubResource("Resource_ea5r3"), SubResource("Resource_t31bo"), SubResource("Resource_2nu6r")])
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"

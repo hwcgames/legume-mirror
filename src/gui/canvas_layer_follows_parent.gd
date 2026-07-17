@@ -6,6 +6,8 @@ class_name CanvasLayerFollowsParent
 
 func _process(_d):
 	var camera = target.get_viewport().get_camera_3d()
+	if !is_instance_valid(camera):
+		return
 	if camera.is_position_behind(target.global_position):
 		layer.offset = Vector2(1000000, 0)
 		return

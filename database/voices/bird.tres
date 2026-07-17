@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Voice" format=3 uid="uid://p2f06v2kv3bx"]
 
-[ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://src/audio/voice.gd" id="1_cqxmx"]
+[ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://src/audio/voice_list.gd" id="1_cqxmx"]
 [ext_resource type="AudioStream" uid="uid://c2sngq5hq3cue" path="res://assets/audio/sfx/typewriter/bird/a.wav" id="2_dbmhv"]
 [ext_resource type="AudioStream" uid="uid://crdv3ot1u4s5f" path="res://assets/audio/sfx/typewriter/bird/b.wav" id="3_7pywv"]
 [ext_resource type="AudioStream" uid="uid://camve4vkeu70t" path="res://assets/audio/sfx/typewriter/bird/c2.wav" id="5_so83c"]

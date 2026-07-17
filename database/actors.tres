@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://1j20voyhehyl"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_hge1h"]
+
+[resource]
+script = ExtResource("1_hge1h")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"\"res://src/actor/actor_sheet.gd\""]),
+&"recursive_scan": true,
+&"scan_directories": Array[String](["res://database/actors/", "res://database/enemy/"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://7bx57jn7rssu": &"paperpugilist",
+&"uid://b30jljcsx2ewo": &"restroomspirit",
+&"uid://bemkqvwrm1k2y": &"test_enemy",
+&"uid://bi1eveta3fdye": &"intro_train",
+&"uid://bmsg2ufyjj1xf": &"maternalorganizer",
+&"uid://bvl8t3gdjhcan": &"crow",
+&"uid://c0hp68av5cn3q": &"villager",
+&"uid://c17iht6wquwxo": &"milly",
+&"uid://c4oemkhnx5w8m": &"station_attendant",
+&"uid://c7nmjgg6ypqt7": &"secondhandglue",
+&"uid://cdmw4me08w2r0": &"filingcabinet",
+&"uid://chlvyq6kpa1n": &"furious_homeworker",
+&"uid://cmj5rkcrae0xn": &"unbuiltbody",
+&"uid://d2mt51l4ijysh": &"cat",
+&"uid://dayxgj1lp3x74": &"april",
+&"uid://djnqq6pv04tfb": &"spookyguy",
+&"uid://gj6fincut8tu": &"hallmonitor",
+&"uid://hsovlpvfc1fv": &"deliberatestew",
+&"uid://mrhj275hyvtx": &"cipher",
+&"uid://tcxfisophlr": &"mauve",
+&"uid://uoapvnqqd0gf": &"sharpmissive",
+&"uid://vpkkayvon17n": &"casey",
+&"uid://weo0fhsjc7ws": &"apprenticeblade",
+&"uid://x7hxph5xkbj2": &"rankingfile",
+&"uid://xol3bpg3u6k3": &"restlessgenius",
+&"uid://y0iwsfufb6ht": &"homeworker"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"apprenticeblade": &"uid://weo0fhsjc7ws",
+&"april": &"uid://dayxgj1lp3x74",
+&"casey": &"uid://vpkkayvon17n",
+&"cat": &"uid://d2mt51l4ijysh",
+&"cipher": &"uid://mrhj275hyvtx",
+&"crow": &"uid://bvl8t3gdjhcan",
+&"deliberatestew": &"uid://hsovlpvfc1fv",
+&"filingcabinet": &"uid://cdmw4me08w2r0",
+&"furious_homeworker": &"uid://chlvyq6kpa1n",
+&"hallmonitor": &"uid://gj6fincut8tu",
+&"homeworker": &"uid://y0iwsfufb6ht",
+&"intro_train": &"uid://bi1eveta3fdye",
+&"maternalorganizer": &"uid://bmsg2ufyjj1xf",
+&"mauve": &"uid://tcxfisophlr",
+&"milly": &"uid://c17iht6wquwxo",
+&"paperpugilist": &"uid://7bx57jn7rssu",
+&"rankingfile": &"uid://x7hxph5xkbj2",
+&"restlessgenius": &"uid://xol3bpg3u6k3",
+&"restroomspirit": &"uid://b30jljcsx2ewo",
+&"secondhandglue": &"uid://c7nmjgg6ypqt7",
+&"sharpmissive": &"uid://uoapvnqqd0gf",
+&"spookyguy": &"uid://djnqq6pv04tfb",
+&"station_attendant": &"uid://c4oemkhnx5w8m",
+&"test_enemy": &"uid://bemkqvwrm1k2y",
+&"unbuiltbody": &"uid://cmj5rkcrae0xn",
+&"villager": &"uid://c0hp68av5cn3q"
+})

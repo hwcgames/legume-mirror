@@ -1,21 +1,78 @@
-[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://nhwm5ffkcd08"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://nhwm5ffkcd08"]
 
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_cqviv"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_v2etk"]
 [ext_resource type="Script" uid="uid://bn1g5s5s8elxu" path="res://src/battle/rules/bolster.gd" id="2_bth3y"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_0crip"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_t3r75"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_un75c"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_pnix2"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_q7trc"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://src/battle/action/predicate/pred_ally.gd" id="6_gk67g"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_ygp05"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_j8ax6"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_8iml3"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_vriwb"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_tobh3"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_7lvkj"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="16_lg14v"]
+
+[sub_resource type="Resource" id="Resource_nb4w3"]
+script = ExtResource("3_un75c")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_cqviv"]
+script = ExtResource("4_pnix2")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_t3r75"]
+script = ExtResource("6_gk67g")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_ygp05")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_un75c"]
+script = ExtResource("8_j8ax6")
+predicates = Array[ExtResource("5_q7trc")]([SubResource("Resource_t3r75"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_pnix2"]
+script = ExtResource("9_8iml3")
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_q7trc"]
+script = ExtResource("10_vriwb")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_gk67g"]
+script = ExtResource("11_tobh3")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_ygp05"]
+script = ExtResource("12_7lvkj")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
 
 [sub_resource type="Resource" id="Resource_ig2fy"]
 script = ExtResource("2_bth3y")
 stacks = 3
 metadata/_custom_type_script = "uid://bn1g5s5s8elxu"
 
+[sub_resource type="Resource" id="Resource_j8ax6"]
+script = ExtResource("16_lg14v")
+message = "{me} surrounded {target} with a barrier!"
+rfl_message = "{me} put up a barrier!"
+rules = Array[ExtResource("1_v2etk")]([SubResource("Resource_ig2fy")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
 [resource]
-script = ExtResource("3_0crip")
+script = ExtResource("1_cqviv")
 name = "Barrier"
 description = "Cast a psychic ward on an ally, bolstering their defense."
-cost = 10
-message = "%s surrounded %s with a barrier!"
-rfl_message = "%s put up a barrier!"
-rules = Array[ExtResource("1_v2etk")]([SubResource("Resource_ig2fy")])
-friendly = true
+steps = Array[ExtResource("2_t3r75")]([SubResource("Resource_nb4w3"), SubResource("Resource_cqviv"), SubResource("Resource_un75c"), SubResource("Resource_pnix2"), SubResource("Resource_q7trc"), SubResource("Resource_gk67g"), SubResource("Resource_ygp05"), SubResource("Resource_j8ax6")])
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"

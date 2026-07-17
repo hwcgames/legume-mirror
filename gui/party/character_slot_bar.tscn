@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bu1w5iemvd3fo"]
+
+[ext_resource type="Script" uid="uid://b46yttgxdve60" path="res://gui/party/character_slot_bar.gd" id="1_5r70d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehsfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev7nk"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2i2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehsfc"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=2133726222]
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("1_5r70d")
+
+[node name="Label" type="Label" parent="." unique_id=1415088154]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "ARMOR"
+
+[node name="Bar" type="MarginContainer" parent="." unique_id=1985947919]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+custom_maximum_size = Vector2(40, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BgRect" type="ColorRect" parent="Bar" unique_id=1389430230]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="High" type="ProgressBar" parent="Bar" unique_id=1548663344]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_ehsfc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ev7nk")
+max_value = 10.0
+value = 6.0
+show_percentage = false
+
+[node name="Low" type="ProgressBar" parent="Bar" unique_id=1816939346]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_k2i2f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ehsfc")
+max_value = 10.0
+value = 6.0
+show_percentage = false

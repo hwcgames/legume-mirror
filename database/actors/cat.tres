@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://d2mt51l4ijysh"]
+
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_g8tmt"]
+[ext_resource type="Resource" uid="uid://48aci6plmemj" path="res://database/voices/meow.tres" id="2_g8tmt"]
+[ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="3_tu7ec"]
+[ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="4_b1dsi"]
+
+[resource]
+script = ExtResource("4_b1dsi")
+name = &"Cat"
+description = "Huh? Where am I?"
+default_voice = ExtResource("2_g8tmt")
+metadata/_custom_type_script = "uid://cym7pt0vq3ply"

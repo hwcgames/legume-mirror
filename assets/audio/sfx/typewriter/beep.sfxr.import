@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://c72wl8rfonyde"
+path="res://.godot/imported/beep.sfxr-cbc242c4daada7c2ddcc6f95f9f501c0.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/typewriter/beep.sfxr"
+dest_files=["res://.godot/imported/beep.sfxr-cbc242c4daada7c2ddcc6f95f9f501c0.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

@@ -67,5 +67,6 @@ metadata/_custom_type_script = "uid://cuofqiysmxjcf"
 
 [resource]
 script = ExtResource("3_5avty")
+name = "Basic Attack"
 steps = Array[ExtResource("2_bed2n")]([SubResource("Resource_ima6r"), SubResource("Resource_ymeq6"), SubResource("Resource_mlacy"), SubResource("Resource_pe81w"), SubResource("Resource_0kpix"), SubResource("Resource_ldpm0"), SubResource("Resource_5r1hf"), SubResource("Resource_mhg4y"), SubResource("Resource_g7i8o")])
 metadata/_custom_type_script = "uid://dk3txc50al1fb"

@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="VoiceMap" format=4 uid="uid://du85rsth26ms7"]
+
+[ext_resource type="Script" uid="uid://22e8wvyj7ani" path="res://src/audio/voice_map.gd" id="1_v3mfn"]
+[ext_resource type="AudioStream" uid="uid://6pbnv8ny23yd" path="res://assets/audio/sfx/typewriter/animalese/a.wav" id="2_lla5s"]
+[ext_resource type="AudioStream" uid="uid://uptn6dwlr2qs" path="res://assets/audio/sfx/typewriter/animalese/b.wav" id="3_54tj0"]
+[ext_resource type="AudioStream" uid="uid://deyk1mjxtvq6x" path="res://assets/audio/sfx/typewriter/animalese/c.wav" id="4_guf1h"]
+[ext_resource type="AudioStream" uid="uid://ojygomjqq171" path="res://assets/audio/sfx/typewriter/animalese/d.wav" id="5_rdlvv"]
+[ext_resource type="AudioStream" uid="uid://6du4uyj4ss57" path="res://assets/audio/sfx/typewriter/animalese/e.wav" id="6_y63ut"]
+[ext_resource type="AudioStream" uid="uid://beiwcthw8er7n" path="res://assets/audio/sfx/typewriter/animalese/g.wav" id="7_24jyo"]
+[ext_resource type="AudioStream" uid="uid://tylgcnc8m47q" path="res://assets/audio/sfx/typewriter/animalese/h.wav" id="8_mxv2n"]
+[ext_resource type="AudioStream" uid="uid://c6dt1b3x17xh3" path="res://assets/audio/sfx/typewriter/animalese/i.wav" id="9_6k3hx"]
+[ext_resource type="AudioStream" uid="uid://bhv1j7ike1qtj" path="res://assets/audio/sfx/typewriter/animalese/j.wav" id="10_mgxbs"]
+[ext_resource type="AudioStream" uid="uid://cpasxq3ccj2lb" path="res://assets/audio/sfx/typewriter/animalese/k.wav" id="11_0renl"]
+[ext_resource type="AudioStream" uid="uid://dmrae0fhg31dv" path="res://assets/audio/sfx/typewriter/animalese/l.wav" id="12_eok6x"]
+[ext_resource type="AudioStream" uid="uid://bfxecs174356n" path="res://assets/audio/sfx/typewriter/animalese/m.wav" id="13_pnimu"]
+[ext_resource type="AudioStream" uid="uid://c6sg1fbg7fmpf" path="res://assets/audio/sfx/typewriter/animalese/n.wav" id="14_5atsd"]
+[ext_resource type="AudioStream" uid="uid://bmtr5ipl7k5x0" path="res://assets/audio/sfx/typewriter/animalese/o.wav" id="15_4jb77"]
+[ext_resource type="AudioStream" uid="uid://d3ntywk8jvska" path="res://assets/audio/sfx/typewriter/animalese/p.wav" id="16_vrgrc"]
+[ext_resource type="AudioStream" uid="uid://bajx8wikpgp1t" path="res://assets/audio/sfx/typewriter/animalese/q.wav" id="17_w34gg"]
+[ext_resource type="AudioStream" uid="uid://dntjf0tqtp31b" path="res://assets/audio/sfx/typewriter/animalese/r.wav" id="18_rbvpa"]
+[ext_resource type="AudioStream" uid="uid://bcy5wrr2lunk2" path="res://assets/audio/sfx/typewriter/animalese/s.wav" id="19_b51y0"]
+[ext_resource type="AudioStream" uid="uid://du40hp0d8tujh" path="res://assets/audio/sfx/typewriter/animalese/t.wav" id="20_r4dfe"]
+[ext_resource type="AudioStream" uid="uid://cf6hfxienjibw" path="res://assets/audio/sfx/typewriter/animalese/u.wav" id="21_exfgc"]
+[ext_resource type="AudioStream" uid="uid://cvxk5xvvbp3is" path="res://assets/audio/sfx/typewriter/animalese/v.wav" id="22_q0hp4"]
+[ext_resource type="AudioStream" uid="uid://bmvrd6rahc6yj" path="res://assets/audio/sfx/typewriter/animalese/w.wav" id="23_hn6va"]
+[ext_resource type="AudioStream" uid="uid://b6u60mjajllaf" path="res://assets/audio/sfx/typewriter/animalese/x.wav" id="24_wu1ti"]
+[ext_resource type="AudioStream" uid="uid://bdx75vrmtnlv" path="res://assets/audio/sfx/typewriter/animalese/y.wav" id="25_u8msc"]
+[ext_resource type="AudioStream" uid="uid://ccqhqky3x1l1q" path="res://assets/audio/sfx/typewriter/animalese/z.wav" id="26_61vhq"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_6fywl"]
+data = PackedByteArray("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")
+format = 3
+mix_rate = 48000
+tags = {
+"title": "f",
+"tracknumber": "6"
+}
+
+[resource]
+script = ExtResource("1_v3mfn")
+sounds = Dictionary[String, AudioStream]({
+"a": ExtResource("2_lla5s"),
+"b": ExtResource("3_54tj0"),
+"c": ExtResource("4_guf1h"),
+"d": ExtResource("5_rdlvv"),
+"e": ExtResource("6_y63ut"),
+"f": SubResource("AudioStreamWAV_6fywl"),
+"g": ExtResource("7_24jyo"),
+"h": ExtResource("8_mxv2n"),
+"i": ExtResource("9_6k3hx"),
+"j": ExtResource("10_mgxbs"),
+"k": ExtResource("11_0renl"),
+"l": ExtResource("12_eok6x"),
+"m": ExtResource("13_pnimu"),
+"n": ExtResource("14_5atsd"),
+"o": ExtResource("15_4jb77"),
+"p": ExtResource("16_vrgrc"),
+"q": ExtResource("17_w34gg"),
+"r": ExtResource("18_rbvpa"),
+"s": ExtResource("19_b51y0"),
+"t": ExtResource("20_r4dfe"),
+"u": ExtResource("21_exfgc"),
+"v": ExtResource("22_q0hp4"),
+"w": ExtResource("23_hn6va"),
+"x": ExtResource("24_wu1ti"),
+"y": ExtResource("25_u8msc"),
+"z": ExtResource("26_61vhq")
+})
+min_delay = 0.0
+volume = -12.0
+metadata/_custom_type_script = "uid://22e8wvyj7ani"

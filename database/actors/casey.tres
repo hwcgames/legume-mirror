@@ -1,14 +1,16 @@
 [gd_resource type="Resource" script_class="ActorSheet" format=3 uid="uid://vpkkayvon17n"]
 
 [ext_resource type="Script" uid="uid://cj535ewb28j4v" path="res://src/actor/CombatAttributes.gd" id="1_xxmoq"]
+[ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="2_8hlbw"]
 [ext_resource type="Script" uid="uid://cym7pt0vq3ply" path="res://src/actor/actor_sheet.gd" id="2_inpf1"]
 [ext_resource type="Script" uid="uid://d3ww7qapcpn35" path="res://src/actor/hp/HealthPool.gd" id="3_myh4w"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="3_rmvcg"]
 [ext_resource type="Script" uid="uid://cy8cuowihm45l" path="res://src/actor/party_member/party_component.gd" id="3_xrom7"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="4_4yvr8"]
 [ext_resource type="Resource" uid="uid://dn81qqtmqv00q" path="res://database/actions/trinkets_attack.tres" id="4_8hlbw"]
 [ext_resource type="Script" uid="uid://j7v5xglggqxp" path="res://src/battle/skillset/spell_list.gd" id="4_bhd62"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://src/battle/action/action.gd" id="5_myh4w"]
-[ext_resource type="Resource" uid="uid://dgrirhd0bvufi" path="res://database/actions/wind-up.tres" id="9_8hlbw"]
+[ext_resource type="Script" uid="uid://7fyk4nkeo01r" path="res://database/items/item.gd" id="6_h3afr"]
 [ext_resource type="Resource" uid="uid://bj4hgfexf0c5u" path="res://database/actions/sharpen.tres" id="10_rmvcg"]
 [ext_resource type="Resource" uid="uid://b2vupbw7vhbpt" path="res://database/actions/accelerate.tres" id="11_h3afr"]
 [ext_resource type="Resource" uid="uid://dvb8w6sqx5opj" path="res://database/actions/magitech.tres" id="12_cfw6d"]
@@ -35,7 +37,7 @@ metadata/_custom_type_script = "uid://d3ww7qapcpn35"
 script = ExtResource("4_bhd62")
 name = &"Gadgets"
 description = &"The future is now, thanks to science!"
-spell_list = Array[ExtResource("5_myh4w")]([ExtResource("9_8hlbw"), ExtResource("10_rmvcg"), ExtResource("11_h3afr"), ExtResource("12_cfw6d")])
+spell_list = Array[ExtResource("5_myh4w")]([ExtResource("10_rmvcg"), ExtResource("11_h3afr"), ExtResource("12_cfw6d")])
 metadata/_custom_type_script = "uid://j7v5xglggqxp"
 
 [sub_resource type="Resource" id="Resource_4wro2"]

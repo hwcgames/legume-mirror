@@ -1,21 +1,80 @@
-[gd_resource type="Resource" script_class="BattleActionApplyRule" format=3 uid="uid://b2vupbw7vhbpt"]
+[gd_resource type="Resource" script_class="DynAction" format=3 uid="uid://b2vupbw7vhbpt"]
 
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="1_br8x6"]
+[ext_resource type="Script" uid="uid://dk3txc50al1fb" path="res://src/battle/action/old/dd_action.gd" id="1_vhrqk"]
 [ext_resource type="Script" uid="uid://5v4wkvk0drde" path="res://src/battle/rules/slow_soul.gd" id="2_bp7f7"]
-[ext_resource type="Script" uid="uid://dvrhhuu50lur1" path="res://src/battle/action/old/apply_rule.gd" id="3_gc1fv"]
+[ext_resource type="Script" uid="uid://fb8vvjsffbd" path="res://src/battle/action/step.gd" id="2_q22pp"]
+[ext_resource type="Script" uid="uid://bx5yohrkqxhda" path="res://src/battle/action/step/dyn_input_lock.gd" id="3_mimmb"]
+[ext_resource type="Script" uid="uid://c702hrkc3x3t8" path="res://src/battle/action/step/dyn_battlefield_lock.gd" id="4_ybxov"]
+[ext_resource type="Script" uid="uid://bm0xumi4amr6y" path="res://src/battle/action/actor_predicate.gd" id="5_xqi0g"]
+[ext_resource type="Script" uid="uid://du0qw66afpw0a" path="res://src/battle/action/predicate/pred_ally.gd" id="6_40lth"]
+[ext_resource type="Script" uid="uid://cngcvvrgpuuxo" path="res://src/battle/action/predicate/pred_alive.gd" id="7_y5gvg"]
+[ext_resource type="Script" uid="uid://ep3gmugpuiaw" path="res://src/battle/action/step/dyn_target.gd" id="8_uaolh"]
+[ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_k74gp"]
+[ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_2cmvw"]
+[ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_d7ry5"]
+[ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_nwikg"]
+[ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="16_2dmpo"]
 
-[sub_resource type="Resource" id="Resource_elo6r"]
+[sub_resource type="Resource" id="Resource_vhrqk"]
+script = ExtResource("3_mimmb")
+metadata/_custom_type_script = "uid://bx5yohrkqxhda"
+
+[sub_resource type="Resource" id="Resource_q22pp"]
+script = ExtResource("4_ybxov")
+metadata/_custom_type_script = "uid://c702hrkc3x3t8"
+
+[sub_resource type="Resource" id="Resource_nb4w3"]
+script = ExtResource("6_40lth")
+metadata/_custom_type_script = "uid://du0qw66afpw0a"
+
+[sub_resource type="Resource" id="Resource_corkb"]
+script = ExtResource("7_y5gvg")
+metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
+
+[sub_resource type="Resource" id="Resource_mimmb"]
+script = ExtResource("8_uaolh")
+predicates = Array[ExtResource("5_xqi0g")]([SubResource("Resource_nb4w3"), SubResource("Resource_corkb")])
+lock_type = 2
+metadata/_custom_type_script = "uid://ep3gmugpuiaw"
+
+[sub_resource type="Resource" id="Resource_ybxov"]
+script = ExtResource("9_k74gp")
+cost = 15
+metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
+
+[sub_resource type="Resource" id="Resource_xqi0g"]
+script = ExtResource("10_2cmvw")
+animation_name = "friendly_magic"
+after_animation_name = "idle"
+metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
+
+[sub_resource type="Resource" id="Resource_40lth"]
+script = ExtResource("11_d7ry5")
+metadata/_custom_type_script = "uid://c0m4c7iutlam5"
+
+[sub_resource type="Resource" id="Resource_y5gvg"]
+script = ExtResource("12_nwikg")
+before_wait = 0.4
+after_wait = 0.35
+metadata/_custom_type_script = "uid://d1g602whyq8ty"
+
+[sub_resource type="Resource" id="Resource_8kivh"]
 script = ExtResource("2_bp7f7")
-speed_mul = 2.0
+speed_mul = 1.5
 stacks = 3
 metadata/_custom_type_script = "uid://5v4wkvk0drde"
 
+[sub_resource type="Resource" id="Resource_uaolh"]
+script = ExtResource("16_2dmpo")
+message = "{me} quickened {target}'s steps!"
+rfl_message = "{me}'s heart is racing!"
+rules = Array[ExtResource("1_br8x6")]([SubResource("Resource_8kivh")])
+metadata/_custom_type_script = "uid://dskoe68fh6uxg"
+
 [resource]
-script = ExtResource("3_gc1fv")
+script = ExtResource("1_vhrqk")
 name = "Accelerate"
 description = "Speeds up the soul."
-message = "%s made %s's heart race!"
-rfl_message = "%s's heart is racing!"
-rules = Array[ExtResource("1_br8x6")]([SubResource("Resource_elo6r")])
-friendly = true
+steps = Array[ExtResource("2_q22pp")]([SubResource("Resource_vhrqk"), SubResource("Resource_q22pp"), SubResource("Resource_mimmb"), SubResource("Resource_ybxov"), SubResource("Resource_xqi0g"), SubResource("Resource_40lth"), SubResource("Resource_y5gvg"), SubResource("Resource_uaolh")])
 metadata/_custom_type_script = "uid://dvrhhuu50lur1"

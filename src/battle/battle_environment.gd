@@ -10,3 +10,8 @@ func animate_in():
 	while player.current_animation == "in":
 		await get_tree().process_frame
 	player.play("loop")
+
+func animate_out():
+	player.play("out")
+	while player.current_animation == "out":
+		await get_tree().process_frame

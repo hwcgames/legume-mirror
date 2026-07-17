@@ -7,6 +7,7 @@ class_name ActorSheet
 @export var bg_color: Color = Color.WHITE
 @export var text_color: Color = Color.WHITE
 @export var default_voice: Voice = preload("uid://coudm8kl2h00x")
+@export var default_interval: float = 0.03
 @export var id: String
 @export var tags: Array[String] = []
 @export var hp: HealthComponent:
@@ -49,6 +50,14 @@ func remove_rule(rule: BattleRule) -> bool:
 	rule.removed.emit()
 	changed.emit()
 	return true
+
+func compute_attrs() -> CombatAttributes:
+	var attrs = self.attrs.duplicate()
+	for rule in get_rules():
+		if not rule.compute_attrs(null, attrs):
+			return attrs
+	return attrs
+
 @export var saved: bool = false
 
 @export var party_component: PartyComponent
@@ -71,11 +80,11 @@ func copy():
 static func find(name: String) -> ActorSheet:
 	var saver = Saver.find()
 	if is_instance_valid(saver) and name in saver.current_save.character_sheets:
-		return saver.current_save.character_sheets
-	var player: ActorSheet = load("res://database/actors/%s.tres" % name)
-	if is_instance_valid(player):
-		return player
-	var enemy: ActorSheet = load("res://database/enemy/%s.tres" % name)
-	if is_instance_valid(enemy):
-		return enemy
-	return null
+		return saver.current_save.character_sheets[name]
+	var actor_registry: Registry = preload("uid://1j20voyhehyl")
+	if !actor_registry.has(name):
+		return null
+	var actor: ActorSheet = actor_registry.load_entry(name)
+	if is_instance_valid(saver) and actor.saved:
+		saver.current_save.character_sheets[name] = actor
+	return actor

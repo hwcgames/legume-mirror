@@ -64,7 +64,6 @@ func do_line(line: String, tags: Array[String]):
 		["/", var actor_name, "joins", "battle"]:
 			return func():
 				var actor = Actor.find(actor_name)
-				assert(is_instance_valid(actor), "Actor should exist")
 				if is_instance_valid(actor.sheet.party_component):
 					players.push_back(actor)
 				elif is_instance_valid(actor.sheet.enemy_component):
@@ -141,6 +140,7 @@ func battle():
 		t_lock.call()
 		await lock.wait_for_clear()
 		println("Player action!")
+		await get_tree().process_frame
 		if Storyteller.find().choose(["battle player action"], true):
 			await get_tree().process_frame
 			await get_tree().process_frame
@@ -151,6 +151,7 @@ func battle():
 			await get_tree().process_frame
 			await lock.wait_for_clear()
 		println("Enemy action!")
+		await get_tree().process_frame
 		if valid_enemies.all(func(e): return !e.sheet.enemy_component.active or !e.alive):
 			println("[center]- Enemy defeat! -[/center]")
 			Storyteller.find().choose(["battle won", "battle end"], true)

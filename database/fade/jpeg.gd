@@ -8,6 +8,6 @@ func fade_out(instant: bool = false):
 	if not instant:
 		await tween.finished
 func fade_in(instant: bool = false):
-	var tween = await create_tween().tween_property(%JpegEffect, "quality", 100, 1. if not instant else 0).finished
+	var tween = create_tween().tween_property(%JpegEffect, "quality", 100, 1. if not instant else 0)
 	if not instant:
 		await tween.finished

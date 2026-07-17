@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4r2ey7i7ooq3" path="res://database/costume/test.tscn" id="1_yoggj"]
 [ext_resource type="Script" uid="uid://bf0ua2cca6yw5" path="res://src/battle/action/action.gd" id="2_ej5fe"]
+[ext_resource type="Resource" uid="uid://coudm8kl2h00x" path="res://database/voices/typed.tres" id="2_xd837"]
 [ext_resource type="Script" uid="uid://bpbc3263647q8" path="res://src/battle/pattern.gd" id="3_ej5fe"]
 [ext_resource type="Script" uid="uid://dish7jlyi16g4" path="res://src/actor/enemy/enemy_component.gd" id="4_ej5fe"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="5_xd837"]

@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://ceehql0jrnis1"]
+
+[node name="VBoxContainer2" type="VBoxContainer" unique_id=193295295]
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1808882224]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=2132183061]
+layout_mode = 2
+text = "Equipped"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=131681578]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer" unique_id=464631337]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" unique_id=1062796870]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=970710722]
+layout_mode = 2
+text = "Item"
+
+[node name="Label2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=103147355]
+layout_mode = 2
+text = "Item"
+
+[node name="Label3" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=735355720]
+layout_mode = 2
+text = "Item"
+
+[node name="Label4" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=839203283]
+layout_mode = 2
+text = "Item"
+
+[node name="Label5" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=950288337]
+layout_mode = 2
+text = "Item"
+
+[node name="Label6" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1239032187]
+layout_mode = 2
+text = "Item"
+
+[node name="Label7" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1413062766]
+layout_mode = 2
+text = "Item"
+
+[node name="Label8" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1982537017]
+layout_mode = 2
+text = "Item"
+
+[node name="Label9" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=115808223]
+layout_mode = 2
+text = "Item"
+
+[node name="Label10" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1492768572]
+layout_mode = 2
+text = "Item"
+
+[node name="Label11" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1795022314]
+layout_mode = 2
+text = "Item"
+
+[node name="Label12" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=737905742]
+layout_mode = 2
+text = "Item"
+
+[node name="Label13" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=121032797]
+layout_mode = 2
+text = "Item"
+
+[node name="Label14" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=836755308]
+layout_mode = 2
+text = "Item"
+
+[node name="Label15" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=797367803]
+layout_mode = 2
+text = "Item"
+
+[node name="Label16" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1050329634]
+layout_mode = 2
+text = "Item"
+
+[node name="Label17" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=688787668]
+layout_mode = 2
+text = "Item"
+
+[node name="Label18" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1987452609]
+layout_mode = 2
+text = "Item"
+
+[node name="Label19" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=1310787217]
+layout_mode = 2
+text = "Item"
+
+[node name="Label20" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer" unique_id=133335700]
+layout_mode = 2
+text = "Item"

@@ -11,17 +11,16 @@
 [ext_resource type="Script" uid="uid://cne7o3ma0d8fk" path="res://src/battle/action/step/dyn_energy.gd" id="9_c4f84"]
 [ext_resource type="Script" uid="uid://bqg8yv3a0g3a" path="res://src/battle/action/step/dyn_animate.gd" id="10_3375l"]
 [ext_resource type="Script" uid="uid://c0m4c7iutlam5" path="res://src/battle/action/step/dyn_approach.gd" id="11_kwlnf"]
-[ext_resource type="Script" uid="uid://bpvfdvwsaad0d" path="res://src/battle/action/step/dyn_message.gd" id="12_a1xxy"]
 [ext_resource type="Script" uid="uid://d1g602whyq8ty" path="res://src/battle/action/step/dyn_wait.gd" id="12_i77oh"]
 [ext_resource type="Script" uid="uid://b0mu4q4ns36ea" path="res://src/battle/rule.gd" id="13_tx5xh"]
 [ext_resource type="Script" uid="uid://b4sfm156ewh04" path="res://src/battle/rules/strengthen.gd" id="14_g2kj7"]
 [ext_resource type="Script" uid="uid://dskoe68fh6uxg" path="res://src/battle/action/step/dyn_apply_rule.gd" id="15_qbda4"]
 
-[sub_resource type="Resource" id="Resource_iuwny"]
+[sub_resource type="Resource" id="Resource_oa6hy"]
 script = ExtResource("3_k12pj")
 metadata/_custom_type_script = "uid://bx5yohrkqxhda"
 
-[sub_resource type="Resource" id="Resource_yrs0h"]
+[sub_resource type="Resource" id="Resource_a1xxy"]
 script = ExtResource("4_rdfij")
 metadata/_custom_type_script = "uid://c702hrkc3x3t8"
 
@@ -33,38 +32,32 @@ metadata/_custom_type_script = "uid://du0qw66afpw0a"
 script = ExtResource("7_84lqm")
 metadata/_custom_type_script = "uid://cngcvvrgpuuxo"
 
-[sub_resource type="Resource" id="Resource_jyfd7"]
+[sub_resource type="Resource" id="Resource_k12pj"]
 script = ExtResource("8_x8jjj")
 predicates = Array[ExtResource("5_ukpsd")]([SubResource("Resource_rwc2o"), SubResource("Resource_corkb")])
 lock_type = 2
 metadata/_custom_type_script = "uid://ep3gmugpuiaw"
 
-[sub_resource type="Resource" id="Resource_rmvcg"]
+[sub_resource type="Resource" id="Resource_rdfij"]
 script = ExtResource("9_c4f84")
 cost = 15
 metadata/_custom_type_script = "uid://cne7o3ma0d8fk"
 
-[sub_resource type="Resource" id="Resource_e7dsr"]
+[sub_resource type="Resource" id="Resource_ukpsd"]
 script = ExtResource("10_3375l")
 animation_name = "friendly_magic"
 after_animation_name = "idle"
 metadata/_custom_type_script = "uid://bqg8yv3a0g3a"
 
-[sub_resource type="Resource" id="Resource_t542v"]
+[sub_resource type="Resource" id="Resource_1kw7s"]
 script = ExtResource("11_kwlnf")
 metadata/_custom_type_script = "uid://c0m4c7iutlam5"
 
-[sub_resource type="Resource" id="Resource_gemcw"]
+[sub_resource type="Resource" id="Resource_84lqm"]
 script = ExtResource("12_i77oh")
 before_wait = 0.4
 after_wait = 0.35
 metadata/_custom_type_script = "uid://d1g602whyq8ty"
-
-[sub_resource type="Resource" id="Resource_k12pj"]
-script = ExtResource("12_a1xxy")
-before_message = "{me} sharpened {target}'s weapon!"
-before_message_rfl = "{me} got pumped up!"
-metadata/_custom_type_script = "uid://bpvfdvwsaad0d"
 
 [sub_resource type="Resource" id="Resource_k4fgx"]
 script = ExtResource("14_g2kj7")
@@ -72,10 +65,10 @@ amount = 7
 stacks = 3
 metadata/_custom_type_script = "uid://b4sfm156ewh04"
 
-[sub_resource type="Resource" id="Resource_p37jh"]
+[sub_resource type="Resource" id="Resource_x8jjj"]
 script = ExtResource("15_qbda4")
 message = "{me} pumped {target} up!"
-rfl_message = "{me} sharpened their weapon!"
+rfl_message = "{me} got pumped up!"
 rules = Array[ExtResource("13_tx5xh")]([SubResource("Resource_k4fgx")])
 metadata/_custom_type_script = "uid://dskoe68fh6uxg"
 
@@ -83,5 +76,5 @@ metadata/_custom_type_script = "uid://dskoe68fh6uxg"
 script = ExtResource("1_oa6hy")
 name = "Rally"
 description = "Give an ally a pep talk."
-steps = Array[ExtResource("2_a1xxy")]([SubResource("Resource_iuwny"), SubResource("Resource_yrs0h"), SubResource("Resource_jyfd7"), SubResource("Resource_rmvcg"), SubResource("Resource_e7dsr"), SubResource("Resource_t542v"), SubResource("Resource_gemcw"), SubResource("Resource_k12pj"), SubResource("Resource_p37jh")])
+steps = Array[ExtResource("2_a1xxy")]([SubResource("Resource_oa6hy"), SubResource("Resource_a1xxy"), SubResource("Resource_k12pj"), SubResource("Resource_rdfij"), SubResource("Resource_ukpsd"), SubResource("Resource_1kw7s"), SubResource("Resource_84lqm"), SubResource("Resource_x8jjj")])
 metadata/_custom_type_script = "uid://dk3txc50al1fb"

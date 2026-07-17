@@ -32,7 +32,7 @@ func wants_line(line: String, tags: Array[String]) -> bool:
 func take_line(line: String, tags: Array[String]):
 	await do_line(line, tags).call()
 func do_line(line: String, tags: Array[String]):
-	var dialogue = NMessage.from_str(line, tags)
+	var dialogue = NMessage.from_str(line, tags) if !line.begins_with("/") else null
 	if is_instance_valid(dialogue):
 		return func():
 			await message(dialogue)
@@ -110,7 +110,8 @@ func message(m: NMessage):
 	if wait == -1:
 		%Continue.show()
 		%Continue.grab_focus()
-		await %Continue.pressed
+		if !Input.is_action_pressed("menu"):
+			await %Continue.pressed
 		%Continue.hide()
 	else:
 		await get_tree().create_timer(wait).timeout

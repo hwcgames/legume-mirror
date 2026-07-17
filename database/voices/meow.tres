@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Voice" format=3 uid="uid://48aci6plmemj"]
+
+[ext_resource type="Script" uid="uid://b8ydg71rplvx7" path="res://src/audio/voice_list.gd" id="1_ds20q"]
+[ext_resource type="AudioStream" uid="uid://pe13av0a1uwn" path="res://assets/audio/sfx/typewriter/meow/1.wav" id="2_4atws"]
+[ext_resource type="AudioStream" uid="uid://dogvkdmn3k3i6" path="res://assets/audio/sfx/typewriter/meow/2.wav" id="3_73tex"]
+[ext_resource type="AudioStream" uid="uid://bp7e6hn1vgguu" path="res://assets/audio/sfx/typewriter/meow/3.wav" id="4_kbtrf"]
+[ext_resource type="AudioStream" uid="uid://bgh0vasnayuk7" path="res://assets/audio/sfx/typewriter/meow/4.wav" id="5_qw77k"]
+[ext_resource type="AudioStream" uid="uid://buvudb4lut2lv" path="res://assets/audio/sfx/typewriter/meow/5.wav" id="6_e4ogi"]
+[ext_resource type="AudioStream" uid="uid://we4w26kmwd33" path="res://assets/audio/sfx/typewriter/meow/6.wav" id="7_5twjs"]
+[ext_resource type="AudioStream" uid="uid://bhn6fphw0cgbs" path="res://assets/audio/sfx/typewriter/meow/7.wav" id="8_udsw8"]
+[ext_resource type="AudioStream" uid="uid://7ofwv21yd26x" path="res://assets/audio/sfx/typewriter/meow/8.wav" id="9_vdtok"]
+[ext_resource type="AudioStream" uid="uid://cr2uxkswjdsed" path="res://assets/audio/sfx/typewriter/meow/9.wav" id="10_rt5cc"]
+[ext_resource type="AudioStream" uid="uid://crqxka142vrps" path="res://assets/audio/sfx/typewriter/meow/10.wav" id="11_y8o3r"]
+
+[resource]
+script = ExtResource("1_ds20q")
+sounds = Array[AudioStream]([ExtResource("2_4atws"), ExtResource("3_73tex"), ExtResource("4_kbtrf"), ExtResource("5_qw77k"), ExtResource("6_e4ogi"), ExtResource("7_5twjs"), ExtResource("8_udsw8"), ExtResource("9_vdtok"), ExtResource("10_rt5cc"), ExtResource("11_y8o3r")])
+min_delay = 0.25
+volume = -16.0
+metadata/_custom_type_script = "uid://b8ydg71rplvx7"

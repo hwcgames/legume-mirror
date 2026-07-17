@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://bweggjc65b155"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_1k716"]
+
+[resource]
+script = ExtResource("1_1k716")
+_version = 2
+_scan_rulesets = Array[Dictionary]([{
+&"allowed_file_extensions": Array[String]([]),
+&"class_restrictions": Array[StringName]([&"PackedScene"]),
+&"recursive_scan": false,
+&"scan_directories": Array[String](["res://database/bullet/"]),
+&"scan_regex_exclude": "",
+&"scan_regex_include": ""
+}])
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://1lno7glpoygr": &"ninjastar",
+&"uid://5lb305m8mt1w": &"soup",
+&"uid://bc3o5n3udqjsr": &"splash",
+&"uid://bnjn1cxrngomy": &"lizard",
+&"uid://bp34da535obwg": &"scissor-gaming",
+&"uid://bvwd8f452pu0d": &"spookybullet2",
+&"uid://c2oru2jrnvum0": &"sweep_dust",
+&"uid://c6dbhmhpdpqby": &"soup-ingredients",
+&"uid://c6w0ios1iql84": &"gum",
+&"uid://c7e7s4n4gr63p": &"math",
+&"uid://cm486l7efwhqx": &"searchlight",
+&"uid://co3tak7uc6u68": &"test2",
+&"uid://d2hd5nf6a6qwo": &"anim-marker",
+&"uid://dg2fhw2ufumho": &"spookybullet",
+&"uid://dir377gvqxvhr": &"calibration-marker",
+&"uid://dw7q8xmxypuo8": &"squigglemarker",
+&"uid://t1oj1biqflb3": &"airplane"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"airplane": &"uid://t1oj1biqflb3",
+&"anim-marker": &"uid://d2hd5nf6a6qwo",
+&"calibration-marker": &"uid://dir377gvqxvhr",
+&"gum": &"uid://c6w0ios1iql84",
+&"lizard": &"uid://bnjn1cxrngomy",
+&"math": &"uid://c7e7s4n4gr63p",
+&"ninjastar": &"uid://1lno7glpoygr",
+&"scissor-gaming": &"uid://bp34da535obwg",
+&"searchlight": &"uid://cm486l7efwhqx",
+&"soup": &"uid://5lb305m8mt1w",
+&"soup-ingredients": &"uid://c6dbhmhpdpqby",
+&"splash": &"uid://bc3o5n3udqjsr",
+&"spookybullet": &"uid://dg2fhw2ufumho",
+&"spookybullet2": &"uid://bvwd8f452pu0d",
+&"squigglemarker": &"uid://dw7q8xmxypuo8",
+&"sweep_dust": &"uid://c2oru2jrnvum0",
+&"test2": &"uid://co3tak7uc6u68"
+})

@@ -12,15 +12,8 @@ var text: String = ""
 signal new_text(text: String)
 var bg_color: Color
 var text_color: Color
-var voice: Voice:
-	set(new_voice):
-		voice = new_voice
-		if is_instance_valid(voice):
-			voice_stream = AudioStreamRandomizer.new()
-			for stream in voice.sounds:
-				voice_stream.add_stream(-1, stream)
+var voice: Voice
 var tags: Array[String] = []
-var voice_stream: AudioStreamRandomizer
 var regions: Dictionary[String, Region] = {}
 var special: Dictionary[int, Callable] = {}
 
@@ -54,6 +47,7 @@ static func from_str(line: String, tags: Array[String]) -> NMessage:
 	m.bg_color = m.sheet.bg_color
 	m.text_color = m.sheet.text_color
 	m.voice = m.sheet.default_voice
+	m.interval = m.sheet.default_interval
 	if name != last_character:
 		last_voice = null
 		last_character = name
@@ -142,7 +136,7 @@ static func command_from_str(cmd: String, tags: Array[String]) -> Callable:
 				while time > 0.:
 					await l.get_tree().physics_frame
 					time -= 1.0 / Engine.physics_ticks_per_second
-					if Input.is_action_just_pressed("ui_accept"):
+					if Input.is_action_just_pressed("ui_accept") or Input.is_action_pressed("menu"):
 						time = 0.
 	print(cmd)
 	return func(message: NMessage, label: RichTextLabel): print(cmd)
@@ -170,7 +164,6 @@ var interval = 0.03
 var skipping = false
 var timer: float = 0.
 
-const silent_chars: String = " !,.?\"\'() "
 func interval_mul(c: String):
 	match c:
 		".", "!", "?", "­—": return 15.
@@ -192,7 +185,7 @@ func play_on(label: RichTextLabel):
 		waited_this_frame = 0.
 	label.get_tree().physics_frame.connect(reset_waited)
 	var start_skipping = func():
-		if Input.is_action_just_pressed("ui_accept") and label.visible_characters > 2:
+		if (Input.is_action_just_pressed("ui_accept") or Input.is_action_pressed("menu")) and label.visible_characters > 2:
 			skipping = true
 	label.get_tree().physics_frame.connect(start_skipping)
 	var update_label_txt = func(txt: String):
@@ -204,6 +197,9 @@ func play_on(label: RichTextLabel):
 	var last_color := Color.TRANSPARENT
 	var player = AudioStreamPlayer.new()
 	label.add_child(player)
+	player.stream = AudioStreamPolyphonic.new()
+	player.play()
+	var playback: AudioStreamPlaybackPolyphonic = player.get_stream_playback()
 	var cursor = 0
 	while cursor < len(text):
 		var bracket = text[cursor] == '['
@@ -217,13 +213,13 @@ func play_on(label: RichTextLabel):
 		var c = text[cursor]
 		var parsed = label.get_parsed_text()
 		var voice_c = parsed[label.visible_characters] if label.visible_characters < len(parsed) else ' '
-		if is_instance_valid(voice) and timer - last_voice > voice.min_delay and (not (voice_c in silent_chars)) and label.visible_characters < len(parsed) - 1:
+		var voice_s: AudioStream = voice.stream_for(voice_c) if is_instance_valid(voice) else null
+		if is_instance_valid(voice) and timer - last_voice > voice.min_delay and is_instance_valid(voice_s) and label.visible_characters < len(parsed) - 1:
 			last_voice = timer
 			player.max_polyphony = voice.polyphony
-			if player.stream != voice_stream:
-				player.stream = voice_stream
-			player.volume_db = voice.volume
-			player.play()
+			playback.play_stream(voice_s, 0, voice.volume)
+			#if player.stream != voice_stream:
+				#player.stream = voice_stream
 		if label.visible_characters in special:
 			await special[label.visible_characters].call(self, label)
 		label.visible_characters += 1

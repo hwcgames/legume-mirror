@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://womgxtsgwutb"]
+
+[ext_resource type="Script" uid="uid://buosdqpb46j2k" path="res://gui/party/stats_grid.gd" id="1_4n5ox"]
+
+[node name="CenterContainer" type="CenterContainer" unique_id=300579776]
+custom_minimum_size = Vector2(128, 128)
+offset_top = 102.0
+offset_right = 48.0
+offset_bottom = 102.0
+script = ExtResource("1_4n5ox")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=385480922]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+columns = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer" unique_id=976339319]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer" unique_id=2016125035]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "STR"
+horizontal_alignment = 1
+
+[node name="STR" type="Label" parent="GridContainer/VBoxContainer" unique_id=1448701128]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GridContainer" unique_id=627318090]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer2" unique_id=38740814]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "DEF"
+horizontal_alignment = 1
+
+[node name="DEF" type="Label" parent="GridContainer/VBoxContainer2" unique_id=1630669863]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="GridContainer" unique_id=893502525]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MAG" type="Label" parent="GridContainer/VBoxContainer3" unique_id=2021220011]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer3" unique_id=1240901330]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "MAG"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="GridContainer" unique_id=980797117]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="FIN" type="Label" parent="GridContainer/VBoxContainer4" unique_id=1116555326]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "10"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="GridContainer/VBoxContainer4" unique_id=1649147841]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "FIN"
+horizontal_alignment = 1
