@@ -19,9 +19,10 @@ func _ready() -> void:
 	add_to_group("story_listener")
 	for item in items:
 		print(item.path)
-	if is_instance_valid(Saver.find()):
-		Saver.find().pre_save.connect(pre_save)
-		Saver.find().post_load.connect(post_load)
+	# if is_instance_valid(Saver.find()):
+	# 	Saver.find().pre_save.connect(pre_save)
+	# 	Saver.find().post_load.connect(post_load)
+	add_to_group("save_participants")
 
 func pre_save(file: SaveFile):
 	file.inventory = []

@@ -18,8 +18,21 @@ func _ready():
 	while fname != "":
 		load_save("user://saves/%s" % fname)
 		fname = dir.get_next()
-	if in_progress == 0:
+	while in_progress > 0:
+		await get_tree().process_frame
+	if saves.is_empty():
 		no_saves.emit()
+		return
+	$"../ProgressLabel".hide()
+	$"../ProgressLabel".hide()
+	var save_list = saves.values()
+	save_list.sort_custom(func(a, b): return day_indices[a.index] < day_indices[b.index])
+	for save in save_list:
+		var save_card: SaveFileCard = save_card_scene.instantiate()
+		save_card.save = save
+		save_card.story = stories[save.index]
+		save_card.location = save_card.story.EvaluateFunction("location_name", [save_card.story.FetchVariable("location")])
+		%SaveParent.add_child(save_card)
 
 var saves: Dictionary[int, SaveFile] = {}
 var stories: Dictionary[int, InkStory] = {}
@@ -53,7 +66,6 @@ func load_save(path: String):
 		load_error(path, "Why are you buying {0} at the SaveFile store? (I understand it, but it looks like a {0} instead of a SaveFile.)".format([s.get_script().get_global_name()]))
 		return
 	var save: SaveFile = s
-	saves[save.index] = save
 	error = ResourceLoader.load_threaded_request(save.story, "InkStory")
 	match error:
 		Error.OK:
@@ -76,16 +88,19 @@ func load_save(path: String):
 		return
 	var story: InkStory = s
 	story.LoadState(JSON.stringify(save.ink_save))
-	stories[save.index] = story
 	var location: String = story.FetchVariable("location")
 	var year: int = story.FetchVariable("year")
 	var month: int = story.FetchVariable("month")
 	var day: int = story.FetchVariable("day")
 	var weekday: int = story.FetchVariable("weekday")
 	var day_idx: int = year * 366 + month * 32 + day
+	saves[save.index] = save
+	stories[save.index] = story
+	stories[save.index].BindExternalFunction("in_inky", func(): return false)
 	day_indices[save.index] = day_idx
+	in_progress -= 1
 
-@export var error_parent: Control
+@onready var error_parent: Control = %ErrorParent
 
 func load_error(path: String, message: String):
 	in_progress -= 1

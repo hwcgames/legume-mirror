@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://b3ua627ua5ang"
+path="res://.godot/imported/neighborhood.ink-f76caabda7b6964ff24a7615d1bf0beb.res"
+
+[deps]
+
+source_file="res://assets/story/draft/world/neighborhood.ink"
+dest_files=["res://.godot/imported/neighborhood.ink-f76caabda7b6964ff24a7615d1bf0beb.res"]
+
+[params]
+
+is_main_file=false
+compress=true

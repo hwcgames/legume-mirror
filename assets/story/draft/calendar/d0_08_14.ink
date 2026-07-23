@@ -18,7 +18,7 @@ cipher: Hello.
 
 emily: Good morning, class!
 (The students fall silent.)
-emily: Let's get the boilerplate out of the way. You can call me Dr. Fitzpatrick, I will be your history teacher this year. You can pick up a copy of the syllabus at the front of the class if you haven't already...
+emily: Let's get the boilerplate out of the way. You can call me Dr. Fitzpatrick, I will be your history teacher this year. You should have received the syllabus online, raise your hand if you need a hard copy...
 
 / fade black
 ->->
@@ -55,19 +55,21 @@ mauve: Maybe I have. Why do you ask?
 (Her tone is flat. Quite rude, actually.)
 cipher: Something happened to us this weekend.
 (When you start talking, she startles, turning to look at you.)
+> Did she not hear me come in...?
 mauve: R-really? What was it like?
-casey: I was trying to take a shortcut through an alleyway, but it closed off behind me and there was this dog with eyes all over-
-mauve: Oh, there's one of those in the school basement, I've been seeing how far I can get.
-casey: You're fighting them [i]on purpose?[/i]
+casey: I was trying to take a shortcut through an alleyway, but it closed off behind me and there was this dog-looking thing with eyes all over-
+mauve: I've fought things like that. There's a ton of them in the school basement, I've been seeing how far I can get.
+casey: You're fighting them [i]on purpose?[/i] And they're in the-?!
 mauve: Gotta pass the time somehow.
-(She turns to address you.)
+casey: I thought you said nothing was real, that's why the-
+(She loses interest and turns to address you.)
 mauve: What's your deal?
 > Uh.
 cipher: What do you mean?
 mauve: I assume you got attacked too?
-cipher: Oh, right. I stumbled into the alleyway a few minutes later. She was hurt pretty bad, so I picked her up and ran away.
+cipher: Oh, right. I stumbled into the alleyway a few minutes later. She was hurt pretty bad, so I picked her up and ran away. It happened when we were on the train yesterday too.
 (Her brow furrows.)
-mauve: Have you seen anything else? Anything special you can do?
+mauve: Have you seen anything else? Maybe before then?
 (You narrow your eyes.)
 cipher: ...No? Why do you ask?
 mauve: Just a feeling.
@@ -80,22 +82,25 @@ mauve: Just a feeling.
 
 (In Cipher's apartment... A signal!)
 
-wnw: [MESSAGE REQUEST: Meeting up]
-nh: Who is this?
-wnw: Mauve. We spoke earlier today.
-nh: Oh. I never got your name.
-nh: How did you find this account?
-wnw: You're the only "Cipher" in Northold.
-wnw: Cool name, by the way.
-nh: I see. I would prefer if you just asked next time.
-wnw: I want to talk after school tomorrow in the old club room.
-nh: What about?
-(She takes a moment to start typing.)
-wnw: Just to get to know one another.
-> Suspicious.
-nh: Sure. Should I invite Casey too?
-wnw: I'd prefer if you didn't.
-nh: Why?
+/ open phone
+/ conversation: cipher mauve
+mauve: [MESSAGE REQUEST: Meeting up]
+cipher: Who is this?
+mauve: Mauve. We spoke earlier today.
+cipher: Oh. I never got your name.
+cipher: How did you find this account?
+mauve: You're the only "Cipher" in Northold.
+mauve: Cool name, by the way. Did you pick it out yourself?
+> Oh, no.
+cipher: I would prefer if you just asked next time.
+mauve: I want to talk after school tomorrow in the old club room.
+cipher: What about?
+/ sleep 1
+mauve: Just to get to know one another.
+> [i]Oh, no.[/i]
+cipher: Sure. Should I invite Casey too?
+mauve: I'd prefer if you didn't.
+cipher: Why?
 (A moment's pause.)
 > [b]I don't think I ever told her my name?[/b]
 / fade black

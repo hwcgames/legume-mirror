@@ -16,3 +16,6 @@
 / sharpmissive joins battle
 / battle!
 ->END
+= story
+/ switch story test-new
+->END

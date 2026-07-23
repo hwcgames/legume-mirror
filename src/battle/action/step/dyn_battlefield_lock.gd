@@ -18,4 +18,4 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 	return false
 
 func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
-	(registers[register_name] as Callable).call()
+	(registers[register_name] as Locks.LockHandle).release()

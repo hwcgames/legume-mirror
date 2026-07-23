@@ -114,7 +114,7 @@ func _ready():
 			for device in PlayerManager.get_player_indexes():
 				player_joined(device)
 	if interactable:
-		interactable.choices.insert(0, "%s" % human_name)
+		interactable.choices.insert(0, "%s" % sheet.id)
 
 func wants_line(line: String, tags: Array[String]) -> bool:
 	return do_line(line, tags) is Callable

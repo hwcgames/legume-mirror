@@ -244,7 +244,7 @@ func pick_item(predicate = func(i: Item): return i.battle_action != null) -> Ite
 		return null
 	if item == null:
 		%TabContainer.current_tab = prev_tab
-	i_lock.call()
+	i_lock.release()
 	return item
 
 func pockets():
@@ -299,7 +299,7 @@ func pick_parley(enemy: Actor, predicate = func(i: BattleAction): return true):
 		return null
 	if parley == null:
 		%TabContainer.current_tab = prev_tab
-	p_lock.call()
+	p_lock.release()
 	return parley
 
 func parley():

@@ -74,7 +74,7 @@ func update_loading():
 	else:
 		var most_loaded_neighbor = 0
 		for seam in seams:
-			if seam.partner == null:
+			if seam.partner == null or not (seam.enabled and seam.partner.enabled):
 				continue
 			most_loaded_neighbor = max(most_loaded_neighbor, seam.partner.room.loadedness - seam.partner.loading_distance)
 		loadedness = max(most_loaded_neighbor, 0)

@@ -1,7 +1,13 @@
-=== setup_quests
+=== quest
+->setup
+= setup
 (TODO: Quest setup)
 ->->
 
-=== quest_choices(->back)
+= choices(->back)
 (TODO: Quest choices)
-->back
+->DONE
+
+= ponders(->back)
+(TODO: Quest ponders)
+->DONE

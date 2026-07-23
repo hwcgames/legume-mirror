@@ -85,13 +85,14 @@ func do_line(line: String, tags: Array[String]):
 				battle()
 		["/", "battle", "lock"]:
 			return func():
-				await lock.exclusive_lock()
+				story_lock = await lock.exclusive_lock()
 		["/", "battle", "unlock"]:
 			return func():
-				assert(lock.exclusive_locked)
-				lock.exclusive_locked = false
-				lock.exclusive_free.emit()
-
+				assert(is_instance_valid(story_lock))
+				assert(!story_lock.freed)
+				story_lock.release()
+				story_lock = null
+var story_lock: Locks.LockHandle
 
 func _process(delta: float) -> void:
 	if phase == PHASE.ENEMY_ACTION and not players.any(func(p: Actor): return p.alive):
@@ -137,7 +138,7 @@ func battle():
 		phase = PHASE.TELEGRAPH
 		telegraph.emit()
 		await assign_patterns()
-		t_lock.call()
+		t_lock.release()
 		await lock.wait_for_clear()
 		println("Player action!")
 		await get_tree().process_frame

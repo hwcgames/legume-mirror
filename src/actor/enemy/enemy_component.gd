@@ -22,15 +22,15 @@ func _join_battle(enemy: Actor, battlefield: Battlefield):
 
 
 func _telegraph(actor: Actor):
-	if ! actor.alive:
+	if !actor.alive:
 		return
 	#await pick_pattern()
 	var lock = await actor.battlefield.lock.shared_lock()
 	for rule in actor.sheet.rules:
-		if not rule.pick_pattern(actor ):
+		if not rule.pick_pattern(actor):
 			return
 	await actor.show_telegraph()
-	lock.call()
+	lock.release()
 
 func _died(actor: Actor):
 	for child in actor.get_node("%TelegraphParent").get_children():
@@ -49,17 +49,17 @@ func _enemy_action(actor: Actor):
 		return
 	var lock = await actor.battlefield.lock.shared_lock()
 	if actor.planned_pattern != null:
-		var board = actor.planned_pattern.create(actor.battlefield, actor )
+		var board = actor.planned_pattern.create(actor.battlefield, actor)
 		await actor.get_tree().process_frame
 		for rule in actor.sheet.rules:
 			if not rule.setup_battle_board(actor, board):
 				await board.done
-				lock.call()
+				lock.release()
 				return
 		actor.battlefield.battle_board.add_pattern(board)
 		actor.battlefield.players_died.connect(board.done.emit)
 		await board.done
-	lock.call()
+	lock.release()
 
 func _begin(actor: Actor):
 	pass

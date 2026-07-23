@@ -23,15 +23,15 @@ func _join_battle(_battle: Battlefield):
 	global_rotation = home_landmark.global_rotation
 
 func _telegraph():
-	if ! self.alive:
+	if !self.alive:
 		return
 	#await pick_pattern()
 	var lock = await battlefield.lock.shared_lock()
 	for rule in rules:
-		if not rule.pick_pattern(self ):
+		if not rule.pick_pattern(self):
 			return
 	await show_telegraph()
-	lock.call()
+	lock.release()
 
 func _died():
 	super._died()
@@ -47,21 +47,21 @@ func _enemy_action():
 	%Telegraph.hide()
 	for child in %TelegraphParent.get_children():
 		child.queue_free()
-	if ! self.alive:
+	if !self.alive:
 		return
 	var lock = await battlefield.lock.shared_lock()
 	if planned_pattern != null:
-		var board = planned_pattern.create(battlefield, self )
+		var board = planned_pattern.create(battlefield, self)
 		await get_tree().process_frame
 		for rule in rules:
-			if not rule.setup_battle_board(self , board):
+			if not rule.setup_battle_board(self, board):
 				await board.done
-				lock.call()
+				lock.release()
 				return
 		battlefield.battle_board.add_pattern(board)
 		battlefield.players_died.connect(board.done.emit)
 		await board.done
-	lock.call()
+	lock.release()
 
 var stale_pattern: BulletPattern
 

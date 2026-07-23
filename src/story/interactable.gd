@@ -21,7 +21,7 @@ func _ready():
 func hover():
 	var choice: InkChoice
 	for choice_name in choices:
-		choice = Storyteller.find().choices.filter(func(c: InkChoice): return c.GetText().begins_with(choice_name)).get(0)
+		choice = Storyteller.find().choices.filter(func(c: InkChoice): return c.GetText() == choice_name).get(0)
 		if choice:
 			break
 	if !choice:

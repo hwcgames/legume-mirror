@@ -54,15 +54,14 @@
 / fade in
 
 (Cipher is aboard a train crossing a bridge.)
-(They're alone, apart from someone asleep on the other end of the car.)
+(It's not busy, but there are several others aboard.)
 
 > Dear Diary, #v:written
 (They cross it out.)
 > To whom it may concern, #v:written
-> I'm not going to belabor my situation - you've probably already been briefed on it. If you haven't, well... I'm sure someone will reach out to you soon. Regardless, I'm quite confident this is the last you'll be hearing from me. Arguably, leaving this here is a big risk, but when I imagine the look on the safety director's face... Well, if you know him, you'll understand why I decided to indulge. 
+> I'm not going to belabor my situation - you've probably already been briefed on it. If you haven't, well... I'm sure someone will reach out to you soon. Regardless, I'm quite confident this is the last you'll be hearing from me. Arguably, leaving this here is a big risk, but when I imagine the look on the safety director's face... Well, if you know him, you'll understand why I decided to indulge. It might break him when he learns that even the "prototype" thought he was insufferable, though.
 // If you happen to find this... Don't bother trying to return it. It isn't wanted, and I'm quite confident you couldn't find me even if it was. I imagine it'd fetch quite the price if you were to sell it. Much of it is classified, after all.
 // It's a curious emotion. If all goes well, everything I've known in my life so far is behind me. I'm not sure how anyone else in today's world could even try to start over like this.
-- (test)
 > I've been thinking about what this means. I've never had to tell someone [i]who I am[/i] before. Will it be difficult? Scary? I've read that a person's "personality" is like a muscle: it develops when you have other people to bounce it off of, but atrophes when you're alone. Will they be able to tell I haven't been able to use mine?
 > Even just this - it's my first time writing my own words for someone else to read. 
 
@@ -71,8 +70,8 @@
 intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on the left at Weston Pier. #v:speaker
 / camera back
 
-
-> Goodbye, #v:written
+> Well, this is my stop. #v:written
+> Goodbye,
 > A Fellow Stranger.
 
 > P.S: I'm not sure if I can call you "mom," but... Regardless, if you're reading this somehow: thanks for everything. Sorry if I got you fired.
@@ -295,7 +294,7 @@ cipher: Okay, I'll put you in once I get home.
 / cipher follow path forward
 
 casey: null_hypothesis... There it is. Oh, I guess their name's Cipher. Haha, what's that say about me, asking their chat ID first? #v:whisper
-/ casey emote heh
+/ casey emote pfft
 / casey emote huh
 casey: Registered... just now? But they didn't... #v:whisper
 / camera back
@@ -316,10 +315,13 @@ milly: Oh, hello, dearie! What can I do for you?
 cipher: I'm Cipher, my parents said they talked to you?
 milly: Of course, of course! They said they'd send me your picture in "the goggle," but, oh, you know how it is with those new electric computers. So complicated!
 > I'm flattered.
+> We've had transistors for almost thirty years, though...?
 + (told_milly_computers_are_hard) cipher: Tell me about it!
+    cipher: I keep saying, there's nothing they can do that clockwork can't.
+    > That's especially ironic, considering who's saying it...
     milly: Oh, well, I'm sure you can still run circles around me.
 + (told_milly_computers_are_easy) cipher: Really? I hadn't noticed.
-    milly: Well, of course, kids your age have had them your whole lives.
+    milly: Well, of course, kids your age have had them your whole lives. Back in my day, when the pressure went out you could work the computer with a crank!
 -
 milly: Say, I'm supposed to get a "goggle letter" for my taxes soon, would it be a bother to help me get it?
 milly: I don't want to go all the way to the bank to get them to print it out for me.
@@ -328,7 +330,7 @@ milly: I don't want to go all the way to the bank to get them to print it out fo
 cipher: Of course! Call me anytime.
 milly: You're a peach, thank you. Do you need help with your bags?
 cipher: No, I couldn't ask you to help with that. Besides, I'm stronger than I look!
-> I don't actually have any luggage. If a semi truck ever breaks down in front of her driveway...
+> I don't actually have any luggage. If a semi truck ever breaks down in front of her driveway, though...
 milly: Aww, aren't you independent? Well, if you ever need anything, just let Aunt Milly know!
 
 ->->
@@ -345,35 +347,39 @@ milly: Aww, aren't you independent? Well, if you ever need anything, just let Au
 > How would I know, though? Maybe I could-
 (A signal! Cipher almost trips.)
 
-cxf: hello, stranger!
+/ open phone
+/ conversation: cipher casey
+
+casey: hello, stranger!
 > Oh. Right.
-nh: Hello.
-cxf: thanks again for saving me today
+cipher: Hello.
+casey: thanks again for saving me today
 > What else could I have done?
-cxf: i still don't understand
-cxf: where the hell were we? #expr:confused
-cxf: what would have happened to me if you hadn't shown up #expr:fear
-nh: I don't think there's any way to know for sure.
-nh: I just hope it doesn't happen again.
+casey: i still don't understand
+casey: where the hell were we? #expr:confused
+casey: what would have happened to me if you hadn't shown up #expr:fear
+cipher: I don't think there's any way to know for sure.
+cipher: I just hope it doesn't happen again.
 (A moment's pause.)
-cxf: btw
-cxf: are you busy tomorrow?
-nh: No, why?
-cxf: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch to repay you
+casey: btw
+casey: are you busy tomorrow?
+cipher: No, why?
+casey: do you want to come by my house? my parents are going to be out but i can get my brother to make lunch to repay you
 > Oh no. This is way too soon for something like that.
-nh: That's really not necessary, I was just in the right place at the right time.
-cxf: ok
-cxf: but consider
-cxf: i want to get to know you
-cxf: and i'm offering you free breakfast
-cxf: and tbh i'm scared to go out alone in case it happens again but i have to buy school supplies
-> Damn. If it's for safety, I can't say no.
-nh: Okay. Time and place?
+cipher: That's really not necessary, I was just in the right place at the right time.
+casey: ok
+casey: but consider
+casey: i want to get to know you
+casey: and i'm offering you free breakfast
+casey: and tbh i'm scared to go out alone in case it happens again but i have to buy school supplies
+cipher: ...Sure. Time and place?
+> Damn my bleeding heart.
+> ...Heh.
 (A calendar file. It's at 9 AM tomorrow, a little less than a mile north of here.)
 > Did she just... have that at the ready?
-cxf: is that ok?
-(A moment's pause.)
-nh: Sure.
+casey: is that ok?
+/ sleep 1.5
+cipher: Sure.
 
 > None of the actors in simulations have ever been able to hold a conversation like that before.
 > Do they have a human jacked in somehow? Or...

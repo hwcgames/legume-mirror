@@ -198,8 +198,7 @@ func _ready():
 		#CONNECT_ONE_SHOT)
 	#generate_map()
 	treadmill.wants_room_for.connect(fill_handler)
-	Saver.find().pre_save.connect(pre_save)
-	Saver.find().post_load.connect(post_load)
+	add_to_group("save_participants")
 	if is_instance_valid(loading_save):
 		load_after_reload(loading_save)
 
@@ -291,7 +290,7 @@ func fill_handler(seam: ProceduralSeam):
 				Storyteller.find().choose([
 					"dungeon entered junction"
 				], true)
-				lock.call(), CONNECT_ONE_SHOT)
+				lock.release(), CONNECT_ONE_SHOT)
 		STATE.JUNCTION:
 			if room.room_info.room_type == RoomInfo.ROOM_TYPE.HALLWAY:
 				seam.wants_room_type = RoomInfo.ROOM_TYPE.HALLWAY

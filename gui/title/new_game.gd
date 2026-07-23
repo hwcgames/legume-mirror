@@ -6,6 +6,7 @@ func _pressed() -> void:
 	var main_game: Node = preload("uid://h5ppkq5boigl").instantiate()
 	var st: Storyteller = main_game.get_node("Storyteller")
 	st.story = preload("uid://del34gulleoth")
+	st.story.ResetState()
 	if not starting_address.text.is_empty():
 		st.story.ChoosePathString(starting_address.text)
 	var tree := get_tree()

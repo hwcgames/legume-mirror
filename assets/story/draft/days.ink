@@ -46,7 +46,7 @@ VAR had_a_dream_last_night = false
         ~ had_a_dream_last_night = false
 }
 
-{cycle:
+{shuffle:
     - {weekday <= 5:
         - true: {shuffle:
             - (You get ready for class.)
@@ -66,12 +66,20 @@ VAR had_a_dream_last_night = false
     }
 }
 
+{weekday <= 5:
+    (Placeholder school narration.)
+}
 ->->
 
 = afternoon
-
+{weekday <= 5:
+    - true:
+        ->school.classroom
+    - false:
+        ->neighborhood.apartment
+}
 ->->
 
 = evening
-
+-> neighborhood.apartment
 ->->

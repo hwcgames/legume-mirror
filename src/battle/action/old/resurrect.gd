@@ -39,7 +39,7 @@ class ResurrectPlan extends BattleActionPlan:
 					target = ally
 		if target.alive:
 			print("No dead targets!")
-			b_lock.call()
+			b_lock.release()
 			return
 		battlefield.println(message % [party_member.human_name, target.human_name])
 		#var approach = ActorModeApproach.new(party_member, target)
@@ -50,5 +50,5 @@ class ResurrectPlan extends BattleActionPlan:
 		target.turns = 0
 		#await animate.popped
 		#approach.finished = true
-		b_lock.call()
+		b_lock.release()
 		#await approach.popped

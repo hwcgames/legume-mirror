@@ -39,7 +39,7 @@ class HealPlan extends BattleActionPlan:
 					target = ally
 		if !target.alive:
 			print("No living targets!")
-			b_lock.call()
+			b_lock.release()
 			return
 		if party_member != target:
 			battlefield.println(message % [party_member.human_name, target.human_name])
@@ -54,6 +54,6 @@ class HealPlan extends BattleActionPlan:
 		target.hp_change(HpChange.new(party_member, target, amount))
 		#await animate.popped
 		#approach.finished = true
-		b_lock.call()
+		b_lock.release()
 		#if target != party_member:
 			#await approach.popped

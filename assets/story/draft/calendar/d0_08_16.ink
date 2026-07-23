@@ -8,6 +8,8 @@
 / fade in
 (A signal...?)
 > Who's texting me at 4 AM?
+/ open phone
+/ conversation: cipher casey
 casey: hey uh
 casey: i couldn't sleep
 cipher: What's up?
@@ -44,7 +46,6 @@ cipher: Oh, right.
 cipher: Well, try to get at least some sleep, we can talk more after school.
 casey: ok
 
-(You shut back down for the night.) #!b:main
 / fade black
 ->->
 
@@ -53,27 +54,29 @@ casey: ok
 / fade in
 
 (A signal.)
-: Group channel.
-nh: Good morning.
-ms: Morning.
-cxf: hhhhhhhhhhhhhhhhhhhhhh
-nh: Rise and shine!
-cxf: die
-nh: Oh.
-cxf: acgh
-cxf: soirry
-cxf: your'e fine
-cxf: also hi mauve
-ms: Charmed.
-cxf: would have been nice if you actually told me your name in person
-cxf: uhhhh
-cxf: yeah i want to see the thing in the basement
-ms: Are you sure?
-ms: You don't seem 100%, it could be dangerous.
-cxf: i can take a nap in class
-cxf: cipher can you take notes for me
-nh: Sure.
-cxf: yeah i'll be fineeeee
+/ open phone
+/ conversation: cipher casey mauve
+cipher: Good morning.
+mauve: Morning.
+casey: hhhhhhhhhhhhhhhhhhhhhh
+cipher: Rise and shine!
+casey: die
+cipher: Oh.
+casey: acgh
+casey: soirry
+casey: your'e fine
+casey: also hi mauve
+mauve: Charmed.
+casey: would have been nice if you actually told me your name in person
+casey: uhhhh
+casey: yeah i want to see the thing in the basement
+mauve: Are you sure?
+mauve: You don't seem 100%, it could be dangerous.
+casey: i can take a nap in class
+casey: cipher can you take notes for me [U+1F97A]
+/ sleep 0.7
+cipher: Sure.
+casey: yeah i'll be fineeeee
 / fade black
 ->->
 
@@ -107,7 +110,7 @@ mauve: Let's keep moving.
 (Her tone is flat, as usual.)
 > At least [i]try[/i] to sound like you didn't already know-! You didn't even look at it...!
 mauve: Cipher told me about your hand thing. I've got something similar.
-> I know you can't hear me, but... How haven't people caught on yet?
+> I hope you do a better job with my secret than with yours!
 
 (They clear the first floor of the dungeon. Mauve is clearly a little confused at the start, but doesn't say why.)
 
@@ -123,19 +126,22 @@ mauve: Cipher told me about your hand thing. I've got something similar.
 > That's not usually easy to do.
 > There must be something about that place...
 
-nh: How are you all feeling about today?
-cxf: i'm exhausted...
-cxf: i didn't realize it until i got home, then it hit me all at once!
-nh: I'm feeling similar.
-wnw: That's normal.
-wnw: I'm more used to it, but it still takes a lot out of me.
-cxf: i think i'm going to call it a night
-cxf: i still need to catch up on sleep after last night
+/ open phone
+/ conversation: cipher casey mauve
+cipher: How are you all feeling about today?
+casey: i'm exhausted...
+casey: i didn't realize it until i got home, then it hit me all at once!
+cipher: I'm feeling similar.
+mauve: That's normal.
+mauve: I'm more used to it, but it still takes a lot out of me.
+casey: i think i'm going to call it a night
+casey: i still need to catch up on sleep after last night
 
 > My battery ran completely dry. It's a good thing I have a backup...
 > I wonder how Mauve would have reacted yesterday if she knew how much of my weight was plutonium.
 > Well. I guess I'll head to bed, too.
 
+/ fade black
 ->->
 
 

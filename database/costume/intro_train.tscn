@@ -13,7 +13,13 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfvbf"]
 size = Vector3(29, 0.5, 8)
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4svgt"]
+[sub_resource type="Animation" id="Animation_eb8e3"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e13po"]
+_data = {
+&"walk": SubResource("Animation_eb8e3")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_crqpl"]
 size = Vector3(7, 7, 30)
@@ -79,12 +85,9 @@ transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 1.59
 script = ExtResource("3_e4tdh")
 metadata/_custom_type_script = "uid://difp6yos5jwjy"
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1460255838]
-unique_name_in_owner = true
-tree_root = SubResource("AnimationNodeStateMachine_4svgt")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=297175465]
 unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_e13po")
 
 [node name="CameraTrigger" type="Area3D" parent="." unique_id=1607346956 node_paths=PackedStringArray("camera")]
 collision_layer = 3

@@ -28,8 +28,8 @@ class ExtraTurnPlan extends BattleActionPlan:
 					ally = p
 		if not ally.alive:
 			print("No living targets!")
-			b_lock.call()
-			t_lock.call()
+			b_lock.release()
+			t_lock.release()
 			return
 		if item != null:
 			Inventory.find().items.remove_at(Inventory.find().items.find(self))
@@ -43,6 +43,6 @@ class ExtraTurnPlan extends BattleActionPlan:
 		await animate.popped
 		#await party_member.get_tree().create_timer(1.).timeout
 		approach.finished = true
-		b_lock.call()
-		t_lock.call()
+		b_lock.release()
+		t_lock.release()
 		await approach.popped

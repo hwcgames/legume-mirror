@@ -37,17 +37,35 @@ metadata/_custom_type_script = "uid://jk2jm1g6q853"
 script = ExtResource("3_une4l")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="Transition" type="Node" parent="TitleState/CompoundState/Top" unique_id=1867589782]
+[node name="Quit" type="Node" parent="TitleState/CompoundState/Top" unique_id=1867589782]
 script = ExtResource("4_7wswp")
 to = NodePath("../../ConfirmQuit")
 event = &"quit_button"
 delay_in_seconds = "0.0"
+
+[node name="Load" type="Node" parent="TitleState/CompoundState/Top" unique_id=215256735]
+script = ExtResource("4_7wswp")
+to = NodePath("../../LoadGame")
+event = &"load_button"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
 [node name="ConfirmQuit" type="Node" parent="TitleState/CompoundState" unique_id=1742228119]
 script = ExtResource("3_une4l")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
 [node name="Transition" type="Node" parent="TitleState/CompoundState/ConfirmQuit" unique_id=1754075735]
+script = ExtResource("4_7wswp")
+to = NodePath("../../Top")
+event = &"cancel"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="LoadGame" type="Node" parent="TitleState/CompoundState" unique_id=1549789887]
+script = ExtResource("3_une4l")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Transition" type="Node" parent="TitleState/CompoundState/LoadGame" unique_id=1858037319]
 script = ExtResource("4_7wswp")
 to = NodePath("../../Top")
 event = &"cancel"
@@ -78,12 +96,12 @@ horizontal_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="Root/VBoxContainer" unique_id=192454629]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_k2i2f")
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 
 [node name="Root" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer" unique_id=1889080381]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -109,6 +127,7 @@ text = "Quit"
 flat = true
 
 [node name="ConfirmQuit" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer" unique_id=330235244]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -136,9 +155,8 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="SaveLister" type="Node" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1441463283 node_paths=PackedStringArray("error_parent")]
+[node name="SaveLister" type="Node" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1441463283]
 script = ExtResource("5_une4l")
-error_parent = NodePath("../ErrorParent")
 
 [node name="ProgressLabel" type="Label" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1941608517]
 layout_mode = 2
@@ -146,17 +164,39 @@ text = "Looking through your save files. (Shouldn't take long!)"
 horizontal_alignment = 1
 
 [node name="NoSavesLabel" type="Label" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1930709798]
+visible = false
 layout_mode = 2
 text = "No valid save files found."
 horizontal_alignment = 1
 
-[node name="ErrorParent" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1313234092]
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=115688898]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_vertical = 6
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer/LoadGame/ScrollContainer" unique_id=655737472]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ErrorParent" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer/LoadGame/ScrollContainer/VBoxContainer" unique_id=1313234092]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SaveParent" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=1463422022]
+[node name="SaveParent" type="VBoxContainer" parent="Root/VBoxContainer/TabContainer/LoadGame/ScrollContainer/VBoxContainer" unique_id=1463422022]
+unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Cancel" type="Button" parent="Root/VBoxContainer/TabContainer/LoadGame" unique_id=961416330]
+layout_mode = 2
+text = "Cancel"
 
 [connection signal="state_entered" from="TitleState/CompoundState/Top" to="Root/VBoxContainer/TabContainer/Root" method="show"]
 [connection signal="state_entered" from="TitleState/CompoundState/ConfirmQuit" to="Root/VBoxContainer/TabContainer/ConfirmQuit" method="show"]
+[connection signal="state_entered" from="TitleState/CompoundState/LoadGame" to="Root/VBoxContainer/TabContainer/LoadGame" method="show"]
+[connection signal="pressed" from="Root/VBoxContainer/TabContainer/Root/LoadGame" to="TitleState" method="send_event" binds= ["load_button"]]
 [connection signal="pressed" from="Root/VBoxContainer/TabContainer/Root/QuitGame" to="TitleState" method="send_event" binds= ["quit_button"]]
 [connection signal="pressed" from="Root/VBoxContainer/TabContainer/ConfirmQuit/HBoxContainer/Cancel" to="TitleState" method="send_event" binds= ["cancel"]]
+[connection signal="pressed" from="Root/VBoxContainer/TabContainer/LoadGame/Cancel" to="TitleState" method="send_event" binds= ["cancel"]]

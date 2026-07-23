@@ -9,6 +9,8 @@ var current_save: SaveFile:
 			current_save.parent_save_idx = parent_save.index
 		return current_save
 
+var queue_save: SaveFile
+
 const path_template = "user://saves/%08d.save.tres"
 
 signal pre_save(file: SaveFile)
@@ -17,9 +19,17 @@ static var me: Saver
 static func find() -> Saver:
 	return me
 
+func save_participants() -> Array[Node]:
+	return get_tree().get_nodes_in_group("save_participants")
+
 func _ready():
 	me = self
 	add_to_group("story_listener")
+	if is_instance_valid(queue_save):
+		await get_tree().process_frame
+		load_save(queue_save)
+		queue_save = null
+		Storyteller.find().busy = false
 
 func _to_string() -> String:
 	return "Saver"
@@ -40,7 +50,9 @@ func do_line(line: String, tags: Array[String]):
 
 func save(in_place: bool = false):
 	# Ask everyone to populate the save...
-	pre_save.emit(current_save)
+	for participant in save_participants():
+		participant.pre_save(current_save)
+	#pre_save.emit(current_save)
 	# Ensure the existence of the saves directory.
 	DirAccess.make_dir_absolute("user://saves")
 	# If this is an in-place save, and the parent save is a user save...
@@ -64,6 +76,8 @@ func save(in_place: bool = false):
 
 signal post_load(file: SaveFile)
 
-func load(save: SaveFile):
+func load_save(save: SaveFile):
 	parent_save = save
-	post_load.emit(save)
+	for participant in save_participants():
+		participant.post_load(current_save)
+	#post_load.emit(save)

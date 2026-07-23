@@ -5,7 +5,7 @@ class_name PartyComponent
 
 @export_file("*.tscn") var skill_challenge_scene = "uid://bbpp48kcropih"
 @export_file("*.tscn") var battle_planner_scene = "uid://d21yudvneounm"
-@export var basic_attack: BattleAction = BattleActionBasicAttack.new()
+@export var basic_attack: BattleAction = preload("uid://rm1l4wwrfots")
 @export var skillset: Skillset = SkillsetUnskilled.new()
 @export var equip_slots: Dictionary[String, int] = {
 	"armor": 10,
@@ -54,7 +54,7 @@ func _join_battle(actor: Actor, _battle: Battlefield):
 	#await create_tween() \
 		#.tween_property(self, "global_position", home_landmark.global_position, 0.75).finished
 	#await actor.create_tween().tween_property(actor, "global_rotation", actor.home_landmark.global_rotation, 0.25).finished
-	#b_lock.call()
+	#b_lock.release()
 
 func _begin(actor: Actor):
 	pass
@@ -82,7 +82,7 @@ func _player_action(actor: Actor):
 			action = await actor.battle_planner.choose()
 			await actor.get_tree().process_frame
 		if actor.turns <= 0 or not actor.alive:
-			p_lock.call_deferred()
+			p_lock.release.call_deferred()
 			continue
 		var cancel = false
 		for rule in actor.sheet.rules:
@@ -90,13 +90,13 @@ func _player_action(actor: Actor):
 				cancel = true
 				break
 		if cancel or !actor.alive or actor.turns <= 0:
-			p_lock.call_deferred()
+			p_lock.release.call_deferred()
 			continue
 		actor.turns -= 1
 		var coroutine = Promise.new(func(resolve, _reject):
 			await action.go(actor)
 			resolve.call())
-		p_lock.call_deferred()
+		p_lock.release.call_deferred()
 		await coroutine.resolved
 
 func _enemy_action(actor: Actor):

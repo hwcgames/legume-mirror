@@ -33,9 +33,9 @@ class FancyAttackPlan extends BattleActionPlan:
 					target = enemy
 		if !target.alive:
 			print("No living targets!")
-			p_lock.call()
-			b_lock.call()
-			e_lock.call()
+			p_lock.release()
+			b_lock.release()
+			e_lock.release()
 			return
 		battlefield.println("%s strikes %s with tricky technique!" % [party_member.human_name, target.human_name])
 		#await party_member.get_tree().create_tween().tween_property(party_member, "global_position", target.global_position - target.right_direction * 2, 0.75).finished
@@ -72,7 +72,7 @@ class FancyAttackPlan extends BattleActionPlan:
 		#await animate.popped
 		#approach.finished = true
 		await party_member.get_tree().create_timer(0.5).timeout
-		p_lock.call()
-		b_lock.call()
-		e_lock.call()
+		p_lock.release()
+		b_lock.release()
+		e_lock.release()
 		#await approach.popped

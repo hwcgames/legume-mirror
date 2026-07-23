@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://u0351sh21dmq"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_45lcl"]
+[ext_resource type="Texture2D" uid="uid://bewja5ve833hm" path="res://assets/art/devel/kenney_prototype-textures/Vector/texture_08.svg" id="2_lj0qu"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="4_jb1jx"]
+[ext_resource type="Script" uid="uid://difp6yos5jwjy" path="res://src/level/landmark.gd" id="4_lcf2m"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="5_5o6nq"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_par54"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
+shading_mode = 0
+albedo_texture = ExtResource("2_lj0qu")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2i2f"]
+size = Vector3(50, 50, 50)
+
+[sub_resource type="Resource" id="Resource_k2i2f"]
+script = ExtResource("5_5o6nq")
+fov = 45.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="Hub" type="Area3D" unique_id=353606998]
+script = ExtResource("1_45lcl")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1346255370]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=632973988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(16, 0.5, 16)
+material = SubResource("StandardMaterial3D_k2i2f")
+
+[node name="default" type="Marker3D" parent="." unique_id=175077971]
+unique_name_in_owner = true
+script = ExtResource("4_lcf2m")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="crow_l" type="Marker3D" parent="." unique_id=639481777]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2, 0, -7)
+script = ExtResource("4_lcf2m")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="crow_l2" type="Marker3D" parent="." unique_id=1937961673]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
+script = ExtResource("4_lcf2m")
+metadata/_custom_type_script = "uid://difp6yos5jwjy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=170740426]
+shape = SubResource("BoxShape3D_k2i2f")
+
+[node name="talk_to_crow" parent="." unique_id=557331855 instance=ExtResource("4_jb1jx")]
+transform = Transform3D(0.9779295, -0.09999951, 0.18345068, 0, 0.8780253, 0.4786142, -0.20893553, -0.46805093, 0.8586468, -1.4924598, 1.3780246, -4.1374903)
+camera_3d_resource = SubResource("Resource_k2i2f")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1705732878]
+physics_interpolation_mode = 1
+transform = Transform3D(0.9779295, -0.09999951, 0.18345068, 0, 0.8780253, 0.4786142, -0.20893553, -0.46805093, 0.8586468, -1.4924598, 1.3780246, -4.1374903)
+top_level = true
+fov = 45.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=668308871]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_par54")

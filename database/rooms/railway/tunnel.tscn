@@ -16,14 +16,6 @@ albedo_color = Color(1, 1, 1, 0)
 shading_mode = 0
 albedo_color = Color(0.20784314, 0.15686275, 0.14901961, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j41c"]
-shading_mode = 0
-albedo_color = Color(0.36519998, 0.37268, 0.44, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c3h5"]
-shading_mode = 0
-albedo_color = Color(0.22894034, 0.1522448, 0.053590782, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkanc"]
 size = Vector3(14.024414, 11.533203, 32)
 
@@ -37,50 +29,15 @@ metadata/_custom_type_script = "uid://wm2krehx1x27"
 use_collision = true
 
 [node name="Outside" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1625938281]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
-size = Vector3(10.5, 11.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.4999995, 0)
+size = Vector3(11, 11.900001, 32)
 material = SubResource("StandardMaterial3D_k2i2f")
 
 [node name="Inside" type="CSGBox3D" parent="CSGCombiner3D" unique_id=14186257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 operation = 2
-size = Vector3(10, 11, 5)
+size = Vector3(10, 11, 32)
 material = SubResource("StandardMaterial3D_ehsfc")
-
-[node name="LRail" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1291182199]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000006, 0.049999997, 0)
-size = Vector3(0.2, 0.1, 5)
-material = SubResource("StandardMaterial3D_1j41c")
-
-[node name="RRail" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2121354702]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.05, 0)
-size = Vector3(0.2, 0.1, 5)
-material = SubResource("StandardMaterial3D_1j41c")
-
-[node name="Plank" type="CSGBox3D" parent="CSGCombiner3D" unique_id=2102365466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -2)
-size = Vector3(1.8, 0.05, 0.4)
-material = SubResource("StandardMaterial3D_4c3h5")
-
-[node name="Plank2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=961283075]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, -1)
-size = Vector3(1.8, 0.05, 0.4)
-material = SubResource("StandardMaterial3D_4c3h5")
-
-[node name="Plank3" type="CSGBox3D" parent="CSGCombiner3D" unique_id=494330963]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
-size = Vector3(1.8, 0.05, 0.4)
-material = SubResource("StandardMaterial3D_4c3h5")
-
-[node name="Plank4" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1430721077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 1)
-size = Vector3(1.8, 0.05, 0.4)
-material = SubResource("StandardMaterial3D_4c3h5")
-
-[node name="Plank5" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1942051408]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 2)
-size = Vector3(1.8, 0.05, 0.4)
-material = SubResource("StandardMaterial3D_4c3h5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=800578164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015136719, 5.2666016, 0)

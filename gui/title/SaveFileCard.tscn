@@ -2,11 +2,32 @@
 
 [ext_resource type="Script" uid="uid://ct7pk3an6qfoj" path="res://gui/title/save_file_card.gd" id="1_p6t6p"]
 
-[node name="SaveFileCard" type="Control" unique_id=1619191578]
-layout_mode = 3
+[node name="SaveFileCard" type="PanelContainer" unique_id=490006558]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_p6t6p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2010085744]
+layout_mode = 2
+
+[node name="Date" type="Label" parent="HBoxContainer" unique_id=1661742884]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Location" type="RichTextLabel" parent="HBoxContainer" unique_id=1437117771]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=270257340]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Resume"

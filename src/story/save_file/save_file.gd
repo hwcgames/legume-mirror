@@ -7,7 +7,7 @@ class_name SaveFile
 @export var timestamp: Dictionary
 
 @export_file("*.ink") var story: String
-@export var ink_save: Dictionary
+@export var ink_save: String
 
 @export var active_camera: String
 

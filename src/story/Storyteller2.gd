@@ -25,22 +25,22 @@ func _ready() -> void:
 	story.changed.connect(bind_functions)
 	add_to_group("story_listener")
 	var spec_timer = Timer.new()
+	#bind_functions()
 	#spec_timer.timeout.connect(func():
 		#spec_timer.start(2)
 		#runahead())
-	if is_instance_valid(Saver.find()):
-		Saver.find().pre_save.connect(pre_save)
-		Saver.find().post_load.connect(post_load)
+	add_to_group("save_participants")
 
 func pre_save(file: SaveFile):
 	file.story = ResourceUID.path_to_uid(story.resource_path)
-	file.ink_save = JSON.parse_string(story.SaveState())
+	file.ink_save = story.SaveState()
 
 func post_load(file: SaveFile):
-	var save = JSON.stringify(file.ink_save)
+	var save = file.ink_save
 	safety_save = save
 	story = load(file.story)
 	story.LoadState(save)
+	bind_functions()
 
 static func find() -> Storyteller:
 	return me
@@ -59,7 +59,7 @@ func wait_barriers(names: Array[String]):
 			continue
 		out.push_back(await barriers[name].exclusive_lock())
 	for lock in out:
-		lock.call()
+		lock.release()
 
 func take_barriers(names: Array[String]) -> Callable:
 	names.sort()
@@ -70,7 +70,7 @@ func take_barriers(names: Array[String]) -> Callable:
 		out.push_back(await barriers[name].shared_lock())
 	return func():
 		for lock in out:
-			lock.call()
+			lock.release()
 
 var busy: bool = true
 var choices: Array[InkChoice] = []
@@ -105,15 +105,41 @@ func choice_choosers(choice: InkChoice) -> Array[Node]:
 	return listeners \
 		.filter(func(l: Node): return l.has_method("wants_choice") and l.wants_choice(choice))
 
-func wants_line(message: String, tags: Array[String]) -> bool:
-	match message.split(" ", false):
+#func wants_line(message: String, tags: Array[String]) -> bool:
+	#match message.split(" ", false):
+		#["/", "divert", var address]:
+			#return true
+	#return false
+#func take_line(message: String, tags: Array[String]):
+	#match message.split(" ", false):
+		#["/", "divert", var address]:
+			#story.ChoosePathString(address)
+func wants_line(line: String, tags: Array[String]) -> bool:
+	return do_line(line, tags) is Callable
+func take_line(line: String, tags: Array[String]):
+	await do_line(line, tags).call()
+func do_line(line: String, tags: Array[String]):
+	match Array(line.split(" ", false)):
 		["/", "divert", var address]:
-			return true
-	return false
-func take_line(message: String, tags: Array[String]):
-	match message.split(" ", false):
-		["/", "divert", var address]:
-			story.ChoosePathString(address)
+			return func():
+				story.ChoosePathString(address)
+		["/", "reset", "story"]:
+			return func():
+				change_story("")
+		["/", "switch", "story", var id]:
+			return func():
+				change_story(id)
+
+func change_story(id: String):
+	var main_game: Node = load("uid://h5ppkq5boigl").instantiate()
+	var st: Storyteller = main_game.get_node("Storyteller")
+	st.story = preload("uid://jse21nech3nb").load_entry(id) if id != "" else story
+	st.story.ResetState()
+	var tree := get_tree()
+	if PlayerManager.get_player_count() == 0:
+		PlayerManager.join(-1)
+	tree.change_scene_to_node(main_game)
+	st.busy = false
 
 signal new_choice(choices: Array[InkChoice])
 signal chosen(choice: InkChoice)
@@ -151,7 +177,11 @@ func _process(delta: float) -> void:
 		return
 	while story.GetCanContinue():
 		story.SwitchToDefaultFlow()
-		var line = story.Continue().strip_edges()
+		var line = story.Continue()
+		if line is not String:
+			print("Story is busted?")
+			break
+		line = line.strip_edges()
 		safety_save = story.SaveState()
 		var tags: Array[String] = story.GetCurrentTags()
 		await send_line(line, tags)
@@ -198,7 +228,7 @@ func send_line(line: String, tags: Array[String]):
 			var handle = await lock.shared_lock()
 			(func():
 				await listener.take_line(line, tags)
-				handle.call()
+				handle.release()
 			).call()
 		new_line.emit(line, tags)
 		if lock.shared_locks > 0:

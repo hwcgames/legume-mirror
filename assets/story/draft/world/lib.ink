@@ -1,4 +1,4 @@
-INCLUDE world/apartment.ink
+INCLUDE world/neighborhood.ink
 INCLUDE world/school.ink
 
 VAR location = "uninit"
@@ -19,9 +19,11 @@ VAR map_accessible = true
 / exit map
 ->->
 = northold
-+ {apartment_accessible} [map apartment]
-    ->->apartment
++ {neighborhood_accessible} [map neighborhood]
+    ->train_interstitial->
+    ->->neighborhood
 + {school_accessible} [map school]
+    ->train_interstitial->
     ->->school
 ->DONE
 = eastward
@@ -32,7 +34,6 @@ VAR map_accessible = true
 ->DONE
 
 === function location_name(of)
-~ return 0
 {of:
     - "map": ~ return "A bird's-eye view."
     - "school_front": ~ return "Before a learned place."
@@ -44,3 +45,39 @@ VAR _location_name = ""
 
 === function ___update_location_name()
 ~ _location_name = location_name(location)
+
+
+=== location_setup
+->setup_characters->
+->quest.setup->
+->->
+=== location_choices(-> back)
+<- character_choices(back)
+<- quest.choices(back)
+->DONE
+
+
+=== train_interstitial
+/ level railway tunnel
+/ spawn cipher
+/ spawn intro_train
+/ intro_train capture
+/ intro_train float
+/ intro_train appear train_entry
+/ intro_train follow path rails
+/ cipher capture
+/ cipher appear train_cipher_seat
+/ cipher root train_cipher_seat
+/ cipher pose sit
+/ camera train_cipher_seat
+/ fade in
+
+{shuffle:
+    - (Click-clack, click-clack...)
+    - (The clamor of the other passengers has a curious timbre.)
+    - (You drum on your leg with your fingers.)
+    - (You close your eyes and listen to the noises of the subway.)
+}
+
+/ fade black
+->->

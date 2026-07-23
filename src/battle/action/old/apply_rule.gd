@@ -48,8 +48,8 @@ class ApplyRulePlan extends BattleActionPlan:
 					target = t
 		if !target.alive:
 			print("No living targets!")
-			b_lock.call()
-			t_lock.call()
+			b_lock.release()
+			t_lock.release()
 			return
 		if party_member != target:
 			battlefield.println(message % [party_member.human_name, target.human_name])
@@ -65,7 +65,7 @@ class ApplyRulePlan extends BattleActionPlan:
 			target.add_rule(rule.duplicate())
 		#await animate.popped
 		#approach.finished = true
-		b_lock.call()
-		t_lock.call()
+		b_lock.release()
+		t_lock.release()
 		#if target != party_member:
 			#await approach.popped

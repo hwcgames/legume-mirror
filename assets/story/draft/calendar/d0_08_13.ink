@@ -33,7 +33,7 @@ calendar: "Meeting with Casey." 20 minutes on foot. Depart now.
 
 > Okay. You just have to knock.
 (They screw up their face.)
-> ...Knock! You can lift a car, stop a bullet! Can't you make small talk with a human while they eat without rehearsing first?
+> ...Knock! You can lift a car, you're bulletproof! Can't you make small talk with a human while they eat without rehearsing first?
 (The door swings open, and Casey's face peeks out. Cipher almost falls off the doorstep.)
 casey: Cipher! Hi! C'mon in, I want to introduce you!
 (Casey pulls Cipher by the hand. It's clearly quite effortful on her end.)
@@ -100,6 +100,8 @@ casey: So, tell me a little about yourself!
         - !casey_clarified: > I look about the same age as her, so...
             > She'll probably want to know where I go to school.
     }
+    > Good thing I actually signed up somewhere...
+    > Given the age I look, it would attract too much attention not to.
     cipher: I'm just starting at Northold High this semester.
     casey: You're kidding! Tell and I are going there, too!
     > Oh.
@@ -152,17 +154,16 @@ tell: Are they vegan or something? #v:whispered
 > Just... Don't think about it! Humans do this all the time, I can handle it!
 (You bite down.)
 > Oh, no.
-(A heretofore-unknown something is compelling you.)
+(A heretofore-unknown something is compelling you to eat more.)
 > Did I miss a backdoor when I was burning my command pathways out?
 > There's no one here to give the order, no codecs left to interpret it...
 > And why would-?!
 tell: Er, is something wrong with it? Your face...
-cipher: No! I'm fine, uh-... I just realized I forgot my laundry.
+cipher: No! I'm fine, uh-... I just remembered I have to throw my eggs out, they're probably rotten by now.
 (They seem unconvinced.)
 
-(...You finish your meal.)
-
 / fade black
+(...You finish your meal.)
 
 ->->
 = afternoon
@@ -182,9 +183,9 @@ casey: Er, I guess I don't know you very well, but you've been acting a little s
 (You sigh.)
 cipher: No, not really. I, uh... Don't really know what to think of what happened before.
 > ...That was unexpected.
-> Actually... Would it be that big of an issue to tell her? I'd want to get to know her better, but she seems to trust me.
+> Actually... Would it be that big of an issue to tell her? I'd want to get to know her better first, but she seems to trust me.
 > The worst she can do is tell someone else, and I've still got enough resources to move if things go south.
-> It might be worth the risk to have someone to talk to.
+> It might be worth the risk to have someone to talk openly with.
 > Or maybe I'm just being naive.
 
 (You feel a strange pressure... The other people aboard the train vanish. Casey shrinks back into her seat.)
@@ -201,7 +202,7 @@ cipher: Casey! Hold on!
 > Ow...!
 (Something wet is running from your nose. You wipe it away, and... It's red.)
 (The liquid runs down the back of your throat. You feel woozy, and your breakfast is trying to disembark.)
-> [b]What the [i]hell[/i] is happening to me?![/b]
+> [i]What is happening to me?![/i]
 casey: Oh, crap, Cipher!
 (Replacing the enemy phase, a creature lunges at her, and a strange mechanical gauntlet forms around her hand. From then on, she's able to use basic spells to rescue Cipher.)
 
@@ -245,14 +246,15 @@ cipher: Ha... Yeah, I guess.
 > Today was pretty dense.
 > And tomorrow is the first day of classes...
 > There's just one thing I need to be sure of.
-(You put two fingers on your neck, where a human's artery would be. Your pulse is regular.)
-> That's to be expected, but I should be able to...
-(Your pulse stops. After a while... Nothing feels abnormal.)
+(You press two fingers to your neck, where a human's artery would be. Your pulse is regular.)
+/ fade jpeg 0.25
+/ fade out 0.25
+(Your pulse stops.)
+(...Nothing feels abnormal.)
 > Okay.
-(You let your pulse start again.)
-> I'd like to use Occam's razor. This could just be a weird, hyper-advanced simulation.
+> I'd like to use Occam's razor. This could just be a [i]really weird[/i] simulation.
 > ...I'm having trouble believing that, but the alternative is to accept that magic is real.
-> Well, I guess most people wouldn't believe I exist either.
+> I guess I'll reserve judgement for now.
 
 ->->
 

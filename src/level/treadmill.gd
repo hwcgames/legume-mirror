@@ -48,7 +48,7 @@ func fill_seam_with(seam: RoomSeam, room_info: RoomInfo) -> Room:
 	room.global_rotation.y += seam.global_rotation.y - partner.global_rotation.y + PI
 	room.global_position += seam.global_position - partner.global_position
 	resolve_partners()
-	lock.call()
+	lock.release()
 	return room
 
 func resolve_partners():

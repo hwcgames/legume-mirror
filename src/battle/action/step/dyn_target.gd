@@ -23,13 +23,13 @@ func plan(source: Object, them: Actor, planner: BattlePlanner, registers: Dictio
 	registers[register_name] = target
 	return false
 
-func lock_for(target: Actor) -> Callable:
+func lock_for(target: Actor) -> Locks.LockHandle:
 	match lock_type:
 		LOCK_TYPE.SHARED:
 			return await target.lock.shared_lock()
 		LOCK_TYPE.EXCLUSIVE:
 			return await target.lock.exclusive_lock()
-	return func(): pass
+	return Locks.LockHandle.dummy()
 
 func before(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary) -> bool:
 	var target: Actor
@@ -47,7 +47,7 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 			battlefield.println("No valid targets!")
 			return true
 		target = other_targets[0]
-		lock.call()
+		lock.release()
 		lock = await lock_for(target)
 	# Now we definitely have a lock on an acceptable target.
 	# Save it for later...
@@ -56,5 +56,5 @@ func before(source: Object, them: Actor, battlefield: Battlefield, registers: Di
 	return false
 
 func after(source: Object, them: Actor, battlefield: Battlefield, registers: Dictionary):
-	(registers[lock_register_name] as Callable).call()
+	(registers[lock_register_name] as Locks.LockHandle).release()
 	pass

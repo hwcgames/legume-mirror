@@ -32,8 +32,7 @@ var rules: Array[BattleRule] = []
 
 func _ready():
 	story.changed.connect(setup)
-	Saver.pre_save.connect(pre_save)
-	Saver.post_load.connect(post_load)
+	add_to_group("save_participants")
 	setup()
 func setup():
 	for function in self.get_method_list():
@@ -368,12 +367,12 @@ func cmd_actor_wait(actor_name: String):
 		await actor.wait_for_idle()
 		#if actor.mode is ActorIdle or actor.mode is ActorPlayerControl:
 			#print("Already idle")
-			#lock.call()
+			#lock.release()
 			#return
 		#while actor.mode is not ActorModeStoryCanary and actor.mode_stack.any(func(m): return m is ActorModeStoryCanary):
 			#await get_tree().process_frame
 		#print("Actor is idle")
-		lock.call()
+		lock.release()
 	).call()
 
 func cmd_actor_capture(actor_name: String):
@@ -399,14 +398,14 @@ func cmd_fade_out(to_fade: String):
 	(func():
 		var lock = await lock.shared_lock()
 		await Fader.fade_out(to_fade)
-		lock.call()
+		lock.release()
 	).call()
 
 func cmd_fade_in():
 	(func():
 		var lock = await lock.shared_lock()
 		await Fader.fade_in()
-		lock.call()
+		lock.release()
 	).call()
 
 func cmd_start_battle():
@@ -431,13 +430,13 @@ func cmd_lock_battlefield():
 	(func():
 		var lock = await lock.shared_lock()
 		battlefield_lock = await Battlefield.find().lock.exclusive_lock()
-		lock.call()
+		lock.release()
 	).call()
 
 func cmd_free_battlefield():
 	if battlefield_lock == null:
 		return
-	battlefield_lock.call()
+	battlefield_lock.release()
 	battlefield_lock = null
 
 func cmd_enemy_state(enemy_name: String, state: int):

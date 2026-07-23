@@ -17,8 +17,9 @@ func _pressed():
 		#%ToplevelTab.show()
 		#return
 	#planner._choice.emit(planner.party_member.basic_attack.bind(target))
+	var basic_attack: BattleAction = planner.party_member.sheet.party_component.basic_attack
 	planner.choice.emit(
-		await planner.party_member.sheet.party_component.basic_attack.plan(planner, planner.party_member.sheet)
+		await basic_attack.plan(planner, planner.party_member.sheet)
 	)
 "
 

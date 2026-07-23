@@ -60,6 +60,7 @@
     - 2: Z
     - else: {y}
 }
+
 === function next_day()
 ~ day += 1
 ~ weekday += 1
@@ -171,6 +172,7 @@ Calendar test:
     - 14: -> d0_08_14
     - 15: -> d0_08_15
     - 16: -> d0_08_16
+    - 17: -> d0_08_17
 }
 -> default_day
 = y0m9

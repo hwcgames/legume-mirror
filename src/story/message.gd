@@ -112,7 +112,7 @@ static func command_from_str(cmd: String, tags: Array[String]) -> Callable:
 		["cmd", ..]:
 			var rest = Array(words.slice(1)).reduce(func(a, b): return "{0} {1}".format([a, b]))
 			return func(m: NMessage, l: RichTextLabel):
-				await Storyteller.find().send_line(rest, [])
+				await Storyteller.find().send_line(rest, ["!b:main", "!W:main"])
 		["voice", var v]:
 			var path = "res://database/voices/%s.tres" % v
 			if FileAccess.file_exists(path):

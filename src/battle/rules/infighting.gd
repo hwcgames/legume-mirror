@@ -18,14 +18,14 @@ func player_action(fighter: Actor) -> bool:
 		fighter.turns = 1
 		var self_lock = await fighter.lock.exclusive_lock()
 		if not fighter.alive:
-			self_lock.call()
+			self_lock.release()
 			return true
 		var targets = fighter \
 			.battlefield \
 			.players \
 			.filter(func(p): return p.alive)
 		if targets.is_empty():
-			self_lock.call()
+			self_lock.release()
 			return false
 		var target: Actor = targets[randi_range(0, len(targets) - 1)]
 		var target_lock = await target.lock.exclusive_lock() if target != fighter else func(): pass
@@ -41,15 +41,15 @@ func player_action(fighter: Actor) -> bool:
 			HpChange.new(
 				fighter,
 				target,
-				-((fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense))
+				- ((fighter.computed_attrs.strength * 100 / 20) - (3 * target.computed_attrs.defense))
 			)
 		)
 		await fighter.get_tree().create_timer(1.).timeout
 		#if target != fighter:
 			#mode.finished = true
 			#await mode.popped
-		target_lock.call()
-		self_lock.call()
+		target_lock.release()
+		self_lock.release()
 		fighter.turns = 0
 	).call()
 	return false
