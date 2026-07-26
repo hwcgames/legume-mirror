@@ -807,7 +807,7 @@ func _check_pcam_physics() -> void:
 	if _is_2d:
 		if _active_pcam_2d.get_follow_target_physics_based() and interpolation_mode != InterpolationMode.IDLE:
 			_follow_target_physics_based = true
-			camera_2d.reset_physics_interpolation()
+			#camera_2d.reset_physics_interpolation()
 			camera_2d.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 			if ProjectSettings.get_setting("physics/common/physics_interpolation"):
 				camera_2d.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS # Prevents a warning
@@ -827,7 +827,7 @@ func _check_pcam_physics() -> void:
 			if (get_tree().physics_interpolation or _active_pcam_3d.get_follow_target_physics_based()) and interpolation_mode != InterpolationMode.IDLE:
 				#if get_tree().physics_interpolation or _active_pcam_3d.get_follow_target_physics_based():
 				_follow_target_physics_based = true
-				camera_3d.reset_physics_interpolation()
+				#camera_3d.reset_physics_interpolation()
 				camera_3d.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 			else:
 				_follow_target_physics_based = false
@@ -988,6 +988,10 @@ func _pcam_tween(delta: float) -> void:
 
 	_tween_elapsed_time = min(_tween_duration, _tween_elapsed_time + delta)
 
+	var is_same: bool = _prev_active_pcam_2d_transform.origin.distance_to(_active_pcam_2d_glob_transform.origin) < 10. \
+	if _is_2d else _prev_active_pcam_3d_transform.origin.distance_to(_active_pcam_3d_glob_transform.origin) < 10.
+	#print(_prev_active_pcam_3d_transform.origin.distance_to(_active_pcam_3d_glob_transform.origin))
+	is_same = true
 	if _is_2d:
 		_active_pcam_2d.is_tweening.emit()
 		var interpolation_destination: Vector2 = _tween_interpolate_value(
@@ -1184,8 +1188,8 @@ func _pcam_tween(delta: float) -> void:
 					_active_pcam_3d.far,
 				)
 
-	# Forcefully disables physics interpolation when tweens are instant
-	if _tween_is_instant:
+	# Forcefully disables physics interpolation when tweens are instant and cameras aren't identically positioned
+	if _tween_is_instant and not is_same:
 			if _is_2d:
 				camera_2d.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 				camera_2d.reset_physics_interpolation()

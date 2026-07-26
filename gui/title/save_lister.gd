@@ -26,7 +26,7 @@ func _ready():
 	$"../ProgressLabel".hide()
 	$"../ProgressLabel".hide()
 	var save_list = saves.values()
-	save_list.sort_custom(func(a, b): return day_indices[a.index] < day_indices[b.index])
+	save_list.sort_custom(func(a, b): return a.timestamp > b.timestamp)
 	for save in save_list:
 		var save_card: SaveFileCard = save_card_scene.instantiate()
 		save_card.save = save

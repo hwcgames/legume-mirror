@@ -1,5 +1,15 @@
 VAR leader = "cipher" // The game crashes without this
 ->hub
+
+VAR location = "a"
+VAR year = 0
+VAR month = 0
+VAR day = 0
+VAR weekday = 1
+
+=== function location_name(of)
+~ return "Test story."
+
 === hub
 / level test hub
 / cut black

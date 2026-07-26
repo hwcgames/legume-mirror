@@ -33,6 +33,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 size = Vector3(16, 0.5, 16)
 material = SubResource("StandardMaterial3D_k2i2f")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=461667173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3115845, 0.3137207, 2.5494814)
+size = Vector3(9.623169, 1.6274414, 1)
+
 [node name="default" type="Marker3D" parent="." unique_id=175077971]
 unique_name_in_owner = true
 script = ExtResource("4_lcf2m")

@@ -1,0 +1,263 @@
+[gd_scene format=3 uid="uid://coijnlkc2plfm"]
+
+[ext_resource type="Script" uid="uid://wm2krehx1x27" path="res://src/level/room.gd" id="1_x6g0m"]
+[ext_resource type="Texture2D" uid="uid://cwvxawip4ho4t" path="res://assets/art/devel/kenney_prototype-textures/PNG/Orange/texture_08.png" id="2_1meju"]
+[ext_resource type="Script" uid="uid://bg37o5ga3euip" path="res://src/level/leader_follower.gd" id="3_47g5p"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_0m2cg"]
+[ext_resource type="PackedScene" uid="uid://e6swdld42jb" path="res://src/level/camera.tscn" id="5_47g5p"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_qxqt7"]
+[ext_resource type="Script" uid="uid://cg1cp1ynx0nj7" path="res://src/level/procedural_seam.gd" id="7_dudtc"]
+[ext_resource type="Script" uid="uid://dgryx2ii0n4p" path="res://src/level/automove/automove_nop.gd" id="8_qxqt7"]
+[ext_resource type="Script" uid="uid://d1625cme8sl48" path="res://src/level/automove/automove_breadcrumb.gd" id="9_7fjps"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_k2i2f"]
+vertices = PackedVector3Array(-2.564773, 0.100000024, 0.561625, -3.064773, 0.100000024, 1.811625, -2.564773, 0.100000024, 3.311625, -2.314773, 0.100000024, -2.438375, -2.814773, 0.100000024, -2.188375, 3.685227, 0.100000024, 4.811625, 3.685227, 0.100000024, -4.938375, -2.814773, 0.100000024, 4.811625, -2.564773, 0.100000024, -4.938375, -4.314773, 2.6, -4.188375, -3.564773, 2.45, -3.938375, -3.564773, 2.45, -4.438375, -4.314773, 2.6, -4.688375, -5.564773, 3.15, -3.688375, -4.064773, 3.05, -3.188375, -4.814773, 3.15, -4.438375, -5.564773, 3.15, -4.438375, -5.314773, 3.4, -2.938375, -5.314773, 3.6000001, -0.938375, -4.564773, 3.6000001, -0.938375, -4.564773, 3.4, -2.938375, -5.314773, 3.6000001, -1.938375, -4.564773, 3.6000001, -1.938375, -5.314773, 3.35, -0.188375, -5.314773, 3.35, 0.311625, -4.064773, 3.15, -0.188375, -4.314773, 3.15, -0.688375, -3.564773, 2, -0.438375, -3.064773, 2, 0.561625, -3.064773, 2, -0.438375, -4.814773, 3.7, 0.561625, -5.314773, 3.55, 1.311625, -5.314773, 3.55, 2.061625, -4.564773, 3.55, 2.061625, -4.064773, 3.7, 1.311625, -4.064773, 3.7, 0.561625, -5.564773, 3.25, 2.811625, -5.564773, 3.25, 3.311625, -4.314773, 3.05, 2.811625, -5.064773, 3.7, 3.561625, -5.064773, 3.7, 4.311625, -4.314773, 3.7, 4.311625, -4.314773, 3.7, 3.561625)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(2, 5, 7), PackedInt32Array(3, 8, 6), PackedInt32Array(12, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(16, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(20, 22, 17), PackedInt32Array(17, 22, 21), PackedInt32Array(21, 22, 19), PackedInt32Array(21, 19, 18), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(35, 34, 30), PackedInt32Array(30, 34, 31), PackedInt32Array(31, 34, 33), PackedInt32Array(31, 33, 32), PackedInt32Array(38, 37, 36), PackedInt32Array(42, 41, 39), PackedInt32Array(39, 41, 40)]
+cell_height = 0.05
+agent_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2i2f"]
+shading_mode = 0
+albedo_texture = ExtResource("2_1meju")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjps"]
+shading_mode = 0
+albedo_color = Color(0.55, 0.55, 0.55, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pag68"]
+shading_mode = 0
+albedo_color = Color(0.48333997, 0.47319996, 0.52, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k2i2f"]
+size = Vector3(7.5097046, 6.006714, 12.57074)
+
+[sub_resource type="Resource" id="Resource_dvafg"]
+script = ExtResource("5_0m2cg")
+duration = 0.0
+
+[node name="Street" type="Area3D" unique_id=2117743707 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_x6g0m")
+camera = NodePath("Camera")
+metadata/_custom_type_script = "uid://wm2krehx1x27"
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=99565450]
+navigation_mesh = SubResource("NavigationMesh_k2i2f")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=521594015]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=1392124890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(8, 0.5, 10)
+material = SubResource("StandardMaterial3D_k2i2f")
+
+[node name="Buildings" type="CSGCombiner3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=768944257]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1848766419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8932033, 0.93603516, 4.6822195)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=827702923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3747668, 0.7194824, 4.0303297)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1853678567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.157147, 0.93603516, 3.2814953)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1800835868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6387105, 0.7194824, 2.6296055)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=622958426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.239821, 0.93603516, 1.9328947)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1830681185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7213845, 0.7194824, 1.2810049)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1187969395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.065253, 0.93603516, 0.5003767)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=2019616191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5468163, 0.7194824, -0.1515131)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=51069786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.170898, 0.93603516, -1.0167749)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1202806684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6524615, 0.7194824, -1.6686647)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1623014670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7715073, 0.93603516, -2.4518104)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=2000876361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2530708, 0.7194824, -3.1037002)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=481487860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.965714, 0.93603516, -4.020855)
+size = Vector3(1, 2.8720703, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=653618011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4472775, 0.7194824, -4.6727448)
+size = Vector3(1, 2.4389648, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1725900019]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.674642, 1.4509532, -4.688375)
+size = Vector3(1, 2.1694336, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=13229360]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.1930785, 1.7259166, -4.036485)
+size = Vector3(1, 2.7193604, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=2009975141]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.4106984, 1.6758068, -3.2876508)
+size = Vector3(1, 2.6191406, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=23162791]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.9291344, 1.8504283, -2.635761)
+size = Vector3(1, 2.9683838, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1276253872]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.328024, 1.6941783, -1.93905)
+size = Vector3(1, 2.6558838, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=163850917]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.8464603, 1.9469249, -1.2871602)
+size = Vector3(1, 3.161377, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1485410927]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.502592, 1.7329357, -0.5065321)
+size = Vector3(1, 2.7333984, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=2127221078]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.0210285, 1.8158824, 0.14535776)
+size = Vector3(1, 2.899292, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1822738979]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.396947, 2.0065563, 1.0106196)
+size = Vector3(1, 3.2806396, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1161993594]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.9153833, 1.9283702, 1.6625094)
+size = Vector3(1, 3.1242676, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1631384489]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.796337, 1.6682384, 2.4456549)
+size = Vector3(1, 2.604004, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=843898745]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.314773, 1.7708995, 3.0975447)
+size = Vector3(1, 2.8093262, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=1912526153]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.6021304, 1.9966075, 4.0146995)
+size = Vector3(1, 3.2607422, 1)
+material = SubResource("StandardMaterial3D_7fjps")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D/Buildings" unique_id=2109697166]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.120567, 1.7420299, 4.6665893)
+size = Vector3(1, 2.751587, 1)
+material = SubResource("StandardMaterial3D_pag68")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=269999765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03994751, 2.503357, 0.158844)
+shape = SubResource("BoxShape3D_k2i2f")
+
+[node name="LeaderProxy" type="Node3D" parent="." unique_id=1181600573]
+script = ExtResource("3_47g5p")
+metadata/_custom_type_script = "uid://bg37o5ga3euip"
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2131477168]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.3526669, 2.6235027, 0)
+pixel_size = 0.0661
+text = "City"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1430225362]
+physics_interpolation_mode = 1
+transform = Transform3D(0.40064877, 0, 0.91623163, 0, 1, 0, -0.91623163, 0, 0.40064877, 5.314, 1.672, 1.659)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=807177371]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_qxqt7")
+
+[node name="Camera" parent="." unique_id=557331855 node_paths=PackedStringArray("follow_target") instance=ExtResource("5_47g5p")]
+transform = Transform3D(0.40064877, 0, 0.91623163, 0, 1, 0, -0.91623163, 0, 0.40064877, 5.314, 1.672, 1.659)
+top_level = true
+priority = 1
+follow_mode = 2
+follow_target = NodePath("../LeaderProxy")
+tween_resource = SubResource("Resource_dvafg")
+follow_offset = Vector3(5.314, 1.672, 1.659)
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+
+[node name="Back" type="Marker3D" parent="." unique_id=889938273 node_paths=PackedStringArray("automoves")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 5)
+script = ExtResource("7_dudtc")
+profile = &"street"
+backtrack = true
+wants_room_type = 1
+automoves = {
+"forward": NodePath("../forward2")
+}
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="Forward" type="Marker3D" parent="." unique_id=686152897]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 0, 0, -5)
+script = ExtResource("7_dudtc")
+profile = &"street"
+wants_room_type = 1
+metadata/_custom_type_script = "uid://cg1cp1ynx0nj7"
+
+[node name="forward" type="Marker3D" parent="." unique_id=1272949432 node_paths=PackedStringArray("next_automove")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.9210424)
+script = ExtResource("8_qxqt7")
+next_automove = NodePath("../forward2")
+metadata/_custom_type_script = "uid://dgryx2ii0n4p"
+
+[node name="forward2" type="Marker3D" parent="." unique_id=161268067 node_paths=PackedStringArray("next_seam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+script = ExtResource("9_7fjps")
+speed_mul = 0.3
+next_seam = NodePath("../Forward")
+next_seam_key = &"forward"
+metadata/_custom_type_script = "uid://d1625cme8sl48"

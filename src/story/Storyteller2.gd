@@ -22,7 +22,11 @@ static var me: Storyteller
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	me = self
-	story.changed.connect(bind_functions)
+	story.changed.connect(func():
+		#var saver = Saver.find()
+		#saver.current_save.load_save(get_tree()))
+		OS.set_restart_on_exit(true)
+		get_tree().quit())
 	add_to_group("story_listener")
 	var spec_timer = Timer.new()
 	#bind_functions()
@@ -129,6 +133,9 @@ func do_line(line: String, tags: Array[String]):
 		["/", "switch", "story", var id]:
 			return func():
 				change_story(id)
+		["/", "tickrate", var rate]:
+			return func():
+				Engine.physics_ticks_per_second = int(rate)
 
 func change_story(id: String):
 	var main_game: Node = load("uid://h5ppkq5boigl").instantiate()
@@ -176,13 +183,14 @@ func _process(delta: float) -> void:
 		new_choice.emit(choices)
 		return
 	while story.GetCanContinue():
+		if OS.is_debug_build():
+			safety_save = story.SaveState()
 		story.SwitchToDefaultFlow()
 		var line = story.Continue()
 		if line is not String:
 			print("Story is busted?")
 			break
 		line = line.strip_edges()
-		safety_save = story.SaveState()
 		var tags: Array[String] = story.GetCurrentTags()
 		await send_line(line, tags)
 signal new_line(line: String, tags: Array[String])

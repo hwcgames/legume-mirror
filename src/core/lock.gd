@@ -86,7 +86,6 @@ class LockHandle extends RefCounted:
 		if freed:
 			return
 		printerr("BUG: Lock handle freed without release! Releasing to avoid softlock...")
-		breakpoint
 		if exclusive and locks.exclusive_locked:
 			locks.exclusive_locked = false
 			locks.exclusive_free.emit()

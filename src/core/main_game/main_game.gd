@@ -38,7 +38,15 @@ func do_line(line: String, tags: Array[String]):
 	match Array(line.split(" ", false)):
 		["/", "level", var name, var room]:
 			var level_r: Level = level_registry.load_entry(name) # load("res://database/level/%s.tres" % name)
+			if !is_instance_valid(level_r):
+				printerr("Level \"%s\" missing." % name)
+				return null
 			return func():
+				if OS.is_debug_build():
+					print("Saving during level change for story live-reload...")
+					Saver.find().save(true)
+					Saver.find().parent_save.ink_save = Storyteller.find().safety_save
+					ResourceSaver.save(Saver.find().parent_save)
 				load_level(name, room)
 		["/", "battle", "setup", var environment_name]:
 			return func():
@@ -53,14 +61,14 @@ func do_line(line: String, tags: Array[String]):
 	return null
 func notice_line(line: String, tags: Array[String]):
 	match line.split(" ", false):
-		["/", "level", var name, "room", var room]:
+		["/", "level", var name, var room]:
 			ResourceLoader.load_threaded_request("res://database/level/%s.tres" % name)
 			ResourceLoader.load_threaded_request("res://database/room/%s.tres" % room)
 
 func load_level(name: String, room_name: String):
 	if is_instance_valid(level):
 		level.queue_free()
-	var level_r: Level = load("res://database/level/%s.tres" % name)
+	var level_r: Level = level_registry.load_entry(name)#load("res://database/level/%s.tres" % name)
 	level = preload("uid://c0mpdcfx8tg2i").instantiate()
 	%LevelParent.add_child(level)
 	for actor in get_tree().get_nodes_in_group("actor"):

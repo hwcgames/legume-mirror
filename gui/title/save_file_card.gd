@@ -7,7 +7,8 @@ class_name SaveFileCard
 #@export var day: String
 
 func _ready() -> void:
-	%Date.text = " {weekday}. {month}-{day}: ".format({
+	%Date.text = " {index}: {weekday}. {month}-{day}: ".format({
+		"index": save.index,
 		"weekday": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"][story.FetchVariable("weekday")],
 		"month": story.FetchVariable("month"),
 		"day": story.FetchVariable("day"),
@@ -16,14 +17,4 @@ func _ready() -> void:
 	%Button.pressed.connect(load_save)
 
 func load_save():
-	var main_game: Node = preload("uid://h5ppkq5boigl").instantiate()
-	var st: Storyteller = main_game.get_node("Storyteller")
-	var saver: Saver = main_game.get_node("Saver")
-	#st.story = preload("uid://del34gulleoth")
-	#if not starting_address.text.is_empty():
-		#st.story.ChoosePathString(starting_address.text)
-	var tree := get_tree()
-	if PlayerManager.get_player_count() == 0:
-		PlayerManager.join(-1)
-	saver.queue_save = save
-	tree.change_scene_to_node(main_game)
+	save.load_save(get_tree())

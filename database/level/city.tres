@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://rwnnq3u7mh61"]
+
+[ext_resource type="Script" uid="uid://qrik54a0gvtv" path="res://src/level/level.gd" id="1_d0v8p"]
+
+[resource]
+script = ExtResource("1_d0v8p")
+roomset = Array[String](["city"])
+entrances = Dictionary[String, String]({
+"street": "city/street"
+})
+metadata/_custom_type_script = "uid://qrik54a0gvtv"

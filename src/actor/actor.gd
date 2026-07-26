@@ -481,10 +481,11 @@ func follow_actor(actor: Actor, at_distance: float = 1.5, at_speed: float = 10.)
 	follow.target = actor
 	active_component = follow
 	await new_mode
-func pathfind_to(target: Vector3, rotation: float = INF):
+func pathfind_to(target: Vector3, rotation: float = INF, speed_mul: float = 1.):
 	var pathing: ActorPathing = %Component/Pathing
 	pathing.target = target
 	pathing.rotation = rotation
+	pathing.speed_mul = speed_mul
 	active_component = pathing
 	await new_mode
 func automove_along(automove_node: Automove):

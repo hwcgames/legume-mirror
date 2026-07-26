@@ -1,7 +1,7 @@
 extends Node
 class_name Saver
 
-var parent_save: SaveFile = preload("uid://07q2yjh6h41t")
+var parent_save: SaveFile = load("uid://07q2yjh6h41t")
 var current_save: SaveFile:
 	get:
 		if current_save == null:
@@ -46,20 +46,31 @@ func do_line(line: String, tags: Array[String]):
 		["/", "save", "in", "place"]:
 			return func():
 				save(true)
+		["/", "load", "prev"]:
+			return func():
+				parent_save.load_save(get_tree())
 	return null
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_load_last_save"):
+		parent_save.load_save(get_tree())
 
 func save(in_place: bool = false):
 	# Ask everyone to populate the save...
 	for participant in save_participants():
 		participant.pre_save(current_save)
+	current_save.timestamp = Time.get_datetime_string_from_system(true, false)
 	#pre_save.emit(current_save)
 	# Ensure the existence of the saves directory.
 	DirAccess.make_dir_absolute("user://saves")
 	# If this is an in-place save, and the parent save is a user save...
 	if in_place and parent_save.resource_path.begins_with("user://"):
 		# Overwrite the parent save.
-		current_save.take_over_path(parent_save.resource_path)
+		var parent_path = parent_save.resource_path
+		current_save.take_over_path(parent_path)
+		current_save.resource_path = parent_path
 		current_save.index = parent_save.index
+		current_save.parent_save_idx = parent_save.parent_save_idx
 		ResourceSaver.save(current_save)
 		parent_save = current_save
 		current_save = null

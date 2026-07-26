@@ -106,7 +106,6 @@ script = ExtResource("10_w2422")
 unique_name_in_owner = true
 target_desired_distance = 0.5
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="test_costume" parent="." unique_id=1167759721 instance=ExtResource("2_fe22u")]
 

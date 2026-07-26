@@ -9,12 +9,14 @@ func _activate():
 			actor.mode_done()
 			return
 		current.apply_to_actor(actor)
+		#if actor.active_component != self:
+			#actor.active_component._active(1./Engine.physics_ticks_per_second)
 		if is_instance_valid(current.next_automove):
 			current = current.next_automove
 			continue
 		for _i in range(5):
 			if !(is_instance_valid(current.next_seam) and is_instance_valid(current.next_seam.partner)):
-				await get_tree().process_frame
+				await get_tree().physics_frame
 			else:
 				break
 		if !is_instance_valid(current):

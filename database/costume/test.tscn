@@ -189,6 +189,7 @@ libraries/ = SubResource("AnimationLibrary_t82wu")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1247859910]
 transform = Transform3D(6.687399e-17, 4.371139e-08, -1, 0.035, -4.371139e-08, 0, -1.5298985e-09, -1, -4.371139e-08, 0, 0, -0.5)
+visible = false
 mesh = SubResource("CylinderMesh_g3lfb")
 skeleton = NodePath("../AnimationPlayer")
 

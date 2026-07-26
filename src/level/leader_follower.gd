@@ -4,7 +4,10 @@ class_name LeaderProxy
 @onready var leader = Storyteller.find().story.FetchVariable("leader")
 @onready var pm = Actor.find(leader)
 
-func _physics_process(delta: float) -> void:
+#func _ready():
+	#RenderingServer.frame_pre_draw.connect(tick)
+
+func _process(_delta: float) -> void:
 	var new_leader = Storyteller.find().story.FetchVariable("leader")
 	if new_leader == null:
 		return
@@ -14,4 +17,4 @@ func _physics_process(delta: float) -> void:
 	if pm == null:
 		pm = Actor.find(leader)
 		return
-	global_position = pm.global_position
+	global_position = pm.get_global_transform_interpolated().origin
