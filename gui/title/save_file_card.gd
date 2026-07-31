@@ -13,7 +13,13 @@ func _ready() -> void:
 		"month": story.FetchVariable("month"),
 		"day": story.FetchVariable("day"),
 	})
-	%Location.text = story.EvaluateFunction("location_name", [story.FetchVariable("location")])
+	var name: String = story.EvaluateFunction("location_name", [story.FetchVariable("location")])
+	if name.begins_with("tok!"):
+		name = name.trim_prefix("tok!")
+		var font_registry: Registry = preload("uid://dujnuubfyldyg")
+		name.insert(0, "[font=\"%s\"]" % font_registry.get_uid("linja-pona"))
+		name += "[/font]"
+	%Location.text = name
 	%Button.pressed.connect(load_save)
 
 func load_save():

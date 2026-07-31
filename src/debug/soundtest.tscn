@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://ds1i73yyrtqko"]
+
+[ext_resource type="Script" uid="uid://58crnu0hbkry" path="res://src/debug/soundtest.gd" id="1_e82sx"]
+[ext_resource type="Script" uid="uid://bfyn4x0jcy8tg" path="res://src/audio/musicman.gd" id="2_l4qj7"]
+
+[node name="Soundtest" type="Control" unique_id=2125316871]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e82sx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=473475503]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1553973682]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1893178149]
+layout_mode = 2
+text = "Musicman"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=393406325]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=190526523]
+layout_mode = 2
+text = "Song"
+
+[node name="Songs" type="OptionButton" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1073936491]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(196, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1458832399]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1338653353]
+layout_mode = 2
+text = "Profile"
+
+[node name="Profiles" type="OptionButton" parent="ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=130525034]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(196, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=455676298]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=697520833]
+layout_mode = 2
+text = "Fade"
+
+[node name="Fade" type="HSlider" parent="ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1957556386]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Commit" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=1730877353]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Commit"
+
+[node name="Reload" type="Button" parent="ScrollContainer/VBoxContainer" unique_id=1987866157]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reload"
+
+[node name="MusicMan" type="AudioStreamPlayer" parent="." unique_id=237431068]
+unique_name_in_owner = true
+script = ExtResource("2_l4qj7")
+metadata/_custom_type_script = "uid://bfyn4x0jcy8tg"

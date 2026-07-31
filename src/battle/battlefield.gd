@@ -177,10 +177,10 @@ func battle():
 	hud.hide()
 	if camera != null:
 		camera.priority -= camera_priority_offset
-	if song != null:
-		MusicMan.stop()
-	if prev_song != null:
-		MusicMan.start(prev_song)
+	#if song != null:
+		#MusicMan.stop()
+	#if prev_song != null:
+		#MusicMan.start(prev_song)
 	phase = PHASE.IDLE
 
 func println(text: String):

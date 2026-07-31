@@ -38,6 +38,8 @@
 > 20XX-08-03
 > MANIFESTO FOUND AT COURTHOUSE, POLITICALLY MOTIVATED?
 - (skip_news)
+~ location = "railway"
+_
 / level railway tunnel
 / spawn intro_train
 / spawn cipher
@@ -80,6 +82,7 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 (They open the window and throw the rest of it into the ocean. After a moment, a splash is heard.)
 
 / fade black
+~ location = "street"
 / save in place
 / level city street
 / weather light_rain instant
@@ -106,6 +109,7 @@ intro_train: Next stop, Weston Pier. Now approaching Weston Pier. Doors open on 
 / cipher pose sit
 > Bwah...
 > That's a little better.
+~ location = "dogdungeon"
 / delete room alleyway_branch
 / build room alleyway_wall a:cipher/backward forward
 / weather overworld_dungeon instant

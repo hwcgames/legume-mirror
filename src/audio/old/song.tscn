@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cqyb8ffyrvveo"]
 
-[ext_resource type="Script" uid="uid://vp37oo6vjcau" path="res://src/audio/song.gd" id="1_dq4f3"]
-[ext_resource type="Script" uid="uid://5pdvnmcxkm15" path="res://src/audio/beat_signal.gd" id="2_s5cbf"]
+[ext_resource type="Script" uid="uid://vp37oo6vjcau" path="res://src/audio/old/song.gd" id="1_dq4f3"]
+[ext_resource type="Script" uid="uid://5pdvnmcxkm15" path="res://src/audio/old/beat_signal.gd" id="2_s5cbf"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_q5se4"]
 stream_count = 1

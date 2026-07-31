@@ -42,7 +42,6 @@ MultiplayerInput="*uid://64bdsrtamugy"
 InputLocks="*res://src/core/input/InputLocks.gd"
 PlayerManager="*res://src/core/input/player_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-MusicMan="*res://src/audio/musicman.gd"
 Fader="*uid://cqcl700i7h12u"
 
 [display]

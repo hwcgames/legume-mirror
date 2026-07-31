@@ -215,14 +215,13 @@ crow: Dealing damage with her basic attack will scatter "trinkets" on the bullet
 (After the battle ends...)
 (The rest of the passengers fade back in. Casey's gauntlet vanishes.)
 > !!!
-(The people seem unfazed.)
+(The people don't seem to notice you.)
 > ...Oh.
-(You return to your seat, trying to calm down a little.)
+(You return to your seat. Your whole body is shaking.)
 casey: Cipher? Are you okay? #v:whisper
-(You're still shaking.)
 cipher: ...No.
 casey: You were bleeding pretty bad, but...
-(You check your face. It's dry.)
+(It's dry.)
 
 (Awkward pause.)
 
@@ -246,14 +245,12 @@ cipher: Ha... Yeah, I guess.
 > Today was pretty dense.
 > And tomorrow is the first day of classes...
 > There's just one thing I need to be sure of.
-(You press two fingers to your neck, where a human's artery would be. Your pulse is regular.)
-/ fade jpeg 0.25
-/ fade out 0.25
-(Your pulse stops.)
-(...Nothing feels abnormal.)
+(You press two fingers to your neck.)
+(...There's nothing noticeable.)
 > Okay.
 > I'd like to use Occam's razor. This could just be a [i]really weird[/i] simulation.
 > ...I'm having trouble believing that, but the alternative is to accept that magic is real.
+> Maybe there's something wrong with [i]me[/i].
 > I guess I'll reserve judgement for now.
 
 ->->

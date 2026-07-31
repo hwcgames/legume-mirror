@@ -38,8 +38,22 @@ VAR map_accessible = true
     - "map": ~ return "A bird's-eye view."
     - "school_front": ~ return "Before a learned place."
     - "apartment": ~ return "Someplace yours."
+
+    // Interstitials
+    - "railway": ~ return "A world-shrinking place."
+    - "street": ~ return "A place afoot."
+
+    // Dungeons
+    - "dogdungeon": ~ return "tok!ma-nasa pi++soweli monsuta"
+    - "schooldungeon": ~ return "tok!ma-nasa pi+tomo-sona"
+    - "museumdungeon": ~ return "tok!ma-nasa pi++tenpo tawa"
+    - "netdungeon": ~ return "tok!ma-nasa pi+toki-weka"
+    - "simdungeon": ~ return "tok!ma-nasa pi+lon-ala"
+    - "parkdungeon": ~ return "tok!ma-nasa kasi"
+    - "librarydungeon": ~ return "tok!ma-nasa pi+tomo-sitelen"
+    - "edisondungeon": ~ return "tok!ma-nasa pi+tomo-mani"
 }
-~ return "A place outside place."
+~ return "...Where are you?"
 
 VAR _location_name = ""
 
