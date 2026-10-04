@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -p just -i 'just -f'
+#!nix-shell -p just -i 'just -f' -p godotPackages_4_7.godot-mono -p zip
 set unstable
 
 all: linux-zip windows-zip
@@ -26,17 +26,17 @@ windows-zip: windows
 linux: licenses
     mkdir -p build/linux
     cp -r build/licenses/* build/linux
-    godot4.6-mono --headless --verbose --export-release "linux"
+    godot-mono --headless --verbose --export-release "linux"
 
 windows: licenses
     mkdir -p build/windows
     cp -r build/licenses/* build/windows
-    godot4.6-mono --headless --verbose --export-release "windows"
+    godot-mono --headless --verbose --export-release "windows"
 
 macos: licenses
     mkdir -p build/macos
     cp -r build/licenses/* build/macos
-    godot4.6-mono --headless --verbose --export-release "macos"
+    godot-mono --headless --verbose --export-release "macos"
 
 linux-rust:
     #!/usr/bin/env bash

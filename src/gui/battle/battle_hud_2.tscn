@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://cnm6e7ubjqngh"]
+
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_vkiei"]
+[ext_resource type="Script" uid="uid://ds33xqi6tl21b" path="res://src/gui/battle/battle_sub_viewport.gd" id="2_ml472"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_bk4x8"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_sy6qs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_k2i2f"]
+
+[sub_resource type="Resource" id="Resource_m01fy"]
+script = ExtResource("4_sy6qs")
+
+[node name="BattleHud2" type="Control" unique_id=1025756826]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=454312471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 2.0
+
+[node name="Control2" type="Control" parent="." unique_id=1339458419]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.168
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=750095713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="PanelContainer" parent="VBoxContainer" unique_id=591181943]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Control" unique_id=917612389]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Sub Panel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=177166758]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/separation = 0
+
+[node name="BattleLeftViewport" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer" unique_id=1411044469 node_paths=PackedStringArray("camera_host")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+script = ExtResource("2_ml472")
+camera_host = NodePath("SubViewport/BattleMainCamera/PhantomCameraHost")
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/BattleLeftViewport" unique_id=2080317206]
+handle_input_locally = false
+size = Vector2i(213, 288)
+render_target_update_mode = 3
+
+[node name="BattleMainCamera" type="Camera3D" parent="VBoxContainer/HBoxContainer/BattleLeftViewport/SubViewport" unique_id=2051467182]
+transform = Transform3D(0.9554058, -0.101481125, 0.27731013, 8.881784e-16, 0.9390941, 0.34365964, -0.2952953, -0.32833448, 0.8972161, 0.61122346, 1.1799655, -0.7652081)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="VBoxContainer/HBoxContainer/BattleLeftViewport/SubViewport/BattleMainCamera" unique_id=2027574186]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_vkiei")
+host_layers = 4
+interpolation_mode = 1
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/BattleLeftViewport/SubViewport" unique_id=843696750]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Sub Viewport A
+"
+horizontal_alignment = 1
+
+[node name="BattleMainViewport" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer" unique_id=2091516488]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+mouse_target = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/BattleMainViewport" unique_id=90090015]
+handle_input_locally = false
+size = Vector2i(640, 288)
+render_target_update_mode = 3
+
+[node name="BattleMainCamera" type="Camera3D" parent="VBoxContainer/HBoxContainer/BattleMainViewport/SubViewport" unique_id=859895985]
+transform = Transform3D(0.7071067, -0.2430041, 0.66403985, 0, 0.93909425, 0.34365967, -0.7071067, -0.2430041, 0.66403985, 2.1232023, 1.1799655, -0.98988855)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="VBoxContainer/HBoxContainer/BattleMainViewport/SubViewport/BattleMainCamera" unique_id=615360059]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_vkiei")
+host_layers = 2
+interpolation_mode = 1
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/BattleMainViewport/SubViewport" unique_id=1402915220]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Main Viewport
+"
+horizontal_alignment = 1
+
+[node name="BattleRightViewport" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer" unique_id=817179347 node_paths=PackedStringArray("camera_host")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+script = ExtResource("2_ml472")
+camera_host = NodePath("SubViewport/BattleMainCamera/PhantomCameraHost")
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/BattleRightViewport" unique_id=51767515]
+handle_input_locally = false
+size = Vector2i(320, 288)
+render_target_update_mode = 3
+
+[node name="BattleMainCamera" type="Camera3D" parent="VBoxContainer/HBoxContainer/BattleRightViewport/SubViewport" unique_id=1817319586]
+transform = Transform3D(0.35098317, -0.3217966, 0.8793505, 1.9593998e-08, 0.93909407, 0.3436596, -0.93638134, -0.12061873, 0.3296063, 3.0398533, 1.1799655, -2.2418642)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="VBoxContainer/HBoxContainer/BattleRightViewport/SubViewport/BattleMainCamera" unique_id=547793175]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_vkiei")
+host_layers = 8
+interpolation_mode = 1
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/BattleRightViewport/SubViewport" unique_id=223763946]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Sub Viewport B"
+horizontal_alignment = 1
+
+[node name="Control2" type="PanelContainer" parent="VBoxContainer" unique_id=1011036097]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Control2" unique_id=1781701168]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Main Panel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1638929828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.522788)
+mesh = SubResource("BoxMesh_k2i2f")
+
+[node name="MainCamera" type="Node3D" parent="." unique_id=669803858]
+transform = Transform3D(0.7071067, -0.2430041, 0.66403985, 0, 0.93909425, 0.34365967, -0.7071067, -0.2430041, 0.66403985, 2.1232023, 1.1799655, -0.98988855)
+script = ExtResource("3_bk4x8")
+tween_resource = SubResource("Resource_m01fy")
+host_layers = 2
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="SubCamera1" type="Node3D" parent="." unique_id=1115243535]
+transform = Transform3D(0.9554058, -0.101481125, 0.27731013, 8.881784e-16, 0.9390941, 0.34365964, -0.2952953, -0.32833448, 0.8972161, 0.61122346, 1.1799655, -0.7652081)
+script = ExtResource("3_bk4x8")
+priority = 1
+tween_resource = SubResource("Resource_m01fy")
+host_layers = 4
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="SubCamera2" type="Node3D" parent="." unique_id=2135348821]
+transform = Transform3D(0.35098317, -0.3217966, 0.8793505, 1.9593998e-08, 0.93909407, 0.3436596, -0.93638134, -0.12061873, 0.3296063, 3.0398533, 1.1799655, -2.2418642)
+script = ExtResource("3_bk4x8")
+priority = 1
+tween_resource = SubResource("Resource_m01fy")
+host_layers = 8
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=469971832]
+transform = Transform3D(0.9240601, -0.33030534, 0.19238319, 0, 0.50329524, 0.8641145, -0.38224718, -0.79849374, 0.46507505, 0, 0, 0)

@@ -1,0 +1,97 @@
+INCLUDE calendar.ink
+INCLUDE days.ink
+INCLUDE forecast.ink
+INCLUDE world/lib.ink
+INCLUDE quests/lib.ink
+INCLUDE characters/lib.ink
+INCLUDE test.ink
+
+INCLUDE calendar/d0_08_12.ink
+INCLUDE calendar/d0_08_13.ink
+INCLUDE calendar/d0_08_14.ink
+INCLUDE calendar/d0_08_15.ink
+INCLUDE calendar/d0_08_16.ink
+INCLUDE calendar/d0_08_17.ink
+INCLUDE ponder/lib.ink
+INCLUDE inventory/lib.ink
+INCLUDE quests/intro.ink
+
+
+
+
+
+{in_inky(): {SEED_RANDOM(2763)}}
+
+/ cut black
+
+- (day_loop)
+-> calendar.run_day ->
+-> day_loop
+
+EXTERNAL in_inky()
+=== function in_inky()
+~ return true
+
+EXTERNAL ask(name, default)
+=== function ask(name, default)
+~ return default
+
+VAR leader = "cipher"
+
+=== function ___title()
+~ return "Legume Traffick"
+
+=== die
+(Placeholder death.)
+->END
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

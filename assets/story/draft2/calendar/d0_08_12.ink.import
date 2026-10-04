@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://0vdx1ncyhuol"
+path="res://.godot/imported/d0_08_12.ink-1250f158da5badcbe6b17c89d37916bf.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/calendar/d0_08_12.ink"
+dest_files=["res://.godot/imported/d0_08_12.ink-1250f158da5badcbe6b17c89d37916bf.res"]
+
+[params]
+
+is_main_file=false
+compress=true

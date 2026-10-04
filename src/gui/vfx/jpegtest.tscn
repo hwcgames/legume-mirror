@@ -18,25 +18,25 @@ func _physics_process(delta: float) -> void:
 	rotate_y(2. * PI * delta)
 "
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qrcus"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rtfhv"]
 viewport_path = NodePath("3DOnly")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_68ox6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xbt6y"]
 resource_local_to_scene = true
 shader = ExtResource("3_qrcus")
-shader_parameter/viewport = SubResource("ViewportTexture_qrcus")
+shader_parameter/viewport = SubResource("ViewportTexture_rtfhv")
 shader_parameter/quantize = ExtResource("4_68ox6")
 shader_parameter/block_size = 8
 shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
 shader_parameter/quality = 100.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4splm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vso2g"]
 viewport_path = NodePath("DCT")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0vdq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3tbf"]
 resource_local_to_scene = true
 shader = ExtResource("5_4splm")
-shader_parameter/dct = SubResource("ViewportTexture_4splm")
+shader_parameter/dct = SubResource("ViewportTexture_vso2g")
 shader_parameter/block_size = 8
 shader_parameter/k = Vector3(0.3333, 0.3333, 0.3333)
 
@@ -55,6 +55,13 @@ viewport_path = NodePath("JpegEffect/IDCT")
 [sub_resource type="ViewportTexture" id="ViewportTexture_tdxwt"]
 viewport_path = NodePath("CanvasLayer/RGB")
 
+[sub_resource type="GDScript" id="GDScript_1u21t"]
+script/source = "extends HSlider
+
+func _process(delta: float) -> void:
+	$\"../JpegEffect\".quality = value
+"
+
 [node name="Jpegtest" type="Node3D" unique_id=1224458022]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582849569]
@@ -69,10 +76,10 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 1, 2)
 [node name="JpegEffect" parent="." unique_id=1051463828 instance=ExtResource("2_nkyqf")]
 
 [node name="DCT" parent="JpegEffect/DCT" parent_id_path=PackedInt32Array(1051463828, 559845007) index="0" unique_id=606558410]
-material = SubResource("ShaderMaterial_68ox6")
+material = SubResource("ShaderMaterial_xbt6y")
 
 [node name="IDCT" parent="JpegEffect/IDCT" parent_id_path=PackedInt32Array(1051463828, 1720533226) index="0" unique_id=2062453490]
-material = SubResource("ShaderMaterial_p0vdq")
+material = SubResource("ShaderMaterial_k3tbf")
 
 [node name="FlowContainer" type="HBoxContainer" parent="." unique_id=2145968169]
 anchors_preset = 15
@@ -143,5 +150,6 @@ custom_minimum_size = Vector2(256, 0)
 offset_right = 8.0
 offset_bottom = 16.0
 value = 100.0
+script = SubResource("GDScript_1u21t")
 
 [editable path="JpegEffect"]

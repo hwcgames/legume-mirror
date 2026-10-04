@@ -14,11 +14,8 @@ func _activate():
 		if is_instance_valid(current.next_automove):
 			current = current.next_automove
 			continue
-		for _i in range(5):
-			if !(is_instance_valid(current.next_seam) and is_instance_valid(current.next_seam.partner)):
-				await get_tree().physics_frame
-			else:
-				break
+		while current.next_seam_key != "" and !(is_instance_valid(current.next_seam) and is_instance_valid(current.next_seam.partner)):
+			await get_tree().physics_frame
 		if !is_instance_valid(current):
 			actor.mode_done()
 			return

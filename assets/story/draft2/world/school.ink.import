@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://uahk5u8rwqm1"
+path="res://.godot/imported/school.ink-adc317f12059c132dd5ce0d210eea6c6.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/world/school.ink"
+dest_files=["res://.godot/imported/school.ink-adc317f12059c132dd5ce0d210eea6c6.res"]
+
+[params]
+
+is_main_file=false
+compress=true

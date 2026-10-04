@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://dc8p4yl1jw4f6"
+path="res://.godot/imported/lib.ink-a3bc72b19a91b55f8ebcb097fa0bff92.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/ponder/lib.ink"
+dest_files=["res://.godot/imported/lib.ink-a3bc72b19a91b55f8ebcb097fa0bff92.res"]
+
+[params]
+
+is_main_file=false
+compress=true

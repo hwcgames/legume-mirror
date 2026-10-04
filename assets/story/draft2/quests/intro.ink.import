@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://cxt20feooslcw"
+path="res://.godot/imported/intro.ink-8a7476157f136f00ee807b3bcc80494d.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/quests/intro.ink"
+dest_files=["res://.godot/imported/intro.ink-8a7476157f136f00ee807b3bcc80494d.res"]
+
+[params]
+
+is_main_file=false
+compress=true

@@ -67,6 +67,7 @@ size = 20.0
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("8_it5wq")
+interpolation_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=535650876]
 unique_name_in_owner = true

@@ -31,6 +31,9 @@ func fade_out(to_fade: String, instant: bool = false):
 	if is_instance_valid(current_fade):
 		current_fade.queue_free()
 	var fade_scn: PackedScene = load("res://database/fade/%s.tscn" % to_fade)
+	if !is_instance_valid(fade_scn):
+		printerr("ERROR: Bad fade %s" % to_fade)
+		return
 	var fade: Fade = fade_scn.instantiate()
 	add_child(fade)
 	current_fade = fade

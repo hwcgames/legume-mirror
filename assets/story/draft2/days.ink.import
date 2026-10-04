@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://cmsm7nbmdkwee"
+path="res://.godot/imported/days.ink-da801ec7050bf734d7749a266a5afd49.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/days.ink"
+dest_files=["res://.godot/imported/days.ink-da801ec7050bf734d7749a266a5afd49.res"]
+
+[params]
+
+is_main_file=false
+compress=true

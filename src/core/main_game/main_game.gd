@@ -54,7 +54,10 @@ func do_line(line: String, tags: Array[String]):
 					printerr("WARNING: Battle already active!")
 					return null
 				var env_path = "res://database/battlefield/%s.tscn" % environment_name
-				var environment = load(env_path).instantiate()
+				var env_scene = load(env_path)
+				if !is_instance_valid(env_scene):
+					env_scene = load("uid://ccr3fgha4vs2l")
+				var environment = env_scene.instantiate()
 				battle = preload("uid://cyxdvd335kc1p").instantiate()
 				%BattleWorldParent.add_child(battle)
 				battle.setup(environment)

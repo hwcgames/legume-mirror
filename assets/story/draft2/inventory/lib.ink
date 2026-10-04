@@ -1,0 +1,1 @@
+LIST inventory = cell_phone, journal

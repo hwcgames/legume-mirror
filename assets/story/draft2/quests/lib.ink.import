@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://rm4mrfxj320i"
+path="res://.godot/imported/lib.ink-ead526de652615c71591f69ad68f00ee.res"
+
+[deps]
+
+source_file="res://assets/story/draft2/quests/lib.ink"
+dest_files=["res://.godot/imported/lib.ink-ead526de652615c71591f69ad68f00ee.res"]
+
+[params]
+
+is_main_file=false
+compress=true
